@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RenderDialog</class>
+ <widget class="QDialog" name="RenderDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>420</width>
+    <height>340</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <stylestrategy>PreferAntialias</stylestrategy>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Renderer</string>
+  </property>
+  <widget class="GLRenderer" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>25</y>
+     <width>400</width>
+     <height>305</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <widget class="QLabel" name="infoLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>5</y>
+     <width>401</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GLRenderer</class>
+   <extends>QWidget</extends>
+   <header>glrenderer.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

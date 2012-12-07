@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>332</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <stylestrategy>PreferAntialias</stylestrategy>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Objects</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="GUIObjectsTreeWidget" name="treeWidget">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>220</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ContiguousSelection</enum>
+      </property>
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="TreePropertyBrowser" name="widget" native="true">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>332</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_data_folder"/>
+    <addaction name="actionOpenViewController"/>
+    <addaction name="actionSaveViewController"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>View</string>
+    </property>
+    <widget class="QMenu" name="menuNewObject">
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="title">
+      <string>New Object</string>
+     </property>
+     <addaction name="actionNewObjectView"/>
+     <addaction name="actionNewObjectButton"/>
+     <addaction name="actionNewObjectLabel"/>
+     <addaction name="actionNewObjectTextField"/>
+     <addaction name="actionNewObjectParticleView"/>
+    </widget>
+    <widget class="QMenu" name="menuSelectedObject">
+     <property name="title">
+      <string>Selected Object</string>
+     </property>
+     <addaction name="actionSelectedObjectDelete"/>
+    </widget>
+    <widget class="QMenu" name="menuView_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>View</string>
+     </property>
+     <widget class="QMenu" name="menuViewTexture">
+      <property name="title">
+       <string>Texture</string>
+      </property>
+      <addaction name="actionViewTextureSetNew"/>
+      <addaction name="actionViewTextureOpenImage"/>
+     </widget>
+     <addaction name="menuViewTexture"/>
+    </widget>
+    <widget class="QMenu" name="menuButton">
+     <property name="title">
+      <string>Button</string>
+     </property>
+     <widget class="QMenu" name="menuDefaultTexture">
+      <property name="title">
+       <string>Default Texture</string>
+      </property>
+      <addaction name="actionDefaultTextureSetNew"/>
+      <addaction name="actionDefaultTextureOpenImage"/>
+     </widget>
+     <widget class="QMenu" name="menuBtnPressedTexture">
+      <property name="title">
+       <string>Pressed Texture</string>
+      </property>
+      <addaction name="actionBtnPressedTextureSetNew"/>
+      <addaction name="actionBtnPressedTextureOpenImage"/>
+     </widget>
+     <widget class="QMenu" name="menuBtnDisabledTexture">
+      <property name="title">
+       <string>Disabled Texture</string>
+      </property>
+      <addaction name="actionBtnDisabledTextureSetNew"/>
+      <addaction name="actionBtnDisabledTextureOpenImage"/>
+     </widget>
+     <addaction name="menuDefaultTexture"/>
+     <addaction name="menuBtnPressedTexture"/>
+     <addaction name="menuBtnDisabledTexture"/>
+    </widget>
+    <widget class="QMenu" name="menuLabel">
+     <property name="title">
+      <string>Label</string>
+     </property>
+     <widget class="QMenu" name="menuLabelTexture">
+      <property name="title">
+       <string>Texture</string>
+      </property>
+      <addaction name="actionLabelTextureSetNew"/>
+      <addaction name="actionLabelTextureOpenImage"/>
+     </widget>
+     <widget class="QMenu" name="menuLabelFont">
+      <property name="title">
+       <string>Font</string>
+      </property>
+      <addaction name="actionLabelFontSetNew"/>
+      <addaction name="actionLabelFontOpenFont"/>
+     </widget>
+     <addaction name="menuLabelTexture"/>
+     <addaction name="menuLabelFont"/>
+    </widget>
+    <widget class="QMenu" name="menuTextField">
+     <property name="title">
+      <string>Text Field</string>
+     </property>
+     <widget class="QMenu" name="menuTextFieldTexture">
+      <property name="title">
+       <string>Texture</string>
+      </property>
+      <addaction name="actionTextFieldTextureSetNew"/>
+      <addaction name="actionTextFieldTextureOpenImage"/>
+     </widget>
+     <widget class="QMenu" name="menuTextFieldFont">
+      <property name="title">
+       <string>Font</string>
+      </property>
+      <addaction name="actionTextFieldFontSetNew"/>
+      <addaction name="actionTextFieldFontOpenFont"/>
+     </widget>
+     <addaction name="menuTextFieldTexture"/>
+     <addaction name="menuTextFieldFont"/>
+    </widget>
+    <widget class="QMenu" name="menuParticleView">
+     <property name="title">
+      <string>Particle View</string>
+     </property>
+     <addaction name="actionPartViewOpenParticleFile"/>
+    </widget>
+    <widget class="QMenu" name="menuRootViewController">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Root View Controller</string>
+     </property>
+     <addaction name="actionRootVCRenderSize"/>
+     <addaction name="actionRootVCScreenSize"/>
+     <addaction name="actionRootVCXMLOutput"/>
+     <addaction name="actionCpphelper"/>
+    </widget>
+    <addaction name="menuRootViewController"/>
+    <addaction name="separator"/>
+    <addaction name="menuView_2"/>
+    <addaction name="menuButton"/>
+    <addaction name="menuLabel"/>
+    <addaction name="menuTextField"/>
+    <addaction name="menuParticleView"/>
+    <addaction name="separator"/>
+    <addaction name="menuNewObject"/>
+    <addaction name="separator"/>
+    <addaction name="menuSelectedObject"/>
+   </widget>
+   <widget class="QMenu" name="menuRenderer">
+    <property name="title">
+     <string>Renderer</string>
+    </property>
+    <widget class="QMenu" name="menuRendererScale">
+     <property name="title">
+      <string>Scale</string>
+     </property>
+    </widget>
+    <addaction name="menuRendererScale"/>
+    <addaction name="actionRendererShowHide"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuRenderer"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionOpen_data_folder">
+   <property name="text">
+    <string>Open &quot;data&quot; Folder</string>
+   </property>
+  </action>
+  <action name="actionNewObjectView">
+   <property name="text">
+    <string>View</string>
+   </property>
+  </action>
+  <action name="actionNewObjectButton">
+   <property name="text">
+    <string>Button</string>
+   </property>
+  </action>
+  <action name="actionNewObjectLabel">
+   <property name="text">
+    <string>Label</string>
+   </property>
+  </action>
+  <action name="actionNewObjectTextField">
+   <property name="text">
+    <string>Text Field</string>
+   </property>
+  </action>
+  <action name="actionNewObjectParticleView">
+   <property name="text">
+    <string>Particle View</string>
+   </property>
+  </action>
+  <action name="actionSelectedObjectDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionViewTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionViewTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionDefaultTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionBtnPressedTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionBtnDisabledTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionDefaultTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionBtnPressedTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionBtnDisabledTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionLabelTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionLabelTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionLabelFontSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionLabelFontOpenFont">
+   <property name="text">
+    <string>Open Font</string>
+   </property>
+  </action>
+  <action name="actionTextFieldTextureSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionTextFieldTextureOpenImage">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionTextFieldFontSetNew">
+   <property name="text">
+    <string>Set New</string>
+   </property>
+  </action>
+  <action name="actionTextFieldFontOpenFont">
+   <property name="text">
+    <string>Open Font</string>
+   </property>
+  </action>
+  <action name="actionPartViewOpenParticleFile">
+   <property name="text">
+    <string>Open Particle File</string>
+   </property>
+  </action>
+  <action name="actionOpenViewController">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Open View Controller</string>
+   </property>
+  </action>
+  <action name="actionSaveViewController">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Save View Controller</string>
+   </property>
+  </action>
+  <action name="actionRootVCRenderSize">
+   <property name="text">
+    <string>Render Size</string>
+   </property>
+  </action>
+  <action name="actionRendererShowHide">
+   <property name="text">
+    <string>Show / Hide</string>
+   </property>
+  </action>
+  <action name="actionRootVCScreenSize">
+   <property name="text">
+    <string>Screen Size</string>
+   </property>
+  </action>
+  <action name="actionRootVCXMLOutput">
+   <property name="text">
+    <string>XML Output</string>
+   </property>
+  </action>
+  <action name="actionCpphelper">
+   <property name="text">
+    <string>C++ helper</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GUIObjectsTreeWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>guiobjectstreewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TreePropertyBrowser</class>
+   <extends>QWidget</extends>
+   <header>treepropertybrowser.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SizeDialog</class>
+ <widget class="QDialog" name="SizeDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>110</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>280</width>
+    <height>110</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>280</width>
+    <height>110</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <stylestrategy>PreferAntialias</stylestrategy>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>5</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Tahoma</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>Width</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Height</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>22</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="margin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QSpinBox" name="widthSpinBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Monaco</family>
+         </font>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="widthSpinBoxFL">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="decimals">
+         <number>6</number>
+        </property>
+        <property name="maximum">
+         <double>99999.999999000006937</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="exchangeToolButton">
+        <property name="minimumSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="heightSpinBoxFL">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="decimals">
+         <number>6</number>
+        </property>
+        <property name="maximum">
+         <double>99999.999999000006937</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="heightSpinBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

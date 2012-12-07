@@ -1,0 +1,1505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3DAD81D115F73772000F83EF /* REGUI_Agregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3DAD81D215F73772000F83EF /* Build configuration list for PBXAggregateTarget "REGUI_Agregate" */;
+			buildPhases = (
+				3DAD81D515F73777000F83EF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = REGUI_Agregate;
+			productName = REGUI_Agregate;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		3D0E32A413E7CC5800F3D0A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0E32A313E7CC5800F3D0A6 /* Foundation.framework */; };
+		3D1C0D3C15259D3600386A3B /* REParticleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1C0D3B15259D3600386A3B /* REParticleView.h */; };
+		3D1C0D3E15259D3B00386A3B /* REParticleView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C0D3D15259D3B00386A3B /* REParticleView.cpp */; };
+		3D24B1C8147CE382009DA7DB /* REStackedViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D24B1C7147CE382009DA7DB /* REStackedViewController.cpp */; };
+		3D24B1CB147CE387009DA7DB /* REStackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D24B1CA147CE387009DA7DB /* REStackedViewController.h */; };
+		3D24EC6E14568DF600B2A98B /* RERenderDeviceTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D24EC6D14568DF600B2A98B /* RERenderDeviceTextureObject.h */; };
+		3D24EC7014568DFB00B2A98B /* RERenderDeviceTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D24EC6F14568DFB00B2A98B /* RERenderDeviceTextureObject.cpp */; };
+		3D294C8315BFE62000013A91 /* REGUIObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D294C8215BFE62000013A91 /* REGUIObject.h */; };
+		3D294C8615BFE62600013A91 /* REGUIObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D294C8515BFE62600013A91 /* REGUIObject.cpp */; };
+		3D2A459C14178E4A00861384 /* freetype_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2A459614178E4A00861384 /* freetype_config.h */; };
+		3D2A459D14178E4A00861384 /* freetype_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459714178E4A00861384 /* freetype_wrap1.c */; };
+		3D2A459E14178E4A00861384 /* freetype_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459814178E4A00861384 /* freetype_wrap2.c */; };
+		3D2A459F14178E4A00861384 /* freetype_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459914178E4A00861384 /* freetype_wrap3.c */; };
+		3D2A45A014178E4A00861384 /* freetype_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459A14178E4A00861384 /* freetype_wrap4.c */; };
+		3D2A45A114178E4A00861384 /* freetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2A459B14178E4A00861384 /* freetype.h */; };
+		3D41B276146C8B3100026EA3 /* RETypedAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D41B275146C8B3100026EA3 /* RETypedAnimation.h */; };
+		3D41B278146C8BF600026EA3 /* RETypedAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D41B277146C8BF600026EA3 /* RETypedAnimation.cpp */; };
+		3D507DBF14E27605000E558C /* RERenderDeviceOpenGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D507DBE14E27605000E558C /* RERenderDeviceOpenGL.h */; };
+		3D507DC214E27C3A000E558C /* RERenderDeviceDirectX9.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D507DC114E27C3A000E558C /* RERenderDeviceDirectX9.h */; };
+		3D5390BB14E423A700DA1160 /* REEditableAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5390BA14E423A700DA1160 /* REEditableAnimationInfo.cpp */; };
+		3D60A004156A758F004BEA1F /* RETextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D60A003156A758F004BEA1F /* RETextField.h */; };
+		3D60A007156A759C004BEA1F /* RETextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D60A006156A759C004BEA1F /* RETextField.cpp */; };
+		3DAD80A215F73329000F83EF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A015F73329000F83EF /* REConfigIPhone.h */; };
+		3DAD80A315F73329000F83EF /* REConfigSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A115F73329000F83EF /* REConfigSelector.h */; };
+		3DAD80F015F73437000F83EF /* IREAffineTransformed.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A615F73437000F83EF /* IREAffineTransformed.h */; };
+		3DAD80F115F73437000F83EF /* IREFileReadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A715F73437000F83EF /* IREFileReadable.h */; };
+		3DAD80F215F73437000F83EF /* RE2DAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A815F73437000F83EF /* RE2DAlgorithm.h */; };
+		3DAD80F315F73437000F83EF /* REAffineTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80A915F73437000F83EF /* REAffineTransform.h */; };
+		3DAD80F415F73437000F83EF /* REAngle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AA15F73437000F83EF /* REAngle.h */; };
+		3DAD80F515F73437000F83EF /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AB15F73437000F83EF /* REApplication.h */; };
+		3DAD80F615F73437000F83EF /* REArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AC15F73437000F83EF /* REArray.h */; };
+		3DAD80F715F73437000F83EF /* REAutoReleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AD15F73437000F83EF /* REAutoReleasePool.h */; };
+		3DAD80F815F73437000F83EF /* REBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AE15F73437000F83EF /* REBase64.h */; };
+		3DAD80F915F73437000F83EF /* REBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80AF15F73437000F83EF /* REBuffer.h */; };
+		3DAD80FA15F73437000F83EF /* REBufferObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B015F73437000F83EF /* REBufferObject.h */; };
+		3DAD80FB15F73437000F83EF /* REClassMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B115F73437000F83EF /* REClassMethod.h */; };
+		3DAD80FC15F73437000F83EF /* REColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B215F73437000F83EF /* REColor.h */; };
+		3DAD80FD15F73437000F83EF /* RECommonHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B315F73437000F83EF /* RECommonHeader.h */; };
+		3DAD80FE15F73437000F83EF /* RECoreC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B415F73437000F83EF /* RECoreC.h */; };
+		3DAD80FF15F73437000F83EF /* RECoreIncludes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B515F73437000F83EF /* RECoreIncludes.h */; };
+		3DAD810015F73437000F83EF /* RECoreOSSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B615F73437000F83EF /* RECoreOSSelector.h */; };
+		3DAD810115F73437000F83EF /* RECorePlatformSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B715F73437000F83EF /* RECorePlatformSelector.h */; };
+		3DAD810215F73437000F83EF /* RECoreSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B815F73437000F83EF /* RECoreSettings.h */; };
+		3DAD810315F73437000F83EF /* RECPUFeatures.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80B915F73437000F83EF /* RECPUFeatures.h */; };
+		3DAD810415F73437000F83EF /* REData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BA15F73437000F83EF /* REData.h */; };
+		3DAD810515F73437000F83EF /* REDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BB15F73437000F83EF /* REDate.h */; };
+		3DAD810615F73437000F83EF /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BC15F73437000F83EF /* REEdgeInsets.h */; };
+		3DAD810715F73437000F83EF /* REFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BD15F73437000F83EF /* REFile.h */; };
+		3DAD810815F73437000F83EF /* REFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BE15F73437000F83EF /* REFileManager.h */; };
+		3DAD810915F73437000F83EF /* REFloat16.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80BF15F73437000F83EF /* REFloat16.h */; };
+		3DAD810A15F73437000F83EF /* REImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C015F73437000F83EF /* REImage.h */; };
+		3DAD810B15F73437000F83EF /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C115F73437000F83EF /* REImageBase.h */; };
+		3DAD810C15F73437000F83EF /* REImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C215F73437000F83EF /* REImageManager.h */; };
+		3DAD810D15F73437000F83EF /* REInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C315F73437000F83EF /* REInterpolation.h */; };
+		3DAD810E15F73437000F83EF /* REList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C415F73437000F83EF /* REList.h */; };
+		3DAD810F15F73437000F83EF /* RELocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C515F73437000F83EF /* RELocale.h */; };
+		3DAD811015F73437000F83EF /* RELog.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C615F73437000F83EF /* RELog.h */; };
+		3DAD811115F73437000F83EF /* RELZMACompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C715F73437000F83EF /* RELZMACompression.h */; };
+		3DAD811215F73437000F83EF /* REMainLoopUpdatable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C815F73437000F83EF /* REMainLoopUpdatable.h */; };
+		3DAD811315F73437000F83EF /* REMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80C915F73437000F83EF /* REMath.h */; };
+		3DAD811415F73437000F83EF /* REMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CA15F73437000F83EF /* REMatrix4.h */; };
+		3DAD811515F73437000F83EF /* REMD5Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CB15F73437000F83EF /* REMD5Generator.h */; };
+		3DAD811615F73437000F83EF /* REMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CC15F73437000F83EF /* REMem.h */; };
+		3DAD811715F73437000F83EF /* REMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CD15F73437000F83EF /* REMutex.h */; };
+		3DAD811815F73437000F83EF /* RENotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CE15F73437000F83EF /* RENotificationManager.h */; };
+		3DAD811915F73437000F83EF /* RENULLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80CF15F73437000F83EF /* RENULLObject.h */; };
+		3DAD811A15F73437000F83EF /* RENumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D015F73437000F83EF /* RENumber.h */; };
+		3DAD811B15F73437000F83EF /* RENumberObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D115F73437000F83EF /* RENumberObject.h */; };
+		3DAD811C15F73437000F83EF /* REObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D215F73437000F83EF /* REObject.h */; };
+		3DAD811D15F73437000F83EF /* REObjectProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D315F73437000F83EF /* REObjectProperty.h */; };
+		3DAD811E15F73437000F83EF /* REObjectsArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D415F73437000F83EF /* REObjectsArray.h */; };
+		3DAD811F15F73437000F83EF /* REObjectsDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D515F73437000F83EF /* REObjectsDictionary.h */; };
+		3DAD812015F73437000F83EF /* REPoint2.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D615F73437000F83EF /* REPoint2.h */; };
+		3DAD812115F73437000F83EF /* REPoint3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D715F73437000F83EF /* REPoint3.h */; };
+		3DAD812215F73437000F83EF /* REProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D815F73437000F83EF /* REProperty.h */; };
+		3DAD812315F73437000F83EF /* REQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80D915F73437000F83EF /* REQuaternion.h */; };
+		3DAD812415F73437000F83EF /* RERandomizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DA15F73437000F83EF /* RERandomizer.h */; };
+		3DAD812515F73437000F83EF /* RERange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DB15F73437000F83EF /* RERange.h */; };
+		3DAD812615F73437000F83EF /* RERect.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DC15F73437000F83EF /* RERect.h */; };
+		3DAD812715F73437000F83EF /* REResourcesStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DD15F73437000F83EF /* REResourcesStorage.h */; };
+		3DAD812815F73437000F83EF /* RESize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DE15F73437000F83EF /* RESize.h */; };
+		3DAD812915F73437000F83EF /* RESQLiteDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80DF15F73437000F83EF /* RESQLiteDB.h */; };
+		3DAD812A15F73437000F83EF /* RESQLiteDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E015F73437000F83EF /* RESQLiteDBResultSet.h */; };
+		3DAD812B15F73437000F83EF /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E115F73437000F83EF /* REString.h */; };
+		3DAD812C15F73437000F83EF /* REStringObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E215F73437000F83EF /* REStringObject.h */; };
+		3DAD812D15F73437000F83EF /* RETetragon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E315F73437000F83EF /* RETetragon.h */; };
+		3DAD812E15F73437000F83EF /* REThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E415F73437000F83EF /* REThread.h */; };
+		3DAD812F15F73437000F83EF /* RETime.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E515F73437000F83EF /* RETime.h */; };
+		3DAD813015F73437000F83EF /* RETimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E615F73437000F83EF /* RETimer.h */; };
+		3DAD813115F73437000F83EF /* RETypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E715F73437000F83EF /* RETypes.h */; };
+		3DAD813215F73437000F83EF /* REUserCallBacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E815F73437000F83EF /* REUserCallBacks.h */; };
+		3DAD813315F73437000F83EF /* REVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80E915F73437000F83EF /* REVector2.h */; };
+		3DAD813415F73437000F83EF /* REVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80EA15F73437000F83EF /* REVector3.h */; };
+		3DAD813515F73437000F83EF /* REXMLPropertyListReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80EB15F73437000F83EF /* REXMLPropertyListReader.h */; };
+		3DAD813615F73437000F83EF /* REXMLPropertyListWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80EC15F73437000F83EF /* REXMLPropertyListWriter.h */; };
+		3DAD813715F73437000F83EF /* REYUVtoRGB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80ED15F73437000F83EF /* REYUVtoRGB.h */; };
+		3DAD813815F73437000F83EF /* REZipReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80EE15F73437000F83EF /* REZipReader.h */; };
+		3DAD813915F73437000F83EF /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD80EF15F73437000F83EF /* REZLIBCompression.h */; };
+		3DAD813A15F7349F000F83EF /* REGUIObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D294C8515BFE62600013A91 /* REGUIObject.cpp */; };
+		3DAD813B15F7349F000F83EF /* RETextInputRespondersManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB02E2156A46800012FA48 /* RETextInputRespondersManager.cpp */; };
+		3DAD813C15F7349F000F83EF /* RETextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D60A006156A759C004BEA1F /* RETextField.cpp */; };
+		3DAD813D15F7349F000F83EF /* PyroOpenGLES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D05EAF215623CB9004515DA /* PyroOpenGLES.cpp */; };
+		3DAD813E15F7349F000F83EF /* REButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B8E144CB11000FF99AB /* REButton.cpp */; };
+		3DAD813F15F7349F000F83EF /* REStackedViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D24B1C7147CE382009DA7DB /* REStackedViewController.cpp */; };
+		3DAD814015F7349F000F83EF /* REViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B90144CB11000FF99AB /* REViewController.cpp */; };
+		3DAD814115F7349F000F83EF /* REXMLSerializableReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B93144CB11000FF99AB /* REXMLSerializableReader.cpp */; };
+		3DAD814215F7349F000F83EF /* REFramedTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */; };
+		3DAD814315F7349F000F83EF /* RETextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B97144CB11000FF99AB /* RETextureObject.cpp */; };
+		3DAD814415F7349F000F83EF /* RETextureOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B9E144CB11000FF99AB /* RETextureOpenGL.cpp */; };
+		3DAD814515F7349F000F83EF /* RETextureDirectX9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */; };
+		3DAD814615F7349F000F83EF /* RESubViewsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B80144CB11000FF99AB /* RESubViewsContainer.cpp */; };
+		3DAD814715F7349F000F83EF /* RECursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B82144CB11000FF99AB /* RECursor.cpp */; };
+		3DAD814815F7349F000F83EF /* REGUIApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B85144CB11000FF99AB /* REGUIApplication.cpp */; };
+		3DAD814915F7349F000F83EF /* RECamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC799FD14E11BAA0092512D /* RECamera.cpp */; };
+		3DAD814A15F7349F000F83EF /* RERenderDeviceTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D24EC6F14568DFB00B2A98B /* RERenderDeviceTextureObject.cpp */; };
+		3DAD814B15F7349F000F83EF /* RERenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA4144CB11000FF99AB /* RERenderDevice.cpp */; };
+		3DAD814C15F7349F000F83EF /* RERenderDeviceOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA6144CB11000FF99AB /* RERenderDeviceOpenGL.cpp */; };
+		3DAD814D15F7349F000F83EF /* RERenderDeviceDirectX9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA8144CB11000FF99AB /* RERenderDeviceDirectX9.cpp */; };
+		3DAD814E15F7349F000F83EF /* REView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B89144CB11000FF99AB /* REView.cpp */; };
+		3DAD814F15F7349F000F83EF /* RETransformedView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B8B144CB11000FF99AB /* RETransformedView.cpp */; };
+		3DAD815015F7349F000F83EF /* REAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0A8BE145DC490001AAF61 /* REAnimation.cpp */; };
+		3DAD815115F7349F000F83EF /* REAnimationBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB0144CB11000FF99AB /* REAnimationBase.cpp */; };
+		3DAD815215F7349F000F83EF /* RETypedAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D41B277146C8BF600026EA3 /* RETypedAnimation.cpp */; };
+		3DAD815315F7349F000F83EF /* REEditableAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5390BA14E423A700DA1160 /* REEditableAnimationInfo.cpp */; };
+		3DAD815415F7349F000F83EF /* REAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB3144CB11000FF99AB /* REAnimationInfo.cpp */; };
+		3DAD815515F7349F000F83EF /* REAnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB5144CB11000FF99AB /* REAnimationController.cpp */; };
+		3DAD815615F7349F000F83EF /* RETTFFontChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B61144CB0AA00FF99AB /* RETTFFontChar.cpp */; };
+		3DAD815715F7349F000F83EF /* RETTFFontLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B63144CB0AA00FF99AB /* RETTFFontLoader.cpp */; };
+		3DAD815815F7349F000F83EF /* REFontObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B65144CB0AA00FF99AB /* REFontObject.cpp */; };
+		3DAD815915F7349F000F83EF /* REFontBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B67144CB0AA00FF99AB /* REFontBase.cpp */; };
+		3DAD815A15F7349F000F83EF /* REFontsCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B69144CB0AA00FF99AB /* REFontsCache.cpp */; };
+		3DAD815B15F7349F000F83EF /* RELabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B5B144CB09700FF99AB /* RELabel.cpp */; };
+		3DAD815C15F734B3000F83EF /* freetype_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459714178E4A00861384 /* freetype_wrap1.c */; };
+		3DAD815D15F734B3000F83EF /* freetype_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459814178E4A00861384 /* freetype_wrap2.c */; };
+		3DAD815E15F734B3000F83EF /* freetype_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459914178E4A00861384 /* freetype_wrap3.c */; };
+		3DAD815F15F734B3000F83EF /* freetype_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A459A14178E4A00861384 /* freetype_wrap4.c */; };
+		3DAD816115F7353A000F83EF /* regui.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAD809E15F732EE000F83EF /* regui.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3DAD816315F735B2000F83EF /* REConfigIPhone.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A015F73329000F83EF /* REConfigIPhone.h */; };
+		3DAD816415F735B2000F83EF /* REConfigSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A115F73329000F83EF /* REConfigSelector.h */; };
+		3DAD816715F735E3000F83EF /* IREAffineTransformed.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A615F73437000F83EF /* IREAffineTransformed.h */; };
+		3DAD816815F735E3000F83EF /* IREFileReadable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A715F73437000F83EF /* IREFileReadable.h */; };
+		3DAD816915F735E3000F83EF /* RE2DAlgorithm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A815F73437000F83EF /* RE2DAlgorithm.h */; };
+		3DAD816A15F735E3000F83EF /* REAffineTransform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80A915F73437000F83EF /* REAffineTransform.h */; };
+		3DAD816B15F735E3000F83EF /* REAngle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AA15F73437000F83EF /* REAngle.h */; };
+		3DAD816C15F735E3000F83EF /* REApplication.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AB15F73437000F83EF /* REApplication.h */; };
+		3DAD816D15F735E3000F83EF /* REArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AC15F73437000F83EF /* REArray.h */; };
+		3DAD816E15F735E3000F83EF /* REAutoReleasePool.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AD15F73437000F83EF /* REAutoReleasePool.h */; };
+		3DAD816F15F735E3000F83EF /* REBase64.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AE15F73437000F83EF /* REBase64.h */; };
+		3DAD817015F735E3000F83EF /* REBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80AF15F73437000F83EF /* REBuffer.h */; };
+		3DAD817115F735E3000F83EF /* REBufferObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B015F73437000F83EF /* REBufferObject.h */; };
+		3DAD817215F735E3000F83EF /* REClassMethod.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B115F73437000F83EF /* REClassMethod.h */; };
+		3DAD817315F735E3000F83EF /* REColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B215F73437000F83EF /* REColor.h */; };
+		3DAD817415F735E3000F83EF /* RECommonHeader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B315F73437000F83EF /* RECommonHeader.h */; };
+		3DAD817515F735E3000F83EF /* RECoreC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B415F73437000F83EF /* RECoreC.h */; };
+		3DAD817615F735E3000F83EF /* RECoreIncludes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B515F73437000F83EF /* RECoreIncludes.h */; };
+		3DAD817715F735E3000F83EF /* RECoreOSSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B615F73437000F83EF /* RECoreOSSelector.h */; };
+		3DAD817815F735E3000F83EF /* RECorePlatformSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B715F73437000F83EF /* RECorePlatformSelector.h */; };
+		3DAD817915F735E3000F83EF /* RECoreSettings.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B815F73437000F83EF /* RECoreSettings.h */; };
+		3DAD817A15F735E3000F83EF /* RECPUFeatures.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80B915F73437000F83EF /* RECPUFeatures.h */; };
+		3DAD817B15F735E3000F83EF /* REData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BA15F73437000F83EF /* REData.h */; };
+		3DAD817C15F735E3000F83EF /* REDate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BB15F73437000F83EF /* REDate.h */; };
+		3DAD817D15F735E3000F83EF /* REEdgeInsets.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BC15F73437000F83EF /* REEdgeInsets.h */; };
+		3DAD817E15F735E3000F83EF /* REFile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BD15F73437000F83EF /* REFile.h */; };
+		3DAD817F15F735E3000F83EF /* REFileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BE15F73437000F83EF /* REFileManager.h */; };
+		3DAD818015F735E3000F83EF /* REFloat16.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80BF15F73437000F83EF /* REFloat16.h */; };
+		3DAD818115F735E3000F83EF /* REImage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C015F73437000F83EF /* REImage.h */; };
+		3DAD818215F735E3000F83EF /* REImageBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C115F73437000F83EF /* REImageBase.h */; };
+		3DAD818315F735E3000F83EF /* REImageManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C215F73437000F83EF /* REImageManager.h */; };
+		3DAD818415F735E3000F83EF /* REInterpolation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C315F73437000F83EF /* REInterpolation.h */; };
+		3DAD818515F735E3000F83EF /* REList.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C415F73437000F83EF /* REList.h */; };
+		3DAD818615F735E3000F83EF /* RELocale.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C515F73437000F83EF /* RELocale.h */; };
+		3DAD818715F735E3000F83EF /* RELog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C615F73437000F83EF /* RELog.h */; };
+		3DAD818815F735E3000F83EF /* RELZMACompression.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C715F73437000F83EF /* RELZMACompression.h */; };
+		3DAD818915F735E3000F83EF /* REMainLoopUpdatable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C815F73437000F83EF /* REMainLoopUpdatable.h */; };
+		3DAD818A15F735E3000F83EF /* REMath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80C915F73437000F83EF /* REMath.h */; };
+		3DAD818B15F735E3000F83EF /* REMatrix4.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CA15F73437000F83EF /* REMatrix4.h */; };
+		3DAD818C15F735E3000F83EF /* REMD5Generator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CB15F73437000F83EF /* REMD5Generator.h */; };
+		3DAD818D15F735E3000F83EF /* REMem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CC15F73437000F83EF /* REMem.h */; };
+		3DAD818E15F735E3000F83EF /* REMutex.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CD15F73437000F83EF /* REMutex.h */; };
+		3DAD818F15F735E3000F83EF /* RENotificationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CE15F73437000F83EF /* RENotificationManager.h */; };
+		3DAD819015F735E3000F83EF /* RENULLObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80CF15F73437000F83EF /* RENULLObject.h */; };
+		3DAD819115F735E3000F83EF /* RENumber.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D015F73437000F83EF /* RENumber.h */; };
+		3DAD819215F735E3000F83EF /* RENumberObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D115F73437000F83EF /* RENumberObject.h */; };
+		3DAD819315F735E3000F83EF /* REObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D215F73437000F83EF /* REObject.h */; };
+		3DAD819415F735E3000F83EF /* REObjectProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D315F73437000F83EF /* REObjectProperty.h */; };
+		3DAD819515F735E3000F83EF /* REObjectsArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D415F73437000F83EF /* REObjectsArray.h */; };
+		3DAD819615F735E3000F83EF /* REObjectsDictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D515F73437000F83EF /* REObjectsDictionary.h */; };
+		3DAD819715F735E3000F83EF /* REPoint2.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D615F73437000F83EF /* REPoint2.h */; };
+		3DAD819815F735E3000F83EF /* REPoint3.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D715F73437000F83EF /* REPoint3.h */; };
+		3DAD819915F735E3000F83EF /* REProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D815F73437000F83EF /* REProperty.h */; };
+		3DAD819A15F735E3000F83EF /* REQuaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80D915F73437000F83EF /* REQuaternion.h */; };
+		3DAD819B15F735E3000F83EF /* RERandomizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DA15F73437000F83EF /* RERandomizer.h */; };
+		3DAD819C15F735E3000F83EF /* RERange.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DB15F73437000F83EF /* RERange.h */; };
+		3DAD819D15F735E3000F83EF /* RERect.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DC15F73437000F83EF /* RERect.h */; };
+		3DAD819E15F735E3000F83EF /* REResourcesStorage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DD15F73437000F83EF /* REResourcesStorage.h */; };
+		3DAD819F15F735E3000F83EF /* RESize.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DE15F73437000F83EF /* RESize.h */; };
+		3DAD81A015F735E3000F83EF /* RESQLiteDB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80DF15F73437000F83EF /* RESQLiteDB.h */; };
+		3DAD81A115F735E3000F83EF /* RESQLiteDBResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E015F73437000F83EF /* RESQLiteDBResultSet.h */; };
+		3DAD81A215F735E3000F83EF /* REString.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E115F73437000F83EF /* REString.h */; };
+		3DAD81A315F735E3000F83EF /* REStringObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E215F73437000F83EF /* REStringObject.h */; };
+		3DAD81A415F735E3000F83EF /* RETetragon.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E315F73437000F83EF /* RETetragon.h */; };
+		3DAD81A515F735E3000F83EF /* REThread.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E415F73437000F83EF /* REThread.h */; };
+		3DAD81A615F735E3000F83EF /* RETime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E515F73437000F83EF /* RETime.h */; };
+		3DAD81A715F735E3000F83EF /* RETimer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E615F73437000F83EF /* RETimer.h */; };
+		3DAD81A815F735E3000F83EF /* RETypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E715F73437000F83EF /* RETypes.h */; };
+		3DAD81A915F735E3000F83EF /* REUserCallBacks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E815F73437000F83EF /* REUserCallBacks.h */; };
+		3DAD81AA15F735E3000F83EF /* REVector2.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80E915F73437000F83EF /* REVector2.h */; };
+		3DAD81AB15F735E3000F83EF /* REVector3.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80EA15F73437000F83EF /* REVector3.h */; };
+		3DAD81AC15F735E3000F83EF /* REXMLPropertyListReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80EB15F73437000F83EF /* REXMLPropertyListReader.h */; };
+		3DAD81AD15F735E3000F83EF /* REXMLPropertyListWriter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80EC15F73437000F83EF /* REXMLPropertyListWriter.h */; };
+		3DAD81AE15F735E3000F83EF /* REYUVtoRGB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80ED15F73437000F83EF /* REYUVtoRGB.h */; };
+		3DAD81AF15F735E3000F83EF /* REZipReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80EE15F73437000F83EF /* REZipReader.h */; };
+		3DAD81B015F735E3000F83EF /* REZLIBCompression.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DAD80EF15F73437000F83EF /* REZLIBCompression.h */; };
+		3DAD81B215F7367B000F83EF /* REGUIObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D294C8215BFE62000013A91 /* REGUIObject.h */; };
+		3DAD81B315F7367B000F83EF /* IRETextInputResponder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DFB02DE156A3EB80012FA48 /* IRETextInputResponder.h */; };
+		3DAD81B415F7367B000F83EF /* RETextInputRespondersManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DFB02E0156A46040012FA48 /* RETextInputRespondersManager.h */; };
+		3DAD81B515F7367B000F83EF /* RETextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D60A003156A758F004BEA1F /* RETextField.h */; };
+		3DAD81B615F7367B000F83EF /* REButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B8D144CB11000FF99AB /* REButton.h */; };
+		3DAD81B715F7367B000F83EF /* REStackedViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D24B1CA147CE387009DA7DB /* REStackedViewController.h */; };
+		3DAD81B815F7367B000F83EF /* REViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B8F144CB11000FF99AB /* REViewController.h */; };
+		3DAD81B915F7367B000F83EF /* REFramedTextureObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */; };
+		3DAD81BA15F7367B000F83EF /* RETextureObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B96144CB11000FF99AB /* RETextureObject.h */; };
+		3DAD81BB15F7367B000F83EF /* IRETexture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B9C144CB11000FF99AB /* IRETexture.h */; };
+		3DAD81BC15F7367B000F83EF /* RESubViewsContainer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B7F144CB11000FF99AB /* RESubViewsContainer.h */; };
+		3DAD81BD15F7367B000F83EF /* RECursor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B81144CB11000FF99AB /* RECursor.h */; };
+		3DAD81BE15F7367B000F83EF /* IREUserActionResponder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B83144CB11000FF99AB /* IREUserActionResponder.h */; };
+		3DAD81BF15F7367B000F83EF /* REGUIApplication.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B84144CB11000FF99AB /* REGUIApplication.h */; };
+		3DAD81C015F7367B000F83EF /* RECamera.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DC799FB14E11B420092512D /* RECamera.h */; };
+		3DAD81C115F7367B000F83EF /* RERenderDeviceTextureObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D24EC6D14568DF600B2A98B /* RERenderDeviceTextureObject.h */; };
+		3DAD81C215F7367B000F83EF /* RERenderDevice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07BA3144CB11000FF99AB /* RERenderDevice.h */; };
+		3DAD81C315F7367B000F83EF /* RERenderDeviceOpenGL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D507DBE14E27605000E558C /* RERenderDeviceOpenGL.h */; };
+		3DAD81C415F7367B000F83EF /* RERenderDeviceDirectX9.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D507DC114E27C3A000E558C /* RERenderDeviceDirectX9.h */; };
+		3DAD81C515F7367B000F83EF /* IRERenderable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B87144CB11000FF99AB /* IRERenderable.h */; };
+		3DAD81C615F7367B000F83EF /* REView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B88144CB11000FF99AB /* REView.h */; };
+		3DAD81C715F7367B000F83EF /* RETransformedView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B8A144CB11000FF99AB /* RETransformedView.h */; };
+		3DAD81C815F7367B000F83EF /* IREAnimationRespondent.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB5163D14E2B182007C6DFF /* IREAnimationRespondent.h */; };
+		3DAD81C915F7367B000F83EF /* REAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DC0A8BB145DC480001AAF61 /* REAnimation.h */; };
+		3DAD81CA15F7367B000F83EF /* IREAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07BAD144CB11000FF99AB /* IREAnimation.h */; };
+		3DAD81CB15F7367B000F83EF /* REEditableAnimationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07BB1144CB11000FF99AB /* REEditableAnimationInfo.h */; };
+		3DAD81CC15F7367B000F83EF /* REAnimationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07BB2144CB11000FF99AB /* REAnimationInfo.h */; };
+		3DAD81CD15F7367B000F83EF /* RETTFFontChar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B60144CB0AA00FF99AB /* RETTFFontChar.h */; };
+		3DAD81CE15F7367B000F83EF /* RETTFFontLoader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B62144CB0AA00FF99AB /* RETTFFontLoader.h */; };
+		3DAD81CF15F7367B000F83EF /* REFontObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B64144CB0AA00FF99AB /* REFontObject.h */; };
+		3DAD81D015F7367B000F83EF /* RELabel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B5A144CB09700FF99AB /* RELabel.h */; };
+		3DAD820A15F7393A000F83EF /* REParticleView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C0D3D15259D3B00386A3B /* REParticleView.cpp */; };
+		3DB07B5C144CB09700FF99AB /* RELabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B5A144CB09700FF99AB /* RELabel.h */; };
+		3DB07B5D144CB09700FF99AB /* RELabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B5B144CB09700FF99AB /* RELabel.cpp */; };
+		3DB07B6A144CB0AA00FF99AB /* RETTFFontChar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B60144CB0AA00FF99AB /* RETTFFontChar.h */; };
+		3DB07B6B144CB0AA00FF99AB /* RETTFFontChar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B61144CB0AA00FF99AB /* RETTFFontChar.cpp */; };
+		3DB07B6C144CB0AA00FF99AB /* RETTFFontLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B62144CB0AA00FF99AB /* RETTFFontLoader.h */; };
+		3DB07B6D144CB0AA00FF99AB /* RETTFFontLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B63144CB0AA00FF99AB /* RETTFFontLoader.cpp */; };
+		3DB07B6E144CB0AA00FF99AB /* REFontObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B64144CB0AA00FF99AB /* REFontObject.h */; };
+		3DB07B6F144CB0AA00FF99AB /* REFontObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B65144CB0AA00FF99AB /* REFontObject.cpp */; };
+		3DB07B70144CB0AA00FF99AB /* REFontBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B66144CB0AA00FF99AB /* REFontBase.h */; };
+		3DB07B71144CB0AA00FF99AB /* REFontBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B67144CB0AA00FF99AB /* REFontBase.cpp */; };
+		3DB07B72144CB0AA00FF99AB /* REFontsCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B68144CB0AA00FF99AB /* REFontsCache.h */; };
+		3DB07B73144CB0AA00FF99AB /* REFontsCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B69144CB0AA00FF99AB /* REFontsCache.cpp */; };
+		3DB07BB6144CB11000FF99AB /* REButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B8D144CB11000FF99AB /* REButton.h */; };
+		3DB07BB7144CB11000FF99AB /* REButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B8E144CB11000FF99AB /* REButton.cpp */; };
+		3DB07BB8144CB11000FF99AB /* REViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B8F144CB11000FF99AB /* REViewController.h */; };
+		3DB07BB9144CB11000FF99AB /* REViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B90144CB11000FF99AB /* REViewController.cpp */; };
+		3DB07BBB144CB11000FF99AB /* REXMLSerializableReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B92144CB11000FF99AB /* REXMLSerializableReader.h */; };
+		3DB07BBC144CB11000FF99AB /* REXMLSerializableReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B93144CB11000FF99AB /* REXMLSerializableReader.cpp */; };
+		3DB07BBF144CB11000FF99AB /* RETextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B96144CB11000FF99AB /* RETextureObject.h */; };
+		3DB07BC0144CB11000FF99AB /* RETextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B97144CB11000FF99AB /* RETextureObject.cpp */; };
+		3DB07BC5144CB11000FF99AB /* IRETexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B9C144CB11000FF99AB /* IRETexture.h */; };
+		3DB07BC6144CB11000FF99AB /* RETextureOpenGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B9D144CB11000FF99AB /* RETextureOpenGL.h */; };
+		3DB07BC7144CB11000FF99AB /* RETextureOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B9E144CB11000FF99AB /* RETextureOpenGL.cpp */; };
+		3DB07BCA144CB11000FF99AB /* RETextureDirectX9.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BA1144CB11000FF99AB /* RETextureDirectX9.h */; };
+		3DB07BCB144CB11000FF99AB /* RESubViewsContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B7F144CB11000FF99AB /* RESubViewsContainer.h */; };
+		3DB07BCC144CB11000FF99AB /* RESubViewsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B80144CB11000FF99AB /* RESubViewsContainer.cpp */; };
+		3DB07BCD144CB11000FF99AB /* RECursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B81144CB11000FF99AB /* RECursor.h */; };
+		3DB07BCE144CB11000FF99AB /* RECursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B82144CB11000FF99AB /* RECursor.cpp */; };
+		3DB07BCF144CB11000FF99AB /* IREUserActionResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B83144CB11000FF99AB /* IREUserActionResponder.h */; };
+		3DB07BD0144CB11000FF99AB /* REGUIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B84144CB11000FF99AB /* REGUIApplication.h */; };
+		3DB07BD1144CB11000FF99AB /* REGUIApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B85144CB11000FF99AB /* REGUIApplication.cpp */; };
+		3DB07BD6144CB11000FF99AB /* RERenderDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BA3144CB11000FF99AB /* RERenderDevice.h */; };
+		3DB07BD7144CB11000FF99AB /* RERenderDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA4144CB11000FF99AB /* RERenderDevice.cpp */; };
+		3DB07BD9144CB11000FF99AB /* RERenderDeviceOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA6144CB11000FF99AB /* RERenderDeviceOpenGL.cpp */; };
+		3DB07BDB144CB11000FF99AB /* RERenderDeviceDirectX9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BA8144CB11000FF99AB /* RERenderDeviceDirectX9.cpp */; };
+		3DB07BDC144CB11000FF99AB /* IRERenderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B87144CB11000FF99AB /* IRERenderable.h */; };
+		3DB07BDD144CB11000FF99AB /* REView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B88144CB11000FF99AB /* REView.h */; };
+		3DB07BDE144CB11000FF99AB /* REView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B89144CB11000FF99AB /* REView.cpp */; };
+		3DB07BDF144CB11000FF99AB /* RETransformedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B8A144CB11000FF99AB /* RETransformedView.h */; };
+		3DB07BE0144CB11000FF99AB /* RETransformedView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B8B144CB11000FF99AB /* RETransformedView.cpp */; };
+		3DB07BE1144CB11000FF99AB /* IREAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BAD144CB11000FF99AB /* IREAnimation.h */; };
+		3DB07BE2144CB11000FF99AB /* REAnimationFloatParams.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BAE144CB11000FF99AB /* REAnimationFloatParams.h */; };
+		3DB07BE3144CB11000FF99AB /* REAnimationBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BAF144CB11000FF99AB /* REAnimationBase.h */; };
+		3DB07BE4144CB11000FF99AB /* REAnimationBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB0144CB11000FF99AB /* REAnimationBase.cpp */; };
+		3DB07BE5144CB11000FF99AB /* REEditableAnimationInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BB1144CB11000FF99AB /* REEditableAnimationInfo.h */; };
+		3DB07BE6144CB11000FF99AB /* REAnimationInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BB2144CB11000FF99AB /* REAnimationInfo.h */; };
+		3DB07BE7144CB11000FF99AB /* REAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB3144CB11000FF99AB /* REAnimationInfo.cpp */; };
+		3DB07BE8144CB11000FF99AB /* REAnimationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07BB4144CB11000FF99AB /* REAnimationController.h */; };
+		3DB07BE9144CB11000FF99AB /* REAnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07BB5144CB11000FF99AB /* REAnimationController.cpp */; };
+		3DB5163E14E2B182007C6DFF /* IREAnimationRespondent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB5163D14E2B182007C6DFF /* IREAnimationRespondent.h */; };
+		3DC0A8BC145DC480001AAF61 /* REAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC0A8BB145DC480001AAF61 /* REAnimation.h */; };
+		3DC0A8BF145DC490001AAF61 /* REAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0A8BE145DC490001AAF61 /* REAnimation.cpp */; };
+		3DC67831144CB206008891F1 /* regui.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC67830144CB206008891F1 /* regui.h */; };
+		3DC799FC14E11B420092512D /* RECamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC799FB14E11B420092512D /* RECamera.h */; };
+		3DC799FE14E11BAA0092512D /* RECamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC799FD14E11BAA0092512D /* RECamera.cpp */; };
+		3DEC6B5F155BB42D006DE4B8 /* RETextureDirectX9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */; };
+		3DED16C814866AE700AD21C0 /* REFramedTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */; };
+		3DED16CB14866AEE00AD21C0 /* REFramedTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */; };
+		3DFB02DF156A3EB80012FA48 /* IRETextInputResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFB02DE156A3EB80012FA48 /* IRETextInputResponder.h */; };
+		3DFB02E1156A46040012FA48 /* RETextInputRespondersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFB02E0156A46040012FA48 /* RETextInputRespondersManager.h */; };
+		3DFB02E3156A46800012FA48 /* RETextInputRespondersManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB02E2156A46800012FA48 /* RETextInputRespondersManager.cpp */; };
+		3DFD6C6D15F73B61009B5F03 /* REParticleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1C0D3B15259D3600386A3B /* REParticleView.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DAD816215F7359F000F83EF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/reconfig";
+			dstSubfolderSpec = 16;
+			files = (
+				3DAD816315F735B2000F83EF /* REConfigIPhone.h in CopyFiles */,
+				3DAD816415F735B2000F83EF /* REConfigSelector.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DAD816515F735B6000F83EF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/recore";
+			dstSubfolderSpec = 16;
+			files = (
+				3DAD816715F735E3000F83EF /* IREAffineTransformed.h in CopyFiles */,
+				3DAD816815F735E3000F83EF /* IREFileReadable.h in CopyFiles */,
+				3DAD816915F735E3000F83EF /* RE2DAlgorithm.h in CopyFiles */,
+				3DAD816A15F735E3000F83EF /* REAffineTransform.h in CopyFiles */,
+				3DAD816B15F735E3000F83EF /* REAngle.h in CopyFiles */,
+				3DAD816C15F735E3000F83EF /* REApplication.h in CopyFiles */,
+				3DAD816D15F735E3000F83EF /* REArray.h in CopyFiles */,
+				3DAD816E15F735E3000F83EF /* REAutoReleasePool.h in CopyFiles */,
+				3DAD816F15F735E3000F83EF /* REBase64.h in CopyFiles */,
+				3DAD817015F735E3000F83EF /* REBuffer.h in CopyFiles */,
+				3DAD817115F735E3000F83EF /* REBufferObject.h in CopyFiles */,
+				3DAD817215F735E3000F83EF /* REClassMethod.h in CopyFiles */,
+				3DAD817315F735E3000F83EF /* REColor.h in CopyFiles */,
+				3DAD817415F735E3000F83EF /* RECommonHeader.h in CopyFiles */,
+				3DAD817515F735E3000F83EF /* RECoreC.h in CopyFiles */,
+				3DAD817615F735E3000F83EF /* RECoreIncludes.h in CopyFiles */,
+				3DAD817715F735E3000F83EF /* RECoreOSSelector.h in CopyFiles */,
+				3DAD817815F735E3000F83EF /* RECorePlatformSelector.h in CopyFiles */,
+				3DAD817915F735E3000F83EF /* RECoreSettings.h in CopyFiles */,
+				3DAD817A15F735E3000F83EF /* RECPUFeatures.h in CopyFiles */,
+				3DAD817B15F735E3000F83EF /* REData.h in CopyFiles */,
+				3DAD817C15F735E3000F83EF /* REDate.h in CopyFiles */,
+				3DAD817D15F735E3000F83EF /* REEdgeInsets.h in CopyFiles */,
+				3DAD817E15F735E3000F83EF /* REFile.h in CopyFiles */,
+				3DAD817F15F735E3000F83EF /* REFileManager.h in CopyFiles */,
+				3DAD818015F735E3000F83EF /* REFloat16.h in CopyFiles */,
+				3DAD818115F735E3000F83EF /* REImage.h in CopyFiles */,
+				3DAD818215F735E3000F83EF /* REImageBase.h in CopyFiles */,
+				3DAD818315F735E3000F83EF /* REImageManager.h in CopyFiles */,
+				3DAD818415F735E3000F83EF /* REInterpolation.h in CopyFiles */,
+				3DAD818515F735E3000F83EF /* REList.h in CopyFiles */,
+				3DAD818615F735E3000F83EF /* RELocale.h in CopyFiles */,
+				3DAD818715F735E3000F83EF /* RELog.h in CopyFiles */,
+				3DAD818815F735E3000F83EF /* RELZMACompression.h in CopyFiles */,
+				3DAD818915F735E3000F83EF /* REMainLoopUpdatable.h in CopyFiles */,
+				3DAD818A15F735E3000F83EF /* REMath.h in CopyFiles */,
+				3DAD818B15F735E3000F83EF /* REMatrix4.h in CopyFiles */,
+				3DAD818C15F735E3000F83EF /* REMD5Generator.h in CopyFiles */,
+				3DAD818D15F735E3000F83EF /* REMem.h in CopyFiles */,
+				3DAD818E15F735E3000F83EF /* REMutex.h in CopyFiles */,
+				3DAD818F15F735E3000F83EF /* RENotificationManager.h in CopyFiles */,
+				3DAD819015F735E3000F83EF /* RENULLObject.h in CopyFiles */,
+				3DAD819115F735E3000F83EF /* RENumber.h in CopyFiles */,
+				3DAD819215F735E3000F83EF /* RENumberObject.h in CopyFiles */,
+				3DAD819315F735E3000F83EF /* REObject.h in CopyFiles */,
+				3DAD819415F735E3000F83EF /* REObjectProperty.h in CopyFiles */,
+				3DAD819515F735E3000F83EF /* REObjectsArray.h in CopyFiles */,
+				3DAD819615F735E3000F83EF /* REObjectsDictionary.h in CopyFiles */,
+				3DAD819715F735E3000F83EF /* REPoint2.h in CopyFiles */,
+				3DAD819815F735E3000F83EF /* REPoint3.h in CopyFiles */,
+				3DAD819915F735E3000F83EF /* REProperty.h in CopyFiles */,
+				3DAD819A15F735E3000F83EF /* REQuaternion.h in CopyFiles */,
+				3DAD819B15F735E3000F83EF /* RERandomizer.h in CopyFiles */,
+				3DAD819C15F735E3000F83EF /* RERange.h in CopyFiles */,
+				3DAD819D15F735E3000F83EF /* RERect.h in CopyFiles */,
+				3DAD819E15F735E3000F83EF /* REResourcesStorage.h in CopyFiles */,
+				3DAD819F15F735E3000F83EF /* RESize.h in CopyFiles */,
+				3DAD81A015F735E3000F83EF /* RESQLiteDB.h in CopyFiles */,
+				3DAD81A115F735E3000F83EF /* RESQLiteDBResultSet.h in CopyFiles */,
+				3DAD81A215F735E3000F83EF /* REString.h in CopyFiles */,
+				3DAD81A315F735E3000F83EF /* REStringObject.h in CopyFiles */,
+				3DAD81A415F735E3000F83EF /* RETetragon.h in CopyFiles */,
+				3DAD81A515F735E3000F83EF /* REThread.h in CopyFiles */,
+				3DAD81A615F735E3000F83EF /* RETime.h in CopyFiles */,
+				3DAD81A715F735E3000F83EF /* RETimer.h in CopyFiles */,
+				3DAD81A815F735E3000F83EF /* RETypes.h in CopyFiles */,
+				3DAD81A915F735E3000F83EF /* REUserCallBacks.h in CopyFiles */,
+				3DAD81AA15F735E3000F83EF /* REVector2.h in CopyFiles */,
+				3DAD81AB15F735E3000F83EF /* REVector3.h in CopyFiles */,
+				3DAD81AC15F735E3000F83EF /* REXMLPropertyListReader.h in CopyFiles */,
+				3DAD81AD15F735E3000F83EF /* REXMLPropertyListWriter.h in CopyFiles */,
+				3DAD81AE15F735E3000F83EF /* REYUVtoRGB.h in CopyFiles */,
+				3DAD81AF15F735E3000F83EF /* REZipReader.h in CopyFiles */,
+				3DAD81B015F735E3000F83EF /* REZLIBCompression.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DAD81B115F735EC000F83EF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/regui";
+			dstSubfolderSpec = 16;
+			files = (
+				3DFD6C6D15F73B61009B5F03 /* REParticleView.h in CopyFiles */,
+				3DAD81B215F7367B000F83EF /* REGUIObject.h in CopyFiles */,
+				3DAD81B315F7367B000F83EF /* IRETextInputResponder.h in CopyFiles */,
+				3DAD81B415F7367B000F83EF /* RETextInputRespondersManager.h in CopyFiles */,
+				3DAD81B515F7367B000F83EF /* RETextField.h in CopyFiles */,
+				3DAD81B615F7367B000F83EF /* REButton.h in CopyFiles */,
+				3DAD81B715F7367B000F83EF /* REStackedViewController.h in CopyFiles */,
+				3DAD81B815F7367B000F83EF /* REViewController.h in CopyFiles */,
+				3DAD81B915F7367B000F83EF /* REFramedTextureObject.h in CopyFiles */,
+				3DAD81BA15F7367B000F83EF /* RETextureObject.h in CopyFiles */,
+				3DAD81BB15F7367B000F83EF /* IRETexture.h in CopyFiles */,
+				3DAD81BC15F7367B000F83EF /* RESubViewsContainer.h in CopyFiles */,
+				3DAD81BD15F7367B000F83EF /* RECursor.h in CopyFiles */,
+				3DAD81BE15F7367B000F83EF /* IREUserActionResponder.h in CopyFiles */,
+				3DAD81BF15F7367B000F83EF /* REGUIApplication.h in CopyFiles */,
+				3DAD81C015F7367B000F83EF /* RECamera.h in CopyFiles */,
+				3DAD81C115F7367B000F83EF /* RERenderDeviceTextureObject.h in CopyFiles */,
+				3DAD81C215F7367B000F83EF /* RERenderDevice.h in CopyFiles */,
+				3DAD81C315F7367B000F83EF /* RERenderDeviceOpenGL.h in CopyFiles */,
+				3DAD81C415F7367B000F83EF /* RERenderDeviceDirectX9.h in CopyFiles */,
+				3DAD81C515F7367B000F83EF /* IRERenderable.h in CopyFiles */,
+				3DAD81C615F7367B000F83EF /* REView.h in CopyFiles */,
+				3DAD81C715F7367B000F83EF /* RETransformedView.h in CopyFiles */,
+				3DAD81C815F7367B000F83EF /* IREAnimationRespondent.h in CopyFiles */,
+				3DAD81C915F7367B000F83EF /* REAnimation.h in CopyFiles */,
+				3DAD81CA15F7367B000F83EF /* IREAnimation.h in CopyFiles */,
+				3DAD81CB15F7367B000F83EF /* REEditableAnimationInfo.h in CopyFiles */,
+				3DAD81CC15F7367B000F83EF /* REAnimationInfo.h in CopyFiles */,
+				3DAD81CD15F7367B000F83EF /* RETTFFontChar.h in CopyFiles */,
+				3DAD81CE15F7367B000F83EF /* RETTFFontLoader.h in CopyFiles */,
+				3DAD81CF15F7367B000F83EF /* REFontObject.h in CopyFiles */,
+				3DAD81D015F7367B000F83EF /* RELabel.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3D05EAEA15623C94004515DA /* Pyro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pyro.h; path = ../../src/addlibs/pyro_particles/SDK/Include/Pyro.h; sourceTree = SOURCE_ROOT; };
+		3D05EAEB15623C94004515DA /* PyroGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PyroGraphics.h; path = ../../src/addlibs/pyro_particles/SDK/Include/PyroGraphics.h; sourceTree = SOURCE_ROOT; };
+		3D05EAEC15623C94004515DA /* PyroInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PyroInterfaces.h; path = ../../src/addlibs/pyro_particles/SDK/Include/PyroInterfaces.h; sourceTree = SOURCE_ROOT; };
+		3D05EAED15623C94004515DA /* PyroTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PyroTypes.h; path = ../../src/addlibs/pyro_particles/SDK/Include/PyroTypes.h; sourceTree = SOURCE_ROOT; };
+		3D05EAF215623CB9004515DA /* PyroOpenGLES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PyroOpenGLES.cpp; path = ../../src/addlibs/pyro_particles/SDK/Samples/Common/PyroOpenGLES.cpp; sourceTree = SOURCE_ROOT; };
+		3D05EAF315623CB9004515DA /* PyroOpenGLES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PyroOpenGLES.h; path = ../../src/addlibs/pyro_particles/SDK/Samples/Common/PyroOpenGLES.h; sourceTree = SOURCE_ROOT; };
+		3D0E32A013E7CC5800F3D0A6 /* libregui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libregui.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D0E32A313E7CC5800F3D0A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D1C0D3B15259D3600386A3B /* REParticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REParticleView.h; path = ../../include/regui/REParticleView.h; sourceTree = SOURCE_ROOT; };
+		3D1C0D3D15259D3B00386A3B /* REParticleView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REParticleView.cpp; path = ../../src/gui/REParticleView.cpp; sourceTree = SOURCE_ROOT; };
+		3D24B1C7147CE382009DA7DB /* REStackedViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStackedViewController.cpp; path = ../../src/gui/REStackedViewController.cpp; sourceTree = SOURCE_ROOT; };
+		3D24B1CA147CE387009DA7DB /* REStackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStackedViewController.h; path = ../../include/regui/REStackedViewController.h; sourceTree = SOURCE_ROOT; };
+		3D24EC6D14568DF600B2A98B /* RERenderDeviceTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERenderDeviceTextureObject.h; path = ../../include/regui/RERenderDeviceTextureObject.h; sourceTree = SOURCE_ROOT; };
+		3D24EC6F14568DFB00B2A98B /* RERenderDeviceTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERenderDeviceTextureObject.cpp; path = ../../src/gui/RERenderDeviceTextureObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D294C8215BFE62000013A91 /* REGUIObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REGUIObject.h; path = ../../include/regui/REGUIObject.h; sourceTree = SOURCE_ROOT; };
+		3D294C8515BFE62600013A91 /* REGUIObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REGUIObject.cpp; path = ../../src/gui/REGUIObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D2A459614178E4A00861384 /* freetype_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = freetype_config.h; path = ../../src/addlibs/freetype_config.h; sourceTree = SOURCE_ROOT; };
+		3D2A459714178E4A00861384 /* freetype_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = freetype_wrap1.c; path = ../../src/addlibs/freetype_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3D2A459814178E4A00861384 /* freetype_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = freetype_wrap2.c; path = ../../src/addlibs/freetype_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3D2A459914178E4A00861384 /* freetype_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = freetype_wrap3.c; path = ../../src/addlibs/freetype_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3D2A459A14178E4A00861384 /* freetype_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = freetype_wrap4.c; path = ../../src/addlibs/freetype_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3D2A459B14178E4A00861384 /* freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = freetype.h; path = ../../src/addlibs/freetype.h; sourceTree = "<group>"; };
+		3D41B275146C8B3100026EA3 /* RETypedAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypedAnimation.h; path = ../../include/regui/private/RETypedAnimation.h; sourceTree = SOURCE_ROOT; };
+		3D41B277146C8BF600026EA3 /* RETypedAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETypedAnimation.cpp; path = ../../src/gui/RETypedAnimation.cpp; sourceTree = SOURCE_ROOT; };
+		3D507DBE14E27605000E558C /* RERenderDeviceOpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERenderDeviceOpenGL.h; path = ../../include/regui/RERenderDeviceOpenGL.h; sourceTree = SOURCE_ROOT; };
+		3D507DC114E27C3A000E558C /* RERenderDeviceDirectX9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERenderDeviceDirectX9.h; path = ../../include/regui/RERenderDeviceDirectX9.h; sourceTree = SOURCE_ROOT; };
+		3D5390BA14E423A700DA1160 /* REEditableAnimationInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REEditableAnimationInfo.cpp; path = ../../src/gui/REEditableAnimationInfo.cpp; sourceTree = SOURCE_ROOT; };
+		3D60A003156A758F004BEA1F /* RETextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETextField.h; path = ../../include/regui/RETextField.h; sourceTree = SOURCE_ROOT; };
+		3D60A006156A759C004BEA1F /* RETextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextField.cpp; path = ../../src/gui/RETextField.cpp; sourceTree = SOURCE_ROOT; };
+		3DAD808C15F73119000F83EF /* REGUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = REGUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DAD809E15F732EE000F83EF /* regui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = regui.h; path = ../../include/regui.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A015F73329000F83EF /* REConfigIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigIPhone.h; path = ../../include/reconfig/REConfigIPhone.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A115F73329000F83EF /* REConfigSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigSelector.h; path = ../../include/reconfig/REConfigSelector.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A615F73437000F83EF /* IREAffineTransformed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREAffineTransformed.h; path = ../../include/recore/IREAffineTransformed.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A715F73437000F83EF /* IREFileReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREFileReadable.h; path = ../../include/recore/IREFileReadable.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A815F73437000F83EF /* RE2DAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RE2DAlgorithm.h; path = ../../include/recore/RE2DAlgorithm.h; sourceTree = SOURCE_ROOT; };
+		3DAD80A915F73437000F83EF /* REAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAffineTransform.h; path = ../../include/recore/REAffineTransform.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AA15F73437000F83EF /* REAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAngle.h; path = ../../include/recore/REAngle.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AB15F73437000F83EF /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AC15F73437000F83EF /* REArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REArray.h; path = ../../include/recore/REArray.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AD15F73437000F83EF /* REAutoReleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAutoReleasePool.h; path = ../../include/recore/REAutoReleasePool.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AE15F73437000F83EF /* REBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBase64.h; path = ../../include/recore/REBase64.h; sourceTree = SOURCE_ROOT; };
+		3DAD80AF15F73437000F83EF /* REBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBuffer.h; path = ../../include/recore/REBuffer.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B015F73437000F83EF /* REBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBufferObject.h; path = ../../include/recore/REBufferObject.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B115F73437000F83EF /* REClassMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REClassMethod.h; path = ../../include/recore/REClassMethod.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B215F73437000F83EF /* REColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REColor.h; path = ../../include/recore/REColor.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B315F73437000F83EF /* RECommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECommonHeader.h; path = ../../include/recore/RECommonHeader.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B415F73437000F83EF /* RECoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreC.h; path = ../../include/recore/RECoreC.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B515F73437000F83EF /* RECoreIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreIncludes.h; path = ../../include/recore/RECoreIncludes.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B615F73437000F83EF /* RECoreOSSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreOSSelector.h; path = ../../include/recore/RECoreOSSelector.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B715F73437000F83EF /* RECorePlatformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECorePlatformSelector.h; path = ../../include/recore/RECorePlatformSelector.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B815F73437000F83EF /* RECoreSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreSettings.h; path = ../../include/recore/RECoreSettings.h; sourceTree = SOURCE_ROOT; };
+		3DAD80B915F73437000F83EF /* RECPUFeatures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECPUFeatures.h; path = ../../include/recore/RECPUFeatures.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BA15F73437000F83EF /* REData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REData.h; path = ../../include/recore/REData.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BB15F73437000F83EF /* REDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDate.h; path = ../../include/recore/REDate.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BC15F73437000F83EF /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BD15F73437000F83EF /* REFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFile.h; path = ../../include/recore/REFile.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BE15F73437000F83EF /* REFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFileManager.h; path = ../../include/recore/REFileManager.h; sourceTree = SOURCE_ROOT; };
+		3DAD80BF15F73437000F83EF /* REFloat16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFloat16.h; path = ../../include/recore/REFloat16.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C015F73437000F83EF /* REImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImage.h; path = ../../include/recore/REImage.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C115F73437000F83EF /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C215F73437000F83EF /* REImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageManager.h; path = ../../include/recore/REImageManager.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C315F73437000F83EF /* REInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInterpolation.h; path = ../../include/recore/REInterpolation.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C415F73437000F83EF /* REList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REList.h; path = ../../include/recore/REList.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C515F73437000F83EF /* RELocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELocale.h; path = ../../include/recore/RELocale.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C615F73437000F83EF /* RELog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELog.h; path = ../../include/recore/RELog.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C715F73437000F83EF /* RELZMACompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELZMACompression.h; path = ../../include/recore/RELZMACompression.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C815F73437000F83EF /* REMainLoopUpdatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMainLoopUpdatable.h; path = ../../include/recore/REMainLoopUpdatable.h; sourceTree = SOURCE_ROOT; };
+		3DAD80C915F73437000F83EF /* REMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMath.h; path = ../../include/recore/REMath.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CA15F73437000F83EF /* REMatrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMatrix4.h; path = ../../include/recore/REMatrix4.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CB15F73437000F83EF /* REMD5Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMD5Generator.h; path = ../../include/recore/REMD5Generator.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CC15F73437000F83EF /* REMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMem.h; path = ../../include/recore/REMem.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CD15F73437000F83EF /* REMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutex.h; path = ../../include/recore/REMutex.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CE15F73437000F83EF /* RENotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENotificationManager.h; path = ../../include/recore/RENotificationManager.h; sourceTree = SOURCE_ROOT; };
+		3DAD80CF15F73437000F83EF /* RENULLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENULLObject.h; path = ../../include/recore/RENULLObject.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D015F73437000F83EF /* RENumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENumber.h; path = ../../include/recore/RENumber.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D115F73437000F83EF /* RENumberObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENumberObject.h; path = ../../include/recore/RENumberObject.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D215F73437000F83EF /* REObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObject.h; path = ../../include/recore/REObject.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D315F73437000F83EF /* REObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectProperty.h; path = ../../include/recore/REObjectProperty.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D415F73437000F83EF /* REObjectsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsArray.h; path = ../../include/recore/REObjectsArray.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D515F73437000F83EF /* REObjectsDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsDictionary.h; path = ../../include/recore/REObjectsDictionary.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D615F73437000F83EF /* REPoint2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPoint2.h; path = ../../include/recore/REPoint2.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D715F73437000F83EF /* REPoint3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPoint3.h; path = ../../include/recore/REPoint3.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D815F73437000F83EF /* REProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REProperty.h; path = ../../include/recore/REProperty.h; sourceTree = SOURCE_ROOT; };
+		3DAD80D915F73437000F83EF /* REQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REQuaternion.h; path = ../../include/recore/REQuaternion.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DA15F73437000F83EF /* RERandomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERandomizer.h; path = ../../include/recore/RERandomizer.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DB15F73437000F83EF /* RERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERange.h; path = ../../include/recore/RERange.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DC15F73437000F83EF /* RERect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERect.h; path = ../../include/recore/RERect.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DD15F73437000F83EF /* REResourcesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REResourcesStorage.h; path = ../../include/recore/REResourcesStorage.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DE15F73437000F83EF /* RESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESize.h; path = ../../include/recore/RESize.h; sourceTree = SOURCE_ROOT; };
+		3DAD80DF15F73437000F83EF /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E015F73437000F83EF /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E115F73437000F83EF /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E215F73437000F83EF /* REStringObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringObject.h; path = ../../include/recore/REStringObject.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E315F73437000F83EF /* RETetragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETetragon.h; path = ../../include/recore/RETetragon.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E415F73437000F83EF /* REThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REThread.h; path = ../../include/recore/REThread.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E515F73437000F83EF /* RETime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETime.h; path = ../../include/recore/RETime.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E615F73437000F83EF /* RETimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETimer.h; path = ../../include/recore/RETimer.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E715F73437000F83EF /* RETypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypes.h; path = ../../include/recore/RETypes.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E815F73437000F83EF /* REUserCallBacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REUserCallBacks.h; path = ../../include/recore/REUserCallBacks.h; sourceTree = SOURCE_ROOT; };
+		3DAD80E915F73437000F83EF /* REVector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVector2.h; path = ../../include/recore/REVector2.h; sourceTree = SOURCE_ROOT; };
+		3DAD80EA15F73437000F83EF /* REVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVector3.h; path = ../../include/recore/REVector3.h; sourceTree = SOURCE_ROOT; };
+		3DAD80EB15F73437000F83EF /* REXMLPropertyListReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListReader.h; path = ../../include/recore/REXMLPropertyListReader.h; sourceTree = SOURCE_ROOT; };
+		3DAD80EC15F73437000F83EF /* REXMLPropertyListWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListWriter.h; path = ../../include/recore/REXMLPropertyListWriter.h; sourceTree = SOURCE_ROOT; };
+		3DAD80ED15F73437000F83EF /* REYUVtoRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REYUVtoRGB.h; path = ../../include/recore/REYUVtoRGB.h; sourceTree = SOURCE_ROOT; };
+		3DAD80EE15F73437000F83EF /* REZipReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZipReader.h; path = ../../include/recore/REZipReader.h; sourceTree = SOURCE_ROOT; };
+		3DAD80EF15F73437000F83EF /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
+		3DB07B5A144CB09700FF99AB /* RELabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELabel.h; path = ../../include/regui/RELabel.h; sourceTree = SOURCE_ROOT; };
+		3DB07B5B144CB09700FF99AB /* RELabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELabel.cpp; path = ../../src/gui/RELabel.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B60144CB0AA00FF99AB /* RETTFFontChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETTFFontChar.h; path = ../../include/regui/RETTFFontChar.h; sourceTree = SOURCE_ROOT; };
+		3DB07B61144CB0AA00FF99AB /* RETTFFontChar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETTFFontChar.cpp; path = ../../src/gui/RETTFFontChar.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B62144CB0AA00FF99AB /* RETTFFontLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETTFFontLoader.h; path = ../../include/regui/RETTFFontLoader.h; sourceTree = SOURCE_ROOT; };
+		3DB07B63144CB0AA00FF99AB /* RETTFFontLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETTFFontLoader.cpp; path = ../../src/gui/RETTFFontLoader.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B64144CB0AA00FF99AB /* REFontObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFontObject.h; path = ../../include/regui/REFontObject.h; sourceTree = SOURCE_ROOT; };
+		3DB07B65144CB0AA00FF99AB /* REFontObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFontObject.cpp; path = ../../src/gui/REFontObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B66144CB0AA00FF99AB /* REFontBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFontBase.h; path = ../../include/regui/private/REFontBase.h; sourceTree = SOURCE_ROOT; };
+		3DB07B67144CB0AA00FF99AB /* REFontBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFontBase.cpp; path = ../../src/gui/REFontBase.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B68144CB0AA00FF99AB /* REFontsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFontsCache.h; path = ../../include/regui/private/REFontsCache.h; sourceTree = SOURCE_ROOT; };
+		3DB07B69144CB0AA00FF99AB /* REFontsCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFontsCache.cpp; path = ../../src/gui/REFontsCache.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B7F144CB11000FF99AB /* RESubViewsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESubViewsContainer.h; path = ../../include/regui/RESubViewsContainer.h; sourceTree = SOURCE_ROOT; };
+		3DB07B80144CB11000FF99AB /* RESubViewsContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESubViewsContainer.cpp; path = ../../src/gui/RESubViewsContainer.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B81144CB11000FF99AB /* RECursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECursor.h; path = ../../include/regui/RECursor.h; sourceTree = SOURCE_ROOT; };
+		3DB07B82144CB11000FF99AB /* RECursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECursor.cpp; path = ../../src/gui/RECursor.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B83144CB11000FF99AB /* IREUserActionResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREUserActionResponder.h; path = ../../include/regui/IREUserActionResponder.h; sourceTree = SOURCE_ROOT; };
+		3DB07B84144CB11000FF99AB /* REGUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REGUIApplication.h; path = ../../include/regui/REGUIApplication.h; sourceTree = SOURCE_ROOT; };
+		3DB07B85144CB11000FF99AB /* REGUIApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REGUIApplication.cpp; path = ../../src/gui/REGUIApplication.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B87144CB11000FF99AB /* IRERenderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRERenderable.h; path = ../../include/regui/IRERenderable.h; sourceTree = SOURCE_ROOT; };
+		3DB07B88144CB11000FF99AB /* REView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REView.h; path = ../../include/regui/REView.h; sourceTree = SOURCE_ROOT; };
+		3DB07B89144CB11000FF99AB /* REView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REView.cpp; path = ../../src/gui/REView.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B8A144CB11000FF99AB /* RETransformedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETransformedView.h; path = ../../include/regui/RETransformedView.h; sourceTree = SOURCE_ROOT; };
+		3DB07B8B144CB11000FF99AB /* RETransformedView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETransformedView.cpp; path = ../../src/gui/RETransformedView.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B8D144CB11000FF99AB /* REButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REButton.h; path = ../../include/regui/REButton.h; sourceTree = SOURCE_ROOT; };
+		3DB07B8E144CB11000FF99AB /* REButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REButton.cpp; path = ../../src/gui/REButton.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B8F144CB11000FF99AB /* REViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REViewController.h; path = ../../include/regui/REViewController.h; sourceTree = SOURCE_ROOT; };
+		3DB07B90144CB11000FF99AB /* REViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REViewController.cpp; path = ../../src/gui/REViewController.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B92144CB11000FF99AB /* REXMLSerializableReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLSerializableReader.h; path = ../../include/regui/private/REXMLSerializableReader.h; sourceTree = SOURCE_ROOT; };
+		3DB07B93144CB11000FF99AB /* REXMLSerializableReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REXMLSerializableReader.cpp; path = ../../src/gui/REXMLSerializableReader.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B96144CB11000FF99AB /* RETextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETextureObject.h; path = ../../include/regui/RETextureObject.h; sourceTree = SOURCE_ROOT; };
+		3DB07B97144CB11000FF99AB /* RETextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextureObject.cpp; path = ../../src/gui/RETextureObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B9C144CB11000FF99AB /* IRETexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRETexture.h; path = ../../include/regui/IRETexture.h; sourceTree = SOURCE_ROOT; };
+		3DB07B9D144CB11000FF99AB /* RETextureOpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETextureOpenGL.h; path = ../../include/regui/private/RETextureOpenGL.h; sourceTree = SOURCE_ROOT; };
+		3DB07B9E144CB11000FF99AB /* RETextureOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextureOpenGL.cpp; path = ../../src/gui/RETextureOpenGL.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BA1144CB11000FF99AB /* RETextureDirectX9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETextureDirectX9.h; path = ../../include/regui/private/RETextureDirectX9.h; sourceTree = SOURCE_ROOT; };
+		3DB07BA3144CB11000FF99AB /* RERenderDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERenderDevice.h; path = ../../include/regui/RERenderDevice.h; sourceTree = SOURCE_ROOT; };
+		3DB07BA4144CB11000FF99AB /* RERenderDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERenderDevice.cpp; path = ../../src/gui/RERenderDevice.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BA6144CB11000FF99AB /* RERenderDeviceOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERenderDeviceOpenGL.cpp; path = ../../src/gui/RERenderDeviceOpenGL.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BA8144CB11000FF99AB /* RERenderDeviceDirectX9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERenderDeviceDirectX9.cpp; path = ../../src/gui/RERenderDeviceDirectX9.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BAD144CB11000FF99AB /* IREAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREAnimation.h; path = ../../include/regui/IREAnimation.h; sourceTree = SOURCE_ROOT; };
+		3DB07BAE144CB11000FF99AB /* REAnimationFloatParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAnimationFloatParams.h; path = ../../include/regui/private/REAnimationFloatParams.h; sourceTree = SOURCE_ROOT; };
+		3DB07BAF144CB11000FF99AB /* REAnimationBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAnimationBase.h; path = ../../include/regui/private/REAnimationBase.h; sourceTree = SOURCE_ROOT; };
+		3DB07BB0144CB11000FF99AB /* REAnimationBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAnimationBase.cpp; path = ../../src/gui/REAnimationBase.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BB1144CB11000FF99AB /* REEditableAnimationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEditableAnimationInfo.h; path = ../../include/regui/private/REEditableAnimationInfo.h; sourceTree = SOURCE_ROOT; };
+		3DB07BB2144CB11000FF99AB /* REAnimationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAnimationInfo.h; path = ../../include/regui/REAnimationInfo.h; sourceTree = SOURCE_ROOT; };
+		3DB07BB3144CB11000FF99AB /* REAnimationInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAnimationInfo.cpp; path = ../../src/gui/REAnimationInfo.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07BB4144CB11000FF99AB /* REAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAnimationController.h; path = ../../include/regui/private/REAnimationController.h; sourceTree = SOURCE_ROOT; };
+		3DB07BB5144CB11000FF99AB /* REAnimationController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAnimationController.cpp; path = ../../src/gui/REAnimationController.cpp; sourceTree = SOURCE_ROOT; };
+		3DB5163D14E2B182007C6DFF /* IREAnimationRespondent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREAnimationRespondent.h; path = ../../include/regui/IREAnimationRespondent.h; sourceTree = SOURCE_ROOT; };
+		3DC0A8BB145DC480001AAF61 /* REAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAnimation.h; path = ../../include/regui/REAnimation.h; sourceTree = SOURCE_ROOT; };
+		3DC0A8BE145DC490001AAF61 /* REAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAnimation.cpp; path = ../../src/gui/REAnimation.cpp; sourceTree = SOURCE_ROOT; };
+		3DC67830144CB206008891F1 /* regui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = regui.h; path = ../../include/regui.h; sourceTree = SOURCE_ROOT; };
+		3DC799FB14E11B420092512D /* RECamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECamera.h; path = ../../include/regui/RECamera.h; sourceTree = SOURCE_ROOT; };
+		3DC799FD14E11BAA0092512D /* RECamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECamera.cpp; path = ../../src/gui/RECamera.cpp; sourceTree = SOURCE_ROOT; };
+		3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextureDirectX9.cpp; path = ../../src/gui/RETextureDirectX9.cpp; sourceTree = SOURCE_ROOT; };
+		3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFramedTextureObject.cpp; path = ../../src/gui/REFramedTextureObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFramedTextureObject.h; path = ../../include/regui/REFramedTextureObject.h; sourceTree = SOURCE_ROOT; };
+		3DFB02DE156A3EB80012FA48 /* IRETextInputResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRETextInputResponder.h; path = ../../include/regui/IRETextInputResponder.h; sourceTree = SOURCE_ROOT; };
+		3DFB02E0156A46040012FA48 /* RETextInputRespondersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETextInputRespondersManager.h; path = ../../include/regui/RETextInputRespondersManager.h; sourceTree = SOURCE_ROOT; };
+		3DFB02E2156A46800012FA48 /* RETextInputRespondersManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextInputRespondersManager.cpp; path = ../../src/gui/RETextInputRespondersManager.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D0E329D13E7CC5800F3D0A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D0E32A413E7CC5800F3D0A6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D05EAE915623C77004515DA /* Pyro */ = {
+			isa = PBXGroup;
+			children = (
+				3D05EAEA15623C94004515DA /* Pyro.h */,
+				3D05EAEB15623C94004515DA /* PyroGraphics.h */,
+				3D05EAEC15623C94004515DA /* PyroInterfaces.h */,
+				3D05EAED15623C94004515DA /* PyroTypes.h */,
+				3D05EAF315623CB9004515DA /* PyroOpenGLES.h */,
+				3D05EAF215623CB9004515DA /* PyroOpenGLES.cpp */,
+			);
+			name = Pyro;
+			sourceTree = "<group>";
+		};
+		3D0E329513E7CC5800F3D0A6 = {
+			isa = PBXGroup;
+			children = (
+				3D0E32A513E7CC5800F3D0A6 /* regui */,
+				3D0E32A213E7CC5800F3D0A6 /* Frameworks */,
+				3D0E32A113E7CC5800F3D0A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D0E32A113E7CC5800F3D0A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D0E32A013E7CC5800F3D0A6 /* libregui.a */,
+				3DAD808C15F73119000F83EF /* REGUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D0E32A213E7CC5800F3D0A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D0E32A313E7CC5800F3D0A6 /* Foundation.framework */,
+				3DAD808F15F73119000F83EF /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D0E32A513E7CC5800F3D0A6 /* regui */ = {
+			isa = PBXGroup;
+			children = (
+				3DAD80A515F73428000F83EF /* recore */,
+				3DAD80A415F73418000F83EF /* reconfig */,
+				3DAD809E15F732EE000F83EF /* regui.h */,
+				3D294C8215BFE62000013A91 /* REGUIObject.h */,
+				3D294C8515BFE62600013A91 /* REGUIObject.cpp */,
+				3DFB02DC156A3EAC0012FA48 /* Text input */,
+				3D05EAE915623C77004515DA /* Pyro */,
+				3D1C0D3915259D2A00386A3B /* Particle */,
+				3DC67830144CB206008891F1 /* regui.h */,
+				3DB07B7C144CB11000FF99AB /* Button */,
+				3DB07B7D144CB11000FF99AB /* XML serialize */,
+				3DB07B7E144CB11000FF99AB /* Texture */,
+				3DB07B7F144CB11000FF99AB /* RESubViewsContainer.h */,
+				3DB07B80144CB11000FF99AB /* RESubViewsContainer.cpp */,
+				3DB07B81144CB11000FF99AB /* RECursor.h */,
+				3DB07B82144CB11000FF99AB /* RECursor.cpp */,
+				3DB07B83144CB11000FF99AB /* IREUserActionResponder.h */,
+				3DB07B84144CB11000FF99AB /* REGUIApplication.h */,
+				3DB07B85144CB11000FF99AB /* REGUIApplication.cpp */,
+				3DB07B86144CB11000FF99AB /* Render device */,
+				3DB07B87144CB11000FF99AB /* IRERenderable.h */,
+				3DB07B88144CB11000FF99AB /* REView.h */,
+				3DB07B89144CB11000FF99AB /* REView.cpp */,
+				3DB07B8A144CB11000FF99AB /* RETransformedView.h */,
+				3DB07B8B144CB11000FF99AB /* RETransformedView.cpp */,
+				3DB07B8C144CB11000FF99AB /* Animation */,
+				3DB07B5F144CB0AA00FF99AB /* Font */,
+				3DB07B59144CB09700FF99AB /* Label */,
+				3D2A459414178E3100861384 /* addlibs */,
+			);
+			path = regui;
+			sourceTree = "<group>";
+		};
+		3D1C0D3915259D2A00386A3B /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				3D1C0D3B15259D3600386A3B /* REParticleView.h */,
+				3D1C0D3D15259D3B00386A3B /* REParticleView.cpp */,
+			);
+			name = Particle;
+			sourceTree = "<group>";
+		};
+		3D24EC6714568C5E00B2A98B /* Texture manager */ = {
+			isa = PBXGroup;
+			children = (
+				3D24EC6D14568DF600B2A98B /* RERenderDeviceTextureObject.h */,
+				3D24EC6F14568DFB00B2A98B /* RERenderDeviceTextureObject.cpp */,
+			);
+			name = "Texture manager";
+			sourceTree = "<group>";
+		};
+		3D2A459414178E3100861384 /* addlibs */ = {
+			isa = PBXGroup;
+			children = (
+				3D2A459614178E4A00861384 /* freetype_config.h */,
+				3D2A459714178E4A00861384 /* freetype_wrap1.c */,
+				3D2A459814178E4A00861384 /* freetype_wrap2.c */,
+				3D2A459914178E4A00861384 /* freetype_wrap3.c */,
+				3D2A459A14178E4A00861384 /* freetype_wrap4.c */,
+				3D2A459B14178E4A00861384 /* freetype.h */,
+			);
+			name = addlibs;
+			sourceTree = "<group>";
+		};
+		3DAD808F15F73119000F83EF /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3DAD80A415F73418000F83EF /* reconfig */ = {
+			isa = PBXGroup;
+			children = (
+				3DAD80A015F73329000F83EF /* REConfigIPhone.h */,
+				3DAD80A115F73329000F83EF /* REConfigSelector.h */,
+			);
+			name = reconfig;
+			sourceTree = "<group>";
+		};
+		3DAD80A515F73428000F83EF /* recore */ = {
+			isa = PBXGroup;
+			children = (
+				3DAD80A615F73437000F83EF /* IREAffineTransformed.h */,
+				3DAD80A715F73437000F83EF /* IREFileReadable.h */,
+				3DAD80A815F73437000F83EF /* RE2DAlgorithm.h */,
+				3DAD80A915F73437000F83EF /* REAffineTransform.h */,
+				3DAD80AA15F73437000F83EF /* REAngle.h */,
+				3DAD80AB15F73437000F83EF /* REApplication.h */,
+				3DAD80AC15F73437000F83EF /* REArray.h */,
+				3DAD80AD15F73437000F83EF /* REAutoReleasePool.h */,
+				3DAD80AE15F73437000F83EF /* REBase64.h */,
+				3DAD80AF15F73437000F83EF /* REBuffer.h */,
+				3DAD80B015F73437000F83EF /* REBufferObject.h */,
+				3DAD80B115F73437000F83EF /* REClassMethod.h */,
+				3DAD80B215F73437000F83EF /* REColor.h */,
+				3DAD80B315F73437000F83EF /* RECommonHeader.h */,
+				3DAD80B415F73437000F83EF /* RECoreC.h */,
+				3DAD80B515F73437000F83EF /* RECoreIncludes.h */,
+				3DAD80B615F73437000F83EF /* RECoreOSSelector.h */,
+				3DAD80B715F73437000F83EF /* RECorePlatformSelector.h */,
+				3DAD80B815F73437000F83EF /* RECoreSettings.h */,
+				3DAD80B915F73437000F83EF /* RECPUFeatures.h */,
+				3DAD80BA15F73437000F83EF /* REData.h */,
+				3DAD80BB15F73437000F83EF /* REDate.h */,
+				3DAD80BC15F73437000F83EF /* REEdgeInsets.h */,
+				3DAD80BD15F73437000F83EF /* REFile.h */,
+				3DAD80BE15F73437000F83EF /* REFileManager.h */,
+				3DAD80BF15F73437000F83EF /* REFloat16.h */,
+				3DAD80C015F73437000F83EF /* REImage.h */,
+				3DAD80C115F73437000F83EF /* REImageBase.h */,
+				3DAD80C215F73437000F83EF /* REImageManager.h */,
+				3DAD80C315F73437000F83EF /* REInterpolation.h */,
+				3DAD80C415F73437000F83EF /* REList.h */,
+				3DAD80C515F73437000F83EF /* RELocale.h */,
+				3DAD80C615F73437000F83EF /* RELog.h */,
+				3DAD80C715F73437000F83EF /* RELZMACompression.h */,
+				3DAD80C815F73437000F83EF /* REMainLoopUpdatable.h */,
+				3DAD80C915F73437000F83EF /* REMath.h */,
+				3DAD80CA15F73437000F83EF /* REMatrix4.h */,
+				3DAD80CB15F73437000F83EF /* REMD5Generator.h */,
+				3DAD80CC15F73437000F83EF /* REMem.h */,
+				3DAD80CD15F73437000F83EF /* REMutex.h */,
+				3DAD80CE15F73437000F83EF /* RENotificationManager.h */,
+				3DAD80CF15F73437000F83EF /* RENULLObject.h */,
+				3DAD80D015F73437000F83EF /* RENumber.h */,
+				3DAD80D115F73437000F83EF /* RENumberObject.h */,
+				3DAD80D215F73437000F83EF /* REObject.h */,
+				3DAD80D315F73437000F83EF /* REObjectProperty.h */,
+				3DAD80D415F73437000F83EF /* REObjectsArray.h */,
+				3DAD80D515F73437000F83EF /* REObjectsDictionary.h */,
+				3DAD80D615F73437000F83EF /* REPoint2.h */,
+				3DAD80D715F73437000F83EF /* REPoint3.h */,
+				3DAD80D815F73437000F83EF /* REProperty.h */,
+				3DAD80D915F73437000F83EF /* REQuaternion.h */,
+				3DAD80DA15F73437000F83EF /* RERandomizer.h */,
+				3DAD80DB15F73437000F83EF /* RERange.h */,
+				3DAD80DC15F73437000F83EF /* RERect.h */,
+				3DAD80DD15F73437000F83EF /* REResourcesStorage.h */,
+				3DAD80DE15F73437000F83EF /* RESize.h */,
+				3DAD80DF15F73437000F83EF /* RESQLiteDB.h */,
+				3DAD80E015F73437000F83EF /* RESQLiteDBResultSet.h */,
+				3DAD80E115F73437000F83EF /* REString.h */,
+				3DAD80E215F73437000F83EF /* REStringObject.h */,
+				3DAD80E315F73437000F83EF /* RETetragon.h */,
+				3DAD80E415F73437000F83EF /* REThread.h */,
+				3DAD80E515F73437000F83EF /* RETime.h */,
+				3DAD80E615F73437000F83EF /* RETimer.h */,
+				3DAD80E715F73437000F83EF /* RETypes.h */,
+				3DAD80E815F73437000F83EF /* REUserCallBacks.h */,
+				3DAD80E915F73437000F83EF /* REVector2.h */,
+				3DAD80EA15F73437000F83EF /* REVector3.h */,
+				3DAD80EB15F73437000F83EF /* REXMLPropertyListReader.h */,
+				3DAD80EC15F73437000F83EF /* REXMLPropertyListWriter.h */,
+				3DAD80ED15F73437000F83EF /* REYUVtoRGB.h */,
+				3DAD80EE15F73437000F83EF /* REZipReader.h */,
+				3DAD80EF15F73437000F83EF /* REZLIBCompression.h */,
+			);
+			name = recore;
+			sourceTree = "<group>";
+		};
+		3DB07B59144CB09700FF99AB /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				3DB07B5A144CB09700FF99AB /* RELabel.h */,
+				3DB07B5B144CB09700FF99AB /* RELabel.cpp */,
+			);
+			name = Label;
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B5F144CB0AA00FF99AB /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				3DB07B60144CB0AA00FF99AB /* RETTFFontChar.h */,
+				3DB07B61144CB0AA00FF99AB /* RETTFFontChar.cpp */,
+				3DB07B62144CB0AA00FF99AB /* RETTFFontLoader.h */,
+				3DB07B63144CB0AA00FF99AB /* RETTFFontLoader.cpp */,
+				3DB07B64144CB0AA00FF99AB /* REFontObject.h */,
+				3DB07B65144CB0AA00FF99AB /* REFontObject.cpp */,
+				3DB07B66144CB0AA00FF99AB /* REFontBase.h */,
+				3DB07B67144CB0AA00FF99AB /* REFontBase.cpp */,
+				3DB07B68144CB0AA00FF99AB /* REFontsCache.h */,
+				3DB07B69144CB0AA00FF99AB /* REFontsCache.cpp */,
+			);
+			name = Font;
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B7C144CB11000FF99AB /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3DB07B8D144CB11000FF99AB /* REButton.h */,
+				3DB07B8E144CB11000FF99AB /* REButton.cpp */,
+			);
+			name = Button;
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B7D144CB11000FF99AB /* XML serialize */ = {
+			isa = PBXGroup;
+			children = (
+				3D24B1CA147CE387009DA7DB /* REStackedViewController.h */,
+				3D24B1C7147CE382009DA7DB /* REStackedViewController.cpp */,
+				3DB07B8F144CB11000FF99AB /* REViewController.h */,
+				3DB07B90144CB11000FF99AB /* REViewController.cpp */,
+				3DB07B92144CB11000FF99AB /* REXMLSerializableReader.h */,
+				3DB07B93144CB11000FF99AB /* REXMLSerializableReader.cpp */,
+			);
+			name = "XML serialize";
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B7E144CB11000FF99AB /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */,
+				3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */,
+				3DB07B96144CB11000FF99AB /* RETextureObject.h */,
+				3DB07B97144CB11000FF99AB /* RETextureObject.cpp */,
+				3DB07B9C144CB11000FF99AB /* IRETexture.h */,
+				3DB07B9D144CB11000FF99AB /* RETextureOpenGL.h */,
+				3DB07B9E144CB11000FF99AB /* RETextureOpenGL.cpp */,
+				3DB07BA1144CB11000FF99AB /* RETextureDirectX9.h */,
+				3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */,
+			);
+			name = Texture;
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B86144CB11000FF99AB /* Render device */ = {
+			isa = PBXGroup;
+			children = (
+				3DC799F914E11B120092512D /* Camera */,
+				3D24EC6714568C5E00B2A98B /* Texture manager */,
+				3DB07BA3144CB11000FF99AB /* RERenderDevice.h */,
+				3DB07BA4144CB11000FF99AB /* RERenderDevice.cpp */,
+				3D507DBE14E27605000E558C /* RERenderDeviceOpenGL.h */,
+				3DB07BA6144CB11000FF99AB /* RERenderDeviceOpenGL.cpp */,
+				3D507DC114E27C3A000E558C /* RERenderDeviceDirectX9.h */,
+				3DB07BA8144CB11000FF99AB /* RERenderDeviceDirectX9.cpp */,
+			);
+			name = "Render device";
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DB07B8C144CB11000FF99AB /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				3DB5163D14E2B182007C6DFF /* IREAnimationRespondent.h */,
+				3DC0A8BB145DC480001AAF61 /* REAnimation.h */,
+				3DC0A8BE145DC490001AAF61 /* REAnimation.cpp */,
+				3DB07BAD144CB11000FF99AB /* IREAnimation.h */,
+				3DB07BAE144CB11000FF99AB /* REAnimationFloatParams.h */,
+				3DB07BAF144CB11000FF99AB /* REAnimationBase.h */,
+				3DB07BB0144CB11000FF99AB /* REAnimationBase.cpp */,
+				3D41B275146C8B3100026EA3 /* RETypedAnimation.h */,
+				3D41B277146C8BF600026EA3 /* RETypedAnimation.cpp */,
+				3DB07BB1144CB11000FF99AB /* REEditableAnimationInfo.h */,
+				3D5390BA14E423A700DA1160 /* REEditableAnimationInfo.cpp */,
+				3DB07BB2144CB11000FF99AB /* REAnimationInfo.h */,
+				3DB07BB3144CB11000FF99AB /* REAnimationInfo.cpp */,
+				3DB07BB4144CB11000FF99AB /* REAnimationController.h */,
+				3DB07BB5144CB11000FF99AB /* REAnimationController.cpp */,
+			);
+			name = Animation;
+			path = ../tests/test_ios;
+			sourceTree = "<group>";
+		};
+		3DC799F914E11B120092512D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				3DC799FB14E11B420092512D /* RECamera.h */,
+				3DC799FD14E11BAA0092512D /* RECamera.cpp */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		3DFB02DC156A3EAC0012FA48 /* Text input */ = {
+			isa = PBXGroup;
+			children = (
+				3DFB02DE156A3EB80012FA48 /* IRETextInputResponder.h */,
+				3DFB02E0156A46040012FA48 /* RETextInputRespondersManager.h */,
+				3DFB02E2156A46800012FA48 /* RETextInputRespondersManager.cpp */,
+				3D60A003156A758F004BEA1F /* RETextField.h */,
+				3D60A006156A759C004BEA1F /* RETextField.cpp */,
+			);
+			name = "Text input";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3D0E329E13E7CC5800F3D0A6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2A459C14178E4A00861384 /* freetype_config.h in Headers */,
+				3D2A45A114178E4A00861384 /* freetype.h in Headers */,
+				3DB07B5C144CB09700FF99AB /* RELabel.h in Headers */,
+				3DB07B6A144CB0AA00FF99AB /* RETTFFontChar.h in Headers */,
+				3DB07B6C144CB0AA00FF99AB /* RETTFFontLoader.h in Headers */,
+				3DB07B6E144CB0AA00FF99AB /* REFontObject.h in Headers */,
+				3DB07B70144CB0AA00FF99AB /* REFontBase.h in Headers */,
+				3DB07B72144CB0AA00FF99AB /* REFontsCache.h in Headers */,
+				3DB07BB6144CB11000FF99AB /* REButton.h in Headers */,
+				3DB07BB8144CB11000FF99AB /* REViewController.h in Headers */,
+				3DB07BBB144CB11000FF99AB /* REXMLSerializableReader.h in Headers */,
+				3DB07BBF144CB11000FF99AB /* RETextureObject.h in Headers */,
+				3DB07BC5144CB11000FF99AB /* IRETexture.h in Headers */,
+				3DB07BC6144CB11000FF99AB /* RETextureOpenGL.h in Headers */,
+				3DB07BCA144CB11000FF99AB /* RETextureDirectX9.h in Headers */,
+				3DB07BCB144CB11000FF99AB /* RESubViewsContainer.h in Headers */,
+				3DB07BCD144CB11000FF99AB /* RECursor.h in Headers */,
+				3DB07BCF144CB11000FF99AB /* IREUserActionResponder.h in Headers */,
+				3DB07BD0144CB11000FF99AB /* REGUIApplication.h in Headers */,
+				3DB07BD6144CB11000FF99AB /* RERenderDevice.h in Headers */,
+				3DB07BDC144CB11000FF99AB /* IRERenderable.h in Headers */,
+				3DB07BDD144CB11000FF99AB /* REView.h in Headers */,
+				3DB07BDF144CB11000FF99AB /* RETransformedView.h in Headers */,
+				3DB07BE1144CB11000FF99AB /* IREAnimation.h in Headers */,
+				3DB07BE2144CB11000FF99AB /* REAnimationFloatParams.h in Headers */,
+				3DB07BE3144CB11000FF99AB /* REAnimationBase.h in Headers */,
+				3DB07BE5144CB11000FF99AB /* REEditableAnimationInfo.h in Headers */,
+				3DB07BE6144CB11000FF99AB /* REAnimationInfo.h in Headers */,
+				3DB07BE8144CB11000FF99AB /* REAnimationController.h in Headers */,
+				3DC67831144CB206008891F1 /* regui.h in Headers */,
+				3D24EC6E14568DF600B2A98B /* RERenderDeviceTextureObject.h in Headers */,
+				3DC0A8BC145DC480001AAF61 /* REAnimation.h in Headers */,
+				3D41B276146C8B3100026EA3 /* RETypedAnimation.h in Headers */,
+				3D24B1CB147CE387009DA7DB /* REStackedViewController.h in Headers */,
+				3DED16CB14866AEE00AD21C0 /* REFramedTextureObject.h in Headers */,
+				3DC799FC14E11B420092512D /* RECamera.h in Headers */,
+				3D507DBF14E27605000E558C /* RERenderDeviceOpenGL.h in Headers */,
+				3D507DC214E27C3A000E558C /* RERenderDeviceDirectX9.h in Headers */,
+				3DB5163E14E2B182007C6DFF /* IREAnimationRespondent.h in Headers */,
+				3D1C0D3C15259D3600386A3B /* REParticleView.h in Headers */,
+				3DFB02DF156A3EB80012FA48 /* IRETextInputResponder.h in Headers */,
+				3DFB02E1156A46040012FA48 /* RETextInputRespondersManager.h in Headers */,
+				3D60A004156A758F004BEA1F /* RETextField.h in Headers */,
+				3D294C8315BFE62000013A91 /* REGUIObject.h in Headers */,
+				3DAD80A215F73329000F83EF /* REConfigIPhone.h in Headers */,
+				3DAD80A315F73329000F83EF /* REConfigSelector.h in Headers */,
+				3DAD80F015F73437000F83EF /* IREAffineTransformed.h in Headers */,
+				3DAD80F115F73437000F83EF /* IREFileReadable.h in Headers */,
+				3DAD80F215F73437000F83EF /* RE2DAlgorithm.h in Headers */,
+				3DAD80F315F73437000F83EF /* REAffineTransform.h in Headers */,
+				3DAD80F415F73437000F83EF /* REAngle.h in Headers */,
+				3DAD80F515F73437000F83EF /* REApplication.h in Headers */,
+				3DAD80F615F73437000F83EF /* REArray.h in Headers */,
+				3DAD80F715F73437000F83EF /* REAutoReleasePool.h in Headers */,
+				3DAD80F815F73437000F83EF /* REBase64.h in Headers */,
+				3DAD80F915F73437000F83EF /* REBuffer.h in Headers */,
+				3DAD80FA15F73437000F83EF /* REBufferObject.h in Headers */,
+				3DAD80FB15F73437000F83EF /* REClassMethod.h in Headers */,
+				3DAD80FC15F73437000F83EF /* REColor.h in Headers */,
+				3DAD80FD15F73437000F83EF /* RECommonHeader.h in Headers */,
+				3DAD80FE15F73437000F83EF /* RECoreC.h in Headers */,
+				3DAD80FF15F73437000F83EF /* RECoreIncludes.h in Headers */,
+				3DAD810015F73437000F83EF /* RECoreOSSelector.h in Headers */,
+				3DAD810115F73437000F83EF /* RECorePlatformSelector.h in Headers */,
+				3DAD810215F73437000F83EF /* RECoreSettings.h in Headers */,
+				3DAD810315F73437000F83EF /* RECPUFeatures.h in Headers */,
+				3DAD810415F73437000F83EF /* REData.h in Headers */,
+				3DAD810515F73437000F83EF /* REDate.h in Headers */,
+				3DAD810615F73437000F83EF /* REEdgeInsets.h in Headers */,
+				3DAD810715F73437000F83EF /* REFile.h in Headers */,
+				3DAD810815F73437000F83EF /* REFileManager.h in Headers */,
+				3DAD810915F73437000F83EF /* REFloat16.h in Headers */,
+				3DAD810A15F73437000F83EF /* REImage.h in Headers */,
+				3DAD810B15F73437000F83EF /* REImageBase.h in Headers */,
+				3DAD810C15F73437000F83EF /* REImageManager.h in Headers */,
+				3DAD810D15F73437000F83EF /* REInterpolation.h in Headers */,
+				3DAD810E15F73437000F83EF /* REList.h in Headers */,
+				3DAD810F15F73437000F83EF /* RELocale.h in Headers */,
+				3DAD811015F73437000F83EF /* RELog.h in Headers */,
+				3DAD811115F73437000F83EF /* RELZMACompression.h in Headers */,
+				3DAD811215F73437000F83EF /* REMainLoopUpdatable.h in Headers */,
+				3DAD811315F73437000F83EF /* REMath.h in Headers */,
+				3DAD811415F73437000F83EF /* REMatrix4.h in Headers */,
+				3DAD811515F73437000F83EF /* REMD5Generator.h in Headers */,
+				3DAD811615F73437000F83EF /* REMem.h in Headers */,
+				3DAD811715F73437000F83EF /* REMutex.h in Headers */,
+				3DAD811815F73437000F83EF /* RENotificationManager.h in Headers */,
+				3DAD811915F73437000F83EF /* RENULLObject.h in Headers */,
+				3DAD811A15F73437000F83EF /* RENumber.h in Headers */,
+				3DAD811B15F73437000F83EF /* RENumberObject.h in Headers */,
+				3DAD811C15F73437000F83EF /* REObject.h in Headers */,
+				3DAD811D15F73437000F83EF /* REObjectProperty.h in Headers */,
+				3DAD811E15F73437000F83EF /* REObjectsArray.h in Headers */,
+				3DAD811F15F73437000F83EF /* REObjectsDictionary.h in Headers */,
+				3DAD812015F73437000F83EF /* REPoint2.h in Headers */,
+				3DAD812115F73437000F83EF /* REPoint3.h in Headers */,
+				3DAD812215F73437000F83EF /* REProperty.h in Headers */,
+				3DAD812315F73437000F83EF /* REQuaternion.h in Headers */,
+				3DAD812415F73437000F83EF /* RERandomizer.h in Headers */,
+				3DAD812515F73437000F83EF /* RERange.h in Headers */,
+				3DAD812615F73437000F83EF /* RERect.h in Headers */,
+				3DAD812715F73437000F83EF /* REResourcesStorage.h in Headers */,
+				3DAD812815F73437000F83EF /* RESize.h in Headers */,
+				3DAD812915F73437000F83EF /* RESQLiteDB.h in Headers */,
+				3DAD812A15F73437000F83EF /* RESQLiteDBResultSet.h in Headers */,
+				3DAD812B15F73437000F83EF /* REString.h in Headers */,
+				3DAD812C15F73437000F83EF /* REStringObject.h in Headers */,
+				3DAD812D15F73437000F83EF /* RETetragon.h in Headers */,
+				3DAD812E15F73437000F83EF /* REThread.h in Headers */,
+				3DAD812F15F73437000F83EF /* RETime.h in Headers */,
+				3DAD813015F73437000F83EF /* RETimer.h in Headers */,
+				3DAD813115F73437000F83EF /* RETypes.h in Headers */,
+				3DAD813215F73437000F83EF /* REUserCallBacks.h in Headers */,
+				3DAD813315F73437000F83EF /* REVector2.h in Headers */,
+				3DAD813415F73437000F83EF /* REVector3.h in Headers */,
+				3DAD813515F73437000F83EF /* REXMLPropertyListReader.h in Headers */,
+				3DAD813615F73437000F83EF /* REXMLPropertyListWriter.h in Headers */,
+				3DAD813715F73437000F83EF /* REYUVtoRGB.h in Headers */,
+				3DAD813815F73437000F83EF /* REZipReader.h in Headers */,
+				3DAD813915F73437000F83EF /* REZLIBCompression.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DAD816015F73530000F83EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DAD816115F7353A000F83EF /* regui.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D0E329F13E7CC5800F3D0A6 /* regui */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D0E32AA13E7CC5800F3D0A6 /* Build configuration list for PBXNativeTarget "regui" */;
+			buildPhases = (
+				3D0E329C13E7CC5800F3D0A6 /* Sources */,
+				3D0E329D13E7CC5800F3D0A6 /* Frameworks */,
+				3D0E329E13E7CC5800F3D0A6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = regui;
+			productName = regui;
+			productReference = 3D0E32A013E7CC5800F3D0A6 /* libregui.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3DAD808B15F73119000F83EF /* REGUI_Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DAD809C15F73119000F83EF /* Build configuration list for PBXNativeTarget "REGUI_Framework" */;
+			buildPhases = (
+				3DAD808815F73119000F83EF /* Sources */,
+				3DAD816015F73530000F83EF /* Headers */,
+				3DAD816215F7359F000F83EF /* CopyFiles */,
+				3DAD816515F735B6000F83EF /* CopyFiles */,
+				3DAD81B115F735EC000F83EF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = REGUI_Framework;
+			productName = REGUI_Framework;
+			productReference = 3DAD808C15F73119000F83EF /* REGUI.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D0E329713E7CC5800F3D0A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 3D0E329A13E7CC5800F3D0A6 /* Build configuration list for PBXProject "regui" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3D0E329513E7CC5800F3D0A6;
+			productRefGroup = 3D0E32A113E7CC5800F3D0A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D0E329F13E7CC5800F3D0A6 /* regui */,
+				3DAD808B15F73119000F83EF /* REGUI_Framework */,
+				3DAD81D115F73772000F83EF /* REGUI_Agregate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DAD81D515F73777000F83EF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ACTION}\" = \"build\" ]\nthen\n# Set the target folders and the final framework product.\nINSTALL_DIR=${SYMROOT}/REGUI.framework\nDEVICE_DIR=${SYMROOT}/Release-iphoneos\nSIMULATOR_DIR=${SYMROOT}/Release-iphonesimulator\n\n# Create and renews the final product folder.\nmkdir -p \"${INSTALL_DIR}\"\nrm -rf \"${INSTALL_DIR}\"\nrm -rf \"${INSTALL_DIR}/REGUI\"\n\nmkdir -p \"${INSTALL_DIR}\"\nmkdir -p \"${INSTALL_DIR}/Headers\"\n\n\n# Copy the header files to the final product folder.\nditto \"${DEVICE_DIR}/REGUI.framework/Headers\" \"${INSTALL_DIR}/Headers\"\n\n# Use the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/REGUI.framework/REGUI\" \"${SIMULATOR_DIR}/REGUI.framework/REGUI\" -output \"${INSTALL_DIR}/REGUI\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D0E329C13E7CC5800F3D0A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2A459D14178E4A00861384 /* freetype_wrap1.c in Sources */,
+				3D2A459E14178E4A00861384 /* freetype_wrap2.c in Sources */,
+				3D2A459F14178E4A00861384 /* freetype_wrap3.c in Sources */,
+				3D2A45A014178E4A00861384 /* freetype_wrap4.c in Sources */,
+				3DB07B5D144CB09700FF99AB /* RELabel.cpp in Sources */,
+				3DB07B6B144CB0AA00FF99AB /* RETTFFontChar.cpp in Sources */,
+				3DB07B6D144CB0AA00FF99AB /* RETTFFontLoader.cpp in Sources */,
+				3DB07B6F144CB0AA00FF99AB /* REFontObject.cpp in Sources */,
+				3DB07B71144CB0AA00FF99AB /* REFontBase.cpp in Sources */,
+				3DB07B73144CB0AA00FF99AB /* REFontsCache.cpp in Sources */,
+				3DB07BB7144CB11000FF99AB /* REButton.cpp in Sources */,
+				3DB07BB9144CB11000FF99AB /* REViewController.cpp in Sources */,
+				3DB07BBC144CB11000FF99AB /* REXMLSerializableReader.cpp in Sources */,
+				3DB07BC0144CB11000FF99AB /* RETextureObject.cpp in Sources */,
+				3DB07BC7144CB11000FF99AB /* RETextureOpenGL.cpp in Sources */,
+				3DB07BCC144CB11000FF99AB /* RESubViewsContainer.cpp in Sources */,
+				3DB07BCE144CB11000FF99AB /* RECursor.cpp in Sources */,
+				3DB07BD1144CB11000FF99AB /* REGUIApplication.cpp in Sources */,
+				3DB07BD7144CB11000FF99AB /* RERenderDevice.cpp in Sources */,
+				3DB07BD9144CB11000FF99AB /* RERenderDeviceOpenGL.cpp in Sources */,
+				3DB07BDB144CB11000FF99AB /* RERenderDeviceDirectX9.cpp in Sources */,
+				3DB07BDE144CB11000FF99AB /* REView.cpp in Sources */,
+				3DB07BE0144CB11000FF99AB /* RETransformedView.cpp in Sources */,
+				3DB07BE4144CB11000FF99AB /* REAnimationBase.cpp in Sources */,
+				3DB07BE7144CB11000FF99AB /* REAnimationInfo.cpp in Sources */,
+				3DB07BE9144CB11000FF99AB /* REAnimationController.cpp in Sources */,
+				3D24EC7014568DFB00B2A98B /* RERenderDeviceTextureObject.cpp in Sources */,
+				3DC0A8BF145DC490001AAF61 /* REAnimation.cpp in Sources */,
+				3D41B278146C8BF600026EA3 /* RETypedAnimation.cpp in Sources */,
+				3D24B1C8147CE382009DA7DB /* REStackedViewController.cpp in Sources */,
+				3DED16C814866AE700AD21C0 /* REFramedTextureObject.cpp in Sources */,
+				3DC799FE14E11BAA0092512D /* RECamera.cpp in Sources */,
+				3D5390BB14E423A700DA1160 /* REEditableAnimationInfo.cpp in Sources */,
+				3D1C0D3E15259D3B00386A3B /* REParticleView.cpp in Sources */,
+				3DEC6B5F155BB42D006DE4B8 /* RETextureDirectX9.cpp in Sources */,
+				3DFB02E3156A46800012FA48 /* RETextInputRespondersManager.cpp in Sources */,
+				3D60A007156A759C004BEA1F /* RETextField.cpp in Sources */,
+				3D294C8615BFE62600013A91 /* REGUIObject.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DAD808815F73119000F83EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DAD820A15F7393A000F83EF /* REParticleView.cpp in Sources */,
+				3DAD815C15F734B3000F83EF /* freetype_wrap1.c in Sources */,
+				3DAD815D15F734B3000F83EF /* freetype_wrap2.c in Sources */,
+				3DAD815E15F734B3000F83EF /* freetype_wrap3.c in Sources */,
+				3DAD815F15F734B3000F83EF /* freetype_wrap4.c in Sources */,
+				3DAD813A15F7349F000F83EF /* REGUIObject.cpp in Sources */,
+				3DAD813B15F7349F000F83EF /* RETextInputRespondersManager.cpp in Sources */,
+				3DAD813C15F7349F000F83EF /* RETextField.cpp in Sources */,
+				3DAD813D15F7349F000F83EF /* PyroOpenGLES.cpp in Sources */,
+				3DAD813E15F7349F000F83EF /* REButton.cpp in Sources */,
+				3DAD813F15F7349F000F83EF /* REStackedViewController.cpp in Sources */,
+				3DAD814015F7349F000F83EF /* REViewController.cpp in Sources */,
+				3DAD814115F7349F000F83EF /* REXMLSerializableReader.cpp in Sources */,
+				3DAD814215F7349F000F83EF /* REFramedTextureObject.cpp in Sources */,
+				3DAD814315F7349F000F83EF /* RETextureObject.cpp in Sources */,
+				3DAD814415F7349F000F83EF /* RETextureOpenGL.cpp in Sources */,
+				3DAD814515F7349F000F83EF /* RETextureDirectX9.cpp in Sources */,
+				3DAD814615F7349F000F83EF /* RESubViewsContainer.cpp in Sources */,
+				3DAD814715F7349F000F83EF /* RECursor.cpp in Sources */,
+				3DAD814815F7349F000F83EF /* REGUIApplication.cpp in Sources */,
+				3DAD814915F7349F000F83EF /* RECamera.cpp in Sources */,
+				3DAD814A15F7349F000F83EF /* RERenderDeviceTextureObject.cpp in Sources */,
+				3DAD814B15F7349F000F83EF /* RERenderDevice.cpp in Sources */,
+				3DAD814C15F7349F000F83EF /* RERenderDeviceOpenGL.cpp in Sources */,
+				3DAD814D15F7349F000F83EF /* RERenderDeviceDirectX9.cpp in Sources */,
+				3DAD814E15F7349F000F83EF /* REView.cpp in Sources */,
+				3DAD814F15F7349F000F83EF /* RETransformedView.cpp in Sources */,
+				3DAD815015F7349F000F83EF /* REAnimation.cpp in Sources */,
+				3DAD815115F7349F000F83EF /* REAnimationBase.cpp in Sources */,
+				3DAD815215F7349F000F83EF /* RETypedAnimation.cpp in Sources */,
+				3DAD815315F7349F000F83EF /* REEditableAnimationInfo.cpp in Sources */,
+				3DAD815415F7349F000F83EF /* REAnimationInfo.cpp in Sources */,
+				3DAD815515F7349F000F83EF /* REAnimationController.cpp in Sources */,
+				3DAD815615F7349F000F83EF /* RETTFFontChar.cpp in Sources */,
+				3DAD815715F7349F000F83EF /* RETTFFontLoader.cpp in Sources */,
+				3DAD815815F7349F000F83EF /* REFontObject.cpp in Sources */,
+				3DAD815915F7349F000F83EF /* REFontBase.cpp in Sources */,
+				3DAD815A15F7349F000F83EF /* REFontsCache.cpp in Sources */,
+				3DAD815B15F7349F000F83EF /* RELabel.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3D0E32A813E7CC5800F3D0A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					__RE_OS_IPHONE__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/freetype/include/,
+					../../src/addlibs/pyro_particles/SDK/Include/,
+					../../src/addlibs/pyro_particles/SDK/Samples/Common/,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D0E32A913E7CC5800F3D0A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/freetype/include/,
+					../../src/addlibs/pyro_particles/SDK/Include/,
+					../../src/addlibs/pyro_particles/SDK/Samples/Common/,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		3D0E32AB13E7CC5800F3D0A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/regui.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3D0E32AC13E7CC5800F3D0A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/regui.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3DAD809A15F73119000F83EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				ONLY_ACTIVE_ARCH = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = REGUI;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv6 armv7 i386";
+				VERSION_INFO_FILE = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		3DAD809B15F73119000F83EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				ONLY_ACTIVE_ARCH = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = REGUI;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv6 armv7 i386";
+				VERSION_INFO_FILE = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		3DAD81D315F73772000F83EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3DAD81D415F73772000F83EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D0E329A13E7CC5800F3D0A6 /* Build configuration list for PBXProject "regui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D0E32A813E7CC5800F3D0A6 /* Debug */,
+				3D0E32A913E7CC5800F3D0A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D0E32AA13E7CC5800F3D0A6 /* Build configuration list for PBXNativeTarget "regui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D0E32AB13E7CC5800F3D0A6 /* Debug */,
+				3D0E32AC13E7CC5800F3D0A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DAD809C15F73119000F83EF /* Build configuration list for PBXNativeTarget "REGUI_Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DAD809A15F73119000F83EF /* Debug */,
+				3DAD809B15F73119000F83EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DAD81D215F73772000F83EF /* Build configuration list for PBXAggregateTarget "REGUI_Agregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DAD81D315F73772000F83EF /* Debug */,
+				3DAD81D415F73772000F83EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D0E329713E7CC5800F3D0A6 /* Project object */;
+}
