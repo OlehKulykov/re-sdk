@@ -1,3 +1,39 @@
+RECore is cross platform framework for creating 2D game applications. The main idea is to create applications with minimal effort to port to other platforms. Therefore, all the modules framework written in C++. You create a basic application code in your favorite operating system and development environment, then wraps the application for each supported operating system and connects your basic code.
+The framework consists of the following modules: RECore, REGUI, REMedia, RENetwork. Of course, for some features can be used third-party libraries. Each additional library can be used or not by configuration settings file and can be linked as system provided or provided with framework source code. Which library use for linking also controlled by configuration settings file. For more details about using additional third-party libraries please read README file.
+RECore - is the base module, the functionality of which can be used not only in the 2D games, but in the usual applications as additional functionality.
+REGUI - module for rendering graphics, managing views.
+REMedia - module for playing audio and video.
+RENetwork - module for sending/receiving network requests.
+
+Features:
+Features marked with * sing can be added or removed from framework using configuration files for each supported platform on build process.
+
+RECore features:
+- Basic geometry objects, such as 2D/3D points and vectors, matrix, quaternions, edge insets, ranges, colors, angles, randomizers, timers, file management, some 2D algorithms, Base64, MD5, UTF8 strings, wide char strings presentation, encoding/decoding special HTML characters*.
+- Compression/decompression memory buffers using ZIP* and LZMA* algorithm, reading from ZIP archives*.
+- Arrays, lists, iterators and dictionary with possibility save/load objects to/from XML property lists.
+- Reading PNG*, JPG/JPEG*, J2K/JPEG2000*, WebP* image formats and writing PNG* and WebP* image formats. Supports RGB(A), Luminance alpha and alpha pixel formats, scaling images, YUV to RGB(A) color conversion*.
+- Threads and mutexes. Invoking/executing class methods in current or main thread with or without delays.
+- Reading/writing SQLite data base*.
+- Initializing base objects from URL*, resources or wrapper application callbacks*.
+
+REGUI features:
+- Basic render primitives such as view, buttons, labels, textfields, textures.
+- View controllers for managing view hierarchy.
+- Using TTF fonts. 
+- Using OpenGL*, OpenGL ES 1*, DirectX 9* for rendering.
+- Integration with Pyro Particles*.
+- About 40 types of animation.
+
+REMedia features:
+- Using OpenAL for playing decoded sound data*.
+- Playing Ogg Vorbis and all native supported audio formats using static callbacks*.
+- Playing Ogg Theora video*.
+
+RENetwork features:
+- Sending/receiving network requests.
+
+
 RECore can use next third-party libraries. 
 Using this libs can be controlled by 'REConfig<OS Type>.h' configuration header file.
 For getting list of features and third-party libraries call RECore::BuildInfo() method.
