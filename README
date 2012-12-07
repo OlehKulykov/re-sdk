@@ -1,0 +1,78 @@
+RECore can use next third-party libraries. 
+Using this libs can be controlled by 'REConfig<OS Type>.h' configuration header file.
+For getting list of features and third-party libraries call RECore::BuildInfo() method.
+- Zlib 
+URL: http://zlib.net
+     https://github.com/madler/zlib
+License URL: http://zlib.net/zlib_license.html
+
+
+- Png
+URL: http://www.libpng.org
+     http://www.libpng.org/pub/png/libpng.html
+License: Open Source     
+License URL: http://www.libpng.org/pub/png/src/libpng-LICENSE.txt
+
+
+- SQLite
+URL: http://www.sqlite.org
+License URL: http://www.sqlite.org/copyright.html
+
+
+- FreeType
+URL: http://www.freetype.org
+License URL: http://www.freetype.org/FTL.TXT
+
+
+- jpeg 
+URL: http://www.ijg.org
+
+
+- ogg
+URL: http://www.xiph.org
+
+
+- vorbis
+URL: http://www.xiph.org
+
+
+- theora
+URL: http://www.xiph.org
+
+
+- tremor
+URL: http://www.xiph.org
+
+
+- lzma
+URL: http://www.7-zip.org/sdk.html
+License URL: http://www.7-zip.org/license.txt
+
+
+- OpenJPEG
+URL: http://www.openjpeg.org
+License URL: http://www.openjpeg.org/BSDlicense.txt
+
+
+- cURL
+URL: http://curl.haxx.se
+License URL: http://curl.haxx.se/docs/copyright.html
+
+
+- TinyXML
+URL: http://sourceforge.net/projects/tinyxml
+     http://www.grinninglizard.com/tinyxml/index.html
+License: zlib/libpng License
+
+
+- WebP
+URL: https://code.google.com/p/webp
+     https://developers.google.com/speed/webp
+
+
+- Pyro Particle
+URL: http://pyro.fenomen-games.com
+
+
+- YUV2RGB
+URL: http://www.wss.co.uk/pinknoise/yuv2rgb/index.html
