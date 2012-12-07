@@ -1,0 +1,2 @@
+lipo -create librecore-iphonesimulator.a librecore-iphoneos.a -output librecore.a
+lipo -create libregui-iphonesimulator.a libregui-iphoneos.a -output libregui.a
