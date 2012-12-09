@@ -76,7 +76,7 @@
 #include "../../../include/recore/REYUVtoRGB.h"
 
 
-#if (defined (__RE_ARCHITECTURE_ARM__) && defined (__RE_OS_IPHONE__) )
+#if 0 //(defined (__RE_ARCHITECTURE_ARM__) && defined (__RE_OS_IPHONE__) )
 
 #ifndef __RE_CORE_NO_YUV_TO_RGB_CONVERSION__
 extern "C"

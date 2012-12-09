@@ -30,6 +30,6 @@ ipch
 UpgradeLog.XML
 _UpgradeReport_Files
 *.vcxproj.filters
-.gitAll
-.gitRelease
+.git.all
+.git.github
 .svn

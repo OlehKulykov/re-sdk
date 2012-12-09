@@ -872,15 +872,6 @@
 		3DF0493114D693D200306830 /* REYUV444toRGB888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV444toRGB888.cpp; path = ../../src/core/yuv2rgb/REYUV444toRGB888.cpp; sourceTree = SOURCE_ROOT; };
 		3DF0493214D693D200306830 /* REYUV444toRGB8888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV444toRGB8888.cpp; path = ../../src/core/yuv2rgb/REYUV444toRGB8888.cpp; sourceTree = SOURCE_ROOT; };
 		3DF0493314D693D200306830 /* REYUVtoRGB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUVtoRGB.cpp; path = ../../src/core/yuv2rgb/REYUVtoRGB.cpp; sourceTree = SOURCE_ROOT; };
-		3DF0493E14D693D700306830 /* ios_arm_yuv420_rgb888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv420_rgb888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv420_rgb888.s; sourceTree = SOURCE_ROOT; };
-		3DF0494014D69B4900306830 /* ios_arm_yuv420_rgb565.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv420_rgb565.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv420_rgb565.s; sourceTree = SOURCE_ROOT; };
-		3DF0494214D69F0800306830 /* ios_arm_yuv420_rgb8888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv420_rgb8888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv420_rgb8888.s; sourceTree = SOURCE_ROOT; };
-		3DF0496214D6A2E000306830 /* ios_arm_yuv422_rgb565.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv422_rgb565.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv422_rgb565.s; sourceTree = SOURCE_ROOT; };
-		3DF0496514D6A52D00306830 /* ios_arm_yuv422_rgb888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv422_rgb888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv422_rgb888.s; sourceTree = SOURCE_ROOT; };
-		3DF0496714D6A65F00306830 /* ios_arm_yuv422_rgb8888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv422_rgb8888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv422_rgb8888.s; sourceTree = SOURCE_ROOT; };
-		3DF0496914D6A79000306830 /* ios_arm_yuv444_rgb565.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv444_rgb565.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv444_rgb565.s; sourceTree = SOURCE_ROOT; };
-		3DF0496B14D6A87400306830 /* ios_arm_yuv444_rgb888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv444_rgb888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv444_rgb888.s; sourceTree = SOURCE_ROOT; };
-		3DF0496D14D6A96900306830 /* ios_arm_yuv444_rgb8888.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ios_arm_yuv444_rgb8888.s; path = ../../src/core/yuv2rgb/iphone_arm/ios_arm_yuv444_rgb8888.s; sourceTree = SOURCE_ROOT; };
 		3DF1DEAA14BF0FA400263F9A /* REFloat16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFloat16.h; path = ../../include/recore/REFloat16.h; sourceTree = SOURCE_ROOT; };
 		3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAutoReleasePoolPrivate.cpp; path = ../../src/core/REAutoReleasePoolPrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3DF8753715F152CA00363B51 /* REAutoReleasePoolPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAutoReleasePoolPrivate.h; path = ../../include/recore/private/REAutoReleasePoolPrivate.h; sourceTree = SOURCE_ROOT; };
@@ -1306,15 +1297,6 @@
 		3DF0492814D693C100306830 /* yuv2rgb */ = {
 			isa = PBXGroup;
 			children = (
-				3DF0494014D69B4900306830 /* ios_arm_yuv420_rgb565.s */,
-				3DF0493E14D693D700306830 /* ios_arm_yuv420_rgb888.s */,
-				3DF0494214D69F0800306830 /* ios_arm_yuv420_rgb8888.s */,
-				3DF0496214D6A2E000306830 /* ios_arm_yuv422_rgb565.s */,
-				3DF0496514D6A52D00306830 /* ios_arm_yuv422_rgb888.s */,
-				3DF0496714D6A65F00306830 /* ios_arm_yuv422_rgb8888.s */,
-				3DF0496914D6A79000306830 /* ios_arm_yuv444_rgb565.s */,
-				3DF0496B14D6A87400306830 /* ios_arm_yuv444_rgb888.s */,
-				3DF0496D14D6A96900306830 /* ios_arm_yuv444_rgb8888.s */,
 				3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */,
 				3DF0492B14D693D200306830 /* REYUV420toRGB888.cpp */,
 				3DF0492C14D693D200306830 /* REYUV420toRGB8888.cpp */,
