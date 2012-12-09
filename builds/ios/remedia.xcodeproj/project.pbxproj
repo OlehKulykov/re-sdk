@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D2E5AF0150A498E00F17250 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2E5AEF150A498E00F17250 /* Foundation.framework */; };
+		3D2E5B0B150A4A2C00F17250 /* remedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B0A150A4A2C00F17250 /* remedia.h */; };
+		3D2E5B11150A4A6800F17250 /* IREMediaPlayable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B0C150A4A6800F17250 /* IREMediaPlayable.h */; };
+		3D2E5B12150A4A6800F17250 /* REAudioOpenAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B0D150A4A6800F17250 /* REAudioOpenAL.h */; };
+		3D2E5B13150A4A6800F17250 /* REAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B0E150A4A6800F17250 /* REAudioPlayer.h */; };
+		3D2E5B14150A4A6800F17250 /* REOGGVorbisSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B0F150A4A6800F17250 /* REOGGVorbisSound.h */; };
+		3D2E5B15150A4A6800F17250 /* REWAVSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2E5B10150A4A6800F17250 /* REWAVSound.h */; };
+		3D2E5B1A150A4AAA00F17250 /* REAudioOpenAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5B16150A4AA900F17250 /* REAudioOpenAL.cpp */; };
+		3D2E5B1B150A4AAA00F17250 /* REAudioPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5B17150A4AAA00F17250 /* REAudioPlayer.cpp */; };
+		3D2E5B1C150A4AAA00F17250 /* REOGGVorbisSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5B18150A4AAA00F17250 /* REOGGVorbisSound.cpp */; };
+		3D2E5B1D150A4AAA00F17250 /* REWAVSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5B19150A4AAA00F17250 /* REWAVSound.cpp */; };
+		3D31C502150F52B700F35A5D /* REOGGTheoraPlayerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D31C501150F52B700F35A5D /* REOGGTheoraPlayerPrivate.h */; };
+		3D31C504150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C503150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp */; };
+		3D59EB0815F3798400EA0032 /* vorbis.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D59EB0715F3798300EA0032 /* vorbis.h */; };
+		3D59EB0B15F3798F00EA0032 /* theora.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D59EB0A15F3798E00EA0032 /* theora.h */; };
+		3D9438911518D78100655597 /* vorbis_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDE8847150D695200345F5D /* vorbis_config.h */; };
+		3D9438921518D78100655597 /* vorbis_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE8848150D695200345F5D /* vorbis_wrap1.c */; };
+		3D9438931518D78100655597 /* vorbis_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE8849150D695200345F5D /* vorbis_wrap2.c */; };
+		3D9438941518D78100655597 /* vorbis_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE884A150D695200345F5D /* vorbis_wrap3.c */; };
+		3D9438951518D78100655597 /* vorbis_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE884B150D695200345F5D /* vorbis_wrap4.c */; };
+		3D9438961518D78100655597 /* vorbis_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE884C150D695200345F5D /* vorbis_wrap5.c */; };
+		3D9438971518D78100655597 /* vorbis_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE884D150D695200345F5D /* vorbis_wrap6.c */; };
+		3DBA58AC150E377B00017E22 /* REVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBA58AB150E377A00017E22 /* REVideoView.h */; };
+		3DBA58AF150E37ED00017E22 /* REVideoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA58AE150E37ED00017E22 /* REVideoView.cpp */; };
+		3DC0A0D015332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC0A0CF15332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h */; };
+		3DC0A0D515332BD100A3E88E /* REAudioPlayerPrivate_iphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0A0D415332BD100A3E88E /* REAudioPlayerPrivate_iphone.mm */; };
+		3DE14DB11516BAF500F8487B /* analyze.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A315167A9900977271 /* analyze.c */; };
+		3DE14DB21516BAF500F8487B /* apiwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A415167A9900977271 /* apiwrapper.c */; };
+		3DE14DB31516BAF500F8487B /* bitpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A515167A9900977271 /* bitpack.c */; };
+		3DE14DB41516BAF500F8487B /* decapiwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A615167A9900977271 /* decapiwrapper.c */; };
+		3DE14DB51516BAF500F8487B /* decinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A715167A9900977271 /* decinfo.c */; };
+		3DE14DB61516BAF500F8487B /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A815167A9900977271 /* decode.c */; };
+		3DE14DB71516BAF500F8487B /* dequant.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534A915167A9900977271 /* dequant.c */; };
+		3DE14DB81516BAF500F8487B /* encapiwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AA15167A9900977271 /* encapiwrapper.c */; };
+		3DE14DB91516BAF500F8487B /* encfrag.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AB15167A9900977271 /* encfrag.c */; };
+		3DE14DBA1516BAF500F8487B /* encinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AC15167A9900977271 /* encinfo.c */; };
+		3DE14DBB1516BAF500F8487B /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AD15167A9900977271 /* encode.c */; };
+		3DE14DBC1516BAF500F8487B /* encoder_disabled.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AE15167A9900977271 /* encoder_disabled.c */; };
+		3DE14DBD1516BAF500F8487B /* enquant.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534AF15167A9900977271 /* enquant.c */; };
+		3DE14DBE1516BAF500F8487B /* fdct.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B015167A9900977271 /* fdct.c */; };
+		3DE14DBF1516BAF500F8487B /* fragment.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B115167A9900977271 /* fragment.c */; };
+		3DE14DC01516BAF500F8487B /* huffdec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B215167A9900977271 /* huffdec.c */; };
+		3DE14DC11516BAF500F8487B /* huffenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B315167A9900977271 /* huffenc.c */; };
+		3DE14DC21516BAF500F8487B /* idct.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B415167A9900977271 /* idct.c */; };
+		3DE14DC31516BAF500F8487B /* info.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B515167A9900977271 /* info.c */; };
+		3DE14DC41516BAF500F8487B /* internal.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B615167A9900977271 /* internal.c */; };
+		3DE14DC51516BAF500F8487B /* mathops.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B715167A9900977271 /* mathops.c */; };
+		3DE14DC61516BAF500F8487B /* mcenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B815167A9900977271 /* mcenc.c */; };
+		3DE14DC71516BAF500F8487B /* quant.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534B915167A9900977271 /* quant.c */; };
+		3DE14DC81516BAF500F8487B /* rate.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534BA15167A9900977271 /* rate.c */; };
+		3DE14DC91516BAF500F8487B /* state.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534BB15167A9900977271 /* state.c */; };
+		3DE14DCA1516BAF500F8487B /* tokenize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DE534BC15167A9900977271 /* tokenize.c */; };
+		3DE535701516891100977271 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDE8841150D695200345F5D /* ogg.h */; };
+		3DE535711516891100977271 /* ogg_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDE8842150D695200345F5D /* ogg_config.h */; };
+		3DE535721516891100977271 /* ogg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE8843150D695200345F5D /* ogg_wrap1.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D2E5AEC150A498E00F17250 /* libremedia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libremedia.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D2E5AEF150A498E00F17250 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D2E5B0A150A4A2C00F17250 /* remedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = remedia.h; path = ../../include/remedia.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B0C150A4A6800F17250 /* IREMediaPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREMediaPlayable.h; path = ../../include/remedia/IREMediaPlayable.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B0D150A4A6800F17250 /* REAudioOpenAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioOpenAL.h; path = ../../include/remedia/REAudioOpenAL.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B0E150A4A6800F17250 /* REAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioPlayer.h; path = ../../include/remedia/REAudioPlayer.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B0F150A4A6800F17250 /* REOGGVorbisSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REOGGVorbisSound.h; path = ../../include/remedia/REOGGVorbisSound.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B10150A4A6800F17250 /* REWAVSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REWAVSound.h; path = ../../include/remedia/REWAVSound.h; sourceTree = SOURCE_ROOT; };
+		3D2E5B16150A4AA900F17250 /* REAudioOpenAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAudioOpenAL.cpp; path = ../../src/media/REAudioOpenAL.cpp; sourceTree = SOURCE_ROOT; };
+		3D2E5B17150A4AAA00F17250 /* REAudioPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAudioPlayer.cpp; path = ../../src/media/REAudioPlayer.cpp; sourceTree = SOURCE_ROOT; };
+		3D2E5B18150A4AAA00F17250 /* REOGGVorbisSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REOGGVorbisSound.cpp; path = ../../src/media/REOGGVorbisSound.cpp; sourceTree = SOURCE_ROOT; };
+		3D2E5B19150A4AAA00F17250 /* REWAVSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REWAVSound.cpp; path = ../../src/media/REWAVSound.cpp; sourceTree = SOURCE_ROOT; };
+		3D31C501150F52B700F35A5D /* REOGGTheoraPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REOGGTheoraPlayerPrivate.h; path = ../../include/remedia/private/REOGGTheoraPlayerPrivate.h; sourceTree = SOURCE_ROOT; };
+		3D31C503150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REOGGTheoraPlayerPrivate.cpp; path = ../../src/media/REOGGTheoraPlayerPrivate.cpp; sourceTree = SOURCE_ROOT; };
+		3D59EB0715F3798300EA0032 /* vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vorbis.h; path = ../../src/addlibs/vorbis.h; sourceTree = SOURCE_ROOT; };
+		3D59EB0A15F3798E00EA0032 /* theora.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = theora.h; path = ../../src/addlibs/theora.h; sourceTree = SOURCE_ROOT; };
+		3D70AA411517506200A91F94 /* tremor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tremor.h; path = ../../src/addlibs/tremor.h; sourceTree = SOURCE_ROOT; };
+		3D70AA431517507000A91F94 /* tremor_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tremor_config.h; path = ../../src/addlibs/tremor_config.h; sourceTree = SOURCE_ROOT; };
+		3D70AA451517508000A91F94 /* tremor_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap1.c; path = ../../src/addlibs/tremor_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3D70AA5B151754D400A91F94 /* tremor_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap2.c; path = ../../src/addlibs/tremor_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3D70AA5C151754D400A91F94 /* tremor_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap3.c; path = ../../src/addlibs/tremor_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3D70AA5D151754D400A91F94 /* tremor_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap4.c; path = ../../src/addlibs/tremor_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3D70AA5E151754D400A91F94 /* tremor_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap5.c; path = ../../src/addlibs/tremor_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3DBA58AB150E377A00017E22 /* REVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVideoView.h; path = ../../include/remedia/REVideoView.h; sourceTree = SOURCE_ROOT; };
+		3DBA58AE150E37ED00017E22 /* REVideoView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REVideoView.cpp; path = ../../src/media/REVideoView.cpp; sourceTree = SOURCE_ROOT; };
+		3DC0A0CF15332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioPlayerPrivate_iphone.h; path = ../../include/remedia/private/REAudioPlayerPrivate_iphone.h; sourceTree = SOURCE_ROOT; };
+		3DC0A0D415332BD100A3E88E /* REAudioPlayerPrivate_iphone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = REAudioPlayerPrivate_iphone.mm; path = ../../src/media/REAudioPlayerPrivate_iphone.mm; sourceTree = SOURCE_ROOT; };
+		3DDE8841150D695200345F5D /* ogg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ogg.h; path = ../../src/addlibs/ogg.h; sourceTree = SOURCE_ROOT; };
+		3DDE8842150D695200345F5D /* ogg_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ogg_config.h; path = ../../src/addlibs/ogg_config.h; sourceTree = SOURCE_ROOT; };
+		3DDE8843150D695200345F5D /* ogg_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ogg_wrap1.c; path = ../../src/addlibs/ogg_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DDE8844150D695200345F5D /* theora_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = theora_config.h; path = ../../src/addlibs/theora_config.h; sourceTree = SOURCE_ROOT; };
+		3DDE8845150D695200345F5D /* theora_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = theora_wrap1.c; path = ../../src/addlibs/theora_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DDE8846150D695200345F5D /* theora_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = theora_wrap2.c; path = ../../src/addlibs/theora_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DDE8847150D695200345F5D /* vorbis_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vorbis_config.h; path = ../../src/addlibs/vorbis_config.h; sourceTree = SOURCE_ROOT; };
+		3DDE8848150D695200345F5D /* vorbis_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap1.c; path = ../../src/addlibs/vorbis_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DDE8849150D695200345F5D /* vorbis_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap2.c; path = ../../src/addlibs/vorbis_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DDE884A150D695200345F5D /* vorbis_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap3.c; path = ../../src/addlibs/vorbis_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DDE884B150D695200345F5D /* vorbis_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap4.c; path = ../../src/addlibs/vorbis_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3DDE884C150D695200345F5D /* vorbis_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap5.c; path = ../../src/addlibs/vorbis_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3DDE884D150D695200345F5D /* vorbis_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap6.c; path = ../../src/addlibs/vorbis_wrap6.c; sourceTree = SOURCE_ROOT; };
+		3DE534A315167A9900977271 /* analyze.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = analyze.c; path = ../../src/addlibs/libtheora120alpha1/lib/analyze.c; sourceTree = SOURCE_ROOT; };
+		3DE534A415167A9900977271 /* apiwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = apiwrapper.c; path = ../../src/addlibs/libtheora120alpha1/lib/apiwrapper.c; sourceTree = SOURCE_ROOT; };
+		3DE534A515167A9900977271 /* bitpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bitpack.c; path = ../../src/addlibs/libtheora120alpha1/lib/bitpack.c; sourceTree = SOURCE_ROOT; };
+		3DE534A615167A9900977271 /* decapiwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decapiwrapper.c; path = ../../src/addlibs/libtheora120alpha1/lib/decapiwrapper.c; sourceTree = SOURCE_ROOT; };
+		3DE534A715167A9900977271 /* decinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decinfo.c; path = ../../src/addlibs/libtheora120alpha1/lib/decinfo.c; sourceTree = SOURCE_ROOT; };
+		3DE534A815167A9900977271 /* decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decode.c; path = ../../src/addlibs/libtheora120alpha1/lib/decode.c; sourceTree = SOURCE_ROOT; };
+		3DE534A915167A9900977271 /* dequant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dequant.c; path = ../../src/addlibs/libtheora120alpha1/lib/dequant.c; sourceTree = SOURCE_ROOT; };
+		3DE534AA15167A9900977271 /* encapiwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encapiwrapper.c; path = ../../src/addlibs/libtheora120alpha1/lib/encapiwrapper.c; sourceTree = SOURCE_ROOT; };
+		3DE534AB15167A9900977271 /* encfrag.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encfrag.c; path = ../../src/addlibs/libtheora120alpha1/lib/encfrag.c; sourceTree = SOURCE_ROOT; };
+		3DE534AC15167A9900977271 /* encinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encinfo.c; path = ../../src/addlibs/libtheora120alpha1/lib/encinfo.c; sourceTree = SOURCE_ROOT; };
+		3DE534AD15167A9900977271 /* encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encode.c; path = ../../src/addlibs/libtheora120alpha1/lib/encode.c; sourceTree = SOURCE_ROOT; };
+		3DE534AE15167A9900977271 /* encoder_disabled.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encoder_disabled.c; path = ../../src/addlibs/libtheora120alpha1/lib/encoder_disabled.c; sourceTree = SOURCE_ROOT; };
+		3DE534AF15167A9900977271 /* enquant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = enquant.c; path = ../../src/addlibs/libtheora120alpha1/lib/enquant.c; sourceTree = SOURCE_ROOT; };
+		3DE534B015167A9900977271 /* fdct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fdct.c; path = ../../src/addlibs/libtheora120alpha1/lib/fdct.c; sourceTree = SOURCE_ROOT; };
+		3DE534B115167A9900977271 /* fragment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fragment.c; path = ../../src/addlibs/libtheora120alpha1/lib/fragment.c; sourceTree = SOURCE_ROOT; };
+		3DE534B215167A9900977271 /* huffdec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = huffdec.c; path = ../../src/addlibs/libtheora120alpha1/lib/huffdec.c; sourceTree = SOURCE_ROOT; };
+		3DE534B315167A9900977271 /* huffenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = huffenc.c; path = ../../src/addlibs/libtheora120alpha1/lib/huffenc.c; sourceTree = SOURCE_ROOT; };
+		3DE534B415167A9900977271 /* idct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = idct.c; path = ../../src/addlibs/libtheora120alpha1/lib/idct.c; sourceTree = SOURCE_ROOT; };
+		3DE534B515167A9900977271 /* info.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = info.c; path = ../../src/addlibs/libtheora120alpha1/lib/info.c; sourceTree = SOURCE_ROOT; };
+		3DE534B615167A9900977271 /* internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = internal.c; path = ../../src/addlibs/libtheora120alpha1/lib/internal.c; sourceTree = SOURCE_ROOT; };
+		3DE534B715167A9900977271 /* mathops.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mathops.c; path = ../../src/addlibs/libtheora120alpha1/lib/mathops.c; sourceTree = SOURCE_ROOT; };
+		3DE534B815167A9900977271 /* mcenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcenc.c; path = ../../src/addlibs/libtheora120alpha1/lib/mcenc.c; sourceTree = SOURCE_ROOT; };
+		3DE534B915167A9900977271 /* quant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = quant.c; path = ../../src/addlibs/libtheora120alpha1/lib/quant.c; sourceTree = SOURCE_ROOT; };
+		3DE534BA15167A9900977271 /* rate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rate.c; path = ../../src/addlibs/libtheora120alpha1/lib/rate.c; sourceTree = SOURCE_ROOT; };
+		3DE534BB15167A9900977271 /* state.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = state.c; path = ../../src/addlibs/libtheora120alpha1/lib/state.c; sourceTree = SOURCE_ROOT; };
+		3DE534BC15167A9900977271 /* tokenize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tokenize.c; path = ../../src/addlibs/libtheora120alpha1/lib/tokenize.c; sourceTree = SOURCE_ROOT; };
+		3DE534DA15167EAF00977271 /* armstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = armstate.c; path = ../../src/addlibs/libtheora120alpha1/lib/arm/armstate.c; sourceTree = SOURCE_ROOT; };
+		3DE534DC15167ED100977271 /* armcpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = armcpu.c; path = ../../src/addlibs/libtheora120alpha1/lib/arm/armcpu.c; sourceTree = SOURCE_ROOT; };
+		3DE534DE15167EF600977271 /* armbits-gnu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "armbits-gnu.s"; path = "../../src/addlibs/libtheora120alpha1/lib/armbits-gnu.s"; sourceTree = SOURCE_ROOT; };
+		3DE534DF15167EF600977271 /* armfrag-gnu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "armfrag-gnu.s"; path = "../../src/addlibs/libtheora120alpha1/lib/armfrag-gnu.s"; sourceTree = SOURCE_ROOT; };
+		3DE534E015167EF600977271 /* armidct-gnu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "armidct-gnu.s"; path = "../../src/addlibs/libtheora120alpha1/lib/armidct-gnu.s"; sourceTree = SOURCE_ROOT; };
+		3DE534E115167EF600977271 /* armloop-gnu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "armloop-gnu.s"; path = "../../src/addlibs/libtheora120alpha1/lib/armloop-gnu.s"; sourceTree = SOURCE_ROOT; };
+		3DE534E215167EF600977271 /* armopts-gnu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "armopts-gnu.s"; path = "../../src/addlibs/libtheora120alpha1/lib/armopts-gnu.s"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D2E5AE9150A498E00F17250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2E5AF0150A498E00F17250 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D2E5AE1150A498E00F17250 = {
+			isa = PBXGroup;
+			children = (
+				3D2E5AF1150A498E00F17250 /* remedia */,
+				3D2E5AEE150A498E00F17250 /* Frameworks */,
+				3D2E5AED150A498E00F17250 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D2E5AED150A498E00F17250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D2E5AEC150A498E00F17250 /* libremedia.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D2E5AEE150A498E00F17250 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D2E5AEF150A498E00F17250 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D2E5AF1150A498E00F17250 /* remedia */ = {
+			isa = PBXGroup;
+			children = (
+				3D31C4FF150F52AD00F35A5D /* private */,
+				3DDE8840150D693600345F5D /* addlibs */,
+				3D2E5B0A150A4A2C00F17250 /* remedia.h */,
+				3DBA58AB150E377A00017E22 /* REVideoView.h */,
+				3DBA58AE150E37ED00017E22 /* REVideoView.cpp */,
+				3D2E5B0C150A4A6800F17250 /* IREMediaPlayable.h */,
+				3D2E5B0D150A4A6800F17250 /* REAudioOpenAL.h */,
+				3D2E5B16150A4AA900F17250 /* REAudioOpenAL.cpp */,
+				3D2E5B0E150A4A6800F17250 /* REAudioPlayer.h */,
+				3D2E5B17150A4AAA00F17250 /* REAudioPlayer.cpp */,
+				3DC0A0CF15332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h */,
+				3DC0A0D415332BD100A3E88E /* REAudioPlayerPrivate_iphone.mm */,
+				3D2E5B0F150A4A6800F17250 /* REOGGVorbisSound.h */,
+				3D2E5B18150A4AAA00F17250 /* REOGGVorbisSound.cpp */,
+				3D2E5B10150A4A6800F17250 /* REWAVSound.h */,
+				3D2E5B19150A4AAA00F17250 /* REWAVSound.cpp */,
+			);
+			path = remedia;
+			sourceTree = "<group>";
+		};
+		3D31C4FF150F52AD00F35A5D /* private */ = {
+			isa = PBXGroup;
+			children = (
+				3D31C501150F52B700F35A5D /* REOGGTheoraPlayerPrivate.h */,
+				3D31C503150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp */,
+			);
+			name = private;
+			sourceTree = "<group>";
+		};
+		3D70AA3F1517505400A91F94 /* tremor */ = {
+			isa = PBXGroup;
+			children = (
+				3D70AA411517506200A91F94 /* tremor.h */,
+				3D70AA431517507000A91F94 /* tremor_config.h */,
+				3D70AA451517508000A91F94 /* tremor_wrap1.c */,
+				3D70AA5B151754D400A91F94 /* tremor_wrap2.c */,
+				3D70AA5C151754D400A91F94 /* tremor_wrap3.c */,
+				3D70AA5D151754D400A91F94 /* tremor_wrap4.c */,
+				3D70AA5E151754D400A91F94 /* tremor_wrap5.c */,
+			);
+			name = tremor;
+			sourceTree = "<group>";
+		};
+		3DDE8840150D693600345F5D /* addlibs */ = {
+			isa = PBXGroup;
+			children = (
+				3D70AA3F1517505400A91F94 /* tremor */,
+				3DE534A215167A3500977271 /* theora */,
+				3DDE8841150D695200345F5D /* ogg.h */,
+				3DDE8842150D695200345F5D /* ogg_config.h */,
+				3DDE8843150D695200345F5D /* ogg_wrap1.c */,
+				3D59EB0A15F3798E00EA0032 /* theora.h */,
+				3DDE8844150D695200345F5D /* theora_config.h */,
+				3DDE8845150D695200345F5D /* theora_wrap1.c */,
+				3DDE8846150D695200345F5D /* theora_wrap2.c */,
+				3D59EB0715F3798300EA0032 /* vorbis.h */,
+				3DDE8847150D695200345F5D /* vorbis_config.h */,
+				3DDE8848150D695200345F5D /* vorbis_wrap1.c */,
+				3DDE8849150D695200345F5D /* vorbis_wrap2.c */,
+				3DDE884A150D695200345F5D /* vorbis_wrap3.c */,
+				3DDE884B150D695200345F5D /* vorbis_wrap4.c */,
+				3DDE884C150D695200345F5D /* vorbis_wrap5.c */,
+				3DDE884D150D695200345F5D /* vorbis_wrap6.c */,
+			);
+			name = addlibs;
+			sourceTree = "<group>";
+		};
+		3DE534A215167A3500977271 /* theora */ = {
+			isa = PBXGroup;
+			children = (
+				3DE534D715167D9F00977271 /* arm asm */,
+				3DE534A315167A9900977271 /* analyze.c */,
+				3DE534A415167A9900977271 /* apiwrapper.c */,
+				3DE534A515167A9900977271 /* bitpack.c */,
+				3DE534A615167A9900977271 /* decapiwrapper.c */,
+				3DE534A715167A9900977271 /* decinfo.c */,
+				3DE534A815167A9900977271 /* decode.c */,
+				3DE534A915167A9900977271 /* dequant.c */,
+				3DE534AA15167A9900977271 /* encapiwrapper.c */,
+				3DE534AB15167A9900977271 /* encfrag.c */,
+				3DE534AC15167A9900977271 /* encinfo.c */,
+				3DE534AD15167A9900977271 /* encode.c */,
+				3DE534AE15167A9900977271 /* encoder_disabled.c */,
+				3DE534AF15167A9900977271 /* enquant.c */,
+				3DE534B015167A9900977271 /* fdct.c */,
+				3DE534B115167A9900977271 /* fragment.c */,
+				3DE534B215167A9900977271 /* huffdec.c */,
+				3DE534B315167A9900977271 /* huffenc.c */,
+				3DE534B415167A9900977271 /* idct.c */,
+				3DE534B515167A9900977271 /* info.c */,
+				3DE534B615167A9900977271 /* internal.c */,
+				3DE534B715167A9900977271 /* mathops.c */,
+				3DE534B815167A9900977271 /* mcenc.c */,
+				3DE534B915167A9900977271 /* quant.c */,
+				3DE534BA15167A9900977271 /* rate.c */,
+				3DE534BB15167A9900977271 /* state.c */,
+				3DE534BC15167A9900977271 /* tokenize.c */,
+			);
+			name = theora;
+			sourceTree = "<group>";
+		};
+		3DE534D715167D9F00977271 /* arm asm */ = {
+			isa = PBXGroup;
+			children = (
+				3DE534DE15167EF600977271 /* armbits-gnu.s */,
+				3DE534DF15167EF600977271 /* armfrag-gnu.s */,
+				3DE534E015167EF600977271 /* armidct-gnu.s */,
+				3DE534E115167EF600977271 /* armloop-gnu.s */,
+				3DE534E215167EF600977271 /* armopts-gnu.s */,
+				3DE534DA15167EAF00977271 /* armstate.c */,
+				3DE534DC15167ED100977271 /* armcpu.c */,
+			);
+			name = "arm asm";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3D2E5AEA150A498E00F17250 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2E5B0B150A4A2C00F17250 /* remedia.h in Headers */,
+				3D2E5B11150A4A6800F17250 /* IREMediaPlayable.h in Headers */,
+				3D2E5B12150A4A6800F17250 /* REAudioOpenAL.h in Headers */,
+				3D2E5B13150A4A6800F17250 /* REAudioPlayer.h in Headers */,
+				3D2E5B14150A4A6800F17250 /* REOGGVorbisSound.h in Headers */,
+				3D2E5B15150A4A6800F17250 /* REWAVSound.h in Headers */,
+				3DBA58AC150E377B00017E22 /* REVideoView.h in Headers */,
+				3D31C502150F52B700F35A5D /* REOGGTheoraPlayerPrivate.h in Headers */,
+				3DE535701516891100977271 /* ogg.h in Headers */,
+				3DE535711516891100977271 /* ogg_config.h in Headers */,
+				3D9438911518D78100655597 /* vorbis_config.h in Headers */,
+				3DC0A0D015332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h in Headers */,
+				3D59EB0815F3798400EA0032 /* vorbis.h in Headers */,
+				3D59EB0B15F3798F00EA0032 /* theora.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D2E5AEB150A498E00F17250 /* remedia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D2E5AF9150A498E00F17250 /* Build configuration list for PBXNativeTarget "remedia" */;
+			buildPhases = (
+				3D2E5AE8150A498E00F17250 /* Sources */,
+				3D2E5AE9150A498E00F17250 /* Frameworks */,
+				3D2E5AEA150A498E00F17250 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = remedia;
+			productName = remedia;
+			productReference = 3D2E5AEC150A498E00F17250 /* libremedia.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D2E5AE3150A498E00F17250 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 3D2E5AE6150A498E00F17250 /* Build configuration list for PBXProject "remedia" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3D2E5AE1150A498E00F17250;
+			productRefGroup = 3D2E5AED150A498E00F17250 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D2E5AEB150A498E00F17250 /* remedia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D2E5AE8150A498E00F17250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2E5B1A150A4AAA00F17250 /* REAudioOpenAL.cpp in Sources */,
+				3D2E5B1B150A4AAA00F17250 /* REAudioPlayer.cpp in Sources */,
+				3D2E5B1C150A4AAA00F17250 /* REOGGVorbisSound.cpp in Sources */,
+				3D2E5B1D150A4AAA00F17250 /* REWAVSound.cpp in Sources */,
+				3DBA58AF150E37ED00017E22 /* REVideoView.cpp in Sources */,
+				3D31C504150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp in Sources */,
+				3DE535721516891100977271 /* ogg_wrap1.c in Sources */,
+				3DE14DB11516BAF500F8487B /* analyze.c in Sources */,
+				3DE14DB21516BAF500F8487B /* apiwrapper.c in Sources */,
+				3DE14DB31516BAF500F8487B /* bitpack.c in Sources */,
+				3DE14DB41516BAF500F8487B /* decapiwrapper.c in Sources */,
+				3DE14DB51516BAF500F8487B /* decinfo.c in Sources */,
+				3DE14DB61516BAF500F8487B /* decode.c in Sources */,
+				3DE14DB71516BAF500F8487B /* dequant.c in Sources */,
+				3DE14DB81516BAF500F8487B /* encapiwrapper.c in Sources */,
+				3DE14DB91516BAF500F8487B /* encfrag.c in Sources */,
+				3DE14DBA1516BAF500F8487B /* encinfo.c in Sources */,
+				3DE14DBB1516BAF500F8487B /* encode.c in Sources */,
+				3DE14DBC1516BAF500F8487B /* encoder_disabled.c in Sources */,
+				3DE14DBD1516BAF500F8487B /* enquant.c in Sources */,
+				3DE14DBE1516BAF500F8487B /* fdct.c in Sources */,
+				3DE14DBF1516BAF500F8487B /* fragment.c in Sources */,
+				3DE14DC01516BAF500F8487B /* huffdec.c in Sources */,
+				3DE14DC11516BAF500F8487B /* huffenc.c in Sources */,
+				3DE14DC21516BAF500F8487B /* idct.c in Sources */,
+				3DE14DC31516BAF500F8487B /* info.c in Sources */,
+				3DE14DC41516BAF500F8487B /* internal.c in Sources */,
+				3DE14DC51516BAF500F8487B /* mathops.c in Sources */,
+				3DE14DC61516BAF500F8487B /* mcenc.c in Sources */,
+				3DE14DC71516BAF500F8487B /* quant.c in Sources */,
+				3DE14DC81516BAF500F8487B /* rate.c in Sources */,
+				3DE14DC91516BAF500F8487B /* state.c in Sources */,
+				3DE14DCA1516BAF500F8487B /* tokenize.c in Sources */,
+				3D9438921518D78100655597 /* vorbis_wrap1.c in Sources */,
+				3D9438931518D78100655597 /* vorbis_wrap2.c in Sources */,
+				3D9438941518D78100655597 /* vorbis_wrap3.c in Sources */,
+				3D9438951518D78100655597 /* vorbis_wrap4.c in Sources */,
+				3D9438961518D78100655597 /* vorbis_wrap5.c in Sources */,
+				3D9438971518D78100655597 /* vorbis_wrap6.c in Sources */,
+				3DC0A0D515332BD100A3E88E /* REAudioPlayerPrivate_iphone.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3D2E5AF7150A498E00F17250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OC_ARM_ASM111,
+					THEORA_DISABLE_ENCODE,
+					USE_MEMORY_H,
+					DEBUG,
+					__RE_OS_IPHONE__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libogg/include,
+					../../src/addlibs/libvorbis/include,
+					../../src/addlibs/libtheora/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D2E5AF8150A498E00F17250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OC_ARM_ASM111,
+					THEORA_DISABLE_ENCODE,
+					USE_MEMORY_H,
+					__RE_OS_IPHONE__,
+				);
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libogg/include,
+					../../src/addlibs/libvorbis/include,
+					../../src/addlibs/libtheora/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D2E5AFA150A498E00F17250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/remedia.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OC_ARM_ASM111,
+					THEORA_DISABLE_ENCODE,
+					USE_MEMORY_H,
+					DEBUG,
+					__RE_OS_IPHONE__,
+				);
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libogg/include,
+					../../src/addlibs/libvorbis/include,
+					../../src/addlibs/libtheora/include_111111,
+					../../src/addlibs/libtheora120alpha1/include,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3D2E5AFB150A498E00F17250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/remedia.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OC_ARM_ASM111,
+					THEORA_DISABLE_ENCODE,
+					USE_MEMORY_H,
+					__RE_OS_IPHONE__,
+				);
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libogg/include,
+					../../src/addlibs/libvorbis/include,
+					../../src/addlibs/libtheora/include_111111,
+					../../src/addlibs/libtheora120alpha1/include,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D2E5AE6150A498E00F17250 /* Build configuration list for PBXProject "remedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2E5AF7150A498E00F17250 /* Debug */,
+				3D2E5AF8150A498E00F17250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D2E5AF9150A498E00F17250 /* Build configuration list for PBXNativeTarget "remedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2E5AFA150A498E00F17250 /* Debug */,
+				3D2E5AFB150A498E00F17250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D2E5AE3150A498E00F17250 /* Project object */;
+}
