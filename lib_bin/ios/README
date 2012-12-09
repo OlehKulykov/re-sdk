@@ -1,7 +1,8 @@
 Place iOS binary files here.
 
-- librecore.a	<- build from source using XCode project: builds/ios/recore.xcodeproj
-	or download from: http://www.resident.name/recore/lib_bin/ios/librecore.a
+- librecore.a
+- libregui.a
+- libremedia.a
 
-- libregui.a	<- build from source using XCode project: builds/ios/regui.xcodeproj
-	or download from: http://www.resident.name/recore/lib_bin/ios/libregui.a
+Use XCode projects located: builds/ios
+Or use script: builds/ios/build_ios_static

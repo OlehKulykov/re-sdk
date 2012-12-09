@@ -21,7 +21,6 @@ rm -f ../../lib_bin/ios/librecore-armv7s.a
 
 
 
-
 xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphonesimulator/libregui.a ../../lib_bin/ios/libregui-iphonesimulator.a
 rm -rf obj
@@ -42,3 +41,27 @@ lipo -create ../../lib_bin/ios/libregui-iphonesimulator.a ../../lib_bin/ios/libr
 rm -f ../../lib_bin/ios/libregui-iphonesimulator.a
 rm -f ../../lib_bin/ios/libregui-armv7.a
 rm -f ../../lib_bin/ios/libregui-armv7s.a
+
+
+
+
+xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphonesimulator/libremedia.a ../../lib_bin/ios/libremedia-iphonesimulator.a
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphoneos/libremedia.a ../../lib_bin/ios/libremedia-armv7.a
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch armv7s -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphoneos/libremedia.a ../../lib_bin/ios/libremedia-armv7s.a
+rm -rf obj
+rm -rf sym
+
+
+lipo -create ../../lib_bin/ios/libremedia-iphonesimulator.a ../../lib_bin/ios/libremedia-armv7.a ../../lib_bin/ios/libremedia-armv7s.a -output ../../lib_bin/ios/libremedia.a
+rm -f ../../lib_bin/ios/libremedia-iphonesimulator.a
+rm -f ../../lib_bin/ios/libremedia-armv7.a
+rm -f ../../lib_bin/ios/libremedia-armv7s.a
