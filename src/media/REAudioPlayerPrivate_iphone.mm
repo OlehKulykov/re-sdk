@@ -86,7 +86,7 @@ REBOOL REAudioPlayerPrivate_iphone::SetLooped(const REBOOL isLooped)
 	if (_p) 
 	{
 		AVAudioPlayer * player = (AVAudioPlayer *)_p;
-		[player setNumberOfLoops:-1];
+		[player setNumberOfLoops: isLooped ? -1 : 0];
 		return true;
 	}
 #endif
