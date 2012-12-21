@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D1A634416845C770095362C /* MyAppInterlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A634316845C770095362C /* MyAppInterlayer.cpp */; };
+		3D1A634716845D350095362C /* MyApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A634616845D350095362C /* MyApp.cpp */; };
+		3D1A634A16845D5C0095362C /* MyRootViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A634916845D5C0095362C /* MyRootViewController.cpp */; };
+		3D1A634D168463C00095362C /* iOSAppInterlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A634C168463BF0095362C /* iOSAppInterlayer.mm */; };
 		3D1C7EBD1656D65B009B3BAD /* MyGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EBC1656D65B009B3BAD /* MyGLView.m */; };
 		3D4FAE001656CA1700A2C487 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FADFF1656CA1700A2C487 /* UIKit.framework */; };
 		3D4FAE021656CA1700A2C487 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE011656CA1700A2C487 /* Foundation.framework */; };
@@ -18,12 +22,22 @@
 		3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE131656CA1700A2C487 /* AppDelegate.m */; };
 		3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1A1656CA1700A2C487 /* ViewController.m */; };
 		3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1C1656CA1700A2C487 /* ViewController.xib */; };
+		3D7E564D1684710200E3604A /* data0.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E564C1684710200E3604A /* data0.dat */; };
+		3D7E564F1684711300E3604A /* data in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E564E1684711300E3604A /* data */; };
 		3DC0C81916754DFD005C560E /* librecore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81616754DFD005C560E /* librecore.a */; };
 		3DC0C81A16754DFD005C560E /* libregui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81716754DFD005C560E /* libregui.a */; };
 		3DC0C81B16754DFD005C560E /* libremedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81816754DFD005C560E /* libremedia.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D1A634216845C500095362C /* MyAppInterlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyAppInterlayer.h; path = MyAppInterlayer/MyAppInterlayer.h; sourceTree = SOURCE_ROOT; };
+		3D1A634316845C770095362C /* MyAppInterlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyAppInterlayer.cpp; path = MyAppInterlayer/MyAppInterlayer.cpp; sourceTree = SOURCE_ROOT; };
+		3D1A634516845D1B0095362C /* MyApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyApp.h; path = MyApp/MyApp.h; sourceTree = SOURCE_ROOT; };
+		3D1A634616845D350095362C /* MyApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyApp.cpp; path = MyApp/MyApp.cpp; sourceTree = SOURCE_ROOT; };
+		3D1A634816845D4F0095362C /* MyRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyRootViewController.h; path = MyApp/MyRootViewController.h; sourceTree = SOURCE_ROOT; };
+		3D1A634916845D5C0095362C /* MyRootViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyRootViewController.cpp; path = MyApp/MyRootViewController.cpp; sourceTree = SOURCE_ROOT; };
+		3D1A634B168463BF0095362C /* iOSAppInterlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSAppInterlayer.h; sourceTree = "<group>"; };
+		3D1A634C168463BF0095362C /* iOSAppInterlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSAppInterlayer.mm; sourceTree = "<group>"; };
 		3D1C7EBB1656D65B009B3BAD /* MyGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGLView.h; sourceTree = "<group>"; };
 		3D1C7EBC1656D65B009B3BAD /* MyGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLView.m; sourceTree = "<group>"; };
 		3D4FADFB1656CA1700A2C487 /* SimpleViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +55,8 @@
 		3D4FAE191656CA1700A2C487 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3D4FAE1A1656CA1700A2C487 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3D4FAE1D1656CA1700A2C487 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		3D7E564C1684710200E3604A /* data0.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = data0.dat; path = ../../../resources/SimpleViewController/data0.dat; sourceTree = "<group>"; };
+		3D7E564E1684711300E3604A /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../../resources/SimpleViewController/data; sourceTree = "<group>"; };
 		3DC0C81616754DFD005C560E /* librecore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librecore.a; path = ../../../lib_bin/ios/librecore.a; sourceTree = "<group>"; };
 		3DC0C81716754DFD005C560E /* libregui.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libregui.a; path = ../../../lib_bin/ios/libregui.a; sourceTree = "<group>"; };
 		3DC0C81816754DFD005C560E /* libremedia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libremedia.a; path = ../../../lib_bin/ios/libremedia.a; sourceTree = "<group>"; };
@@ -65,6 +81,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D1A634016845BED0095362C /* MyApp */ = {
+			isa = PBXGroup;
+			children = (
+				3D1A634516845D1B0095362C /* MyApp.h */,
+				3D1A634616845D350095362C /* MyApp.cpp */,
+				3D1A634816845D4F0095362C /* MyRootViewController.h */,
+				3D1A634916845D5C0095362C /* MyRootViewController.cpp */,
+			);
+			name = MyApp;
+			sourceTree = "<group>";
+		};
+		3D1A634116845BF60095362C /* MyAppInterlayer */ = {
+			isa = PBXGroup;
+			children = (
+				3D1A634216845C500095362C /* MyAppInterlayer.h */,
+				3D1A634316845C770095362C /* MyAppInterlayer.cpp */,
+			);
+			name = MyAppInterlayer;
+			sourceTree = "<group>";
+		};
 		3D4FADF01656CA1700A2C487 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +136,10 @@
 		3D4FAE091656CA1700A2C487 /* SimpleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3D1A634016845BED0095362C /* MyApp */,
+				3D1A634116845BF60095362C /* MyAppInterlayer */,
+				3D1A634B168463BF0095362C /* iOSAppInterlayer.h */,
+				3D1A634C168463BF0095362C /* iOSAppInterlayer.mm */,
 				3D4FAE121656CA1700A2C487 /* AppDelegate.h */,
 				3D4FAE131656CA1700A2C487 /* AppDelegate.m */,
 				3D4FAE191656CA1700A2C487 /* ViewController.h */,
@@ -115,12 +155,38 @@
 		3D4FAE0A1656CA1700A2C487 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DD81DFA1684690C00DC1183 /* Resource */,
 				3D4FAE0B1656CA1700A2C487 /* SimpleViewController-Info.plist */,
 				3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */,
 				3D4FAE0F1656CA1700A2C487 /* main.m */,
 				3D4FAE111656CA1700A2C487 /* SimpleViewController-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DD81DFA1684690C00DC1183 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3DD81DFD1684693500DC1183 /* Method 1 or 2: Bundle data folder */,
+				3DD81DFC1684691F00DC1183 /* Method 3: Zip compressed archive(s) */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		3DD81DFC1684691F00DC1183 /* Method 3: Zip compressed archive(s) */ = {
+			isa = PBXGroup;
+			children = (
+				3D7E564C1684710200E3604A /* data0.dat */,
+			);
+			name = "Method 3: Zip compressed archive(s)";
+			sourceTree = "<group>";
+		};
+		3DD81DFD1684693500DC1183 /* Method 1 or 2: Bundle data folder */ = {
+			isa = PBXGroup;
+			children = (
+				3D7E564E1684711300E3604A /* data */,
+			);
+			name = "Method 1 or 2: Bundle data folder";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +242,8 @@
 			files = (
 				3D4FAE0E1656CA1700A2C487 /* InfoPlist.strings in Resources */,
 				3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */,
+				3D7E564D1684710200E3604A /* data0.dat in Resources */,
+				3D7E564F1684711300E3604A /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +258,10 @@
 				3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */,
 				3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */,
 				3D1C7EBD1656D65B009B3BAD /* MyGLView.m in Sources */,
+				3D1A634416845C770095362C /* MyAppInterlayer.cpp in Sources */,
+				3D1A634716845D350095362C /* MyApp.cpp in Sources */,
+				3D1A634A16845D5C0095362C /* MyRootViewController.cpp in Sources */,
+				3D1A634D168463C00095362C /* iOSAppInterlayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +309,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -257,7 +329,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -270,6 +342,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleViewController/SimpleViewController-Prefix.pch";
 				INFOPLIST_FILE = "SimpleViewController/SimpleViewController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../lib_bin/ios\"",
@@ -285,6 +358,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleViewController/SimpleViewController-Prefix.pch";
 				INFOPLIST_FILE = "SimpleViewController/SimpleViewController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../lib_bin/ios\"",

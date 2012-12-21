@@ -1,8 +1,10 @@
 
 #import "ViewController.h"
 #import "MyGLView.h"
+#import "iOSAppInterlayer.h"
 
-@interface ViewController () {
+@interface ViewController ()
+{
    
 }
 
@@ -38,6 +40,9 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
+	
+	self.delegate = [iOSAppInterlayer defaultInterlayer];
+	view.delegate = [iOSAppInterlayer defaultInterlayer];
 }
 
 - (void)viewDidUnload
@@ -53,8 +58,7 @@
     self.context = nil;
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 	{
@@ -69,6 +73,8 @@
 - (void)setupGL
 {
     [EAGLContext setCurrentContext:self.context];
+	
+	[[iOSAppInterlayer defaultInterlayer] onSetupGL];
 }
 
 - (void)tearDownGL
