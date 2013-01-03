@@ -1,10 +1,19 @@
-//
-//  iOSAppIntrlayer.m
-//  SimpleViewController
-//
-//  Created by Resident Evil on 21.12.12.
-//  Copyright (c) 2012 n. All rights reserved.
-//
+/*
+ *   Copyright 2012 - 2013 Kulikov Oleg
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+
 
 #import "iOSAppInterlayer.h"
 #import "MyAppInterlayer.h"
@@ -55,23 +64,32 @@
 	_interLayer->Render();
 }
 
+- (BOOL) initInterlayer
+{
+	MyAppInterlayer * interLayer = new MyAppInterlayer();
+	if (interLayer)
+	{
+		if (interLayer->IsCanUse())
+		{
+			[iOSAppInterlayer initAppResources];
+			_interLayer = interLayer;
+			return YES;
+		}
+	}
+	
+	RE_SAFE_DELETE(interLayer);
+	return NO;
+}
+
 - (id) init
 {
 	self = [super init];
 	if (self)
 	{
-		_interLayer = new MyAppInterlayer();
-		if (_interLayer)
+		if ([self initInterlayer])
 		{
-			if (_interLayer->IsCanUse())
-			{
-				[iOSAppInterlayer initAppResources];
-				return self;
-			}
+			return self;
 		}
-		
-		RE_SAFE_DELETE(_interLayer);
-		[self release];
 	}
 	return nil;
 }
@@ -79,8 +97,6 @@
 - (void) dealloc
 {
 	RE_SAFE_DELETE(_interLayer);
-	
-	[super dealloc];
 }
 
 + (void) initAppResources

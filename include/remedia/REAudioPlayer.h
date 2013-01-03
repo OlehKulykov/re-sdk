@@ -1,5 +1,5 @@
 /*
- *   Copyright 2012 Kulikov Oleg
+ *   Copyright 2012 - 2013 Kulikov Oleg
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.

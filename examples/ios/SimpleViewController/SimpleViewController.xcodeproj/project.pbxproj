@@ -20,13 +20,15 @@
 		3D4FAE0E1656CA1700A2C487 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */; };
 		3D4FAE101656CA1700A2C487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE0F1656CA1700A2C487 /* main.m */; };
 		3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE131656CA1700A2C487 /* AppDelegate.m */; };
-		3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1A1656CA1700A2C487 /* ViewController.m */; };
-		3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1C1656CA1700A2C487 /* ViewController.xib */; };
+		3D4FAE1B1656CA1700A2C487 /* MyGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1A1656CA1700A2C487 /* MyGLViewController.m */; };
 		3D7E564D1684710200E3604A /* data0.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E564C1684710200E3604A /* data0.dat */; };
 		3D7E564F1684711300E3604A /* data in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E564E1684711300E3604A /* data */; };
 		3DC0C81916754DFD005C560E /* librecore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81616754DFD005C560E /* librecore.a */; };
 		3DC0C81A16754DFD005C560E /* libregui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81716754DFD005C560E /* libregui.a */; };
 		3DC0C81B16754DFD005C560E /* libremedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC0C81816754DFD005C560E /* libremedia.a */; };
+		3DD7CEC21695801F00581FAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD7CEC11695801F00581FAB /* Default-568h@2x.png */; };
+		3DD7CEC41695802300581FAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD7CEC31695802300581FAB /* Default@2x.png */; };
+		3DD7CEC61695802500581FAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD7CEC51695802500581FAB /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,14 +54,16 @@
 		3D4FAE111656CA1700A2C487 /* SimpleViewController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleViewController-Prefix.pch"; sourceTree = "<group>"; };
 		3D4FAE121656CA1700A2C487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D4FAE131656CA1700A2C487 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3D4FAE191656CA1700A2C487 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3D4FAE1A1656CA1700A2C487 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3D4FAE1D1656CA1700A2C487 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		3D4FAE191656CA1700A2C487 /* MyGLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLViewController.h; sourceTree = "<group>"; };
+		3D4FAE1A1656CA1700A2C487 /* MyGLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGLViewController.m; sourceTree = "<group>"; };
 		3D7E564C1684710200E3604A /* data0.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = data0.dat; path = ../../../resources/SimpleViewController/data0.dat; sourceTree = "<group>"; };
 		3D7E564E1684711300E3604A /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../../resources/SimpleViewController/data; sourceTree = "<group>"; };
 		3DC0C81616754DFD005C560E /* librecore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librecore.a; path = ../../../lib_bin/ios/librecore.a; sourceTree = "<group>"; };
 		3DC0C81716754DFD005C560E /* libregui.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libregui.a; path = ../../../lib_bin/ios/libregui.a; sourceTree = "<group>"; };
 		3DC0C81816754DFD005C560E /* libremedia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libremedia.a; path = ../../../lib_bin/ios/libremedia.a; sourceTree = "<group>"; };
+		3DD7CEC11695801F00581FAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		3DD7CEC31695802300581FAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		3DD7CEC51695802500581FAB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +146,8 @@
 				3D1A634C168463BF0095362C /* iOSAppInterlayer.mm */,
 				3D4FAE121656CA1700A2C487 /* AppDelegate.h */,
 				3D4FAE131656CA1700A2C487 /* AppDelegate.m */,
-				3D4FAE191656CA1700A2C487 /* ViewController.h */,
-				3D4FAE1A1656CA1700A2C487 /* ViewController.m */,
-				3D4FAE1C1656CA1700A2C487 /* ViewController.xib */,
+				3D4FAE191656CA1700A2C487 /* MyGLViewController.h */,
+				3D4FAE1A1656CA1700A2C487 /* MyGLViewController.m */,
 				3D1C7EBB1656D65B009B3BAD /* MyGLView.h */,
 				3D1C7EBC1656D65B009B3BAD /* MyGLView.m */,
 				3D4FAE0A1656CA1700A2C487 /* Supporting Files */,
@@ -156,6 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				3DD81DFA1684690C00DC1183 /* Resource */,
+				3DD7CEC51695802500581FAB /* Default.png */,
+				3DD7CEC31695802300581FAB /* Default@2x.png */,
+				3DD7CEC11695801F00581FAB /* Default-568h@2x.png */,
 				3D4FAE0B1656CA1700A2C487 /* SimpleViewController-Info.plist */,
 				3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */,
 				3D4FAE0F1656CA1700A2C487 /* main.m */,
@@ -241,9 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D4FAE0E1656CA1700A2C487 /* InfoPlist.strings in Resources */,
-				3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */,
 				3D7E564D1684710200E3604A /* data0.dat in Resources */,
 				3D7E564F1684711300E3604A /* data in Resources */,
+				3DD7CEC21695801F00581FAB /* Default-568h@2x.png in Resources */,
+				3DD7CEC41695802300581FAB /* Default@2x.png in Resources */,
+				3DD7CEC61695802500581FAB /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +264,7 @@
 			files = (
 				3D4FAE101656CA1700A2C487 /* main.m in Sources */,
 				3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */,
-				3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */,
+				3D4FAE1B1656CA1700A2C487 /* MyGLViewController.m in Sources */,
 				3D1C7EBD1656D65B009B3BAD /* MyGLView.m in Sources */,
 				3D1A634416845C770095362C /* MyAppInterlayer.cpp in Sources */,
 				3D1A634716845D350095362C /* MyApp.cpp in Sources */,
@@ -274,14 +282,6 @@
 				3D4FAE0D1656CA1700A2C487 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3D4FAE1C1656CA1700A2C487 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D4FAE1D1656CA1700A2C487 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -309,7 +309,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -329,7 +329,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -339,10 +339,11 @@
 		3D4FAE371656CA1700A2C487 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleViewController/SimpleViewController-Prefix.pch";
 				INFOPLIST_FILE = "SimpleViewController/SimpleViewController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../lib_bin/ios\"",
@@ -355,10 +356,11 @@
 		3D4FAE381656CA1700A2C487 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleViewController/SimpleViewController-Prefix.pch";
 				INFOPLIST_FILE = "SimpleViewController/SimpleViewController-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../lib_bin/ios\"",

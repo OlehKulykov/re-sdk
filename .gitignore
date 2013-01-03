@@ -9,6 +9,8 @@
 *.pbxuser
 xcuserdata
 project.xcworkspace
+*project.xcworkspace
+*xcuserdata
 *.o
 *.obj
 *.sdf
