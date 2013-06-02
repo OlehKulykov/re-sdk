@@ -228,6 +228,11 @@
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
+		3D9C86351758DC87009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
+		3D9C86361758DC9B009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
+		3D9C86371758DD5B009B516A /* REPtr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
+		3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
+		3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
 		3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
 		3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
 		3DB07B3B144CAFF400FF99AB /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B39144CAFF400FF99AB /* REApplication.cpp */; };
@@ -536,6 +541,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/recore";
 			dstSubfolderSpec = 16;
 			files = (
+				3D9C86371758DD5B009B516A /* REPtr.h in CopyFiles */,
 				3DD65D4415F6976500E34829 /* REAutoReleasePool.h in CopyFiles */,
 				3DD65D4515F6976500E34829 /* REMainLoopUpdatable.h in CopyFiles */,
 				3DD65D4615F6976500E34829 /* RELog.h in CopyFiles */,
@@ -824,6 +830,8 @@
 		3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigIPhone.h; path = ../../include/reconfig/REConfigIPhone.h; sourceTree = SOURCE_ROOT; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
+		3D9C86341758DC87009B516A /* REPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPtr.h; path = ../../include/recore/REPtr.h; sourceTree = SOURCE_ROOT; };
+		3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigHardcodedOs.h; path = ../../include/reconfig/REConfigHardcodedOs.h; sourceTree = SOURCE_ROOT; };
 		3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
 		3DB07B38144CAFF400FF99AB /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
 		3DB07B39144CAFF400FF99AB /* REApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REApplication.cpp; path = ../../src/core/REApplication.cpp; sourceTree = SOURCE_ROOT; };
@@ -946,6 +954,7 @@
 				3D827EC414D7D04D00B539FF /* RECPUFeatures.h */,
 				3D827EC714D7D05600B539FF /* RECPUFeatures.cpp */,
 				3D48489D14D6F3D0000C07C0 /* REMem.h */,
+				3D9C86341758DC87009B516A /* REPtr.h */,
 				3DF1DEAA14BF0FA400263F9A /* REFloat16.h */,
 				3DFD093014BDB81B0063730E /* REList.h */,
 				3DE386FA14B45D5E00366267 /* REProperty.h */,
@@ -1224,6 +1233,7 @@
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
 			isa = PBXGroup;
 			children = (
+				3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */,
 				3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */,
 				3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */,
 			);
@@ -1431,6 +1441,8 @@
 				3D079FD515C8182E004FAA9E /* RELog.h in Headers */,
 				3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */,
 				3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */,
+				3D9C86351758DC87009B516A /* REPtr.h in Headers */,
+				3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,6 +1451,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DD65D1615F6962F00E34829 /* recore.h in Headers */,
+				3D9C86361758DC9B009B516A /* REPtr.h in Headers */,
+				3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,7 +1930,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1925,7 +1939,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1937,13 +1951,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1969,6 +1983,7 @@
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 			};
 			name = Debug;
 		};
@@ -1987,6 +2002,7 @@
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 			};
 			name = Release;
 		};
@@ -2012,13 +2028,14 @@
 					"$(inherited)",
 				);
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "recore_tests/recore_tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -2040,7 +2057,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "recore_tests/recore_tests-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "recore_tests/recore_tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -2048,6 +2065,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -2057,7 +2075,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2072,7 +2090,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
@@ -2083,7 +2101,7 @@
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = RECore;
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) armv6 i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 				VERSION_INFO_FILE = "";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -2094,7 +2112,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -2107,7 +2125,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
@@ -2117,7 +2135,7 @@
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = RECore;
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) armv6 i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 				VERSION_INFO_FILE = "";
 				WRAPPER_EXTENSION = framework;
 			};

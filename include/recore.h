@@ -66,6 +66,7 @@
 #include "recore/REObjectsArray.h"
 #include "recore/REObjectsDictionary.h"
 #include "recore/REProperty.h"
+#include "recore/REPtr.h"
 #include "recore/REQuaternion.h"
 #include "recore/RERandomizer.h"
 #include "recore/RERange.h"

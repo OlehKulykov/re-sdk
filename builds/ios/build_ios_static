@@ -1,15 +1,24 @@
 xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphonesimulator/librecore.a ../../lib_bin/ios/librecore-iphonesimulator.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/librecore.a ../../lib_bin/ios/librecore-armv7.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch armv7s -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/librecore.a ../../lib_bin/ios/librecore-armv7s.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7s.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
@@ -20,19 +29,27 @@ rm -f ../../lib_bin/ios/librecore-armv7.a
 rm -f ../../lib_bin/ios/librecore-armv7s.a
 
 
-
 xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphonesimulator/libregui.a ../../lib_bin/ios/libregui-iphonesimulator.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/libregui.a ../../lib_bin/ios/libregui-armv7.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch armv7s -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/libregui.a ../../lib_bin/ios/libregui-armv7s.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7s.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
@@ -44,19 +61,27 @@ rm -f ../../lib_bin/ios/libregui-armv7s.a
 
 
 
-
 xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphonesimulator/libremedia.a ../../lib_bin/ios/libremedia-iphonesimulator.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/libremedia.a ../../lib_bin/ios/libremedia-armv7.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
 xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch armv7s -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphoneos/libremedia.a ../../lib_bin/ios/libremedia-armv7s.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7s.a @
+cd ..
 rm -rf obj
 rm -rf sym
 
@@ -65,3 +90,43 @@ lipo -create ../../lib_bin/ios/libremedia-iphonesimulator.a ../../lib_bin/ios/li
 rm -f ../../lib_bin/ios/libremedia-iphonesimulator.a
 rm -f ../../lib_bin/ios/libremedia-armv7.a
 rm -f ../../lib_bin/ios/libremedia-armv7s.a
+
+
+lipo -create all-i386.a all-armv7.a all-armv7s.a -output ../../lib_bin/ios/all.a
+rm -f all-i386.a
+rm -f all-armv7.a
+rm -f all-armv7s.a
+
+cd ../../lib_bin/ios/
+
+rm -rf RECore.framework
+mkdir -p RECore.framework/Versions/A/Headers
+
+mkdir -p RECore.framework/Versions/A/Headers/reconfig
+mkdir -p RECore.framework/Versions/A/Headers/recore
+mkdir -p RECore.framework/Versions/A/Headers/regui
+mkdir -p RECore.framework/Versions/A/Headers/remedia
+
+cp ../../include/reconfig/REConfigIPhone.h RECore.framework/Versions/A/Headers/reconfig/
+cp ../../include/reconfig/REConfigSelector.h RECore.framework/Versions/A/Headers/reconfig/
+echo "#define __RE_OS_IPHONE__ " > RECore.framework/Versions/A/Headers/reconfig/REConfigHardcodedOs.h
+cp ../../include/recore.h RECore.framework/Versions/A/Headers/recore.h
+cp ../../include/regui.h RECore.framework/Versions/A/Headers/regui.h
+cp ../../include/remedia.h RECore.framework/Versions/A/Headers/remedia.h
+
+
+cp ../../include/recore/*.h RECore.framework/Versions/A/Headers/recore/
+cp ../../include/regui/*.h RECore.framework/Versions/A/Headers/regui/
+cp ../../include/remedia/*.h RECore.framework/Versions/A/Headers/remedia/
+
+mkdir -p RECore.framework/Versions/A/Resources
+cp all.a RECore
+cp RECore RECore.framework/Versions/A
+
+ln -s A RECore.framework/Versions/Current
+ln -s Versions/Current/Headers RECore.framework/Headers
+ln -s Versions/Current/Resources RECore.framework/Resources
+ln -s Versions/Current/RECore RECore.framework/RECore
+
+rm -f RECore
+rm -f all.a
