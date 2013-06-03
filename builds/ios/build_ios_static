@@ -99,34 +99,34 @@ rm -f all-armv7s.a
 
 cd ../../lib_bin/ios/
 
-rm -rf RECore.framework
-mkdir -p RECore.framework/Versions/A/Headers
+rm -rf RECoreSDK.framework
+mkdir -p RECoreSDK.framework/Versions/A/Headers
 
-mkdir -p RECore.framework/Versions/A/Headers/reconfig
-mkdir -p RECore.framework/Versions/A/Headers/recore
-mkdir -p RECore.framework/Versions/A/Headers/regui
-mkdir -p RECore.framework/Versions/A/Headers/remedia
+mkdir -p RECoreSDK.framework/Versions/A/Headers/reconfig
+mkdir -p RECoreSDK.framework/Versions/A/Headers/recore
+mkdir -p RECoreSDK.framework/Versions/A/Headers/regui
+mkdir -p RECoreSDK.framework/Versions/A/Headers/remedia
 
-cp ../../include/reconfig/REConfigIPhone.h RECore.framework/Versions/A/Headers/reconfig/
-cp ../../include/reconfig/REConfigSelector.h RECore.framework/Versions/A/Headers/reconfig/
-echo "#define __RE_OS_IPHONE__ " > RECore.framework/Versions/A/Headers/reconfig/REConfigHardcodedOs.h
-cp ../../include/recore.h RECore.framework/Versions/A/Headers/recore.h
-cp ../../include/regui.h RECore.framework/Versions/A/Headers/regui.h
-cp ../../include/remedia.h RECore.framework/Versions/A/Headers/remedia.h
+cp ../../include/reconfig/REConfigIPhone.h RECoreSDK.framework/Versions/A/Headers/reconfig/
+cp ../../include/reconfig/REConfigSelector.h RECoreSDK.framework/Versions/A/Headers/reconfig/
+echo "#define __RE_OS_IPHONE__ " > RECoreSDK.framework/Versions/A/Headers/reconfig/REConfigHardcoded.h
+cp ../../include/recore.h RECoreSDK.framework/Versions/A/Headers/recore.h
+cp ../../include/regui.h RECoreSDK.framework/Versions/A/Headers/regui.h
+cp ../../include/remedia.h RECoreSDK.framework/Versions/A/Headers/remedia.h
 
 
-cp ../../include/recore/*.h RECore.framework/Versions/A/Headers/recore/
-cp ../../include/regui/*.h RECore.framework/Versions/A/Headers/regui/
-cp ../../include/remedia/*.h RECore.framework/Versions/A/Headers/remedia/
+cp ../../include/recore/*.h RECoreSDK.framework/Versions/A/Headers/recore/
+cp ../../include/regui/*.h RECoreSDK.framework/Versions/A/Headers/regui/
+cp ../../include/remedia/*.h RECoreSDK.framework/Versions/A/Headers/remedia/
 
-mkdir -p RECore.framework/Versions/A/Resources
-cp all.a RECore
-cp RECore RECore.framework/Versions/A
+mkdir -p RECoreSDK.framework/Versions/A/Resources
+cp all.a RECoreSDK
+cp RECoreSDK RECoreSDK.framework/Versions/A
 
-ln -s A RECore.framework/Versions/Current
-ln -s Versions/Current/Headers RECore.framework/Headers
-ln -s Versions/Current/Resources RECore.framework/Resources
-ln -s Versions/Current/RECore RECore.framework/RECore
+ln -s A RECoreSDK.framework/Versions/Current
+ln -s Versions/Current/Headers RECoreSDK.framework/Headers
+ln -s Versions/Current/Resources RECoreSDK.framework/Resources
+ln -s Versions/Current/RECoreSDK RECoreSDK.framework/RECoreSDK
 
-rm -f RECore
+rm -f RECoreSDK
 rm -f all.a

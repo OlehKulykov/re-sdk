@@ -18,7 +18,7 @@
 #ifndef __RECONFIGSELECTOR_H__
 #define __RECONFIGSELECTOR_H__
 
-#include "REConfigHardcodedOs.h"
+#include "REConfigHardcoded.h"
 
 #ifdef __RE_OS_WINDOWS__  
 #include "REConfigWindows.h"
