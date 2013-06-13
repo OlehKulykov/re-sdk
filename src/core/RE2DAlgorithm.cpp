@@ -30,7 +30,7 @@ REBOOL RE2DAlgorithm::IsPointInPolygonFloat32(const REFloat32 pointX,
 		REFloat32 x1, y1;
 		REFloat32 x2, y2;
 		REBOOL inside = false;
-			
+		
 		REFloat32 xold = polygonPointsX[numberOfPolygonPoints - 1];
 		REFloat32 yold = polygonPointsY[numberOfPolygonPoints - 1];
 		for (REUInt32 i = 0 ; i < numberOfPolygonPoints; i++) 
@@ -118,9 +118,9 @@ REFloat32 RE2DAlgorithm::GetLineLengthFloat32(const REPoint2 & firstPoint, const
 }
 
 REPoint2 RE2DAlgorithm::GetLinesCrossPoint(const REPoint2 & p11, 
-											const REPoint2 & p12, 
-											const REPoint2 & p21, 
-											const REPoint2 & p22)
+										   const REPoint2 & p12, 
+										   const REPoint2 & p21, 
+										   const REPoint2 & p22)
 {
 	const REFloat64 Z  = ((p12.y - p11.y) * (p21.x - p22.x)) - ((p21.y - p22.y) * (p12.x - p11.x));
 	if (Z == 0) 

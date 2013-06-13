@@ -49,6 +49,7 @@
 #include "recore/REImage.h"
 #include "recore/REImageManager.h"
 #include "recore/REInterpolation.h"
+#include "recore/REJSONParser.h"
 #include "recore/REList.h"
 #include "recore/RELocale.h"
 #include "recore/RELog.h"

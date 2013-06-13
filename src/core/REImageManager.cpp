@@ -55,6 +55,11 @@
 #include <webp/mux.h>
 #include <webp/decode.h>
 #include <webp/encode.h>
+#elif defined(__RE_USING_SYSTEM_WEBP_FRAMEWORK__)
+#include <WebP/types.h>
+#include <WebP/mux.h>
+#include <WebP/decode.h>
+#include <WebP/encode.h>
 #else
 #define __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
 #endif

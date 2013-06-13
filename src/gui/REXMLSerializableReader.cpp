@@ -19,6 +19,7 @@
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+using namespace tinyxml2;
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -29,9 +30,9 @@
 REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * obj, REGUIObject * fromCallBack)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * element = (TiXmlElement *)objectElement;
+	XMLElement * element = (XMLElement *)objectElement;
 
-	for (TiXmlElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
+	for (XMLElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = childElem->Value();
 		if (nodeValue) 
@@ -40,7 +41,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 			{
 				const char * className = NULL;
 				const char * key = NULL;
-				for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+				for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 				{
 					const char * name = attrib->Name();
 					if (name) 
@@ -81,7 +82,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 			else
 			{
 				const char * key = NULL;
-				for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+				for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 				{
 					const char * name = attrib->Name();
 					if (name) 
@@ -149,13 +150,13 @@ REUInt32 REXMLSerializableReader::CalculateElements(void * objectElement)
 {
 	REUInt32 count = 0;
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * element = (TiXmlElement *)objectElement;
-	for (TiXmlElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
+	XMLElement * element = (XMLElement *)objectElement;
+	for (XMLElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = childElem->Value();
 		if (nodeValue) 
 		{
-			for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+			for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 			{
 				count++;
 			}
@@ -189,12 +190,12 @@ REBOOL REXMLSerializableReader::Read(const REString & xmlString)
 	_isError = false;
 	if (_controller && _callBack.CreateNewObject) 
 	{
-		TiXmlDocument doc;
+		XMLDocument doc;
 		doc.Parse(xmlString.UTF8String());
 		
 		if (doc.Error()) { return false; }
 		
-		TiXmlElement * root = doc.RootElement();
+		XMLElement * root = doc.RootElement();
 		if (root == NULL) { return false; }
 		
 		const char * rootVal = root->Value();

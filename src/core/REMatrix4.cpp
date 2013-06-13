@@ -30,7 +30,7 @@ REMatrix4 REMatrix4::CreateFromQuaternion(const REQuaternion & aq)
 	const REFloat32 ty = n.y + n.y;
 	const REFloat32 tz = n.z + n.z;
 	const REFloat32 tw = n.w + n.w;
-
+	
 	const REFloat32 tx_nx = tx * n.x;
 	const REFloat32 tx_ny = tx * n.y;
 	const REFloat32 tx_nz = tx * n.z;
@@ -49,15 +49,15 @@ REMatrix4 REMatrix4::CreateFromQuaternion(const REQuaternion & aq)
 	m.m00 = 1.0f - ty_ny - tz_nz;
 	m.m01 = tx_ny + tw_nz;
 	m.m02 = tx_nz - tw_ny;
-
+	
 	m.m10 = tx_ny - tw_nz;
 	m.m11 = 1.0f - tx_nx - tz_nz;
 	m.m12 = ty_nz + tw_nx;
-
+	
 	m.m20 = tx_nz + tw_ny;
 	m.m21 = ty_nz - tw_nx;
 	m.m22 = 1.0f - tx_nx - ty_ny;
-
+	
 	m.m33 = 1.0f;
 	
 	return m;

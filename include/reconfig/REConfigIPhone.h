@@ -89,10 +89,10 @@
 //#define __RE_USING_SYSTEM_WEBP_LIBRARY__
 
 /// Using sqlite library from addlibs folder. Will include as "addlibs/sqlite.h". All sqlite wrappers must be compiled.
-//#define __RE_USING_ADITIONAL_SQLITE_LIBRARY__
+#define __RE_USING_ADITIONAL_SQLITE_LIBRARY__
 
 /// Using system provided sqlite library. Will include as <sqlite3.h>
-#define __RE_USING_SYSTEM_SQLITE_LIBRARY__
+//#define __RE_USING_SYSTEM_SQLITE_LIBRARY__
 
 /// Disables reading/writing to sqlite database. Requires sqlite3 library. Classes RESQLite... will do nothing.
 //#define __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__

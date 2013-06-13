@@ -7,10 +7,13 @@
 
 #ifdef __RE_USING_ADITIONAL_TINYXML_LIBRARY__
 
-#include "tinyxml/tinystr.cpp"
-#include "tinyxml/tinyxml.cpp"
-#include "tinyxml/tinyxmlerror.cpp"
-#include "tinyxml/tinyxmlparser.cpp"
+//#include "tinyxml/tinystr.cpp"
+//#include "tinyxml/tinyxml.cpp"
+//#include "tinyxml/tinyxmlerror.cpp"
+//#include "tinyxml/tinyxmlparser.cpp"
+
+#include "tinyxml2/tinyxml2.cpp"
+
 
 #endif
 

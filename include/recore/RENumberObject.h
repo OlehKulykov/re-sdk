@@ -35,6 +35,10 @@ public:
 	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
 	virtual REBOOL IsEqual(REObject * anotherObject);
 	
+	/// Creates and return new number object
+	/// After using this number object call Release().
+	static RENumberObject * Create();
+	
 	/// Creates and return new number object with boolean value or NULL on error.
 	/// After using this number object call Release().
 	static RENumberObject * CreateWithBool(REBOOL newValue);

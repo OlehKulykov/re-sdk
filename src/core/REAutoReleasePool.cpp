@@ -140,8 +140,8 @@ void REAutoReleasePool::OnReleased()
 }
 
 REAutoReleasePool::REAutoReleasePool() : REObject(),
-	_index(0),
-	_isBusy(0)
+_index(0),
+_isBusy(0)
 {
 	_updateMutex.Init(REMutexTypeRecursive);
 	

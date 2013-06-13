@@ -210,6 +210,11 @@
 		3D4DEEE114A8716000AECAD8 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */; };
 		3D56CF4A16552A7100B66EE0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D56CF4916552A7100B66EE0 /* SenTestingKit.framework */; };
 		3D56CF4D16552A7100B66EE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1788EA13E2987E00520FC2 /* Foundation.framework */; };
+		3D5B57C51765BF5D000B4527 /* REJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5B57C41765BF5D000B4527 /* REJSONParser.h */; };
+		3D5B57C61765BF5D000B4527 /* REJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5B57C41765BF5D000B4527 /* REJSONParser.h */; };
+		3D5B57C81765BF8E000B4527 /* REJSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */; };
+		3D5B57C91765BF8E000B4527 /* REJSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */; };
+		3D5B57CA1765BF8E000B4527 /* REJSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */; };
 		3D5D9022149039F300230851 /* webp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D9021149039F300230851 /* webp.h */; };
 		3D5D902514903A1500230851 /* webp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D902414903A1500230851 /* webp_config.h */; };
 		3D5D902714903A9900230851 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D902614903A9900230851 /* webp_wrap1.c */; };
@@ -231,8 +236,6 @@
 		3D9C86351758DC87009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
 		3D9C86361758DC9B009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
 		3D9C86371758DD5B009B516A /* REPtr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
-		3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
-		3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
 		3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
 		3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
 		3DB07B3B144CAFF400FF99AB /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B39144CAFF400FF99AB /* REApplication.cpp */; };
@@ -812,6 +815,8 @@
 		3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZLIBCompression.cpp; path = ../../src/core/REZLIBCompression.cpp; sourceTree = SOURCE_ROOT; };
 		3D56CF4816552A7100B66EE0 /* recore_tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recore_tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D56CF4916552A7100B66EE0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3D5B57C41765BF5D000B4527 /* REJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REJSONParser.h; path = ../../include/recore/REJSONParser.h; sourceTree = SOURCE_ROOT; };
+		3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REJSONParser.cpp; path = ../../src/core/REJSONParser.cpp; sourceTree = SOURCE_ROOT; };
 		3D5D9021149039F300230851 /* webp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp.h; path = ../../src/addlibs/webp.h; sourceTree = SOURCE_ROOT; };
 		3D5D902414903A1500230851 /* webp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp_config.h; path = ../../src/addlibs/webp_config.h; sourceTree = SOURCE_ROOT; };
 		3D5D902614903A9900230851 /* webp_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap1.c; path = ../../src/addlibs/webp_wrap1.c; sourceTree = SOURCE_ROOT; };
@@ -831,7 +836,6 @@
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
 		3D9C86341758DC87009B516A /* REPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPtr.h; path = ../../include/recore/REPtr.h; sourceTree = SOURCE_ROOT; };
-		3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigHardcodedOs.h; path = ../../include/reconfig/REConfigHardcodedOs.h; sourceTree = SOURCE_ROOT; };
 		3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
 		3DB07B38144CAFF400FF99AB /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
 		3DB07B39144CAFF400FF99AB /* REApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REApplication.cpp; path = ../../src/core/REApplication.cpp; sourceTree = SOURCE_ROOT; };
@@ -947,6 +951,7 @@
 		3D1788EC13E2987E00520FC2 /* recore */ = {
 			isa = PBXGroup;
 			children = (
+				3D5B57C31765BF44000B4527 /* JSON */,
 				3DF8753415F1525100363B51 /* AutoReleasePool */,
 				3DD0469B15EEA04200642E45 /* MainLoop */,
 				3D079FD415C8182E004FAA9E /* RELog.h */,
@@ -1219,6 +1224,15 @@
 			name = "Matrix Vector";
 			sourceTree = "<group>";
 		};
+		3D5B57C31765BF44000B4527 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3D5B57C41765BF5D000B4527 /* REJSONParser.h */,
+				3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		3D6BF781148D1B150082B649 /* Compression */ = {
 			isa = PBXGroup;
 			children = (
@@ -1233,7 +1247,6 @@
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */,
 				3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */,
 				3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */,
 			);
@@ -1442,7 +1455,7 @@
 				3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */,
 				3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */,
 				3D9C86351758DC87009B516A /* REPtr.h in Headers */,
-				3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
+				3D5B57C51765BF5D000B4527 /* REJSONParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1452,7 +1465,7 @@
 			files = (
 				3DD65D1615F6962F00E34829 /* recore.h in Headers */,
 				3D9C86361758DC9B009B516A /* REPtr.h in Headers */,
-				3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
+				3D5B57C61765BF5D000B4527 /* REJSONParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1746,6 +1759,7 @@
 				3DD0469E15EEA0F300642E45 /* REMainLoopUpdatable.cpp in Sources */,
 				3DD046A015EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
 				3DF8753615F152C400363B51 /* REAutoReleasePoolPrivate.cpp in Sources */,
+				3D5B57C81765BF8E000B4527 /* REJSONParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1753,6 +1767,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D5B57CA1765BF8E000B4527 /* REJSONParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1912,6 +1927,7 @@
 				3DD65CB215F68EAE00E34829 /* REYUV444toRGB888.cpp in Sources */,
 				3DD65CB315F68EAE00E34829 /* REYUV444toRGB8888.cpp in Sources */,
 				3DD65CB415F68EAE00E34829 /* REYUVtoRGB.cpp in Sources */,
+				3D5B57C91765BF8E000B4527 /* REJSONParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1939,7 +1955,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1957,7 +1973,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1974,13 +1990,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					__RE_OS_IPHONE__,
 				);
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
@@ -1996,10 +2013,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
@@ -2019,6 +2037,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2053,6 +2072,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "recore_tests/recore_tests-Prefix.pch";
@@ -2083,6 +2103,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2121,6 +2142,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

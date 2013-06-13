@@ -80,13 +80,13 @@ REBOOL REAffineTransform::TransformTetragon(RETetragon * tetr) const
 void REAffineTransform::Log() const
 {
 	/*
-	REFloat32 a;
-	REFloat32 b;
-	REFloat32 c;
-	REFloat32 d;
-	REFloat32 tx;
-	REFloat32 ty;
-	*/
+	 REFloat32 a;
+	 REFloat32 b;
+	 REFloat32 c;
+	 REFloat32 d;
+	 REFloat32 tx;
+	 REFloat32 ty;
+	 */
 	RELog::Log("REAffineTransform: \na: %f, \tb: %f, \tc: %f, \td: %f, \ttx: %f, \tty: %f", a, b, c, d, tx, ty);
 }
 #endif	

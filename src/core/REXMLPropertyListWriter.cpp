@@ -191,7 +191,7 @@ REBOOL REXMLPropertyListWriter::WriteToString(REArray<REObjectsDictionary::KeyOb
 }
 
 REXMLPropertyListWriter::REXMLPropertyListWriter() :
-	_xmlStr(NULL)
+_xmlStr(NULL)
 {
 	
 }

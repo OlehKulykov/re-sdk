@@ -14,8 +14,9 @@
 
 #ifdef __cplusplus
 
-#include "../../../../include/recore.h"
-#include "../../../../include/regui.h"
+#include <RECoreSDK/recore.h>
+#include <RECoreSDK/regui.h>
+#include <RECoreSDK/remedia.h>
 
 #endif
 

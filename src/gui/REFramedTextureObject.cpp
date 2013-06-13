@@ -20,6 +20,7 @@
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+using namespace tinyxml2;
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -130,12 +131,12 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
 	if (data)
 	{
-		TiXmlDocument doc;
+		XMLDocument doc;
 		doc.Parse(data);
 		
 		if (doc.Error()) { return false; }
 		
-		TiXmlElement * root = doc.RootElement();
+		XMLElement * root = doc.RootElement();
 		if (root == NULL) { return false; }
 		
 		const char * rootVal = root->Value();
@@ -145,7 +146,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 			{
 				int readedCount = 0;
 				RESize canvasSize(-1.0f, -1.0f);
-				for (TiXmlAttribute * attrib = root->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
+				for (const XMLAttribute * attrib = root->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
 				{
 					const char * name = attrib->Name();
 					const char * value = attrib->Value();
@@ -169,7 +170,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 				}
 				const REFloat32 xWidthKoef = 1.0f / canvasSize.width;
 				const REFloat32 yHeightKoef = 1.0f / canvasSize.height;
-				for (TiXmlElement * childElem = root->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement())
+				for (XMLElement * childElem = root->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement())
 				{
 					const char * nodeValue = childElem->Value();
 					if (nodeValue)
@@ -178,7 +179,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 						{
 							RERectStruct rect;
 							readedCount = 0;
-							for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
+							for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
 							{
 								const char * name = attrib->Name();
 								const char * value = attrib->Value();

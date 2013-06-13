@@ -20,6 +20,9 @@
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+
+using namespace tinyxml2;
+
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -48,7 +51,7 @@ void REXMLPropertyListReader::ClearPairs(REArray<REObjectsDictionary::KeyObjectS
 REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * elem = (TiXmlElement *)elementObject;
+	XMLElement * elem = (XMLElement *)elementObject;
 	const char * eVal = elem->Value();
 	if (eVal) 
 	{
@@ -128,7 +131,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 					REObjectsArray * arr = REObjectsArray::Create();
 					if (arr) 
 					{
-						for(TiXmlElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )
+						for(XMLElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )
 						{
 							REObject * arrObjValue = REXMLPropertyListReader::NewObjectFromElement(arrElem);
 							if (arrObjValue) 
@@ -186,8 +189,8 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	REStringObject * keyString = NULL;
-	TiXmlElement * dictElement = (TiXmlElement *)dictionaryElement;
-	for(TiXmlElement * elem = dictElement->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement() )
+	XMLElement * dictElement = (XMLElement *)dictionaryElement;
+	for(XMLElement * elem = dictElement->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement() )
 	{
 		const char * eVal = elem->Value();
 		if (eVal) 
@@ -236,9 +239,9 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * propListElement)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
-	TiXmlElement * element = (TiXmlElement *)propListElement;
+	XMLElement * element = (XMLElement *)propListElement;
 	
-	for (TiXmlElement * dictElem = element->FirstChildElement(); dictElem != NULL; dictElem = dictElem->NextSiblingElement()) 
+	for (XMLElement * dictElem = element->FirstChildElement(); dictElem != NULL; dictElem = dictElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = dictElem->Value();
 		if (nodeValue) 
@@ -260,12 +263,12 @@ REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<
 	
 	REXMLPropertyListReader::ClearPairs(pairs);
 	
-	TiXmlDocument doc;
+	XMLDocument doc;
 	doc.Parse(listString);
 	
 	if (doc.Error()) { return false; }
 	
-	TiXmlElement * root = doc.RootElement();
+	XMLElement * root = doc.RootElement();
 	if (root == NULL) { return false; }
 	
 	const char * rootVal = root->Value();

@@ -62,6 +62,11 @@ RENumberObject::~RENumberObject()
 
 
 
+RENumberObject * RENumberObject::Create()
+{
+	return (new RENumberObject());
+}
+
 RENumberObject * RENumberObject::CreateWithBool(REBOOL newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();

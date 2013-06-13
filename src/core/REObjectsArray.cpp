@@ -71,8 +71,8 @@ REBOOL REObjectsArray::IsEqual(REObject * anotherObject)
 }
 
 /*
-Linear search for object
-Return object index or RENotFound if not found */
+ Linear search for object
+ Return object index or RENotFound if not found */
 const REUInt32 REObjectsArray::Search(const REObject * object) const
 {
 	REObject * o = const_cast<REObject *>(object);
@@ -92,17 +92,17 @@ REBOOL REObjectsArray::SetCapacity(const REUInt32 newCapacity)
 	return _arr.SetCapacity(newCapacity);
 }
 /*
-const REUInt32 REObjectsArray::Count() const
-{
-	return _arr.Count();
-}
-*/
+ const REUInt32 REObjectsArray::Count() const
+ {
+ return _arr.Count();
+ }
+ */
 /*
-REBOOL REObjectsArray::IsEmpty() const
-{
-	return _arr.IsEmpty();
-}
-*/
+ REBOOL REObjectsArray::IsEmpty() const
+ {
+ return _arr.IsEmpty();
+ }
+ */
 REBOOL REObjectsArray::Swap(const REUInt32 firstIndex, const REUInt32 secondIndex)
 {
 	const REUInt32 count = _arr.Count();
@@ -312,11 +312,11 @@ REObjectsArray & REObjectsArray::Set(const REArray<REObject *> & anotherArray)
 	return (*this);
 }
 /*
-REObject* & REObjectsArray::operator[](const REUInt32 & index)
-{
-	return _arr[index];
-}
-*/
+ REObject* & REObjectsArray::operator[](const REUInt32 & index)
+ {
+ return _arr[index];
+ }
+ */
 REObjectsArray & REObjectsArray::operator=(const REObjectsArray & anotherArray)
 {
 	this->Set(anotherArray);
