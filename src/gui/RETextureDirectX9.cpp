@@ -130,7 +130,7 @@ REBOOL RETextureDirectX9::Update(const REUByte * pixelsData,
 		D3DLOCKED_RECT lockedRect;
 		if ( dxTexture->LockRect(0, &lockedRect, 0, 0) != D3D_OK ) 
 		{
-			dxTexture->Release();
+			dxTexture->release();
 			return false; 
 		}
 		
@@ -141,7 +141,7 @@ REBOOL RETextureDirectX9::Update(const REUByte * pixelsData,
 		
 		if ( dxTexture->UnlockRect(0) != D3D_OK) 
 		{
-			dxTexture->Release();
+			dxTexture->release();
 			return false; 
 		}	
 		
@@ -183,15 +183,15 @@ _isBlended(false)
 	
 }
 
-void RETextureDirectX9::OnReleased()
+void RETextureDirectX9::onReleased()
 {
 	if (_direct3DTexture) 
 	{
-		_direct3DTexture->Release();
+		_direct3DTexture->release();
 		_direct3DTexture = (LPDIRECT3DTEXTURE9)0;
 	}
 	
-	RERenderDeviceTextureObject::OnReleased();
+	RERenderDeviceTextureObject::onReleased();
 }
 
 RETextureDirectX9::~RETextureDirectX9()

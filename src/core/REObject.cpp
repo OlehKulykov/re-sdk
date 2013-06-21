@@ -20,43 +20,43 @@
 #include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 
-const REUInt32 REObject::GetClassIdentifier() const
+const REUInt32 REObject::getClassIdentifier() const
 {
-	return REObject::ClassIdentifier();	
+	return REObject::classIdentifier();	
 }
 
-REBOOL REObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return (REObject::ClassIdentifier() == classIdentifier);
+	return (REObject::classIdentifier() == classIdentifier);
 }
 
-const REUInt32 REObject::ClassIdentifier()
+const REUInt32 REObject::classIdentifier()
 {	
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REObject");
 	return clasIdentif;
 }
 
-const REUInt32 REObject::GenerateClassIdentifierFromClassName(const char * className)
+const REUInt32 REObject::generateClassIdentifierFromClassName(const char * className)
 {
-	return REMD5Generator::GenerateFromString(className);
+	return REMD5Generator::generateFromString(className);
 }
 
-REBOOL REObject::IsEqual(REObject * anotherObject)
+REBOOL REObject::isEqual(REObject * anotherObject)
 {
 	if (anotherObject) 
 	{
-		return (this->GetObjectIdentifier() == anotherObject->GetObjectIdentifier());
+		return (this->getObjectIdentifier() == anotherObject->getObjectIdentifier());
 	}
 	return false;
 }
 
-REObject & REObject::Retain() 
+REObject & REObject::retain() 
 {
 	_reObjectRetainCount++;
 	return (*this); 
 }
 
-void REObject::Release() 
+void REObject::release() 
 {
 	if (_reObjectRetainCount)
 	{
@@ -83,13 +83,13 @@ void REObject::Release()
 				REObject::Delete(this);
 			}
 			*/
-			if (REAutoReleasePool::GetDefaultPool()->AddObject(this))
+			if (REAutoReleasePool::getDefaultPool()->addObject(this))
 			{
-				this->OnReleased();
+				this->onReleased();
 			}
 			else
 			{
-				RELog::Log("ERROR: object %p released but not added to pool.", this);
+				RELog::log("ERROR: object %p released but not added to pool.", this);
 			}
 		}
 	}
@@ -107,7 +107,7 @@ REObject::~REObject()
 	
 }
 
-void REObject::Delete(REObject * object)
+void REObject::deleteObject(REObject * object)
 {
     if (object) 
 	{

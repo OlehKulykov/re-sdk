@@ -64,7 +64,7 @@ public:
 	/*
 	 Векторное произведение векторов
 	 Результатом векторного произведения двух векторов будет вектор перпендикулярный этим векторам.		*/
-	static REVector3 CrossProduct(const REVector3 & firstVector, const REVector3 & secondVector)
+	static REVector3 crossProduct(const REVector3 & firstVector, const REVector3 & secondVector)
 	{
 #if defined(__ARM_NEON__)   
 		float32x4_t lyzx = { firstVector.y, firstVector.z, firstVector.x, 0.0f };
@@ -79,15 +79,15 @@ public:
 #endif		
 	}
 	
-	REVector3 GetCrossProduct(const REVector3 & anotherVector3D) const
+	REVector3 getCrossProduct(const REVector3 & anotherVector3D) const
 	{
-		return REVector3::CrossProduct((*this), anotherVector3D);
+		return REVector3::crossProduct((*this), anotherVector3D);
 	}
 	
 	/*
 	 dotProduct
 	 */
-    static REFloat32 DotProduct(const REVector3 & firstVector, const REVector3 & secondVector)
+    static REFloat32 dotProduct(const REVector3 & firstVector, const REVector3 & secondVector)
 	{
 		// NEON is slower than c++ in this case
 #if 0//defined(__ARM_NEON__)   
@@ -101,14 +101,14 @@ public:
 #endif		
 	}
 	
-	const REFloat32 GetDotProduct(const REVector3 & anotherVector3D) const
+	const REFloat32 getDotProduct(const REVector3 & anotherVector3D) const
 	{
-		return REVector3::DotProduct((*this), anotherVector3D);
+		return REVector3::dotProduct((*this), anotherVector3D);
 	}
 	
 	/*
 	 Получение нового вектора с противоположным направлением		*/
-	REVector3 GetInverseVector() const
+	REVector3 getInverseVector() const
 	{
 #if defined(__ARM_NEON__)   		
 		return REVector3(vnegq_f32(*(float32x4_t *)&armNeonVector));
@@ -119,7 +119,7 @@ public:
 	
 	/*
 	 Изменения направление вектора на противоположное		*/
-	REVector3 & Inverse()
+	REVector3 & inverse()
 	{
 #if defined(__ARM_NEON__)   		
 		armNeonVector = vnegq_f32(*(float32x4_t *)&armNeonVector);
@@ -134,14 +134,14 @@ public:
 	/*
 	 Преобразование заданного вектора в вектор в том же направлении,
 	 но с единичной длиной.			*/
-	REVector3 & Normalize()
+	REVector3 & normalize()
 	{
-		return this->MultiplyScalar((1.0f / this->GetMagnitude()));
+		return this->multiplyScalar((1.0f / this->getMagnitude()));
 	}
 	
 	/*
 	 Длина вектора (или модуль)			*/
-	const REFloat32 GetMagnitude() const
+	const REFloat32 getMagnitude() const
 	{
 #if defined(__ARM_NEON__)   		
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -156,14 +156,14 @@ public:
 	
 	/*
 	 Установить новую длину вектора (или модуль)			*/
-	REVector3 & SetMagnitude(const REFloat32 newMagnitude)
+	REVector3 & setMagnitude(const REFloat32 newMagnitude)
 	{
-		return this->Normalize().MultiplyScalar(newMagnitude);
+		return this->normalize().multiplyScalar(newMagnitude);
 	}
 	
 	/*
 	 Квадрат длины вектора (или модуля)			*/
-	const REFloat32 GetSquareMagnitude() const
+	const REFloat32 getSquareMagnitude() const
 	{
 #if defined(__ARM_NEON__)   		
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -176,16 +176,16 @@ public:
 #endif		
 	}
 	
-	const REFloat32 GetX() const { return x; }
-	const REFloat32 GetY() const { return y; }
-	const REFloat32 GetZ() const { return z; }
+	const REFloat32 getX() const { return x; }
+	const REFloat32 getY() const { return y; }
+	const REFloat32 getZ() const { return z; }
 	
-	void SetX(const REFloat32 newX) { x = newX; }
-	void SetY(const REFloat32 newY) { y = newY; }
-	void SetZ(const REFloat32 newZ) { z = newZ; }
+	void setX(const REFloat32 newX) { x = newX; }
+	void setY(const REFloat32 newY) { y = newY; }
+	void setZ(const REFloat32 newZ) { z = newZ; }
 	
 	/// "this vector" + another vector
-	REVector3 & Add(const REVector3 & anotherVector3D)
+	REVector3 & add(const REVector3 & anotherVector3D)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vaddq_f32(*(float32x4_t *)&armNeonVector,
@@ -199,9 +199,9 @@ public:
 	}
 	REVector3 & operator+=(const REVector3 & anotherVector3D)
 	{
-		return this->Add(anotherVector3D);
+		return this->add(anotherVector3D);
 	}
-	REVector3 & AddScalar(const REFloat32 scalar)
+	REVector3 & addScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vaddq_f32(*(float32x4_t *)&armNeonVector,
@@ -215,11 +215,11 @@ public:
 	}
 	REVector3 & operator+=(const REFloat32 scalar)
 	{
-		return this->AddScalar(scalar);
+		return this->addScalar(scalar);
 	}
 	
 	/// "this vector" - another vector
-	REVector3 & Subtract(const REVector3 & anotherVector3D)
+	REVector3 & subtract(const REVector3 & anotherVector3D)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vsubq_f32(*(float32x4_t *)&armNeonVector,
@@ -233,10 +233,10 @@ public:
 	}
 	REVector3 & operator-=(const REVector3 & anotherVector3D)
 	{
-		return this->Subtract(anotherVector3D);
+		return this->subtract(anotherVector3D);
 	}
 	/// "this vector" - float value (scalar)
-	REVector3 & SubtractScalar(const REFloat32 scalar)
+	REVector3 & subtractScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vsubq_f32(*(float32x4_t *)&armNeonVector,
@@ -250,11 +250,11 @@ public:
 	}
 	REVector3 & operator-=(const REFloat32 scalar)
 	{
-		return this->SubtractScalar(scalar);
+		return this->subtractScalar(scalar);
 	}
 	
 	/// "this vector" * another vector
-	REVector3 & Multiply(const REVector3 & anotherVector3D)
+	REVector3 & multiply(const REVector3 & anotherVector3D)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -268,10 +268,10 @@ public:
 	}
 	REVector3 & operator*=(const REVector3 & anotherVector3D)
 	{
-		return this->Multiply(anotherVector3D);
+		return this->multiply(anotherVector3D);
 	}
 	/// "this vector" * float value (scalar)
-	REVector3 & MultiplyScalar(const REFloat32 scalar)
+	REVector3 & multiplyScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -285,11 +285,11 @@ public:
 	}
 	REVector3 & operator*=(const REFloat32 scalar)
 	{
-		return this->MultiplyScalar(scalar);
+		return this->multiplyScalar(scalar);
 	}
 	
 	/// "this vector" / another vector
-	REVector3 & Divide(const REVector3 & anotherVector3D)
+	REVector3 & divide(const REVector3 & anotherVector3D)
 	{
 		if ((anotherVector3D.x == 0.0f) || (anotherVector3D.y == 0.0f) || (anotherVector3D.z == 0.0f)) 
 		{
@@ -305,10 +305,10 @@ public:
 	}
 	REVector3 & operator/=(const REVector3 & anotherVector3D)
 	{
-		return this->Divide(anotherVector3D);
+		return this->divide(anotherVector3D);
 	}
 	/// "this vector" / float value (scalar)
-	REVector3 & DivideScalar(const REFloat32 scalar)
+	REVector3 & divideScalar(const REFloat32 scalar)
 	{
 		if (scalar == 0.0f) 
 		{
@@ -324,62 +324,62 @@ public:
 	}
 	REVector3 & operator/=(const REFloat32 scalar)
 	{
-		return this->DivideScalar(scalar);
+		return this->divideScalar(scalar);
 	}
 	
 	REVector3 operator+(const REFloat32 scalar) const
 	{
 		REVector3 v(*this);
-		v.AddScalar(scalar);
+		v.addScalar(scalar);
 		return v;
 	}
 	
 	REVector3 operator+(const REVector3 & anotherVector3D) const
 	{
 		REVector3 v(*this);
-		v.Add(anotherVector3D);
+		v.add(anotherVector3D);
 		return v;
 	}
 	
 	REVector3 operator-(const REFloat32 scalar) const
 	{
 		REVector3 v(*this);
-		v.SubtractScalar(scalar);
+		v.subtractScalar(scalar);
 		return v;
 	}
 	
 	REVector3 operator-(const REVector3 & anotherVector3D) const
 	{
 		REVector3 v(*this);
-		v.Subtract(anotherVector3D);
+		v.subtract(anotherVector3D);
 		return v;
 	}
 	
 	REVector3 operator*(const REVector3 & anotherVector3D) const
 	{
 		REVector3 v(*this);
-		v.Multiply(anotherVector3D);
+		v.multiply(anotherVector3D);
 		return v;
 	}
 	
 	REVector3 operator*(const REFloat32 scalar) const
 	{
 		REVector3 v(*this);
-		v.MultiplyScalar(scalar);
+		v.multiplyScalar(scalar);
 		return v;
 	}
 	
 	REVector3 operator/(const REVector3 & anotherVector3D) const
 	{
 		REVector3 v(*this);
-		v.Divide(anotherVector3D);
+		v.divide(anotherVector3D);
 		return v;
 	}
 	
 	REVector3 operator/(const REFloat32 scalar) const
 	{
 		REVector3 v(*this);
-		v.DivideScalar(scalar);
+		v.divideScalar(scalar);
 		return v;
 	}
 		
@@ -414,13 +414,13 @@ public:
 		return REVector3(-x, -y, -z);
 	}
 	
-	REVector3 & Rotate(const REVector3 & arroundVector, const REFloat32 clockwiseRadianAngle)
+	REVector3 & rotate(const REVector3 & arroundVector, const REFloat32 clockwiseRadianAngle)
 	{
 		const REFloat32 negativeHalfAngle = (-clockwiseRadianAngle / 2.0f);
 		const REFloat32 s = sinf(negativeHalfAngle);
 	
 		REVector3 normalizedVector(arroundVector);
-		normalizedVector.Normalize();
+		normalizedVector.normalize();
 		
 		REFloat32 x = normalizedVector.x * s;
 		REFloat32 y = normalizedVector.y * s;
@@ -445,7 +445,7 @@ public:
 	
 	/// Settes vector value from one point coords to another coords.
 	/// Can used for creating direction vector from one object coords to another object coords.
-	REVector3 & SetFromCoordinates(const REPoint3 & fromPoint, const REPoint3 & toPoint)
+	REVector3 & setFromCoordinates(const REPoint3 & fromPoint, const REPoint3 & toPoint)
 	{
 		x = (toPoint.x - fromPoint.x);
 		y = (toPoint.y - fromPoint.y);
@@ -455,7 +455,7 @@ public:
 	
 	/// Settes vector value from one point coords to another coords.
 	/// Can used for creating direction vector from one object coords to another object coords.
-	REVector3 & SetFromCoordinates(const REFloat32 fromPointX,
+	REVector3 & setFromCoordinates(const REFloat32 fromPointX,
 								   const REFloat32 fromPointY,
 								   const REFloat32 fromPointZ,
 								   const REFloat32 toPointX,
@@ -468,7 +468,7 @@ public:
 		return (*this);
 	}
 	
-	REVector3 & Set(const REFloat32 newX, const REFloat32 newY, const REFloat32 newZ)
+	REVector3 & set(const REFloat32 newX, const REFloat32 newY, const REFloat32 newZ)
 	{
 		x = newX;
 		y = newY;

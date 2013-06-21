@@ -19,15 +19,15 @@
 
 REMainLoopsObjectsStoragePrivate * REMainLoopsObjectsStoragePrivate::_storage = NULL;
 
-REUInt32 REMainLoopsObjectsStoragePrivate::Index(REArray<REMainLoopUpdatable *> * arr, const REUIdentifier objectId)
+REUInt32 REMainLoopsObjectsStoragePrivate::index(REArray<REMainLoopUpdatable *> * arr, const REUIdentifier objectId)
 {
 	REUInt32 i = 0;
-	while (i < arr->Count())
+	while (i < arr->count())
 	{
-		REMainLoopUpdatable * o = arr->At(i);
+		REMainLoopUpdatable * o = arr->at(i);
 		if (o)
 		{
-			if (objectId == o->GetMainLoopUpdatableIdentifier())
+			if (objectId == o->getMainLoopUpdatableIdentifier())
 			{
 				return i;
 			}
@@ -37,66 +37,66 @@ REUInt32 REMainLoopsObjectsStoragePrivate::Index(REArray<REMainLoopUpdatable *> 
 	return RENotFound;
 }
 
-REBOOL REMainLoopsObjectsStoragePrivate::Add(REMainLoopUpdatable * object)
+REBOOL REMainLoopsObjectsStoragePrivate::add(REMainLoopUpdatable * object)
 {
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	
-	const REUInt32 index = REMainLoopsObjectsStoragePrivate::Index(&_objects, object->GetMainLoopUpdatableIdentifier());
+	const REUInt32 index = REMainLoopsObjectsStoragePrivate::index(&_objects, object->getMainLoopUpdatableIdentifier());
 	if (index == RENotFound)
 	{
-		const REBOOL r = _objects.Add(object);
-		_updateMutex.Unlock();
+		const REBOOL r = _objects.add(object);
+		_updateMutex.unlock();
 		return r;
 	}
 	
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
-REBOOL REMainLoopsObjectsStoragePrivate::Remove(REMainLoopUpdatable * object)
+REBOOL REMainLoopsObjectsStoragePrivate::remove(REMainLoopUpdatable * object)
 {
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	
-	const REUInt32 index = REMainLoopsObjectsStoragePrivate::Index(&_objects, object->GetMainLoopUpdatableIdentifier());
+	const REUInt32 index = REMainLoopsObjectsStoragePrivate::index(&_objects, object->getMainLoopUpdatableIdentifier());
 	if (index != RENotFound)
 	{
-		const REBOOL r = _objects.RemoveAt(index);
-		_updateMutex.Unlock();
+		const REBOOL r = _objects.removeAt(index);
+		_updateMutex.unlock();
 		return r;
 	}
 	
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
-void REMainLoopsObjectsStoragePrivate::Update(const RETimeInterval time)
+void REMainLoopsObjectsStoragePrivate::update(const RETimeInterval time)
 {
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	
-	for (REUInt32 i = 0; i < _objects.Count(); i++)
+	for (REUInt32 i = 0; i < _objects.count(); i++)
 	{
-		REMainLoopUpdatable * o = _objects.At(i);
+		REMainLoopUpdatable * o = _objects.at(i);
 		if (o)
 		{
-			o->Update(time);
+			o->update(time);
 		}
 	}
 	
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 }
 
-REBOOL REMainLoopsObjectsStoragePrivate::IsEmptyAndIDLE() const
+REBOOL REMainLoopsObjectsStoragePrivate::isEmptyAndIDLE() const
 {
-	if (_updateMutex.IsInitialized())
+	if (_updateMutex.isInitialized())
 	{
-		return (_objects.IsEmpty() && !_updateMutex.IsLocked());
+		return (_objects.isEmpty() && !_updateMutex.isLocked());
 	}
-	return _objects.IsEmpty();
+	return _objects.isEmpty();
 }
 
 REMainLoopsObjectsStoragePrivate::REMainLoopsObjectsStoragePrivate()
 {
-	_updateMutex.Init(REMutexTypeRecursive);
+	_updateMutex.init(REMutexTypeRecursive);
 }
 
 REMainLoopsObjectsStoragePrivate::~REMainLoopsObjectsStoragePrivate()
@@ -104,7 +104,7 @@ REMainLoopsObjectsStoragePrivate::~REMainLoopsObjectsStoragePrivate()
 	
 }
 
-REMainLoopsObjectsStoragePrivate * REMainLoopsObjectsStoragePrivate::GetStorage()
+REMainLoopsObjectsStoragePrivate * REMainLoopsObjectsStoragePrivate::getStorage()
 {
 	if (_storage)
 	{
@@ -115,7 +115,7 @@ REMainLoopsObjectsStoragePrivate * REMainLoopsObjectsStoragePrivate::GetStorage(
 	return _storage;
 }
 
-void REMainLoopsObjectsStoragePrivate::ReleaseStorage()
+void REMainLoopsObjectsStoragePrivate::releaseStorage()
 {
 	if (_storage)
 	{
@@ -125,30 +125,30 @@ void REMainLoopsObjectsStoragePrivate::ReleaseStorage()
 	}
 }
 
-REBOOL REMainLoopsObjectsStoragePrivate::AddObject(REMainLoopUpdatable * object)
+REBOOL REMainLoopsObjectsStoragePrivate::addObject(REMainLoopUpdatable * object)
 {
 	if (object)
 	{
-		REMainLoopsObjectsStoragePrivate * storage = REMainLoopsObjectsStoragePrivate::GetStorage();
+		REMainLoopsObjectsStoragePrivate * storage = REMainLoopsObjectsStoragePrivate::getStorage();
 		if (storage)
 		{
-			return storage->Add(object);
+			return storage->add(object);
 		}
 	}
 	return false;
 }
 
-REBOOL REMainLoopsObjectsStoragePrivate::RemoveObject(REMainLoopUpdatable * object)
+REBOOL REMainLoopsObjectsStoragePrivate::removeObject(REMainLoopUpdatable * object)
 {
 	if (object)
 	{
 		if (_storage)
 		{
-			if (_storage->Remove(object))
+			if (_storage->remove(object))
 			{
-				if (_storage->IsEmptyAndIDLE())
+				if (_storage->isEmptyAndIDLE())
 				{
-					REMainLoopsObjectsStoragePrivate::ReleaseStorage();
+					REMainLoopsObjectsStoragePrivate::releaseStorage();
 				}
 				return true;
 			}
@@ -162,10 +162,10 @@ REBOOL REMainLoopsObjectsStoragePrivate::RemoveObject(REMainLoopUpdatable * obje
 	return false;
 }
 
-void REMainLoopsObjectsStoragePrivate::UpdateStorage(const RETimeInterval time)
+void REMainLoopsObjectsStoragePrivate::updateStorage(const RETimeInterval time)
 {
 	if (_storage)
 	{
-		_storage->Update(time);
+		_storage->update(time);
 	}
 }

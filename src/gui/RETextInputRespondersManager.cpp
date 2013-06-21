@@ -19,7 +19,7 @@
 
 __RE_PUBLIC_CLASS_API__ RETextInputRespondersManager * RETextInputRespondersManager::_defaulTextInputRespondersManager = NULL;
 
-void RETextInputRespondersManager::SetFirstState(RETextInputRespondersManager::Responder * resp, REBOOL isFirst)
+void RETextInputRespondersManager::setFirstState(RETextInputRespondersManager::Responder * resp, REBOOL isFirst)
 {
 	if (resp->isFirst != isFirst) 
 	{
@@ -29,7 +29,7 @@ void RETextInputRespondersManager::SetFirstState(RETextInputRespondersManager::R
 			{
 				if (_callBacks.EndTextInputCallBack())
 				{
-					resp->object->OnTextInputResponderTextInputEnded();
+					resp->object->onTextInputResponderTextInputEnded();
 				}
 			}
 		}
@@ -37,17 +37,17 @@ void RETextInputRespondersManager::SetFirstState(RETextInputRespondersManager::R
 		{
 			if (_callBacks.StartUTF8TextInputCallBack)
 			{
-				if (_callBacks.StartUTF8TextInputCallBack(resp->object->GetTextInputResponderText().UTF8String()))
+				if (_callBacks.StartUTF8TextInputCallBack(resp->object->getTextInputResponderText().UTF8String()))
 				{
-					resp->object->OnTextInputResponderTextInputStarted();
+					resp->object->onTextInputResponderTextInputStarted();
 				}
 			}
 			else if (_callBacks.StartWideTextInputCallBack)
 			{
-				REStringPresentation p(resp->object->GetTextInputResponderText());
-				if (_callBacks.StartWideTextInputCallBack(p.WideString()))
+				REStringPresentation p(resp->object->getTextInputResponderText());
+				if (_callBacks.StartWideTextInputCallBack(p.wideString()))
 				{
-					resp->object->OnTextInputResponderTextInputStarted();
+					resp->object->onTextInputResponderTextInputStarted();
 				}
 			}
 		}
@@ -57,109 +57,109 @@ void RETextInputRespondersManager::SetFirstState(RETextInputRespondersManager::R
 
 /// Called when text changed. Wide string version.
 /// Returns accepted wide string and length if defined pointer to 'acceptedLength' value.
-REUInt32 RETextInputRespondersManager::AcceptNewWideText(const wchar_t * newText)
+REUInt32 RETextInputRespondersManager::acceptNewWideText(const wchar_t * newText)
 {
 	REUInt32 r = 0;
-	_mutex.Lock();
+	_mutex.lock();
 	if (_firstResponder) 
 	{
 		REUInt32 needLen = newText ? (REUInt32)wcslen(newText) : 0;
-		if (_firstResponder->object->IsTextInputResponderHasMaximumTextLength()) 
+		if (_firstResponder->object->isTextInputResponderHasMaximumTextLength()) 
 		{
-			const REUInt32 maxLen = _firstResponder->object->GetTextInputResponderMaximumTextLength();
+			const REUInt32 maxLen = _firstResponder->object->getTextInputResponderMaximumTextLength();
 			if (needLen > maxLen) { needLen = maxLen; }
 		}
 		
 		REString t(newText, needLen);
 		r = needLen;
-		_firstResponder->object->OnTextInputResponderTextChanged(t);
+		_firstResponder->object->onTextInputResponderTextChanged(t);
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return r;
 }
 
 /// Called when text changed. Plaine C string version.
 /// Returns accepted wide string and length if defined pointer to 'acceptedLength' value.
-REUInt32 RETextInputRespondersManager::AcceptNewUTF8Text(const char * newText)
+REUInt32 RETextInputRespondersManager::acceptNewUTF8Text(const char * newText)
 {
-	_mutex.Lock();
+	_mutex.lock();
 	REUInt32 r = 0;
 	
 	REStringPresentation newTextP(newText);
-	r = this->AcceptNewWideText(newTextP.WideString());
+	r = this->acceptNewWideText(newTextP.wideString());
 	
-	_mutex.Unlock();
+	_mutex.unlock();
 	return r;
 }
 
 /// User side action. Called when text input ended/cancelled by user.
-void RETextInputRespondersManager::OnTextInputEnded()
+void RETextInputRespondersManager::onTextInputEnded()
 {
-	_mutex.Lock();
+	_mutex.lock();
 	if (_firstResponder) 
 	{
-		_firstResponder->object->OnTextInputResponderTextInputEnded();
+		_firstResponder->object->onTextInputResponderTextInputEnded();
 		_firstResponder->isFirst = false;
 		_firstResponder = NULL;
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 }
 
-void RETextInputRespondersManager::SetStartWideTextInputCallBack(int (*StartWideTextInputCallBack)(const wchar_t *))
+void RETextInputRespondersManager::setStartWideTextInputCallBack(int (*StartWideTextInputCallBack)(const wchar_t *))
 {
 	_callBacks.StartWideTextInputCallBack = StartWideTextInputCallBack;
 }
 
-void RETextInputRespondersManager::SetStartUTF8TextInputCallBack(int (*StartUTF8TextInputCallBack)(const char *))
+void RETextInputRespondersManager::setStartUTF8TextInputCallBack(int (*StartUTF8TextInputCallBack)(const char *))
 {
 	_callBacks.StartUTF8TextInputCallBack = StartUTF8TextInputCallBack;
 }
 
-void RETextInputRespondersManager::SetEndTextInputCallBack(int (*EndTextInputCallBack)())
+void RETextInputRespondersManager::setEndTextInputCallBack(int (*EndTextInputCallBack)())
 {
 	_callBacks.EndTextInputCallBack = EndTextInputCallBack;
 }
 
-RETextInputRespondersManager::Responder * RETextInputRespondersManager::GetResponderForObjectIdentifier(const REUIdentifier respObjectId, REUInt32 * index)
+RETextInputRespondersManager::Responder * RETextInputRespondersManager::getResponderForObjectIdentifier(const REUIdentifier respObjectId, REUInt32 * index)
 {
-	_mutex.Lock();
-	for (REUInt32 i = 0; i < _responders.Count(); i++) 
+	_mutex.lock();
+	for (REUInt32 i = 0; i < _responders.count(); i++) 
 	{
 		RETextInputRespondersManager::Responder * resp = _responders[i];
-		if (respObjectId == resp->object->GetTextInputResponderObjectIdentifier()) 
+		if (respObjectId == resp->object->getTextInputResponderObjectIdentifier()) 
 		{
 			if (index) { (*index) = i; }
-			_mutex.Unlock();
+			_mutex.unlock();
 			return resp;
 		}
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return NULL;
 }
 
-void RETextInputRespondersManager::Clear()
+void RETextInputRespondersManager::clear()
 {
-	_mutex.Lock();
-	for (REUInt32 i = 0; i < _responders.Count(); i++) 
+	_mutex.lock();
+	for (REUInt32 i = 0; i < _responders.count(); i++) 
 	{
 		RETextInputRespondersManager::Responder * resp = _responders[i];
-		resp->Release();
+		resp->release();
 	}
-	_responders.Clear();
-	_mutex.Unlock();
+	_responders.clear();
+	_mutex.unlock();
 }
 
 /// Register responder. Can call in contructor of IRETextInputResponder object.
 /// If not it's will register when try to become first responder and not registered yet.
-REBOOL RETextInputRespondersManager::RegisterResponder(IRETextInputResponder * responder)
+REBOOL RETextInputRespondersManager::registerResponder(IRETextInputResponder * responder)
 {
-	_mutex.Lock();
+	_mutex.lock();
 	if (responder) 
 	{
-		RETextInputRespondersManager::Responder * resp = this->GetResponderForObjectIdentifier(responder->GetTextInputResponderObjectIdentifier(), NULL);
+		RETextInputRespondersManager::Responder * resp = this->getResponderForObjectIdentifier(responder->getTextInputResponderObjectIdentifier(), NULL);
 		if (resp) 
 		{
-			_mutex.Unlock();
+			_mutex.unlock();
 			return true;
 		}
 		
@@ -167,47 +167,47 @@ REBOOL RETextInputRespondersManager::RegisterResponder(IRETextInputResponder * r
 		if (resp) 
 		{
 			REBOOL isAdded = false;
-			if (_responders.Add(resp)) { isAdded = true; }
+			if (_responders.add(resp)) { isAdded = true; }
 			else { delete resp; }
-			_mutex.Unlock();
+			_mutex.unlock();
 			return isAdded;
 		}
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return false;
 }
 
 /// Unregister responder. Can call in desctructor of IRETextInputResponder object.
-REBOOL RETextInputRespondersManager::UnRegisterResponder(IRETextInputResponder * responder)
+REBOOL RETextInputRespondersManager::unRegisterResponder(IRETextInputResponder * responder)
 {
-	_mutex.Lock();
+	_mutex.lock();
 	if (responder) 
 	{
 		REUInt32 index = 0;
-		RETextInputRespondersManager::Responder * resp = this->GetResponderForObjectIdentifier(responder->GetTextInputResponderObjectIdentifier(), &index);
+		RETextInputRespondersManager::Responder * resp = this->getResponderForObjectIdentifier(responder->getTextInputResponderObjectIdentifier(), &index);
 		if (resp) 
 		{
 			REBOOL isRemoved = false;
-			if (_responders.RemoveAt(index)) 
+			if (_responders.removeAt(index)) 
 			{
-				resp->Release();
+				resp->release();
 				isRemoved = true;
 			}
-			_mutex.Unlock();
+			_mutex.unlock();
 			return isRemoved;
 		}
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return false;
 }
 
 /// Set object as first responder.
-REBOOL RETextInputRespondersManager::SetFirstResponder(IRETextInputResponder * newFirstResponder)
+REBOOL RETextInputRespondersManager::setFirstResponder(IRETextInputResponder * newFirstResponder)
 {
-	_mutex.Lock();
-	if (this->IsFirstResponder(newFirstResponder)) 
+	_mutex.lock();
+	if (this->isFirstResponder(newFirstResponder)) 
 	{
-		_mutex.Unlock();
+		_mutex.unlock();
 		return true;
 	}
 	
@@ -216,12 +216,12 @@ REBOOL RETextInputRespondersManager::SetFirstResponder(IRETextInputResponder * n
 		_firstResponder = NULL;
 		REBOOL isFound = false;
 		REUInt32 foundIndex = 0;
-		const REUIdentifier respObjectId = newFirstResponder->GetTextInputResponderObjectIdentifier();
-		for (REUInt32 i = 0; i < _responders.Count(); i++) 
+		const REUIdentifier respObjectId = newFirstResponder->getTextInputResponderObjectIdentifier();
+		for (REUInt32 i = 0; i < _responders.count(); i++) 
 		{
 			RETextInputRespondersManager::Responder * resp = _responders[i];
-			this->SetFirstState(resp, false);
-			if (respObjectId == resp->object->GetTextInputResponderObjectIdentifier()) 
+			this->setFirstState(resp, false);
+			if (respObjectId == resp->object->getTextInputResponderObjectIdentifier()) 
 			{
 				isFound = true;
 				foundIndex = i;
@@ -232,84 +232,84 @@ REBOOL RETextInputRespondersManager::SetFirstResponder(IRETextInputResponder * n
 		if (isFound) 
 		{
 			RETextInputRespondersManager::Responder * resp = _responders[foundIndex];
-			this->SetFirstState(resp, true);
+			this->setFirstState(resp, true);
 			_firstResponder = resp;
 		}
 		
-		_mutex.Unlock();
+		_mutex.unlock();
 		return isFound;
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return false;
 }
 
 /// Remove object from first responders stack.
-REBOOL RETextInputRespondersManager::RemoveFirstResponder(IRETextInputResponder * firstResponder)
+REBOOL RETextInputRespondersManager::removeFirstResponder(IRETextInputResponder * firstResponder)
 {
-	_mutex.Lock();
+	_mutex.lock();
 	if (firstResponder) 
 	{
-		if (this->IsFirstResponder(firstResponder)) 
+		if (this->isFirstResponder(firstResponder)) 
 		{
-			const REUIdentifier respObjectId = firstResponder->GetTextInputResponderObjectIdentifier();
-			for (REUInt32 i = 0; i < _responders.Count(); i++) 
+			const REUIdentifier respObjectId = firstResponder->getTextInputResponderObjectIdentifier();
+			for (REUInt32 i = 0; i < _responders.count(); i++) 
 			{
 				RETextInputRespondersManager::Responder * resp = _responders[i];
-				if (respObjectId == resp->object->GetTextInputResponderObjectIdentifier()) 
+				if (respObjectId == resp->object->getTextInputResponderObjectIdentifier()) 
 				{
-					this->SetFirstState(resp, false);
+					this->setFirstState(resp, false);
 					if (_firstResponder) 
 					{
-						if (respObjectId == _firstResponder->object->GetTextInputResponderObjectIdentifier()) 
+						if (respObjectId == _firstResponder->object->getTextInputResponderObjectIdentifier()) 
 						{
 							_firstResponder = NULL;
 						}
 					}
-					_mutex.Unlock();
+					_mutex.unlock();
 					return true;
 				}
 			}
 		}
 		else 
 		{
-			_mutex.Unlock();
+			_mutex.unlock();
 			return true;
 		}
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return false;
 }
 
 /// Check 'responder' is first.
-REBOOL RETextInputRespondersManager::IsFirstResponder(IRETextInputResponder * responder)
+REBOOL RETextInputRespondersManager::isFirstResponder(IRETextInputResponder * responder)
 {
-	_mutex.Lock();
+	_mutex.lock();
 	if (responder && _firstResponder) 
 	{
-		if (_firstResponder->object->GetTextInputResponderObjectIdentifier() ==
-			responder->GetTextInputResponderObjectIdentifier()) 
+		if (_firstResponder->object->getTextInputResponderObjectIdentifier() ==
+			responder->getTextInputResponderObjectIdentifier()) 
 		{
-			_mutex.Unlock();
+			_mutex.unlock();
 			return true;
 		}
 	}
-	_mutex.Unlock();
+	_mutex.unlock();
 	return false;
 }
 
 RETextInputRespondersManager::RETextInputRespondersManager() :
 	_firstResponder(NULL)
 {
-	_mutex.Init(REMutexTypeRecursive);
+	_mutex.init(REMutexTypeRecursive);
 	memset(&_callBacks, 0, sizeof(RETextInputRespondersManager::CallBacksStruct));
 }
 
 RETextInputRespondersManager::~RETextInputRespondersManager()
 {
-	this->Clear();
+	this->clear();
 }
 
-RETextInputRespondersManager * RETextInputRespondersManager::GetDefaultManager()
+RETextInputRespondersManager * RETextInputRespondersManager::getDefaultManager()
 {
 	if (_defaulTextInputRespondersManager == NULL) 
 	{
@@ -318,13 +318,9 @@ RETextInputRespondersManager * RETextInputRespondersManager::GetDefaultManager()
 	return _defaulTextInputRespondersManager;
 }
 
-void RETextInputRespondersManager::ReleaseDefaultManager()
+void RETextInputRespondersManager::releaseDefaultManager()
 {
-	if (_defaulTextInputRespondersManager) 
-	{
-		delete _defaulTextInputRespondersManager;
-		_defaulTextInputRespondersManager = NULL;
-	}
+	RE_SAFE_DELETE(_defaulTextInputRespondersManager);
 }
 
 

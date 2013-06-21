@@ -53,8 +53,8 @@ public:
 	static PyroParticles::PyroGraphics::IDevice * pyroPartGraphicsDevice;
 	static REUInt32 activeParticlesCount;
 	
-	static void InitParticles();
-	static void ReleaseParticles();
+	static void initParticles();
+	static void releaseParticles();
 #endif
 };
 
@@ -63,7 +63,7 @@ PyroParticles::IPyroParticleLibrary * REParticleViewPrivate::pyroPartLib = NULL;
 PyroParticles::PyroGraphics::IDevice * REParticleViewPrivate::pyroPartGraphicsDevice = NULL;
 REUInt32 REParticleViewPrivate::activeParticlesCount = 0;
 
-void REParticleViewPrivate::InitParticles()
+void REParticleViewPrivate::initParticles()
 {
 	if (REParticleViewPrivate::pyroPartLib == NULL)
 	{
@@ -122,7 +122,7 @@ void REParticleViewPrivate::InitParticles()
 	}
 }
 
-void REParticleViewPrivate::ReleaseParticles()
+void REParticleViewPrivate::releaseParticles()
 {
 	if (REParticleViewPrivate::pyroPartLib)
 	{
@@ -167,18 +167,18 @@ public:
 
 #endif
 
-REBOOL REParticleView::AcceptParticleViewStringParameter(REParticleView * particle, const char * key, const char * value)
+REBOOL REParticleView::acceptParticleViewStringParameter(REParticleView * particle, const char * key, const char * value)
 {
     if (strcmp(key, RE_PARTICLEVIEW_XML_PATH_KEY_STRING) == 0)
     {
-        return particle->InitFromFilePath(REString(value));
+        return particle->initFromFilePath(REString(value));
     }
     else if (strcmp(key, RE_PARTICLEVIEW_XML_CENTER_KEY_STRING) == 0)
     {
         REPoint2 c;
         if (sscanf(value, RE_PARTICLEVIEW_XML_CENTER_FORMAT_STRING, &c.x, &c.y) == 2)
         {
-            particle->SetCenter(c);
+            particle->setCenter(c);
             return true;
         }
     }
@@ -188,20 +188,20 @@ REBOOL REParticleView::AcceptParticleViewStringParameter(REParticleView * partic
 /* IREXMLSerializable */
 /// Acepting string parameter and value string presentation from XML document.
 /// Using when view controller loading from XML. This method can be invoked from non-main thread if view controller loading in background.
-REBOOL REParticleView::AcceptStringParameter(const char * key, const char * value)
+REBOOL REParticleView::acceptStringParameter(const char * key, const char * value)
 {
-    if (REView::AcceptStringParameter(key, value))
+    if (REView::acceptStringParameter(key, value))
     {
         return true;
     }
     if (key && value)
     {
-        return REParticleView::AcceptParticleViewStringParameter(this, key, value);
+        return REParticleView::acceptParticleViewStringParameter(this, key, value);
     }
     return false;
 }
 
-void REParticleView::Clear()
+void REParticleView::clear()
 {
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
     this->RemoveFromMainLoop();
@@ -224,26 +224,26 @@ void REParticleView::Clear()
 }
 
 /* REObject */
-const REUInt32 REParticleView::GetClassIdentifier() const
+const REUInt32 REParticleView::getClassIdentifier() const
 {
-	return REParticleView::ClassIdentifier();
+	return REParticleView::classIdentifier();
 }
 
-const REUInt32 REParticleView::ClassIdentifier()
+const REUInt32 REParticleView::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REParticleView");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REParticleView");
 	return clasIdentif;
 }
 
-REBOOL REParticleView::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REParticleView::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REParticleView::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REView::IsImplementsClass(classIdentifier));
+	return ((REParticleView::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
+			REView::isImplementsClass(classIdentifier));
 }
 
 /* IRERenderable */
-void REParticleView::Render()
+void REParticleView::render()
 {
 	if (_isVisible)
 	{
@@ -263,7 +263,7 @@ void REParticleView::Render()
 			const RERenderDeviceBlendType source = device->GetBlendSourceFactor();
 			const RERenderDeviceBlendType dest = device->GetBlendDestinationFactor();
 #if (defined(__RE_USING_OPENGL_ES__) || defined (__RE_USING_OPENGL__))
-			emitter->Render();
+			emitter->render();
             //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             //glAlphaFunc(GL_GREATER, 0.1f);
 #elif defined(__RE_USING_DIRECTX9__) 
@@ -280,7 +280,7 @@ void REParticleView::Render()
 			d3d9Device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 			d3d9Device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 			
-			emitter->Render();
+			emitter->render();
 			
 			d3d9Device->PopRenderStates();
 			d3d9Device->PopTextureStageStates();
@@ -290,11 +290,11 @@ void REParticleView::Render()
 		}
 #endif
 		
-		this->RenderSubViews(_frame.x, _frame.y);
+		this->renderSubViews(_frame.x, _frame.y);
 	}
 }
 
-void REParticleView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void REParticleView::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if (_isVisible)
 	{
@@ -314,7 +314,7 @@ void REParticleView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 o
 			const RERenderDeviceBlendType source = device->GetBlendSourceFactor();
 			const RERenderDeviceBlendType dest = device->GetBlendDestinationFactor();
 #if ( defined(__RE_USING_OPENGL__) || defined(__RE_USING_OPENGL_ES__) )
-			emitter->Render();
+			emitter->render();
             //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             //glAlphaFunc(GL_GREATER, 0.1f);
 #elif defined(__RE_USING_DIRECTX9__) 
@@ -331,7 +331,7 @@ void REParticleView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 o
 			d3d9Device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 			d3d9Device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE); 
 			
-			emitter->Render();
+			emitter->render();
 			
 			d3d9Device->PopRenderStates();
 			d3d9Device->PopTextureStageStates();
@@ -341,13 +341,13 @@ void REParticleView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 o
 		}
 #endif
 		
-		this->RenderSubViews(_frame.x, _frame.y);
+		this->renderSubViews(_frame.x, _frame.y);
 	}
 }
 
-void REParticleView::SetFrame(const RERect & newViewFrame)
+void REParticleView::setFrame(const RERect & newViewFrame)
 {
-	REView::SetFrame(newViewFrame);
+	REView::setFrame(newViewFrame);
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	if (_emitter)
 	{
@@ -366,7 +366,7 @@ void REParticleView::SetFrame(const RERect & newViewFrame)
 		emitter->SetScale( emiterScaleFactor );
 	}
 #endif
-	this->SetCenter(_frame.GetCenter());
+	this->setCenter(_frame.getCenter());
 }
 
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
@@ -384,8 +384,8 @@ REBOOL REParticleView::InitFromParticleViewFile(void * file)
         }
         catch (PyroParticles::CPyroException & e)
         {
-            RELog::Log("\nFailed PyroParticles::IPyroFile::LoadPyroFile: %s", e.GetExceptionMessage());
-            RELog::Log("\n\nUsing <PYRO_SDK_VERSION> can be defined as one version and compiled library using another(old) version of code.\nParticle editor generates current version(in header) of file witch is uncompatible with compiled library.\nDescribed bug was detected in iOS build.");
+            RELog::log("\nFailed PyroParticles::IPyroFile::LoadPyroFile: %s", e.GetExceptionMessage());
+            RELog::log("\n\nUsing <PYRO_SDK_VERSION> can be defined as one version and compiled library using another(old) version of code.\nParticle editor generates current version(in header) of file witch is uncompatible with compiled library.\nDescribed bug was detected in iOS build.");
             return false;
         }
 #else
@@ -428,9 +428,10 @@ REBOOL REParticleView::InitFromParticleViewFile(void * file)
 }
 #endif
 
-REBOOL REParticleView::InitFromFilePath(const REString & filePath)
+REBOOL REParticleView::initFromFilePath(const REString & filePath)
 {
-	this->Clear();
+	this->clear();
+	
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	if (REParticleViewPrivate::pyroPartLib)
 	{
@@ -441,12 +442,14 @@ REBOOL REParticleView::InitFromFilePath(const REString & filePath)
         }
     }
 #endif
+	
 	return false;
 }
 
-REBOOL REParticleView::InitFromFileData(const REData & fileData)
+REBOOL REParticleView::initFromFileData(const REData & fileData)
 {
-    this->Clear();
+    this->clear();
+	
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
     if (REParticleViewPrivate::pyroPartLib)
     {
@@ -460,9 +463,10 @@ REBOOL REParticleView::InitFromFileData(const REData & fileData)
     return false;
 }
 
-REBOOL REParticleView::InitFromFileBuffer(const REBuffer & fileBuffer)
+REBOOL REParticleView::initFromFileBuffer(const REBuffer & fileBuffer)
 {
-    this->Clear();
+    this->clear();
+	
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
     if (REParticleViewPrivate::pyroPartLib)
     {
@@ -473,10 +477,11 @@ REBOOL REParticleView::InitFromFileBuffer(const REBuffer & fileBuffer)
         }
     }
 #endif
+	
     return false;
 }
 
-void REParticleView::Reset()
+void REParticleView::reset()
 {
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	if (_emitter)
@@ -487,7 +492,7 @@ void REParticleView::Reset()
 #endif
 }
 
-void REParticleView::SetCenter(const REFloat32 centerX, const REFloat32 centerY)
+void REParticleView::setCenter(const REFloat32 centerX, const REFloat32 centerY)
 {
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	if (_emitter)
@@ -502,21 +507,21 @@ void REParticleView::SetCenter(const REFloat32 centerX, const REFloat32 centerY)
 		}
 	}
 #endif
-	_frame.SetCenter(centerX, centerY);
+	_frame.setCenter(centerX, centerY);
 }
 
-void REParticleView::SetCenter(const REPoint2 & center)
+void REParticleView::setCenter(const REPoint2 & center)
 {
-	this->SetCenter(center.x, center.y);
+	this->setCenter(center.x, center.y);
 }
 
-REPoint2 REParticleView::GetCenter() const
+REPoint2 REParticleView::getCenter() const
 {
-	return _frame.GetCenter();
+	return _frame.getCenter();
 }
 
 /* REMainLoopUpdatable */
-void REParticleView::Update(const RETimeInterval currentTime)
+void REParticleView::update(const RETimeInterval currentTime)
 {
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	PyroParticles::IPyroParticleEmitter * emitter = (PyroParticles::IPyroParticleEmitter *)_emitter;
@@ -548,9 +553,9 @@ void REParticleView::Update(const RETimeInterval currentTime)
 #endif
 }
 
-void REParticleView::OnReleased()
+void REParticleView::onReleased()
 {
-	this->Clear();
+	this->clear();
 	
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
 	if (REParticleViewPrivate::activeParticlesCount > 0)
@@ -564,7 +569,7 @@ void REParticleView::OnReleased()
 	}
 #endif
 	
-	REView::OnReleased();
+	REView::onReleased();
 }
 
 REParticleView::REParticleView() : REView()
@@ -591,14 +596,14 @@ REParticleView::~REParticleView()
 	
 }
 
-REParticleView * REParticleView::Create()
+REParticleView * REParticleView::create()
 {
 	REParticleView * newParticleView = new REParticleView();
 	return newParticleView;
 }
 
-const char * REParticleView::GetXMLPathKeyString() { return RE_PARTICLEVIEW_XML_PATH_KEY_STRING; }
-const char * REParticleView::GetXMLCenterKeyString() { return RE_PARTICLEVIEW_XML_CENTER_KEY_STRING; }
-const char * REParticleView::GetXMLCenterFormatString() { return RE_PARTICLEVIEW_XML_CENTER_FORMAT_STRING; }
+const char * REParticleView::getXMLPathKeyString() { return RE_PARTICLEVIEW_XML_PATH_KEY_STRING; }
+const char * REParticleView::getXMLCenterKeyString() { return RE_PARTICLEVIEW_XML_CENTER_KEY_STRING; }
+const char * REParticleView::getXMLCenterFormatString() { return RE_PARTICLEVIEW_XML_CENTER_FORMAT_STRING; }
 
 

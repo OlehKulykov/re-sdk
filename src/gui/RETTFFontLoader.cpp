@@ -67,10 +67,10 @@ public:
 	{
 		if (texture && image) 
 		{
-			texture->Update(image->GetImageData(), 
-							image->GetFormat(), 
-							image->GetWidth(), 
-							image->GetHeight());
+			texture->Update(image->getImageData(), 
+							image->getFormat(), 
+							image->getWidth(), 
+							image->getHeight());
 		}
 	}
 	RETTFFontLoaderUpdateTextureMainThreadTaskPrivate() : REObject(),
@@ -90,7 +90,7 @@ public:
 
 */
 
-void RETTFFontLoader::UpdateTextureMainThreadMethod(REObject * mainThreadTask)
+void RETTFFontLoader::updateTextureMainThreadMethod(REObject * mainThreadTask)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	RETTFFontLoaderUpdateTextureMainThreadTaskPrivate * task = (RETTFFontLoaderUpdateTextureMainThreadTaskPrivate *)mainThreadTask;
@@ -101,7 +101,7 @@ void RETTFFontLoader::UpdateTextureMainThreadMethod(REObject * mainThreadTask)
 #endif
 }
 
-void RETTFFontLoader::UpdateLastTexture()
+void RETTFFontLoader::updateLastTexture()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	RETTFFontLoaderUpdateTextureMainThreadTaskPrivate * task = new RETTFFontLoaderUpdateTextureMainThreadTaskPrivate();
@@ -109,16 +109,16 @@ void RETTFFontLoader::UpdateLastTexture()
 	{
 		task->texture = _imgTex.texture;
 		task->image = _imgTex.image;
-		if (REThread::IsMainThread()) 
+		if (REThread::isMainThread()) 
 		{
 			task->Update();
 		}
 		else
 		{
-			REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETTFFontLoader, this, UpdateTextureMainThreadMethod),
+			REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETTFFontLoader, this, updateTextureMainThreadMethod),
 																task);
 		}
-		task->Release();
+		task->release();
 		
 		
 		
@@ -138,7 +138,7 @@ void RETTFFontLoader::UpdateLastTexture()
 				fwrite(data->GetBuffer(), 1, data->GetSize(), f);
 				fclose(f);
 			}
-			data->Release();
+			data->release();
 		}
 		*/
 		
@@ -147,13 +147,13 @@ void RETTFFontLoader::UpdateLastTexture()
 		delete _imgTex.image;
 		_imgTex.image = NULL;
 		
-		_imgTex.texture->Release();
+		_imgTex.texture->release();
 		_imgTex.texture = NULL;
 	}
 #endif
 }
 
-void RETTFFontLoader::CreateNewTextureMainThreadMethod(REObject * mainThreadTask)
+void RETTFFontLoader::createNewTextureMainThreadMethod(REObject * mainThreadTask)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	RETTFFontLoaderCreateTextureMainThreadTaskPrivate * task = (RETTFFontLoaderCreateTextureMainThreadTaskPrivate*)mainThreadTask;
@@ -164,7 +164,7 @@ void RETTFFontLoader::CreateNewTextureMainThreadMethod(REObject * mainThreadTask
 #endif
 }
 
-int RETTFFontLoader::CompareByHeight(RETTFFontChar ** c1, RETTFFontChar ** c2)
+int RETTFFontLoader::compareByHeight(RETTFFontChar ** c1, RETTFFontChar ** c2)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	return ((int)(*c2)->bitmapHeight - (int)(*c1)->bitmapHeight);
@@ -173,16 +173,16 @@ int RETTFFontLoader::CompareByHeight(RETTFFontChar ** c1, RETTFFontChar ** c2)
 #endif
 }
 
-int RETTFFontLoader::CompareByCharCode(RETTFFontChar ** c1, RETTFFontChar ** c2)
+int RETTFFontLoader::compareByCharCode(RETTFFontChar ** c1, RETTFFontChar ** c2)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	return ((int)(*c1)->GetCharCode() - (int)(*c2)->GetCharCode());
+	return ((int)(*c1)->getCharCode() - (int)(*c2)->getCharCode());
 #else
 	return 0;
 #endif
 }
 
-void RETTFFontLoader::CalcTextureSize(RESize * retSize, const REUInt32 totalSquare)
+void RETTFFontLoader::calcTextureSize(RESize * retSize, const REUInt32 totalSquare)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	const REUInt32 sizes[5] = { 32, 64, 128, 256, 512 };
@@ -211,21 +211,21 @@ void RETTFFontLoader::CalcTextureSize(RESize * retSize, const REUInt32 totalSqua
 #endif
 }
 
-void RETTFFontLoader::CreateNewImage()
+void RETTFFontLoader::createNewImage()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	RESize needSize;
-	RETTFFontLoader::CalcTextureSize(&needSize, (_totalSquare - _processedSquare));
+	RETTFFontLoader::calcTextureSize(&needSize, (_totalSquare - _processedSquare));
 	
 	REImageBase * newBase = new REImageBase(REImagePixelFormatAlpha8, 
 											(REUInt32)needSize.width, 
 											(REUInt32)needSize.height);
 	if (newBase) 
 	{
-		if ( !newBase->IsNull() )
+		if ( !newBase->isNull() )
 		{
 			RETextureObject * newTexture = NULL;
-			if (REThread::IsMainThread()) 
+			if (REThread::isMainThread()) 
 			{
 				newTexture = RETextureObject::CreateWithBlankTexture(REImagePixelFormatAlpha8, (REUInt32)needSize.width, (REUInt32)needSize.height);
 			}
@@ -237,10 +237,10 @@ void RETTFFontLoader::CreateNewImage()
 					task->format = REImagePixelFormatAlpha8;
 					task->width = (REUInt32)needSize.width;
 					task->height = (REUInt32)needSize.height;
-					REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETTFFontLoader, this, CreateNewTextureMainThreadMethod),
+					REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETTFFontLoader, this, createNewTextureMainThreadMethod),
 																		task);
 					newTexture = task->GetNewTexture();
-					task->Release();
+					task->release();
 				}
 			}
 			
@@ -248,12 +248,12 @@ void RETTFFontLoader::CreateNewImage()
 			{
 				_imgTex.image = newBase;
 				_imgTex.texture = newTexture;
-				const REUInt32 dataSize = newBase->GetImageDataSize();
-				memset(newBase->GetImageData(), 0, dataSize);
+				const REUInt32 dataSize = newBase->getImageDataSize();
+				memset(newBase->getImageData(), 0, dataSize);
 				return;
 			}
 			
-			if (newTexture) { newTexture->Release(); }
+			if (newTexture) { newTexture->release(); }
 		}
 		
 		if (newBase) { delete newBase; }
@@ -264,14 +264,14 @@ void RETTFFontLoader::CreateNewImage()
 #endif
 }
 
-REBOOL RETTFFontLoader::IsCanWrite(REImageBase * img,const REUInt32 pX,const REUInt32 pY,const REUInt32 cW, const REUInt32 cH)
+REBOOL RETTFFontLoader::isCanWrite(REImageBase * img,const REUInt32 pX,const REUInt32 pY,const REUInt32 cW, const REUInt32 cH)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	if ( (pX + cW) > (img->GetWidth() - 1) ) 
+	if ( (pX + cW) > (img->getWidth() - 1) ) 
 	{
 		return false;
 	}
-	if ( (pY + cH) > (img->GetHeight() - 1) ) 
+	if ( (pY + cH) > (img->getHeight() - 1) ) 
 	{
 		return false;
 	}
@@ -279,7 +279,7 @@ REBOOL RETTFFontLoader::IsCanWrite(REImageBase * img,const REUInt32 pX,const REU
 	return true;
 }
 
-void RETTFFontLoader::PrepareForWriteChar(const REUInt32 cW, const REUInt32 cH)
+void RETTFFontLoader::prepareForWriteChar(const REUInt32 cW, const REUInt32 cH)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	if (_imgTex.image == NULL) 
@@ -287,17 +287,17 @@ void RETTFFontLoader::PrepareForWriteChar(const REUInt32 cW, const REUInt32 cH)
 		_lastX = CHARS_HORIZONTAL_SPACE;
 		_lastY = CHARS_VERTICAL_SPACE;
 		_lineFirstCharHeight = cH;
-		this->CreateNewImage();
+		this->createNewImage();
 		if (_imgTex.image == NULL) { return; }
 	}
 	
-	if ( RETTFFontLoader::IsCanWrite(_imgTex.image, _lastX, _lastY, cW, cH) ) { return; }
+	if ( RETTFFontLoader::isCanWrite(_imgTex.image, _lastX, _lastY, cW, cH) ) { return; }
 	
 	
 	//new line
 	const REUInt32 newPosX = CHARS_HORIZONTAL_SPACE;
 	const REUInt32 newPosY = _lastY + _lineFirstCharHeight + CHARS_VERTICAL_SPACE;
-	if (RETTFFontLoader::IsCanWrite(_imgTex.image, newPosX, newPosY, cW, cH))
+	if (RETTFFontLoader::isCanWrite(_imgTex.image, newPosX, newPosY, cW, cH))
 	{
 		_lastX = newPosX;
 		_lastY = newPosY;
@@ -308,18 +308,18 @@ void RETTFFontLoader::PrepareForWriteChar(const REUInt32 cW, const REUInt32 cH)
 		//new image for texture
 		if (_imgTex.image && _imgTex.texture) 
 		{
-			this->UpdateLastTexture();
+			this->updateLastTexture();
 		}
 		
 		_lastX = CHARS_HORIZONTAL_SPACE;
 		_lastY = CHARS_VERTICAL_SPACE;
 		_lineFirstCharHeight = cH;
-		this->CreateNewImage();
+		this->createNewImage();
 	}
 #endif
 }
 
-void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
+void RETTFFontLoader::writeGlyphToImage(RETTFFontChar * ttfChar)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	const REUInt32 charWidth = (REUInt32)ttfChar->bitmapWidth;
@@ -331,12 +331,12 @@ void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
 		return; 
 	}
 	
-	this->PrepareForWriteChar(charWidth, charHeight);
+	this->prepareForWriteChar(charWidth, charHeight);
 	if (_imgTex.image == NULL) { return; }
 	
-	const REUInt32 imgWidth = _imgTex.image->GetWidth();
+	const REUInt32 imgWidth = _imgTex.image->getWidth();
 	const REFloat32 floatImageWidth = (REFloat32)imgWidth;
-	const REFloat32 floatImageHeight = (REFloat32)_imgTex.image->GetHeight();
+	const REFloat32 floatImageHeight = (REFloat32)_imgTex.image->getHeight();
 	ttfChar->textureFrame.bottomLeftX = ttfChar->textureFrame.topLeftX = ((REFloat32)_lastX) / floatImageWidth;
 	ttfChar->textureFrame.topRightY = ttfChar->textureFrame.topLeftY = ((REFloat32)_lastY) / floatImageHeight;
 	ttfChar->textureFrame.topRightX = ttfChar->textureFrame.bottomRightX = ((REFloat32)(charWidth + _lastX)) / floatImageWidth;
@@ -345,7 +345,7 @@ void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
 	if (_imgTex.texture) 
 	{
 		ttfChar->texture = _imgTex.texture;
-		ttfChar->texture->Retain();
+		ttfChar->texture->retain();
 	}
 	
 	if (_isUseGammaCorection) 
@@ -354,7 +354,7 @@ void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
 		const REUByte * bitmap_buffer = (REUByte *)ttfChar->bitmap;
 		for (REUInt32 y = 0; y < charHeight; y++)
 		{
-			REUByte * dst = _imgTex.image->GetImageData();
+			REUByte * dst = _imgTex.image->getImageData();
 			dst += ((dstWriteY*imgWidth) + _lastX);
 			for (REUInt32 x = 0; x < charWidth; x++)
 			{
@@ -370,7 +370,7 @@ void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
 		const REUByte * bitmap_buffer = (REUByte *)ttfChar->bitmap;
 		for (REUInt32 y = 0; y < charHeight; y++)
 		{
-			REUByte * dst = _imgTex.image->GetImageData();
+			REUByte * dst = _imgTex.image->getImageData();
 			dst += (((y+_lastY)*imgWidth) + _lastX);
 			REMem::Memcpy(dst, bitmap_buffer + (y*ttfChar->bitmapPitch), charWidth);
 		}
@@ -383,36 +383,36 @@ void RETTFFontLoader::WriteGlyphToImage(RETTFFontChar * ttfChar)
 #endif
 }
 
-void RETTFFontLoader::ProcessReadedGlyphs()
+void RETTFFontLoader::processReadedGlyphs()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	_chars->Sort(RETTFFontLoader::CompareByHeight);
+	_chars->sort(RETTFFontLoader::compareByHeight);
 	
 	_processedSquare = 0;
-	for (REUInt32 i = 0; i < _chars->Count(); i++) 
+	for (REUInt32 i = 0; i < _chars->count(); i++) 
 	{
 		RETTFFontChar * loadedChar = (*_chars)[i];
-		this->WriteGlyphToImage(loadedChar);
+		this->writeGlyphToImage(loadedChar);
 	}
 	
 	if (_imgTex.image && _imgTex.texture) 
 	{
-		this->UpdateLastTexture();
+		this->updateLastTexture();
 	}
 	
-	_chars->Sort(RETTFFontLoader::CompareByCharCode);
+	_chars->sort(RETTFFontLoader::compareByCharCode);
 #endif
 }
 
-void RETTFFontLoader::ReadGlyphs()
+void RETTFFontLoader::readGlyphs()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	_totalSquare = 0;
 	FT_Face * face = (FT_Face *)_face;
-	for (REUInt32 i = 0; i < _chars->Count(); i++) 
+	for (REUInt32 i = 0; i < _chars->count(); i++) 
 	{
 		RETTFFontChar * loadedChar = (*_chars)[i];
-		const FT_UInt glyph_index = FT_Get_Char_Index(*face, (FT_ULong)loadedChar->GetCharCode());
+		const FT_UInt glyph_index = FT_Get_Char_Index(*face, (FT_ULong)loadedChar->getCharCode());
 		//if (loadedChar->GetCharCode() == L'g') { printf("\nchar=g"); }
 		if (glyph_index != 0) 
 		{
@@ -454,13 +454,13 @@ void RETTFFontLoader::ReadGlyphs()
 #endif
 }
 
-void RETTFFontLoader::ReadChars()
+void RETTFFontLoader::readChars()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	const REUInt32 numGlyphs = this->GetGlyphsCount();
+	const REUInt32 numGlyphs = this->getGlyphsCount();
 	if (numGlyphs == 0) { return; }
 	
-	_chars->SetCapacity(numGlyphs + 1);
+	_chars->setCapacity(numGlyphs + 1);
 	FT_Face * face = (FT_Face *)_face;
 	FT_UInt gindex = 0;
 	FT_ULong charcode = FT_Get_First_Char(*face, &gindex);
@@ -470,7 +470,7 @@ void RETTFFontLoader::ReadChars()
 		RETTFFontChar * newChar = new RETTFFontChar((wchar_t)charcode);
 		if (newChar) 
 		{
-			if ( !_chars->Add(newChar) ) 
+			if ( !_chars->add(newChar) ) 
 			{
 				delete newChar;
 			}
@@ -481,7 +481,7 @@ void RETTFFontLoader::ReadChars()
 #endif
 }
 
-REBOOL RETTFFontLoader::IsCanLoad() const
+REBOOL RETTFFontLoader::isCanLoad() const
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	if (_library && _face) { return true; }
@@ -489,7 +489,7 @@ REBOOL RETTFFontLoader::IsCanLoad() const
 	return false;
 }
 
-void * RETTFFontLoader::CreateLib()
+void * RETTFFontLoader::createLib()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	FT_Library * library = (FT_Library *)REMem::Malloc(sizeof(FT_Library));
@@ -506,7 +506,7 @@ void * RETTFFontLoader::CreateLib()
 	return NULL;
 }
 
-void * RETTFFontLoader::CreateFace(const REBuffer & ttfFileBuffer)
+void * RETTFFontLoader::createFace(const REBuffer & ttfFileBuffer)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	FT_Face * face = (FT_Face *)REMem::Malloc(sizeof(FT_Face));
@@ -515,14 +515,14 @@ void * RETTFFontLoader::CreateFace(const REBuffer & ttfFileBuffer)
 		memset(face, 0, sizeof(FT_Face));
 		FT_Library * library = (FT_Library *)_library;
 		if ( FT_New_Memory_Face(*library, 
-								(const FT_Byte*)ttfFileBuffer.GetBuffer(), 
-								(FT_Long)ttfFileBuffer.GetSize(), 
+								(const FT_Byte*)ttfFileBuffer.getBuffer(), 
+								(FT_Long)ttfFileBuffer.getSize(), 
 								0, 
 								face ) == 0)
 		{
 			FT_Select_Charmap(*face, FT_ENCODING_UNICODE);
 			
-			const REUInt32 heightInPixels = this->GetFontHeightInPixels();
+			const REUInt32 heightInPixels = this->getFontHeightInPixels();
 			//size_t hres = 16;
 			//hres = 1;
 			//FT_Set_Char_Size(*face, heightInPixels * 64, heightInPixels * 64, 96, 96);
@@ -543,20 +543,20 @@ void * RETTFFontLoader::CreateFace(const REBuffer & ttfFileBuffer)
 	return NULL;
 }
 
-void RETTFFontLoader::SetFontDPI(const REUInt32 newDPI) 
+void RETTFFontLoader::setFontDPI(const REUInt32 newDPI) 
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	_fontDPI = newDPI;
 	if (_face) 
 	{
 		FT_Face * face = (FT_Face *)_face;
-		const REUInt32 heightInPixels = this->GetFontHeightInPixels();
+		const REUInt32 heightInPixels = this->getFontHeightInPixels();
 		FT_Set_Char_Size(*face, 0, (heightInPixels << 6), (FT_UInt)_fontDPI, (FT_UInt)_fontDPI);
 	}
 #endif
 }
 
-void RETTFFontLoader::GetInfo()
+void RETTFFontLoader::getInfo()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	FT_Face * face = (FT_Face *)_face;
@@ -564,7 +564,7 @@ void RETTFFontLoader::GetInfo()
 #endif
 }
 
-const REUInt32 RETTFFontLoader::GetGlyphsCount() const
+const REUInt32 RETTFFontLoader::getGlyphsCount() const
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	if (_face) 
@@ -577,7 +577,7 @@ const REUInt32 RETTFFontLoader::GetGlyphsCount() const
 	return 0;
 }
 
-const char * RETTFFontLoader::GetFamilyName() const
+const char * RETTFFontLoader::getFamilyName() const
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	if (_face) 
@@ -589,7 +589,7 @@ const char * RETTFFontLoader::GetFamilyName() const
 	return NULL;
 }
 
-const char * RETTFFontLoader::GetStyleName() const
+const char * RETTFFontLoader::getStyleName() const
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	if (_face) 
@@ -601,15 +601,15 @@ const char * RETTFFontLoader::GetStyleName() const
 	return NULL;
 }
 
-REBOOL RETTFFontLoader::LoadChars(REArray<RETTFFontChar *> * charsArray)
+REBOOL RETTFFontLoader::loadChars(REArray<RETTFFontChar *> * charsArray)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	if (this->IsCanLoad() && charsArray) 
+	if (this->isCanLoad() && charsArray) 
 	{
 		_chars = charsArray;
-		this->ReadChars();
-		this->ReadGlyphs();
-		this->ProcessReadedGlyphs();
+		this->readChars();
+		this->readGlyphs();
+		this->processReadedGlyphs();
 		_chars = NULL;
 		return true;
 	}
@@ -617,7 +617,7 @@ REBOOL RETTFFontLoader::LoadChars(REArray<RETTFFontChar *> * charsArray)
 	return false;
 }
 
-const REUInt32 RETTFFontLoader::GetFontHeightInPixels(const REFloat32 height)
+const REUInt32 RETTFFontLoader::getFontHeightInPixels(const REFloat32 height)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
 	RERenderDevice * device = RERenderDevice::GetDefaultDevice();
@@ -648,17 +648,17 @@ RETTFFontLoader::RETTFFontLoader(const REBuffer & ttfFileBuffer, const REFloat32
 	_imgTex.image = NULL;
 	_imgTex.texture = NULL;
 	
-	if ((ttfFileBuffer.GetSize() > 0) && (_fontHeight > 0.0f))
+	if ((ttfFileBuffer.getSize() > 0) && (_fontHeight > 0.0f))
 	{
-		_fontHeightPX = RETTFFontLoader::GetFontHeightInPixels(_fontHeight);
+		_fontHeightPX = RETTFFontLoader::getFontHeightInPixels(_fontHeight);
 		
-		_library = this->CreateLib();
+		_library = this->createLib();
 		if (_library) 
 		{
-			_face = this->CreateFace(ttfFileBuffer);
+			_face = this->createFace(ttfFileBuffer);
 			if (_face) 
 			{
-				this->GetInfo();
+				this->getInfo();
 			}
 		}
 	}
@@ -689,7 +689,7 @@ RETTFFontLoader::~RETTFFontLoader()
 	
 	if (_imgTex.texture) 
 	{
-		_imgTex.texture->Release();
+		_imgTex.texture->release();
 	}
 #endif
 }

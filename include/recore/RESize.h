@@ -72,10 +72,10 @@ public:
 	};
 	
 	/// Check is size is zero value.
-	REBOOL IsNull() const { return ( (width == 0.0f) && (height == 0.0f) ); }
+	REBOOL isNull() const { return ( (width == 0.0f) && (height == 0.0f) ); }
 	
 	/// Sets size to zero values.
-	RESize & SetToNull() { width = 0.0f; height = 0.0f; return (*this); }
+	RESize & setToNull() { width = 0.0f; height = 0.0f; return (*this); }
 	
 	/// Basic assignment from size struct.
 	RESize & operator=(const RESizeStruct & anotherSize)
@@ -120,6 +120,34 @@ public:
 	
 	/// Desctructor.
 	~RESize() { }
+	
+	/// Objective-c additions
+#if (defined(CG_EXTERN) || defined(CG_INLINE)) && defined(CGFLOAT_TYPE)
+	
+	CGSize getCGSize() const 
+	{
+		CGSize s;
+		s.width = (CGFloat)width; 
+		s.height = (CGFloat)height;
+		return s;
+	}
+	
+	RESize & operator=(const CGSize & anotherSize)
+	{
+		width = (REFloat32)anotherSize.width; 
+		height = (REFloat32)anotherSize.height;
+		return (*this);
+	}
+	
+	RESize(const CGSize & anotherSize) :
+		width((REFloat32)anotherSize.width), 
+		height((REFloat32)anotherSize.height) 
+	{
+		
+	}
+	
+#endif
+	
 };
 
 #endif /* __RESIZE_H__ */

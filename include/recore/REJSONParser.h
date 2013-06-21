@@ -30,8 +30,8 @@ private:
 	REBufferObject * _buffer;
 	REObject * _rootObject;
 public:
-	REObject * GetRootObject() const;
-	REBOOL Parse();
+	REObject * getRootObject() const;
+	REBOOL parse();
 	REJSONParser(const REData & data);
 	REJSONParser(REBufferObject * buffer);
 	REJSONParser(REObjectsDictionary * dictionary, REBufferObject * buffer);

@@ -73,28 +73,28 @@ public:
 
 
 /* REObject */
-const REUInt32 RELabel::GetClassIdentifier() const
+const REUInt32 RELabel::getClassIdentifier() const
 {
-	return RELabel::ClassIdentifier();
+	return RELabel::classIdentifier();
 }
 
-const REUInt32 RELabel::ClassIdentifier()
+const REUInt32 RELabel::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RELabel");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RELabel");
 	return clasIdentif;
 }
 
-REBOOL RELabel::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RELabel::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RELabel::ClassIdentifier() == classIdentifier) ||
-			REView::IsImplementsClass(classIdentifier));
+	return ((RELabel::classIdentifier() == classIdentifier) ||
+			REView::isImplementsClass(classIdentifier));
 }
 
-RERect RELabel::GetTextFrame() const
+RERect RELabel::getTextFrame() const
 {
 	RERect r(0.0f, _textInsets.top, _charsSize.width, _charsSize.height);
 	
-	switch (this->GetTextAlignment()) 
+	switch (this->getTextAlignment()) 
 	{
 		case RETextAlignmentLeft:
 			r.x = _textInsets.left;
@@ -111,25 +111,25 @@ RERect RELabel::GetTextFrame() const
 	
 	if (_frame.height != 0.0f)
 	{
-		r.height *= (_textInsets.GetAdjustedRect(_frame).height / _frame.height);
+		r.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
 	}
 	
 	return r;
 }
 
-void RELabel::RenderAtWithShadow(const REFloat32 x, const REFloat32 y)
+void RELabel::renderAtWithShadow(const REFloat32 x, const REFloat32 y)
 {
 	if (_font) 
 	{
 		RERenderDevice * device = RERenderDevice::GetDefaultDevice();
-		RESize ratio(_font->GetCharsScaleRatio());
+		RESize ratio(_font->getCharsScaleRatio());
 		if (_frame.height != 0.0f) 
 		{
-			ratio.height *= (_textInsets.GetAdjustedRect(_frame).height / _frame.height);
+			ratio.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
 		}
 		REFloat32 penX = x;
-		const REFloat32 bottomY = y + _font->GetHeight() - _textInsets.bottom - _textInsets.top;
-		for (REUInt32 i = 0; i < _chars.Count(); i++) 
+		const REFloat32 bottomY = y + _font->getHeight() - _textInsets.bottom - _textInsets.top;
+		for (REUInt32 i = 0; i < _chars.count(); i++) 
 		{
 			RETTFFontChar * fontChar = _chars[i];
 			penX += ((ratio.width * fontChar->offsetX) * _charsSpaceRatio);
@@ -149,19 +149,19 @@ void RELabel::RenderAtWithShadow(const REFloat32 x, const REFloat32 y)
 	}
 }
 
-void RELabel::RenderAtWithOutShadow(const REFloat32 x, const REFloat32 y)
+void RELabel::renderAtWithOutShadow(const REFloat32 x, const REFloat32 y)
 {
 	if (_font) 
 	{
 		RERenderDevice * device = RERenderDevice::GetDefaultDevice();
-		RESize ratio(_font->GetCharsScaleRatio());
+		RESize ratio(_font->getCharsScaleRatio());
 		if (_frame.height != 0.0f) 
 		{
-			ratio.height *= (_textInsets.GetAdjustedRect(_frame).height / _frame.height);
+			ratio.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
 		}
 		REFloat32 penX = x;
-		const REFloat32 bottomY = y + _font->GetHeight() - _textInsets.bottom - _textInsets.top;
-		for (REUInt32 i = 0; i < _chars.Count(); i++) 
+		const REFloat32 bottomY = y + _font->getHeight() - _textInsets.bottom - _textInsets.top;
+		for (REUInt32 i = 0; i < _chars.count(); i++) 
 		{
 			RETTFFontChar * fontChar = _chars[i];
 			penX += ((ratio.width * fontChar->offsetX) * _charsSpaceRatio);
@@ -177,7 +177,7 @@ void RELabel::RenderAtWithOutShadow(const REFloat32 x, const REFloat32 y)
 	}
 }
 
-void RELabel::RenderAt(const REFloat32 x, const REFloat32 y)
+void RELabel::renderAt(const REFloat32 x, const REFloat32 y)
 {
 	REBOOL isShadow = _isUsingShadow;
 	if (isShadow) 
@@ -187,16 +187,16 @@ void RELabel::RenderAt(const REFloat32 x, const REFloat32 y)
 	
 	if (isShadow) 
 	{
-		this->RenderAtWithShadow(x, y);
+		this->renderAtWithShadow(x, y);
 	}
 	else
 	{
-		this->RenderAtWithOutShadow(x, y);
+		this->renderAtWithOutShadow(x, y);
 	}
 }
 
 /* IRERenderable */
-void RELabel::Render()
+void RELabel::render()
 {
 	if (_isVisible) 
 	{
@@ -213,27 +213,27 @@ void RELabel::Render()
 			}
 		}
 		
-		RERect frame(_textInsets.GetAdjustedRect(_frame));
-		switch (this->GetTextAlignment()) 
+		RERect frame(_textInsets.getAdjustedRect(_frame));
+		switch (this->getTextAlignment()) 
 		{
 			case RETextAlignmentLeft:
-				this->RenderAt(frame.x, frame.y);
+				this->renderAt(frame.x, frame.y);
 				break;
 			case RETextAlignmentCenter:
-				this->RenderAt((frame.x + (frame.width / 2.0f)) - (_charsSize.width / 2.0f), frame.y);
+				this->renderAt((frame.x + (frame.width / 2.0f)) - (_charsSize.width / 2.0f), frame.y);
 				break;
 			case RETextAlignmentRight:
-				this->RenderAt(frame.x + frame.width - _charsSize.width, frame.y);
+				this->renderAt(frame.x + frame.width - _charsSize.width, frame.y);
 				break;
 			default:
 				break;
 		}
 		
-		this->RenderSubViews(_frame.x, _frame.y);
+		this->renderSubViews(_frame.x, _frame.y);
 	}
 }
 
-void RELabel::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void RELabel::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if (_isVisible) 
 	{
@@ -254,59 +254,60 @@ void RELabel::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 			}
 		}
 		
-		RERect frame(_textInsets.GetAdjustedRect(_frame));
+		RERect frame(_textInsets.getAdjustedRect(_frame));
 		const REFloat32 renderXInset = frame.x + offsetX;
 		const REFloat32 renderYInset = frame.y + offsetY;
-		switch (this->GetTextAlignment()) 
+		switch (this->getTextAlignment()) 
 		{
 			case RETextAlignmentLeft:
-				this->RenderAt(renderXInset, renderYInset);
+				this->renderAt(renderXInset, renderYInset);
 				break;
 			case RETextAlignmentCenter:
-				this->RenderAt((renderXInset + (frame.width / 2.0f)) - (_charsSize.width / 2.0f), renderYInset);
+				this->renderAt((renderXInset + (frame.width / 2.0f)) - (_charsSize.width / 2.0f), renderYInset);
 				break;
 			case RETextAlignmentRight:
-				this->RenderAt(renderXInset + frame.width - _charsSize.width, renderYInset);
+				this->renderAt(renderXInset + frame.width - _charsSize.width, renderYInset);
 				break;
 			default:
 				break;
 		}
 		
-		this->RenderSubViews(renderX, renderY);
+		this->renderSubViews(renderX, renderY);
 	}
 }
 
 /// Setting rectangular frame of view.
-void RELabel::SetFrame(const RERect & newViewFrame)
+void RELabel::setFrame(const RERect & newViewFrame)
 {
-	REView::SetFrame(newViewFrame);
-	this->ReloadChars();
+	REView::setFrame(newViewFrame);
+	
+	this->reloadChars();
 }
 
-void RELabel::SetShadowOffset(const REPoint2 & newOffset)
+void RELabel::setShadowOffset(const REPoint2 & newOffset)
 {
 	_shadowOffset = newOffset;
 }
 
-void RELabel::SetShadowColor(const REColor & newColor)
+void RELabel::setShadowColor(const REColor & newColor)
 {
 	_shadowColor = newColor;
 }
 
-void RELabel::SetCharsSpaceRatio(const REFloat32 newRatio)
+void RELabel::setCharsSpaceRatio(const REFloat32 newRatio)
 {
 	if (_charsSpaceRatio != newRatio) 
 	{
 		_charsSpaceRatio = newRatio;
-		this->ReloadChars();
+		this->reloadChars();
 	}
 }
 
-REBOOL RELabel::IsCanReloadChars() const
+REBOOL RELabel::isCanReloadChars() const
 {
-	if (_font && _text.Length()) 
+	if (_font && _text.length()) 
 	{
-		REArray<RETTFFontChar *> * charsArray = _font->GetChars();
+		REArray<RETTFFontChar *> * charsArray = _font->getChars();
 		if (charsArray) 
 		{
 			return true; 
@@ -322,8 +323,8 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TextSize(REArray<RETTFFontChar *>
 	if (charsArr && font) 
 	{
 		RESize size(0.0f, 0.0f);
-		RESize ratio(font->GetCharsScaleRatio());
-		for (REUInt32 i = 0; i < charsArr->Count(); i++) 
+		RESize ratio(font->getCharsScaleRatio());
+		for (REUInt32 i = 0; i < charsArr->count(); i++) 
 		{
 			RETTFFontChar * fontChar = (*charsArr)[i];
 			size.width += ((ratio.width * fontChar->offsetX) * charsSpaceRatio);
@@ -353,10 +354,10 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncTailOrHead(REArray<RETTFFont
 		RESize size(0.0f, 0.0f);
 		
 		REUInt32 index = 0;
-		if (allChars->Count()) { if (!isAddDotsLast) { index = (allChars->Count() - 1); } }
+		if (allChars->count()) { if (!isAddDotsLast) { index = (allChars->count() - 1); } }
 		else { return size; }
 		
-		RESize ratio(font->GetCharsScaleRatio());
+		RESize ratio(font->getCharsScaleRatio());
 		REBOOL isIterating = true;
 		while (isIterating) 
 		{
@@ -366,29 +367,29 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncTailOrHead(REArray<RETTFFont
 			const REFloat32 totalWidth = size.width + width + dotsCharsWidth;
 			if (totalWidth < maxWidth) 
 			{
-				if (isAddDotsLast) { resultChars->Add(fontChar); }
-				else { resultChars->Insert(0, fontChar); }
+				if (isAddDotsLast) { resultChars->add(fontChar); }
+				else { resultChars->insert(0, fontChar); }
 				size.width += width;
 			}
 			else 
 			{
-				if (resultChars->Count() && dotsChars->Count()) 
+				if (resultChars->count() && dotsChars->count()) 
 				{
 					REUInt32 j = 0;
 					REBOOL isAdding = true;
-					if (!isAddDotsLast) { j = (dotsChars->Count() - 1); }
+					if (!isAddDotsLast) { j = (dotsChars->count() - 1); }
 					while (isAdding) 
 					{
 						RETTFFontChar * dotChar = (*dotsChars)[j];
-						if (isAddDotsLast) { resultChars->Add(dotChar); }
-						else { resultChars->Insert(0, dotChar); }
+						if (isAddDotsLast) { resultChars->add(dotChar); }
+						else { resultChars->insert(0, dotChar); }
 						REFloat32 dotWidth = ((ratio.width * dotChar->offsetX) * charsSpaceRatio);
 						dotWidth += (ratio.width * dotChar->advanceX);
 						size.width += dotWidth;
 						if (isAddDotsLast) 
 						{
 							j++;
-							isAdding = (j < dotsChars->Count());
+							isAdding = (j < dotsChars->count());
 						}
 						else if (j) { j--; }
 						else { isAdding = false; }
@@ -400,7 +401,7 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncTailOrHead(REArray<RETTFFont
 			if (isAddDotsLast) 
 			{
 				index++;
-				isIterating = (index < allChars->Count());
+				isIterating = (index < allChars->count());
 			}
 			else if (index) { index--; }
 			else { isIterating = false; }
@@ -422,8 +423,8 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 	if (resultChars && allChars && dotsChars && font) 
 	{
 		RESize size(0.0f, 0.0f);
-		RESize ratio(font->GetCharsScaleRatio());
-		if (allChars->IsEmpty()) 
+		RESize ratio(font->getCharsScaleRatio());
+		if (allChars->isEmpty()) 
 		{
 			return size;
 		}
@@ -431,7 +432,7 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 		RERange leftRange(0, 0);
 		RERange rightRange(0, 0);
 		REUInt32 leftIndex = 0;
-		REUInt32 rightIndex = (allChars->Count() - 1);
+		REUInt32 rightIndex = (allChars->count() - 1);
 		REBOOL isLeft = true;
 		REUInt32 processedCharsCount = 0;
 		while (1) 
@@ -453,7 +454,7 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 			else { break; }
 			
 			processedCharsCount++;
-			if (processedCharsCount == allChars->Count()) { break; }
+			if (processedCharsCount == allChars->count()) { break; }
 			
 			if (isLeft) { leftIndex++; }
 			else { rightIndex--; }
@@ -465,12 +466,12 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 			for (REUInt32 i = 0; i < leftRange.length; i++) 
 			{
 				RETTFFontChar * fontChar = (*allChars)[i];
-				resultChars->Add(fontChar);
+				resultChars->add(fontChar);
 			}
-			for (REUInt32 i = 0; i < dotsChars->Count(); i++) 
+			for (REUInt32 i = 0; i < dotsChars->count(); i++) 
 			{
 				RETTFFontChar * dotChar = (*dotsChars)[i];
-				resultChars->Add(dotChar);
+				resultChars->add(dotChar);
 				REFloat32 dotWidth = ((ratio.width * dotChar->offsetX) * charsSpaceRatio);
 				dotWidth += (ratio.width * dotChar->advanceX);
 				size.width += dotWidth;
@@ -478,7 +479,7 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 			for (REUInt32 i = 0; i < rightRange.length; i++) 
 			{
 				RETTFFontChar * fontChar = (*allChars)[rightRange.location];
-				resultChars->Add(fontChar);
+				resultChars->add(fontChar);
 				rightRange.location++;
 			}
 		}		
@@ -488,13 +489,13 @@ RESize RELabelRETextLineBreakGeneratorPrivate::TruncMiddle(REArray<RETTFFontChar
 	return RESize(0.0f, 0.0f);
 }
 
-void RELabel::LayoutChars()
+void RELabel::layoutChars()
 {
-	if (_chars.Count()) 
+	if (_chars.count()) 
 	{
 		RELabelRETextLineBreakGeneratorPrivate generator;
 		_charsSize = generator.TextSize(&_chars, _font, _charsSpaceRatio);
-		RERect frame(_textInsets.GetAdjustedRect(_frame));
+		RERect frame(_textInsets.getAdjustedRect(_frame));
 		if (_charsSize.width > frame.width) 
 		{
 			REArray<RETTFFontChar *> dotsChars;
@@ -502,11 +503,11 @@ void RELabel::LayoutChars()
 			RELabelRETextLineBreakGeneratorPrivate generator;
 			if (((RETextLineBreak)_lineBreakMode) != RETextLineBreakNone) 
 			{
-				_font->FillArrayWithCharsForText(&dotsChars, _textLineTruncationString);
+				_font->fillArrayWithCharsForText(&dotsChars, _textLineTruncationString);
 				dotsSize = generator.TextSize(&dotsChars, _font, _charsSpaceRatio);
 			}
 			
-			REArray<RETTFFontChar *> resultChars(_chars.Count() + 1);
+			REArray<RETTFFontChar *> resultChars(_chars.count() + 1);
 			RESize withBreakSize(0.0f, 0.0f);
 			switch (((RETextLineBreak)_lineBreakMode)) 
 			{
@@ -558,57 +559,57 @@ void RELabel::LayoutChars()
 	}
 }
 
-void RELabel::ReloadChars()
+void RELabel::reloadChars()
 {
-	_chars.Clear();
+	_chars.clear();
 	_charsSize.width = _charsSize.height = 0.0f;
-	if (this->IsCanReloadChars()) 
+	if (this->isCanReloadChars()) 
 	{
-		_font->FillArrayWithCharsForText(&_chars, _text);
-		this->LayoutChars();
+		_font->fillArrayWithCharsForText(&_chars, _text);
+		this->layoutChars();
 	}
 }
 
-void RELabel::SetText(const REString & newText)
+void RELabel::setText(const REString & newText)
 {
-	_text.Set(newText);
-	this->ReloadChars();
+	_text.set(newText);
+	this->reloadChars();
 }
 
-void RELabel::SetFont(REFontObject * newFont)
+void RELabel::setFont(REFontObject * newFont)
 {	
 	if (_font) 
 	{
-		_font->Release();
+		_font->release();
 		_font = NULL;
 	}
 	
 	if (newFont) 
 	{
 		_font = newFont;
-		_font->Retain();
+		_font->retain();
 	}
-	this->ReloadChars();
+	this->reloadChars();
 }
 
 /// Returns string wich replaces on truncation.
 /// Default is three dots.
-const REString & RELabel::GetTextLineTruncationString() const
+const REString & RELabel::getTextLineTruncationString() const
 {
 	return _textLineTruncationString;
 }
 
 /// Setting new custom truncation string.
-void RELabel::SetTextLineTruncationString(const REString & newTruncationString)
+void RELabel::setTextLineTruncationString(const REString & newTruncationString)
 {
-	_textLineTruncationString.Set(newTruncationString);
+	_textLineTruncationString.set(newTruncationString);
 }
 
-REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, const char * value)
+REBOOL RELabel::acceptLabelStringParameter(RELabel * label, const char * key, const char * value)
 {
     if (strcmp(key, RE_LABEL_XML_TEXT_KEY_STRING) == 0)
     {
-        label->SetText(REString(value));
+        label->setText(REString(value));
         return true;
     }
     else if (strcmp(key, RE_LABEL_XML_TEXT_COLOR_KEY_STRING) == 0)
@@ -616,7 +617,7 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         REColor c;
         if (sscanf(value, RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
         {
-            label->SetTextColor(c);
+            label->setTextColor(c);
             return true;
         }
     }
@@ -625,7 +626,7 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         REEdgeInsets i;
         if (sscanf(value, RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING, &i.top, &i.left, &i.bottom, &i.right) == 4)
         {
-            label->SetTextInsets(i);
+            label->setTextInsets(i);
             return true;
         }
     }
@@ -634,7 +635,7 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         REColor c;
         if (sscanf(value, RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
         {
-            label->SetShadowColor(c);
+            label->setShadowColor(c);
             return true;
         }
     }
@@ -643,7 +644,7 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         REPoint2 o;
         if (sscanf(value, RE_LABEL_XML_SHADOW_OFFSET_FORMAT_STRING, &o.x, &o.y) == 2)
         {
-            label->SetShadowOffset(o);
+            label->setShadowOffset(o);
             return true;
         }
     }
@@ -652,7 +653,7 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         int v = 0;
         if (sscanf(value, RE_LABEL_XML_USING_SHADOW_FORMAT_STRING, &v) == 1)
         {
-            label->SetUsingShadow((v != 0));
+            label->setUsingShadow((v != 0));
             return true;
         }
     }
@@ -661,28 +662,28 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         int v = 0;
         if (sscanf(value, RE_LABEL_XML_SHOW_BACKGROUND_FORMAT_STRING, &v) == 1)
         {
-            label->SetShowBackground((v != 0));
+            label->setShowBackground((v != 0));
             return true;
         }
     }
     else if (strcmp(key, RE_LABEL_XML_TEXT_ALIGNMENT_KEY_STRING) == 0)
     {
-        if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_LEFT_KEY_STRING) == 0) { label->SetTextAlignment(RETextAlignmentLeft); }
-        else if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_CENTER_KEY_STRING) == 0) { label->SetTextAlignment(RETextAlignmentCenter); }
-        else if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_RIGHT_KEY_STRING) == 0) { label->SetTextAlignment(RETextAlignmentRight); }
+        if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_LEFT_KEY_STRING) == 0) { label->setTextAlignment(RETextAlignmentLeft); }
+        else if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_CENTER_KEY_STRING) == 0) { label->setTextAlignment(RETextAlignmentCenter); }
+        else if (strcmp(value, RE_LABEL_XML_TEXT_ALIGNMENT_RIGHT_KEY_STRING) == 0) { label->setTextAlignment(RETextAlignmentRight); }
         return true;
     }
     else if (strcmp(key, RE_LABEL_XML_LINE_BREAK_KEY_STRING) == 0)
     {
-        if (strcmp(value, RE_LABEL_XML_LINE_BREAK_NONE_KEY_STRING) == 0) { label->SetLineBreak(RETextLineBreakNone); }
-        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_TAIL_KEY_STRING) == 0) { label->SetLineBreak(RETextLineBreakTruncateTail); }
-        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_MIDDLE_KEY_STRING) == 0) { label->SetLineBreak(RETextLineBreakTruncateMiddle); }
-        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_HEAD_KEY_STRING) == 0) { label->SetLineBreak(RETextLineBreakTruncateHead); }
+        if (strcmp(value, RE_LABEL_XML_LINE_BREAK_NONE_KEY_STRING) == 0) { label->setLineBreak(RETextLineBreakNone); }
+        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_TAIL_KEY_STRING) == 0) { label->setLineBreak(RETextLineBreakTruncateTail); }
+        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_MIDDLE_KEY_STRING) == 0) { label->setLineBreak(RETextLineBreakTruncateMiddle); }
+        else if (strcmp(value, RE_LABEL_XML_LINE_BREAK_TRUNC_HEAD_KEY_STRING) == 0) { label->setLineBreak(RETextLineBreakTruncateHead); }
         return true;
     }
     else if (strcmp(key, RE_LABEL_XML_TEXT_LINE_TRANC_STRING_KEY_STRING) == 0)
     {
-        label->SetTextLineTruncationString(REString(value));
+        label->setTextLineTruncationString(REString(value));
         return true;
     }
     else if (strcmp(key, RE_LABEL_XML_CHARS_SPACE_RATIO_KEY_STRING) == 0)
@@ -690,30 +691,30 @@ REBOOL RELabel::AcceptLabelStringParameter(RELabel * label, const char * key, co
         float r = -1.0f;
         if (sscanf(value, RE_LABEL_XML_CHARS_SPACE_RATIO_FORMAT_STRING, &r) == 1)
         {
-            label->SetCharsSpaceRatio((REFloat32)r);
+            label->setCharsSpaceRatio((REFloat32)r);
             return true;
         }
     }
     return false;
 }
 
-REBOOL RELabel::AcceptStringParameter(const char * key, const char * value)
+REBOOL RELabel::acceptStringParameter(const char * key, const char * value)
 {
-    if (REView::AcceptStringParameter(key, value))
+    if (REView::acceptStringParameter(key, value))
 	{
 		return true;
 	}
 	
 	if (key && value) 
 	{
-        return RELabel::AcceptLabelStringParameter(this, key, value);
+        return RELabel::acceptLabelStringParameter(this, key, value);
 	}
 	return false;
 }
 
-REBOOL RELabel::AcceptObjectParameter(const char * className, const char * key, REGUIObject * value)
+REBOOL RELabel::acceptObjectParameter(const char * className, const char * key, REGUIObject * value)
 {
-	if ( REView::AcceptObjectParameter(className, key, value) ) 
+	if ( REView::acceptObjectParameter(className, key, value) ) 
 	{
 		return true;
 	}
@@ -727,8 +728,8 @@ REBOOL RELabel::AcceptObjectParameter(const char * className, const char * key, 
 				REFontObject * font = (REFontObject *)value;
 				if (font) 
 				{
-					this->SetFont(font);
-					font->Release();
+					this->setFont(font);
+					font->release();
 					return true;
 				}
 			}
@@ -738,73 +739,73 @@ REBOOL RELabel::AcceptObjectParameter(const char * className, const char * key, 
 	return false;
 }
 
-const RETextAlignment RELabel::GetTextAlignment() const
+const RETextAlignment RELabel::getTextAlignment() const
 {
 	return (RETextAlignment)_textAlignment;
 }
 
-void RELabel::SetTextAlignment(const RETextAlignment newTextAlignment)
+void RELabel::setTextAlignment(const RETextAlignment newTextAlignment)
 {
 	_textAlignment = (REUByte)newTextAlignment;
 }
 
-const RETextLineBreak RELabel::GetLineBreak() const
+const RETextLineBreak RELabel::getLineBreak() const
 {
 	return (RETextLineBreak)_lineBreakMode;
 }
 
-void RELabel::SetLineBreak(const RETextLineBreak newLineBreak)
+void RELabel::setLineBreak(const RETextLineBreak newLineBreak)
 {
 	if (_lineBreakMode != (REUByte)newLineBreak) 
 	{
 		_lineBreakMode = (REUByte)newLineBreak;
-		this->ReloadChars();
+		this->reloadChars();
 	}
 }
 
 /// Getting label text insets.
-const REEdgeInsets & RELabel::GetTextInsets() const
+const REEdgeInsets & RELabel::getTextInsets() const
 {
 	return _textInsets;
 }
 
 /// Setting new label text insets.
-void RELabel::SetTextInsets(const REEdgeInsets & newInsets)
+void RELabel::setTextInsets(const REEdgeInsets & newInsets)
 {
 	_textInsets = newInsets;
 	
-	this->ReloadChars();
+	this->reloadChars();
 }
 
 /// Returns text color.
-const REColor & RELabel::GetTextColor() const
+const REColor & RELabel::getTextColor() const
 {
 	return _textColor;
 }
 
 /// Setting text color.
-void RELabel::SetTextColor(const REColor & newTextColor)
+void RELabel::setTextColor(const REColor & newTextColor)
 {
 	_textColor = newTextColor;
 }
 
 /// Is showing label background using view color and texture.
-REBOOL RELabel::IsShowBackground() const
+REBOOL RELabel::isShowBackground() const
 {
 	return _isShowBackground;
 }
 
 /// Setting showing label background using view color and texture.
-void RELabel::SetShowBackground(REBOOL isShowBackground)
+void RELabel::setShowBackground(REBOOL isShowBackground)
 {
 	_isShowBackground = isShowBackground;
 }
 
-void RELabel::OnReleased()
+void RELabel::onReleased()
 {
 	RE_SAFE_RELEASE(_font);
 	
-	REView::OnReleased();
+	REView::onReleased();
 }
 
 RELabel::RELabel() : REView(),
@@ -815,7 +816,7 @@ RELabel::RELabel() : REView(),
 	_textAlignment(0),
 	_lineBreakMode(0)
 {
-	_textLineTruncationString.Set("...");
+	_textLineTruncationString.set("...");
 }
 
 RELabel::~RELabel()
@@ -823,29 +824,29 @@ RELabel::~RELabel()
 	
 }
 
-RELabel * RELabel::Create()
+RELabel * RELabel::create()
 {
 	RELabel * newLabel = new RELabel();
 	return newLabel;
 }
 
-const char * RELabel::GetXMLTextKeyString() { return RE_LABEL_XML_TEXT_KEY_STRING; }
-const char * RELabel::GetXMLTextColorKeyString() { return RE_LABEL_XML_TEXT_COLOR_KEY_STRING; }
-const char * RELabel::GetXMLTextColorFormatString() { return RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING; }
-const char * RELabel::GetXMLTextInsetsKeyString() { return RE_LABEL_XML_TEXT_INSETS_KEY_STRING; }
-const char * RELabel::GetXMLTextInsetsFormatString() { return RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING; }
-const char * RELabel::GetXMLCharsSpaceRatioKeyString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_KEY_STRING; }
-const char * RELabel::GetXMLCharsSpaceRatioFormatString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_FORMAT_STRING; }
-const char * RELabel::GetXMLShadowColorKeyString() { return RE_LABEL_XML_SHADOW_COLOR_KEY_STRING; }
-const char * RELabel::GetXMLShadowColorFormatString() { return RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING; }
-const char * RELabel::GetXMLShadowOffsetKeyString() { return RE_LABEL_XML_SHADOW_OFFSET_KEY_STRING; }
-const char * RELabel::GetXMLShadowOffsetFormatString() { return RE_LABEL_XML_SHADOW_OFFSET_FORMAT_STRING; }
-const char * RELabel::GetXMLUsingShadowKeyString() { return RE_LABEL_XML_USING_SHADOW_KEY_STRING; }
-const char * RELabel::GetXMLUsingShadowFormatString() { return RE_LABEL_XML_USING_SHADOW_FORMAT_STRING; }
-const char * RELabel::GetXMLShowBackgroundKeyString() { return RE_LABEL_XML_SHOW_BACKGROUND_KEY_STRING; }
-const char * RELabel::GetXMLShowBackgroundFormatString() { return RE_LABEL_XML_SHOW_BACKGROUND_FORMAT_STRING; }
-const char * RELabel::GetXMLTextAlignmentKeyString() { return RE_LABEL_XML_TEXT_ALIGNMENT_KEY_STRING; }
-const char * RELabel::GetXMLTextAlignmentStringByType(const RETextAlignment alignmentType)
+const char * RELabel::getXMLTextKeyString() { return RE_LABEL_XML_TEXT_KEY_STRING; }
+const char * RELabel::getXMLTextColorKeyString() { return RE_LABEL_XML_TEXT_COLOR_KEY_STRING; }
+const char * RELabel::getXMLTextColorFormatString() { return RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING; }
+const char * RELabel::getXMLTextInsetsKeyString() { return RE_LABEL_XML_TEXT_INSETS_KEY_STRING; }
+const char * RELabel::getXMLTextInsetsFormatString() { return RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING; }
+const char * RELabel::getXMLCharsSpaceRatioKeyString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_KEY_STRING; }
+const char * RELabel::getXMLCharsSpaceRatioFormatString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_FORMAT_STRING; }
+const char * RELabel::getXMLShadowColorKeyString() { return RE_LABEL_XML_SHADOW_COLOR_KEY_STRING; }
+const char * RELabel::getXMLShadowColorFormatString() { return RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING; }
+const char * RELabel::getXMLShadowOffsetKeyString() { return RE_LABEL_XML_SHADOW_OFFSET_KEY_STRING; }
+const char * RELabel::getXMLShadowOffsetFormatString() { return RE_LABEL_XML_SHADOW_OFFSET_FORMAT_STRING; }
+const char * RELabel::getXMLUsingShadowKeyString() { return RE_LABEL_XML_USING_SHADOW_KEY_STRING; }
+const char * RELabel::getXMLUsingShadowFormatString() { return RE_LABEL_XML_USING_SHADOW_FORMAT_STRING; }
+const char * RELabel::getXMLShowBackgroundKeyString() { return RE_LABEL_XML_SHOW_BACKGROUND_KEY_STRING; }
+const char * RELabel::getXMLShowBackgroundFormatString() { return RE_LABEL_XML_SHOW_BACKGROUND_FORMAT_STRING; }
+const char * RELabel::getXMLTextAlignmentKeyString() { return RE_LABEL_XML_TEXT_ALIGNMENT_KEY_STRING; }
+const char * RELabel::getXMLTextAlignmentStringByType(const RETextAlignment alignmentType)
 {
     switch (alignmentType)
     {
@@ -856,8 +857,8 @@ const char * RELabel::GetXMLTextAlignmentStringByType(const RETextAlignment alig
     };
     return "none";
 }
-const char * RELabel::GetXMLLineBreakKeyString() { return RE_LABEL_XML_LINE_BREAK_KEY_STRING; }
-const char * RELabel::GetXMLLineBreakStringByType(const RETextLineBreak lineBreakType)
+const char * RELabel::getXMLLineBreakKeyString() { return RE_LABEL_XML_LINE_BREAK_KEY_STRING; }
+const char * RELabel::getXMLLineBreakStringByType(const RETextLineBreak lineBreakType)
 {
     switch (lineBreakType)
     {
@@ -868,5 +869,5 @@ const char * RELabel::GetXMLLineBreakStringByType(const RETextLineBreak lineBrea
     };
     return RE_LABEL_XML_LINE_BREAK_NONE_KEY_STRING;
 }
-const char * RELabel::GetXMLTextLineTruncationStringKeyString() { return RE_LABEL_XML_TEXT_LINE_TRANC_STRING_KEY_STRING; }
-const char * RELabel::GetXMLFontObjectKeyString() { return RE_LABEL_XML_FONT_OBJECT_KEY_STRING; }
+const char * RELabel::getXMLTextLineTruncationStringKeyString() { return RE_LABEL_XML_TEXT_LINE_TRANC_STRING_KEY_STRING; }
+const char * RELabel::getXMLFontObjectKeyString() { return RE_LABEL_XML_FONT_OBJECT_KEY_STRING; }

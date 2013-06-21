@@ -34,17 +34,17 @@ private:
 	REData _soundFileData;
 	
 public:
-	virtual REBOOL Play();
-	virtual REBOOL IsPlaying() const;
-	virtual REBOOL Pause();
-	virtual REBOOL Stop();
-	virtual REBOOL SetLooped(const REBOOL isLooped);
-	virtual REBOOL IsLooped() const; /* by default is not looped */
-	virtual REBOOL SetVolume(const REFloat32 newVolume);
-	virtual const REFloat32 GetVolume() const;
+	virtual REBOOL play();
+	virtual REBOOL isPlaying() const;
+	virtual REBOOL pause();
+	virtual REBOOL stop();
+	virtual REBOOL setLooped(const REBOOL isLooped);
+	virtual REBOOL isLooped() const; /* by default is not looped */
+	virtual REBOOL setVolume(const REFloat32 newVolume);
+	virtual const REFloat32 getVolume() const;
 	
-	REBOOL InitWithData(const REData & soundFileData);
-	REBOOL InitFromFilePath(const REString & filePath);
+	REBOOL initWithData(const REData & soundFileData);
+	REBOOL initFromFilePath(const REString & filePath);
 	
 	REAudioPlayerPrivate_iphone();
 	virtual ~REAudioPlayerPrivate_iphone();

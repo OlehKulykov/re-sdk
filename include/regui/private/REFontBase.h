@@ -26,7 +26,7 @@
 class __RE_PUBLIC_CLASS_API__ REFontBase : public REObject
 {
 private:
-	static REBOOL IsBasesApproximatelyEqual(REFontBase * firstBase, REFontBase * secondBase);
+	static REBOOL isBasesApproximatelyEqual(REFontBase * firstBase, REFontBase * secondBase);
 	
 protected:
 	REFontBase();
@@ -44,14 +44,14 @@ public:
 	REBOOL isUseGammaCorection;
 	REBOOL isCached;
 	
-	REBOOL IsLoaded() const;
+	REBOOL isLoaded() const;
 	
-	REBOOL IsApproximatelyEqual(REFontBase * base);
+	REBOOL isApproximatelyEqual(REFontBase * base);
 	
 	/* REObject */
-	virtual void OnReleased();
+	virtual void onReleased();
 	
-	static REFontBase * Create();
+	static REFontBase * create();
 };
 
 

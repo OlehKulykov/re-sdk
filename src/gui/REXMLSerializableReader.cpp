@@ -64,14 +64,14 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 					//REGUIObject * xmlSerializable = newObject->GetCasted<IREXMLSerializable>();
 					//if (xmlSerializable) 
 					//{
-					newObject->OnPrepareGUIObjectForSetuping();
+					newObject->onPrepareGUIObjectForSetuping();
 					this->ParseObject(childElem, newObject, newObject);
-					isAccepted = obj->AcceptObjectParameter(className, key, newObject);
-					newObject->OnSetupingGUIObjectFinished(isAccepted);
+					isAccepted = obj->acceptObjectParameter(className, key, newObject);
+					newObject->onSetupingGUIObjectFinished(isAccepted);
 					//}
 					if (!isAccepted)
 					{
-						newObject->Release();
+						newObject->release();
 					}
 				}
 				else 
@@ -102,7 +102,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 					{
 						if (strcmp(nodeValue, "property") == 0) 
 						{
-							IREObjectProperty * prop = obj->GetPropertyForKey(key);
+							IREObjectProperty * prop = obj->getPropertyForKey(key);
 							if (prop) 
 							{
 								int propIdentif = 0;
@@ -111,7 +111,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 									REXMLSerializableReader::PropertyStruct newStruct;
 									newStruct.property = prop;
 									newStruct.editorid = (REInt32)propIdentif;
-									_properties.Add(newStruct);
+									_properties.add(newStruct);
 								}
 							}
 						}
@@ -120,13 +120,13 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 							int propIdentif = 0;
 							if (sscanf(value, "%i", &propIdentif) == 1) 
 							{
-								for (REUInt32 i = 0; i < _properties.Count(); i++) 
+								for (REUInt32 i = 0; i < _properties.count(); i++) 
 								{
 									if (_properties[i].editorid == (REInt32)propIdentif)
 									{
 										IREObjectProperty * prop = _properties[i].property;
-										prop->SetObject(fromCallBack);
-										_properties.RemoveAt(i);
+										prop->setObject(fromCallBack);
+										_properties.removeAt(i);
 										break;
 									}
 								}
@@ -134,7 +134,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 						}
 						else
 						{
-							obj->AcceptStringParameter(key, value);
+							obj->acceptStringParameter(key, value);
 						}
 					}
 				}

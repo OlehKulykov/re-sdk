@@ -34,18 +34,18 @@ private:
 	REString * _xmlStr;
 	
 	
-	REBOOL WritePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair);
-	REBOOL WriteObject(const REString & prefixString, REObject * obj);
-	REBOOL WriteString(const REString & prefixString, REStringObject * strObj);
-	REBOOL WriteArray(const REString & prefixString, REObjectsArray * arrObj);
-	REBOOL WriteDictionary(const REString & prefixString, REObjectsDictionary * dict);
-	REBOOL WriteNumber(const REString & prefixString, RENumberObject * number);
-	REBOOL WriteBuffer(const REString & prefixString, REBufferObject * buff);
+	REBOOL writePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair);
+	REBOOL writeObject(const REString & prefixString, REObject * obj);
+	REBOOL writeString(const REString & prefixString, REStringObject * strObj);
+	REBOOL writeArray(const REString & prefixString, REObjectsArray * arrObj);
+	REBOOL writeDictionary(const REString & prefixString, REObjectsDictionary * dict);
+	REBOOL writeNumber(const REString & prefixString, RENumberObject * number);
+	REBOOL writeBuffer(const REString & prefixString, REBufferObject * buff);
 	
 public:
 	/// Writes to 'listString' string pointer generated XML property list from 'pairs' dictionary key/pairs.
 	/// Returns true if both pointers not NULL and operation done, otherwice returns false.
-	REBOOL WriteToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REString * listString);
+	REBOOL writeToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REString * listString);
 	
 	/// Default constructor.
 	REXMLPropertyListWriter();

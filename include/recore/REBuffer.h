@@ -29,30 +29,33 @@ private:
 	REUInt32 _size;
 	
 public:
+	/// Checks is buffer equal with another buffer.
+	REBOOL isEqualToBuffer(const REBuffer & anotherBuffer) const;
+	
 	/// Returns void pointer to memory buffer or NULL.
-	void * GetBuffer() const;
+	void * getBuffer() const;
 	
 	/// Returns size of memory byffer.
-	const REUInt32 GetSize() const;
+	const REUInt32 getSize() const;
 	
 	/// Resizes memory buffer with new size with copying prev data.
 	/// Returns true if memory was resized to 'newSize', or false if new memory not created.
-	REBOOL Resize(const REUInt32 newSize, REBOOL isCopyPrevData);
+	REBOOL resize(const REUInt32 newSize, REBOOL isCopyPrevData);
 	
 	/// Cleares memory buffer.
-	void Clear();
+	void clear();
 	
 	/// Set new size of memory buffer, copy from inputed buffer data with size to destination.
-	REBOOL Set(const void * buff, const REUInt32 buffSize);
+	REBOOL set(const void * buff, const REUInt32 buffSize);
 	
 	/// Setes memory beffer from another buffer.
 	REBuffer & operator=(const REBuffer & anotherBuff);
 	
 	/// Appends new memory with size
-	REBOOL Append(const void * buff, const REUInt32 buffSize);
+	REBOOL append(const void * buff, const REUInt32 buffSize);
 	
 	/// Appends with another buffer object.
-	REBOOL Append(const REBuffer & anotherBuff);
+	REBOOL append(const REBuffer & anotherBuff);
 	
 	/// Appends with another buffer object.
 	REBuffer & operator+=(const REBuffer & anotherBuff);
@@ -62,7 +65,7 @@ public:
 	/// Initializing buffer object from URL String.
 	/// Example: http://example.com/index for downloading from web.
 	/// Example: file:///Volumes/Data/file.txt for reading from from file. See file url scemes.
-	REBOOL InitFromURLString(const REString & urlString);
+	REBOOL initFromURLString(const REString & urlString);
 	
 	/// Constructs buffer object with content from another buffer object.
 	REBuffer(const REBuffer & anotherBuff);
@@ -76,7 +79,6 @@ public:
 	/// Constructs empty buffer object.
 	REBuffer();
 	
-	/// Desctructor.
 	virtual ~REBuffer();
 };
 

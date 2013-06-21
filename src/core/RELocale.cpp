@@ -47,21 +47,21 @@ const char ** RELocalePrivate::AvaiableLocalesStrings()
 
 __RE_PUBLIC_CLASS_API__ RELocale * RELocale::_defaultLocales = NULL;
 
-RELocaleType RELocale::SetCurrentLocaleFromString(const char * locString)
+RELocaleType RELocale::setCurrentLocaleFromString(const char * locString)
 {
 	if (locString)
 	{
 		REString loc(locString);
-		loc.Replace("-", "_");
+		loc.replace("-", "_");
 		locString = loc.UTF8String();
 		const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
 		
 		size_t compareLenght = 0;
-		if (loc.Length() >= 5)
+		if (loc.length() >= 5)
 		{
 			compareLenght = 5;
 		}
-		else if (loc.Length() >= 2)
+		else if (loc.length() >= 2)
 		{
 			compareLenght = 2;
 		}
@@ -74,7 +74,7 @@ RELocaleType RELocale::SetCurrentLocaleFromString(const char * locString)
 		{
 			if (strncmp(arr[i], locString, compareLenght) == 0)
 			{
-				this->SetCurrentLocaleType((RELocaleType)i);
+				this->setCurrentLocaleType((RELocaleType)i);
 				return _currentLocaleType;
 			}
 		}
@@ -97,30 +97,30 @@ void RELocale::TryDetectLocale()
 }
 #endif
 
-RELocaleType RELocale::GetCurrentLocaleType()
+RELocaleType RELocale::getCurrentLocaleType()
 {
 	return _currentLocaleType;
 }
 
-const char * RELocale::GetCurrentLocaleString()
+const char * RELocale::getCurrentLocaleString()
 {
 	unsigned int localeIndex = (unsigned int)_currentLocaleType;
 	const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
 	return arr[localeIndex];
 }
 
-REBOOL RELocale::IsDefined()
+REBOOL RELocale::isDefined()
 {
 	return (_currentLocaleType != RELocaleUndefined);
 }
 
-void RELocale::SetCurrentLocaleType(RELocaleType newLocaleType)
+void RELocale::setCurrentLocaleType(RELocaleType newLocaleType)
 {
 	if (_currentLocaleType != newLocaleType) 
 	{
 		_currentLocaleType = newLocaleType;
-		const char * notCString = RELocale::GetNotificationStringForCurrentLocaleChanged();
-		RENotificationManager::PostNotificationName(REString(notCString));
+		const char * notCString = RELocale::getNotificationStringForCurrentLocaleChanged();
+		RENotificationManager::postNotificationName(REString(notCString));
 	}
 }
 
@@ -135,32 +135,32 @@ RELocale::~RELocale()
 	
 }
 
-const char * RELocale::GetNotificationStringForCurrentLocaleChanged()
+const char * RELocale::getNotificationStringForCurrentLocaleChanged()
 {
 	return "RELocales_curLocChanged";
 }
 
-const char * RELocale::GetLocaleStringFromType(const RELocaleType type)
+const char * RELocale::getLocaleStringFromType(const RELocaleType type)
 {
 	unsigned int localeIndex = (unsigned int)type;
 	const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
 	return arr[localeIndex];
 }
 
-RELocale * RELocale::GetDefaultLocale()
+RELocale * RELocale::getDefaultLocale()
 {
 	if (_defaultLocales == NULL) 
 	{
 		_defaultLocales = new RELocale();
 		if (_defaultLocales) 
 		{
-			_defaultLocales->TryDetectLocale();
+			_defaultLocales->tryDetectLocale();
 		}
 	}
 	return _defaultLocales;
 }
 
-void RELocale::ReleaseDefaultLocale()
+void RELocale::releaseDefaultLocale()
 {
 	RE_SAFE_DELETE(_defaultLocales);
 }

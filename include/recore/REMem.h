@@ -73,7 +73,10 @@ public:
 	{
 #ifdef __RE_USING_POSIX_MEMALIGN__
 		void * m = NULL;
-		if (posix_memalign((void**)&m, alignment, size) == 0) return m;
+		if (posix_memalign((void**)&m, alignment, size) == 0) 
+		{
+			return m;
+		}
 #endif
 		return REMem::Malloc(size);
 	}
@@ -82,7 +85,10 @@ public:
 	static void * MallocZeros(const size_t size)
 	{
 		void * m = malloc(size);
-		if (m) { REMem::Memset(m, 0, size); }
+		if (m) 
+		{
+			REMem::Memset(m, 0, size);
+		}
 		return m;
 	}
 	

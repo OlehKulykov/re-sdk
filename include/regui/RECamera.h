@@ -34,13 +34,13 @@ public:
 	REMatrix4 modelView;
 	
 	/// Apply camera projection and modelView matrices to environment.
-	virtual void Apply();
+	virtual void apply();
 	
 	/// Returns from environment projection matrix.
-	virtual REMatrix4 GetAppliedProjectionMatrix();
+	virtual REMatrix4 getAppliedProjectionMatrix();
 	
 	/// Returns from environment modelView matrix.
-	virtual REMatrix4 GetAppliedModelViewMatrix();
+	virtual REMatrix4 getAppliedModelViewMatrix();
 	
 	
 	RECamera();

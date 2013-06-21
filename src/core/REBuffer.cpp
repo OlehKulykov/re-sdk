@@ -24,19 +24,31 @@
 #include "../../include/recore/REData.h"
 #endif
 
-void * REBuffer::GetBuffer() const
+REBOOL REBuffer::isEqualToBuffer(const REBuffer & anotherBuffer) const
+{
+	if (_size == anotherBuffer._size)
+	{
+		return _size ? (memcmp(_buff, anotherBuffer._buff, _size) == 0) : true;
+	}
+	return false;
+}
+
+void * REBuffer::getBuffer() const
 {
 	return _buff;
 }
 
-const REUInt32 REBuffer::GetSize() const
+const REUInt32 REBuffer::getSize() const
 {
 	return _size;
 }
 
-REBOOL REBuffer::Resize(const REUInt32 newSize, REBOOL isCopyPrevData)
+REBOOL REBuffer::resize(const REUInt32 newSize, REBOOL isCopyPrevData)
 {
-	if (_size == newSize) { return true; }
+	if (_size == newSize) 
+	{
+		return true; 
+	}
 	
 	void * newBuff = malloc((size_t)newSize);
 	if (newBuff) 
@@ -64,7 +76,7 @@ REBOOL REBuffer::Resize(const REUInt32 newSize, REBOOL isCopyPrevData)
 	return false;
 }
 
-void REBuffer::Clear()
+void REBuffer::clear()
 {
 	if (_buff) 
 	{
@@ -74,9 +86,9 @@ void REBuffer::Clear()
 	}
 }
 
-REBOOL REBuffer::Set(const void * buff, const REUInt32 buffSize)
+REBOOL REBuffer::set(const void * buff, const REUInt32 buffSize)
 {
-	this->Clear();
+	this->clear();
 	
 	if (buff && buffSize) 
 	{
@@ -93,7 +105,7 @@ REBOOL REBuffer::Set(const void * buff, const REUInt32 buffSize)
 	return false;
 }
 
-REBOOL REBuffer::Append(const void * buff, const REUInt32 buffSize)
+REBOOL REBuffer::append(const void * buff, const REUInt32 buffSize)
 {
 	if (_size && _buff)
 	{
@@ -110,23 +122,23 @@ REBOOL REBuffer::Append(const void * buff, const REUInt32 buffSize)
 		}
 	}
 	
-	return this->Set(buff, buffSize);
+	return this->set(buff, buffSize);
 }
 
-REBOOL REBuffer::Append(const REBuffer & anotherBuff)
+REBOOL REBuffer::append(const REBuffer & anotherBuff)
 {
-	return this->Append(anotherBuff.GetBuffer(), anotherBuff.GetSize());
+	return this->append(anotherBuff.getBuffer(), anotherBuff.getSize());
 }
 
 REBuffer & REBuffer::operator+=(const REBuffer & anotherBuff)
 {
-	this->Append(anotherBuff.GetBuffer(), anotherBuff.GetSize());
+	this->append(anotherBuff.getBuffer(), anotherBuff.getSize());
 	return (*this);
 }
 
 REBuffer & REBuffer::operator=(const REBuffer & anotherBuff)
 {
-	this->Set(anotherBuff._buff, anotherBuff._size);
+	this->set(anotherBuff._buff, anotherBuff._size);
 	return (*this);
 }
 
@@ -134,14 +146,14 @@ REBuffer::REBuffer(const REBuffer & anotherBuff) :
 	_buff(NULL), 
 	_size(0)
 {
-	this->Set(anotherBuff._buff, anotherBuff._size);
+	this->set(anotherBuff._buff, anotherBuff._size);
 }
 
 REBuffer::REBuffer(const void * buff, const REUInt32 buffSize) : 
 	_buff(NULL), 
 	_size(0)
 {
-	this->Set(buff, buffSize);
+	this->set(buff, buffSize);
 }
 
 REBuffer::REBuffer(const REUInt32 buffSize) : 
@@ -175,9 +187,9 @@ REBuffer::~REBuffer()
 }
 
 /// __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
-REBOOL REBuffer::InitFromURLString(const REString & urlString)
+REBOOL REBuffer::initFromURLString(const REString & urlString)
 {
-	this->Clear();
+	this->clear();
 	
 #ifdef __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
 	REURL url(urlString);
@@ -197,7 +209,7 @@ REBOOL REBuffer::InitFromURLString(const REString & urlString)
 		{
 			REBuffer downlBuff;
 			const REBOOL isSended = REURLConnectionObject::SendRequest(request, &downlBuff, NULL);
-			request->Release();
+			request->release();
 			if (isSended)
 			{
 				if (downlBuff.GetSize()) 

@@ -46,34 +46,7 @@ JNIEnv * RECorePrivate::androidJNIEnvironment = (JNIEnv *)0;
 jclass RECorePrivate::androidApplicationActivityJNIClass = (jclass)0;
 #endif
 
-void RECore::LogTypesSizes()
-{
-	RELog::Log("char=%i", (int)sizeof(char));
-	RELog::Log("short=%i", (int)sizeof(short));
-	RELog::Log("int=%i", (int)sizeof(int));
-	RELog::Log("long=%i", (int)sizeof(long));
-	RELog::Log("long int=%i", (int)sizeof(long int));
-	RELog::Log("long long=%i", (int)sizeof(long long));
-	RELog::Log("long long int=%i", (int)sizeof(long long int));
-	RELog::Log("float=%i", (int)sizeof(float));
-	RELog::Log("double=%i", (int)sizeof(double));
-	RELog::Log("long double=%i", (int)sizeof(long double));
-	
-	RELog::Log("REByte=%i", (int)sizeof(REByte));
-	RELog::Log("REUByte=%i", (int)sizeof(REUByte));
-	RELog::Log("REInt16=%i", (int)sizeof(REInt16));
-	RELog::Log("REUInt16=%i", (int)sizeof(REUInt16));
-	RELog::Log("REInt32=%i", (int)sizeof(REInt32));
-	RELog::Log("REUInt32=%i", (int)sizeof(REUInt32));
-	RELog::Log("REInt64=%i", (int)sizeof(REInt64));
-	RELog::Log("REUInt64=%i", (int)sizeof(REUInt64));
-	RELog::Log("REFloat16=%i", (int)sizeof(REFloat16));
-	RELog::Log("REFloat32=%i", (int)sizeof(REFloat32));
-	RELog::Log("REFloat64=%i", (int)sizeof(REFloat64));
-	RELog::Log("RETimeInterval=%i", (int)sizeof(RETimeInterval));
-}
-
-const char * RECore::BuildInfo()
+const char * RECore::buildInfo()
 {
 	static const char * info =
 	"RECore version: " __RE_CORE_VERSION_STRING__ "\n"
@@ -87,7 +60,7 @@ const char * RECore::BuildInfo()
 #endif
 	
 	"- Posix threads in REThread object: "
-#ifdef __RE_USING_PTHREADS__
+#ifdef __RE_TRY_USE_PTHREADS__
 	"yes\n"
 #else
 	"no\n"
@@ -235,11 +208,11 @@ const char * RECore::BuildInfo()
 #endif
 	
 	"Additional third-party libraries:\n"
-#if defined(__RE_USING_SYSTEM_ZLIB_LIBRARY__) || defined(__RE_USING_ADITIONAL_ZLIB_LIBRARY__)
+#if defined(__RE_TRY_USE_SYSTEM_ZLIB_LIBRARY__) || defined(__RE_USING_ADITIONAL_ZLIB_LIBRARY__)
 	"- Zlib. http://zlib.net\n"
 #endif
 	
-#if defined(__RE_USING_ADITIONAL_PNG_LIBRARY__) || defined(__RE_USING_SYSTEM_PNG_LIBRARY__)
+#if defined(__RE_USING_ADITIONAL_PNG_LIBRARY__) || defined(__RE_TRY_USE_SYSTEM_PNG_LIBRARY__)
 	"- Png. http://www.libpng.org\n"
 #endif
 	
@@ -247,19 +220,19 @@ const char * RECore::BuildInfo()
 	"- SQLite. http://www.sqlite.org\n"
 #endif
 	
-#if defined(__RE_USING_ADITIONAL_JPEG_LIBRARY__) || defined(__RE_USING_SYSTEM_JPEG_LIBRARY__)
+#if defined(__RE_USING_ADITIONAL_JPEG_LIBRARY__) || defined(__RE_TRY_USE_SYSTEM_JPEG_LIBRARY__)
 	"- Jpeg. http://www.ijg.org\n"
 #endif
 
-#if defined(__RE_USING_ADITIONAL_OPENJPEG_LIBRARY__) || defined(__RE_USING_SYSTEM_OPENJPEG_LIBRARY__)
+#if defined(__RE_USING_ADITIONAL_OPENJPEG_LIBRARY__) || defined(__RE_TRY_USE_SYSTEM_OPENJPEG_LIBRARY__)
 	"- OpenJPEG. http://www.openjpeg.org\n"
 #endif
 
-#if defined(__RE_USING_ADITIONAL_WEBP_LIBRARY__) || defined(__RE_USING_SYSTEM_WEBP_LIBRARY__)
+#if defined(__RE_USING_ADITIONAL_WEBP_LIBRARY__) || defined(__RE_TRY_USE_SYSTEM_WEBP_LIBRARY__)
 	"- WebP. https://code.google.com/p/webp\n"
 #endif
 
-#if defined(__RE_USING_ADITIONAL_LZMA_LIBRARY__) || defined(__RE_USING_SYSTEM_LZMA_LIBRARY__)
+#if defined(__RE_USING_ADITIONAL_LZMA_LIBRARY__) || defined(__RE_TRY_USE_SYSTEM_LZMA_LIBRARY__)
 	"- LZMA. http://www.7-zip.org/sdk.html\n"
 #endif
 	
@@ -299,22 +272,22 @@ const char * RECore::BuildInfo()
 	return info;
 }
 
-const REString & RECore::GetPreferencesPath()
+const REString & RECore::getPreferencesPath()
 {
 	return RECorePrivate::preferencesPath;
 }
 
-REBOOL RECore::SetPreferencesPath(const REString & newPrefPath)
+REBOOL RECore::setPreferencesPath(const REString & newPrefPath)
 {
 	REFileManager fManager;
 	REBOOL isDir = false;
-	if (fManager.IsFileExistsAtPath(newPrefPath, &isDir)) 
+	if (fManager.isFileExistsAtPath(newPrefPath, &isDir)) 
 	{
 		if (isDir) 
 		{
-			if (fManager.IsWritableFileAtPath(newPrefPath))
+			if (fManager.isWritableFileAtPath(newPrefPath))
 			{
-				RECorePrivate::preferencesPath.Set(newPrefPath);
+				RECorePrivate::preferencesPath.set(newPrefPath);
 				RECorePrivate::isPreferencesPathInitialized = true;
 				return true;
 			}
@@ -324,22 +297,22 @@ REBOOL RECore::SetPreferencesPath(const REString & newPrefPath)
 }
 
 #ifdef __RE_OS_ANDROID__
-void RECore::SetAndroidJNIEnvironment(JNIEnv * jniEnvironment)
+void RECore::setAndroidJNIEnvironment(JNIEnv * jniEnvironment)
 {
 	_androidJNIEnvironment = jniEnvironment;
 }
 
-JNIEnv * RECore::GetAndroidJNIEnvironment()
+JNIEnv * RECore::getAndroidJNIEnvironment()
 {
 	return _androidJNIEnvironment;
 }
 
-void RECore::SetAndroidApplicationActivityJNIClass(jclass jniClass)
+void RECore::setAndroidApplicationActivityJNIClass(jclass jniClass)
 {
 	_androidApplicationActivityJNIClass = jniClass;
 }
 
-jclass RECore::GetAndroidApplicationActivityJNIClass()
+jclass RECore::getAndroidApplicationActivityJNIClass()
 {
 	return _androidApplicationActivityJNIClass;
 }

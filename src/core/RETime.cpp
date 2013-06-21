@@ -42,21 +42,21 @@ private:
 	RETimeInterval _lastPauseTime;
 	RETimeInterval _unusedTime;
 	REUInt32 _isPaused;
-	RETimeInterval Get();
-	void UpdatePauseTime();
+	RETimeInterval get();
+	void updatePauseTime();
 public:
-	static RETimePrivate time;
+	static RETimePrivate _time;
 	RETimePrivate();
 	~RETimePrivate();
 	RETimeInterval Time();
-	REBOOL Pause();
-	REBOOL Resume();
-	REBOOL IsPaused() const;
+	REBOOL pause();
+	REBOOL resume();
+	REBOOL isPaused() const;
 };
 
-RETimePrivate RETimePrivate::time;
+RETimePrivate RETimePrivate::_time;
 
-RETimeInterval RETimePrivate::Get() 
+RETimeInterval RETimePrivate::get() 
 {
 #if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
 	const double seconds = (_nanoSecond * (mach_absolute_time() - _absoluteAppStartTime));
@@ -81,9 +81,9 @@ RETimeInterval RETimePrivate::Get()
 #endif
 }
 
-void RETimePrivate::UpdatePauseTime()
+void RETimePrivate::updatePauseTime()
 {
-	const RETimeInterval curTime = this->Get();
+	const RETimeInterval curTime = this->get();
 	_unusedTime += (curTime - _lastPauseTime);
 	_lastPauseTime = curTime;
 }
@@ -92,35 +92,35 @@ RETimeInterval RETimePrivate::Time()
 {
 	if (_isPaused) 
 	{
-		this->UpdatePauseTime();
+		this->updatePauseTime();
 	}
 	
-	return (this->Get() - _unusedTime);
+	return (this->get() - _unusedTime);
 }
 
-REBOOL RETimePrivate::Pause()
+REBOOL RETimePrivate::pause()
 {
 	if (_isPaused == 0)
 	{
 		_isPaused = 1;
-		_lastPauseTime = this->Get();
+		_lastPauseTime = this->get();
 		return true;
 	}
 	return false;
 }
 
-REBOOL RETimePrivate::Resume()
+REBOOL RETimePrivate::resume()
 {
 	if (_isPaused) 
 	{
-		this->UpdatePauseTime();
+		this->updatePauseTime();
 		_isPaused = 0;
 		return true;
 	}
 	return false;
 }
 
-REBOOL RETimePrivate::IsPaused() const
+REBOOL RETimePrivate::isPaused() const
 {
 	return ((_isPaused == 1) ? true : false);
 }
@@ -159,7 +159,7 @@ RETimePrivate::RETimePrivate() :
 	*/
 #endif
 	
-	_unusedTime = this->Get();
+	_unusedTime = this->get();
 }
 
 RETimePrivate::~RETimePrivate()
@@ -167,7 +167,7 @@ RETimePrivate::~RETimePrivate()
 	
 }
 
-const REUInt64 RETime::ConvertSecondsToMilliseconds(const RETimeInterval seconds)
+const REUInt64 RETime::convertSecondsToMilliseconds(const RETimeInterval seconds)
 {
 	double fullSeconds = 0.0;
 	const double fractSecond = modf(seconds, &fullSeconds);
@@ -176,7 +176,7 @@ const REUInt64 RETime::ConvertSecondsToMilliseconds(const RETimeInterval seconds
 	return (fullIntMilisec + fractIntMilisec);
 }
 
-const REUInt64 RETime::ConvertSecondsToMicroseconds(const RETimeInterval seconds)
+const REUInt64 RETime::convertSecondsToMicroseconds(const RETimeInterval seconds)
 {
 	double fullSeconds = 0.0;
 	const double fractSecond = modf(seconds, &fullSeconds);
@@ -185,44 +185,44 @@ const REUInt64 RETime::ConvertSecondsToMicroseconds(const RETimeInterval seconds
 	return (fullIntMicrosec + fractIntMicrosec);
 }
 
-REBOOL RETime::PauseTime()
+REBOOL RETime::pauseTime()
 {
-	return RETime::Pause();
+	return RETime::pause();
 }
 
-REBOOL RETime::ResumeTime()
+REBOOL RETime::resumeTime()
 {
-	return RETime::Resume();
+	return RETime::resume();
 }
 
-REBOOL RETime::Pause()
+REBOOL RETime::pause()
 {
-	return RETimePrivate::time.Pause();
+	return RETimePrivate::_time.pause();
 }
 
-REBOOL RETime::Resume()
+REBOOL RETime::resume()
 {
-	return RETimePrivate::time.Resume();
+	return RETimePrivate::_time.resume();
 }
 
-REBOOL RETime::IsTimePaused() const
+REBOOL RETime::isTimePaused() const
 {
-	return RETime::IsPaused();
+	return RETime::isPaused();
 }
 
-REBOOL RETime::IsPaused()
+REBOOL RETime::isPaused()
 {
-	return RETimePrivate::time.IsPaused();
+	return RETimePrivate::_time.isPaused();
 }
 
-const RETimeInterval RETime::GetTime() const
+const RETimeInterval RETime::getTime() const
 {
-	return RETime::Time();
+	return RETime::time();
 }
 
-const RETimeInterval RETime::Time()
+const RETimeInterval RETime::time()
 {
-	return RETimePrivate::time.Time();
+	return RETimePrivate::_time.Time();
 }
 
 

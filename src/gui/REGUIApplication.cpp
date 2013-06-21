@@ -38,15 +38,15 @@ REUInt32 REGUIApplicationPrivate::FindOnClickViewsPrivate(REArray<REView *> * st
 														  const REFloat32 screenX, 
 														  const REFloat32 screenY)
 {
-	if (view->IsVisible() && (view->IsRespondsForUserAction() || (!view->IsInterceptsUserAction()))) 
+	if (view->isVisible() && (view->isRespondsForUserAction() || (!view->isInterceptsUserAction()))) 
 	{
-		if (view->GetScreenFrame().IsPointInRect(screenX, screenY)) 
+		if (view->getScreenFrame().isPointInRect(screenX, screenY)) 
 		{
-			storeArray->Add(view);
-			REObjectsArray * subViews = (REObjectsArray *)view->GetSubViewsArray();
+			storeArray->add(view);
+			REObjectsArray * subViews = (REObjectsArray *)view->getSubViewsArray();
 			if (subViews) 
 			{
-				for (REUInt32 i = 0; i < subViews->Count(); i++) 
+				for (REUInt32 i = 0; i < subViews->count(); i++) 
 				{
 					REView * subView = (REView *)(*subViews)[i];
 					if (REGUIApplicationPrivate::FindOnClickViewsPrivate(storeArray, subView, screenX, screenY))
@@ -66,16 +66,16 @@ void REGUIApplicationPrivate::FindOnClickViews(REArray<REView *> * onClickViews,
 											   const REFloat32 screenX, 
 											   const REFloat32 screenY)
 {
-	onClickViews->Clear();
-	userActionViews->Clear();
+	onClickViews->clear();
+	userActionViews->clear();
 	REGUIApplicationPrivate::FindOnClickViewsPrivate(onClickViews, view, screenX, screenY);
-	REUInt32 i = onClickViews->Count();
+	REUInt32 i = onClickViews->count();
 	while (i) 
 	{
 		i--;
 		REView * v = (*onClickViews)[i];
-		userActionViews->Add(v);
-		if (v->IsInterceptsUserAction())
+		userActionViews->add(v);
+		if (v->isInterceptsUserAction())
 		{
 			return;
 		}
@@ -84,46 +84,46 @@ void REGUIApplicationPrivate::FindOnClickViews(REArray<REView *> * onClickViews,
 
 
 /* REObject */
-const REUInt32 REGUIApplication::GetClassIdentifier() const
+const REUInt32 REGUIApplication::getClassIdentifier() const
 {
-	return REGUIApplication::ClassIdentifier();
+	return REGUIApplication::classIdentifier();
 }
 
-const REUInt32 REGUIApplication::ClassIdentifier()
+const REUInt32 REGUIApplication::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REGUIApplication");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIApplication");
 	return clasIdentif;
 }
 
-REBOOL REGUIApplication::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REGUIApplication::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REGUIApplication::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IRERenderable") == classIdentifier) ||
-			REApplication::IsImplementsClass(classIdentifier));
+	return ((REGUIApplication::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IRERenderable") == classIdentifier) ||
+			REApplication::isImplementsClass(classIdentifier));
 }
 
-void REGUIApplication::Render()
+void REGUIApplication::render()
 {
 	if (_renderDevice && _rootViewController) 
 	{
 		_renderDevice->StartRendering();
 		_renderDevice->Enter2DMode();
 		
-		_rootViewController->Render(); 
+		_rootViewController->render(); 
 		
 		_renderDevice->Leave2DMode();
 		_renderDevice->EndRendering();
 	}
 }
 
-void REGUIApplication::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void REGUIApplication::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if (_renderDevice && _rootViewController) 
 	{
 		_renderDevice->StartRendering();
 		_renderDevice->Enter2DMode();
 		
-		_rootViewController->RenderWithOffset(offsetX, offsetY); 
+		_rootViewController->renderWithOffset(offsetX, offsetY); 
 		
 		_renderDevice->Leave2DMode();
 		_renderDevice->EndRendering();
@@ -141,7 +141,7 @@ void REGUIApplication::OnMouseMoveOnScreen(const REFloat32 screenX, const REFloa
 	this->FindSubViewForCoords(_rootViewController, x, y);
 	for (REUInt32 i = 0; i < _userActionViews.Count(); i++) 
 	{
-		_userActionViews[i]->UserCursorMoved(x, y);
+		_userActionViews[i]->userCursorMoved(x, y);
 	}
     */
 	/*
@@ -157,7 +157,7 @@ void REGUIApplication::OnMouseMoveOnScreen(const REFloat32 screenX, const REFloa
 	 REView * v = this->FindSubViewLastViewForCoords(_rootViewController, x, y);
 	 if (v)
 	 {
-	 v->UserCursorMoved(x, y);
+	 v->userCursorMoved(x, y);
 	 }
 	 }
 	 }
@@ -207,7 +207,7 @@ void REGUIApplication::OnMouseMoveOnScreen(const REFloat32 screenX, const REFloa
  }
  */
 
-void REGUIApplication::OnClickOnScreenStart(const REFloat32 screenX, const REFloat32 screenY)
+void REGUIApplication::onClickOnScreenStart(const REFloat32 screenX, const REFloat32 screenY)
 {
 	if (_renderDevice && _rootViewController) 
 	{
@@ -220,25 +220,25 @@ void REGUIApplication::OnClickOnScreenStart(const REFloat32 screenX, const REFlo
 												  _rootViewController, 
 												  _lastUserClickPos.x, 
 												  _lastUserClickPos.y);
-		for (REUInt32 i = 0; i < _userActionViews.Count(); i++) 
+		for (REUInt32 i = 0; i < _userActionViews.count(); i++) 
 		{
-			_userActionViews[i]->UserActionClickDidStart(_lastUserClickPos.x, _lastUserClickPos.y);
+			_userActionViews[i]->userActionClickDidStart(_lastUserClickPos.x, _lastUserClickPos.y);
 		}
 	}
 }
 
-void REGUIApplication::OnClickOnScreenEnd(const REFloat32 screenX, const REFloat32 screenY)
+void REGUIApplication::onClickOnScreenEnd(const REFloat32 screenX, const REFloat32 screenY)
 {
-	if (_userActionViews.Count() && _renderDevice) 
+	if (_userActionViews.count() && _renderDevice) 
 	{
 		RESize ratio(_renderDevice->GetScreenToRenderSizeRatio());
 		
 		const REFloat32 x = ratio.width * screenX;
 		const REFloat32 y = ratio.height * screenY;
 		
-		for (REUInt32 i = 0; i < _userActionViews.Count(); i++) 
+		for (REUInt32 i = 0; i < _userActionViews.count(); i++) 
 		{
-			_userActionViews[i]->UserActionClickDidEnd(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
+			_userActionViews[i]->userActionClickDidEnd(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
 		}
 		
 		if (_isLastUserClickMoving)
@@ -247,18 +247,18 @@ void REGUIApplication::OnClickOnScreenEnd(const REFloat32 screenX, const REFloat
 			
 			if ((fabs(_lastUserClickPos.x - x) > 0.0) || (fabs(_lastUserClickPos.y - y) > 0.0))
 			{
-				for (REUInt32 i = 0; i < _userActionViews.Count(); i++) 
+				for (REUInt32 i = 0; i < _userActionViews.count(); i++) 
 				{
-					_userActionViews[i]->UserActionClickMovingDidEnd(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
+					_userActionViews[i]->userActionClickMovingDidEnd(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
 				}
 			}
 		}
 	}
 }
 
-void REGUIApplication::OnClickMoveOnScreen(const REFloat32 screenX, const REFloat32 screenY)
+void REGUIApplication::onClickMoveOnScreen(const REFloat32 screenX, const REFloat32 screenY)
 {
-	if (_userActionViews.Count() && _renderDevice) 
+	if (_userActionViews.count() && _renderDevice) 
 	{
 		RESize ratio(_renderDevice->GetScreenToRenderSizeRatio());
 		
@@ -268,20 +268,20 @@ void REGUIApplication::OnClickMoveOnScreen(const REFloat32 screenX, const REFloa
 		if ( (_lastUserClickPos.x != x) || (_lastUserClickPos.y != y) )
 		{
 			_isLastUserClickMoving = 1;
-			for (REUInt32 i = 0; i < _userActionViews.Count(); i++)
+			for (REUInt32 i = 0; i < _userActionViews.count(); i++)
 			{
-				_userActionViews[i]->UserActionClickMoving(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
+				_userActionViews[i]->userActionClickMoving(_lastUserClickPos.x, _lastUserClickPos.y, x, y);
 			}
 		}
 		
 	}
 }
 
-REBOOL REGUIApplication::InitGUIApplication(REViewController * rootViewController, void * windowHandle)
+REBOOL REGUIApplication::initGUIApplication(REViewController * rootViewController, void * windowHandle)
 {
 	if (rootViewController) 
 	{
-		this->SetRootViewController(rootViewController);
+		this->setRootViewController(rootViewController);
 	}
 	
 	REBOOL isOk = false;
@@ -322,34 +322,34 @@ REBOOL REGUIApplication::InitGUIApplication(REViewController * rootViewControlle
 		return true;
 	}
 	
-	this->AddToErrorDescription(REString("Can't initialize application default RERenderDevice."));
+	this->addToErrorDescription(REString("Can't initialize application default RERenderDevice."));
 	return false;
 }
 
-REViewController * REGUIApplication::GetRootViewController() const
+REViewController * REGUIApplication::getRootViewController() const
 {
 	return _rootViewController;
 }
 
 /// Setting new root view controller. 
 /// Previous view controller will be Release()'ed and 'newRootViewController' exists it will be Retain()ed.
-void REGUIApplication::SetRootViewController(REViewController * newRootViewController)
+void REGUIApplication::setRootViewController(REViewController * newRootViewController)
 {
 	RE_SAFE_RETAIN(_rootViewController, newRootViewController);
 }
 
 /// Try to initialize base REApplication and than GUI application.
-REBOOL REGUIApplication::Initialize()
+REBOOL REGUIApplication::initialize()
 {
-	return this->InitGUIApplication(NULL, NULL);
+	return this->initGUIApplication(NULL, NULL);
 }
 
 /// Try to initialize base REApplication and than GUI application with root view controller.
 /// If default RERenderDevice if not initialized it will try to init.
 /// 'rootViewController' will be Retain()'ed.
-REBOOL REGUIApplication::Initialize(REViewController * rootViewController)
+REBOOL REGUIApplication::initialize(REViewController * rootViewController)
 {
-	return this->InitGUIApplication(rootViewController, NULL);
+	return this->initGUIApplication(rootViewController, NULL);
 }
 
 /// Try to initialize base REApplication and than GUI application with root view controller
@@ -357,15 +357,15 @@ REBOOL REGUIApplication::Initialize(REViewController * rootViewController)
 /// Window handle using when creating application using DirectX. 
 /// If default RERenderDevice if not initialized it will try to init.
 /// 'rootViewController' will be Retain()'ed.
-REBOOL REGUIApplication::Initialize(REViewController * rootViewController, void * windowHandle)
+REBOOL REGUIApplication::initialize(REViewController * rootViewController, void * windowHandle)
 {
-	return this->InitGUIApplication(rootViewController, windowHandle);
+	return this->initGUIApplication(rootViewController, windowHandle);
 }
 
 /// Checks is application successfully initialized and ready to work.
-REBOOL REGUIApplication::IsOK() const
+REBOOL REGUIApplication::isOK() const
 {
-	if (REApplication::IsOK()) 
+	if (REApplication::isOK()) 
 	{
 		if (_renderDevice && _rootViewController) 
 		{
@@ -376,15 +376,15 @@ REBOOL REGUIApplication::IsOK() const
 }
 
 /// Suspends execution of the application
-REBOOL REGUIApplication::Pause()
+REBOOL REGUIApplication::pause()
 {
-	return REApplication::Pause();
+	return REApplication::pause();
 }
 
 /// Resumes execution of the application
-REBOOL REGUIApplication::Resume()
+REBOOL REGUIApplication::resume()
 {
-	return REApplication::Resume();
+	return REApplication::resume();
 }
 
 REGUIApplication::REGUIApplication() : REApplication(),
@@ -394,11 +394,11 @@ REGUIApplication::REGUIApplication() : REApplication(),
 	
 }
 
-void REGUIApplication::OnReleased()
+void REGUIApplication::onReleased()
 {
 	RE_SAFE_RELEASE(_rootViewController);
 	
-	REApplication::OnReleased();
+	REApplication::onReleased();
 }
 
 REGUIApplication::~REGUIApplication()
@@ -406,7 +406,7 @@ REGUIApplication::~REGUIApplication()
 	
 }
 
-REGUIApplication * REGUIApplication::Create()
+REGUIApplication * REGUIApplication::create()
 {
 	REGUIApplication * newGUIApp = new REGUIApplication();
 	return newGUIApp;

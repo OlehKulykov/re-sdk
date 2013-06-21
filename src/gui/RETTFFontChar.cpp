@@ -41,7 +41,7 @@ RETTFFontChar::~RETTFFontChar()
 {
 	if (texture) 
 	{
-		texture->Release();
+		texture->release();
 	}
 }
 

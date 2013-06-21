@@ -202,43 +202,43 @@ class __RE_PUBLIC_CLASS_API__ REMath
 {
 public:
 	/// Template for getter of max of 2 values.
-	template <class T> static const T & Max(const T & v1, const T & v2) 
+	template <class T> static const T & max(const T & v1, const T & v2) 
 	{
 		return (v1 > v2) ? v1 : v2;
 	}
 	
 	/// Template for getter of max of 3 values.
-	template <class T> static const T & Max(const T & v1, const T & v2, const T & v3) 
+	template <class T> static const T & max(const T & v1, const T & v2, const T & v3) 
 	{
-		const T & m1 = REMath::Max<T>(v1, v2);
-		return REMath::Max<T>(m1, v3);
+		const T & m1 = REMath::max<T>(v1, v2);
+		return REMath::max<T>(m1, v3);
 	}
 	
 	/// Template for getter of max of 4 values.
-	template <class T> static const T & Max(const T & v1, const T & v2, const T & v3, const T & v4) 
+	template <class T> static const T & max(const T & v1, const T & v2, const T & v3, const T & v4) 
 	{
-		const T & m1 = REMath::Max<T>(v1, v2, v3);
-		return REMath::Max<T>(m1, v4);
+		const T & m1 = REMath::max<T>(v1, v2, v3);
+		return REMath::max<T>(m1, v4);
 	}
 	
 	/// Template for getter of min of 2 values.
-	template <class T> static const T & Min(const T & v1, const T & v2) 
+	template <class T> static const T & min(const T & v1, const T & v2) 
 	{
 		return (v1 < v2) ? v1 : v2;
 	}
 	
 	/// Template for getter of min of 3 values.
-	template <class T> static const T & Min(const T & v1, const T & v2, const T & v3) 
+	template <class T> static const T & min(const T & v1, const T & v2, const T & v3) 
 	{
-		const T & m1 = REMath::Min<T>(v1, v2);
-		return REMath::Min<T>(m1, v3);
+		const T & m1 = REMath::min<T>(v1, v2);
+		return REMath::min<T>(m1, v3);
 	}
 	
 	/// Template for getter of min of 4 values.
-	template <class T> static const T & Min(const T & v1, const T & v2, const T & v3, const T & v4) 
+	template <class T> static const T & min(const T & v1, const T & v2, const T & v3, const T & v4) 
 	{
-		const T & m1 = REMath::Min<T>(v1, v2, v3);
-		return REMath::Min<T>(m1, v4);
+		const T & m1 = REMath::min<T>(v1, v2, v3);
+		return REMath::min<T>(m1, v4);
 	}	
 };
 

@@ -47,34 +47,34 @@ class __RE_PUBLIC_CLASS_API__ RELocale
 private:
 	static RELocale * _defaultLocales;
 	RELocaleType _currentLocaleType;
-	RELocaleType SetCurrentLocaleFromString(const char * locString);
-	void TryDetectLocale();
+	RELocaleType setCurrentLocaleFromString(const char * locString);
+	void tryDetectLocale();
 	RELocale();
 	~RELocale();
 public:
 	/// Returns current locale type.
-	RELocaleType GetCurrentLocaleType();
+	RELocaleType getCurrentLocaleType();
 	
 	/// Returns current locale string.
-	const char * GetCurrentLocaleString();
+	const char * getCurrentLocaleString();
 	
 	/// Assigning current locale type.
-	void SetCurrentLocaleType(RELocaleType newLocaleType);
+	void setCurrentLocaleType(RELocaleType newLocaleType);
 	
 	/// Check is locale defined.
-	REBOOL IsDefined();
+	REBOOL isDefined();
 	
 	/// Returns notification name string when current locale changed.
-	static const char * GetNotificationStringForCurrentLocaleChanged();
+	static const char * getNotificationStringForCurrentLocaleChanged();
 	
 	/// Returns locale string from it's type.
-	static const char * GetLocaleStringFromType(const RELocaleType type);
+	static const char * getLocaleStringFromType(const RELocaleType type);
 	
 	/// Returns default locale class.
-	static RELocale * GetDefaultLocale();
+	static RELocale * getDefaultLocale();
 	
 	/// Releases default locale class.
-	static void ReleaseDefaultLocale();
+	static void releaseDefaultLocale();
 };
 
 #endif

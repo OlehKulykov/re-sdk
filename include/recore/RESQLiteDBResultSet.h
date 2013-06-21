@@ -42,50 +42,50 @@ private:
 	
 public:
 	/// Checks is result set null(empty).
-	REBOOL IsNull() const;
+	REBOOL isNull() const;
 	
 	/// Closes result set.
-	void Close();
+	void close();
 	
 	/// Receive next results from data base.
-	REBOOL Next() const;
+	REBOOL next() const;
 	
 	/// Checks is has next row of results.
-	REBOOL IsHasAnotherRow() const;
+	REBOOL isHasAnotherRow() const;
 	
 	/// Returns column index by it's name.
 	/// Returns RENotFound if not found.
-	REUInt32 GetColumnIndexFromName(const REString & columnName) const;
+	REUInt32 getColumnIndexFromName(const REString & columnName) const;
 	
 	/// Returns Boolean value for column name.
-	REBOOL GetBoolForColumnName(const REString & columnName) const;
+	REBOOL getBoolForColumnName(const REString & columnName) const;
 	
 	/// Returns Boolean value for column index.
-	REBOOL GetBoolForColumnIndex(const REUInt32 index) const;
+	REBOOL getBoolForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Integer value for column name.
-	REInt32 GetIntForColumnName(const REString & columnName) const;
+	REInt32 getIntForColumnName(const REString & columnName) const;
 	
 	/// Returns Integer value for column index.
-	REInt32 GetIntForColumnIndex(const REUInt32 index) const;
+	REInt32 getIntForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Float value for column name.
-	REFloat64 GetFloatForColumnName(const REString & columnName) const;
+	REFloat64 getFloatForColumnName(const REString & columnName) const;
 	
 	/// Returns Integer value for column index.
-	REFloat64 GetFloatForColumnIndex(const REUInt32 index) const;
+	REFloat64 getFloatForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Long Integer value for column name.
-	REInt64 GetLongIntForColumnName(const REString & columnName) const;
+	REInt64 getLongIntForColumnName(const REString & columnName) const;
 	
 	/// Returns Long Integer value for column index.
-	REInt64 GetLongIntForColumnIndex(const REUInt32 index) const;
+	REInt64 getLongIntForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns String value for column name.
-	REString GetStringForColumnName(const REString & columnName) const;
+	REString getStringForColumnName(const REString & columnName) const;
 	
 	/// Returns String value for column index.
-	REString GetStringForColumnIndex(const REUInt32 index) const;
+	REString getStringForColumnIndex(const REUInt32 index) const;
     
 	/// Assign operator using another result set.
 	RESQLiteDBResultSet & operator=(const RESQLiteDBResultSet & anotherSet);

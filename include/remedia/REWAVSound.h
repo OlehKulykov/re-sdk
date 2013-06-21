@@ -47,21 +47,21 @@ private:
 	REBOOL _isLooped;
 
 #ifdef __RE_USING_OPENAL__		
-	static REBOOL LoadPcmWavData(const REUByte * data, ALuint * buffer, ALuint * source);
+	static REBOOL loadPcmWavData(const REUByte * data, ALuint * buffer, ALuint * source);
 #endif
-	void Clear();
+	void clear();
 public:
-	REBOOL InitWithData(const REData & soundFileData);
-	virtual REBOOL Play();
-	virtual REBOOL IsPlaying() const;
-	virtual REBOOL Pause();
-	virtual REBOOL Stop();
-	virtual REBOOL SetLooped(const REBOOL isLooped);
-	virtual REBOOL IsLooped() const;
-	virtual REBOOL SetVolume(const REFloat32 newVolume);
-	virtual const REFloat32 GetVolume() const;
+	REBOOL initWithData(const REData & soundFileData);
+	virtual REBOOL play();
+	virtual REBOOL isPlaying() const;
+	virtual REBOOL pause();
+	virtual REBOOL stop();
+	virtual REBOOL setLooped(const REBOOL isLooped);
+	virtual REBOOL isLooped() const;
+	virtual REBOOL setVolume(const REFloat32 newVolume);
+	virtual const REFloat32 getVolume() const;
 	
-	static REBOOL IsValidData(const REData & data);
+	static REBOOL isValidData(const REData & data);
 	
 	REWAVSound();
 	virtual ~REWAVSound();

@@ -112,39 +112,39 @@ private:
 	REBOOL _audioPlayBackStarted;
 	REBOOL _isPlaying;
 	
-	void QueuePage(ogg_page * page);
-	REBOOL ParseHeaders();
-	REBOOL InitDecoders();
-	void DecodeVideo();
-	void DecodeAudio();
-	void PlayDecodedAudio();
-	double GetTime();
-	void WriteVideo();
+	void queuePage(ogg_page * page);
+	REBOOL parseHeaders();
+	REBOOL initDecoders();
+	void decodeVideo();
+	void decodeAudio();
+	void playDecodedAudio();
+	double getTime();
+	void writeVideo();
 	
-	REBOOL IsSoundExists() const { return (vorbis_p != 0); }
-	REBOOL IsAudioBufferReady() const { return (_soundPCMDataSize >= (NUM_BUFFERS * _alBufferSize)); }
-	REUInt32 GetFrameWidth() const { return _theoraInfo.frame_width; }
-	REUInt32 GetFrameHeight() const { return _theoraInfo.frame_height; }
+	REBOOL isSoundExists() const { return (vorbis_p != 0); }
+	REBOOL isAudioBufferReady() const { return (_soundPCMDataSize >= (NUM_BUFFERS * _alBufferSize)); }
+	REUInt32 getFrameWidth() const { return _theoraInfo.frame_width; }
+	REUInt32 getFrameHeight() const { return _theoraInfo.frame_height; }
 	
-	static int BufferData(REData * inData, ogg_sync_state * oy);
+	static int bufferData(REData * inData, ogg_sync_state * oy);
 	
-	static void ConvertSamples(const int samples, float ** pcm, void * buf, const int channels);
+	static void convertSamples(const int samples, float ** pcm, void * buf, const int channels);
 public:
-	virtual void Update(const RETimeInterval currentTime);
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual void update(const RETimeInterval currentTime);
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
-	virtual REBOOL Play();
-	virtual REBOOL IsPlaying() const;
-	virtual REBOOL Pause();
-	virtual REBOOL Stop();
-	virtual REBOOL SetLooped(const REBOOL isLooped);
-	virtual REBOOL IsLooped() const; /* by default is not looped */
-	virtual REBOOL SetVolume(const REFloat32 newVolume);
-	virtual const REFloat32 GetVolume() const;
+	virtual REBOOL play();
+	virtual REBOOL isPlaying() const;
+	virtual REBOOL pause();
+	virtual REBOOL stop();
+	virtual REBOOL setLooped(const REBOOL isLooped);
+	virtual REBOOL isLooped() const; /* by default is not looped */
+	virtual REBOOL setVolume(const REFloat32 newVolume);
+	virtual const REFloat32 getVolume() const;
 	
-	RETextureObject * GetTexture() const { return _texture; }
+	RETextureObject * getTexture() const { return _texture; }
 	
-	REBOOL InitWithData(const REData & soundFileData);
+	REBOOL initWithData(const REData & soundFileData);
 	
 	REOGGTheoraPlayerPrivate();
 	virtual ~REOGGTheoraPlayerPrivate();

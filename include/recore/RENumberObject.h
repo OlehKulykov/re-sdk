@@ -30,71 +30,71 @@ protected:
 	
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual REBOOL IsEqual(REObject * anotherObject);
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
 	
 	/// Creates and return new number object
 	/// After using this number object call Release().
-	static RENumberObject * Create();
+	static RENumberObject * create();
 	
 	/// Creates and return new number object with boolean value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithBool(REBOOL newValue);
+	static RENumberObject * createWithBool(REBOOL newValue);
 	
 	/// Creates and return new number object with byte value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithByte(REByte newValue);
+	static RENumberObject * createWithByte(REByte newValue);
 	
 	/// Creates and return new number object with unsigned byte value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithUByte(REUByte newValue);
+	static RENumberObject * createWithUByte(REUByte newValue);
 	
 	/// Creates and return new number object with short int value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithInt16(REInt16 newValue);
+	static RENumberObject * createWithInt16(REInt16 newValue);
 	
 	/// Creates and return new number object with unsigned short int value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithUInt16(REUInt16 newValue);
+	static RENumberObject * createWithUInt16(REUInt16 newValue);
 	
 	/// Creates and return new number object with int value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithInt32(REInt32 newValue);
+	static RENumberObject * createWithInt32(REInt32 newValue);
 	
 	/// Creates and return new number object with unsigned int value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithUInt32(REUInt32 newValue);
+	static RENumberObject * createWithUInt32(REUInt32 newValue);
 	
 	/// Creates and return new number object with long int value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithInt64(REInt64 newValue);
+	static RENumberObject * createWithInt64(REInt64 newValue);
 	
 	/// Creates and return new number object with unsigned long value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithUInt64(REUInt64 newValue);
+	static RENumberObject * createWithUInt64(REUInt64 newValue);
 	
 	/// Creates and return new number object with pointer value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithPointer(void * newValue);
+	static RENumberObject * createWithPointer(void * newValue);
 	
 	/// Creates and return new number object with float value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithFloat32(REFloat32 newValue);
+	static RENumberObject * createWithFloat32(REFloat32 newValue);
 	
 	/// Creates and return new number object with double value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithFloat64(REFloat64 newValue);
+	static RENumberObject * createWithFloat64(REFloat64 newValue);
 	
 	/// Creates and return new number object with time interval value or NULL on error.
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithTimeInterval(RETimeInterval newValue);
+	static RENumberObject * createWithTimeInterval(RETimeInterval newValue);
 	
 	/// Creates and return new number object with string presentation value or NULL on error.
 	/// Example: CreateWithStringPresentation("-513.5"); CreateWithStringPresentation("342");
 	/// After using this number object call Release().
-	static RENumberObject * CreateWithStringPresentation(const char * stringPresentation);
+	static RENumberObject * createWithStringPresentation(const char * stringPresentation);
 };
 
 

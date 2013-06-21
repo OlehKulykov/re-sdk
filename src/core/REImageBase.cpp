@@ -19,28 +19,28 @@
 #include "../../include/recore/REMem.h"
 
 /* REObject */
-const REUInt32 REImageBase::GetClassIdentifier() const
+const REUInt32 REImageBase::getClassIdentifier() const
 {
-	return REImageBase::ClassIdentifier();
+	return REImageBase::classIdentifier();
 }
 
-const REUInt32 REImageBase::ClassIdentifier()
+const REUInt32 REImageBase::classIdentifier()
 {
-	static const REUInt32 c = REObject::GenerateClassIdentifierFromClassName("REImageBase");
+	static const REUInt32 c = REObject::generateClassIdentifierFromClassName("REImageBase");
 	return c;
 }
 
-REBOOL REImageBase::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REImageBase::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REImageBase::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier));
+	return ((REImageBase::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-REUByte * REImageBase::GetImageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const
+REUByte * REImageBase::getImageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const
 {
 	if (_format && _width <= x && _height <= y) 
 	{
-		const REUInt32 bytesPP = this->GetBytesPerPixel();
-		REUByte * dataPtr = this->GetImageData();
+		const REUInt32 bytesPP = this->getBytesPerPixel();
+		REUByte * dataPtr = this->getImageData();
 		dataPtr += ((_width * bytesPP) * y);
 		dataPtr += (bytesPP * x);
 		return dataPtr;
@@ -61,11 +61,11 @@ REImageBase::REImageBase(const REImagePixelFormat pixelsFormat,
 		(width <= REUInt16Max) && 
 		(height <= REUInt16Max) ) 
 	{
-		const REUInt32 bytesPPixel = REImageBase::BytesPerPixel(pixelsFormat);
+		const REUInt32 bytesPPixel = REImageBase::bytesPerPixel(pixelsFormat);
 		if (bytesPPixel) 
 		{
 			const REUInt32 dataSize = (width * height * bytesPPixel);
-			if (_buffer.Resize(dataSize, false)) 
+			if (_buffer.resize(dataSize, false)) 
 			{
 				_width = (REUInt16)width;
 				_height = (REUInt16)height;
@@ -90,13 +90,13 @@ REImageBase::REImageBase(const REUByte * pixelsData,
 		(width <= REUInt16Max) && 
 		(height <= REUInt16Max) ) 
 	{
-		const REUInt32 bytesPPixel = REImageBase::BytesPerPixel(pixelsFormat);
+		const REUInt32 bytesPPixel = REImageBase::bytesPerPixel(pixelsFormat);
 		if (bytesPPixel) 
 		{
 			const REUInt32 dataSize = (width * height * bytesPPixel);
-			if (_buffer.Resize(dataSize, false)) 
+			if (_buffer.resize(dataSize, false)) 
 			{
-				REMem::Memcpy(_buffer.GetBuffer(), pixelsData, dataSize);
+				REMem::Memcpy(_buffer.getBuffer(), pixelsData, dataSize);
 				_width = (REUInt16)width;
 				_height = (REUInt16)height;
 				_format = (REUByte)pixelsFormat;
@@ -119,7 +119,7 @@ REImageBase::~REImageBase()
 }
 
 
-REUInt32 REImageBase::ChannelsCount(const REImagePixelFormat format)
+REUInt32 REImageBase::channelsCount(const REImagePixelFormat format)
 {
 	switch (format) 
 	{
@@ -141,7 +141,7 @@ REUInt32 REImageBase::ChannelsCount(const REImagePixelFormat format)
 	return 0;
 }
 
-REUInt32 REImageBase::BitsPerPixel(const REImagePixelFormat format)
+REUInt32 REImageBase::bitsPerPixel(const REImagePixelFormat format)
 {
 	switch (format) 
 	{
@@ -163,7 +163,7 @@ REUInt32 REImageBase::BitsPerPixel(const REImagePixelFormat format)
 	return 0;
 }
 
-REUInt32 REImageBase::BytesPerPixel(const REImagePixelFormat format)
+REUInt32 REImageBase::bytesPerPixel(const REImagePixelFormat format)
 {
 	switch (format) 
 	{

@@ -26,7 +26,7 @@
 
 #ifndef RE_SAFE_RELEASE
 /// Checks for object is not NULL, then call Release() and sets to NULL.
-#define RE_SAFE_RELEASE(o) if(o){o->Release();o=NULL;}
+#define RE_SAFE_RELEASE(o) if(o){o->release();o=NULL;}
 #endif
 
 #ifndef RE_SAFE_DELETE
@@ -42,7 +42,7 @@
 #ifndef RE_SAFE_RETAIN
 /// Checks for prev object is not NULL. Release()'s prev objectand sets to NULL.
 /// Checks new object is not NULL, than assing and Retain().
-#define RE_SAFE_RETAIN(to,from) if(to){to->Release();to=NULL;}if(from){to=from;to->Retain();}
+#define RE_SAFE_RETAIN(to,from) if(to){to->release();to=NULL;}if(from){to=from;to->retain();}
 #endif
 
 #endif /* __RECOMMONHEADER_H__ */ 

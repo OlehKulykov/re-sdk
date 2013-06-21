@@ -51,7 +51,7 @@ protected:
 	
 public:
 	/* REObject */
-	virtual void OnReleased();
+	virtual void onReleased();
 	
 	/// Returns pointer to DirectX 9 device.
 	virtual IDirect3DDevice9 * GetD3DDevice9() const { return _d3dDevice; }

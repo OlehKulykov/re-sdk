@@ -25,19 +25,19 @@ class __RE_PUBLIC_CLASS_API__ IREAffineTransformed
 {
 public:
 	/// Translate object by 'x' - horizontaly and 'y' - verticaly.
-	virtual IREAffineTransformed & Translate(const REFloat32 x, const REFloat32 y) = 0;
+	virtual IREAffineTransformed & translate(const REFloat32 x, const REFloat32 y) = 0;
 	
 	/// Rotate object arround center by 'radianAngle' in radians.
-	virtual IREAffineTransformed & Rotate(const REFloat32 radianAngle) = 0;
+	virtual IREAffineTransformed & rotate(const REFloat32 radianAngle) = 0;
 	
 	/// Rotate object arround center by 'radianAngle' in radians arround 'anchorPointX' and 'anchorPointY' coordinates.
-	virtual IREAffineTransformed & Rotate(const REFloat32 radianAngle, const REFloat32 anchorPointX, const REFloat32 anchorPointY) = 0;	
+	virtual IREAffineTransformed & rotate(const REFloat32 radianAngle, const REFloat32 anchorPointX, const REFloat32 anchorPointY) = 0;	
 	
 	/// Scale object by 'sx' and 'sy' values.
-	virtual IREAffineTransformed & Scale(const REFloat32 sx, const REFloat32 sy) = 0;
+	virtual IREAffineTransformed & scale(const REFloat32 sx, const REFloat32 sy) = 0;
 	
 	/// Set object transform values to identity.
-	virtual IREAffineTransformed & ToIdentity() = 0;
+	virtual IREAffineTransformed & toIdentity() = 0;
 	
 	/// Desctructor.
 	virtual ~IREAffineTransformed() { }

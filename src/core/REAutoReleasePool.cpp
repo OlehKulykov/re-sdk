@@ -23,93 +23,93 @@ __RE_PUBLIC_CLASS_API__ REAutoReleasePool * REAutoReleasePool::_defaultPool = NU
 #define REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY (32)
 
 /* REObject */
-const REUInt32 REAutoReleasePool::GetClassIdentifier() const
+const REUInt32 REAutoReleasePool::getClassIdentifier() const
 {
-	return REAutoReleasePool::ClassIdentifier();
+	return REAutoReleasePool::classIdentifier();
 }
 
-const REUInt32 REAutoReleasePool::ClassIdentifier()
+const REUInt32 REAutoReleasePool::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REAutoReleasePool");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REAutoReleasePool");
 	return clasIdentif;
 }
 
-REBOOL REAutoReleasePool::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REAutoReleasePool::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REAutoReleasePool::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REObject::IsImplementsClass(classIdentifier));
+	return ((REAutoReleasePool::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
+			REObject::isImplementsClass(classIdentifier));
 }
 
-void REAutoReleasePool::Update(const RETimeInterval currentTime)
+void REAutoReleasePool::update(const RETimeInterval currentTime)
 {
 	if (_isBusy)
 	{
 		return;
 	}
 	
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	
 	REBOOL isAllDeleted = true;
 	_index = 0;
-	const REUInt32 count = _pool.Count();
+	const REUInt32 count = _pool.count();
 	for (REUInt32 i = 0; i < count; i++) 
 	{
-		REObject * autoReleasableObject = _pool.At(i);
+		REObject * autoReleasableObject = _pool.at(i);
 		_index++;
 		if (autoReleasableObject) 
 		{
-			if (autoReleasableObject->GetRetainCount()) 
+			if (autoReleasableObject->getRetainCount()) 
 			{
 				isAllDeleted = false;
 			}
 			else
 			{
-				_pool.SetAt(i, NULL);
-                REObject::Delete(autoReleasableObject);
+				_pool.setAt(i, NULL);
+                REObject::deleteObject(autoReleasableObject);
 			}
 		}
 	}
 	
-	if ((count == _pool.Count()) && isAllDeleted) 
+	if ((count == _pool.count()) && isAllDeleted) 
 	{
-		_pool.Clear();
-		if (_pool.Capacity() > REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY)
+		_pool.clear();
+		if (_pool.capacity() > REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY)
 		{
-			_pool.SetCapacity(REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY);
+			_pool.setCapacity(REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY);
 		}
 	}
 	
 	_index = 0;
 	
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 }
 
-const REUIdentifier REAutoReleasePool::GetMainLoopUpdatableIdentifier() const
+const REUIdentifier REAutoReleasePool::getMainLoopUpdatableIdentifier() const
 {
-	return this->GetObjectIdentifier();
+	return this->getObjectIdentifier();
 }
 
-REBOOL REAutoReleasePool::AddObject(REObject * autoReleasableObject)
+REBOOL REAutoReleasePool::addObject(REObject * autoReleasableObject)
 {
 	REBOOL addResult = false;
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	_isBusy++;
 	
 	if (autoReleasableObject)
 	{
-		const REUIdentifier oid = autoReleasableObject->GetObjectIdentifier();
+		const REUIdentifier oid = autoReleasableObject->getObjectIdentifier();
 		REUInt32 indexOfNull = RENotFound;
-		const REUInt32 count = _pool.Count();
+		const REUInt32 count = _pool.count();
 		for (REUInt32 i = _index; i < count; i++) 
 		{
-			REObject * obj = _pool.At(i);
+			REObject * obj = _pool.at(i);
 			if (obj) 
 			{
-				if (oid == obj->GetObjectIdentifier()) 
+				if (oid == obj->getObjectIdentifier()) 
 				{
 					_isBusy--;
-					_updateMutex.Unlock();
+					_updateMutex.unlock();
 					return true; 
 				}
 			}
@@ -121,41 +121,41 @@ REBOOL REAutoReleasePool::AddObject(REObject * autoReleasableObject)
 		
 		if (indexOfNull != RENotFound) 
 		{
-			addResult = _pool.SetAt(indexOfNull, autoReleasableObject);
+			addResult = _pool.setAt(indexOfNull, autoReleasableObject);
 		}
 		else
 		{
-			addResult = _pool.Add(autoReleasableObject);
+			addResult = _pool.add(autoReleasableObject);
 		}		
 	}
 	
 	_isBusy--;
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return addResult;
 }
 
-void REAutoReleasePool::OnReleased()
+void REAutoReleasePool::onReleased()
 {
-	this->Update(0.0);
+	this->update(0.0);
 }
 
 REAutoReleasePool::REAutoReleasePool() : REObject(),
 _index(0),
 _isBusy(0)
 {
-	_updateMutex.Init(REMutexTypeRecursive);
+	_updateMutex.init(REMutexTypeRecursive);
 	
-	_updateMutex.Lock();
-	_pool.SetCapacity(REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY);
-	_updateMutex.Unlock();
+	_updateMutex.lock();
+	_pool.setCapacity(REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY);
+	_updateMutex.unlock();
 }
 
 REAutoReleasePool::~REAutoReleasePool()
 {
-	this->Update(0.0);
+	this->update(0.0);
 }
 
-REAutoReleasePool * REAutoReleasePool::GetDefaultPool()
+REAutoReleasePool * REAutoReleasePool::getDefaultPool()
 {
 	if (_defaultPool == NULL)
 	{
@@ -164,7 +164,7 @@ REAutoReleasePool * REAutoReleasePool::GetDefaultPool()
 	return _defaultPool;
 }
 
-void REAutoReleasePool::ReleaseDefaultPool()
+void REAutoReleasePool::releaseDefaultPool()
 {
 	RE_SAFE_DELETE(_defaultPool);
 }

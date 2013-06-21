@@ -56,17 +56,17 @@ public:
 	/// Векторное произведение векторов.
 	/// Результатом векторного произведения двух векторов будет вектор перпендикулярный этим векторам.		
 	/// Вот только в 2D пространстве этот вектор не видно т.к. он [0.0f, 0.0f, Z] - это точка в центре пересечения и уходит.
-	static REVector2 CrossProduct(const REVector2 & firstVector, const REVector2 & secondVector)
+	static REVector2 crossProduct(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 		return REVector2();
 	}
 	
-	REVector2 GetCrossProduct() const
+	REVector2 getCrossProduct() const
 	{
 		return REVector2();
 	}
 	
-    static REFloat32 DotProduct(const REVector2 & firstVector, const REVector2 & secondVector)
+    static REFloat32 dotProduct(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 #if defined(__ARM_NEON__)
 		float32x2_t v = vmul_f32(*(float32x2_t *)&firstVector.armNeonVector, *(float32x2_t *)&secondVector.armNeonVector);
@@ -77,37 +77,37 @@ public:
 #endif
 	}
 	
-	REFloat32 GetDotProduct(const REVector2 & secondVector) const
+	REFloat32 getDotProduct(const REVector2 & secondVector) const
 	{
-		return REVector2::DotProduct((*this), secondVector);
+		return REVector2::dotProduct((*this), secondVector);
 	}
 	
 	/// Angle between two vectors.
 	/// value between 0 and π (in radians) which is 0° and 180°.
-	static REFloat32 GetAngleUnsigned(const REVector2 & firstVector, const REVector2 & secondVector)
+	static REFloat32 getAngleUnsigned(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 		REVector2 v1(firstVector);
-		v1.Normalize();
+		v1.normalize();
 		REVector2 v2(secondVector);
-		v2.Normalize();
-		return acosf(REVector2::DotProduct(v1, v2));
+		v2.normalize();
+		return acosf(REVector2::dotProduct(v1, v2));
 	}
 
 	/// Angle between two vectors.
 	/// angle of secondVector relative to firstVector.
-	static REFloat32 GetAngleSigned(const REVector2 & firstVector, const REVector2 & secondVector)
+	static REFloat32 getAngleSigned(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 		REVector2 v1(firstVector);
-		v1.Normalize();
+		v1.normalize();
 		REVector2 v2(secondVector);
-		v2.Normalize();
+		v2.normalize();
 		return atan2f(v2.y, v2.x) - atan2f(v1.y, v1.x);
 	}
 
 	/// Getting a new vector in the opposite direction.
 	///
 	/// Получение нового вектора с противоположным направлением.
-	REVector2 GetInverseVector() const
+	REVector2 getInverseVector() const
 	{
 #if defined(__ARM_NEON__)
 		return REVector2(vneg_f32(*(float32x2_t *)&armNeonVector));
@@ -119,7 +119,7 @@ public:
 	/// Changes in the opposite direction of the vector.
 	///
 	/// Изменения направление вектора на противоположное
-	REVector2 & Inverse()
+	REVector2 & inverse()
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vneg_f32(*(float32x2_t *)&armNeonVector);
@@ -133,13 +133,13 @@ public:
 	/// Converts the vector to vector in the same direction, but with unit length.
 	///
 	/// Преобразование заданного вектора в вектор в том же направлении, но с единичной длиной.
-	REVector2 & Normalize()
+	REVector2 & normalize()
 	{
 #if defined(__ARM_NEON__)
-		const float32_t invMag = (1.0f / this->GetMagnitude());
+		const float32_t invMag = (1.0f / this->getMagnitude());
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector, vdup_n_f32(invMag));
 #else
-		const float invMag = ( 1.0f / this->GetMagnitude() );
+		const float invMag = ( 1.0f / this->getMagnitude() );
 		x *= invMag;
 		y *= invMag;
 #endif		
@@ -149,7 +149,7 @@ public:
 	/// The length of the vector (or module)
 	///
 	/// Длина вектора (или модуль)
-	const REFloat32 GetMagnitude() const
+	const REFloat32 getMagnitude() const
 	{
 #if defined(__ARM_NEON__) 
 		float32x2_t v = vmul_f32(*(float32x2_t *)&armNeonVector, *(float32x2_t *)&armNeonVector);
@@ -163,25 +163,25 @@ public:
 	/// Square of the length of the vector (or module)
 	///
 	/// Квадрат длины вектора (или модуля)
-	const REFloat32 GetSquareMagnitude() const
+	const REFloat32 getSquareMagnitude() const
 	{
 		return ( (x * x) + (y * y) );
 	}
 	
 	/// Return 'x' coordinate
-	const REFloat32 GetX() const { return x; }
+	const REFloat32 getX() const { return x; }
 	
 	/// Return 'y' coordinate
-	const REFloat32 GetY() const { return y; }
+	const REFloat32 getY() const { return y; }
 	
 	/// Seting 'x' coordinate
-	void SetX(const REFloat32 newX) { x = newX; }
+	void setX(const REFloat32 newX) { x = newX; }
 	
 	/// Seting 'y' coordinate
-	void SetY(const REFloat32 newY) { y = newY; }
+	void setY(const REFloat32 newY) { y = newY; }
 	
 	/// "this vector" + another vector
-	REVector2 & Add(const REVector2 & anotherVector2D)
+	REVector2 & add(const REVector2 & anotherVector2D)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vadd_f32(*(float32x2_t *)&armNeonVector,
@@ -194,7 +194,7 @@ public:
 	}
 	
 	/// "this vector" - another vector
-	REVector2 & Subtract(const REVector2 & anotherVector2D)
+	REVector2 & subtract(const REVector2 & anotherVector2D)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vsub_f32(*(float32x2_t *)&armNeonVector,
@@ -207,7 +207,7 @@ public:
 	}
 	
 	/// "this vector" * another vector
-	REVector2 & Multiply(const REVector2 & anotherVector2D)
+	REVector2 & multiply(const REVector2 & anotherVector2D)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector,
@@ -220,7 +220,7 @@ public:
 	}
 	
 	/// "this vector" / another vector
-	REVector2 & Divide(const REVector2 & anotherVector2D)
+	REVector2 & divide(const REVector2 & anotherVector2D)
 	{
 		if ((anotherVector2D.x == 0.0f) || (anotherVector2D.y == 0.0f)) 
 		{
@@ -244,7 +244,7 @@ public:
 	}
 	
 	/// "this vector" + float value (scalar)
-	REVector2 & AddScalar(const REFloat32 scalar)
+	REVector2 & addScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__) 
 		armNeonVector = vadd_f32(*(float32x2_t *)&armNeonVector,
@@ -257,7 +257,7 @@ public:
 	}
 	
 	/// "this vector" - float value (scalar)
-	REVector2 & SubtractScalar(const REFloat32 scalar)
+	REVector2 & subtractScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vsub_f32(*(float32x2_t *)&armNeonVector,
@@ -270,7 +270,7 @@ public:
 	}
 	
 	/// "this vector" * float value (scalar)
-	REVector2 & MultiplyScalar(const REFloat32 scalar)
+	REVector2 & multiplyScalar(const REFloat32 scalar)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector,
@@ -283,7 +283,7 @@ public:
 	}
 	
 	/// "this vector" / float value (scalar)
-	REVector2 & DivideScalar(const REFloat32 scalar)
+	REVector2 & divideScalar(const REFloat32 scalar)
 	{
 		if (scalar == 0.0f) 
 		{
@@ -307,89 +307,89 @@ public:
 	
 	REVector2 & operator+=(const REVector2 & anotherVector2D)
 	{
-		return this->Add(anotherVector2D);
+		return this->add(anotherVector2D);
 	}
 	REVector2 & operator+=(const REFloat32 scalar)
 	{
-		return this->AddScalar(scalar);
+		return this->addScalar(scalar);
 	}
 	
 	REVector2 & operator-=(const REVector2 & anotherVector2D)
 	{
-		return this->Subtract(anotherVector2D);
+		return this->subtract(anotherVector2D);
 	}
 	REVector2 & operator-=(const REFloat32 scalar)
 	{
-		return this->SubtractScalar(scalar);
+		return this->subtractScalar(scalar);
 	}
 	
 	REVector2 & operator*=(const REVector2 & anotherVector2D)
 	{
-		return this->Multiply(anotherVector2D);
+		return this->multiply(anotherVector2D);
 	}
 	REVector2 & operator*=(const REFloat32 scalar)
 	{
-		return this->MultiplyScalar(scalar);
+		return this->multiplyScalar(scalar);
 	}
 	
 	REVector2 & operator/=(const REVector2 & anotherVector2D)
 	{
-		return this->Divide(anotherVector2D);
+		return this->divide(anotherVector2D);
 	}
 	REVector2 & operator/=(const REFloat32 scalar)
 	{
-		return this->DivideScalar(scalar);
+		return this->divideScalar(scalar);
 	}
 	
 	REVector2 operator+(const REVector2 & anotherVector2D) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.Add(anotherVector2D);
+		resultVector.add(anotherVector2D);
 		return resultVector;
 	}
 	REVector2 operator+(const REFloat32 scalar) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.AddScalar(scalar);
+		resultVector.addScalar(scalar);
 		return resultVector;
 	}
 	
 	REVector2 operator-(const REVector2 & anotherVector2D) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.Subtract(anotherVector2D);
+		resultVector.subtract(anotherVector2D);
 		return resultVector;
 	}
 	REVector2 operator-(const REFloat32 scalar) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.SubtractScalar(scalar);
+		resultVector.subtractScalar(scalar);
 		return resultVector;
 	}
 	
 	REVector2 operator*(const REVector2 & anotherVector2D) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.Multiply(anotherVector2D);
+		resultVector.multiply(anotherVector2D);
 		return resultVector;
 	}
 	REVector2 operator*(const REFloat32 scalar) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.MultiplyScalar(scalar);
+		resultVector.multiplyScalar(scalar);
 		return resultVector;
 	}
 	
 	REVector2 operator/(const REVector2 & anotherVector2D) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.Divide(anotherVector2D);
+		resultVector.divide(anotherVector2D);
 		return resultVector;
 	}
 	REVector2 operator/(const REFloat32 scalar) const
 	{
 		REVector2 resultVector(*this);
-		resultVector.DivideScalar(scalar);
+		resultVector.divideScalar(scalar);
 		return resultVector;
 	}
 	
@@ -423,7 +423,7 @@ public:
 	
 	/// Settes vector value from one point coords to another coords.
 	/// Can used for creating direction vector from one object coords to another object coords.
-	REVector2 & SetFromCoordinates(const REPoint2 & fromPoint, const REPoint2 & toPoint)
+	REVector2 & setFromCoordinates(const REPoint2 & fromPoint, const REPoint2 & toPoint)
 	{
 #if defined(__ARM_NEON__)
 		armNeonVector = vsub_f32(*(float32x2_t *)&toPoint.armNeonPoint,
@@ -437,7 +437,7 @@ public:
 	
 	/// Settes vector value from one point coords to another coords.
 	/// Can used for creating direction vector from one object coords to another object coords.
-	REVector2 & SetFromCoordinates(const REFloat32 fromPointX,
+	REVector2 & setFromCoordinates(const REFloat32 fromPointX,
 								   const REFloat32 fromPointY,
 								   const REFloat32 toPointX,
 								   const REFloat32 toPointY)
@@ -454,7 +454,7 @@ public:
 		return (*this);
 	}
 	
-	REVector2 & Set(const REFloat32 newX, const REFloat32 newY)
+	REVector2 & set(const REFloat32 newX, const REFloat32 newY)
 	{
 		x = newX;
 		y = newY;

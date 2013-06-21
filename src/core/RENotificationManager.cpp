@@ -28,9 +28,9 @@ public:
 	REString name;
 	void TryInvoke(const REString & n, REObject * obj)
 	{
-		if (name.IsEqual(n) && observerMethod)
+		if (name.isEqual(n) && observerMethod)
 		{
-			observerMethod->InvokeWithObject(obj);
+			observerMethod->invokeWithObject(obj);
 		}
 	}
 	RENotificationManagerObserverPrivate(REObject * o,
@@ -38,7 +38,7 @@ public:
 										 const REString & n) :
 	observer(o),
 	observerMethod(om)
-	{ name.Set(n); }
+	{ name.set(n); }
 	~RENotificationManagerObserverPrivate()
 	{
 		if (observerMethod) { delete observerMethod; }
@@ -55,7 +55,7 @@ private:
 	RENotificationManagerPrivate();
 	~RENotificationManagerPrivate();
 public:
-	REBOOL IsEmpty() const { return _observers.IsEmpty(); }
+	REBOOL IsEmpty() const { return _observers.isEmpty(); }
 	REBOOL AddObserverForNotificationName(REObject * observerObject, const REString & notificationName, REClassMethod * observerMethod);
 	REBOOL RemoveObserver(REObject * observerObject);
 	REBOOL RemoveObserverForNotificationName(REObject * observerObject, const REString & notificationName);
@@ -73,79 +73,79 @@ REBOOL RENotificationManagerPrivate::AddObserverForNotificationName(REObject * o
 																	const REString & notificationName,
 																	REClassMethod * observerMethod)
 {
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	RENotificationManagerObserverPrivate * newObserver = new RENotificationManagerObserverPrivate(observerObject,
 																								  observerMethod,
 																								  notificationName);
 	if (newObserver)
 	{
-		const REBOOL r = _observers.Add(newObserver);
+		const REBOOL r = _observers.add(newObserver);
 		if (!r) { delete newObserver; }
-		_updateMutex.Unlock();
+		_updateMutex.unlock();
 		return r;
 	}
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
 REBOOL RENotificationManagerPrivate::RemoveObserver(REObject * observerObject)
 {
-	_updateMutex.Lock();
-	const REUIdentifier objID = observerObject->GetObjectIdentifier();
-	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.GetIterator();
-	while (i.Next())
+	_updateMutex.lock();
+	const REUIdentifier objID = observerObject->getObjectIdentifier();
+	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.getIterator();
+	while (i.next())
 	{
-		RENotificationManagerObserverPrivate * o = i.Object();
-		if (objID == o->observer->GetObjectIdentifier())
+		RENotificationManagerObserverPrivate * o = i.object();
+		if (objID == o->observer->getObjectIdentifier())
 		{
-			const REUInt32 index = i.Index();
-			if (!i.RemoveObject()) { _observers.SetAt(index, NULL); }
+			const REUInt32 index = i.index();
+			if (!i.removeObject()) { _observers.setAt(index, NULL); }
 			delete o;
 		}
 	}
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
 REBOOL RENotificationManagerPrivate::RemoveObserverForNotificationName(REObject * observerObject, const REString & notificationName)
 {
-	_updateMutex.Lock();
-	const REUIdentifier objID = observerObject->GetObjectIdentifier();
-	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.GetIterator();
-	while (i.Next())
+	_updateMutex.lock();
+	const REUIdentifier objID = observerObject->getObjectIdentifier();
+	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.getIterator();
+	while (i.next())
 	{
-		RENotificationManagerObserverPrivate * o = i.Object();
-		if (objID == o->observer->GetObjectIdentifier())
+		RENotificationManagerObserverPrivate * o = i.object();
+		if (objID == o->observer->getObjectIdentifier())
 		{
-			if (o->name.IsEqual(notificationName))
+			if (o->name.isEqual(notificationName))
 			{
-				const REUInt32 index = i.Index();
-				if (!i.RemoveObject()) { _observers.SetAt(index, NULL); }
+				const REUInt32 index = i.index();
+				if (!i.removeObject()) { _observers.setAt(index, NULL); }
 				delete o;
 			}
 		}
 	}
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
 REBOOL RENotificationManagerPrivate::PostNotificationName(const REString & notificationName)
 {
-	_updateMutex.Lock();
+	_updateMutex.lock();
 	const REBOOL r = this->PostNotificationNameWithObject(notificationName, NULL);
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return r;
 }
 
 REBOOL RENotificationManagerPrivate::PostNotificationNameWithObject(const REString & notificationName, REObject * object)
 {
-	_updateMutex.Lock();
-	for (REUInt32 i = 0; i < _observers.Count(); i++)
+	_updateMutex.lock();
+	for (REUInt32 i = 0; i < _observers.count(); i++)
 	{
-		RENotificationManagerObserverPrivate * o = _observers.At(i);
+		RENotificationManagerObserverPrivate * o = _observers.at(i);
 		if (o) { o->TryInvoke(notificationName, object); }
 	}
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 	return false;
 }
 
@@ -166,18 +166,18 @@ void RENotificationManagerPrivate::ReleaseManager()
 
 RENotificationManagerPrivate::RENotificationManagerPrivate()
 {
-	_updateMutex.Init(REMutexTypeRecursive);
+	_updateMutex.init(REMutexTypeRecursive);
 }
 
 void RENotificationManagerPrivate::Clear()
 {
-	_updateMutex.Lock();
-	for (REUInt32 i = 0; i < _observers.Count(); i++)
+	_updateMutex.lock();
+	for (REUInt32 i = 0; i < _observers.count(); i++)
 	{
-		RENotificationManagerObserverPrivate * o = _observers.At(i);
-		if (o) { _observers.SetAt(i, NULL); delete o; }
+		RENotificationManagerObserverPrivate * o = _observers.at(i);
+		if (o) { _observers.setAt(i, NULL); delete o; }
 	}
-	_updateMutex.Unlock();
+	_updateMutex.unlock();
 }
 
 RENotificationManagerPrivate::~RENotificationManagerPrivate()
@@ -186,11 +186,11 @@ RENotificationManagerPrivate::~RENotificationManagerPrivate()
 }
 
 
-REBOOL RENotificationManager::AddObserverForNotificationName(REObject * observerObject,
+REBOOL RENotificationManager::addObserverForNotificationName(REObject * observerObject,
 															 const REString & notificationName,
 															 REClassMethod * observerMethod)
 {
-	if (observerObject && observerMethod && (!notificationName.IsEmpty()))
+	if (observerObject && observerMethod && (!notificationName.isEmpty()))
 	{
 		RENotificationManagerPrivate * m = RENotificationManagerPrivate::GetManager();
 		if (m)
@@ -203,7 +203,7 @@ REBOOL RENotificationManager::AddObserverForNotificationName(REObject * observer
 	return false;
 }
 
-REBOOL RENotificationManager::RemoveObserver(REObject * observerObject)
+REBOOL RENotificationManager::removeObserver(REObject * observerObject)
 {
 	if (observerObject)
 	{
@@ -223,10 +223,10 @@ REBOOL RENotificationManager::RemoveObserver(REObject * observerObject)
 	return false;
 }
 
-REBOOL RENotificationManager::RemoveObserverForNotificationName(REObject * observerObject,
+REBOOL RENotificationManager::removeObserverForNotificationName(REObject * observerObject,
 																const REString & notificationName)
 {
-	if (observerObject && (!notificationName.IsEmpty()))
+	if (observerObject && (!notificationName.isEmpty()))
 	{
 		RENotificationManagerPrivate * m = RENotificationManagerPrivate::manager;
 		if (m)
@@ -245,9 +245,9 @@ REBOOL RENotificationManager::RemoveObserverForNotificationName(REObject * obser
 	return false;
 }
 
-REBOOL RENotificationManager::PostNotificationName(const REString & notificationName)
+REBOOL RENotificationManager::postNotificationName(const REString & notificationName)
 {
-	if (!notificationName.IsEmpty())
+	if (!notificationName.isEmpty())
 	{
 		RENotificationManagerPrivate * m = RENotificationManagerPrivate::manager;
 		if (m)
@@ -258,10 +258,10 @@ REBOOL RENotificationManager::PostNotificationName(const REString & notification
 	return false;
 }
 
-REBOOL RENotificationManager::PostNotificationNameWithObject(const REString & notificationName,
+REBOOL RENotificationManager::postNotificationNameWithObject(const REString & notificationName,
 															 REObject * object)
 {
-	if (!notificationName.IsEmpty())
+	if (!notificationName.isEmpty())
 	{
 		RENotificationManagerPrivate * m = RENotificationManagerPrivate::manager;
 		if (m)

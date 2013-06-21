@@ -40,38 +40,38 @@ public:
 	IREAnimationRespondent * respondent;
 	REArray<REAnimationFloatParams::ParamStruct> params;
 	
-	void ToStartValues()
+	void toStartValues()
 	{
-		for (REUInt32 i = 0; i < params.Count(); i++) 
+		for (REUInt32 i = 0; i < params.count(); i++) 
 		{
 			(*params[i].paramPtr) = params[i].start;
 		}
 	}
 	
-	void ToEndValues()
+	void toEndValues()
 	{
-		for (REUInt32 i = 0; i < params.Count(); i++) 
+		for (REUInt32 i = 0; i < params.count(); i++) 
 		{
 			(*params[i].paramPtr) = params[i].end;
 		}
 	}
 	
-	void SetStopValues(const REAnimationStopType stopType)
+	void setStopValues(const REAnimationStopType stopType)
 	{
 		switch (stopType) 
 		{
 			case REAnimationStopTypeImmediatelyToStart:
-				this->ToStartValues();
+				this->toStartValues();
 				break;
 			case REAnimationStopTypeImmediatelyToEnd:
-				this->ToEndValues();
+				this->toEndValues();
 				break;	
 			default:
 				break;
 		}
 	}
 	
-	void IncCounter()
+	void incCounter()
 	{
 		if (objectAnimationsCounter)
 		{
@@ -79,7 +79,7 @@ public:
 		}
 	}
 	
-	void DecCounter()
+	void decCounter()
 	{
 		if (objectAnimationsCounter)
 		{

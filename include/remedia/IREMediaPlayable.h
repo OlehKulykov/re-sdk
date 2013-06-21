@@ -25,14 +25,14 @@
 class __RE_PUBLIC_CLASS_API__ IREMediaPlayable 
 {
 public:
-	virtual REBOOL Play() = 0;
-	virtual REBOOL IsPlaying() const = 0;
-	virtual REBOOL Pause() = 0;
-	virtual REBOOL Stop() = 0;
-	virtual REBOOL SetLooped(const REBOOL isLooped) = 0;
-	virtual REBOOL IsLooped() const = 0; /* by default is not looped */
-	virtual REBOOL SetVolume(const REFloat32 newVolume) = 0;
-	virtual const REFloat32 GetVolume() const = 0;
+	virtual REBOOL play() = 0;
+	virtual REBOOL isPlaying() const = 0;
+	virtual REBOOL pause() = 0;
+	virtual REBOOL stop() = 0;
+	virtual REBOOL setLooped(const REBOOL isLooped) = 0;
+	virtual REBOOL isLooped() const = 0; /* by default is not looped */
+	virtual REBOOL setVolume(const REFloat32 newVolume) = 0;
+	virtual const REFloat32 getVolume() const = 0;
 	
 	virtual ~IREMediaPlayable() { }
 };

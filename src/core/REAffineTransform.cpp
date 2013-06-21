@@ -21,21 +21,21 @@
 #include "../../include/recore/RELog.h"
 
 
-REPoint2 REAffineTransform::GetTransformedPoint(const REFloat32 x, const REFloat32 y) const
+REPoint2 REAffineTransform::getTransformedPoint(const REFloat32 x, const REFloat32 y) const
 {
 	const REFloat32 newX = (a * x) + (c * y) + tx;
 	const REFloat32 newY = (b * x) + (d * y) + ty;
 	return REPoint2(newX, newY);
 }
 
-REPoint2 REAffineTransform::GetTransformedPoint(const REPoint2 & point) const
+REPoint2 REAffineTransform::getTransformedPoint(const REPoint2 & point) const
 {
 	const REFloat32 newX = (a * point.x) + (c * point.y) + tx;
 	const REFloat32 newY = (b * point.x) + (d * point.y) + ty;
 	return REPoint2(newX, newY);
 }
 
-REBOOL REAffineTransform::TransformPoint(REPoint2 * point) const
+REBOOL REAffineTransform::transformPoint(REPoint2 * point) const
 {
 	if (point) 
 	{
@@ -48,7 +48,7 @@ REBOOL REAffineTransform::TransformPoint(REPoint2 * point) const
 	return false;
 }
 
-RETetragon REAffineTransform::GetTransformedTetragon(const RETetragon & tetr) const
+RETetragon REAffineTransform::getTransformedTetragon(const RETetragon & tetr) const
 {
 	RETetragon newTextr;
 	for (REUInt32 i = 0; i < 8; i += 2) 
@@ -59,7 +59,7 @@ RETetragon REAffineTransform::GetTransformedTetragon(const RETetragon & tetr) co
 	return newTextr;
 }
 
-REBOOL REAffineTransform::TransformTetragon(RETetragon * tetr) const
+REBOOL REAffineTransform::transformTetragon(RETetragon * tetr) const
 {
 	if (tetr) 
 	{
@@ -77,17 +77,9 @@ REBOOL REAffineTransform::TransformTetragon(RETetragon * tetr) const
 
 
 #ifdef __RE_DEBUG_MODE__
-void REAffineTransform::Log() const
+void REAffineTransform::log() const
 {
-	/*
-	 REFloat32 a;
-	 REFloat32 b;
-	 REFloat32 c;
-	 REFloat32 d;
-	 REFloat32 tx;
-	 REFloat32 ty;
-	 */
-	RELog::Log("REAffineTransform: \na: %f, \tb: %f, \tc: %f, \td: %f, \ttx: %f, \tty: %f", a, b, c, d, tx, ty);
+	RELog::log("REAffineTransform: \na: %f, \tb: %f, \tc: %f, \td: %f, \ttx: %f, \tty: %f", a, b, c, d, tx, ty);
 }
 #endif	
 

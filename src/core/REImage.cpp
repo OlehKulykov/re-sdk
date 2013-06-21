@@ -29,7 +29,7 @@ REImage & REImage::operator=(const REImage & anotherImage)
 	if (_base && anotherImage._base) 
 	{
 		_base = anotherImage._base;
-		_base->Retain();
+		_base->retain();
 	}
 	
 	return (*this);
@@ -37,74 +37,46 @@ REImage & REImage::operator=(const REImage & anotherImage)
 
 REBOOL REImage::IsNull() const
 {
-	if (_base) 
-	{
-		return _base->IsNull(); 
-	}	
-	return true;
+	return _base ? _base->isNull() : true;
 }
 
 void REImage::Clear()
 {
 	if (_base) 
 	{
-		_base->Release();
+		_base->release();
 		_base = NULL;
 	}
 }
 
 REUByte * REImage::GetImageData() const 
 { 
-	if (_base) 
-	{
-		return _base->GetImageData();
-	}
-	return NULL;
+	return _base ? _base->getImageData() : NULL;
 }
 
 const REImagePixelFormat REImage::GetPixelFormat() const 
 { 
-	if (_base) 
-	{
-		return _base->GetFormat(); 
-	}
-	return REImagePixelFormatNONE;
+	return _base ? _base->getFormat() : REImagePixelFormatNONE;
 }
 
 const REUInt32 REImage::GetBitsPerPixel() const 
 { 
-	if (_base) 
-	{
-		return _base->GetBitsPerPixel();
-	}
-	return 0;
+	return _base ? _base->getBitsPerPixel() : 0;
 }
 
 const REUInt32 REImage::GetWidth() const 
 { 
-	if (_base) 
-	{
-		return _base->GetWidth();
-	}
-	return 0;
+	return _base ? _base->getWidth() : 0;
 }
 
 const REUInt32 REImage::GetHeight() const 
 {
-	if (_base) 
-	{
-		return _base->GetHeight();
-	}
-	return 0;
+	return _base ? _base->getHeight() : 0;
 }
 
 const REUInt32 REImage::GetChannelsCount() const 
 {
-	if (_base) 
-	{
-		return _base->GetChannelsCount();
-	}
-	return 0;
+	return _base ? _base->getChannelsCount() : 0;
 }
 
 REBOOL REImage::InitFromFileDataBuffer(const REUByte * dataBuffer, const REUInt32 dataSize)
@@ -119,7 +91,7 @@ REBOOL REImage::InitFromFileDataBuffer(const REUByte * dataBuffer, const REUInt3
 
 REBOOL REImage::InitFromFileData(const REData & data)
 {
-	return this->InitFromFileDataBuffer(data.GetBytes(), data.GetSize());
+	return this->InitFromFileDataBuffer(data.getBytes(), data.getSize());
 }
 
 /// __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
@@ -145,7 +117,7 @@ REBOOL REImage::InitFromURLString(const REString & urlString)
 		{
 			REBuffer downlBuff;
 			const REBOOL isSended = REURLConnectionObject::SendRequest(request, &downlBuff, NULL);
-			request->Release();
+			request->release();
 			if (isSended)
 			{
 				return this->InitFromFileDataBuffer((const REUByte *)downlBuff.GetBuffer(), downlBuff.GetSize());
@@ -160,22 +132,22 @@ REBOOL REImage::ScaleToSize(const REUInt32 newWidth, const REUInt32 newHeight)
 {
 	if ( _base == NULL ) { return false; }
 
-	if ((_base->GetWidth() == newWidth) && (_base->GetHeight() == newHeight) ) { return true; }
+	if ((_base->getWidth() == newWidth) && (_base->getHeight() == newHeight) ) { return true; }
 
-	REImageBase * newBase = new REImageBase(_base->GetFormat(), newWidth, newHeight);
+	REImageBase * newBase = new REImageBase(_base->getFormat(), newWidth, newHeight);
 	if (newBase == NULL) { return false; }
-	if (newBase->IsNull()) { return false; }
+	if (newBase->isNull()) { return false; }
 	
-	const REBOOL isScaled = REImage::ScaleImageData(_base->GetImageData(),
-													_base->GetWidth(), 
-													_base->GetHeight(), 
-													_base->GetChannelsCount(), 
-													newBase->GetImageData(), 
-													newBase->GetWidth(), 
-													newBase->GetHeight());
+	const REBOOL isScaled = REImage::ScaleImageData(_base->getImageData(),
+													_base->getWidth(), 
+													_base->getHeight(), 
+													_base->getChannelsCount(), 
+													newBase->getImageData(), 
+													newBase->getWidth(), 
+													newBase->getHeight());
 	if (isScaled)
 	{
-		_base->Release();
+		_base->release();
 		_base = newBase;
 	}
 	else
@@ -205,7 +177,7 @@ REImage::REImage(REImageBase * base) :
 	if (base) 
 	{
 		_base = base;
-		_base->Retain();
+		_base->retain();
 	}
 }
 
@@ -215,7 +187,7 @@ REImage::REImage(const REImage & anotherImage) :
 	if ( anotherImage._base ) 
 	{
 		_base = anotherImage._base;
-		_base->Retain();
+		_base->retain();
 	}
 }
 
@@ -228,7 +200,7 @@ REImage::REImage(const REUByte * pixelsData, const REUInt32 pixelsDataSize, REIm
 											height);
 	if (newBase) 
 	{
-		if (newBase->IsNull()) 
+		if (newBase->isNull()) 
 		{
 			delete newBase;
 		}
@@ -245,7 +217,7 @@ REImage::REImage(const REImagePixelFormat pixelsFormat, const REUInt32 width, co
 	REImageBase * newBase = new REImageBase(pixelsFormat, width, height);
 	if (newBase) 
 	{
-		if (newBase->IsNull()) 
+		if (newBase->isNull()) 
 		{
 			delete newBase;
 		}
@@ -398,7 +370,7 @@ REImage * REImage::CreateBlankImage(const REImagePixelFormat pixelsFormat,
 REImage * REImage::CreateWithFilePath(const REString & filePath)
 {
 	REData data;
-	if (data.InitFromPath(filePath)) 
+	if (data.initFromPath(filePath)) 
 	{
 		REImage * newImage = new REImage();
 		if (newImage) 

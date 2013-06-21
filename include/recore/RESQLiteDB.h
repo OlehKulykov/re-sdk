@@ -40,40 +40,40 @@ private:
 	void * _db;
 	REArray<RESQLiteDBResultSet::StatementStruct *> _statements;
 #endif	
-	void RemoveUnUsedStates();
+	void removeUnUsedStates();
 	
-	static REBOOL SetColumnsNames(RESQLiteDBResultSet::StatementStruct * st);
+	static REBOOL setColumnsNames(RESQLiteDBResultSet::StatementStruct * st);
 	
 public:
 	/// Returns path to database.
-	const REString & GetDatabasePath() const;
+	const REString & getDatabasePath() const;
 	
 	/// Opens data base.
-	REBOOL Open();
+	REBOOL open();
 	
 	/// Check is database opened.
-	REBOOL IsOpened() const;
+	REBOOL isOpened() const;
 	
 	/// Closes data base.
-	REBOOL Close();
+	REBOOL close();
 	
 	/// Returns last inserted row id.
-	REInt64 GetLastInsertedRowId() const;
+	REInt64 getLastInsertedRowId() const;
 	
 	/// Executes sql query string.
-	RESQLiteDBResultSet ExecuteQuery(const REString & queryString);
+	RESQLiteDBResultSet executeQuery(const REString & queryString);
 	
 	/// Begins transaction.
-	REBOOL BeginTransaction();
+	REBOOL beginTransaction();
 	
 	/// Executes sql update query strind.
-	REBOOL ExecuteUpdate(const REString & queryString);
+	REBOOL executeUpdate(const REString & queryString);
 	
 	/// Commiting last transaction.
-	REBOOL CommitTransaction();
+	REBOOL commitTransaction();
 	
 	/// Rolls back last transaction.
-	REBOOL RollBackTransaction();
+	REBOOL rollBackTransaction();
 	
 	/// Constructs bata base with file path.
 	RESQLiteDB(const REString & dbFilePath);

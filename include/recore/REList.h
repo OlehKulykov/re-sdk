@@ -34,7 +34,7 @@ private:
 	ListElementStruct * _head;
 	REUInt32 _count;
 	
-	ListElementStruct * GetElementStructAt(const REUInt32 index) const
+	ListElementStruct * getElementStructAt(const REUInt32 index) const
 	{
 		REUInt32 i = 0;
 		ListElementStruct * curr = _head;
@@ -49,13 +49,13 @@ private:
 	
 public:
 	/// Return count of elements in list
-	const REUInt32 Count() const { return _count; }
+	const REUInt32 count() const { return _count; }
 	
 	/// Checks if list has objects
-	const REBOOL IsEmpty() const { return (_count == 0); }
+	const REBOOL isEmpty() const { return (_count == 0); }
 	
 	/// Try remove object at index. Return 'true' if index exists and removed, otherwise return 'false'.
-	REBOOL RemoveAt(const REUInt32 index)
+	REBOOL removeAt(const REUInt32 index)
 	{
 		REUInt32 i = 0;
 		ListElementStruct * curr = _head;
@@ -78,14 +78,14 @@ public:
 	}
 	
 	/// Try remove last object. Return 'true' if last object exists and removed, otherwise return 'false'.
-	REBOOL RemoveLast()
+	REBOOL removeLast()
 	{
-		return (_count) ? this->RemoveAt(_count - 1) : false;
+		return (_count) ? this->removeAt(_count - 1) : false;
 	}
 	
 	/// Try remove object by it's value. Objects must have equation operator.
 	/// Return 'true' if found and removed, otherwise return 'false'.
-	REBOOL RemoveValue(const T & value)
+	REBOOL removeValue(const T & value)
 	{
 		ListElementStruct * curr = _head;
 		ListElementStruct * prev = NULL;
@@ -107,14 +107,14 @@ public:
 	
 	/// Adds 'value' as last element of the list.
 	/// Return 'true' if object added, otherwise return 'false'.
-	REBOOL Add(const T & value)
+	REBOOL add(const T & value)
 	{
 		ListElementStruct * newStruct = (ListElementStruct *)REMem::Malloc(sizeof(ListElementStruct));
 		if (newStruct) 
 		{
 			if (_head && _count) 
 			{
-				ListElementStruct * last = this->GetElementStructAt(_count - 1);
+				ListElementStruct * last = this->getElementStructAt(_count - 1);
 				last->next = newStruct;
 			}
 			else
@@ -131,7 +131,7 @@ public:
 	
 	/// Adds 'value' as first(head) element of the list.
 	/// Return 'true' if added as first, otherwise return 'false'.
-	REBOOL AddFirst(const T & value)
+	REBOOL addFirst(const T & value)
 	{
 		ListElementStruct * newStruct = (ListElementStruct *)REMem::Malloc(sizeof(ListElementStruct));
 		if (newStruct) 
@@ -147,9 +147,9 @@ public:
 	
 	/// Returns object address at index.
 	/// If index not exists returns address of static object filled with zeros.
-	T & At(const REUInt32 index) const
+	T & at(const REUInt32 index) const
 	{
-		ListElementStruct * elem = this->GetElementStructAt(index);
+		ListElementStruct * elem = this->getElementStructAt(index);
 		if (elem) return elem->value;
 		static T empty;
 		REMem::Memset(&empty, 0, sizeof(T));
@@ -161,16 +161,16 @@ public:
 	/// If index not exists returns address of static object filled with zeros.
 	T & operator[](const REUInt32 index)
 	{
-		return this->At(index);
+		return this->at(index);
 	}
 	
 	/// Returns object address of last object.
 	/// If index not exists returns address of static object filled with zeros.
-	T & LastObject() const
+	T & lastObject() const
 	{
 		if (_count) 
 		{
-			ListElementStruct * elem = this->GetElementStructAt(_count - 1);
+			ListElementStruct * elem = this->getElementStructAt(_count - 1);
 			if (elem) return elem->value;
 		}
 		static T empty;
@@ -179,7 +179,7 @@ public:
 	}
 	
 	/// Removes all object of the list. Objects not frred and not deleted.
-	void Clear()
+	void clear()
 	{
 		if (_head) 
 		{
@@ -204,7 +204,7 @@ public:
 	/// Desctructor.
 	~REList()
 	{
-		this->Clear();
+		this->clear();
 	}
 };
 

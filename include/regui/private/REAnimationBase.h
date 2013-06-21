@@ -39,24 +39,24 @@ protected:
 	REBOOL _isPaused;
 	REBOOL _isNeedCallStartMethod;
 	
-	void TimeIsOver();
+	void timeIsOver();
 	
-	void ToStartValues();
-	void ToEndValues();
-	void Finish();
-	void LoopTypeFromStartToEnd();
- 	void LoopTypeFromEndToStart();
+	void toStartValues();
+	void toEndValues();
+	void finish();
+	void loopTypeFromStartToEnd();
+ 	void loopTypeFromEndToStart();
 	
-	virtual void ToMainLoop() = 0;
-	virtual void FromMainLoop() = 0;
+	virtual void toMainLoop() = 0;
+	virtual void fromMainLoop() = 0;
 public:	
 	/* IREViewAnimation */
-	virtual const REFloat32 GetProgress() const { return _progress; }
-	virtual void Start();
-	virtual void Pause();
-	virtual void Stop(const REAnimationStopType stopType);
+	virtual const REFloat32 getProgress() const { return _progress; }
+	virtual void start();
+	virtual void pause();
+	virtual void stop(const REAnimationStopType stopType);
 	
-	virtual const REUIdentifier GetAnimationIdentifier() const = 0;
+	virtual const REUIdentifier getAnimationIdentifier() const = 0;
 	
 	REAnimationBase(REAnimationInfo * info, REArray<REAnimationFloatParams *> * params);
 	virtual ~REAnimationBase();

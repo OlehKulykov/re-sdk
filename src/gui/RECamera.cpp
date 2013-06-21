@@ -18,7 +18,7 @@
 #include "../../include/regui/RECamera.h"
 #include "../../include/regui/IRETexture.h"
 
-void RECamera::Apply()
+void RECamera::apply()
 {
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
 	glMatrixMode(GL_PROJECTION);
@@ -28,7 +28,7 @@ void RECamera::Apply()
 #endif	
 }
 
-REMatrix4 RECamera::GetAppliedProjectionMatrix()
+REMatrix4 RECamera::getAppliedProjectionMatrix()
 {
 	REMatrix4 m;
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
@@ -37,7 +37,7 @@ REMatrix4 RECamera::GetAppliedProjectionMatrix()
 	return m;
 }
 
-REMatrix4 RECamera::GetAppliedModelViewMatrix()
+REMatrix4 RECamera::getAppliedModelViewMatrix()
 {
 	REMatrix4 m;
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
@@ -48,8 +48,8 @@ REMatrix4 RECamera::GetAppliedModelViewMatrix()
 
 RECamera::RECamera() : REObject()
 {
-	projection = this->GetAppliedProjectionMatrix();
-	modelView = this->GetAppliedModelViewMatrix();
+	projection = this->getAppliedProjectionMatrix();
+	modelView = this->getAppliedModelViewMatrix();
 }
 
 RECamera::~RECamera()

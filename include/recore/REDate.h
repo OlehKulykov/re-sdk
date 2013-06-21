@@ -19,60 +19,61 @@
 #define __REDATE_H__
 
 #include "RECommonHeader.h"
+#include "REPtr.h"
+
+class REDateInternal;
 
 /// Class presents date object.
 class __RE_PUBLIC_CLASS_API__ REDate
 {
 private:
-	RETimeInterval _seconds;
-	REUInt16 _year;
-	REUByte _month;
-	REUByte _day;
-	REUByte _hour;
-	REUByte _minutes;
+	REPtr<REDateInternal> _t;
+	void makeDateInternalCopy();
 	
 public:
+	REBOOL isEqualToDate(const REDate & anotherDate) const;
+	
 	/// Getter for year.
-	const REUInt32 GetYear() const;
+	const REUInt32 getYear() const;
 	
 	/// Getter for month.
-	const REUInt32 GetMonth() const;
+	const REUInt32 getMonth() const;
 	
 	/// Getter for day.
-	const REUInt32 GetDay() const;
+	const REUInt32 getDay() const;
 	
 	/// Getter for hour.
-	const REUInt32 GetHour() const;
+	const REUInt32 getHour() const;
 	
 	/// Getter for minutes.
-	const REUInt32 GetMinutes() const;
+	const REUInt32 getMinutes() const;
 	
 	/// Getter for seconds.
-	const RETimeInterval GetSeconds() const;
+	const RETimeInterval getSeconds() const;
 	
 	/// Getter for milliseconds.
-	const REUInt32 GetMilliseconds() const;
+	const REUInt32 getMilliseconds() const;
 	
 	/// Getter for microseconds.
-	const REUInt32 GetMicroseconds() const;
+	const REUInt32 getMicroseconds() const;
 	
 	/// Setting date year.
-	void SetYear(const REUInt32 year);
+	void setYear(const REUInt32 year);
 	
 	/// Setting date month.
-	void SetMonth(const REUInt32 month);
+	void setMonth(const REUInt32 month);
 	
 	/// Setting date day.
-	void SetDay(const REUInt32 day);
+	void setDay(const REUInt32 day);
 	
 	/// Setting date hour.
-	void SetHour(const REUInt32 hour);
+	void setHour(const REUInt32 hour);
 	
 	/// Setting date minutes.
-	void SetMinutes(const REUInt32 minutes);
+	void setMinutes(const REUInt32 minutes);
 	
 	/// Setting date seconds.
-	void SetSeconds(const RETimeInterval seconds);
+	void setSeconds(const RETimeInterval seconds);
 	
 	/// Assing operator.
 	REDate & operator=(const REDate & anotherDate);
@@ -87,10 +88,10 @@ public:
 	virtual ~REDate();
 	
 	/// Returns days count of month for year.
-	static REUInt32 GetDaysPerMonth(const REUInt32 month, const REUInt32 year);
+	static REUInt32 getDaysPerMonth(const REUInt32 month, const REUInt32 year);
 	
 	/// Checks is year leap.
-	static REBOOL IsLeapYear(const REUInt32 year);
+	static REBOOL isLeapYear(const REUInt32 year);
 };
 
 #endif /* __REDATE_H__ */

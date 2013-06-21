@@ -59,44 +59,44 @@ private:
 	REBOOL _isHasKerning;
 	REBOOL _isUseGammaCorection;
 	
-	void UpdateLastTexture();
-	void CreateNewTextureMainThreadMethod(REObject * mainThreadTask);
-	void UpdateTextureMainThreadMethod(REObject * mainThreadTask);
-	void PrepareForWriteChar(const REUInt32 cW, const REUInt32 cH);
-	static REBOOL IsCanWrite(REImageBase * img,const REUInt32 pX,const REUInt32 pY,const REUInt32 cW, const REUInt32 cH);
-	void CreateNewImage();
-	void WriteGlyphToImage(RETTFFontChar * ttfChar);
-	static void CalcTextureSize(RESize * retSize, const REUInt32 totalSquare);
-	void * CreateLib();
-	void * CreateFace(const REBuffer & ttfFileBuffer);
-	void GetInfo();
-	void ReadChars();
-	void ReadGlyphs();
-	void ProcessReadedGlyphs();
+	void updateLastTexture();
+	void createNewTextureMainThreadMethod(REObject * mainThreadTask);
+	void updateTextureMainThreadMethod(REObject * mainThreadTask);
+	void prepareForWriteChar(const REUInt32 cW, const REUInt32 cH);
+	static REBOOL isCanWrite(REImageBase * img,const REUInt32 pX,const REUInt32 pY,const REUInt32 cW, const REUInt32 cH);
+	void createNewImage();
+	void writeGlyphToImage(RETTFFontChar * ttfChar);
+	static void calcTextureSize(RESize * retSize, const REUInt32 totalSquare);
+	void * createLib();
+	void * createFace(const REBuffer & ttfFileBuffer);
+	void getInfo();
+	void readChars();
+	void readGlyphs();
+	void processReadedGlyphs();
 	
-	static int CompareByCharCode(RETTFFontChar ** c1, RETTFFontChar ** c2);
-	static int CompareByHeight(RETTFFontChar ** c1, RETTFFontChar ** c2);
+	static int compareByCharCode(RETTFFontChar ** c1, RETTFFontChar ** c2);
+	static int compareByHeight(RETTFFontChar ** c1, RETTFFontChar ** c2);
 	
 public:
-	void SetUseGammaCorection(REBOOL isUseCorrection) { _isUseGammaCorection = isUseCorrection; }
-	REBOOL IsUseGammaCorection() const { return _isUseGammaCorection; }
-	const REFloat32 GetGammaCorectionValue() const { return _gammaCorectionValue; }
-	void SetGammaCorectionValue(const REFloat32 newValue) { _gammaCorectionValue = newValue; }
-	const REUInt32 GetFontDPI() const { return _fontDPI; }
-	void SetFontDPI(const REUInt32 newDPI);
-	const REUInt32 GetGlyphsCount() const;
-	const char * GetFamilyName() const;
-	const char * GetStyleName() const;
-	const REFloat32 GetFontHeight() const { return _fontHeight; }
-	const REUInt32 GetFontHeightInPixels() const { return _fontHeightPX; }
+	void setUseGammaCorection(REBOOL isUseCorrection) { _isUseGammaCorection = isUseCorrection; }
+	REBOOL isUseGammaCorection() const { return _isUseGammaCorection; }
+	const REFloat32 getGammaCorectionValue() const { return _gammaCorectionValue; }
+	void setGammaCorectionValue(const REFloat32 newValue) { _gammaCorectionValue = newValue; }
+	const REUInt32 getFontDPI() const { return _fontDPI; }
+	void setFontDPI(const REUInt32 newDPI);
+	const REUInt32 getGlyphsCount() const;
+	const char * getFamilyName() const;
+	const char * getStyleName() const;
+	const REFloat32 getFontHeight() const { return _fontHeight; }
+	const REUInt32 getFontHeightInPixels() const { return _fontHeightPX; }
 	
-	REBOOL IsCanLoad() const;
-	REBOOL LoadChars(REArray<RETTFFontChar*> * charsArray);
+	REBOOL isCanLoad() const;
+	REBOOL loadChars(REArray<RETTFFontChar*> * charsArray);
 	
 	RETTFFontLoader(const REBuffer & ttfFileBuffer, const REFloat32 fontHeight);
 	~RETTFFontLoader();
 	
-	static const REUInt32 GetFontHeightInPixels(const REFloat32 height);
+	static const REUInt32 getFontHeightInPixels(const REFloat32 height);
 };
 
 

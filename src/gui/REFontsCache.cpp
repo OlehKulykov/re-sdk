@@ -20,51 +20,51 @@
 
 __RE_PUBLIC_CLASS_API__ REArray<REFontBase *> REFontsCache::_cache;
 
-void REFontsCache::Deleted(REFontBase * base)
+void REFontsCache::deleted(REFontBase * base)
 {
-	for (REUInt32 i = 0; i < _cache.Count(); i++) 
+	for (REUInt32 i = 0; i < _cache.count(); i++) 
 	{
-		if (((REFontBase *)_cache[i])->IsEqual(base)) 
+		if (((REFontBase *)_cache[i])->isEqual(base)) 
 		{
-			_cache.RemoveAt(i);
+			_cache.removeAt(i);
 			return;
 		}
 	}
 }
 
-REFontBase * REFontsCache::Get(REFontBase * base)
+REFontBase * REFontsCache::get(REFontBase * base)
 {
 	if (base == NULL) { return NULL; }
 	
 	if (base->heightPX == 0) 
 	{
-		base->heightPX = RETTFFontLoader::GetFontHeightInPixels(base->height);
+		base->heightPX = RETTFFontLoader::getFontHeightInPixels(base->height);
 	}
 	
-	for (REUInt32 i = 0; i < _cache.Count(); i++) 
+	for (REUInt32 i = 0; i < _cache.count(); i++) 
 	{
 		REFontBase * b = (REFontBase *)_cache[i];
-		if (b->IsApproximatelyEqual(base)) { return b; }
+		if (b->isApproximatelyEqual(base)) { return b; }
 	}
 	
 	REData data;
-	if (!data.InitFromPath(base->path)) { return NULL; }
+	if (!data.initFromPath(base->path)) { return NULL; }
 		
 	RETTFFontLoader loader(data, base->height);
-	if ( !loader.IsCanLoad() ) { return NULL; }
+	if ( !loader.isCanLoad() ) { return NULL; }
 	
-	REArray<RETTFFontChar*> * newChars = new REArray<RETTFFontChar*>(loader.GetGlyphsCount() + 2);
+	REArray<RETTFFontChar*> * newChars = new REArray<RETTFFontChar*>(loader.getGlyphsCount() + 2);
 	if (newChars) 
 	{
-		if (loader.LoadChars(newChars)) 
+		if (loader.loadChars(newChars)) 
 		{
 			base->charsArray = newChars;
-			base->heightPX = loader.GetFontHeightInPixels();
-			base->familyName.Set(loader.GetFamilyName());
-			base->styleName.Set(loader.GetStyleName());
-			base->isUseGammaCorection = loader.IsUseGammaCorection();
-			base->gammaCorectionValue = loader.GetGammaCorectionValue();
-			if (_cache.Add(base))
+			base->heightPX = loader.getFontHeightInPixels();
+			base->familyName.set(loader.getFamilyName());
+			base->styleName.set(loader.getStyleName());
+			base->isUseGammaCorection = loader.isUseGammaCorection();
+			base->gammaCorectionValue = loader.getGammaCorectionValue();
+			if (_cache.add(base))
 			{
 				base->isCached = true;
 				return base;

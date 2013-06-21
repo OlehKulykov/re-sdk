@@ -90,37 +90,37 @@ REGUIObject * REViewController::NewSerializableObject(const char * className, co
     //TODO: create from class name
     if (strcmp(className, "REView") == 0)
     {
-        REGUIObject * newObject = REView::Create();
+        REGUIObject * newObject = REView::create();
         return newObject;
     }
     else if (strcmp(className, "REButton") == 0)
     {
-        REGUIObject * newObject = REButton::Create();
+        REGUIObject * newObject = REButton::create();
         return newObject;
     }
     else if (strcmp(className, "RELabel") == 0)
     {
-        REGUIObject * newObject = RELabel::Create();
+        REGUIObject * newObject = RELabel::create();
         return newObject;
     }
     else if (strcmp(className, "REFontObject") == 0)
     {
-        REGUIObject * newObject = REFontObject::Create();
+        REGUIObject * newObject = REFontObject::create();
         return newObject;
     }
     else if (strcmp(className, "RETransformedView") == 0)
     {
-        RETransformedView * v = RETransformedView::Create();
+        RETransformedView * v = RETransformedView::create();
         return v;
     }
     else if (strcmp(className, "RETextField") == 0)
     {
-        REGUIObject * newObject = RETextField::Create();
+        REGUIObject * newObject = RETextField::create();
         return newObject;
     }
 	else if (strcmp(className, "REParticleView") == 0)
     {
-        REGUIObject * newObject = REParticleView::Create();
+        REGUIObject * newObject = REParticleView::create();
         return newObject;
     }
 	
@@ -139,7 +139,7 @@ REGUIObject * REViewController::CreateXMLSerializableObject(const char * classNa
 
         if (strcmp(className, "RETextureObject") == 0)
 		{
-			if (REThread::IsMainThread()) 
+			if (REThread::isMainThread()) 
 			{
 				RETextureObject * t = RETextureObject::Create();
 				return t;
@@ -149,16 +149,16 @@ REGUIObject * REViewController::CreateXMLSerializableObject(const char * classNa
 				REViewControllerCreateTextureMainThreadTaskPrivate * task = new REViewControllerCreateTextureMainThreadTaskPrivate();
 				if (task) 
 				{
-					REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, ((REViewController*)this), CreateNewTextureMainThreadMethod), task);
+					REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, ((REViewController*)this), CreateNewTextureMainThreadMethod), task);
 					RETextureObject * t = task->GetNewTexture();
-					task->Release();
+					task->release();
 					return t;
 				}
 			}
 		}
 		else if (strcmp(className, "REFramedTextureObject") == 0)
 		{
-			if (REThread::IsMainThread()) 
+			if (REThread::isMainThread()) 
 			{
 				REFramedTextureObject * t = REFramedTextureObject::Create();
 				return t;
@@ -168,9 +168,9 @@ REGUIObject * REViewController::CreateXMLSerializableObject(const char * classNa
 				REViewControllerCreateFramedTextureMainThreadTaskPrivate * task = new REViewControllerCreateFramedTextureMainThreadTaskPrivate();
 				if (task) 
 				{
-					REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, ((REViewController*)this), CreateNewTextureMainThreadMethod), task);
+					REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, ((REViewController*)this), CreateNewTextureMainThreadMethod), task);
 					REFramedTextureObject * t = task->GetNewTexture();
-					task->Release();
+					task->release();
 					return t;
 				}
 			}
@@ -180,7 +180,7 @@ REGUIObject * REViewController::CreateXMLSerializableObject(const char * classNa
 }
 
 /* IREXMLSerializable */
-REBOOL REViewController::AcceptStringParameter(const char * key, const char * value)
+REBOOL REViewController::acceptStringParameter(const char * key, const char * value)
 {
 	if (strcmp(key, RE_VIEW_CONTROLLER_XML_SIZE_KEY_STRING) == 0)
 	{
@@ -189,7 +189,7 @@ REBOOL REViewController::AcceptStringParameter(const char * key, const char * va
 			RESize s;
 			if (sscanf(value, RE_VIEW_CONTROLLER_XML_SIZE_FORMAT_STRING, &s.width, &s.height) == 2) 
 			{
-				_frame.SetSize(s);
+				_frame.setSize(s);
 				return true;
 			}
 		}
@@ -212,13 +212,13 @@ void REViewController::LoadVCFromXMLString(REViewController * vc, const REString
 {
 	if (isLoadInBackground)
 	{
-		if (REThread::IsMainThread())
+		if (REThread::isMainThread())
 		{
 			vc->OnBackgroundLoadingDidStart();
 		}
 		else
 		{
-			REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, vc, CallBackgroundLoadingDidStartMainThreadMethod), NULL);
+			REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, vc, CallBackgroundLoadingDidStartMainThreadMethod), NULL);
 		}
 	}
 	
@@ -231,13 +231,13 @@ void REViewController::LoadVCFromXMLString(REViewController * vc, const REString
 	
 	if (isLoadInBackground)
 	{
-		if (REThread::IsMainThread())
+		if (REThread::isMainThread())
 		{
 			vc->OnBackgroundLoadingDidEnd();
 		}
 		else
 		{
-			REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, vc, CallBackgroundLoadingDidEndMainThreadMethod), NULL);
+			REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(REViewController, vc, CallBackgroundLoadingDidEndMainThreadMethod), NULL);
 		}
 	}
 	
@@ -249,9 +249,9 @@ void REViewController::LoadByNameThreadMethod(REObject * dataFilePathStringObjec
 {
 	REStringObject * strObj = (REStringObject*)dataFilePathStringObject;
 	REData xmlData;
-	if (xmlData.InitFromPath(*strObj)) 
+	if (xmlData.initFromPath(*strObj)) 
 	{
-		REString xmlString((const char*)xmlData.GetBytes());
+		REString xmlString((const char*)xmlData.getBytes());
 		REViewController::LoadVCFromXMLString(this, xmlString, true);
 	}
 }
@@ -259,26 +259,26 @@ void REViewController::LoadByNameThreadMethod(REObject * dataFilePathStringObjec
 REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackground)
 {	
 	REBOOL loadResult = false;
-	REStringObject * strObj = REStringObject::CreateWithChars("data/vc/");
+	REStringObject * strObj = REStringObject::createWithChars("data/vc/");
 	if (strObj) 
 	{
-		strObj->AppendFormat("%s/vc.xml", name.UTF8String());
+		strObj->appendFormat("%s/vc.xml", name.UTF8String());
 		if (isLoadInBackground) 
 		{
-			REThread::DetachNewThreadWithMethod(NEW_CLASS_METHOD(REViewController, this, LoadByNameThreadMethod), strObj);
+			REThread::detachNewThreadWithMethod(NEW_CLASS_METHOD(REViewController, this, LoadByNameThreadMethod), strObj);
 			loadResult = true;
 		}
 		else
 		{
 			REData xmlData;
-			if (xmlData.InitFromPath(*strObj)) 
+			if (xmlData.initFromPath(*strObj)) 
 			{
-				REString xmlString((const char*)xmlData.GetBytes());
+				REString xmlString((const char*)xmlData.getBytes());
 				REViewController::LoadVCFromXMLString(this, xmlString, false);
 				loadResult = true;
 			}
 		}
-		strObj->Release();
+		strObj->release();
 	}	
 	return loadResult;
 }
@@ -320,57 +320,57 @@ RERect REViewController::GetScreenFrame() const
 	return this->GetFrame();
 }
 */
-void REViewController::Render()
+void REViewController::render()
 {
-	REObjectsArray * arr = this->GetSubViewsArray();
+	REObjectsArray * arr = this->getSubViewsArray();
 	if (arr) 
 	{
-		for (REUInt32 i = 0; i < arr->Count(); i++) 
+		for (REUInt32 i = 0; i < arr->count(); i++) 
 		{
-			((REView*)(*arr)[i])->Render();
+			((REView*)(*arr)[i])->render();
 		}
 	}
 }
 
-void REViewController::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void REViewController::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
-	REObjectsArray * arr = this->GetSubViewsArray();
+	REObjectsArray * arr = this->getSubViewsArray();
 	if (arr) 
 	{
-		for (REUInt32 i = 0; i < arr->Count(); i++) 
+		for (REUInt32 i = 0; i < arr->count(); i++) 
 		{
-			((REView*)(*arr)[i])->RenderWithOffset(offsetX, offsetY);
+			((REView*)(*arr)[i])->renderWithOffset(offsetX, offsetY);
 		}
 	}
 }
 
-const REUInt32 REViewController::GetClassIdentifier() const
+const REUInt32 REViewController::getClassIdentifier() const
 {
-	return REViewController::ClassIdentifier();
+	return REViewController::classIdentifier();
 }
 
-const REUInt32 REViewController::ClassIdentifier()
+const REUInt32 REViewController::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REViewController");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REViewController");
 	return clasIdentif;
 }
 
-REBOOL REViewController::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REViewController::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REViewController::ClassIdentifier() == classIdentifier) ||
-			REView::IsImplementsClass(classIdentifier));
+	return ((REViewController::classIdentifier() == classIdentifier) ||
+			REView::isImplementsClass(classIdentifier));
 }
 
 const REObjectsArray * REViewController::GetViews() const
 {
-	return this->GetSubViewsArray();
+	return this->getSubViewsArray();
 }
 
 REViewController::REViewController() : REView(),
     _xmlReader(NULL)
 {
-	this->SetRespondsForUserAction(true);
-    this->SetInterceptsUserAction(true);
+	this->setRespondsForUserAction(true);
+    this->setInterceptsUserAction(true);
 }
 
 REViewController::~REViewController()
@@ -384,12 +384,12 @@ REViewController * REViewController::Create()
 	return newViewController;
 }
 
-const char * REViewController::GetXMLSizeKeyString()
+const char * REViewController::getXMLSizeKeyString()
 {
 	return RE_VIEW_CONTROLLER_XML_SIZE_KEY_STRING;
 }
 
-const char * REViewController::GetXMLSizeFormatString()
+const char * REViewController::getXMLSizeFormatString()
 {
 	return RE_VIEW_CONTROLLER_XML_SIZE_FORMAT_STRING;
 }

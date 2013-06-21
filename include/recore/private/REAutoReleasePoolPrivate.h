@@ -25,36 +25,7 @@
 #include "../REThread.h"
 #include "../REMutex.h"
 
-/*
-class REAutoReleasePoolPrivate : public REObject
-{
-private:
-	REArray<REObject *> _pool;
-	REMutex _updateMutex;
-	REUInt32 _index;
-	
-	typedef struct _threadPoolStruct
-	{
-		REUIdentifier threadId;
-		REAutoReleasePoolPrivate * pool;
-	}
-	ThreadPoolStruct;
-	static REArray<REAutoReleasePoolPrivate::ThreadPoolStruct> _threadPools;
-protected:
-	void UpdatePool();
-	void LastUpdate();
-	REAutoReleasePoolPrivate();
-	~REAutoReleasePoolPrivate();
-	
-public:
-	REBOOL AddObject(REObject * autoReleasableObject);
-	
-	static void Update();
-	static REAutoReleasePoolPrivate * GetCurrentThreadPool();
-	static REAutoReleasePoolPrivate * GetPoolForThread(const REUIdentifier threadIdentifier);
-	static void ThreadFinished(const REUIdentifier threadIdentifier);
-};
-*/
+
 
 #endif /* __REAUTORELEASEPOOLPRIVATE_H__ */
 

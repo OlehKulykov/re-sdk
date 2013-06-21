@@ -41,100 +41,100 @@ protected:
 	RETextField();
 	virtual ~RETextField();
 private:
-    static REBOOL AcceptTextFieldStringParameter(RETextField * textField, const char * key, const char * value);
+    static REBOOL acceptTextFieldStringParameter(RETextField * textField, const char * key, const char * value);
 public:
     /* REGUIObject */
     /// Acepting string parameter and value string presentation from XML document.
     /// Using when view controller loading from XML. This method can be invoked from non-main thread if view controller loading in background.
-    virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+    virtual REBOOL acceptStringParameter(const char * key, const char * value);
 
 	/* IREUserActionResponder */
-	virtual void UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									   const REFloat32 currentCoordX, const REFloat32 currentCoordY);
 	
 	/* REMainLoopUpdatable */
 	/// Called from main thread with current time in seconds.
-	virtual void Update(const RETimeInterval currentTime);
+	virtual void update(const RETimeInterval currentTime);
 	
 	/// Must return unique identifier of object. Usialy returns 'REObject::GetObjectIdentifier()'.
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/* IRERenderable */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/* IRETextInputResponder */
-	virtual const REUIdentifier GetTextInputResponderObjectIdentifier() const { return this->GetObjectIdentifier(); }
-	virtual void OnTextInputResponderTextInputStarted();
-	virtual void OnTextInputResponderTextInputEnded();
-	virtual void OnTextInputResponderTextChanged(const REString & newTextString);
-	virtual REBOOL BecomeFirstTextInputResponder();
-	virtual REBOOL ResignFirstTextInputResponder();
-	virtual const REUInt32 GetTextInputResponderMaximumTextLength() const;
-	virtual REBOOL IsTextInputResponderHasMaximumTextLength() const;
-	virtual REBOOL IsClearPreviousInputedText() const;
-	virtual const REString & GetTextInputResponderText() const;
+	virtual const REUIdentifier getTextInputResponderObjectIdentifier() const { return this->getObjectIdentifier(); }
+	virtual void onTextInputResponderTextInputStarted();
+	virtual void onTextInputResponderTextInputEnded();
+	virtual void onTextInputResponderTextChanged(const REString & newTextString);
+	virtual REBOOL becomeFirstTextInputResponder();
+	virtual REBOOL resignFirstTextInputResponder();
+	virtual const REUInt32 getTextInputResponderMaximumTextLength() const;
+	virtual REBOOL isTextInputResponderHasMaximumTextLength() const;
+	virtual REBOOL isClearPreviousInputedText() const;
+	virtual const REString & getTextInputResponderText() const;
 	
-	void SetMaximumInputedTextLength(const REUInt32 newMaxInputLen);
-	void SetClearPreviousInputedText(REBOOL isClear);
-	void SetHasMaximumInputedTextLength(REBOOL isHasMaxTextLen);
+	void setMaximumInputedTextLength(const REUInt32 newMaxInputLen);
+	void setClearPreviousInputedText(REBOOL isClear);
+	void setHasMaximumInputedTextLength(REBOOL isHasMaxTextLen);
 	
 	/// Returns cursor view.
-	REView * GetCursorView() const;
+	REView * getCursorView() const;
 	
 	/// Setting rectangular frame of view.
 	virtual void SetFrame(const RERect & newViewFrame);
 	
 	/// Is text input cursor showing
-	REBOOL IsShowCursor() const;
+	REBOOL isShowCursor() const;
 	
 	/// Set is need to show text input cursor.
-	void SetShowCursor(REBOOL isShow);
+	void setShowCursor(REBOOL isShow);
 	
 	/// Returns time in seconds of cursor blinking.
-	const RETimeInterval GetCursorBlinkTime() const;
+	const RETimeInterval getCursorBlinkTime() const;
 	
 	/// Setting time in seconds of cursor blinking. 
-	void SetCursorBlinkTime(const RETimeInterval newBlinkTime);
+	void setCursorBlinkTime(const RETimeInterval newBlinkTime);
 	
 	/// Creates and return new text field object.
-	static RETextField * Create();
+	static RETextField * create();
 
 	/// Returns XML key string for cursor blink time.
-    static const char * GetXMLCursorBlinkTimeKeyString();
+    static const char * getXMLCursorBlinkTimeKeyString();
 	
 	/// Returns XML format string for cursor blink time.
-    static const char * GetXMLCursorBlinkTimeFormatString();
+    static const char * getXMLCursorBlinkTimeFormatString();
 	
 	/// Returns XML key string for maximum text length.
-    static const char * GetXMLMaximumTextLengthKeyString();
+    static const char * getXMLMaximumTextLengthKeyString();
 	
 	/// Returns XML format string for maximum text length.
-    static const char * GetXMLMaximumTextLengthFormatString();
+    static const char * getXMLMaximumTextLengthFormatString();
 	
 	/// Returns XML key string for flag has maximum text.
-    static const char * GetXMLHasMaximumTextLengthKeyString();
+    static const char * getXMLHasMaximumTextLengthKeyString();
 	
 	/// Returns XML format string for flag has maximum text.
-    static const char * GetXMLHasMaximumTextLengthFormatString();
+    static const char * getXMLHasMaximumTextLengthFormatString();
 	
 	/// Returns XML key string for flag clear previous text.
-    static const char * GetXMLClearPreviousTextKeyString();
+    static const char * getXMLClearPreviousTextKeyString();
 	
 	/// Returns XML format string for flag clear previous text.
-    static const char * GetXMLClearPreviousTextFormatString();
+    static const char * getXMLClearPreviousTextFormatString();
 	
 	/// Returns XML key string for flag show cursor.
-    static const char * GetXMLShowCursorKeyString();
+    static const char * getXMLShowCursorKeyString();
 	
 	/// Returns XML format string for flag show cursor.
-    static const char * GetXMLShowCursorFormatString();
+    static const char * getXMLShowCursorFormatString();
 };
 
 

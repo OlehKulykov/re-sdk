@@ -92,7 +92,7 @@ int gettimeofday(struct timeval2 *tv/*in*/, struct timezone2 *tz/*in*/)
 
 #endif
 
-double REOGGTheoraPlayerPrivate::GetTime()
+double REOGGTheoraPlayerPrivate::getTime()
 {
 	static ogg_int64_t last = 0;
 	static ogg_int64_t up = 0;
@@ -123,28 +123,28 @@ double REOGGTheoraPlayerPrivate::GetTime()
 	return (0.001 * (now - _audioFDTimerCalibrate));
 }
 
-int REOGGTheoraPlayerPrivate::BufferData(REData * inData, ogg_sync_state * oy)
+int REOGGTheoraPlayerPrivate::bufferData(REData * inData, ogg_sync_state * oy)
 {
 	char * buffer = ogg_sync_buffer(oy, 65536);
-	const long sizeReaded = (long)inData->FileRead(buffer, 65536); /*fread(buffer, elementSize, 1, in) * elementSize*/;
+	const long sizeReaded = (long)inData->fileRead(buffer, 65536); /*fread(buffer, elementSize, 1, in) * elementSize*/;
 	ogg_sync_wrote(oy, sizeReaded);
 	return (int)sizeReaded;
 }
 
-void REOGGTheoraPlayerPrivate::QueuePage(ogg_page * page)
+void REOGGTheoraPlayerPrivate::queuePage(ogg_page * page)
 {
 	if (theora_p) ogg_stream_pagein(&_theoraOggStreamState, page);
 	if (vorbis_p) ogg_stream_pagein(&_vorbisOggStreamState, page);
 }
 
-void REOGGTheoraPlayerPrivate::WriteVideo()
+void REOGGTheoraPlayerPrivate::writeVideo()
 {
 	if (_texture && _colorConversionFunction) 
 	{
 		th_ycbcr_buffer yuv;
 		th_decode_ycbcr_out(_theoraDecoderContext, yuv);
 		
-		_colorConversionFunction((REUByte *)_frameRGBBuffer.GetBuffer(), 
+		_colorConversionFunction((REUByte *)_frameRGBBuffer.getBuffer(), 
 								 yuv[0].data, 
 								 yuv[1].data, 
 								 yuv[2].data, 
@@ -156,12 +156,12 @@ void REOGGTheoraPlayerPrivate::WriteVideo()
 								 _colorConversionTable,
 								 0);
 
-		_texture->Update((REUByte *)_frameRGBBuffer.GetBuffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
+		_texture->Update((REUByte *)_frameRGBBuffer.getBuffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
 		
 	}
 }
 
-void REOGGTheoraPlayerPrivate::DecodeVideo()
+void REOGGTheoraPlayerPrivate::decodeVideo()
 {
 	if (theora_p) 
 	{
@@ -184,7 +184,7 @@ void REOGGTheoraPlayerPrivate::DecodeVideo()
 				if (th_decode_packetin(_theoraDecoderContext, &_oggPacket, &_videoBufferGranulePos) == 0)
 				{
 					_videoBufferTime = th_granule_time(_theoraDecoderContext, _videoBufferGranulePos);
-					if(_videoBufferTime >= this->GetTime() )
+					if(_videoBufferTime >= this->getTime() )
 					{
 						_isVideoBufferReady = true;
 					}
@@ -206,7 +206,7 @@ void REOGGTheoraPlayerPrivate::DecodeVideo()
 	}
 }
 
-void REOGGTheoraPlayerPrivate::ConvertSamples(const int samples, float ** pcm, void * buf, const int channels)
+void REOGGTheoraPlayerPrivate::convertSamples(const int samples, float ** pcm, void * buf, const int channels)
 {
 	for (int i = 0; i < channels; i++)
 	{
@@ -224,9 +224,9 @@ void REOGGTheoraPlayerPrivate::ConvertSamples(const int samples, float ** pcm, v
 	}
 }
 
-void REOGGTheoraPlayerPrivate::DecodeAudio()
+void REOGGTheoraPlayerPrivate::decodeAudio()
 {
-	while (!this->IsAudioBufferReady())
+	while (!this->isAudioBufferReady())
 	{
 		float ** pcm = NULL;
 		/* if there's pending, decoded audio, grab it */
@@ -244,7 +244,7 @@ void REOGGTheoraPlayerPrivate::DecodeAudio()
 				_soundPCMDataMemorySize = newDataSize;
 			}
 			
-			REOGGTheoraPlayerPrivate::ConvertSamples(samples, pcm, &_soundPCMData[_soundPCMDataSize], _vorbisInfo.channels);
+			REOGGTheoraPlayerPrivate::convertSamples(samples, pcm, &_soundPCMData[_soundPCMDataSize], _vorbisInfo.channels);
 			_soundPCMDataSize += dataSize;
 			vorbis_synthesis_read(&_vorbisDSPState, samples);
 		}
@@ -265,7 +265,7 @@ void REOGGTheoraPlayerPrivate::DecodeAudio()
 	}
 }
 
-void REOGGTheoraPlayerPrivate::PlayDecodedAudio()
+void REOGGTheoraPlayerPrivate::playDecodedAudio()
 {
 	if (_audioPlayBackStarted)
 	{
@@ -295,7 +295,7 @@ void REOGGTheoraPlayerPrivate::PlayDecodedAudio()
 			}
 		}
 	}
-	else if (this->IsAudioBufferReady())
+	else if (this->isAudioBufferReady())
 	{
 		REUInt32 soundPCMDataReaded = 0;
 		for(REUInt32 i = 0; i < NUM_BUFFERS; i++)
@@ -314,41 +314,42 @@ void REOGGTheoraPlayerPrivate::PlayDecodedAudio()
 	}
 }
 
-void REOGGTheoraPlayerPrivate::Update(const RETimeInterval currentTime)
+void REOGGTheoraPlayerPrivate::update(const RETimeInterval currentTime)
 {		
 	if (vorbis_p) 
 	{	
-		this->DecodeAudio();	
-		this->PlayDecodedAudio();	
+		this->decodeAudio();	
+		
+		this->playDecodedAudio();	
 	}
 
 #ifdef __THEORA_DECODE_TIME_TEST__
 	static RETimeInterval totalTime = 0.0;
-	const RETimeInterval time1 = RETime::Time();
+	const RETimeInterval time1 = RETime::time();
 #endif	
-	this->DecodeVideo();
+	this->decodeVideo();
 #ifdef __THEORA_DECODE_TIME_TEST__
-	totalTime += RETime::Time() - time1;
+	totalTime += RETime::time() - time1;
 #endif
 	
-	if ( (!_isVideoBufferReady) || (!this->IsAudioBufferReady()) )
+	if ( (!_isVideoBufferReady) || (!this->isAudioBufferReady()) )
 	{
 		/* no data yet for somebody.  Grab another page */
-		REOGGTheoraPlayerPrivate::BufferData(&_inData, &_oggSyncState);
+		REOGGTheoraPlayerPrivate::bufferData(&_inData, &_oggSyncState);
 		while (ogg_sync_pageout(&_oggSyncState, &_oggPage) > 0)
 		{
-			this->QueuePage(&_oggPage);
+			this->queuePage(&_oggPage);
 		}
 	}
 	
 	/* are we at or past time for this video frame? */
-	if (_isVideoBufferReady && (_videoBufferTime <= this->GetTime()) )
+	if (_isVideoBufferReady && (_videoBufferTime <= this->getTime()) )
 	{
-		this->WriteVideo();
+		this->writeVideo();
 		_isVideoBufferReady = false;
 	}
 	
-	if ( (!_isVideoBufferReady) && (!this->IsAudioBufferReady()) && _inData.IsEndOfFile() /*feof(infile)*/) 
+	if ( (!_isVideoBufferReady) && (!this->isAudioBufferReady()) && _inData.isEndOfFile() /*feof(infile)*/) 
 	{
 		ALenum state;
 		alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
@@ -368,12 +369,12 @@ void REOGGTheoraPlayerPrivate::Update(const RETimeInterval currentTime)
 	}
 }
 
-REBOOL REOGGTheoraPlayerPrivate::ParseHeaders()
+REBOOL REOGGTheoraPlayerPrivate::parseHeaders()
 {
 	int stateflag = 0;
 	while (!stateflag)
 	{
-		if (REOGGTheoraPlayerPrivate::BufferData(&_inData, &_oggSyncState) == 0)
+		if (REOGGTheoraPlayerPrivate::bufferData(&_inData, &_oggSyncState) == 0)
 		{
 			break;
 		}
@@ -384,7 +385,7 @@ REBOOL REOGGTheoraPlayerPrivate::ParseHeaders()
 			if (!ogg_page_bos(&_oggPage))
 			{
 				/* don't leak the page; get it into the appropriate stream */
-				this->QueuePage(&_oggPage);
+				this->queuePage(&_oggPage);
 				stateflag = 1;
 				break;
 			}
@@ -498,11 +499,11 @@ REBOOL REOGGTheoraPlayerPrivate::ParseHeaders()
 		
 		if (ogg_sync_pageout(&_oggSyncState, &_oggPage) > 0)
 		{
-			this->QueuePage(&_oggPage); /* demux into the appropriate stream */
+			this->queuePage(&_oggPage); /* demux into the appropriate stream */
 		}
 		else
 		{
-			if (REOGGTheoraPlayerPrivate::BufferData(&_inData, &_oggSyncState) == 0)
+			if (REOGGTheoraPlayerPrivate::bufferData(&_inData, &_oggSyncState) == 0)
 			{
 				//fprintf(stderr,"End of file while searching for codec headers.\n");
 				return false;
@@ -513,7 +514,7 @@ REBOOL REOGGTheoraPlayerPrivate::ParseHeaders()
 	return true;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::InitDecoders()
+REBOOL REOGGTheoraPlayerPrivate::initDecoders()
 {
 	if (theora_p)
 	{
@@ -522,15 +523,15 @@ REBOOL REOGGTheoraPlayerPrivate::InitDecoders()
 		{
 			case TH_PF_420:
 				_colorConversionFunction = REYUVtoRGB::YUV420toRGB888;
-				_colorConversionTable = REYUVtoRGB::GetYUVtoRGB565Table();
+				_colorConversionTable = REYUVtoRGB::getYUVtoRGB565Table();
 				break;
 			case TH_PF_422:
 				_colorConversionFunction = REYUVtoRGB::YUV422toRGB888;
-				_colorConversionTable = REYUVtoRGB::GetYUVtoRGB565Table();
+				_colorConversionTable = REYUVtoRGB::getYUVtoRGB565Table();
 				break;
 			case TH_PF_444: 
 				_colorConversionFunction = REYUVtoRGB::YUV444toRGB888;
-				_colorConversionTable = REYUVtoRGB::GetYUVtoRGB565Table();
+				_colorConversionTable = REYUVtoRGB::getYUVtoRGB565Table();
 				break;
 			case TH_PF_RSVD:
 			default:
@@ -569,7 +570,7 @@ REBOOL REOGGTheoraPlayerPrivate::InitDecoders()
 	return true;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::InitWithData(const REData & soundFileData)
+REBOOL REOGGTheoraPlayerPrivate::initWithData(const REData & soundFileData)
 {
 	_inData = soundFileData;
 	
@@ -584,12 +585,12 @@ REBOOL REOGGTheoraPlayerPrivate::InitWithData(const REData & soundFileData)
 	th_comment_init(&_theoraComment);
 	th_info_init(&_theoraInfo);
 	
-	if (!this->ParseHeaders())
+	if (!this->parseHeaders())
 	{
 		return false;
 	}
 	
-	if (!this->InitDecoders())
+	if (!this->initDecoders())
 	{
 		return false;
 	}
@@ -600,13 +601,13 @@ REBOOL REOGGTheoraPlayerPrivate::InitWithData(const REData & soundFileData)
 		_alBuffers[i] = 0;
 	}
 	
-	if ( this->IsSoundExists() )
+	if ( this->isSoundExists() )
 	{
 		alGenBuffers(NUM_BUFFERS, _alBuffers);
 		alGenSources(1, &_alSource);
 	}
 	
-	_frameRGBBuffer.Resize(_theoraInfo.frame_width * _theoraInfo.frame_height * 3, false);
+	_frameRGBBuffer.resize(_theoraInfo.frame_width * _theoraInfo.frame_height * 3, false);
 	
 	_texture = RETextureObject::CreateWithBlankTexture(REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
 	if (_texture == NULL) 
@@ -620,44 +621,44 @@ REBOOL REOGGTheoraPlayerPrivate::InitWithData(const REData & soundFileData)
 	return true;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::Play()
+REBOOL REOGGTheoraPlayerPrivate::play()
 {
 	//_isPlaying = true;
-	this->AddToMainLoop();
+	this->addToMainLoop();
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::IsPlaying() const
+REBOOL REOGGTheoraPlayerPrivate::isPlaying() const
 {
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::Pause()
+REBOOL REOGGTheoraPlayerPrivate::pause()
 {
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::Stop()
+REBOOL REOGGTheoraPlayerPrivate::stop()
 {
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::SetLooped(const REBOOL isLooped)
+REBOOL REOGGTheoraPlayerPrivate::setLooped(const REBOOL isLooped)
 {
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::IsLooped() const /* by default is not looped */
+REBOOL REOGGTheoraPlayerPrivate::isLooped() const /* by default is not looped */
 {
 	return false;
 }
 
-REBOOL REOGGTheoraPlayerPrivate::SetVolume(const REFloat32 newVolume)
+REBOOL REOGGTheoraPlayerPrivate::setVolume(const REFloat32 newVolume)
 {
 	return false;
 }
 
-const REFloat32 REOGGTheoraPlayerPrivate::GetVolume() const
+const REFloat32 REOGGTheoraPlayerPrivate::getVolume() const
 {
 	return 0.0f;
 }
@@ -693,11 +694,11 @@ REOGGTheoraPlayerPrivate::REOGGTheoraPlayerPrivate() : REObject()
 
 REOGGTheoraPlayerPrivate::~REOGGTheoraPlayerPrivate()
 {
-	this->RemoveFromMainLoop();
+	this->removeFromMainLoop();
 	
 	if (_texture) 
 	{
-		_texture->Release();
+		_texture->release();
 	}
 	
 	if (vorbis_p)

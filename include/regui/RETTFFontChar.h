@@ -51,7 +51,7 @@ public:
 	REUByte bitmapHeight;
 	REUByte bitmapPitch;
 	
-	const wchar_t GetCharCode() const { return _charCode; }
+	const wchar_t getCharCode() const { return _charCode; }
 	RETTFFontChar(const wchar_t charCode);
 	~RETTFFontChar();
 };

@@ -52,58 +52,58 @@ protected:
 	
 public:
 	/// Set texture of button for selected state, prev texture if released and new assigned.
-	virtual void SetTextureForState(RETextureObject * newTexture, REButton::StateType state);
+	virtual void setTextureForState(RETextureObject * newTexture, REButton::StateType state);
 	
 	/// Retuns pointer to texture for state. If no texture assigned NULL wil return.
-	virtual RETextureObject * GetTextureForState(REButton::StateType state);
+	virtual RETextureObject * getTextureForState(REButton::StateType state);
 	
 	/// Set method pointer to method that will invoked when button pressed down. Prev method will delete and new will set.
-	void SetButtonDownTargetMethod(REClassMethod * buttonDownTargetMethod);
+	void setButtonDownTargetMethod(REClassMethod * buttonDownTargetMethod);
 	
 	/// Checks is button disabled.
-	REBOOL IsDisabled() const;
+	REBOOL isDisabled() const;
 	
 	/// Sets button state to disable or enabled
-	void SetDisabled(const REBOOL isDisabled);
+	void setDisabled(const REBOOL isDisabled);
 	
 	/* IREUserActionResponder */
-	virtual REBOOL IsRespondsForUserAction() const;
+	virtual REBOOL isRespondsForUserAction() const;
 	
 #ifdef __RE_OS_DESKTOP__
-	virtual void UserCursorMoved(const REFloat32 coordX, const REFloat32 coordY);
-	virtual REUInt32 GetUserCursorIdentifier() const; /* {return 0;} */
+	virtual void userCursorMoved(const REFloat32 coordX, const REFloat32 coordY);
+	virtual REUInt32 getUserCursorIdentifier() const; /* {return 0;} */
 #endif	
-	virtual void UserActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY);
-	virtual void UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY);
+	virtual void userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									   const REFloat32 currentCoordX, const REFloat32 currentCoordY);
-	virtual void UserActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									   const REFloat32 currentCoordX, const REFloat32 currentCoordY);
-	virtual void UserActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 											 const REFloat32 endCoordX, const REFloat32 endCoordY);
 	
 	
 	/* REGUIObject */
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
-	virtual REBOOL AcceptObjectParameter(const char * className, const char * key, REGUIObject * value);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
+	virtual REBOOL acceptObjectParameter(const char * className, const char * key, REGUIObject * value);
 	
 	/* REView */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/// Creates and returns new button object.
-	static REButton * Create();
+	static REButton * create();
 
 	/// Returns XML key string for pressed texture object.
-    static const char * GetXMLPressedTextureObjectKeyString();
+    static const char * getXMLPressedTextureObjectKeyString();
 	
 	/// Returns XML key string for disabled texture object.
-    static const char * GetXMLDisabledTextureObjectKeyString();
+    static const char * getXMLDisabledTextureObjectKeyString();
 };
 
 

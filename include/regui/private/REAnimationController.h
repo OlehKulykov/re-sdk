@@ -45,28 +45,28 @@ protected:
 	//REEditableAnimationInfo * _lastInfo;
 	REBOOL _isPaused;
 
-	void TrySelfRelease();
+	void trySelfRelease();
 	static REAnimationController * _defaultController;
 
 	REAnimationController();
 	virtual ~REAnimationController();
 public:	
-	REBOOL StopAllAnimationForView(REObject * view, const REAnimationStopType stopType, REBOOL isNeedCallDelegate);
-	REEditableAnimationInfo * LastInfo();
-	void AnimationFinishedSuccessfully(REAnimationInfo * animationInfo);
-	REUIdentifier StartSetupNewAnimation(void * data);
-	REBOOL AddFloatParam(REObject * view, 
+	REBOOL stopAllAnimationForView(REObject * view, const REAnimationStopType stopType, REBOOL isNeedCallDelegate);
+	REEditableAnimationInfo * lastInfo();
+	void animationFinishedSuccessfully(REAnimationInfo * animationInfo);
+	REUIdentifier startSetupNewAnimation(void * data);
+	REBOOL addFloatParam(REObject * view, 
 						 REUInt16 * animationsCounter,
 						 REFloat32 * param, 
 						 const REFloat32 startValue, 
 						 const REFloat32 endValue);
-	REBOOL ExecuteLastAnimation();
-	void Pause();
+	REBOOL executeLastAnimation();
+	void pause();
 	void Continue();
-	const REFloat32 GetProgress(REObject * animatedObject);
+	const REFloat32 getProgress(REObject * animatedObject);
 	
-	static REAnimationController * GetDefaultController();
-	static void ReleaseDefaultController();
+	static REAnimationController * getDefaultController();
+	static void releaseDefaultController();
 };
 
 

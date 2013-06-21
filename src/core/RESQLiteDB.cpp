@@ -33,20 +33,20 @@
 #endif
 
 
-void RESQLiteDB::RemoveUnUsedStates()
+void RESQLiteDB::removeUnUsedStates()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	REUInt32 i = 0;
-	while (i < _statements.Count()) 
+	while (i < _statements.count()) 
 	{
 		RESQLiteDBResultSet::StatementStruct * st = _statements[i];
 		if ( st->usingCount == 0 ) 
 		{
-			if ( _statements.RemoveAt(i) )
+			if ( _statements.removeAt(i) )
 			{
                 if (st->columnsNames) 
                 {
-                    for (REUInt32 i = 0; i < st->columnsNames->Count(); i++) 
+                    for (REUInt32 i = 0; i < st->columnsNames->count(); i++) 
                     {
                         REString * colName = (*st->columnsNames)[i];
                         delete colName;
@@ -69,7 +69,7 @@ void RESQLiteDB::RemoveUnUsedStates()
 #endif	
 }
 
-REBOOL RESQLiteDB::SetColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
+REBOOL RESQLiteDB::setColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( st ) 
@@ -93,8 +93,8 @@ REBOOL RESQLiteDB::SetColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
 			REString * nameStr = new REString(name);
 			if ( nameStr ) 
 			{
-				nameStr->ToLower();
-				arr->Add(nameStr);
+				nameStr->toLower();
+				arr->add(nameStr);
 			}
 		}
 		st->columnsNames = arr;
@@ -105,10 +105,10 @@ REBOOL RESQLiteDB::SetColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
 }
 
 
-REBOOL RESQLiteDB::BeginTransaction()
+REBOOL RESQLiteDB::beginTransaction()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-    if ( this->ExecuteUpdate(REString("BEGIN EXCLUSIVE TRANSACTION;")) ) 
+    if ( this->executeUpdate(REString("BEGIN EXCLUSIVE TRANSACTION;")) ) 
 	{
 		return true;
     }
@@ -116,10 +116,10 @@ REBOOL RESQLiteDB::BeginTransaction()
     return false;
 }
 
-REBOOL RESQLiteDB::ExecuteUpdate(const REString & queryString)
+REBOOL RESQLiteDB::executeUpdate(const REString & queryString)
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( this->IsOpened() ) 
+	if ( this->isOpened() ) 
 	{
 		/*
 		REString normQueryStr(queryString);
@@ -159,10 +159,10 @@ REBOOL RESQLiteDB::ExecuteUpdate(const REString & queryString)
 	return false;
 }
 
-REBOOL RESQLiteDB::CommitTransaction()
+REBOOL RESQLiteDB::commitTransaction()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( this->ExecuteUpdate(REString("COMMIT TRANSACTION;")) ) 
+	if ( this->executeUpdate(REString("COMMIT TRANSACTION;")) ) 
 	{
 		return true;
     }
@@ -170,10 +170,10 @@ REBOOL RESQLiteDB::CommitTransaction()
     return false;
 }
 
-REBOOL RESQLiteDB::RollBackTransaction()
+REBOOL RESQLiteDB::rollBackTransaction()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( this->ExecuteUpdate(REString("ROLLBACK TRANSACTION;")) ) 
+	if ( this->executeUpdate(REString("ROLLBACK TRANSACTION;")) ) 
 	{
 		return true;
     }
@@ -181,7 +181,7 @@ REBOOL RESQLiteDB::RollBackTransaction()
     return false;
 }
 
-const REString & RESQLiteDB::GetDatabasePath() const
+const REString & RESQLiteDB::getDatabasePath() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	return _databasePath;
@@ -191,16 +191,16 @@ const REString & RESQLiteDB::GetDatabasePath() const
 #endif
 }
 
-REBOOL RESQLiteDB::Close()
+REBOOL RESQLiteDB::close()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( _db ) 
 	{
-		this->RemoveUnUsedStates();
+		this->removeUnUsedStates();
         
-		if ( !_statements.IsEmpty() ) { this->RemoveUnUsedStates(); }
+		if ( !_statements.isEmpty() ) { this->removeUnUsedStates(); }
 		
-		if ( _statements.IsEmpty() ) 
+		if ( _statements.isEmpty() ) 
 		{
             int numberOfRetries = 10;
             int rc = SQLITE_ERROR;
@@ -225,7 +225,7 @@ REBOOL RESQLiteDB::Close()
 	return false;
 }
 
-REInt64 RESQLiteDB::GetLastInsertedRowId() const
+REInt64 RESQLiteDB::getLastInsertedRowId() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( _db ) 
@@ -237,12 +237,12 @@ REInt64 RESQLiteDB::GetLastInsertedRowId() const
     return 0;
 }
 
-REBOOL RESQLiteDB::Open()
+REBOOL RESQLiteDB::open()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	this->Close();
+	this->close();
 	
-	if ( _databasePath.IsEmpty() ) 
+	if ( _databasePath.isEmpty() ) 
 	{
 		return false;
 	}
@@ -257,7 +257,7 @@ REBOOL RESQLiteDB::Open()
 	return false;
 }
 
-REBOOL RESQLiteDB::IsOpened() const
+REBOOL RESQLiteDB::isOpened() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	return ( _db != NULL );
@@ -266,10 +266,10 @@ REBOOL RESQLiteDB::IsOpened() const
 #endif
 }
 
-RESQLiteDBResultSet RESQLiteDB::ExecuteQuery(const REString & queryString)
+RESQLiteDBResultSet RESQLiteDB::executeQuery(const REString & queryString)
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( this->IsOpened() ) 
+	if ( this->isOpened() ) 
 	{
 		/*
 		REString normQueryStr(queryString);
@@ -291,9 +291,9 @@ RESQLiteDBResultSet RESQLiteDB::ExecuteQuery(const REString & queryString)
 					newState->db = _db;
 					newState->statement = pStmt;
 					newState->usingCount = 0;
-					if ( RESQLiteDB::SetColumnsNames(newState) ) 
+					if ( RESQLiteDB::setColumnsNames(newState) ) 
 					{
-						_statements.Add(newState);
+						_statements.add(newState);
 						return RESQLiteDBResultSet(newState);
 					}
 				}
@@ -311,9 +311,9 @@ RESQLiteDB::RESQLiteDB(const REString & dbFilePath)
 #endif
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( !dbFilePath.IsEmpty() ) 
+	if ( !dbFilePath.isEmpty() ) 
 	{
-		_databasePath.Set(dbFilePath);
+		_databasePath.set(dbFilePath);
 		/*
 		if ( _databasePath.IsWideString() ) 
 		{
@@ -327,7 +327,7 @@ RESQLiteDB::RESQLiteDB(const REString & dbFilePath)
 RESQLiteDB::~RESQLiteDB()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	this->Close();
+	this->close();
 #endif	
 }
 

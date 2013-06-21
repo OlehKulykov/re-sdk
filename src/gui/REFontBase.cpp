@@ -18,7 +18,7 @@
 #include "../../include/regui/private/REFontBase.h"
 #include "../../include/regui/private/REFontsCache.h"
 
-REBOOL REFontBase::IsBasesApproximatelyEqual(REFontBase * firstBase, REFontBase * secondBase)
+REBOOL REFontBase::isBasesApproximatelyEqual(REFontBase * firstBase, REFontBase * secondBase)
 {
 	const REInt32 range = (REInt32)firstBase->heightPX - (REInt32)secondBase->heightPX;
 	if (firstBase->heightPX < 10)
@@ -38,7 +38,7 @@ REBOOL REFontBase::IsBasesApproximatelyEqual(REFontBase * firstBase, REFontBase 
 		return false;
 	}
 	
-	if ( !firstBase->path.IsEqual(secondBase->path) )
+	if ( !firstBase->path.isEqual(secondBase->path) )
 	{
 		return false;
 	}
@@ -46,16 +46,16 @@ REBOOL REFontBase::IsBasesApproximatelyEqual(REFontBase * firstBase, REFontBase 
 	return true;
 }
 
-REBOOL REFontBase::IsApproximatelyEqual(REFontBase * base)
+REBOOL REFontBase::isApproximatelyEqual(REFontBase * base)
 {
 	if (base) 
 	{
-		return REFontBase::IsBasesApproximatelyEqual(this, base);
+		return REFontBase::isBasesApproximatelyEqual(this, base);
 	}
 	return false;
 }
 
-REBOOL REFontBase::IsLoaded() const
+REBOOL REFontBase::isLoaded() const
 {
 	return (charsArray != NULL);
 }
@@ -71,18 +71,18 @@ REFontBase::REFontBase() : REObject(),
 
 }
 
-void REFontBase::OnReleased()
+void REFontBase::onReleased()
 {
 	if (isCached) 
 	{
 		REFontsCache c;
-		c.Deleted(this);
+		c.deleted(this);
 		isCached = false;
 	}
 	
 	if (charsArray) 
 	{
-		for (REUInt32 i = 0; i < charsArray->Count(); i++) 
+		for (REUInt32 i = 0; i < charsArray->count(); i++) 
 		{
 			RETTFFontChar * loadedChar = (*charsArray)[i];
 			delete loadedChar;
@@ -91,7 +91,7 @@ void REFontBase::OnReleased()
 		charsArray = NULL;
 	}
 	
-	REObject::OnReleased();
+	REObject::onReleased();
 }
 
 REFontBase::~REFontBase()
@@ -99,7 +99,7 @@ REFontBase::~REFontBase()
 	
 }
 
-REFontBase * REFontBase::Create()
+REFontBase * REFontBase::create()
 {
 	REFontBase * newBase = new REFontBase();
 	return newBase;

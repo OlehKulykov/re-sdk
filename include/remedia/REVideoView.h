@@ -33,20 +33,20 @@ private:
 	void * _fields;
 public:
 	/* IREMediaPlayable */
-	virtual REBOOL Play();
-	virtual REBOOL IsPlaying() const;
-	virtual REBOOL Pause();
-	virtual REBOOL Stop();
-	virtual REBOOL SetLooped(const REBOOL isLooped);
-	virtual REBOOL IsLooped() const; /* by default is not looped */
-	virtual REBOOL SetVolume(const REFloat32 newVolume);
-	virtual const REFloat32 GetVolume() const;
+	virtual REBOOL play();
+	virtual REBOOL isPlaying() const;
+	virtual REBOOL pause();
+	virtual REBOOL stop();
+	virtual REBOOL setLooped(const REBOOL isLooped);
+	virtual REBOOL isLooped() const; /* by default is not looped */
+	virtual REBOOL setVolume(const REFloat32 newVolume);
+	virtual const REFloat32 getVolume() const;
 		
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
 	
-	REBOOL InitWithData(const REData & soundFileData);
+	REBOOL initWithData(const REData & soundFileData);
 	
 	REVideoView();
 	virtual ~REVideoView();

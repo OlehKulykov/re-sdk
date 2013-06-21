@@ -17,35 +17,35 @@
 
 #include "../../include/recore/REBufferObject.h"
 
-const REUInt32 REBufferObject::GetClassIdentifier() const
+const REUInt32 REBufferObject::getClassIdentifier() const
 {
-	return REBufferObject::ClassIdentifier();
+	return REBufferObject::classIdentifier();
 }
 
-const REUInt32 REBufferObject::ClassIdentifier()
+const REUInt32 REBufferObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REBufferObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REBufferObject");
 	return clasIdentif;
 }
 
-REBOOL REBufferObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REBufferObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REBufferObject::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("REBuffer") == classIdentifier));
+	return ((REBufferObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("REBuffer") == classIdentifier));
 }
 
-REBOOL REBufferObject::IsEqual(REObject * anotherObject)
+REBOOL REBufferObject::isEqual(REObject * anotherObject)
 {
-	if (REObject::IsEqual(anotherObject)) { return true; }
+	if (REObject::isEqual(anotherObject)) { return true; }
 	
 	if (anotherObject) 
 	{
-		if (anotherObject->GetClassIdentifier() == REBufferObject::ClassIdentifier()) 
+		if (anotherObject->getClassIdentifier() == REBufferObject::classIdentifier()) 
 		{
 			REBufferObject * buff = (REBufferObject*)anotherObject;
-			if ( buff->GetSize() == this->GetSize() ) 
+			if ( buff->getSize() == this->getSize() ) 
 			{
-				return (memcmp(buff->GetBuffer(), this->GetBuffer(), this->GetSize()) == 0);
+				return (memcmp(buff->getBuffer(), this->getBuffer(), this->getSize()) == 0);
 			}
 		}
 	}
@@ -72,18 +72,18 @@ REBufferObject::~REBufferObject()
 	
 }
 
-REBufferObject * REBufferObject::Create()
+REBufferObject * REBufferObject::create()
 {
 	REBufferObject * newBuff = new REBufferObject();
 	return newBuff;
 }
 
-REBufferObject * REBufferObject::CreateWithSize(const REUInt32 buffSize)
+REBufferObject * REBufferObject::createWithSize(const REUInt32 buffSize)
 {
 	REBufferObject * newBuff = new REBufferObject(buffSize);
 	if (newBuff) 
 	{
-		if (newBuff->GetSize() == buffSize) 
+		if (newBuff->getSize() == buffSize) 
 		{
 			return newBuff;
 		}
@@ -92,16 +92,16 @@ REBufferObject * REBufferObject::CreateWithSize(const REUInt32 buffSize)
 	return NULL;
 }
 
-REBufferObject * REBufferObject::CreateWithStringObject(REStringObject * str)
+REBufferObject * REBufferObject::createWithStringObject(REStringObject * str)
 {
 	if (str) 
 	{
-		if (str->Length()) 
+		if (str->length()) 
 		{
 			REBufferObject * newBuff = new REBufferObject();
 			if (newBuff) 
 			{
-				if (newBuff->Set(str->UTF8String(), str->Length()))
+				if (newBuff->set(str->UTF8String(), str->length()))
 				{
 					return newBuff;
 				}
@@ -113,14 +113,14 @@ REBufferObject * REBufferObject::CreateWithStringObject(REStringObject * str)
 	return NULL;
 }
 
-REBufferObject * REBufferObject::CreateWithString(const REString & str)
+REBufferObject * REBufferObject::createWithString(const REString & str)
 {
-	if (str.Length()) 
+	if (str.length()) 
 	{
 		REBufferObject * newBuff = new REBufferObject();
 		if (newBuff) 
 		{
-			if (newBuff->Set(str.UTF8String(), str.Length()))
+			if (newBuff->set(str.UTF8String(), str.length()))
 			{
 				return newBuff;
 			}
@@ -131,14 +131,14 @@ REBufferObject * REBufferObject::CreateWithString(const REString & str)
 	return NULL;
 }
 
-REBufferObject * REBufferObject::CreateWithMemory(const void * memoryBuff, const REUInt32 memoryBuffSize)
+REBufferObject * REBufferObject::createWithMemory(const void * memoryBuff, const REUInt32 memoryBuffSize)
 {
 	if (memoryBuff && memoryBuffSize) 
 	{
 		REBufferObject * newBuff = new REBufferObject();
 		if (newBuff) 
 		{
-			if (newBuff->Set(memoryBuff, memoryBuffSize))
+			if (newBuff->set(memoryBuff, memoryBuffSize))
 			{
 				return newBuff;
 			}

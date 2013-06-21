@@ -29,35 +29,36 @@ public:
 	/// Return value that indicates that object intercepts/block user action from parent objects.
 	/// Default value is 'true', in this case scaning objects will be breaked on this object.
 	/// If this value is 'false' than user action will be directed through this object and directed to parent objects.
-	virtual REBOOL IsInterceptsUserAction() const = 0;
+	virtual REBOOL isInterceptsUserAction() const = 0;
 	
 	/// Set value that indicates that object intercepts/block user action from parent objects.
-	virtual void SetInterceptsUserAction(REBOOL isInterceptsAction) = 0;
+	virtual void setInterceptsUserAction(REBOOL isInterceptsAction) = 0;
 	
 	/// Return value that indicate object responding.
 	/// If this value if 'true' than object can handle user actions.
-	virtual REBOOL IsRespondsForUserAction() const = 0;
+	virtual REBOOL isRespondsForUserAction() const = 0;
 	
 	/// Set value that indicates object responding.
-	virtual void SetRespondsForUserAction(REBOOL isRespondsForAction) = 0;
+	virtual void setRespondsForUserAction(REBOOL isRespondsForAction) = 0;
 	
 #ifdef __RE_OS_DESKTOP__
-	virtual void UserCursorMoved(const REFloat32 coordX, const REFloat32 coordY) = 0;
-	virtual REUInt32 GetUserCursorIdentifier() const = 0; /* {return 0;} */
+	virtual void userCursorMoved(const REFloat32 coordX, const REFloat32 coordY) = 0;
+	
+	virtual REUInt32 getUserCursorIdentifier() const = 0; /* {return 0;} */
 #endif	
 	/// Tell object about click/touch event is started in coordinates using screen coordinates.
-	virtual void UserActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY) = 0;
+	virtual void userActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY) = 0;
 	
 	/// Tell object about click/touch event is ended in coordinates using screen coordinates.
-	virtual void UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									   const REFloat32 currentCoordX, const REFloat32 currentCoordY) = 0;
 	
 	/// Tell object about click/touch event is moving in coordinates using screen coordinates.
-	virtual void UserActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									   const REFloat32 currentCoordX, const REFloat32 currentCoordY) = 0;
 	
 	/// Tell object about moving click/touch event is ended in coordinates using screen coordinates.
-	virtual void UserActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+	virtual void userActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 											 const REFloat32 endCoordX, const REFloat32 endCoordY) = 0;
 	
 	virtual ~IREUserActionResponder() { }

@@ -83,111 +83,111 @@ protected:
 	};
 	RENumberType _type;
 	
-	static REBOOL ApplyValueFromString(RENumber * number, const char * strValue);
-	static void ApplyNumberValueToString(const RENumber & number, REString * string);
+	static REBOOL applyValueFromString(RENumber * number, const char * strValue);
+	static void applyNumberValueToString(const RENumber & number, REString * string);
 	
 public:
 	/// Returns type of number.
-	RENumberType GetType() const { return _type; }
+	RENumberType getType() const { return _type; }
 	
 	/// Check is number signed.
-	REBOOL IsSigned() const;
+	REBOOL isSigned() const;
 	
 	/// Check is number unsigned.
-	REBOOL IsUnsigned() const;
+	REBOOL isUnsigned() const;
 	
 	/// Check is number is integer.
-	REBOOL IsInteger() const;
+	REBOOL isInteger() const;
 	
 	/// Check is number real value.
-	REBOOL IsReal() const;
+	REBOOL isReal() const;
 	
 	/// Returns boolena value.
-	REBOOL GetBoolValue() const;
+	REBOOL getBoolValue() const;
 	
 	/// Returns signed byte value.
-	REByte GetByteValue() const;
+	REByte getByteValue() const;
 	
 	/// Returns unsigned byte value.
-	REUByte GetUByteValue() const;
+	REUByte getUByteValue() const;
 	
 	/// Returns signed integer 16 bit value.
-	REInt16 GetInt16Value() const;
+	REInt16 getInt16Value() const;
 	
 	/// Returns unsigned integer 16 bit value.
-	REUInt16 GetUInt16Value() const;
+	REUInt16 getUInt16Value() const;
 	
 	/// Returns signed integer 32 bit value.
-	REInt32 GetInt32Value() const;
+	REInt32 getInt32Value() const;
 	
 	/// Returns unsigned integer 16 bit value.
-	REUInt32 GetUInt32Value() const;
+	REUInt32 getUInt32Value() const;
 	
 	/// Returns signed integer 64 bit value.
-	REInt64 GetInt64Value() const;
+	REInt64 getInt64Value() const;
 	
 	/// Returns unsigned integer 64 bit value.
-	REUInt64 GetUInt64Value() const;
+	REUInt64 getUInt64Value() const;
 	
 	/// Returns pointer value.
-	void * GetPointerValue() const;
+	void * getPointerValue() const;
 	
 	/// Returns float 32 bit value.
-	REFloat32 GetFloat32Value() const;
+	REFloat32 getFloat32Value() const;
 	
 	/// Returns float 64 bit value.
-	REFloat64 GetFloat64Value() const;
+	REFloat64 getFloat64Value() const;
 	
 	/// Returns time interval value.
-	RETimeInterval GetTimeIntervalValue() const;
+	RETimeInterval getTimeIntervalValue() const;
 	
 	/// Returns string presentation of value.
-	REString GetStringValue() const;
+	REString getStringValue() const;
 	
 	/// Setting value from string.
-	REBOOL SetValueFromString(const REString & strValue);
+	REBOOL setValueFromString(const REString & strValue);
 	
 	/// Setting value from string.
-	REBOOL SetValueFromString(const char * strValue);
+	REBOOL setValueFromString(const char * strValue);
 	
 	/// Setting boolean value.
-	void SetBoolValue(REBOOL newValue);
+	void setBoolValue(REBOOL newValue);
 	
 	/// Setting signed byte value.
-	void SetByteValue(REByte newValue);
+	void setByteValue(REByte newValue);
 	
 	/// Setting unsigned byte value.
-	void SetUByteValue(REUByte newValue);
+	void setUByteValue(REUByte newValue);
 	
 	/// Setting signed integer 16 bit value.
-	void SetInt16Value(REInt16 newValue);
+	void setInt16Value(REInt16 newValue);
 	
 	/// Setting unsigned integer 16 bit value.
-	void SetUInt16Value(REUInt16 newValue);
+	void setUInt16Value(REUInt16 newValue);
 	
 	/// Setting signed integer 32 bit value.
-	void SetInt32Value(REInt32 newValue);
+	void setInt32Value(REInt32 newValue);
 	
 	/// Setting unsigned integer 32 bit value.
-	void SetUInt32Value(REUInt32 newValue);
+	void setUInt32Value(REUInt32 newValue);
 	
 	/// Setting signed integer 64 bit value.
-	void SetInt64Value(REInt64 newValue);
+	void setInt64Value(REInt64 newValue);
 	
 	/// Setting unsigned integer 64 bit value.
-	void SetUInt64Value(REUInt64 newValue);
+	void setUInt64Value(REUInt64 newValue);
 	
 	/// Setting pointer value.
-	void SetPointerValue(void * newValue);
+	void setPointerValue(void * newValue);
 	
 	/// Setting float 32 bit value.
-	void SetFloat32Value(REFloat32 newValue);
+	void setFloat32Value(REFloat32 newValue);
 	
 	/// Setting float 64 bit value.
-	void SetFloat64Value(REFloat64 newValue);
+	void setFloat64Value(REFloat64 newValue);
 	
 	/// Setting time interval value.
-	void SetTimeIntervalValue(RETimeInterval newValue);
+	void setTimeIntervalValue(RETimeInterval newValue);
 	
 	/// Basic assignment operator
 	RENumber & operator=(const RENumber & anotherNumber);
@@ -205,20 +205,20 @@ public:
 	bool operator!=(const RENumber & anotherNumber) const;
 	
 	/// Checks is number equal with another number.
-	REBOOL IsEqualToNumber(const RENumber & anotherNumber) const;
+	REBOOL isEqualToNumber(const RENumber & anotherNumber) const;
 	
 	/// -1 number < anotherNumber
 	/// 0 number == anotherNumber
 	/// 1 number > anotherNumber OR anotherNumber is NULL, mean nothing.
-	static int CompareNumbers(const RENumber & number, const RENumber & anotherNumber);
+	static int compareNumbers(const RENumber & number, const RENumber & anotherNumber);
 	
 	/// -1 this < anotherNumber
 	/// 0 this == anotherNumber
 	/// 1 this > anotherNumber OR anotherNumber is NULL, mean nothing.
-	int CompareWithNumber(const RENumber & anotherNumber) const;
+	int compareWithNumber(const RENumber & anotherNumber) const;
 	
 	/// Clears number object.
-	void Clear();
+	void clear();
 	
 	/// Constructs number from another number value.
 	RENumber(const RENumber & anotherNumber);
@@ -228,6 +228,18 @@ public:
 	
 	/// Constructs number from string value.
 	RENumber(const char * stringValue);
+	
+	/// Constructs number from REInt64 value.
+	RENumber(const REInt64 int64Value);
+	
+	/// Constructs number from REUInt64 value.
+	RENumber(const REUInt64 uint64Value);
+	
+	/// Constructs number from pointer value.
+	RENumber(void * pointerValue);
+	
+	/// Constructs number from REFloat64 value.
+	RENumber(const REFloat64 float64Value);
 	
 	/// Constructs empty number.
 	RENumber();

@@ -29,32 +29,32 @@
 class __RE_PUBLIC_CLASS_API__ AnimationClassByType : public REObject, public REAnimationBase, public REMainLoopUpdatable \
 { \
 protected: \
-	virtual void ToMainLoop() \
+	virtual void toMainLoop() \
 	{ \
-		this->AddToMainLoop(); \
+		this->addToMainLoop(); \
 	} \
 	\
-	virtual void FromMainLoop() \
+	virtual void fromMainLoop() \
 	{ \
-		this->RemoveFromMainLoop(); \
+		this->removeFromMainLoop(); \
 	} \
 	\
 public: \
-	virtual void Update(const RETimeInterval currentTime); \
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const \
+	virtual void update(const RETimeInterval currentTime); \
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const \
 	{ \
-		return this->GetObjectIdentifier(); \
+		return this->getObjectIdentifier(); \
 	} \
 	\
-	virtual const REUIdentifier GetAnimationIdentifier() const \
+	virtual const REUIdentifier getAnimationIdentifier() const \
 	{ \
-		return this->GetObjectIdentifier(); \
+		return this->getObjectIdentifier(); \
 	} \
 	AnimationClassByType(REAnimationInfo * info, REArray<REAnimationFloatParams *> * params) : \
 		REObject(), REAnimationBase(info, params) { } \
 	virtual ~AnimationClassByType() \
 	{ \
-		this->RemoveFromMainLoop(); \
+		this->removeFromMainLoop(); \
 	} \
 }; \
  \

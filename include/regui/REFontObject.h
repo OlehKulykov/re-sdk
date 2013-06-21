@@ -26,59 +26,59 @@
 class __RE_PUBLIC_CLASS_API__ REFontObject : public REGUIObject
 {
 private:
-	REBOOL PrepareForSetParams();
-    REBOOL Load();
-	void RecalculateScaleRatio(const REFloat32 needHeight, const REFloat32 loadedHeight);
-	static REBOOL FillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> * charsArray, const REString & text, REArray<RETTFFontChar*> * fontChars);
+	REBOOL prepareForSetParams();
+    REBOOL load();
+	void recalculateScaleRatio(const REFloat32 needHeight, const REFloat32 loadedHeight);
+	static REBOOL fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> * charsArray, const REString & text, REArray<RETTFFontChar*> * fontChars);
 	
 protected:
 	void * _base;
 	RESize _charScaleRatio;
     REFloat32 _height;
 
-    void SetPath(const REString & newPath);
-    void SetHeight(const REFloat32 newHeight);
+    void setPath(const REString & newPath);
+    void setHeight(const REFloat32 newHeight);
 	
 	REFontObject();
 	virtual ~REFontObject();
 public:	
     /* REObject */
-    virtual const REUInt32 GetClassIdentifier() const;
-    static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+    virtual const REUInt32 getClassIdentifier() const;
+    static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/// Returns height of font.
-	const REFloat32 GetHeight() const { return _height; }
+	const REFloat32 getHeight() const { return _height; }
 	
 	/// Returns characters space ratio.
-	const RESize & GetCharsScaleRatio() const { return _charScaleRatio; }
+	const RESize & getCharsScaleRatio() const { return _charScaleRatio; }
 	
 	/// Returns pointer to array with characters.
-	REArray<RETTFFontChar*> * GetChars();
+	REArray<RETTFFontChar*> * getChars();
 	
 	/// Fills array for chars by text.
-	REBOOL FillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray, const REString & text);
+	REBOOL fillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray, const REString & text);
 
 	/* REGUIObject */
-	virtual void OnPrepareGUIObjectForSetuping();
-	virtual void OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+	virtual void onPrepareGUIObjectForSetuping();
+	virtual void onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
 	
 	/// Creates and returns new font object.
-	static REFontObject * Create();
+	static REFontObject * create();
 	
 	/// Creates and returns new font object loaded from path using with height.
-	static REFontObject * CreateWithPath(const REString & path, const REFloat32 height);
+	static REFontObject * createWithPath(const REString & path, const REFloat32 height);
 	
 	/// Returns XML key string for font file path.
-    static const char * GetXMLPathKeyString();
+    static const char * getXMLPathKeyString();
 	
 	/// Returns XML key string for font file path.
-    static const char * GetXMLHeightKeyString();
+    static const char * getXMLHeightKeyString();
 	
 	/// Returns XML format string for font height.
-    static const char * GetXMLHeightFormatString();
+    static const char * getXMLHeightFormatString();
 };
 
 

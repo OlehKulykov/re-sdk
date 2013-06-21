@@ -60,7 +60,7 @@ public:
 
 #ifdef __RE_USING_DIRECTX9__
 	/// Returns DirectX color value.
-	const D3DCOLOR GetD3DColor() const 
+	const D3DCOLOR getD3DColor() const 
 	{
 		const int r = (int)(red * 255);
 		const int g = (int)(green * 255);
@@ -82,13 +82,13 @@ public:
 	}
 	
 	/// Setting byte RGB color components. Each component in range [0, 255]. Alpha will be 1.0f.
-	void SetRGB(const REUByte newRed, const REUByte newGreen, const REUByte newBlue);
+	void setRGB(const REUByte newRed, const REUByte newGreen, const REUByte newBlue);
 	
 	/// Setting byte RGBA color components. Each component in range [0, 255].
-	void SetRGBA(const REUByte newRed, const REUByte newGreen, const REUByte newBlue, const REUByte newAlpha);
+	void setRGBA(const REUByte newRed, const REUByte newGreen, const REUByte newBlue, const REUByte newAlpha);
 	
 	/// Setting color from hex string. String not case sensitive. Example: "#FFaaBb". Alpha will be 1.0f.
-	void SetHEX(const char * hexString);
+	void setHEX(const char * hexString);
 	
 	/// Constructs color from float RGBA components. Each component in range [0.0f, 1.0f].
 	REColor(const REFloat32 newRed, const REFloat32 newGreen, const REFloat32 newBlue, const REFloat32 newAlpha);

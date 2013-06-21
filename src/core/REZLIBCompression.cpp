@@ -22,8 +22,10 @@
 
 #if defined(__RE_USING_ADITIONAL_ZLIB_LIBRARY__)
 #include "../addlibs/zlib.h"
-#elif defined(__RE_USING_SYSTEM_ZLIB_LIBRARY__)
+
+#elif defined(__RE_TRY_USE_SYSTEM_ZLIB_LIBRARY__) && defined(__RE_HAVE_SYSTEM_ZLIB_H__)
 #include <zlib.h>
+
 #else
 #define __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
 #endif
@@ -32,19 +34,25 @@
 
 
 
-REBOOL REZLIBCompression::Compress(const REBuffer & inBuffer, REBuffer * compressedBuffer, const REFloat32 compressionLevel)
+RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat32 compressionLevel)
 {
+	if (inBuffer.getSize() == 0)
+	{
+		return RETypedPtr();
+	}
+	
+#ifndef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
+	RETypedPtr ptr(new REBuffer(), REPtrTypeBuffer);
+	REBuffer * compressedBuffer = ptr.getBuffer();
 	if (compressedBuffer == NULL) 
 	{
-		return false;
+		return RETypedPtr();
 	}
-#ifndef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
-	compressedBuffer->Clear();
 	
 	z_stream strm;
 	REMem::Memset(&strm, 0, sizeof(z_stream));
-	strm.next_in = (Bytef *)inBuffer.GetBuffer();
-	strm.avail_in = inBuffer.GetSize();
+	strm.next_in = (Bytef *)inBuffer.getBuffer();
+	strm.avail_in = inBuffer.getSize();
 	
 	const uInt BUFSIZE = 32 * 1024;
 	Bytef tempBuffer[BUFSIZE];
@@ -68,17 +76,15 @@ REBOOL REZLIBCompression::Compress(const REBuffer & inBuffer, REBuffer * compres
 	{
 		if (deflate(&strm, Z_NO_FLUSH) != Z_OK) 
 		{
-			compressedBuffer->Clear();
 			deflateEnd(&strm);
-			return false;
+			return RETypedPtr();
 		}
 		if (strm.avail_out == 0)
 		{
-			if (!compressedBuffer->Append(tempBuffer, BUFSIZE))
+			if (!compressedBuffer->append(tempBuffer, BUFSIZE))
 			{
-				compressedBuffer->Clear();
 				deflateEnd(&strm);
-				return false;
+				return RETypedPtr();
 			}
 			strm.next_out = tempBuffer;
 			strm.avail_out = BUFSIZE;
@@ -90,11 +96,10 @@ REBOOL REZLIBCompression::Compress(const REBuffer & inBuffer, REBuffer * compres
 	{
 		if (strm.avail_out == 0)
 		{
-			if (!compressedBuffer->Append(tempBuffer, BUFSIZE))
+			if (!compressedBuffer->append(tempBuffer, BUFSIZE))
 			{
-				compressedBuffer->Clear();
 				deflateEnd(&strm);
-				return false;
+				return RETypedPtr();
 			}
 			strm.next_out = tempBuffer;
 			strm.avail_out = BUFSIZE;
@@ -104,44 +109,47 @@ REBOOL REZLIBCompression::Compress(const REBuffer & inBuffer, REBuffer * compres
 	
 	if (deflate_res != Z_STREAM_END)
 	{
-		compressedBuffer->Clear();
 		deflateEnd(&strm);
-		return false;
+		return RETypedPtr();
 	}
 	
-	if (!compressedBuffer->Append(tempBuffer, BUFSIZE - strm.avail_out))
+	if (!compressedBuffer->append(tempBuffer, BUFSIZE - strm.avail_out))
 	{
-		compressedBuffer->Clear();
 		deflateEnd(&strm);
-		return false;
+		return RETypedPtr();
 	}
 		
 	deflateEnd(&strm);
-	return true;
+	return ptr;
 	
 #endif
-
-	compressedBuffer->Clear();
-	return false;
+	
+	return RETypedPtr();
 }
 
-REBOOL REZLIBCompression::Decompress(const REBuffer & inBuffer, REBuffer * unCompressedBuffer)
+RETypedPtr REZLIBCompression::decompress(const REBuffer & inBuffer)
 {
+	if (inBuffer.getSize() == 0)
+	{
+		return RETypedPtr();
+	}
+	
+#ifndef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
+	RETypedPtr ptr(new REBuffer(), REPtrTypeBuffer);
+	REBuffer * unCompressedBuffer = ptr.getBuffer();
 	if (unCompressedBuffer == NULL) 
 	{
-		return false;
+		return RETypedPtr();
 	}
-#ifndef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
-	unCompressedBuffer->Clear();
 	
     z_stream strm;
 	REMem::Memset(&strm, 0, sizeof(z_stream));
-    strm.avail_in = inBuffer.GetSize();
-	strm.next_in = (Bytef*)inBuffer.GetBuffer();
+    strm.avail_in = inBuffer.getSize();
+	strm.next_in = (Bytef*)inBuffer.getBuffer();
     int ret = inflateInit(&strm);
     if (ret != Z_OK)
 	{
-        return false;
+        return RETypedPtr();
 	}
 	
 	const uInt CHUNK = 32 * 1024;
@@ -154,9 +162,8 @@ REBOOL REZLIBCompression::Decompress(const REBuffer & inBuffer, REBuffer * unCom
 		ret = inflate(&strm, Z_NO_FLUSH);
 		if (ret == Z_STREAM_ERROR) 
 		{
-			unCompressedBuffer->Clear();
 			inflateEnd(&strm);
-			return false;
+			return RETypedPtr();
 		}
 		switch (ret) 
 		{
@@ -165,36 +172,32 @@ REBOOL REZLIBCompression::Decompress(const REBuffer & inBuffer, REBuffer * unCom
 			case Z_DATA_ERROR:
 			case Z_MEM_ERROR:
 				inflateEnd(&strm);
-				unCompressedBuffer->Clear();
-				return false;
+				return RETypedPtr();
 		}
 		const int have = CHUNK - strm.avail_out;
 		if (have > 0) 
 		{
-			if (!unCompressedBuffer->Append(out, (REUInt32)have))
+			if (!unCompressedBuffer->append(out, (REUInt32)have))
 			{
 				inflateEnd(&strm);
-				unCompressedBuffer->Clear();
-				return false;
+				return RETypedPtr();
 			}
 		}
 		else
 		{
 			inflateEnd(&strm);
-			unCompressedBuffer->Clear();
-			return false;
+			return RETypedPtr();
 		}
 	} while (strm.avail_out == 0);
 	
     inflateEnd(&strm);
 	if (ret == Z_STREAM_END) 
 	{
-		return true;
+		return ptr;
 	}
 #endif
 	
-	unCompressedBuffer->Clear();
-	return false;
+	return RETypedPtr();
 }
 
 

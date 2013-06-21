@@ -17,43 +17,43 @@
 
 #include "../../include/regui/REGUIObject.h"
 
-const REUInt32 REGUIObject::GetClassIdentifier() const
+const REUInt32 REGUIObject::getClassIdentifier() const
 {
-	return REGUIObject::ClassIdentifier();
+	return REGUIObject::classIdentifier();
 }
 
-const REUInt32 REGUIObject::ClassIdentifier()
+const REUInt32 REGUIObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REGUIObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIObject");
 	return clasIdentif;
 }
 
-REBOOL REGUIObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REGUIObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REGUIObject::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier));
+	return ((REGUIObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-void REGUIObject::OnPrepareGUIObjectForSetuping()
-{
-	
-}
-
-void REGUIObject::OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
+void REGUIObject::onPrepareGUIObjectForSetuping()
 {
 	
 }
 
-REBOOL REGUIObject::AcceptStringParameter(const char * key, const char * value)
+void REGUIObject::onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
+{
+	
+}
+
+REBOOL REGUIObject::acceptStringParameter(const char * key, const char * value)
 {
 	return false;
 }
 
-REBOOL REGUIObject::AcceptObjectParameter(const char * className, const char * key, REGUIObject * value)
+REBOOL REGUIObject::acceptObjectParameter(const char * className, const char * key, REGUIObject * value)
 {
 	return false;
 }
 
-IREObjectProperty * REGUIObject::GetPropertyForKey(const char * key)
+IREObjectProperty * REGUIObject::getPropertyForKey(const char * key)
 {
 	return NULL;
 }

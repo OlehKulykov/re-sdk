@@ -21,80 +21,80 @@
 #include "../../include/recore/REFile.h"
 #include "../../include/recore/REData.h"
 
-REArray<REObjectsDictionary::KeyObjectStruct> * REObjectsDictionary::GetPairs()
+REArray<REObjectsDictionary::KeyObjectStruct> * REObjectsDictionary::getPairs()
 {
 	return (&_pairs);
 }
 
-REBOOL REObjectsDictionary::ReadPairsFromFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path)
+REBOOL REObjectsDictionary::readPairsFromFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path)
 {
 	REData data;
-	if (data.InitFromPath(path))
+	if (data.initFromPath(path))
 	{
 		REXMLPropertyListReader r;
-		return r.ReadFromString((const char *)data.GetBytes(), pairs);
+		return r.ReadFromString((const char *)data.getBytes(), pairs);
 	}
 	return false;
 }
 
-REBOOL REObjectsDictionary::InitFromFilePath(const REString & path)
+REBOOL REObjectsDictionary::initFromFilePath(const REString & path)
 {
-	return ReadPairsFromFilePath(&_pairs, path);
+	return readPairsFromFilePath(&_pairs, path);
 }
 
-REBOOL REObjectsDictionary::WritePairsToFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path)
+REBOOL REObjectsDictionary::writePairsToFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path)
 {
-	FILE * f = REFile::FOpen(path, "wb+");
+	FILE * f = REFile::fileOpen(path, "wb+");
 	if (f)
 	{
 		REXMLPropertyListWriter w;
 		REString plistStr;
-		w.WriteToString(pairs, &plistStr);
-		const REUInt32 writed = (REUInt32)fwrite(plistStr.UTF8String(), 1, plistStr.Length(), f);
+		w.writeToString(pairs, &plistStr);
+		const REUInt32 writed = (REUInt32)fwrite(plistStr.UTF8String(), 1, plistStr.length(), f);
 		fclose(f);
-		return (writed == plistStr.Length());
+		return (writed == plistStr.length());
 	}
 	return false;
 }
 
-REBOOL REObjectsDictionary::WriteToFile(const REString & path)
+REBOOL REObjectsDictionary::writeToFile(const REString & path)
 {
-	return REObjectsDictionary::WritePairsToFilePath(&_pairs, path);
+	return REObjectsDictionary::writePairsToFilePath(&_pairs, path);
 }
 
 /* REObject */
-const REUInt32 REObjectsDictionary::GetClassIdentifier() const
+const REUInt32 REObjectsDictionary::getClassIdentifier() const
 {
-	return REObjectsDictionary::ClassIdentifier();
+	return REObjectsDictionary::classIdentifier();
 }
 
-const REUInt32 REObjectsDictionary::ClassIdentifier()
+const REUInt32 REObjectsDictionary::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REMD5Generator::GenerateFromString("REObjectsDictionary");
+	static const REUInt32 clasIdentif = REMD5Generator::generateFromString("REObjectsDictionary");
 	return clasIdentif;
 }
 
-REBOOL REObjectsDictionary::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REObjectsDictionary::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REObjectsDictionary::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier));
+	return ((REObjectsDictionary::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-REBOOL REObjectsDictionary::IsEqualByPairs(REObject * anotherObject, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+REBOOL REObjectsDictionary::isEqualByPairs(REObject * anotherObject, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
 {
 	if (anotherObject)
 	{
-		if (anotherObject->GetClassIdentifier() == REObjectsDictionary::ClassIdentifier())
+		if (anotherObject->getClassIdentifier() == REObjectsDictionary::classIdentifier())
 		{
 			REObjectsDictionary * d = (REObjectsDictionary*)anotherObject;
-			if (pairs->Count() == d->_pairs.Count())
+			if (pairs->count() == d->_pairs.count())
 			{
-				for (REUInt32 i = 0; i < pairs->Count(); i++)
+				for (REUInt32 i = 0; i < pairs->count(); i++)
 				{
-					if ( !(*pairs)[i].keyValue->IsEqual((REObject*)d->_pairs[i].keyValue) )
+					if ( !(*pairs)[i].keyValue->isEqual((REObject*)d->_pairs[i].keyValue) )
 					{
 						return false;
 					}
-					if ( !(*pairs)[i].objValue->IsEqual((REObject*)d->_pairs[i].objValue) )
+					if ( !(*pairs)[i].objValue->isEqual((REObject*)d->_pairs[i].objValue) )
 					{
 						return false;
 					}
@@ -106,24 +106,24 @@ REBOOL REObjectsDictionary::IsEqualByPairs(REObject * anotherObject, REArray<REO
 	return false;
 }
 
-REBOOL REObjectsDictionary::IsEqual(REObject * anotherObject)
+REBOOL REObjectsDictionary::isEqual(REObject * anotherObject)
 {
-	if (REObject::IsEqual(anotherObject)) { return true; }
+	if (REObject::isEqual(anotherObject)) { return true; }
 	
-	return REObjectsDictionary::IsEqualByPairs(anotherObject, &_pairs);
+	return REObjectsDictionary::isEqualByPairs(anotherObject, &_pairs);
 }
 
-REBOOL REObjectsDictionary::ReadAllKeys(REArray<REObject*> * keys)
+REBOOL REObjectsDictionary::readAllKeys(REArray<REObject*> * keys)
 {
 	if (keys) 
 	{
-		keys->Clear();
-		keys->SetCapacity(_pairs.Count());
-		for (REUInt32 i = 0; i < _pairs.Count(); i++) 
+		keys->clear();
+		keys->setCapacity(_pairs.count());
+		for (REUInt32 i = 0; i < _pairs.count(); i++) 
 		{
-			if (!keys->Add(_pairs[i].keyValue))
+			if (!keys->add(_pairs[i].keyValue))
 			{
-				keys->Clear();
+				keys->clear();
 				return false;
 			}
 		}
@@ -132,11 +132,11 @@ REBOOL REObjectsDictionary::ReadAllKeys(REArray<REObject*> * keys)
 	return false;
 }
 
-REObjectsDictionary::KeyObjectStruct * REObjectsDictionary::PairForKey(REObject * keyObj)
+REObjectsDictionary::KeyObjectStruct * REObjectsDictionary::pairForKey(REObject * keyObj)
 {
-	for (REUInt32 i = 0; i < _pairs.Count(); i++) 
+	for (REUInt32 i = 0; i < _pairs.count(); i++) 
 	{
-		if ( _pairs[i].keyValue->IsEqual(keyObj) )
+		if ( _pairs[i].keyValue->isEqual(keyObj) )
 		{
 			return (&_pairs[i]);
 		}
@@ -144,31 +144,31 @@ REObjectsDictionary::KeyObjectStruct * REObjectsDictionary::PairForKey(REObject 
 	return NULL;
 }
 
-void REObjectsDictionary::Clear()
+void REObjectsDictionary::clear()
 {
-	for (REUInt32 i = 0; i < _pairs.Count(); i++) 
+	for (REUInt32 i = 0; i < _pairs.count(); i++) 
 	{
-		_pairs[i].keyValue->Release();
-		_pairs[i].objValue->Release();
+		_pairs[i].keyValue->release();
+		_pairs[i].objValue->release();
 	}
-	_pairs.Clear();
+	_pairs.clear();
 }
 
-REBOOL REObjectsDictionary::SetObject(REObject * objValue, REObject * keyObject)
+REBOOL REObjectsDictionary::setObject(REObject * objValue, REObject * keyObject)
 {
 	if (objValue && keyObject) 
 	{
-		if (keyObject->GetClassIdentifier() != REStringObject::ClassIdentifier()) 
+		if (keyObject->getClassIdentifier() != REStringObject::classIdentifier()) 
 		{
 			return false;
 		}
 		
-		REObjectsDictionary::KeyObjectStruct * existedPair = this->PairForKey(keyObject);
+		REObjectsDictionary::KeyObjectStruct * existedPair = this->pairForKey(keyObject);
 		if (existedPair) 
 		{
-			existedPair->objValue->Release();
+			existedPair->objValue->release();
 			existedPair->objValue = objValue;
-			existedPair->objValue->Retain();
+			existedPair->objValue->retain();
 			return true;
 		}
 		else
@@ -176,10 +176,10 @@ REBOOL REObjectsDictionary::SetObject(REObject * objValue, REObject * keyObject)
 			REObjectsDictionary::KeyObjectStruct newPair;
 			newPair.objValue = objValue;
 			newPair.keyValue = keyObject;
-			if ( _pairs.Add(newPair) ) 
+			if ( _pairs.add(newPair) ) 
 			{
-				newPair.objValue->Retain();
-				newPair.keyValue->Retain();
+				newPair.objValue->retain();
+				newPair.keyValue->retain();
 				return true;
 			}
 		}
@@ -187,13 +187,13 @@ REBOOL REObjectsDictionary::SetObject(REObject * objValue, REObject * keyObject)
 	return false;
 }
 
-REBOOL REObjectsDictionary::SetObject(REObject * objValue, const REString & stringKey)
+REBOOL REObjectsDictionary::setObject(REObject * objValue, const REString & stringKey)
 {
-	REStringObject * keyObj = REStringObject::CreateWithString(stringKey);
+	REStringObject * keyObj = REStringObject::createWithString(stringKey);
 	if (keyObj) 
 	{
-		const REBOOL settingResult = this->SetObject(objValue, keyObj);
-		keyObj->Release();
+		const REBOOL settingResult = this->setObject(objValue, keyObj);
+		keyObj->release();
 		return settingResult;
 	}
 	return false;
@@ -201,26 +201,26 @@ REBOOL REObjectsDictionary::SetObject(REObject * objValue, const REString & stri
 
 /// Setting object value for key as in 'REBOOL SetObject(REObject * objValue, REObject * keyObject);'
 /// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-REBOOL REObjectsDictionary::SetObject(REObject * objValue, const char * stringKey)
+REBOOL REObjectsDictionary::setObject(REObject * objValue, const char * stringKey)
 {
 	if (stringKey) 
 	{
-		REStringObject * keyObj = REStringObject::CreateWithChars(stringKey);
+		REStringObject * keyObj = REStringObject::createWithChars(stringKey);
 		if (keyObj) 
 		{
-			const REBOOL settingResult = this->SetObject(objValue, keyObj);
-			keyObj->Release();
+			const REBOOL settingResult = this->setObject(objValue, keyObj);
+			keyObj->release();
 			return settingResult;
 		}
 	}
 	return false;
 }
 
-REObject * REObjectsDictionary::GetObjectForKey(REObject * keyObject)
+REObject * REObjectsDictionary::getObjectForKey(REObject * keyObject)
 {
 	if (keyObject) 
 	{
-		REObjectsDictionary::KeyObjectStruct * existedPair = this->PairForKey(keyObject);
+		REObjectsDictionary::KeyObjectStruct * existedPair = this->pairForKey(keyObject);
 		if (existedPair) 
 		{
 			return existedPair->objValue;
@@ -231,13 +231,13 @@ REObject * REObjectsDictionary::GetObjectForKey(REObject * keyObject)
 
 /// Return object or NULL for key as in 'REObject * GetObjectForKey(REObject * keyObject);'
 /// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-REObject * REObjectsDictionary::GetObjectForKey(const REString & stringKey)
+REObject * REObjectsDictionary::getObjectForKey(const REString & stringKey)
 {
-	REStringObject * keyObj = REStringObject::CreateWithString(stringKey);
+	REStringObject * keyObj = REStringObject::createWithString(stringKey);
 	if (keyObj) 
 	{
-		REObject * gettedObject = this->GetObjectForKey(keyObj);
-		keyObj->Release();
+		REObject * gettedObject = this->getObjectForKey(keyObj);
+		keyObj->release();
 		return gettedObject;
 	}
 	return NULL;
@@ -246,15 +246,15 @@ REObject * REObjectsDictionary::GetObjectForKey(const REString & stringKey)
 
 /// Return object or NULL for key as in 'REObject * GetObjectForKey(REObject * keyObject);'
 /// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-REObject * REObjectsDictionary::GetObjectForKey(const char * stringKey)
+REObject * REObjectsDictionary::getObjectForKey(const char * stringKey)
 {
 	if (stringKey) 
 	{
-		REStringObject * keyObj = REStringObject::CreateWithChars(stringKey);
+		REStringObject * keyObj = REStringObject::createWithChars(stringKey);
 		if (keyObj) 
 		{
-			REObject * gettedObject = this->GetObjectForKey(keyObj);
-			keyObj->Release();
+			REObject * gettedObject = this->getObjectForKey(keyObj);
+			keyObj->release();
 			return gettedObject;
 		}
 	}
@@ -266,11 +266,11 @@ REObjectsDictionary::REObjectsDictionary() : REObject()
 	
 }
 
-void REObjectsDictionary::OnReleased()
+void REObjectsDictionary::onReleased()
 {
-	this->Clear();
+	this->clear();
 	
-	REObject::OnReleased();
+	REObject::onReleased();
 }
 
 REObjectsDictionary::~REObjectsDictionary()
@@ -278,7 +278,7 @@ REObjectsDictionary::~REObjectsDictionary()
 	
 }
 
-REObjectsDictionary * REObjectsDictionary::Create()
+REObjectsDictionary * REObjectsDictionary::create()
 {
 	REObjectsDictionary * dict = new REObjectsDictionary();
 	return dict;

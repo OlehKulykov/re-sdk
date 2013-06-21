@@ -30,23 +30,23 @@ private:
 	REArray<REMainLoopUpdatable *> _objects;
 	REMutex _updateMutex;
 	
-	REBOOL Add(REMainLoopUpdatable * object);
-	REBOOL Remove(REMainLoopUpdatable * object);
-	void Update(const RETimeInterval time);
-	REBOOL IsEmptyAndIDLE() const;
+	REBOOL add(REMainLoopUpdatable * object);
+	REBOOL remove(REMainLoopUpdatable * object);
+	void update(const RETimeInterval time);
+	REBOOL isEmptyAndIDLE() const;
 	
-	static REUInt32 Index(REArray<REMainLoopUpdatable *> * arr, const REUIdentifier objectId);
+	static REUInt32 index(REArray<REMainLoopUpdatable *> * arr, const REUIdentifier objectId);
 	
 	REMainLoopsObjectsStoragePrivate();
 	~REMainLoopsObjectsStoragePrivate();
 	
-	static REMainLoopsObjectsStoragePrivate * GetStorage();
-	static void ReleaseStorage();
+	static REMainLoopsObjectsStoragePrivate * getStorage();
+	static void releaseStorage();
 	static REMainLoopsObjectsStoragePrivate * _storage;
 public:
-	static REBOOL AddObject(REMainLoopUpdatable * object);
-	static REBOOL RemoveObject(REMainLoopUpdatable * object);
-	static void UpdateStorage(const RETimeInterval time);
+	static REBOOL addObject(REMainLoopUpdatable * object);
+	static REBOOL removeObject(REMainLoopUpdatable * object);
+	static void updateStorage(const RETimeInterval time);
 };
 
 

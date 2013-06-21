@@ -49,9 +49,9 @@ private:
 	REArray<RETextInputRespondersManager::Responder *> _responders;
 	REMutex _mutex;
 	RETextInputRespondersManager::Responder * _firstResponder;
-	void SetFirstState(RETextInputRespondersManager::Responder * resp, REBOOL isFirst);
-	void Clear();
-	RETextInputRespondersManager::Responder * GetResponderForObjectIdentifier(const REUIdentifier respObjectId, REUInt32 * index);
+	void setFirstState(RETextInputRespondersManager::Responder * resp, REBOOL isFirst);
+	void clear();
+	RETextInputRespondersManager::Responder * getResponderForObjectIdentifier(const REUIdentifier respObjectId, REUInt32 * index);
 	
 	static RETextInputRespondersManager * _defaulTextInputRespondersManager;
 	
@@ -59,47 +59,47 @@ private:
 	~RETextInputRespondersManager();
 public:
 	/// Check 'responder' is first.
-	REBOOL IsFirstResponder(IRETextInputResponder * responder);
+	REBOOL isFirstResponder(IRETextInputResponder * responder);
 	
 	/// Register responder. Can call in contructor of IRETextInputResponder object.
-	REBOOL RegisterResponder(IRETextInputResponder * responder);
+	REBOOL registerResponder(IRETextInputResponder * responder);
 	
 	/// Unregister responder. Can call in desctructor of IRETextInputResponder object.
-	REBOOL UnRegisterResponder(IRETextInputResponder * responder);
+	REBOOL unRegisterResponder(IRETextInputResponder * responder);
 	
 	/// Set object as first responder.
-	REBOOL SetFirstResponder(IRETextInputResponder * newFirstResponder);
+	REBOOL setFirstResponder(IRETextInputResponder * newFirstResponder);
 	
 	/// Remove object from first responders stack.
-	REBOOL RemoveFirstResponder(IRETextInputResponder * firstResponder);
+	REBOOL removeFirstResponder(IRETextInputResponder * firstResponder);
 	
 	/// User side action. Called when text changed. Wide string version.
 	/// Returns count of accepted characters count.
-	REUInt32 AcceptNewWideText(const wchar_t * newText);
+	REUInt32 acceptNewWideText(const wchar_t * newText);
 	
 	/// User side action. Called when text changed. Plaine C string version.
 	/// Returns count of accepted characters count. Can be different than strlen(...);
-	REUInt32 AcceptNewUTF8Text(const char * newText);
+	REUInt32 acceptNewUTF8Text(const char * newText);
 	
 	/// User side action. Called when text input ended/cancelled by user.
-	void OnTextInputEnded();
+	void onTextInputEnded();
 	
 	/// Setting callback for starting input text.
 	/// First param is start up text, and second flag for clearing prev inputed text.
 	/// Return 0 on error, otherwice non zero value.
-	void SetStartWideTextInputCallBack(int (*StartWideTextInputCallBack)(const wchar_t *));
+	void setStartWideTextInputCallBack(int (*StartWideTextInputCallBack)(const wchar_t *));
 	
 	/// Setting callback for starting input text.
 	/// First param is start up text, and second flag for clearing prev inputed text.
 	/// Return 0 on error, otherwice non zero value.
-	void SetStartUTF8TextInputCallBack(int (*StartUTF8TextInputCallBack)(const char *));
+	void setStartUTF8TextInputCallBack(int (*StartUTF8TextInputCallBack)(const char *));
 	
 	/// Setting callback for ending input text.
 	/// Return 0 on error, otherwice non zero value.
-	void SetEndTextInputCallBack(int (*EndTextInputCallBack)());
+	void setEndTextInputCallBack(int (*EndTextInputCallBack)());
 	
-	static RETextInputRespondersManager * GetDefaultManager();
-	static void ReleaseDefaultManager();
+	static RETextInputRespondersManager * getDefaultManager();
+	static void releaseDefaultManager();
 };
 
 

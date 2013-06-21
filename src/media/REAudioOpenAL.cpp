@@ -22,7 +22,7 @@
 __RE_PUBLIC_CLASS_API__ ALCdevice * REAudioOpenAL::_alDevice = NULL;
 __RE_PUBLIC_CLASS_API__ ALCcontext * REAudioOpenAL::_alContext = NULL;
 
-ALCdevice * REAudioOpenAL::OpenAllDevices()
+ALCdevice * REAudioOpenAL::openAllDevices()
 {
 	ALCdevice * openedDevice = NULL;
 	
@@ -62,7 +62,7 @@ ALCdevice * REAudioOpenAL::OpenAllDevices()
 	return openedDevice;
 }
 
-ALCdevice * REAudioOpenAL::OpenDefaultDevice()
+ALCdevice * REAudioOpenAL::openDefaultDevice()
 {
 	ALCdevice * openedDevice = NULL;
 	
@@ -101,17 +101,17 @@ ALCdevice * REAudioOpenAL::OpenDefaultDevice()
 	return openedDevice;
 }
 
-ALCdevice * REAudioOpenAL::OpenDevice()
+ALCdevice * REAudioOpenAL::openDevice()
 {
-	ALCdevice * openedDevice = REAudioOpenAL::OpenAllDevices();
+	ALCdevice * openedDevice = REAudioOpenAL::openAllDevices();
 	if (openedDevice != NULL)
 	{
 		return openedDevice;
 	}
-	return REAudioOpenAL::OpenDefaultDevice();
+	return REAudioOpenAL::openDefaultDevice();
 }
 
-REBOOL REAudioOpenAL::InitDevice()
+REBOOL REAudioOpenAL::initDevice()
 {
 	// if no context exists
 	if (alcGetCurrentContext() == 0)
@@ -190,7 +190,7 @@ REAudioOpenAL::REAudioOpenAL()
 {
 	if ( (_alDevice == NULL) && (_alContext == NULL) ) 
 	{
-		REAudioOpenAL::InitDevice();
+		REAudioOpenAL::initDevice();
 	}
 }
 

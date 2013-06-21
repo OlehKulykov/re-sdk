@@ -45,7 +45,7 @@ void RERenderDevice::RenderClippedRect(const RERect & bounds,
 									   const RETetragon & textureFrame, 
 									   IRETexture * texture)
 {
-	RERect interFrame( rect.GetIntersection(bounds) );
+	RERect interFrame( rect.getIntersection(bounds) );
 	if (interFrame.height > 0.0f) 
 	{
 		const REFloat32 oldTW = textureFrame.bottomRightX - textureFrame.topLeftX;
@@ -73,10 +73,10 @@ void RERenderDevice::RenderClippedRect(const RERect & bounds,
 
 void RERenderDevice::UpdateSizeRatio()
 {
-	if ( _renderSize.IsNull() || _screenSize.IsNull() ) 
+	if ( _renderSize.isNull() || _screenSize.isNull() ) 
 	{
-		_renderToScreenSizeRatio.SetToNull();
-		_screenToRenderSizeRatio.SetToNull();
+		_renderToScreenSizeRatio.setToNull();
+		_screenToRenderSizeRatio.setToNull();
 	}
 	else 
 	{
@@ -138,10 +138,10 @@ REBOOL RERenderDevice::SetDeviceCamera(RECamera * newCamera)
 	{
 		if (_deviceCamera) 
 		{
-			_deviceCamera->Release();
+			_deviceCamera->release();
 		}
 		_deviceCamera = newCamera;
-		_deviceCamera->Retain();
+		_deviceCamera->retain();
 		return true;
 	}
 	return false;

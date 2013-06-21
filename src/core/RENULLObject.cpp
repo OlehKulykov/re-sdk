@@ -21,20 +21,20 @@
 __RE_PUBLIC_CLASS_API__ RENULLObject * RENULLObject::_defaultNull = NULL;
 
 /* REObject */
-const REUInt32 RENULLObject::GetClassIdentifier() const
+const REUInt32 RENULLObject::getClassIdentifier() const
 {
-	return RENULLObject::ClassIdentifier();
+	return RENULLObject::classIdentifier();
 }
 
-const REUInt32 RENULLObject::ClassIdentifier()
+const REUInt32 RENULLObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RENULLObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RENULLObject");
 	return clasIdentif;
 }
 
-REBOOL RENULLObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RENULLObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RENULLObject::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier));
+	return ((RENULLObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
 RENULLObject::RENULLObject() : REObject()
@@ -58,7 +58,7 @@ RENULLObject * RENULLObject::NULLObject()
 		_defaultNull = new RENULLObject();
 		if (_defaultNull) 
 		{
-			_defaultNull->Retain();
+			_defaultNull->retain();
 		}
 	}
 	return _defaultNull;

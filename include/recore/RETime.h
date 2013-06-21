@@ -26,42 +26,42 @@ class __RE_PUBLIC_CLASS_API__ RETime
 {
 public:
 	/// Returns current time.
-	/// Result value will be same as RETime::Time();
-	const RETimeInterval GetTime() const;
+	/// Result value will be same as RETime::time();
+	const RETimeInterval getTime() const;
 	
 	/// Pausing time functionality.
 	/// Returns true if paused otherwise returns false on error of if already paused.
-	/// Result value will be same as RETime::Pause();
-	REBOOL PauseTime();
+	/// Result value will be same as RETime::pause();
+	REBOOL pauseTime();
 	
 	/// Resuming time functionality.
 	/// Returns true if resumed otherwise returns false on error of if already resumed or not paused.
-	/// Result value will be same as RETime::Resume();
-	REBOOL ResumeTime();
+	/// Result value will be same as RETime::resume();
+	REBOOL resumeTime();
 	
 	/// Checks is time functionality paused.
-	/// Result value will be same as RETime::IsPaused();
-	REBOOL IsTimePaused() const;
+	/// Result value will be same as RETime::isPaused();
+	REBOOL isTimePaused() const;
 	
 	/// Returns current time.
-	static const RETimeInterval Time();
+	static const RETimeInterval time();
 	
 	/// Pausing time functionality.
 	/// Returns true if paused otherwise returns false on error of if already paused.
-	static REBOOL Pause();
+	static REBOOL pause();
 	
 	/// Resuming time functionality.
 	/// Returns true if resumed otherwise returns false on error of if already resumed or not paused.
-	static REBOOL Resume();
+	static REBOOL resume();
 	
 	/// Checks is time functionality paused.
-	static REBOOL IsPaused();
+	static REBOOL isPaused();
 	
 	/// Converts seconds to milliseconds.
-	static const REUInt64 ConvertSecondsToMilliseconds(const RETimeInterval seconds);
+	static const REUInt64 convertSecondsToMilliseconds(const RETimeInterval seconds);
 	
 	/// Converts seconds to microseconds.
-	static const REUInt64 ConvertSecondsToMicroseconds(const RETimeInterval seconds);
+	static const REUInt64 convertSecondsToMicroseconds(const RETimeInterval seconds);
 };
 
 

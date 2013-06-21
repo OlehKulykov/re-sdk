@@ -18,32 +18,32 @@
 #include "../../include/recore/RENumberObject.h"
 
 /* REObject */
-const REUInt32 RENumberObject::GetClassIdentifier() const
+const REUInt32 RENumberObject::getClassIdentifier() const
 {
-	return RENumberObject::ClassIdentifier();
+	return RENumberObject::classIdentifier();
 }
 
-const REUInt32 RENumberObject::ClassIdentifier()
+const REUInt32 RENumberObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RENumberObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RENumberObject");
 	return clasIdentif;
 }
 
-REBOOL RENumberObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RENumberObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RENumberObject::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("RENumber") == classIdentifier));
+	return ((RENumberObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("RENumber") == classIdentifier));
 }
 
-REBOOL RENumberObject::IsEqual(REObject * anotherObject)
+REBOOL RENumberObject::isEqual(REObject * anotherObject)
 {
-	if (REObject::IsEqual(anotherObject)) { return true; }
+	if (REObject::isEqual(anotherObject)) { return true; }
 	
 	if (anotherObject) 
 	{
-		if (anotherObject->GetClassIdentifier() == RENumberObject::ClassIdentifier()) 
+		if (anotherObject->getClassIdentifier() == RENumberObject::classIdentifier()) 
 		{
-			return RENumber::IsEqualToNumber(*(RENumberObject*)anotherObject);
+			return RENumber::isEqualToNumber(*(RENumberObject*)anotherObject);
 		}
 	}
 	return false;
@@ -62,163 +62,163 @@ RENumberObject::~RENumberObject()
 
 
 
-RENumberObject * RENumberObject::Create()
+RENumberObject * RENumberObject::create()
 {
 	return (new RENumberObject());
 }
 
-RENumberObject * RENumberObject::CreateWithBool(REBOOL newValue)
+RENumberObject * RENumberObject::createWithBool(REBOOL newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetBoolValue(newValue);
+		newNumber->setBoolValue(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithByte(REByte newValue)
+RENumberObject * RENumberObject::createWithByte(REByte newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetByteValue(newValue);
+		newNumber->setByteValue(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithUByte(REUByte newValue)
+RENumberObject * RENumberObject::createWithUByte(REUByte newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetUByteValue(newValue);
+		newNumber->setUByteValue(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithInt16(REInt16 newValue)
+RENumberObject * RENumberObject::createWithInt16(REInt16 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetInt16Value(newValue);
+		newNumber->setInt16Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithUInt16(REUInt16 newValue)
+RENumberObject * RENumberObject::createWithUInt16(REUInt16 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetUInt16Value(newValue);
+		newNumber->setUInt16Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithInt32(REInt32 newValue)
+RENumberObject * RENumberObject::createWithInt32(REInt32 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetInt32Value(newValue);
+		newNumber->setInt32Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithUInt32(REUInt32 newValue)
+RENumberObject * RENumberObject::createWithUInt32(REUInt32 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetUInt32Value(newValue);
+		newNumber->setUInt32Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithInt64(REInt64 newValue)
+RENumberObject * RENumberObject::createWithInt64(REInt64 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetInt64Value(newValue);
+		newNumber->setInt64Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithUInt64(REUInt64 newValue)
+RENumberObject * RENumberObject::createWithUInt64(REUInt64 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetUInt64Value(newValue);
+		newNumber->setUInt64Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithPointer(void * newValue)
+RENumberObject * RENumberObject::createWithPointer(void * newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetPointerValue(newValue);
+		newNumber->setPointerValue(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithFloat32(REFloat32 newValue)
+RENumberObject * RENumberObject::createWithFloat32(REFloat32 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetFloat32Value(newValue);
+		newNumber->setFloat32Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithFloat64(REFloat64 newValue)
+RENumberObject * RENumberObject::createWithFloat64(REFloat64 newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetFloat64Value(newValue);
+		newNumber->setFloat64Value(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
-RENumberObject * RENumberObject::CreateWithTimeInterval(RETimeInterval newValue)
+RENumberObject * RENumberObject::createWithTimeInterval(RETimeInterval newValue)
 {
 	RENumberObject * newNumber = new RENumberObject();
 	if (newNumber) 
 	{
-		newNumber->SetTimeIntervalValue(newValue);
+		newNumber->setTimeIntervalValue(newValue);
 		return newNumber;
 	}
 	return NULL;
 }
 
 
-RENumberObject * RENumberObject::CreateWithStringPresentation(const char * stringPresentation)
+RENumberObject * RENumberObject::createWithStringPresentation(const char * stringPresentation)
 {
 	if (stringPresentation) 
 	{
 		RENumberObject * newNumber = new RENumberObject();
 		if (newNumber) 
 		{
-			if (newNumber->SetValueFromString(stringPresentation)) 
+			if (newNumber->setValueFromString(stringPresentation)) 
 			{
 				return newNumber;
 			}

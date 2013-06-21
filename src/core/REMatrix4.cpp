@@ -21,10 +21,10 @@
 #include "../../include/recore/REMath.h"
 #include "../../include/recore/RELog.h"
 
-REMatrix4 REMatrix4::CreateFromQuaternion(const REQuaternion & aq)
+REMatrix4 REMatrix4::createFromQuaternion(const REQuaternion & aq)
 {
 	REQuaternion n(aq);
-	n.Normalize();
+	n.normalize();
 	
 	const REFloat32 tx = n.x + n.x;
 	const REFloat32 ty = n.y + n.y;
@@ -64,9 +64,9 @@ REMatrix4 REMatrix4::CreateFromQuaternion(const REQuaternion & aq)
 }
 
 #ifdef __RE_DEBUG_MODE__
-void REMatrix4::Log() const
+void REMatrix4::log() const
 {
-	RELog::Log("REMatrix4: \n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]",
+	RELog::log("REMatrix4: \n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]\n[%f\t %f\t %f\t %f\t]",
 			   m00, m01, m02, m03,
 			   m10, m11, m12, m13,
 			   m20, m21, m22, m23,

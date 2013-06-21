@@ -17,27 +17,27 @@
 
 #include "../../include/regui/REStackedViewController.h"
 
-const REUInt32 REStackedViewController::GetClassIdentifier() const
+const REUInt32 REStackedViewController::getClassIdentifier() const
 {
-	return REStackedViewController::ClassIdentifier();
+	return REStackedViewController::classIdentifier();
 }
 
-const REUInt32 REStackedViewController::ClassIdentifier()
+const REUInt32 REStackedViewController::classIdentifier()
 {
-	static const REUInt32 classIdentif = REObject::GenerateClassIdentifierFromClassName("REStackedViewController");
+	static const REUInt32 classIdentif = REObject::generateClassIdentifierFromClassName("REStackedViewController");
 	return classIdentif;
 }
 
-REBOOL REStackedViewController::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REStackedViewController::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REStackedViewController::ClassIdentifier() == classIdentifier) ||
-			REViewController::IsImplementsClass(classIdentifier));
+	return ((REStackedViewController::classIdentifier() == classIdentifier) ||
+			REViewController::isImplementsClass(classIdentifier));
 }
 
-REBOOL REStackedViewController::PushSubViews(const REBOOL isRemoveCurrentSubViews)
+REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubViews)
 {
-	this->LockUpdate();
-	REObjectsArray * subViews = this->GetOrCreateAndGetSubViewsArray(); 
+	this->lockUpdate();
+	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
 	if (subViews) 
 	{
 		if (_stackedSubViewsArray == NULL) 
@@ -47,49 +47,49 @@ REBOOL REStackedViewController::PushSubViews(const REBOOL isRemoveCurrentSubView
 		
 		if (_stackedSubViewsArray) 
 		{
-			REObjectsArray * newSubViews = REObjectsArray::CreateWithObjectsArray(subViews);
+			REObjectsArray * newSubViews = REObjectsArray::createWithObjectsArray(subViews);
 			if (newSubViews) 
 			{
-				if (_stackedSubViewsArray->Add(newSubViews)) 
+				if (_stackedSubViewsArray->add(newSubViews)) 
 				{
 					if (isRemoveCurrentSubViews) 
 					{
-						subViews->Clear();
+						subViews->clear();
 					}
-					this->UnLockUpdate();
+					this->unLockUpdate();
 					return true;
 				}
-				newSubViews->Release();
+				newSubViews->release();
 			}
 		}
 	}
-	this->UnLockUpdate();
+	this->unLockUpdate();
 	return false;
 }
 
-REBOOL REStackedViewController::PopSubViews()
+REBOOL REStackedViewController::popSubViews()
 {
-	this->LockUpdate();
-	REObjectsArray * subViews = this->GetOrCreateAndGetSubViewsArray(); 
+	this->lockUpdate();
+	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
 	if (_stackedSubViewsArray && subViews) 
 	{
-		if (_stackedSubViewsArray->Count()) 
+		if (_stackedSubViewsArray->count()) 
 		{
-			subViews->Clear();
-			REObjectsArray * subViewsArray = _stackedSubViewsArray->LastObject();
-			subViews->Set(*subViewsArray);
-			_stackedSubViewsArray->RemoveLast();
-			if (_stackedSubViewsArray->IsEmpty()) 
+			subViews->clear();
+			REObjectsArray * subViewsArray = _stackedSubViewsArray->lastObject();
+			subViews->set(*subViewsArray);
+			_stackedSubViewsArray->removeLast();
+			if (_stackedSubViewsArray->isEmpty()) 
 			{
 				delete _stackedSubViewsArray;
 				_stackedSubViewsArray = NULL;
 			}
-			subViewsArray->Release();
-			this->UnLockUpdate();
+			subViewsArray->release();
+			this->unLockUpdate();
 			return true;
 		}
 	}
-	this->UnLockUpdate();
+	this->unLockUpdate();
 	return false;
 }
 
@@ -99,20 +99,20 @@ REStackedViewController::REStackedViewController() : REViewController(),
 	
 }
 
-void REStackedViewController::OnReleased()
+void REStackedViewController::onReleased()
 {
 	if (_stackedSubViewsArray) 
 	{
-		for (REUInt32 i = 0; i < _stackedSubViewsArray->Count(); i++) 
+		for (REUInt32 i = 0; i < _stackedSubViewsArray->count(); i++) 
 		{
 			REObjectsArray * subViewsArray = (*_stackedSubViewsArray)[i];
-			subViewsArray->Release();
+			subViewsArray->release();
 		}
 		delete _stackedSubViewsArray;
 		_stackedSubViewsArray = NULL;
 	}
 	
-	REViewController::OnReleased();
+	REViewController::onReleased();
 }
 
 REStackedViewController::~REStackedViewController()
@@ -120,7 +120,7 @@ REStackedViewController::~REStackedViewController()
 	
 }
 
-REStackedViewController * REStackedViewController::Create()
+REStackedViewController * REStackedViewController::create()
 {
 	REStackedViewController * newStackedViewController = new REStackedViewController();
 	return newStackedViewController;

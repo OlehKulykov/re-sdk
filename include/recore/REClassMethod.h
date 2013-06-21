@@ -25,7 +25,7 @@ class __RE_PUBLIC_CLASS_API__ REClassMethod
 {
 public:
     /// Invoke class method with some object pointer.
-    virtual void InvokeWithObject(REObject * object) { }
+    virtual void invokeWithObject(REObject * object) { }
 
     /// Destructor.
     virtual ~REClassMethod() { }
@@ -41,7 +41,7 @@ protected:
 	MethodTypeName _method;
 public:
 	/// Try to invoke class method with some object.
-	virtual void InvokeWithObject(REObject * object)
+	virtual void invokeWithObject(REObject * object)
 	{
 		if (_classPointer && _method)
 		{
@@ -55,41 +55,10 @@ public:
 	virtual ~REClassMethodWrapper() { }
 };
 
-/*
-/// Class method. Using for invoking methods.
-template<class T, typename MethodTypeName>
-class REClassMethodObjectWrapper : public REObject, public REClassMethod
-{
-protected:
-	T * _classPointer;
-	MethodTypeName _method;
-public:
-	/// Try to invoke class method with some object. 
-	void InvokeWithObject(REObject * object)
-	{
-		if (_classPointer && _method)
-		{
-			(_classPointer->*_method)(object);
-		}
-	}
-	
-	/// Constructs object with class pointer and method.
-	REClassMethodObjectWrapper(T * classPtr, MethodTypeName method) : REObject(), _classPointer(classPtr), _method(method) { }
-	
-	/// Destructor.
-	virtual ~REClassMethodObjectWrapper() { }
-};
-*/
 
 #ifndef NEW_CLASS_METHOD
 #define NEW_CLASS_METHOD(CLASS_NAME,CLASS_PTR,METHOD_NAME) ((REClassMethod*)(new REClassMethodWrapper<CLASS_NAME, void(CLASS_NAME::*)(REObject*)>(CLASS_PTR,&CLASS_NAME::METHOD_NAME)) )
 #endif
-
-/*
-#ifndef NEW_CLASS_METHOD_OBJECT
-#define NEW_CLASS_METHOD_OBJECT(CLASS_NAME,CLASS_PTR,METHOD_NAME) ((REClassMethod*)(new REClassMethodObjectWrapper<CLASS_NAME, void(CLASS_NAME::*)(REObject*)>(CLASS_PTR,&CLASS_NAME::METHOD_NAME)) )
-#endif 
-*/
 
 #endif /* __RECLASSMETHOD_H__ */
 

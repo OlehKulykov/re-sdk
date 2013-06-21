@@ -38,7 +38,7 @@
 #include <errno.h>
 #endif
 
-REBOOL REFileManager::IsReadableFileAtPath(const char * path) const
+REBOOL REFileManager::isReadableFileAtPath(const char * path) const
 {
 	if (path) 
 	{
@@ -62,15 +62,15 @@ REBOOL REFileManager::IsReadableFileAtPath(const char * path) const
 
 }
 
-REBOOL REFileManager::IsReadableFileAtPath(const REString & path) const
+REBOOL REFileManager::isReadableFileAtPath(const REString & path) const
 {
-	if ( path.IsEmpty() ) 
+	if ( path.isEmpty() ) 
 	{
 		return false;
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->IsReadableFileAtPath(path.UTF8String());
+	return this->isReadableFileAtPath(path.UTF8String());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -89,7 +89,7 @@ REBOOL REFileManager::IsReadableFileAtPath(const REString & path) const
 #endif /* WIN */
 }
 
-REBOOL REFileManager::IsWritableFileAtPath(const char * path) const
+REBOOL REFileManager::isWritableFileAtPath(const char * path) const
 {
 	if (path) 
 	{
@@ -117,15 +117,15 @@ REBOOL REFileManager::IsWritableFileAtPath(const char * path) const
 
 }
 
-REBOOL REFileManager::IsWritableFileAtPath(const REString & path) const
+REBOOL REFileManager::isWritableFileAtPath(const REString & path) const
 {
-	if ( path.IsEmpty() ) 
+	if ( path.isEmpty() ) 
 	{
 		return false;
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->IsWritableFileAtPath(path.UTF8String());
+	return this->isWritableFileAtPath(path.UTF8String());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -148,21 +148,21 @@ REBOOL REFileManager::IsWritableFileAtPath(const REString & path) const
 #endif /* WIN */
 }
 
-REBOOL REFileManager::CreateFileAtPath(const char * path, REData * withFileData) const
+REBOOL REFileManager::createFileAtPath(const char * path, REData * withFileData) const
 {
 	if (path) 
 	{
-		FILE * f = REFile::FOpen(REString(path), "wb+");
+		FILE * f = REFile::fileOpen(REString(path), "wb+");
 		if (f)
 		{
 			size_t dwBytesToWrite = 0;
 			size_t dwBytesWritten = 0;
 			if (withFileData)
 			{
-				if ( !withFileData->IsEmpty() )
+				if ( !withFileData->isEmpty() )
 				{
-					dwBytesToWrite = withFileData->GetSize();
-					dwBytesWritten = fwrite(withFileData->GetBytes(), 1, dwBytesToWrite, f);
+					dwBytesToWrite = withFileData->getSize();
+					dwBytesWritten = fwrite(withFileData->getBytes(), 1, dwBytesToWrite, f);
 				}
 			}
 			fclose(f);
@@ -172,19 +172,19 @@ REBOOL REFileManager::CreateFileAtPath(const char * path, REData * withFileData)
 	return false;
 }
 
-REBOOL REFileManager::CreateFileAtPath(const REString & path, REData * withFileData) const
+REBOOL REFileManager::createFileAtPath(const REString & path, REData * withFileData) const
 {
-	if ( path.IsEmpty() ) 
+	if ( path.isEmpty() ) 
 	{
 		return false;
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->CreateFileAtPath(path.UTF8String(), withFileData);
+	return this->createFileAtPath(path.UTF8String(), withFileData);
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
-	FILE * f = REFile::FOpen(path, "wb+");
+	FILE * f = REFile::fileOpen(path, "wb+");
 	if (f)
 	{
 		size_t dwBytesToWrite = 0;
@@ -204,7 +204,7 @@ REBOOL REFileManager::CreateFileAtPath(const REString & path, REData * withFileD
 #endif	/* WIN */ 
 }
 
-REBOOL REFileManager::IsFileExistsAtPath(const char * path, REBOOL * isDirectory) const
+REBOOL REFileManager::isFileExistsAtPath(const char * path, REBOOL * isDirectory) const
 {
     if (isDirectory)
     {
@@ -242,9 +242,9 @@ REBOOL REFileManager::IsFileExistsAtPath(const char * path, REBOOL * isDirectory
 	return true;
 }
 
-REBOOL REFileManager::IsFileExistsAtPath(const REString & path, REBOOL * isDirectory) const
+REBOOL REFileManager::isFileExistsAtPath(const REString & path, REBOOL * isDirectory) const
 {
-	if ( path.IsEmpty() ) 
+	if ( path.isEmpty() ) 
 	{
 		if ( isDirectory ) 
 		{
@@ -254,7 +254,7 @@ REBOOL REFileManager::IsFileExistsAtPath(const REString & path, REBOOL * isDirec
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->IsFileExistsAtPath(path.UTF8String(), isDirectory);
+	return this->isFileExistsAtPath(path.UTF8String(), isDirectory);
 #endif /* NOT WIN */	
 	
 #ifdef __RE_OS_WINDOWS__
@@ -287,7 +287,7 @@ REBOOL REFileManager::IsFileExistsAtPath(const REString & path, REBOOL * isDirec
 #endif /* WIN */	
 }
 
-REBOOL REFileManager::CreateDir(const char * path)
+REBOOL REFileManager::createDir(const char * path)
 {
 #ifndef __RE_OS_WINDOWS__	
 	if (mkdir(path, 777) == 0) //created
@@ -330,7 +330,7 @@ REBOOL REFileManager::CreateDir(const wchar_t * path)
 }
 #endif /* WIN */	
 
-REBOOL REFileManager::CreateDirectoryAtPath(const char * path, REBOOL isCreateIntermediates)
+REBOOL REFileManager::createDirectoryAtPath(const char * path, REBOOL isCreateIntermediates)
 {
 	if (path == NULL) 
 	{
@@ -342,10 +342,10 @@ REBOOL REFileManager::CreateDirectoryAtPath(const char * path, REBOOL isCreateIn
 		const REUInt32 len = strlen(path);
 		if (len == 0) { return false; }
 		REBuffer buf(len + 1);
-		if (buf.GetSize() == (len + 1)) 
+		if (buf.getSize() == (len + 1)) 
 		{
-			REMem::Memcpy(buf.GetBuffer(), path, len);
-			char * p = (char *)buf.GetBuffer();
+			REMem::Memcpy(buf.getBuffer(), path, len);
+			char * p = (char *)buf.getBuffer();
 			p[len] = 0;
 			while ((*p == '/') || (*p == '\\')) { p++; } // skip first '/'
 			while (*p) 
@@ -353,7 +353,7 @@ REBOOL REFileManager::CreateDirectoryAtPath(const char * path, REBOOL isCreateIn
 				if ((*p == '/') || (*p == '\\')) 
 				{
 					*p = 0;
-					if ( !this->CreateDir((const char*)buf.GetBuffer()) )
+					if ( !this->createDir((const char *)buf.getBuffer()) )
 					{
 						return false;
 					}
@@ -361,26 +361,26 @@ REBOOL REFileManager::CreateDirectoryAtPath(const char * path, REBOOL isCreateIn
 				}
 				p++;
 			}
-			return this->CreateDir((const char*)buf.GetBuffer());
+			return this->createDir((const char *)buf.getBuffer());
 		}
 	}
 	else
 	{
-		return this->CreateDir(path);
+		return this->createDir(path);
 	}
 	
 	return false;
 }
 
-REBOOL REFileManager::CreateDirectoryAtPath(const REString & path, REBOOL isCreateIntermediates)
+REBOOL REFileManager::createDirectoryAtPath(const REString & path, REBOOL isCreateIntermediates)
 {
-	if ( path.IsEmpty() ) 
+	if ( path.isEmpty() ) 
 	{
 		return false;
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->CreateDirectoryAtPath(path.UTF8String(), isCreateIntermediates);
+	return this->createDirectoryAtPath(path.UTF8String(), isCreateIntermediates);
 #endif /* NOT WIN */	
 
 #ifdef __RE_OS_WINDOWS__
@@ -409,11 +409,11 @@ REBOOL REFileManager::CreateDirectoryAtPath(const REString & path, REBOOL isCrea
 				}
 				p++;
 			}
-			return this->CreateDir((const wchar_t*)buff);
+			return this->createDir((const wchar_t*)buff);
 		}
 		else
 		{
-			return this->CreateDir(widePath);
+			return this->createDir(widePath);
 		}
 	}
 	return false;

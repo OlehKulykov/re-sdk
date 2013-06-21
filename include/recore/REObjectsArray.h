@@ -39,7 +39,7 @@ class __RE_PUBLIC_CLASS_API__ REObjectsArray : public REObject
 private:
 	REArray<REObject *> _arr;
 
-	static REBOOL IsEqualWithObjectsArray(REObject * anotherObject, REArray<REObject *> * arr);
+	static REBOOL isEqualWithObjectsArray(REObject * anotherObject, REArray<REObject *> * arr);
 	
 protected:
 	/// Constructs array with 'newCapacity' capacity.
@@ -58,98 +58,98 @@ protected:
 	virtual ~REObjectsArray();
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual REBOOL IsEqual(REObject * anotherObject);
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
+	virtual void onReleased();
 	
 	/// Returns array iterator object
-	const REObjectsIterator GetIterator() const;
+	const REObjectsIterator getIterator() const;
 	
 	/// Linear search for object. Return object index or RENotFound if not found.
-	const REUInt32 Search(const REObject * object) const;
+	const REUInt32 search(const REObject * object) const;
 	
 	/// Setter for capacity of array
-	REBOOL SetCapacity(const REUInt32 newCapacity);
+	REBOOL setCapacity(const REUInt32 newCapacity);
 	
 	/// Returns capacity of array
-	const REUInt32 Capacity() const { return _arr.Capacity(); }
+	const REUInt32 capacity() const;
 	
 	/// Returns objects count of array
-	const REUInt32 Count() const { return _arr.Count(); }
+	const REUInt32 count() const;
 	
 	/// Check is array empty
-	REBOOL IsEmpty() const { return _arr.IsEmpty(); }
+	REBOOL isEmpty() const;
 	
 	/// Swaps object at 'firstIndex' index with object at 'secondIndex' index.
 	/// Returns true if both indexes exists and objects is swaped.
-	REBOOL Swap(const REUInt32 firstIndex, const REUInt32 secondIndex);
+	REBOOL swap(const REUInt32 firstIndex, const REUInt32 secondIndex);
 	
 	/// Returns object pointer at 'index' index ot NULL if 'index' don't exists.
-	REObject * At(const REUInt32 index) const;
+	REObject * at(const REUInt32 index) const;
 	
 	/// Returns last object in array or NULL if array is empty.
-	REObject * LastObject() const;
+	REObject * lastObject() const;
 	
 	/// Returns first object in array or NULL if array is empty.
-	REObject * FirstObject() const;
+	REObject * firstObject() const;
 	
 	/// Adds 'object' to array. If object added than called Retain().
 	/// Returns true if added and false if not added of object if NULL.
-	REBOOL Add(REObject * object);
+	REBOOL add(REObject * object);
 	
 	/// Adds objects from another array.
-	REBOOL Add(const REObjectsArray & anotherArray);
+	REBOOL add(const REObjectsArray & anotherArray);
 	
 	/// Adds objects from another array.
-	REBOOL Add(const REArray<REObject *> & anotherArray);
+	REBOOL add(const REArray<REObject *> & anotherArray);
 	
 	/// Removes object at 'index' index. 
 	/// Returns true if index exists and object is removed or false if index not exists.
 	/// After removing objects call Release().
-	REBOOL RemoveAt(const REUInt32 index);
+	REBOOL removeAt(const REUInt32 index);
 	
 	/// Removes object from array. 
 	/// Returns true if object founded and removed or false if not found exists.
 	/// After removing objects call Release().
-	REBOOL Remove(REObject * object);
+	REBOOL remove(REObject * object);
 	
 	/// Removes objects from array that containes in another array. 
 	/// Returns true if object founded and removed or false if not found exists.
 	/// After removing objects call Release().
-	REBOOL Remove(const REObjectsArray & anotherArray);
+	REBOOL remove(const REObjectsArray & anotherArray);
 	
 	/// Removes objects from array that containes in another array. 
 	/// Returns true if object founded and removed or false if not found exists.
 	/// After removing objects call Release().
-	REBOOL Remove(const REArray<REObject *> & anotherArray);
+	REBOOL remove(const REArray<REObject *> & anotherArray);
 	
 	/// Insert 'object' at 'insertAtIndex' index.
 	/// Returns true if index exists and object not NULL or false if object is NULL or index not found.
 	/// After inserts object will be Retain()'ed.
-	REBOOL Insert(const REUInt32 insertAtIndex, REObject * object);
+	REBOOL insert(const REUInt32 insertAtIndex, REObject * object);
 	
 	/// Replaces 'object' with another object 'withObject'.
 	/// Returns true if both objects not NULL, 'object' is found and replaced, otherwise returns false.
 	/// After replacing 'object' will be Release()'ed and 'withObject' will be Retain()'ed.
-	REBOOL Replace(REObject * object, REObject * withObject);
+	REBOOL replace(REObject * object, REObject * withObject);
 	
 	/// Replaces object at 'replaceAtIndex' index with another object 'withObject'.
 	/// Returns true if index exists and 'withObject' not NULL, otherwise returns false.
 	/// After replacing object at index 'replaceAtIndex'will be Release()'ed and 'withObject' will be Retain()'ed.
-	REBOOL Replace(const REUInt32 replaceAtIndex, REObject * withObject);
+	REBOOL replace(const REUInt32 replaceAtIndex, REObject * withObject);
 	
 	/// Removes all objects from array. Each object will be Release()'ed.
-	void Clear();
+	void clear();
 	
 	/// Setts object objects from 'anotherArray'.
 	/// Prev objects is Release()'ed and new objects if Retain()'ed.
-	REObjectsArray & Set(const REObjectsArray & anotherArray);
+	REObjectsArray & set(const REObjectsArray & anotherArray);
 	
 	/// Setts object objects from 'anotherArray'.
 	/// Prev objects is Release()'ed and new objects if Retain()'ed.
-	REObjectsArray & Set(const REArray<REObject *> & anotherArray);
+	REObjectsArray & set(const REArray<REObject *> & anotherArray);
 	
 	/// Returns object at index or NULL if 'index' index not exists.
 	REObject* & operator[](const REUInt32 & index) { return _arr[index]; }
@@ -163,19 +163,19 @@ public:
 	REObjectsArray & operator=(const REArray<REObject *> & anotherArray);
 	
 	/// Creates and return new empty array.
-	static REObjectsArray * Create();
+	static REObjectsArray * create();
 	
 	/// Creates and return new array object with 'newCapacity' capacity or NULL on error.
 	/// After using this array call Release().
-	static REObjectsArray * CreateWithCapacity(const REUInt32 newCapacity);
+	static REObjectsArray * createWithCapacity(const REUInt32 newCapacity);
 	
 	/// Creates and return new array object with object from 'anotherArray' another array or NULL on error.
 	/// After using this array call Release().
-	static REObjectsArray * CreateWithObjectsArray(const REObjectsArray * anotherArray);	
+	static REObjectsArray * createWithObjectsArray(const REObjectsArray * anotherArray);	
 	
 	/// Creates and return new array object with object from 'anotherArray' another array or NULL on error.
 	/// After using this array call Release().
-	static REObjectsArray * CreateWithArray(const REArray<REObject *> & anotherArray);
+	static REObjectsArray * createWithArray(const REArray<REObject *> & anotherArray);
 };
 
 #endif /* __REOBJECTSARRAY_H__ */ 

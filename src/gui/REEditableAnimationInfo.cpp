@@ -17,15 +17,15 @@
 
 #include "../../include/regui/private/REEditableAnimationInfo.h"
 
-REAnimationFloatParams * REEditableAnimationInfo::FindParamForObjectInParams(REObject * view, REArray<REAnimationFloatParams *> * params)
+REAnimationFloatParams * REEditableAnimationInfo::findParamForObjectInParams(REObject * view, REArray<REAnimationFloatParams *> * params)
 {
-	const REUIdentifier oid = view->GetObjectIdentifier();
-	for (REUInt32 i = 0; i < params->Count(); i++)
+	const REUIdentifier oid = view->getObjectIdentifier();
+	for (REUInt32 i = 0; i < params->count(); i++)
 	{
-		REAnimationFloatParams * p = params->At(i);
+		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->GetObjectIdentifier())
+			if (oid == p->object->getObjectIdentifier())
 			{
 				return p;
 			}
@@ -38,18 +38,18 @@ REAnimationFloatParams * REEditableAnimationInfo::FindParamForObjectInParams(REO
 	return NULL;
 }
 
-REFloat32 REEditableAnimationInfo::GetProgressForObjectAnimationInParams(REObject * animatedObject,
+REFloat32 REEditableAnimationInfo::getProgressForObjectAnimationInParams(REObject * animatedObject,
 																		 REAnimationBase * animation,
 																		 REArray<REAnimationFloatParams *> * params)
 {
-	const REFloat32 progress = animation->GetProgress();
-	const REUIdentifier oid = animatedObject->GetObjectIdentifier();
-	for (REUInt32 i = 0; i < params->Count(); i++)
+	const REFloat32 progress = animation->getProgress();
+	const REUIdentifier oid = animatedObject->getObjectIdentifier();
+	for (REUInt32 i = 0; i < params->count(); i++)
 	{
-		REAnimationFloatParams * p = params->At(i);
+		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->GetObjectIdentifier())
+			if (oid == p->object->getObjectIdentifier())
 			{
 				return progress;
 			}
@@ -62,36 +62,36 @@ REFloat32 REEditableAnimationInfo::GetProgressForObjectAnimationInParams(REObjec
 	return -1.0f;
 }
 
-const REFloat32 REEditableAnimationInfo::GetProgress(REObject * animatedObject)
+const REFloat32 REEditableAnimationInfo::getProgress(REObject * animatedObject)
 {
 	if (_animation) 
 	{
-		return REEditableAnimationInfo::GetProgressForObjectAnimationInParams(animatedObject,
+		return REEditableAnimationInfo::getProgressForObjectAnimationInParams(animatedObject,
 																			  _animation,
 																			  &_viewParams);
 	}
 	return -1.0f;
 }
 
-REBOOL REEditableAnimationInfo::StopAllAnimationForObjectWithStopType(REObject * animatedObject,
+REBOOL REEditableAnimationInfo::stopAllAnimationForObjectWithStopType(REObject * animatedObject,
 																	  const REAnimationStopType stopType,
 																	  REArray<REAnimationFloatParams *> * params)
 {
 	REBOOL isFoundedAndStoped = false;
-	const REUIdentifier oid = animatedObject->GetObjectIdentifier();
-	for (REUInt32 i = 0; i < params->Count(); i++)
+	const REUIdentifier oid = animatedObject->getObjectIdentifier();
+	for (REUInt32 i = 0; i < params->count(); i++)
 	{
-		REAnimationFloatParams * p = params->At(i);
+		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->GetObjectIdentifier())
+			if (oid == p->object->getObjectIdentifier())
 			{
-				if (params->RemoveAt(i))
+				if (params->removeAt(i))
 				{
-					p->SetStopValues(stopType);
-					p->DecCounter();
-					p->object->Release();
-					p->Release();
+					p->setStopValues(stopType);
+					p->decCounter();
+					p->object->release();
+					p->release();
 					isFoundedAndStoped = true;
 				}
 			}
@@ -104,18 +104,18 @@ REBOOL REEditableAnimationInfo::StopAllAnimationForObjectWithStopType(REObject *
 	return isFoundedAndStoped;
 }
 
-REBOOL REEditableAnimationInfo::StopAllAnimationForView(REObject * view, const REAnimationStopType stopType)
+REBOOL REEditableAnimationInfo::stopAllAnimationForView(REObject * view, const REAnimationStopType stopType)
 {
-	return REEditableAnimationInfo::StopAllAnimationForObjectWithStopType(view,
+	return REEditableAnimationInfo::stopAllAnimationForObjectWithStopType(view,
 																		  stopType,
 																		  &_viewParams);
 }
 
-void REEditableAnimationInfo::Pause() 
+void REEditableAnimationInfo::pause() 
 {
 	if (_animation) 
 	{
-		_animation->Pause(); 
+		_animation->pause(); 
 	} 
 }
 
@@ -123,11 +123,11 @@ void REEditableAnimationInfo::Continue()
 { 
 	if (_animation) 
 	{ 
-		_animation->Start(); 
+		_animation->start(); 
 	}
 }
 
-REAnimationBase * REEditableAnimationInfo::CreateAnimationForTypeWithInfoAndParams(const REAnimationType type,
+REAnimationBase * REEditableAnimationInfo::createAnimationForTypeWithInfoAndParams(const REAnimationType type,
 																				   REEditableAnimationInfo * info,
 																				   REArray<REAnimationFloatParams *> * params)
 {
@@ -262,31 +262,31 @@ REAnimationBase * REEditableAnimationInfo::CreateAnimationForTypeWithInfoAndPara
 	return NULL;
 }
 
-REBOOL REEditableAnimationInfo::ExecuteAnimation()
+REBOOL REEditableAnimationInfo::executeAnimation()
 {
-	if (_viewParams.Count())
+	if (_viewParams.count())
 	{
-		REAnimationBase * animation = REEditableAnimationInfo::CreateAnimationForTypeWithInfoAndParams(this->GetAnimationType(),
+		REAnimationBase * animation = REEditableAnimationInfo::createAnimationForTypeWithInfoAndParams(this->getAnimationType(),
 																									   this,
 																									   &_viewParams);
 		if (animation) 
 		{
 			_animation = animation;
-			animation->Start();
+			animation->start();
 			return true;
 		}
 	}
 	return false;
 }
 
-REBOOL REEditableAnimationInfo::AddFloatParam(REObject * view, 
+REBOOL REEditableAnimationInfo::addFloatParam(REObject * view, 
 											  REUInt16 * animationsCounter,
 											  REFloat32 * param, 
 											  const REFloat32 startValue, 
 											  const REFloat32 endValue)
 {
 	REBOOL isNewViewParam = false;
-	REAnimationFloatParams * p = REEditableAnimationInfo::FindParamForObjectInParams(view, &_viewParams);
+	REAnimationFloatParams * p = REEditableAnimationInfo::findParamForObjectInParams(view, &_viewParams);
 	if (p == NULL) 
 	{
 		p = new REAnimationFloatParams();
@@ -300,16 +300,16 @@ REBOOL REEditableAnimationInfo::AddFloatParam(REObject * view,
 	s.end = endValue;
 	s.length = endValue - startValue;
 	
-	if (p->params.Add(s)) 
+	if (p->params.add(s)) 
 	{
 		if (isNewViewParam)
 		{
-			if (_viewParams.Add(p)) 
+			if (_viewParams.add(p)) 
 			{
 				p->object = view;
 				p->objectAnimationsCounter = animationsCounter;
-                static const REUInt32 respondentClassID = REObject::GenerateClassIdentifierFromClassName("IREAnimationRespondent");
-				if (view->IsImplementsClass(respondentClassID))
+                static const REUInt32 respondentClassID = REObject::generateClassIdentifierFromClassName("IREAnimationRespondent");
+				if (view->isImplementsClass(respondentClassID))
 				{
 					p->respondent = (IREAnimationRespondent *)view;
 				}
@@ -317,12 +317,12 @@ REBOOL REEditableAnimationInfo::AddFloatParam(REObject * view,
 				{
 					p->respondent = NULL;
 				}
-				p->IncCounter();
-				view->Retain();
+				p->incCounter();
+				view->retain();
 			}
 			else
 			{
-				p->params.RemoveLast();
+				p->params.removeLast();
 			}
 		}
 		return true;
@@ -334,53 +334,53 @@ REBOOL REEditableAnimationInfo::AddFloatParam(REObject * view,
 	return false;
 }
 
-const REUInt32 REEditableAnimationInfo::GetObjectsCount() const
+const REUInt32 REEditableAnimationInfo::getObjectsCount() const
 {
-	return _viewParams.Count();
+	return _viewParams.count();
 }
 
-void REEditableAnimationInfo::GetObjects(REArray<REObject *> * views) const
+void REEditableAnimationInfo::getObjects(REArray<REObject *> * views) const
 {
-	if (views && _viewParams.Count()) 
+	if (views && _viewParams.count()) 
 	{
-		views->Clear();
-		views->SetCapacity(_viewParams.Count() + 1);
-		for (REUInt32 i = 0; i < _viewParams.Count(); i++) 
+		views->clear();
+		views->setCapacity(_viewParams.count() + 1);
+		for (REUInt32 i = 0; i < _viewParams.count(); i++) 
 		{
-			REAnimationFloatParams * p = _viewParams.At(i);
+			REAnimationFloatParams * p = _viewParams.at(i);
 			if (p) 
 			{
-				views->Add(p->object);
+				views->add(p->object);
 			}
 		}
 	}
 }
 
-REBOOL REEditableAnimationInfo::IsEmpty() const
+REBOOL REEditableAnimationInfo::isEmpty() const
 {
-	return _viewParams.IsEmpty();
+	return _viewParams.isEmpty();
 }
 
-void REEditableAnimationInfo::DecrementCounterAndReleaseAllViews()
+void REEditableAnimationInfo::decrementCounterAndReleaseAllViews()
 {
-	for (REUInt32 i = 0; i < _viewParams.Count(); i++) 
+	for (REUInt32 i = 0; i < _viewParams.count(); i++) 
 	{
-		REAnimationFloatParams * p = _viewParams.At(i);
+		REAnimationFloatParams * p = _viewParams.at(i);
 		if (p) 
 		{
-			p->object->Release();
-			p->DecCounter();
+			p->object->release();
+			p->decCounter();
 		}
 	}
 }
 
-void REEditableAnimationInfo::SetStartMethod(REClassMethod * m) 
+void REEditableAnimationInfo::setStartMethod(REClassMethod * m) 
 {
 	if (_startMethod) { delete _startMethod; }
 	_startMethod = m;
 }
 
-void REEditableAnimationInfo::SetStopMethod(REClassMethod * m) 
+void REEditableAnimationInfo::setStopMethod(REClassMethod * m) 
 {
 	if (_stopMethod) { delete _stopMethod; }
 	_stopMethod = m;
@@ -392,21 +392,21 @@ REEditableAnimationInfo::REEditableAnimationInfo(void * customDataOrNull) : REAn
 	_customData = customDataOrNull;
 }
 
-void REEditableAnimationInfo::OnReleased()
+void REEditableAnimationInfo::onReleased()
 {
-	for (REUInt32 i = 0; i < _viewParams.Count(); i++) 
+	for (REUInt32 i = 0; i < _viewParams.count(); i++) 
 	{
-		REAnimationFloatParams * p = _viewParams.At(i);
+		REAnimationFloatParams * p = _viewParams.at(i);
 		if (p) 
 		{
-			p->Release();
+			p->release();
 		}
 	}
-	_viewParams.Clear();
+	_viewParams.clear();
 	
 	RE_SAFE_DELETE(_animation);
 	
-	REAnimationInfo::OnReleased();
+	REAnimationInfo::onReleased();
 }
 
 REEditableAnimationInfo::~REEditableAnimationInfo() 
@@ -414,7 +414,7 @@ REEditableAnimationInfo::~REEditableAnimationInfo()
 	
 }
 
-REEditableAnimationInfo * REEditableAnimationInfo::CreateWithCustomData(void * customDataOrNull)
+REEditableAnimationInfo * REEditableAnimationInfo::createWithCustomData(void * customDataOrNull)
 {
 	REEditableAnimationInfo * newInfo = new REEditableAnimationInfo(customDataOrNull);
 	return newInfo;

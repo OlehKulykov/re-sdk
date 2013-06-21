@@ -198,7 +198,7 @@ const REStringHTMLSpecialCharacterPrivate::MapStruct * REStringHTMLSpecialCharac
 
 #endif /* __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ */
 
-void REString::ReplaceWithLen(const char * charsStringValue, const char * withCharsStringValue, const REUInt32 firstLen, const REUInt32 secondLen)
+void REString::replaceWithLen(const char * charsStringValue, const char * withCharsStringValue, const REUInt32 firstLen, const REUInt32 secondLen)
 {
 	if (firstLen > 0) 
 	{
@@ -254,26 +254,26 @@ void REString::ReplaceWithLen(const char * charsStringValue, const char * withCh
 	}
 }
 
-REString & REString::Replace(const char * charsStringValue, const char * withCharsStringValueOrNULL)
+REString & REString::replace(const char * charsStringValue, const char * withCharsStringValueOrNULL)
 {
 	if (charsStringValue && _data && _length) 
 	{
 		const REUInt32 firstLen = (REUInt32)strlen(charsStringValue);
 		const REUInt32 secondLen = (withCharsStringValueOrNULL != 0) ? (REUInt32)strlen(withCharsStringValueOrNULL) : 0;
-		this->ReplaceWithLen(charsStringValue, withCharsStringValueOrNULL, firstLen, secondLen);
+		this->replaceWithLen(charsStringValue, withCharsStringValueOrNULL, firstLen, secondLen);
 	}
 	return (*this);
 }
 
-REString & REString::Replace(const wchar_t * wideStringValue, const wchar_t * withWideStringValueOrNULL)
+REString & REString::replace(const wchar_t * wideStringValue, const wchar_t * withWideStringValueOrNULL)
 {
 	REStringPresentation p1(wideStringValue);
 	REStringPresentation p2(withWideStringValueOrNULL);
-	this->ReplaceWithLen(p1.UTF8String(), p2.UTF8String(), p1.GetUTF8Length(), p2.GetUTF8Length());
+	this->replaceWithLen(p1.UTF8String(), p2.UTF8String(), p1.getUTF8Length(), p2.getUTF8Length());
 	return (*this);
 }
 
-REBOOL REString::IsContaines(const char * charsStringValue) const
+REBOOL REString::isContaines(const char * charsStringValue) const
 {
 	if (charsStringValue && _data) 
 	{
@@ -282,15 +282,15 @@ REBOOL REString::IsContaines(const char * charsStringValue) const
 	return false;
 }
 
-REBOOL REString::IsContaines(const wchar_t * wideStringValue) const
+REBOOL REString::isContaines(const wchar_t * wideStringValue) const
 {
 	REStringPresentation p(wideStringValue);
-	return this->IsContaines(p.UTF8String());
+	return this->isContaines(p.UTF8String());
 }
 
-REString & REString::SetWithLen(const char * charsStringValue, const REUInt32 stringLength)
+REString & REString::setWithLen(const char * charsStringValue, const REUInt32 stringLength)
 {
-    this->Clear();
+    this->clear();
     
     if (charsStringValue) 
     {
@@ -309,7 +309,7 @@ REString & REString::operator=(const char * charsStringValue)
 {
 	if (charsStringValue) 
 	{
-		return this->SetWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
+		return this->setWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
 	}
     return (*this);
 }
@@ -317,20 +317,20 @@ REString & REString::operator=(const char * charsStringValue)
 REString & REString::operator=(const wchar_t * wideStringValue)
 {
 	REStringPresentation p(wideStringValue);
-	return this->SetWithLen(p.UTF8String(), p.GetUTF8Length());
+	return this->setWithLen(p.UTF8String(), p.getUTF8Length());
 }
 
 REString & REString::operator=(const REString & anotherString)
 {
-	return this->Set(anotherString);
+	return this->set(anotherString);
 }
 
 REString & REString::operator=(const REStringPresentation & anotherStringPresentation)
 {
-	return this->SetWithLen(anotherStringPresentation.UTF8String(), anotherStringPresentation.GetUTF8Length());
+	return this->setWithLen(anotherStringPresentation.UTF8String(), anotherStringPresentation.getUTF8Length());
 }
 
-void REString::AppendWithLen(const char * charsStringValue, const REUInt32 len)
+void REString::appendWithLen(const char * charsStringValue, const REUInt32 len)
 {
 	const REUInt32 newLen = len + _length;
 	char * newData = (char *)REMem::Malloc(newLen + 1);
@@ -345,26 +345,26 @@ void REString::AppendWithLen(const char * charsStringValue, const REUInt32 len)
 	}
 }
 
-REString & REString::Append(const char * charsStringValue)
+REString & REString::append(const char * charsStringValue)
 {
 	if (charsStringValue) 
 	{
-		this->AppendWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
+		this->appendWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
 	}
 	return (*this);
 }
 
-REString & REString::Append(const wchar_t * wideStringValue)
+REString & REString::append(const wchar_t * wideStringValue)
 {
 	REStringPresentation p(wideStringValue);
 	if (p.UTF8String()) 
 	{
-		this->AppendWithLen(p.UTF8String(), p.GetUTF8Length());
+		this->appendWithLen(p.UTF8String(), p.getUTF8Length());
 	}
 	return (*this);
 }
 
-REString & REString::AppendFormat(const char * format, ...)
+REString & REString::appendFormat(const char * format, ...)
 {
 	if (format)
 	{
@@ -374,45 +374,46 @@ REString & REString::AppendFormat(const char * format, ...)
 		int writed = vsprintf(strBuff, format, args);
 		if (writed > 0)
 		{
-			this->AppendWithLen(strBuff, (REUInt32)writed);
+			this->appendWithLen(strBuff, (REUInt32)writed);
 		}
 		va_end(args);
 	}
 	return (*this);
 }
 
-REBOOL REString::IsEqual(const char * charsStringValue) const
+REBOOL REString::isEqualWithLen(const char * charsStringValue, const REUInt32 stringLength) const
 {
-	if (_data && charsStringValue) 
+	if (_length == stringLength)
 	{
-		const REUInt32 len = (REUInt32)strlen(charsStringValue);
-		if (_length == len) 
-		{
-			return (memcmp(_data, charsStringValue, len) == 0);
-		}
+		return _length ? (memcmp(_data, charsStringValue, stringLength) == 0) : true;
 	}
 	return false;
 }
 
-REBOOL REString::IsEqual(const wchar_t * wideStringValue) const
+REBOOL REString::isEqual(const char * charsStringValue) const
+{
+	if (charsStringValue) 
+	{
+		return this->isEqualWithLen(charsStringValue, strlen(charsStringValue));
+	}
+	return false;
+}
+
+REBOOL REString::isEqual(const wchar_t * wideStringValue) const
 {
 	REStringPresentation p(wideStringValue);
-	return this->IsEqual(p.UTF8String());
+	return this->isEqualWithLen(p.UTF8String(), p.getUTF8Length());
 }
 
-REBOOL REString::IsEqual(const REString & anotherString) const
+REBOOL REString::isEqual(const REString & anotherString) const
 {
-	if (_length == anotherString._length) 
-	{
-		return this->IsEqual(anotherString._data);
-	}
-	return false;
+	return this->isEqualWithLen(anotherString._data, anotherString._length);
 }
 
 /// Compare two C strings ignore case. While checking strings not tested for wide chars avaiability.
 /// Both strings shoudl containe only ascii chars.
 /// Return 0 if equal or number of first ocurence of incompatible char.
-REUInt32 REString::CompareIgnoreCase(const char * firstString, const char * secondString)
+REUInt32 REString::compareIgnoreCase(const char * firstString, const char * secondString)
 {
 	if (firstString && secondString) 
 	{
@@ -439,7 +440,7 @@ REUInt32 REString::CompareIgnoreCase(const char * firstString, const char * seco
 }
 
 /// Compare two wide chars strings ignoring case.
-REUInt32 REString::CompareIgnoreCase(const wchar_t * firstString, const wchar_t * secondString)
+REUInt32 REString::compareIgnoreCase(const wchar_t * firstString, const wchar_t * secondString)
 {
 	if (firstString && secondString) 
 	{
@@ -465,49 +466,49 @@ REUInt32 REString::CompareIgnoreCase(const wchar_t * firstString, const wchar_t 
 	return 1;
 }
 
-REBOOL REString::IsEqualIgnoreCase(const char * charsStringValue) const
+REBOOL REString::isEqualIgnoreCase(const char * charsStringValue) const
 {
 	if (_data && charsStringValue) 
 	{
 		REBOOL isNeedConversion = false;
-		if (this->IsNonASCIICharsPresent()) 
+		if (this->isNonASCIICharsPresent()) 
 		{
 			isNeedConversion = true;
 		}
-		else if (REString::IsContainesNonASCIIChararacters(charsStringValue))
+		else if (REString::isContainesNonASCIIChararacters(charsStringValue))
 		{
 			isNeedConversion = true;
 		}
 		else
 		{
-			return (REString::CompareIgnoreCase(_data, charsStringValue) == 0);
+			return (REString::compareIgnoreCase(_data, charsStringValue) == 0);
 		}
 		
 		if (isNeedConversion) 
 		{
 			REStringPresentation p1(_data);
 			REStringPresentation p2(charsStringValue);
-			return (REString::CompareIgnoreCase(p1.WideString(), p2.WideString()) == 0);
+			return (REString::compareIgnoreCase(p1.wideString(), p2.wideString()) == 0);
 		}
 	}
 	return false;
 }
 
-REBOOL REString::IsEqualIgnoreCase(const wchar_t * wideStringValue) const
+REBOOL REString::isEqualIgnoreCase(const wchar_t * wideStringValue) const
 {
 	if (_data && wideStringValue) 
 	{
 		REStringPresentation p1(_data);
-		return (REString::CompareIgnoreCase(p1.WideString(), wideStringValue) == 0);
+		return (REString::compareIgnoreCase(p1.wideString(), wideStringValue) == 0);
 	}
 	return false;
 }
 
-REBOOL REString::IsEqualIgnoreCase(const REString & anotherString) const
+REBOOL REString::isEqualIgnoreCase(const REString & anotherString) const
 {
 	if (_length == anotherString._length) 
 	{
-		return this->IsEqualIgnoreCase(anotherString._data);
+		return this->isEqualIgnoreCase(anotherString._data);
 	}
 	return false;
 }
@@ -517,48 +518,48 @@ const char * REString::UTF8String() const
 	return _data;
 }
 
-REString & REString::Set(const char * charsStringValue)
+REString & REString::set(const char * charsStringValue)
 {
 	if (charsStringValue) 
 	{
-		return this->SetWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
+		return this->setWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
 	}
 	
-	this->Clear();
+	this->clear();
 	return (*this);
 }
 
-REString & REString::Set(const wchar_t * wideStringValue)
+REString & REString::set(const wchar_t * wideStringValue)
 {
-	this->Clear();
+	this->clear();
 	if (wideStringValue) 
 	{
-		this->Set(wideStringValue, (REUInt32)wcslen(wideStringValue));
+		this->set(wideStringValue, (REUInt32)wcslen(wideStringValue));
 	}
 	
 	return (*this);
 }
 
-REString & REString::Set(const REString & anotherString)
+REString & REString::set(const REString & anotherString)
 {
 	if (anotherString._data && anotherString._length) 
 	{
-		return this->SetWithLen(anotherString._data, anotherString._length);
+		return this->setWithLen(anotherString._data, anotherString._length);
 	}
 	
-	this->Clear();
+	this->clear();
 	return (*this);
 }
 
-REString & REString::Set(const char * charsStringValue, const REUInt32 stringLength)
+REString & REString::set(const char * charsStringValue, const REUInt32 stringLength)
 {
-	this->SetWithLen(charsStringValue, stringLength);
+	this->setWithLen(charsStringValue, stringLength);
 	return (*this);
 }
 
-REString & REString::Set(const wchar_t * wideStringValue, const REUInt32 stringLength)
+REString & REString::set(const wchar_t * wideStringValue, const REUInt32 stringLength)
 {
-	this->Clear();
+	this->clear();
 	
 	if (wideStringValue) 
 	{
@@ -566,7 +567,7 @@ REString & REString::Set(const wchar_t * wideStringValue, const REUInt32 stringL
 		_data = (char *)REMem::Malloc((stringValueLen + 1) * sizeof(wchar_t));
 		if (_data) 
 		{
-			const int cLen = REStringPresentation::WideToChars(wideStringValue, stringValueLen, _data);
+			const int cLen = REStringPresentation::wideToChars(wideStringValue, stringValueLen, _data);
 			if (cLen > 0) 
 			{
 				_length = (REUInt32)cLen;
@@ -574,7 +575,7 @@ REString & REString::Set(const wchar_t * wideStringValue, const REUInt32 stringL
 			}
 			else
 			{
-				this->Clear();
+				this->clear();
 			}
 		}
 	}
@@ -582,20 +583,20 @@ REString & REString::Set(const wchar_t * wideStringValue, const REUInt32 stringL
 	return (*this);
 }
 
-REString & REString::Set(const REString & anotherString, const REUInt32 stringLength)
+REString & REString::set(const REString & anotherString, const REUInt32 stringLength)
 {
-	this->SetWithLen(anotherString.UTF8String(), anotherString.Length());
+	this->setWithLen(anotherString.UTF8String(), anotherString.length());
 	return (*this);
 }
 
-REString & REString::ToLower()
+REString & REString::toLower()
 {
 	if (_data) 
 	{
-		if (this->IsNonASCIICharsPresent()) 
+		if (this->isNonASCIICharsPresent()) 
 		{
 			REStringPresentation p(_data);
-			wchar_t * s = const_cast<wchar_t *>(p.WideString());
+			wchar_t * s = const_cast<wchar_t *>(p.wideString());
 			if (s) 
 			{
 				while (*s) 
@@ -604,7 +605,7 @@ REString & REString::ToLower()
 					s++;
 				}
 			}
-			this->Set((const wchar_t *)s);
+			this->set((const wchar_t *)s);
 		}
 		else
 		{
@@ -619,14 +620,14 @@ REString & REString::ToLower()
 	return (*this);
 }
 
-REString & REString::ToUpper()
+REString & REString::toUpper()
 {
 	if (_data) 
 	{
-		if (this->IsNonASCIICharsPresent()) 
+		if (this->isNonASCIICharsPresent()) 
 		{
 			REStringPresentation p(_data);
-			wchar_t * s = const_cast<wchar_t *>(p.WideString());
+			wchar_t * s = const_cast<wchar_t *>(p.wideString());
 			if (s) 
 			{
 				while (*s) 
@@ -635,7 +636,7 @@ REString & REString::ToUpper()
 					s++;
 				}
 			}
-			this->Set((const wchar_t *)s);
+			this->set((const wchar_t *)s);
 		}
 		else
 		{
@@ -650,12 +651,12 @@ REString & REString::ToUpper()
 	return (*this);
 }
 
-REBOOL REString::IsEmpty() const
+REBOOL REString::isEmpty() const
 {
 	return (_length == 0);
 }
 
-REBOOL REString::IsDigit(const char * charsStringValue)
+REBOOL REString::isDigit(const char * charsStringValue)
 {
 	int dig = (*charsStringValue);
 	while ( dig )
@@ -673,17 +674,17 @@ REBOOL REString::IsDigit(const char * charsStringValue)
 	return true;
 }
 
-REBOOL REString::IsDigit() const
+REBOOL REString::isDigit() const
 {
 	if (_data) 
 	{
-		return REString::IsDigit((const char *)_data);
+		return REString::isDigit((const char *)_data);
 	}
 	return false;
 }
 
 /// Check C string for containing of wide character.
-REBOOL REString::IsContainesNonASCIIChararacters(const char * someString)
+REBOOL REString::isContainesNonASCIIChararacters(const char * someString)
 {
 	if (someString) 
 	{
@@ -701,17 +702,17 @@ REBOOL REString::IsContainesNonASCIIChararacters(const char * someString)
 	return false;
 }
 
-REBOOL REString::IsNonASCIICharsPresent() const
+REBOOL REString::isNonASCIICharsPresent() const
 {
-	return REString::IsContainesNonASCIIChararacters(_data);	
+	return REString::isContainesNonASCIIChararacters(_data);	
 }
 
-const REUInt32 REString::Length() const
+const REUInt32 REString::length() const
 {
 	return _length;
 }
 
-REString & REString::Clear()
+REString & REString::clear()
 {
 	if (_data) 
 	{
@@ -724,30 +725,30 @@ REString & REString::Clear()
 
 REString::REString(const wchar_t * wideStringValue) : _data(NULL), _length(0)
 {
-	this->Set(wideStringValue);
+	this->set(wideStringValue);
 }
 
 REString::REString(const wchar_t * wideStringValue, const REUInt32 stringLength) : _data(NULL), _length(0)
 {
-	this->Set(wideStringValue, stringLength);
+	this->set(wideStringValue, stringLength);
 }
 
 REString::REString(const char * charsStringValue, const REUInt32 stringLength) : _data(NULL), _length(0)
 {
     if (charsStringValue) 
 	{
-		this->SetWithLen(charsStringValue, stringLength);
+		this->setWithLen(charsStringValue, stringLength);
 	}
 }
 
 REString::REString(const char * charsStringValue, const RERange & rangeFromString) : _data(NULL), _length(0)
 {
-	if (charsStringValue && rangeFromString.IsExists()) 
+	if (charsStringValue && rangeFromString.isExists()) 
 	{
 		const REUInt32 len = (REUInt32)strlen(charsStringValue);
 		if (len >= (rangeFromString.location + rangeFromString.length)) 
 		{
-			this->SetWithLen(&charsStringValue[rangeFromString.location], rangeFromString.length);
+			this->setWithLen(&charsStringValue[rangeFromString.location], rangeFromString.length);
 		}
 	}
 }
@@ -756,7 +757,7 @@ REString::REString(const char * charsStringValue) : _data(NULL), _length(0)
 {
 	if (charsStringValue) 
 	{
-		this->SetWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
+		this->setWithLen(charsStringValue, (REUInt32)strlen(charsStringValue));
 	}
 }
 
@@ -764,15 +765,15 @@ REString::REString(const REString & anotherString) : _data(NULL), _length(0)
 {
 	if (anotherString._data && anotherString._length) 
 	{
-		this->SetWithLen(anotherString._data, anotherString._length);
+		this->setWithLen(anotherString._data, anotherString._length);
 	}
 }
 
 REString::REString(const REStringPresentation & anotherStringPresentation) : _data(NULL), _length(0)
 {
-	if (anotherStringPresentation.GetUTF8Length()) 
+	if (anotherStringPresentation.getUTF8Length()) 
 	{
-		this->Set(anotherStringPresentation.UTF8String(), anotherStringPresentation.GetUTF8Length());
+		this->set(anotherStringPresentation.UTF8String(), anotherStringPresentation.getUTF8Length());
 	}
 }
 
@@ -788,7 +789,7 @@ REString::~REString()
 
 
 
-void REStringPresentation::Clear()
+void REStringPresentation::clear()
 {
 	if (_c) 
 	{
@@ -804,9 +805,9 @@ void REStringPresentation::Clear()
 	_wLen = 0;
 }
 
-void REStringPresentation::SetCWithLen(const char * stringValue, const REUInt32 len)
+void REStringPresentation::setCWithLen(const char * stringValue, const REUInt32 len)
 {
-	this->Clear();
+	this->clear();
 	
 	if (stringValue) 
 	{
@@ -815,7 +816,7 @@ void REStringPresentation::SetCWithLen(const char * stringValue, const REUInt32 
 		_c = (char *)REMem::Malloc(stringValueLen + 1);
 		if (_w && _c) 
 		{
-			const int wideLen = REStringPresentation::CharsToWide(stringValue, stringValueLen, _w);
+			const int wideLen = REStringPresentation::charsToWide(stringValue, stringValueLen, _w);
 			if (wideLen > 0) 
 			{
 				_cLen = (REUInt32)stringValueLen;
@@ -827,19 +828,19 @@ void REStringPresentation::SetCWithLen(const char * stringValue, const REUInt32 
 			}
 			else 
 			{
-				this->Clear();
+				this->clear();
 			}
 		}
 		else
 		{
-			this->Clear();
+			this->clear();
 		}
 	}
 }
 
-void REStringPresentation::SetWWithLen(const wchar_t * stringValue, const REUInt32 len)
+void REStringPresentation::setWWithLen(const wchar_t * stringValue, const REUInt32 len)
 {
-	this->Clear();
+	this->clear();
 	if (stringValue) 
 	{
 		const int stringValueLen = (int)len;
@@ -847,7 +848,7 @@ void REStringPresentation::SetWWithLen(const wchar_t * stringValue, const REUInt
 		_c = (char *)REMem::Malloc((stringValueLen + 1) * sizeof(wchar_t));
 		if (_w && _c) 
 		{
-			const int cLen = REStringPresentation::WideToChars(stringValue, stringValueLen, _c);
+			const int cLen = REStringPresentation::wideToChars(stringValue, stringValueLen, _c);
 			if (cLen > 0) 
 			{
 				_cLen = (REUInt32)cLen;
@@ -859,55 +860,55 @@ void REStringPresentation::SetWWithLen(const wchar_t * stringValue, const REUInt
 			}
 			else
 			{
-				this->Clear();
+				this->clear();
 			}
 		}
 		else 
 		{
-			this->Clear();
+			this->clear();
 		}
 	}
 }
 
-void REStringPresentation::SetC(const char * stringValue)
+void REStringPresentation::setC(const char * stringValue)
 {
 	if (stringValue) 
 	{
 		const REUInt32 stringValueLen = (REUInt32)strlen(stringValue);
-		this->SetCWithLen(stringValue, stringValueLen);
+		this->setCWithLen(stringValue, stringValueLen);
 	}
 	else
 	{
-		this->Clear();
+		this->clear();
 	}
 }
 
-void REStringPresentation::SetW(const wchar_t * stringValue)
+void REStringPresentation::setW(const wchar_t * stringValue)
 {
 	if (stringValue) 
 	{
 		const REUInt32 stringValueLen = (REUInt32)wcslen(stringValue);
-		this->SetWWithLen(stringValue, stringValueLen);
+		this->setWWithLen(stringValue, stringValueLen);
 	}
 	else
 	{
-		this->Clear();
+		this->clear();
 	}
 }
 
 const char * REStringPresentation::UTF8String() const { return _c; }
-const REUInt32 REStringPresentation::GetUTF8Length() const { return _cLen; }
-const wchar_t * REStringPresentation::WideString() const { return _w; }
-const REUInt32 REStringPresentation::GetWideLength() const { return _wLen; }
+const REUInt32 REStringPresentation::getUTF8Length() const { return _cLen; }
+const wchar_t * REStringPresentation::wideString() const { return _w; }
+const REUInt32 REStringPresentation::getWideLength() const { return _wLen; }
 REStringPresentation & REStringPresentation::operator=(const REStringPresentation & stringValue)
 {
-	this->SetC(stringValue._c);
+	this->setC(stringValue._c);
 	return (*this);
 }
 
 REStringPresentation & REStringPresentation::operator=(const REString & stringValue)
 {
-	this->SetC(stringValue.UTF8String());
+	this->setC(stringValue.UTF8String());
 	return (*this);
 }
 
@@ -917,7 +918,7 @@ _w(NULL),
 _cLen(0),
 _wLen(0)
 {
-	this->SetC(stringValue);
+	this->setC(stringValue);
 }
 
 REStringPresentation::REStringPresentation(const wchar_t * stringValue) : 
@@ -926,7 +927,7 @@ _w(NULL),
 _cLen(0),
 _wLen(0)
 {
-	this->SetW(stringValue);
+	this->setW(stringValue);
 }
 
 REStringPresentation::REStringPresentation(const REStringPresentation & stringValue) : 
@@ -935,7 +936,7 @@ _w(NULL),
 _cLen(0),
 _wLen(0)
 {
-	this->SetC(stringValue._c);
+	this->setC(stringValue._c);
 }
 
 REStringPresentation::REStringPresentation(const REString & stringValue) : 
@@ -944,7 +945,7 @@ _w(NULL),
 _cLen(0),
 _wLen(0)
 {
-	this->SetC(stringValue.UTF8String());
+	this->setC(stringValue.UTF8String());
 }
 
 REStringPresentation::REStringPresentation() : 
@@ -958,10 +959,10 @@ _wLen(0)
 
 REStringPresentation::~REStringPresentation()
 {
-	this->Clear();
+	this->clear();
 }
 
-int REStringPresentation::WideToChars(const wchar_t * wideString, int wideStringLength, char * charsString)
+int REStringPresentation::wideToChars(const wchar_t * wideString, int wideStringLength, char * charsString)
 {
 	int stringLength = 0;
 	if (wideStringLength > 0)
@@ -1027,7 +1028,7 @@ int REStringPresentation::WideToChars(const wchar_t * wideString, int wideString
 	return stringLength; 
 }
 
-int REStringPresentation::CharsToWide(const char * charsString, int charsStringLengthOrNegative, wchar_t * wideString)
+int REStringPresentation::charsToWide(const char * charsString, int charsStringLengthOrNegative, wchar_t * wideString)
 {
 	if ( charsStringLengthOrNegative < 0)
 	{
@@ -1120,7 +1121,7 @@ int REStringPresentation::CharsToWide(const char * charsString, int charsStringL
 	return stringLength;
 }
 
-void REString::AppendPathComponentToString(const char * pComponent, REString & string)
+void REString::appendPathComponentToString(const char * pComponent, REString & string)
 {
 	const char * component = pComponent;
 	REUInt32 componentLen = (REUInt32)strlen(component);
@@ -1140,11 +1141,11 @@ void REString::AppendPathComponentToString(const char * pComponent, REString & s
 	
 	if (allreadyWithSeparator)
 	{
-		string.AppendWithLen(component, componentLen);
+		string.appendWithLen(component, componentLen);
 	}
 	else
 	{
-		string.AppendFormat("/%s", component);
+		string.appendFormat("/%s", component);
 	}
 	
 	if (string._data && string._length)
@@ -1157,24 +1158,24 @@ void REString::AppendPathComponentToString(const char * pComponent, REString & s
 	}
 }
 
-REString & REString::AppendPathComponent(const char * pComponent)
+REString & REString::appendPathComponent(const char * pComponent)
 {
-	if (this->IsEmpty()) 
+	if (this->isEmpty()) 
 	{
-		this->Set(pComponent);
+		this->set(pComponent);
 		return (*this);
 	}
 	
 	if (pComponent) 
 	{
-		REString::AppendPathComponentToString(pComponent, *this);
+		REString::appendPathComponentToString(pComponent, *this);
 	}
 	return (*this);
 }
 
-void REString::ExtractLastPathComponent(const REString & source, REString & lastPathComponent)
+void REString::extractLastPathComponent(const REString & source, REString & lastPathComponent)
 {
-	REUInt32 srcLen = source.Length();
+	REUInt32 srcLen = source.length();
 	if (srcLen)
 	{
 		const char * src = &source.UTF8String()[srcLen - 1];
@@ -1191,24 +1192,24 @@ void REString::ExtractLastPathComponent(const REString & source, REString & last
 			else
 			{
 				if (needLen) src++;
-				lastPathComponent.SetWithLen(src, needLen);
+				lastPathComponent.setWithLen(src, needLen);
 				return;
 			}
 		}
 	}
-	lastPathComponent.Set("");
+	lastPathComponent.set("");
 }
 
-REString REString::GetLastPathComponent() const
+REString REString::getLastPathComponent() const
 {
 	REString lastPathComponent;
-	REString::ExtractLastPathComponent(*this, lastPathComponent);
+	REString::extractLastPathComponent(*this, lastPathComponent);
 	return lastPathComponent;
 }
 
-void REString::ExtractPathExtension(const REString & source, REString & pathExtension)
+void REString::extractPathExtension(const REString & source, REString & pathExtension)
 {
-	REUInt32 srcLen = source.Length();
+	REUInt32 srcLen = source.length();
 	if (srcLen)
 	{
 		const char * src = &source.UTF8String()[srcLen - 1];
@@ -1225,22 +1226,22 @@ void REString::ExtractPathExtension(const REString & source, REString & pathExte
 			else
 			{
 				if (needLen) src++;
-				pathExtension.SetWithLen(src, needLen);
+				pathExtension.setWithLen(src, needLen);
 				return;
 			}
 		}
 	}
-	pathExtension.Set("");
+	pathExtension.set("");
 }
 
-REString REString::GetPathExtension() const
+REString REString::getPathExtension() const
 {
 	REString pathExtension;
-	REString::ExtractPathExtension(*this, pathExtension);
+	REString::extractPathExtension(*this, pathExtension);
 	return pathExtension;
 }
 
-REString & REString::RemovePathExtension()
+REString & REString::removePathExtension()
 {
 	if (_data && _length) 
 	{
@@ -1267,9 +1268,9 @@ REString & REString::RemovePathExtension()
 	return (*this);
 }
 
-REBOOL REString::InitFromURLString(const REString & urlString)
+REBOOL REString::initFromURLString(const REString & urlString)
 {
-	this->Clear();
+	this->clear();
 	
 #ifdef __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
 	REURL url(urlString);
@@ -1291,7 +1292,7 @@ REBOOL REString::InitFromURLString(const REString & urlString)
 		{
 			REBuffer downlBuff;
 			const REBOOL isSended = REURLConnectionObject::SendRequest(request, &downlBuff, NULL);
-			request->Release();
+			request->release();
 			if (isSended)
 			{
 				if (downlBuff.GetSize()) 
@@ -1306,23 +1307,23 @@ REBOOL REString::InitFromURLString(const REString & urlString)
 	return false;
 }
 
-REString & REString::DecodeSpecialHTMLCharacters()
+REString & REString::decodeSpecialHTMLCharacters()
 {
 
 #ifndef __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ 	
 	
-	if (this->Length() < 3) { return (*this); }
+	if (this->length() < 3) { return (*this); }
 	
 	REStringPresentation p(*this);
-	REUInt32 len = p.GetUTF8Length();
+	REUInt32 len = p.getUTF8Length();
 	if (len < 3) { return (*this); }
 	
 	const char * stringPtr = p.UTF8String();
 	REBuffer buff(len + 1);
-	if (buff.GetSize() != (len + 1)) { return (*this); }
+	if (buff.getSize() != (len + 1)) { return (*this); }
 	
 	REStringHTMLSpecialCharacterPrivate htmlCh;
-	char * dataString = (char *)buff.GetBuffer();
+	char * dataString = (char *)buff.getBuffer();
 	while (len) 
 	{
 		REBOOL notReplaced = true;
@@ -1339,7 +1340,7 @@ REString & REString::DecodeSpecialHTMLCharacters()
 				{
 					char repC[sizeof(wchar_t) * 2] = { 0 };
 					wchar_t repW[2] = { elem->ucharValue, 0 };
-					REStringPresentation::WideToChars(repW, 2, repC);
+					REStringPresentation::wideToChars(repW, 2, repC);
 					const char * pr = repC;
 					while (*pr) { *dataString++ = *pr++; }
 				}
@@ -1356,50 +1357,50 @@ REString & REString::DecodeSpecialHTMLCharacters()
 		}
 	}
 	
-	p.Clear();
+	p.clear();
 	
 	*dataString = 0;
 	
-	this->SetWithLen((const char *)buff.GetBuffer(), buff.GetSize() - 1);
+	this->setWithLen((const char *)buff.getBuffer(), buff.getSize() - 1);
 
 #endif /* __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ */	
 	
 	return (*this);
 }
 
-REString & REString::EncodeWithSpecialHTMLCharacters()
+REString & REString::encodeWithSpecialHTMLCharacters()
 {
 	
 #ifndef __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ 
 	
-	if (this->IsEmpty()) { return (*this); }
+	if (this->isEmpty()) { return (*this); }
 	
 	REStringPresentation p(*this);
-	if (p.GetWideLength() == 0) { return (*this); }
+	if (p.getWideLength() == 0) { return (*this); }
 	
 	
-	REUInt32 buffSize = (p.GetUTF8Length() + 256) * sizeof(wchar_t);
+	REUInt32 buffSize = (p.getUTF8Length() + 256) * sizeof(wchar_t);
 	REUInt32 dSize = 0;
 	REBuffer buff(buffSize);
-	if (buff.GetSize() != buffSize) { return (*this); }
+	if (buff.getSize() != buffSize) { return (*this); }
 	
 	REStringHTMLSpecialCharacterPrivate htmlCh;
-	const wchar_t * s = p.WideString();
-	wchar_t * d = (wchar_t *)buff.GetBuffer();
+	const wchar_t * s = p.wideString();
+	wchar_t * d = (wchar_t *)buff.getBuffer();
 	while (*s) 
 	{
 		const REStringHTMLSpecialCharacterPrivate::MapStruct * elem = htmlCh.GetForWChar(*s);
 		if (elem) 
 		{
 			REStringPresentation pr(elem->strValue);
-			const wchar_t * prW = pr.WideString();
+			const wchar_t * prW = pr.wideString();
 			while (*prW) 
 			{
 				if (dSize == buffSize) 
 				{
 					buffSize += (512 * sizeof(wchar_t));
-					if (!buff.Resize(buffSize, true)) { return (*this); }
-					wchar_t * d1 = (wchar_t*)buff.GetBuffer();
+					if (!buff.resize(buffSize, true)) { return (*this); }
+					wchar_t * d1 = (wchar_t *)buff.getBuffer();
 					d = &d1[dSize / sizeof(wchar_t)];
 				}
 				*d++ = *prW++;
@@ -1412,8 +1413,8 @@ REString & REString::EncodeWithSpecialHTMLCharacters()
 			if (dSize == buffSize) 
 			{
 				buffSize += (512 * sizeof(wchar_t));
-				if (!buff.Resize(buffSize, true)) { return (*this); }
-				wchar_t * d1 = (wchar_t*)buff.GetBuffer();
+				if (!buff.resize(buffSize, true)) { return (*this); }
+				wchar_t * d1 = (wchar_t *)buff.getBuffer();
 				d = &d1[dSize / sizeof(wchar_t)];
 			}
 			*d++ = *s++;
@@ -1421,21 +1422,21 @@ REString & REString::EncodeWithSpecialHTMLCharacters()
 		}
 	}
 	
-	p.Clear();
+	p.clear();
 	
 	if (dSize == buffSize) 
 	{
 		buffSize += (2 * sizeof(wchar_t));
-		if (!buff.Resize(buffSize, true)) { return (*this); }
-		wchar_t * d1 = (wchar_t*)buff.GetBuffer();
+		if (!buff.resize(buffSize, true)) { return (*this); }
+		wchar_t * d1 = (wchar_t *)buff.getBuffer();
 		d = &d1[dSize / sizeof(wchar_t)];
 	}
 	
 	*d = 0;
 	
-	REStringPresentation prF((const wchar_t*)buff.GetBuffer());
+	REStringPresentation prF((const wchar_t *)buff.getBuffer());
 	
-	this->SetWithLen(prF.UTF8String(), prF.GetUTF8Length());
+	this->setWithLen(prF.UTF8String(), prF.getUTF8Length());
 
 #endif /* __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ */	
 	

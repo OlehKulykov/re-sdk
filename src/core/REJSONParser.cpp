@@ -100,7 +100,7 @@ void REJSONParserPrivate::CleanAll(REJSONParserPrivate::Struct * p)
 	if (p->index >= 0)
 	{
 		REObject * rootObject = p->objects[0];
-		if (rootObject) rootObject->Release();
+		if (rootObject) rootObject->release();
 	}
 	REJSONParserPrivate::FreeParserDataStruct(p);
 }
@@ -178,13 +178,13 @@ REObject * REJSONParserPrivate::TryNumber(REJSONParserPrivate::Struct * p)
 			if (strncmp((const char *)p->data, "true", 4) == 0)
 			{
 				p->data += 3; /// don't set currect offset to last char
-				return RENumberObject::CreateWithBool(true);
+				return RENumberObject::createWithBool(true);
 			} break;
 		case CH('f'): /// false
 			if (strncmp((const char *)p->data, "false", 5) == 0)
 			{
 				p->data += 4; /// don't set currect offset to last char
-				return RENumberObject::CreateWithBool(false);
+				return RENumberObject::createWithBool(false);
 			} break;
 		case CH('n'): /// null
 			if (strncmp((const char *)p->data, "null", 4) == 0)
@@ -219,14 +219,14 @@ REObject * REJSONParserPrivate::TryNumber(REJSONParserPrivate::Struct * p)
 		char * endConvertion = 0;
 		const double v = strtod(start, &endConvertion);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return RENumberObject::CreateWithFloat64(v);
+		return RENumberObject::createWithFloat64(v);
 	}
 	else
 	{
 		char * endConvertion = 0;
 		const long long v = strtoll(start, &endConvertion, 10);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return RENumberObject::CreateWithInt64(v);
+		return RENumberObject::createWithInt64(v);
 	}
 	return 0;
 }
@@ -323,7 +323,7 @@ void REJSONParserPrivate::ParseReplacementString(const uint8_t * data, uint32_t 
 			curr = *++data;
 		}
 		
-		REStringObject * newString = REStringObject::CreateWithCharsAndLen(startNewBuff, (REUInt32)((const uint8_t *)newBuffer - (const uint8_t *)startNewBuff));
+		REStringObject * newString = REStringObject::createWithCharsAndLen(startNewBuff, (REUInt32)((const uint8_t *)newBuffer - (const uint8_t *)startNewBuff));
 		free(newBuffer);
 		if (newString) *resString = newString;
 	}
@@ -360,7 +360,7 @@ void REJSONParserPrivate::ParseString(REJSONParserPrivate::Struct * p, REStringO
 	} while (++data <= end);
 	
 	if (isHasReplacement) REJSONParserPrivate::ParseReplacementString(start, (data - start), resString);
-	else *resString = REStringObject::CreateWithCharsAndLen((const char*)start, (REUInt32)(data - start));
+	else *resString = REStringObject::createWithCharsAndLen((const char*)start, (REUInt32)(data - start));
 }
 
 #define IS_CONTAINER(o) ((o&O_DICT)||(o&O_ARRAY)) 
@@ -382,8 +382,8 @@ uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObjec
 		if ( p->types[currIndex] & O_ARRAY )
 		{
 			REObjectsArray * arr = (REObjectsArray *)p->objects[currIndex];
-			arr->Add(obj);
-			obj->Release();
+			arr->add(obj);
+			obj->release();
 			if ( IS_CONTAINER(type) )
 			{
 				p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_ARRAY_ELEM);
@@ -405,9 +405,9 @@ uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObjec
 			if ( p->types[prevIndex] & O_DICT )
 			{
 				REObjectsDictionary * dict = (REObjectsDictionary *)p->objects[prevIndex];
-				dict->SetObject(obj, p->objects[currIndex]);
-				obj->Release();
-				(p->objects[currIndex])->Release();
+				dict->setObject(obj, p->objects[currIndex]);
+				obj->release();
+				(p->objects[currIndex])->release();
 				if ( IS_CONTAINER(type) )
 				{
 					p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_DICT_VALUE);
@@ -449,7 +449,7 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 		{
 			case CH('{'):
 			{
-				REObjectsDictionary * newDict = REObjectsDictionary::Create();
+				REObjectsDictionary * newDict = REObjectsDictionary::create();
 				if (newDict)
 				{
 					if (!REJSONParserPrivate::AddObject(&p, newDict, O_DICT)) 
@@ -470,7 +470,7 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 				
 			case CH('['):
 			{
-				REObjectsArray * newArray = REObjectsArray::CreateWithCapacity(2);
+				REObjectsArray * newArray = REObjectsArray::createWithCapacity(2);
 				if (newArray) 
 				{
 					if (!REJSONParserPrivate::AddObject(&p, newArray , O_ARRAY)) 
@@ -537,17 +537,17 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 }
 
 
-REObject * REJSONParser::GetRootObject() const
+REObject * REJSONParser::getRootObject() const
 {
 	return _rootObject;
 }
 
-REBOOL REJSONParser::Parse()
+REBOOL REJSONParser::parse()
 {
 	if (_buffer)
 	{
-		_rootObject = REJSONParserPrivate::Parse((const uint8_t *)_buffer->GetBuffer(),
-												 (const uint32_t)_buffer->GetSize(), 
+		_rootObject = REJSONParserPrivate::Parse((const uint8_t *)_buffer->getBuffer(),
+												 (const uint32_t)_buffer->getSize(), 
 												 NULL);
 		return true;
 	}
@@ -558,9 +558,9 @@ REJSONParser::REJSONParser(const REData & data) :
 	_rootObject(NULL),
 	_buffer(NULL)
 {
-	if (!data.IsEmpty())
+	if (!data.isEmpty())
 	{
-		_buffer = REBufferObject::CreateWithMemory((const void *)data.GetBytes(), data.GetSize());
+		_buffer = REBufferObject::createWithMemory((const void *)data.getBytes(), data.getSize());
 	}
 }
 
@@ -571,7 +571,7 @@ REJSONParser::REJSONParser(REBufferObject * buffer) :
 	if (buffer)
 	{
 		_buffer = buffer;
-		_buffer->Retain();
+		_buffer->retain();
 	}
 }
 
@@ -582,7 +582,7 @@ REJSONParser::REJSONParser(REObjectsDictionary * dictionary, REBufferObject * bu
 	if (buffer)
 	{
 		_buffer = buffer;
-		_buffer->Retain();
+		_buffer->retain();
 	}
 }
 
@@ -590,12 +590,12 @@ REJSONParser::~REJSONParser()
 {
 	if (_rootObject)
 	{
-		_rootObject->Release();
+		_rootObject->release();
 	}
 	
 	if (_buffer)
 	{
-		_buffer->Release();
+		_buffer->release();
 	}
 }
 

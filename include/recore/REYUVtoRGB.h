@@ -95,10 +95,10 @@ class __RE_PUBLIC_CLASS_API__ REYUVtoRGB
 {
 public:
 	/// Returns pointer to array for converting to BGR565 table.
-    static const REUInt32 * GetYUVtoBGR565Table();
+    static const REUInt32 * getYUVtoBGR565Table();
 	
 	/// Returns pointer to array for converting to RGB565 table.
-    static const REUInt32 * GetYUVtoRGB565Table();
+    static const REUInt32 * getYUVtoRGB565Table();
     
 	/// Converts YUV420 to RGB565.
     static void YUV420toRGB565(REUByte * dst_ptr,

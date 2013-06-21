@@ -49,7 +49,7 @@ public:
 	/// Check is range exists.
 	/// Range exists if location not equal to RENotFound and
 	/// length not equal to zero.
-	REBOOL IsExists() const 
+	REBOOL isExists() const 
 	{
 		return ( (location != RENotFound) && (length != 0) ); 
 	}
@@ -57,13 +57,13 @@ public:
 	/// Check is range exists.
 	/// Range not exists if location is equal to RENotFound and
 	/// length is equal to zero.
-	REBOOL IsNotExists() const
+	REBOOL isNotExists() const
 	{
 		return ( (location == RENotFound) && (length == 0) ); 
 	}
 	
 	/// Sets range to not existent.
-	RERange & ToNonExistent()
+	RERange & toNonExistent()
 	{
 		location = RENotFound;
 		length = 0;
@@ -71,7 +71,7 @@ public:
 	}
 	
 	/// Sets range with new location and length.
-	RERange & Set(const REUInt32 newLocation, const REUInt32 newLenght)
+	RERange & set(const REUInt32 newLocation, const REUInt32 newLenght)
 	{
 		location = newLocation;
 		length = newLenght;
@@ -79,7 +79,7 @@ public:
 	}
 	
 	/// Check is range qual to another range.
-	REBOOL IsEqual(const RERange & anotherRange) 
+	REBOOL isEqual(const RERange & anotherRange) 
 	{
 		return ((location == anotherRange.location) && (length == anotherRange.length)); 
 	}
@@ -129,7 +129,6 @@ public:
 		
 	}
 	
-	/// Destructor.
 	~RERange() { }
 };
 

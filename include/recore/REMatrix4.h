@@ -50,7 +50,7 @@ public:
 		REFloat32 line[16];
 	};
 	
-	REMatrix4 & Multiply(const REMatrix4 & am)
+	REMatrix4 & multiply(const REMatrix4 & am)
 	{
 #if defined(__ARM_NEON__)
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
@@ -103,7 +103,7 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & Add(const REMatrix4 & am)
+	REMatrix4 & add(const REMatrix4 & am)
 	{
 #if defined(__ARM_NEON__)
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
@@ -134,7 +134,7 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & Subtract(const REMatrix4 & am)
+	REMatrix4 & subtract(const REMatrix4 & am)
 	{
 #if defined(__ARM_NEON__)
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
@@ -165,7 +165,7 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & Translate(const REFloat32 tx, const REFloat32 ty, const REFloat32 tz)
+	REMatrix4 & translate(const REFloat32 tx, const REFloat32 ty, const REFloat32 tz)
 	{
 		REMatrix4 m(*this);
 		line[12] = m.line[0] * tx + m.line[4] * ty + m.line[8] * tz + m.line[12];
@@ -174,7 +174,7 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & Scale(const REFloat32 sx, const REFloat32 sy, const REFloat32 sz)
+	REMatrix4 & scale(const REFloat32 sx, const REFloat32 sy, const REFloat32 sz)
 	{
 #if defined(__ARM_NEON__)
 		float32x4x4_t iMatrix = *(float32x4x4_t *)&armNeonMatrix;
@@ -204,14 +204,14 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & Rotate(const REFloat32 radians, const REFloat32 x, const REFloat32 y, const REFloat32 z)
+	REMatrix4 & rotate(const REFloat32 radians, const REFloat32 x, const REFloat32 y, const REFloat32 z)
 	{
-		return this->Multiply(REMatrix4::CreateRotation(radians, x, y, z));
+		return this->multiply(REMatrix4::createRotation(radians, x, y, z));
 	}
 	
-	REMatrix4 & Rotate(const REFloat32 radians, const REVector3 & axisVector)
+	REMatrix4 & rotate(const REFloat32 radians, const REVector3 & axisVector)
 	{
-		return this->Multiply(REMatrix4::CreateRotation(radians, axisVector.x, axisVector.y, axisVector.z));
+		return this->multiply(REMatrix4::createRotation(radians, axisVector.x, axisVector.y, axisVector.z));
 	}
 	
 	REMatrix4 & operator=(const REMatrix4 & anotherMatrix3D)
@@ -224,7 +224,7 @@ public:
 		return (*this);
 	}
 	
-	REMatrix4 & ToIdentity()
+	REMatrix4 & toIdentity()
 	{
 		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
 		m00 = m11 = m22 = m33 = 1.0f;
@@ -244,7 +244,7 @@ public:
 	REMatrix4() { REMem::Memset(line, 0, sizeof(REFloat32) * 16); }
 	~REMatrix4() { }
 	
-	REMatrix4 & ToPerspective(const REFloat32 fovyRadians, 
+	REMatrix4 & toPerspective(const REFloat32 fovyRadians, 
 							   const REFloat32 aspect, 
 							   const REFloat32 nearZ, 
 							   const REFloat32 farZ)
@@ -260,18 +260,18 @@ public:
 		return (*this);
 	}
 	
-	static REMatrix4 CreatePerspective(const REFloat32 fovyRadians, 
+	static REMatrix4 createPerspective(const REFloat32 fovyRadians, 
 										const REFloat32 aspect, 
 										const REFloat32 nearZ, 
 										const REFloat32 farZ)
 	{
 		REMatrix4 m;
-		m.ToPerspective(fovyRadians, aspect, nearZ, farZ);
+		m.toPerspective(fovyRadians, aspect, nearZ, farZ);
 		return m;
 	}
 	
 	
-	REMatrix4 & ToFrustum(const REFloat32 left, 
+	REMatrix4 & toFrustum(const REFloat32 left, 
 						   const REFloat32 right,
 						   const REFloat32 bottom, 
 						   const REFloat32 top,
@@ -295,7 +295,7 @@ public:
 		return (*this);
 	}
 	
-	static REMatrix4 CreateFrustum(const REFloat32 left, 
+	static REMatrix4 createFrustum(const REFloat32 left, 
 									const REFloat32 right,
 									const REFloat32 bottom, 
 									const REFloat32 top,
@@ -303,11 +303,11 @@ public:
 									const REFloat32 farZ)
 	{
 		REMatrix4 m;
-		m.ToFrustum(left, right, bottom, top, nearZ, farZ);
+		m.toFrustum(left, right, bottom, top, nearZ, farZ);
 		return m;
 	}
 	
-	REMatrix4 & ToOrtho(const REFloat32 left, 
+	REMatrix4 & toOrtho(const REFloat32 left, 
 						 const REFloat32 right,
 						 const REFloat32 bottom, 
 						 const REFloat32 top,
@@ -331,7 +331,7 @@ public:
 		return (*this);
 	}
 	
-	static REMatrix4 CreateOrtho(const REFloat32 left, 
+	static REMatrix4 createOrtho(const REFloat32 left, 
 								  const REFloat32 right,
 								  const REFloat32 bottom, 
 								  const REFloat32 top,
@@ -339,11 +339,11 @@ public:
 								  const REFloat32 farZ)
 	{
 		REMatrix4 m;
-		m.ToOrtho(left, right, bottom, top, nearZ, farZ);
+		m.toOrtho(left, right, bottom, top, nearZ, farZ);
 		return m;
 	}
 	
-	REMatrix4 & ToLookAt(const REFloat32 eyeX, 
+	REMatrix4 & toLookAt(const REFloat32 eyeX, 
 						  const REFloat32 eyeY,
 						  const REFloat32 eyeZ,
 						  const REFloat32 centerX, 
@@ -360,12 +360,12 @@ public:
 		
 		REVector3 n(ev);
 		n += -cv;
-		n.Normalize();
+		n.normalize();
 		
-        REVector3 u(REVector3::CrossProduct(uv, n));
-		u.Normalize();
+        REVector3 u(REVector3::crossProduct(uv, n));
+		u.normalize();
 		
-        REVector3 v(REVector3::CrossProduct(n, u));
+        REVector3 v(REVector3::crossProduct(n, u));
 		
 		m00 = u.x;
 		m01 = v.x;
@@ -379,14 +379,14 @@ public:
 		m21 = v.z;
 		m22 = n.z;
 		
-        m30 = REVector3::DotProduct(-u, ev);
-        m31 = REVector3::DotProduct(-v, ev);
-        m32 = REVector3::DotProduct(-n, ev);
+        m30 = REVector3::dotProduct(-u, ev);
+        m31 = REVector3::dotProduct(-v, ev);
+        m32 = REVector3::dotProduct(-n, ev);
 		m33 = 1.0f;
 		return (*this);
 	}
 	
-	static REMatrix4 CreateLookAt(const REFloat32 eyeX, 
+	static REMatrix4 createLookAt(const REFloat32 eyeX, 
 								   const REFloat32 eyeY,
 								   const REFloat32 eyeZ,
 								   const REFloat32 centerX, 
@@ -397,19 +397,19 @@ public:
 								   const REFloat32 upZ)
 	{
 		REMatrix4 m;
-		m.ToLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+		m.toLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 		return m;
 	}
 	
-	static REMatrix4 CreateFromQuaternion(const REQuaternion & aq);
+	static REMatrix4 createFromQuaternion(const REQuaternion & aq);
 	
-	static REMatrix4 CreateRotation(const REFloat32 radians, const REFloat32 x, const REFloat32 y, const REFloat32 z)
+	static REMatrix4 createRotation(const REFloat32 radians, const REFloat32 x, const REFloat32 y, const REFloat32 z)
 	{
 		const REFloat32 cosV = cosf(radians);
 		const REFloat32 cospV = 1.0f - cosV;
 		const REFloat32 sinV = sinf(radians);
 		REVector3 n(x,y,z);
-		n.Normalize();
+		n.normalize();
 		REMatrix4 m;
 		m.line[0] = cosV + cospV * n.x * n.x;
 		m.line[1] = cospV * n.x * n.y + n.z * sinV;
@@ -425,7 +425,7 @@ public:
 	}
 	
 #ifdef __RE_DEBUG_MODE__
-	void Log() const;
+	void log() const;
 #endif	
 	
 };

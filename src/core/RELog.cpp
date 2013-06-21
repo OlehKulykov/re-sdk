@@ -19,18 +19,18 @@
 #include <stdio.h>
 #include <wchar.h>
 
-void RELog::Log(const char * logString, ...)
+void RELog::log(const char * logString, ...)
 {
 	if (logString)
 	{
 		va_list args;
 		va_start(args, logString);
-		RELog::LogA(logString, args);
+		RELog::logA(logString, args);
 		va_end(args);
 	}
 }
 
-void RELog::LogA(const char * logString, va_list arguments)
+void RELog::logA(const char * logString, va_list arguments)
 {
 	if (logString)
 	{

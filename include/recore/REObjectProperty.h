@@ -27,10 +27,10 @@ class __RE_PUBLIC_CLASS_API__ IREObjectProperty
 { 
 public: 
     /// Settes property value from object.
-	virtual void SetObject(REObject * v) = 0;
+	virtual void setObject(REObject * v) = 0;
 	
 	/// Getter for pointer of object.
-	virtual REObject * GetObject() const = 0;
+	virtual REObject * getObject() const = 0;
 	
 	/// Desctructor.
 	virtual ~IREObjectProperty() { } 
@@ -46,23 +46,23 @@ private:
 	PT _value;
 public:
 	/// Settes property value from object.
-	virtual void SetObject(REObject * v)
+	virtual void setObject(REObject * v)
 	{
-		if (_value) { _value->Release(); _value = NULL; }
-		if (v) { _value = (PT)v; _value->Retain(); }
+		if (_value) { _value->release(); _value = NULL; }
+		if (v) { _value = (PT)v; _value->retain(); }
 	}
 	
 	/// Getter for pointer of object.
-	virtual REObject * GetObject() const { return _value; }
+	virtual REObject * getObject() const { return _value; }
 	
 	/// Check is object value exists and has null value
-	REBOOL IsNull() const { return ((_value) ? false : true); }
+	REBOOL isNull() const { return ((_value) ? false : true); }
 	
 	/// Check is object value exists and not null value
-	REBOOL IsNotNull() const { return ((_value) ? true : false); }
+	REBOOL isNotNull() const { return ((_value) ? true : false); }
 	
 	/// Overloaded basic assignment operator.
-	RERetainProperty & operator=(const PT & v) { this->SetObject(v); return (*this); }
+	RERetainProperty & operator=(const PT & v) { this->setObject(v); return (*this); }
 	
 	/// Overloaded Cast operator.
 	operator PT() const { return *((PT*)(&_value)); }
@@ -75,13 +75,13 @@ public:
 	
 	/// Constructor with property value.
 	/// Example: RERetainProperty<REView*> prop(view);
-	RERetainProperty(const RERetainProperty & v) : _value(NULL) { this->SetObject(v._value); }
+	RERetainProperty(const RERetainProperty & v) : _value(NULL) { this->setObject(v._value); }
 	
 	/// Constructor with property value setted to zero.
 	RERetainProperty() : _value(NULL) { }
 	
 	/// Desctructor.
-	virtual ~RERetainProperty() { if (_value) { _value->Release(); } }
+	virtual ~RERetainProperty() { if (_value) { _value->release(); } }
 };
 
 

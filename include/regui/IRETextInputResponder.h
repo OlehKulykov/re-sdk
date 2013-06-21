@@ -26,34 +26,34 @@ class __RE_PUBLIC_CLASS_API__ IRETextInputResponder
 {
 public:
 	/// Inform object that text input started.
-	virtual void OnTextInputResponderTextInputStarted() = 0;
+	virtual void onTextInputResponderTextInputStarted() = 0;
 	
 	/// Inform object that text input ended.
-	virtual void OnTextInputResponderTextInputEnded() = 0;
+	virtual void onTextInputResponderTextInputEnded() = 0;
 	
 	/// Called when text of responder changed.
-	virtual void OnTextInputResponderTextChanged(const REString & newTextString) = 0;
+	virtual void onTextInputResponderTextChanged(const REString & newTextString) = 0;
 	
 	/// Returns object identifier.
-	virtual const REUIdentifier GetTextInputResponderObjectIdentifier() const = 0;
+	virtual const REUIdentifier getTextInputResponderObjectIdentifier() const = 0;
 	
 	/// Tell object to become first responder.
-	virtual REBOOL BecomeFirstTextInputResponder() = 0;
+	virtual REBOOL becomeFirstTextInputResponder() = 0;
 	
 	/// Tell object to become first responder.
-	virtual REBOOL ResignFirstTextInputResponder() = 0;
+	virtual REBOOL resignFirstTextInputResponder() = 0;
 	
 	/// Returns maximum accepted text length.
-	virtual const REUInt32 GetTextInputResponderMaximumTextLength() const = 0;
+	virtual const REUInt32 getTextInputResponderMaximumTextLength() const = 0;
 	
 	/// Ask responder for using text input limit for maximum text length.
-	virtual REBOOL IsTextInputResponderHasMaximumTextLength() const = 0;
+	virtual REBOOL isTextInputResponderHasMaximumTextLength() const = 0;
 	
 	/// Ask responder is need to clear previous inputed text after becom first responder.
-	virtual REBOOL IsClearPreviousInputedText() const = 0;
+	virtual REBOOL isClearPreviousInputedText() const = 0;
 	
 	/// Ask responder for inputed text.
-	virtual const REString & GetTextInputResponderText() const = 0;
+	virtual const REString & getTextInputResponderText() const = 0;
 	
 	/// Destructor.
 	virtual ~IRETextInputResponder() { }

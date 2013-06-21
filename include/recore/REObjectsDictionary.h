@@ -47,11 +47,11 @@ public:
 
 private:
 	REArray<REObjectsDictionary::KeyObjectStruct> _pairs;
-	REObjectsDictionary::KeyObjectStruct * PairForKey(REObject * keyObj);
+	REObjectsDictionary::KeyObjectStruct * pairForKey(REObject * keyObj);
 
-	static REBOOL IsEqualByPairs(REObject * anotherObject, REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
-	static REBOOL WritePairsToFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
-	static REBOOL ReadPairsFromFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
+	static REBOOL isEqualByPairs(REObject * anotherObject, REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
+	static REBOOL writePairsToFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
+	static REBOOL readPairsFromFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
 	
 protected:
 	/// Default constructor.
@@ -63,61 +63,61 @@ protected:
 public:
 	/// Return pointer for array of key object pairs.
 	/// All objects is Retain()'ed.
-	REArray<REObjectsDictionary::KeyObjectStruct> * GetPairs();
+	REArray<REObjectsDictionary::KeyObjectStruct> * getPairs();
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier(); 
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual REBOOL IsEqual(REObject * anotherObject);
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier(); 
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
+	virtual void onReleased();
 	
 	/// Writes dictionary using text plist format to file 'path'.
 	/// All intermediate directories of 'path' must exists.
 	/// If file for 'path' allready exists it's will be rewrited.
-	REBOOL WriteToFile(const REString & path);
+	REBOOL writeToFile(const REString & path);
 	
 	/// Initializes dictionary key object pairs from file 'path'.
 	/// File must be in text plist format.
-	REBOOL InitFromFilePath(const REString & path);
+	REBOOL initFromFilePath(const REString & path);
 	
 	/// Reads all dictionary key objects to array 'keys'.
 	/// Use this keys for accessing to dictionary objects.
 	/// Returns 'false' if 'keys' is NULL or error adding occurred.
-	REBOOL ReadAllKeys(REArray<REObject*> * keys);
+	REBOOL readAllKeys(REArray<REObject*> * keys);
 	
 	/// Removes all key pairs from dictionary.
 	/// Each key and object of pair called Release().
-	void Clear();
+	void clear();
 	
 	/// Setting object value for key.
 	/// After successfull setting object and key both will be Retain()'ed.
 	/// If object allready exists old object will be repleced with new one.
 	/// In this case old object call Release() and new object call Retain().
 	/// You must use REStringObject for key.
-	REBOOL SetObject(REObject * objValue, REObject * keyObject);
+	REBOOL setObject(REObject * objValue, REObject * keyObject);
 	
 	/// Setting object value for key as in 'REBOOL SetObject(REObject * objValue, REObject * keyObject);'
 	/// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-	REBOOL SetObject(REObject * objValue, const REString & stringKey);
+	REBOOL setObject(REObject * objValue, const REString & stringKey);
 	
 	/// Setting object value for key as in 'REBOOL SetObject(REObject * objValue, REObject * keyObject);'
 	/// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-	REBOOL SetObject(REObject * objValue, const char * stringKey);
+	REBOOL setObject(REObject * objValue, const char * stringKey);
 	
 	/// Return object or NULL for key.
-	REObject * GetObjectForKey(REObject * keyObject);
+	REObject * getObjectForKey(REObject * keyObject);
 	
 	/// Return object or NULL for key as in 'REObject * GetObjectForKey(REObject * keyObject);'
 	/// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-	REObject * GetObjectForKey(const REString & stringKey);
+	REObject * getObjectForKey(const REString & stringKey);
 	
 	/// Return object or NULL for key as in 'REObject * GetObjectForKey(REObject * keyObject);'
 	/// As 'keyObject' will use REStringObject initialized from 'stringKey'.
-	REObject * GetObjectForKey(const char * stringKey);
+	REObject * getObjectForKey(const char * stringKey);
 	
 	/// Creates and return new dictionary object.
-	static REObjectsDictionary * Create();
+	static REObjectsDictionary * create();
 };
 
 #endif /* __REOBJECTSDICTIONARY_H__ */

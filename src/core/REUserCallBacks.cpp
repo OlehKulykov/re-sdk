@@ -19,16 +19,16 @@
 
 __RE_PUBLIC_CLASS_API__ REUserCallBacks::UserCallBacks REUserCallBacks::_callBacks = { 0 };
 
-void REUserCallBacks::SetCreateAudioPlayer(REInt32 (*CreateAudioPlayer)(const char *))
+void REUserCallBacks::setCreateAudioPlayer(REInt32 (*CreateAudioPlayer)(const char *))
 {
 	_callBacks.CreateAudioPlayer = CreateAudioPlayer;
 }
-REBOOL REUserCallBacks::IsCreateAudioPlayer()
+REBOOL REUserCallBacks::isCreateAudioPlayer()
 {
 	if (_callBacks.CreateAudioPlayer) { return true; }
 	return false;
 }
-REInt32 REUserCallBacks::CallCreateAudioPlayer(const char * filePath)
+REInt32 REUserCallBacks::callCreateAudioPlayer(const char * filePath)
 {
 	if (_callBacks.CreateAudioPlayer && filePath) 
 	{
@@ -37,16 +37,16 @@ REInt32 REUserCallBacks::CallCreateAudioPlayer(const char * filePath)
 	return -1;
 }
 
-void REUserCallBacks::SetSendAudioPlayerMessage(REInt32 (*SendAudioPlayerMessage)(REInt32, REInt32, REInt32))
+void REUserCallBacks::setSendAudioPlayerMessage(REInt32 (*SendAudioPlayerMessage)(REInt32, REInt32, REInt32))
 {
 	_callBacks.SendAudioPlayerMessage = SendAudioPlayerMessage;
 }
-REBOOL REUserCallBacks::IsSendAudioPlayerMessage()
+REBOOL REUserCallBacks::isSendAudioPlayerMessage()
 {
 	if (_callBacks.SendAudioPlayerMessage) { return true; }
 	return false;
 }
-REInt32 REUserCallBacks::CallSendAudioPlayerMessage(REInt32 audioPlayerID, REInt32 message, REInt32 param)
+REInt32 REUserCallBacks::callSendAudioPlayerMessage(REInt32 audioPlayerID, REInt32 message, REInt32 param)
 {
 	if (_callBacks.SendAudioPlayerMessage && (audioPlayerID >= 0) ) 
 	{

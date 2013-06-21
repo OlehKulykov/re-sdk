@@ -27,8 +27,8 @@ class __RE_PUBLIC_CLASS_API__ REFontsCache
 private:
 	static REArray<REFontBase *> _cache;
 public:
-	REFontBase * Get(REFontBase * base);
-	void Deleted(REFontBase * base);
+	REFontBase * get(REFontBase * base);
+	void deleted(REFontBase * base);
 	
 	REFontsCache();
 	~REFontsCache();

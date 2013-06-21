@@ -31,19 +31,19 @@ protected:
 	virtual ~REStackedViewController();
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/// Pushes all subviews and removes or not current subview.
-	REBOOL PushSubViews(const REBOOL isRemoveCurrentSubViews = true);
+	REBOOL pushSubViews(const REBOOL isRemoveCurrentSubViews = true);
 	
 	/// Pops back pushed subview.
-	REBOOL PopSubViews();
+	REBOOL popSubViews();
 	
 	/// Creates and returns new object of stacked view controller.
-	static REStackedViewController * Create();
+	static REStackedViewController * create();
 };
 
 

@@ -1,3 +1,11 @@
+xcodebuild -configuration Release -project recore.xcodeproj -target CreateREConfigHardcoded -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
+rm -rf obj
+rm -rf sym
+
+rm -f ../../include/reconfig/REConfigHardcoded.h.bac
+mv ../../include/reconfig/REConfigHardcoded.h ../../include/reconfig/REConfigHardcoded.h.bac
+mv REConfigHardcoded.h ../../include/reconfig/REConfigHardcoded.h
+
 xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
 mv sym/Release-iphonesimulator/librecore.a ../../lib_bin/ios/librecore-iphonesimulator.a
 cd obj
@@ -109,7 +117,8 @@ mkdir -p RECoreSDK.framework/Versions/A/Headers/remedia
 
 cp ../../include/reconfig/REConfigIPhone.h RECoreSDK.framework/Versions/A/Headers/reconfig/
 cp ../../include/reconfig/REConfigSelector.h RECoreSDK.framework/Versions/A/Headers/reconfig/
-echo "#define __RE_OS_IPHONE__ " > RECoreSDK.framework/Versions/A/Headers/reconfig/REConfigHardcoded.h
+cp ../../include/reconfig/REConfigHardcoded.h RECoreSDK.framework/Versions/A/Headers/reconfig/
+echo -e "\n#ifndef __RE_OS_IPHONE__ \n#define __RE_OS_IPHONE__ \n#endif\n\n" >> RECoreSDK.framework/Versions/A/Headers/reconfig/REConfigHardcoded.h
 cp ../../include/recore.h RECoreSDK.framework/Versions/A/Headers/recore.h
 cp ../../include/regui.h RECoreSDK.framework/Versions/A/Headers/regui.h
 cp ../../include/remedia.h RECoreSDK.framework/Versions/A/Headers/remedia.h
@@ -130,3 +139,7 @@ ln -s Versions/Current/RECoreSDK RECoreSDK.framework/RECoreSDK
 
 rm -f RECoreSDK
 rm -f all.a
+
+rm -f ../../include/reconfig/REConfigHardcoded.h
+mv ../../include/reconfig/REConfigHardcoded.h.bac ../../include/reconfig/REConfigHardcoded.h
+
