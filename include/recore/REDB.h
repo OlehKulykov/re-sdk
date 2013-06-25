@@ -22,23 +22,46 @@
 #include "RECommonHeader.h"
 #include "REPtr.h"
 #include "REString.h"
+#include "REDBResultSet.h"
 
-#if (defined(__BUILDING_RECORE_DYNAMIC_LIBRARY__) || defined(__USING_RECORE_DYNAMIC_LIBRARY__))
-/// Warning message 4251: Class 'REArray<T>' needs to have dll-interface to be used by clients of class.
-/// Why disable 4251: Class 'REArray<T>' defined as private field and no clents can access it.
-/// To access must use public methods.
-#ifdef _MSC_VER
-#pragma warning(disable:4251)
-#endif
-#endif
-
-/// Class of Sqlite data base.
+/// Base class of data base.
 class __RE_PUBLIC_CLASS_API__ REDB
 {
 protected:
 	REDB();
 	
 public:
+	virtual REString getDatabaseFullPath() const;
+	
+	/// Opens data base.
+	virtual REBOOL open();
+	
+	/// Check is database opened.
+	virtual REBOOL isOpened() const;
+	
+	/// Closes data base.
+	virtual REBOOL close();
+	
+	/// Returns last inserted row id.
+	virtual REInt64 getLastInsertedRowId() const;
+	
+	/// Executes sql query string.
+	virtual REPtr<REDBResultSet> executeQuery(const REString & queryString);
+	
+	/// Begins transaction.
+	virtual REBOOL beginTransaction();
+	
+	/// Executes sql update query strind.
+	virtual REBOOL executeUpdate(const REString & queryString);
+	
+	/// Commiting last transaction.
+	virtual REBOOL commitTransaction();
+	
+	/// Rolls back last transaction.
+	virtual REBOOL rollBackTransaction();
+	
+	virtual ~REDB();
+	
 	static REPtr<REDB> createSQLiteWithFilePath(const REString & dbFilePath);
 };
 

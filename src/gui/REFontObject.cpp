@@ -21,6 +21,8 @@
 #include "../../include/regui/RETTFFontLoader.h"
 #include "../../include/regui/RERenderDevice.h"
 
+#include "../../include/recore/REWideString.h"
+
 #define RE_FONT_XML_HEIGHT_KEY_STRING "heightf"
 #define RE_FONT_XML_HEIGHT_FORMAT_STRING "%f"
 #define RE_FONT_XML_PATH_KEY_STRING "path"
@@ -64,10 +66,10 @@ REBOOL REFontObject::fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 													   const REString & text,
 													   REArray<RETTFFontChar*> * fontChars)
 {
-	REStringPresentation p(text);
-	charsArray->setCapacity(p.getWideLength() + 1);
+	REWideString p(text);
+	charsArray->setCapacity(p.getLength() + 1);
 	const REUInt32 startRight = fontChars->count() - 1;
-	const wchar_t * wideText = p.wideString();
+	const wchar_t * wideText = p.getWideChars();
 	wchar_t needChar;
 	while ((needChar = *wideText++))
 	{
@@ -99,7 +101,7 @@ REBOOL REFontObject::fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 REBOOL REFontObject::fillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray,
 											   const REString & text)
 {
-	if (charsArray && text.length())
+	if (charsArray && text.getLength())
 	{
 		REArray<RETTFFontChar*> * fontChars = this->getChars();
 		if (REArray<RETTFFontChar *>::isNotEmpty(fontChars))
@@ -178,7 +180,7 @@ void REFontObject::setPath(const REString & newPath)
 {
 	if (this->prepareForSetParams()) 
 	{
-		((REFontBase*)_base)->path.set(newPath);
+		((REFontBase*)_base)->path = newPath;
 	}
 }
 

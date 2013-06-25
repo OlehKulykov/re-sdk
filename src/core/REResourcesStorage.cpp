@@ -19,6 +19,8 @@
 #include "../../include/recore/REZipReader.h"
 #include "../../include/recore/REFileManager.h"
 #include "../../include/recore/REFile.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 class IREResourcesStorageContainer
 {
@@ -62,8 +64,8 @@ public:
 	{
 		if (_rootPath)
 		{
-			REString p(*_rootPath);
-			p.appendPathComponent(resourcePath.UTF8String());
+			REMutableString p(*_rootPath);
+			p.appendPathComponent(resourcePath.getChars());
 			REFile f(p, "rb");
 			const REUInt32 fileSize = f.getFileSize();
 			if (fileSize) 
@@ -84,8 +86,8 @@ public:
 	{
 		if (_rootPath)
 		{
-			REString p(*_rootPath);
-			p.appendPathComponent(resourcePath.UTF8String());
+			REMutableString p(*_rootPath);
+			p.appendPathComponent(resourcePath.getChars());
 			REFileManager m;
 			REBOOL isDir = false;
 			if (m.isFileExistsAtPath(p, &isDir))
@@ -250,12 +252,12 @@ REResourcesStorage::~REResourcesStorage()
 
 REBOOL REResourcesStorage::readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 {
-	if (resourcePath.length() && toBuffer)
+	if (resourcePath.getLength() && toBuffer)
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf)
 		{
-			const char * p = resourcePath.UTF8String();
+			const char * p = resourcePath.getChars();
 			if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf(p, toBuffer))
 			{
 				return true;
@@ -269,12 +271,12 @@ REBOOL REResourcesStorage::readToBuffer(const REString & resourcePath, REBuffer 
 
 REBOOL REResourcesStorage::isExists(const REString & resourcePath)
 {
-	if (resourcePath.length())
+	if (resourcePath.getLength())
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.IsExists)
 		{
-			const char * p = resourcePath.UTF8String();
+			const char * p = resourcePath.getChars();
 			if (REResourcesStoragePrivate::staticCallBacks.IsExists(p))
 			{
 				return true;

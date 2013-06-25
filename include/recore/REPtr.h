@@ -86,12 +86,15 @@ public:
 	
 	REPtr<PointerType> & operator=(const REPtr<PointerType> & anotherPtr)
 	{
-		this->release();
-		if (anotherPtr.isNotEmpty())
+		if (this != &anotherPtr)
 		{
-			_object = anotherPtr._object;
-			_referenceCount = anotherPtr._referenceCount;
-			this->retain();
+			this->release();
+			if (anotherPtr.isNotEmpty())
+			{
+				_object = anotherPtr._object;
+				_referenceCount = anotherPtr._referenceCount;
+				this->retain();
+			}
 		}
 		return (*this);
 	}
@@ -146,11 +149,14 @@ public:
 		_object((PointerType *)0),
 		_referenceCount((REInt32 *)0) 
 	{
-		if (anotherPtr.isNotEmpty())
+		if (this != &anotherPtr)
 		{
-			_object = anotherPtr._object;
-			_referenceCount = anotherPtr._referenceCount;
-			this->retain();
+			if (anotherPtr.isNotEmpty())
+			{
+				_object = anotherPtr._object;
+				_referenceCount = anotherPtr._referenceCount;
+				this->retain();
+			}
 		}
 	}
 	

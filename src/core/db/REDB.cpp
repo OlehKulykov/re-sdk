@@ -17,6 +17,56 @@
 
 #include "../../../include/recore/REDB.h"
 
+REString REDB::getDatabaseFullPath() const
+{
+	return REString();
+}
+
+REBOOL REDB::open()
+{
+	return false;
+}
+
+REBOOL REDB::isOpened() const
+{
+	return false;
+}
+
+REBOOL REDB::close()
+{
+	return false;
+}
+
+REInt64 REDB::getLastInsertedRowId() const
+{
+	return -1;
+}
+
+REPtr<REDBResultSet> REDB::executeQuery(const REString & queryString)
+{
+	return REPtr<REDBResultSet>(new REDBResultSet());
+}
+
+REBOOL REDB::beginTransaction()
+{
+	return false;
+}
+
+REBOOL REDB::executeUpdate(const REString & queryString)
+{
+	return false;
+}
+
+REBOOL REDB::commitTransaction()
+{
+	return false;
+}
+
+REBOOL REDB::rollBackTransaction()
+{
+	return false;
+}
+
 REDB::REDB()
 {
 	

@@ -94,8 +94,8 @@ protected:
 public:
 	void setCRC32(const REUInt32 newCRC32) { _crc32 = newCRC32; }
 	void setSize(const REUInt32 newSize) { _size = newSize; }
-	void setPath(const REString & newPath) { _path.set(newPath); }
-	void setPath(const char * newPath) { _path.set(newPath); }
+	void setPath(const REString & newPath) { _path = newPath; }
+	void setPath(const char * newPath) { _path = newPath; }
 	void setUnZipFileOffset(const REUInt32 newOffset) { _unzipFileOffset = newOffset; }
 	const REUInt32 getUnZipFileOffset() const { return _unzipFileOffset; }
 	

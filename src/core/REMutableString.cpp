@@ -15,55 +15,55 @@
  */
 
 
-#include "../../include/recore/REMutableStringN.h"
-#include "../../include/recore/REWideStringN.h"
+#include "../../include/recore/REMutableString.h"
+#include "../../include/recore/REWideString.h"
 #include "../../include/recore/REStringBase.h"
 
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
 #include <stdarg.h>
 
-REMutableStringN & REMutableStringN::operator=(const char * utf8String)
+REMutableString & REMutableString::operator=(const char * utf8String)
 {
 	_p = REStringUtilsPrivate::newBuffForUTF8String(utf8String);
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::operator=(const wchar_t * wideString)
+REMutableString & REMutableString::operator=(const wchar_t * wideString)
 {
 	_p = REStringUtilsPrivate::getUTF8FromWide(wideString, 
 											   REStringUtilsPrivate::wideStringLength(wideString));
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::operator=(const REWideStringN & anotherString)
+REMutableString & REMutableString::operator=(const REWideString & anotherString)
 {
 	_p = REStringUtilsPrivate::getUTF8FromWide(anotherString.getWideChars(),
 											   anotherString.getLength());
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::operator=(const REStringN & anotherString)
+REMutableString & REMutableString::operator=(const REString & anotherString)
 {
 	_p = REStringUtilsPrivate::newBuffForUTF8String(anotherString.getChars(),
 													anotherString.getLength());
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::operator=(const REMutableStringN & anotherString)
+REMutableString & REMutableString::operator=(const REMutableString & anotherString)
 {
 	_p = REStringUtilsPrivate::makeCopy(anotherString._p);
 	return (*this);
 }
 
 /// Conserts string ti it's lower presentation.
-REMutableStringN & REMutableStringN::toLower()
+REMutableString & REMutableString::toLower()
 {
 	if (_p.isNotEmpty())
 	{
 		if (this->isContainsNonASCII())
 		{
-			REWideStringN wide(*this);
+			REWideString wide(*this);
 			const REUInt32 len = wide.getLength();
 			if (len > 0)
 			{
@@ -90,13 +90,13 @@ REMutableStringN & REMutableStringN::toLower()
 }
 
 /// Conserts string ti it's uper presentation.
-REMutableStringN & REMutableStringN::toUpper()
+REMutableString & REMutableString::toUpper()
 {
 	if (_p.isNotEmpty())
 	{
 		if (this->isContainsNonASCII())
 		{
-			REWideStringN wide(*this);
+			REWideString wide(*this);
 			const REUInt32 len = wide.getLength();
 			if (len > 0)
 			{
@@ -123,7 +123,7 @@ REMutableStringN & REMutableStringN::toUpper()
 }
 
 /// Appends another UTF8 string.
-REMutableStringN & REMutableStringN::append(const char * utf8String, 
+REMutableString & REMutableString::append(const char * utf8String, 
 											const REUInt32 utf8StringLength)
 {
 	const REUInt32 len = REStringUtilsPrivate::actualUTF8StringLength(utf8String, utf8StringLength);
@@ -153,10 +153,10 @@ REMutableStringN & REMutableStringN::append(const char * utf8String,
 }
 
 /// Appends another wide char string.
-REMutableStringN & REMutableStringN::append(const wchar_t * wideString, 
+REMutableString & REMutableString::append(const wchar_t * wideString, 
 											const REUInt32 wideStringLength)
 {
-	REStringN utf8(wideString, wideStringLength);
+	REString utf8(wideString, wideStringLength);
 	if (utf8.isNotEmpty())
 	{
 		return this->append((const char *)utf8.getChars(), utf8.getLength());
@@ -164,7 +164,7 @@ REMutableStringN & REMutableStringN::append(const wchar_t * wideString,
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::appendFormat(const char * format, ...)
+REMutableString & REMutableString::appendFormat(const char * format, ...)
 {
 	if (format)
 	{
@@ -182,7 +182,7 @@ REMutableStringN & REMutableStringN::appendFormat(const char * format, ...)
 	return (*this);
 }
 
-void REMutableStringN::replaceWithLen(const char * charsStringValue, 
+void REMutableString::replaceWithLen(const char * charsStringValue, 
 									  const char * withCharsStringValue, 
 									  const REUInt32 firstLen, 
 									  const REUInt32 secondLen)
@@ -236,7 +236,7 @@ void REMutableStringN::replaceWithLen(const char * charsStringValue,
 }
 
 
-REMutableStringN & REMutableStringN::replace(const char * utf8String, 
+REMutableString & REMutableString::replace(const char * utf8String, 
 											 const char * withUTF8StringOrNULL)
 {
 	if (this->isNotEmpty())
@@ -248,69 +248,81 @@ REMutableStringN & REMutableStringN::replace(const char * utf8String,
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::replace(const wchar_t * wideString, 
+REMutableString & REMutableString::replace(const wchar_t * wideString, 
 											 const wchar_t * withWideStringOrNULL)
 {
 	if (this->isNotEmpty())
 	{
-		REStringN s1(wideString);
-		REStringN s2(withWideStringOrNULL);
+		REString s1(wideString);
+		REString s2(withWideStringOrNULL);
 		this->replaceWithLen(s1.getChars(), s2.getChars(), s1.getLength(), s2.getLength());
 	}
 	return (*this);
 }
 
-REMutableStringN & REMutableStringN::appendPathComponent(const char * pComponent)
+REMutableString & REMutableString::appendPathComponent(const char * pComponent)
 {
-	_p = REStringUtilsPrivate::getAppendedWithPathComponent(_p, pComponent, RENotFound);
+	_p = REStringUtilsPrivate::getAppendedWithPathComponent(_p, pComponent);
 	return (*this);
 }
 
-REMutableStringN::REMutableStringN() : 
-	REStringN()
+REMutableString & REMutableString::removeLastPathComponent()
+{
+	_p = REStringUtilsPrivate::getRemovedLastPathComponent(_p);
+	return (*this);
+}
+
+REMutableString & REMutableString::removePathExtension()
+{
+	_p = REStringUtilsPrivate::getRemovedPathExtension(_p);
+	return (*this);
+}
+
+REMutableString::REMutableString() : 
+	REString()
 {
 	
 }
 
-REMutableStringN::REMutableStringN(const char * utf8String, 
+REMutableString::REMutableString(const char * utf8String, 
 								   const REUInt32 utf8StringLength) :
-	REStringN(utf8String, utf8StringLength)
+	REString(utf8String, utf8StringLength)
 {
 	
 }
 
-REMutableStringN::REMutableStringN(const wchar_t * wideString, 
+REMutableString::REMutableString(const wchar_t * wideString, 
 								   const REUInt32 wideStringLength) :
-	REStringN(wideString, wideStringLength)
+	REString(wideString, wideStringLength)
 {
 	
 }
 
-REMutableStringN::REMutableStringN(const REWideStringN & anotherString) : 
-	REStringN(anotherString.getWideChars(), anotherString.getLength())
+REMutableString::REMutableString(const REWideString & anotherString) : 
+	REString(anotherString.getWideChars(), anotherString.getLength())
 {
 	
 }
 
-REMutableStringN::REMutableStringN(const REStringN & anotherString) : 
-	REStringN(anotherString.getChars(), anotherString.getLength())
+REMutableString::REMutableString(const REString & anotherString) : 
+	REString(anotherString.getChars(), anotherString.getLength())
 {
 	
 }
 
-REMutableStringN::REMutableStringN(const REMutableStringN & anotherString) : 
-	REStringN(anotherString.getChars(), anotherString.getLength())
+REMutableString::REMutableString(const REMutableString & anotherString) : 
+	REString(anotherString.getChars(), anotherString.getLength())
 {
 
 }
 
-REMutableStringN::REMutableStringN(const REPtr<REBuffer> & utf8StringBuffer) : 
-	REStringN(utf8StringBuffer)
+REMutableString::REMutableString(const REPtr<REBuffer> & utf8StringBuffer) : 
+	REString(utf8StringBuffer)
 {
 	
 }
 
-REMutableStringN::~REMutableStringN()
+REMutableString::~REMutableString()
 {
 	
 }

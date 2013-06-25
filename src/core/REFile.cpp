@@ -180,7 +180,7 @@ FILE * REFile::fileOpen(const REString & filePath, const char * openMode)
 	if (openMode) { mode = openMode; }
 	else { mode = "rb"; }
 	
-	FILE * f = fopen(filePath.UTF8String(), mode);
+	FILE * f = fopen(filePath.getChars(), mode);
 	return f;
 #endif	
 	

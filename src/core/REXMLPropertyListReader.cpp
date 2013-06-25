@@ -287,7 +287,7 @@ REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<
 REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	return this->ReadFromString(listString.UTF8String(), pairs);
+	return this->ReadFromString(listString.getChars(), pairs);
 #else
 	return false;
 #endif

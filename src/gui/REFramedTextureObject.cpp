@@ -17,6 +17,8 @@
 
 #include "../../include/regui/REFramedTextureObject.h"
 #include "../../include/regui/REAnimation.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
@@ -241,7 +243,7 @@ REBOOL REFramedTextureObject::InitFramedTextureFromPath(const REString & path)
 	}
 
 	REData xmlData;
-	REString xmlPath(path);
+	REMutableString xmlPath(path);
 	xmlPath.removePathExtension();
 	xmlPath.append(".xml");
 	if (!xmlData.initFromPath(xmlPath)) 

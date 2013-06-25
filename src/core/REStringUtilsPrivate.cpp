@@ -140,7 +140,7 @@ REPtr<REBuffer> REStringUtilsPrivate::getUTF8FromWide(const REPtr<REBuffer> & wi
 
 REPtr<REBuffer> REStringUtilsPrivate::makeCopy(const REPtr<REBuffer> & sourceBuffer)
 {
-	if (sourceBuffer.isNotEmpty())
+	if (REStringUtilsPrivate::isStringExists(sourceBuffer))
 	{
 		const REUInt32 size = sourceBuffer->getSize();
 		if (size > 0)
@@ -162,7 +162,7 @@ REPtr<REBuffer> REStringUtilsPrivate::makeCopy(const REPtr<REBuffer> & sourceBuf
 
 REUInt32 REStringUtilsPrivate::stringLengthFromUTF8Buffer(const REPtr<REBuffer> & utf8StringBuffer)
 {
-	if (utf8StringBuffer.isNotEmpty()) 
+	if (REStringUtilsPrivate::isStringExists(utf8StringBuffer)) 
 	{
 		const REUInt32 size = utf8StringBuffer->getSize();
 		return (size > 0) ? (size - 1) : 0;
@@ -172,7 +172,7 @@ REUInt32 REStringUtilsPrivate::stringLengthFromUTF8Buffer(const REPtr<REBuffer> 
 
 REUInt32 REStringUtilsPrivate::stringLengthFromWideBuffer(const REPtr<REBuffer> & wideStringBuffer)
 {
-	if (wideStringBuffer.isNotEmpty()) 
+	if (REStringUtilsPrivate::isStringExists(wideStringBuffer)) 
 	{
 		const REUInt32 size = wideStringBuffer->getSize();
 		const REUInt32 charSize = (REUInt32)sizeof(wchar_t);
@@ -342,67 +342,287 @@ int REStringUtilsPrivate::charsToWide(const char * charsString, int charsStringL
 }
 
 REPtr<REBuffer> REStringUtilsPrivate::getAppendedWithPathComponent(const REPtr<REBuffer> & utf8Buffer, 
-																   const char * comp, 
-																   const REUInt32 compLen)
+																   const char * comp)
 {
-	const REUInt32 addLen = REStringUtilsPrivate::actualUTF8StringLength(comp, compLen);
-	if (addLen == 0)
+#ifdef __RE_OS_WINDOWS__
+#error "make separator windows logic"
+TODO: make separator windows logic
+#endif
+	
+	REBOOL rep2 = false;
+	REBOOL rep1 = false;
+	REUInt32 l1 = 0;
+	REUInt32 l2 = 0;
+	const char * p1 = NULL;
+	const char * p2 = NULL;
+	if (REStringUtilsPrivate::isStringExists(utf8Buffer))
 	{
-		return utf8Buffer;
-	}
-	
-	const char * addStr = addLen ? comp : NULL;
-	
-	const REUInt32 inLen = REStringUtilsPrivate::stringLengthFromUTF8Buffer(utf8Buffer);
-	char * inStr = inLen ? (char *)utf8Buffer->getBuffer() : NULL;
-	
-	
-	const char * startPtr = NULL;
-	REUInt32 startLen = 0;
-	bool isInLastSep = false;
-	if (inLen)
-	{
-		startPtr = inStr;
-		while (*inStr) 
+		char * p = (char *)utf8Buffer->getBuffer();
+		while (*p) 
 		{
-			switch (*inStr) 
-			{
-				case '/':
-#ifdef __RE_OS_WINDOWS__					
-					*inStr = '\\';
-#endif					
-					isInLastSep = true;
-					break;
-				case '\\':
-#ifndef __RE_OS_WINDOWS__
-					*inStr = '/';
-#endif					
-					isInLastSep = true;
-					break;
-				default:
-					isInLastSep = false;
-					break;
-			}
-			startLen++;
-			inStr++;
+			if (*p == '\\') rep1 = true;
+			p++;
+			l1++;
+		}
+		if (l1 > 0) 
+		{ 
+			p1 = (const char *)utf8Buffer->getBuffer();
+			if ((p1[l1 - 1] == '/') || (p1[l1 - 1] == '\\')) l1--;
 		}
 	}
 	
-	const char * addPtr = NULL;
-	REUInt32 addCompLen = 0;
-	if (addLen)
+	if (comp)
 	{
-		addPtr = addStr;
-		
+		const char * p = comp;
+		while (*p) 
+		{
+			if (*p++ == '\\') rep2 = true;
+			l2++;
+		}
+		if (l2 > 0) 
+		{ 
+			p2 = comp; 
+			if ((l1 > 0) && ((p2[0] == '/') || (p2[0] == '\\'))) { p2++; l2--; }
+			if ((l2 > 0) && ((p2[l2 - 1] == '/') || (p2[l2 - 1] == '\\'))) { l2--; }
+		}
 	}
 	
+	if ((l1 > 0) || (l2 > 0))
+	{
+		const REUInt32 l = l1 + l2 + 2; // +1 - separator, +1 - NULL char
+		REBuffer * newBuff = new REBuffer();
+		if (newBuff)
+		{
+			if (newBuff->resize(l, false))
+			{
+				char * p = (char *)newBuff->getBuffer();
+				if (l1 > 0) 
+				{
+					if (rep1)
+					{
+						REUInt32 wl = 0;
+						const char * from = p1;
+						while (wl++ < l1) 
+						{
+							*p++ = (*from == '\\') ? '/' : *from;
+							from++;
+						}
+					}
+					else
+					{
+						memcpy(p, p1, l1);
+						p += l1;
+					}
+				}
+				
+				if (l2 > 0)
+				{
+					if (l1 > 0) *p++ = '/'; // +1 - separator
+					if (rep2)
+					{
+						REUInt32 wl = 0;
+						const char * from = p2;
+						while (wl++ < l2) 
+						{
+							*p++ = (*from == '\\') ? '/' : *from;
+							from++;
+						}
+					}
+					else
+					{
+						memcpy(p, p2, l2);
+						p += l2;
+					}
+				}
+				*p = 0;
+				return REPtr<REBuffer>(newBuff);
+			}
+			delete newBuff;
+		}
+	}
 	return REPtr<REBuffer>();
 }
 
+REPtr<REBuffer> REStringUtilsPrivate::getRemovedPathExtension(const REPtr<REBuffer> & utf8Buffer)
+{
+	REUInt32 l = REStringUtilsPrivate::stringLengthFromUTF8Buffer(utf8Buffer);
+	if (l > 0)
+	{
+		const char * e = (const char *)utf8Buffer->getBuffer();
+		e += (l - 1); // to last
+		const REBOOL needRepSingleSeparator = (*e == '\\');
+		if ((*e == '/') || needRepSingleSeparator)
+		{
+			e--; l--;
+			if (l == 0) 
+			{
+				if (needRepSingleSeparator)
+				{
+					REPtr<REBuffer> newB = REStringUtilsPrivate::makeCopy(utf8Buffer);
+					if (REStringUtilsPrivate::isStringExists(newB))
+					{
+						char * newBuff = (char *)newB->getBuffer();
+						*newBuff = '/';
+					}
+					return newB;
+				}
+				else
+				{
+					return REStringUtilsPrivate::makeCopy(utf8Buffer);
+				}
+			}
+		}
+		REUInt32 needLen = l;
+		if (l > 0)
+		{
+			REUInt32 l1 = l;
+			while (l1 > 0) 
+			{
+				if (*e == '.') { needLen = l1 - 1; break; }
+				else if ((*e == '/') || (*e == '\\')) { break; }
+				e--;
+				l1--;
+			}
+		}
+		
+		if (needLen > 0)
+		{
+			REBuffer * newBuff = new REBuffer();
+			if (newBuff)
+			{
+				if (newBuff->resize(needLen + 1, false))
+				{
+					char * n = (char *)newBuff->getBuffer();
+					const char * o = (const char *)utf8Buffer->getBuffer();
+					REUInt32 copyedLen = 0;
+					while (copyedLen++ != needLen) 
+					{
+						*n++ = (*o == '\\') ? '/' : *o;
+						o++;
+					}
+					*n = 0;
+					return REPtr<REBuffer>(newBuff);
+				}
+				delete newBuff;
+			}
+		}
+	}
+	return REPtr<REBuffer>();
+}
 
+REPtr<REBuffer> REStringUtilsPrivate::getRemovedLastPathComponent(const REPtr<REBuffer> & utf8Buffer)
+{
+	REUInt32 l = REStringUtilsPrivate::stringLengthFromUTF8Buffer(utf8Buffer);
+	if (l > 0)
+	{
+		const char * e = (const char *)utf8Buffer->getBuffer();
+		e += (l - 1); // to last
+		const REBOOL needRepSingleSeparator = (*e == '\\');
+		if ((*e == '/') || needRepSingleSeparator)
+		{
+			e--; l--;
+			if (l == 0) 
+			{
+				if (needRepSingleSeparator)
+				{
+					REPtr<REBuffer> newB = REStringUtilsPrivate::makeCopy(utf8Buffer);
+					if (REStringUtilsPrivate::isStringExists(newB))
+					{
+						char * newBuff = (char *)newB->getBuffer();
+						*newBuff = '/';
+					}
+					return newB;
+				}
+				else
+				{
+					return REStringUtilsPrivate::makeCopy(utf8Buffer);
+				}
+			}
+		}
+		
+		REUInt32 needLen = 0;
+		if (l > 0)
+		{
+			REUInt32 l1 = l;
+			while (l1 > 0) 
+			{
+				if ((*e == '/') || (*e == '\\')) { needLen = l1 - 1; break; }
+				e--;
+				l1--;
+			}
+		}
+		
+		if (needLen > 0)
+		{
+			REBuffer * newBuff = new REBuffer();
+			if (newBuff)
+			{
+				if (newBuff->resize(needLen + 1, false))
+				{
+					char * n = (char *)newBuff->getBuffer();
+					const char * o = (const char *)utf8Buffer->getBuffer();
+					REUInt32 copyedLen = 0;
+					while (copyedLen++ != needLen) 
+					{
+						*n++ = (*o == '\\') ? '/' : *o;
+						o++;
+					}
+					*n = 0;
+					return REPtr<REBuffer>(newBuff);
+				}
+				delete newBuff;
+			}
+		}
+	}
+	return REPtr<REBuffer>();
+}
 
+REPtr<REBuffer> REStringUtilsPrivate::getPathExtension(const REPtr<REBuffer> & utf8Buffer)
+{
+	REUInt32 l = REStringUtilsPrivate::stringLengthFromUTF8Buffer(utf8Buffer);
+	if (l > 0)
+	{
+		const char * e = (const char *)utf8Buffer->getBuffer();
+		e += (l - 1); // to last
+		if ((*e == '/') || (*e == '\\'))
+		{
+			e--; l--;
+		}
 
-
+		const char * from = NULL;
+		REUInt32 needLen = 0;
+		if (l > 0)
+		{
+			REUInt32 l1 = l;
+			while (l1 > 0) 
+			{
+				if (*e == '.') { if (needLen > 0) from = ++e; break; }
+				else if ((*e == '/') || (*e == '\\')) { needLen = 0; break; }
+				e--;
+				l1--;
+				needLen++;
+			}
+		}
+		
+		if (from && (needLen > 0))
+		{
+			REBuffer * newBuff = new REBuffer();
+			if (newBuff)
+			{
+				if (newBuff->resize(needLen + 1, false))
+				{
+					char * n = (char *)newBuff->getBuffer();
+					memcpy(n, from, needLen);
+					n += needLen;
+					*n = 0;
+					return REPtr<REBuffer>(newBuff);
+				}
+				delete newBuff;
+			}
+		}
+	}
+	return REPtr<REBuffer>();
+}
 
 
 

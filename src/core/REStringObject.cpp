@@ -50,38 +50,38 @@ REBOOL REStringObject::isEqual(REObject * anotherObject)
 		if (anotherObject->getClassIdentifier() == REStringObject::classIdentifier()) 
 		{
 			REStringObject * anotherString = (REStringObject*)anotherObject;
-			return REString::isEqual((*anotherString));
+			return REMutableString::isEqual((*anotherString));
 		}
 	}
 	return false;
 }
 
-REStringObject::REStringObject(const wchar_t * wideStringValue) : REString(wideStringValue), REObject()
+REStringObject::REStringObject(const wchar_t * wideStringValue) : REMutableString(wideStringValue), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const char * charsStringValue) : REString(charsStringValue), REObject()
+REStringObject::REStringObject(const char * charsStringValue) : REMutableString(charsStringValue), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const char * charsStringValue, const REUInt32 stringLength) : REString(charsStringValue, stringLength), REObject()
+REStringObject::REStringObject(const char * charsStringValue, const REUInt32 stringLength) : REMutableString(charsStringValue, stringLength), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const REString & anotherString) : REString(anotherString), REObject()
+REStringObject::REStringObject(const REString & anotherString) : REMutableString(anotherString), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const REStringObject & anotherString) : REString(anotherString.UTF8String()), REObject()
+REStringObject::REStringObject(const REStringObject & anotherString) : REMutableString(anotherString.getChars(), anotherString.getLength()), REObject()
 {
 	
 }
 
-REStringObject::REStringObject() : REString(), REObject()
+REStringObject::REStringObject() : REMutableString(), REObject()
 {
 	
 }
@@ -145,7 +145,7 @@ REStringObject * REStringObject::createWithFormatChars(const char * format, ...)
 			int writed = vsprintf(strBuff, format, args);
 			if (writed > 0)
 			{
-				newStr->appendWithLen(strBuff, (REUInt32)writed);
+				newStr->append(strBuff, (REUInt32)writed);
 			}
 			va_end(args);
 			

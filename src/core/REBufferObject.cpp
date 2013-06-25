@@ -96,12 +96,12 @@ REBufferObject * REBufferObject::createWithStringObject(REStringObject * str)
 {
 	if (str) 
 	{
-		if (str->length()) 
+		if (str->getLength()) 
 		{
 			REBufferObject * newBuff = new REBufferObject();
 			if (newBuff) 
 			{
-				if (newBuff->set(str->UTF8String(), str->length()))
+				if (newBuff->set(str->getChars(), str->getLength()))
 				{
 					return newBuff;
 				}
@@ -115,12 +115,12 @@ REBufferObject * REBufferObject::createWithStringObject(REStringObject * str)
 
 REBufferObject * REBufferObject::createWithString(const REString & str)
 {
-	if (str.length()) 
+	if (str.isNotEmpty()) 
 	{
 		REBufferObject * newBuff = new REBufferObject();
 		if (newBuff) 
 		{
-			if (newBuff->set(str.UTF8String(), str.length()))
+			if (newBuff->set(str.getChars(), str.getLength()))
 			{
 				return newBuff;
 			}

@@ -15,7 +15,9 @@
  */
 
 
-#include "../../include/recore/RESQLiteDB.h"
+#include "../../include/recore/private/RESQLiteDB.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 
@@ -90,7 +92,7 @@ REBOOL RESQLiteDB::setColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
 		for (int index = 0; index < columnsCount; index++) 
 		{
 			const char * name = sqlite3_column_name(statement, index);
-			REString * nameStr = new REString(name);
+			REMutableString * nameStr = new REMutableString(name);
 			if ( nameStr ) 
 			{
 				nameStr->toLower();
@@ -103,7 +105,6 @@ REBOOL RESQLiteDB::setColumnsNames(RESQLiteDBResultSet::StatementStruct * st)
 #endif	
 	return false;
 }
-
 
 REBOOL RESQLiteDB::beginTransaction()
 {
@@ -129,7 +130,7 @@ REBOOL RESQLiteDB::executeUpdate(const REString & queryString)
 		}
 		*/
 		sqlite3_stmt * pStmt = NULL;
-		const char * utf8QueryString = queryString.UTF8String();
+		const char * utf8QueryString = queryString.getChars();
 		int rc = sqlite3_prepare_v2((sqlite3 *)_db, utf8QueryString, -1, &pStmt, 0);
 		if (rc != SQLITE_OK) 
 		{
@@ -181,17 +182,106 @@ REBOOL RESQLiteDB::rollBackTransaction()
     return false;
 }
 
-const REString & RESQLiteDB::getDatabasePath() const
+REString RESQLiteDB::getDatabaseFullPath() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	return _databasePath;
 #else
-	static REString emptyString;
-	return emptyString;
+	return REDB::getDatabaseFullPath();
 #endif
 }
 
 REBOOL RESQLiteDB::close()
+{
+	return this->closeSQLiteDB();
+}
+
+REInt64 RESQLiteDB::getLastInsertedRowId() const
+{
+#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
+	if ( _db ) 
+	{
+		sqlite_int64 ret = sqlite3_last_insert_rowid((sqlite3 *)_db);
+		return ret;
+	}
+#endif	
+    return 0;
+}
+
+REBOOL RESQLiteDB::open()
+{
+#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
+	this->close();
+	
+	if ( _databasePath.isEmpty() ) 
+	{
+		return false;
+	}
+	
+	sqlite3 * sqDB = NULL;
+	if(sqlite3_open(_databasePath.getChars(), &sqDB) == SQLITE_OK) 
+	{
+		_db = sqDB;
+		return true;
+	}
+#endif    
+	return false;
+}
+
+REBOOL RESQLiteDB::isOpened() const
+{
+#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
+	return ( _db != NULL );
+#else
+	return false;
+#endif
+}
+
+REPtr<REDBResultSet> RESQLiteDB::executeQuery(const REString & queryString)
+{
+#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
+	if ( this->isOpened() ) 
+	{
+		/*
+		REString normQueryStr(queryString);
+		if ( normQueryStr.IsWideString() ) 
+		{
+			normQueryStr.ToCString();
+		}
+		*/
+		sqlite3_stmt * pStmt = NULL;
+		const int rc = sqlite3_prepare_v2((sqlite3 *)_db, queryString.getChars(), -1, &pStmt, 0);
+		if (rc == SQLITE_OK) 
+		{
+			const int queryCount = sqlite3_bind_parameter_count(pStmt);
+			if ( queryCount == 0 ) 
+			{
+				RESQLiteDBResultSet::StatementStruct * newState = (RESQLiteDBResultSet::StatementStruct *)malloc(sizeof(RESQLiteDBResultSet::StatementStruct));
+				if ( newState ) 
+				{
+					newState->db = _db;
+					newState->statement = pStmt;
+					newState->usingCount = 0;
+					if ( RESQLiteDB::setColumnsNames(newState) ) 
+					{
+						_statements.add(newState);
+						
+						RESQLiteDBResultSet * newRes = new RESQLiteDBResultSet(newState);
+						if (newRes)
+						{
+							return REPtr<REDBResultSet>(newRes);
+						}
+					}
+				}
+			}
+		}
+		sqlite3_finalize(pStmt);
+	}
+#endif	
+	return REPtr<REDBResultSet>();
+}
+
+REBOOL RESQLiteDB::closeSQLiteDB()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( _db ) 
@@ -225,101 +315,15 @@ REBOOL RESQLiteDB::close()
 	return false;
 }
 
-REInt64 RESQLiteDB::getLastInsertedRowId() const
-{
-#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( _db ) 
-	{
-		sqlite_int64 ret = sqlite3_last_insert_rowid((sqlite3 *)_db);
-		return ret;
-	}
-#endif	
-    return 0;
-}
-
-REBOOL RESQLiteDB::open()
-{
-#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	this->close();
-	
-	if ( _databasePath.isEmpty() ) 
-	{
-		return false;
-	}
-	
-	sqlite3 * sqDB = NULL;
-	if(sqlite3_open(_databasePath.UTF8String(), &sqDB) == SQLITE_OK) 
-	{
-		_db = sqDB;
-		return true;
-	}
-#endif    
-	return false;
-}
-
-REBOOL RESQLiteDB::isOpened() const
-{
-#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	return ( _db != NULL );
-#else
-	return false;
-#endif
-}
-
-RESQLiteDBResultSet RESQLiteDB::executeQuery(const REString & queryString)
-{
-#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	if ( this->isOpened() ) 
-	{
-		/*
-		REString normQueryStr(queryString);
-		if ( normQueryStr.IsWideString() ) 
-		{
-			normQueryStr.ToCString();
-		}
-		*/
-		sqlite3_stmt * pStmt = NULL;
-		const int rc = sqlite3_prepare_v2((sqlite3 *)_db, queryString.UTF8String(), -1, &pStmt, 0);
-		if (rc == SQLITE_OK) 
-		{
-			const int queryCount = sqlite3_bind_parameter_count(pStmt);
-			if ( queryCount == 0 ) 
-			{
-				RESQLiteDBResultSet::StatementStruct * newState = (RESQLiteDBResultSet::StatementStruct *)malloc(sizeof(RESQLiteDBResultSet::StatementStruct));
-				if ( newState ) 
-				{
-					newState->db = _db;
-					newState->statement = pStmt;
-					newState->usingCount = 0;
-					if ( RESQLiteDB::setColumnsNames(newState) ) 
-					{
-						_statements.add(newState);
-						return RESQLiteDBResultSet(newState);
-					}
-				}
-			}
-		}
-		sqlite3_finalize(pStmt);
-	}
-#endif	
-	return RESQLiteDBResultSet();
-}
-
-RESQLiteDB::RESQLiteDB(const REString & dbFilePath) 
+RESQLiteDB::RESQLiteDB(const REString & dbFilePath) : REDB()
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
-: _db(NULL)
+	,_db(NULL)
 #endif
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( !dbFilePath.isEmpty() ) 
 	{
-		_databasePath.set(dbFilePath);
-		/*
-		if ( _databasePath.IsWideString() ) 
-		{
-			_databasePath.ToCString();
-		}
-		*/
+		_databasePath = dbFilePath;
 	}
 #endif	
 }
@@ -327,7 +331,7 @@ RESQLiteDB::RESQLiteDB(const REString & dbFilePath)
 RESQLiteDB::~RESQLiteDB()
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
-	this->close();
+	this->closeSQLiteDB();
 #endif	
 }
 

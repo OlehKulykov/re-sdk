@@ -31,7 +31,7 @@ class __RE_PUBLIC_CLASS_API__ REXMLPropertyListWriter
 {
 private:
 	REString _errorString;
-	REString * _xmlStr;
+	REMutableString * _xmlStr;
 	
 	
 	REBOOL writePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair);
@@ -45,7 +45,7 @@ private:
 public:
 	/// Writes to 'listString' string pointer generated XML property list from 'pairs' dictionary key/pairs.
 	/// Returns true if both pointers not NULL and operation done, otherwice returns false.
-	REBOOL writeToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REString * listString);
+	REBOOL writeToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REMutableString * listString);
 	
 	/// Default constructor.
 	REXMLPropertyListWriter();

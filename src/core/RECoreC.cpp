@@ -287,7 +287,7 @@ REBOOL RECore::setPreferencesPath(const REString & newPrefPath)
 		{
 			if (fManager.isWritableFileAtPath(newPrefPath))
 			{
-				RECorePrivate::preferencesPath.set(newPrefPath);
+				RECorePrivate::preferencesPath = newPrefPath;
 				RECorePrivate::isPreferencesPathInitialized = true;
 				return true;
 			}

@@ -15,44 +15,44 @@
  */
 
 
-#ifndef __REWIDESTRINGN_H__ 
-#define __REWIDESTRINGN_H__ 
+#ifndef __REWideString_H__ 
+#define __REWideString_H__ 
 
 #include "RECommonHeader.h"
 #include "REStringBase.h"
 
-class REStringN;
-class REMutableStringN;
+class REString;
+class REMutableString;
 
-class __RE_PUBLIC_CLASS_API__ REWideStringN : public REStringBase
+class __RE_PUBLIC_CLASS_API__ REWideString : public REStringBase
 {
 public:
-	REStringN getString() const;
-	REMutableStringN getMutableString() const;
+	REString getString() const;
+	REMutableString getMutableString() const;
 	
 	const wchar_t * getWideChars() const;
 	const REUInt32 getLength() const;
 	
-	REWideStringN & operator=(const char * utf8String);
-	REWideStringN & operator=(const wchar_t * wideString);
+	REWideString & operator=(const char * utf8String);
+	REWideString & operator=(const wchar_t * wideString);
 	
-	REWideStringN & operator=(const REWideStringN & anotherString);
-	REWideStringN & operator=(const REStringN & anotherString);
-	REWideStringN & operator=(const REMutableStringN & anotherString);
+	REWideString & operator=(const REWideString & anotherString);
+	REWideString & operator=(const REString & anotherString);
+	REWideString & operator=(const REMutableString & anotherString);
 	
 	operator const wchar_t* () { return this->getWideChars(); }
 	operator const wchar_t* () const { return this->getWideChars(); }
 	
-	REWideStringN();
-	REWideStringN(const char * utf8String, const REUInt32 utf8StringLength = RENotFound);
-	REWideStringN(const wchar_t * wideString, const REUInt32 wideStringLength = RENotFound);
-	REWideStringN(const REWideStringN & anotherString);
-	REWideStringN(const REStringN & anotherString);
-	REWideStringN(const REMutableStringN & anotherString);
+	REWideString();
+	REWideString(const char * utf8String, const REUInt32 utf8StringLength = RENotFound);
+	REWideString(const wchar_t * wideString, const REUInt32 wideStringLength = RENotFound);
+	REWideString(const REWideString & anotherString);
+	REWideString(const REString & anotherString);
+	REWideString(const REMutableString & anotherString);
 	
-	REWideStringN(const REPtr<REBuffer> & wideStringBuffer);
+	REWideString(const REPtr<REBuffer> & wideStringBuffer);
 	
-	virtual ~REWideStringN();
+	virtual ~REWideString();
 	
 #if defined(CFSTR) 
 	
@@ -70,7 +70,7 @@ public:
 		return (CFStringRef)0;
 	}
 	
-	REWideStringN(CFStringRef cfString) : REStringBase()
+	REWideString(CFStringRef cfString) : REStringBase()
 	{
 		if (cfString)
 		{
@@ -105,5 +105,5 @@ public:
 	
 };
 
-#endif /* __REWIDESTRINGN_H__  */
+#endif /* __REWideString_H__  */
 

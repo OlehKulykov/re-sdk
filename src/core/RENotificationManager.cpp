@@ -38,7 +38,7 @@ public:
 										 const REString & n) :
 	observer(o),
 	observerMethod(om)
-	{ name.set(n); }
+	{ name = n; }
 	~RENotificationManagerObserverPrivate()
 	{
 		if (observerMethod) { delete observerMethod; }

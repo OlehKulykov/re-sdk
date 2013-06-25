@@ -70,7 +70,7 @@ REBOOL REFileManager::isReadableFileAtPath(const REString & path) const
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->isReadableFileAtPath(path.UTF8String());
+	return this->isReadableFileAtPath(path.getChars());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -125,7 +125,7 @@ REBOOL REFileManager::isWritableFileAtPath(const REString & path) const
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->isWritableFileAtPath(path.UTF8String());
+	return this->isWritableFileAtPath(path.getChars());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -180,7 +180,7 @@ REBOOL REFileManager::createFileAtPath(const REString & path, REData * withFileD
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->createFileAtPath(path.UTF8String(), withFileData);
+	return this->createFileAtPath(path.getChars(), withFileData);
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -254,7 +254,7 @@ REBOOL REFileManager::isFileExistsAtPath(const REString & path, REBOOL * isDirec
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->isFileExistsAtPath(path.UTF8String(), isDirectory);
+	return this->isFileExistsAtPath(path.getChars(), isDirectory);
 #endif /* NOT WIN */	
 	
 #ifdef __RE_OS_WINDOWS__
@@ -380,7 +380,7 @@ REBOOL REFileManager::createDirectoryAtPath(const REString & path, REBOOL isCrea
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->createDirectoryAtPath(path.UTF8String(), isCreateIntermediates);
+	return this->createDirectoryAtPath(path.getChars(), isCreateIntermediates);
 #endif /* NOT WIN */	
 
 #ifdef __RE_OS_WINDOWS__

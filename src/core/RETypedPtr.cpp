@@ -238,14 +238,17 @@ void RETypedPtr::deleteObject()
 
 RETypedPtr & RETypedPtr::operator=(const RETypedPtr & anotherPtr)
 {
-	this->release();
-	
-	if (anotherPtr.isNotEmpty())
+	if (this != &anotherPtr)
 	{
-		_object = anotherPtr._object;
-		_referenceCount = anotherPtr._referenceCount;
-		_type = anotherPtr._type;
-		this->retain();
+		this->release();
+		
+		if (anotherPtr.isNotEmpty())
+		{
+			_object = anotherPtr._object;
+			_referenceCount = anotherPtr._referenceCount;
+			_type = anotherPtr._type;
+			this->retain();
+		}
 	}
 	return (*this);
 }
@@ -300,12 +303,15 @@ RETypedPtr::RETypedPtr(const RETypedPtr & anotherPtr) :
 	_referenceCount((REInt32 *)0),
 	_type(REPtrTypeNone)
 {
-	if (anotherPtr.isNotEmpty())
+	if (this != &anotherPtr)
 	{
-		_object = anotherPtr._object;
-		_referenceCount = anotherPtr._referenceCount;
-		_type = anotherPtr._type;
-		this->retain();
+		if (anotherPtr.isNotEmpty())
+		{
+			_object = anotherPtr._object;
+			_referenceCount = anotherPtr._referenceCount;
+			_type = anotherPtr._type;
+			this->retain();
+		}
 	}
 }
 

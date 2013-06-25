@@ -23,14 +23,13 @@
 #include "REArray.h"
 #include "REString.h"
 
-/// Class of Sqlite data base result sets.
+/// Base class of data base result sets.
 class __RE_PUBLIC_CLASS_API__ REDBResultSet
-{
+{	
 public:
+	virtual REBOOL isOK() const;
 	
-	
-public:
-	
+	virtual ~REDBResultSet();
 };
 
 

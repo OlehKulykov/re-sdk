@@ -483,7 +483,7 @@ REBOOL RENumber::applyValueFromString(RENumber * number, const char * strValue)
 
 REBOOL RENumber::setValueFromString(const REString & strValue)
 {
-	return RENumber::applyValueFromString(this, strValue.UTF8String());
+	return RENumber::applyValueFromString(this, strValue.getChars());
 }
 
 REBOOL RENumber::setValueFromString(const char * strValue)
@@ -509,7 +509,7 @@ void RENumber::applyNumberValueToString(const RENumber & number, REString * stri
 	{
 		sprintf(cStr, "%10.9Lf", (long double)number.getFloat64Value());
 	}
-	string->set(cStr);
+	*string = cStr;
 }
 
 REString RENumber::getStringValue() const

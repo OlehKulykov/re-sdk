@@ -17,6 +17,8 @@
 
 #include "../../include/recore/REMD5Generator.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #ifdef __RE_OS_IPHONE__
 #include <CommonCrypto/CommonDigest.h>
@@ -317,7 +319,7 @@ const REString REMD5Generator::getStringFromData(const void * data, const REUInt
 		REUByte ub[16];
 		this->final( &ctx, (REUByte *)ub );
 		
-		REString retString;
+		REMutableString retString;
 		retString.appendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
 							   ub[0], ub[1], ub[2], ub[3], ub[4], ub[5], ub[6], ub[7], 
 							   ub[8], ub[9], ub[10], ub[11], ub[12], ub[13], ub[14], ub[15]);	
@@ -325,7 +327,7 @@ const REString REMD5Generator::getStringFromData(const void * data, const REUInt
 #else
 		unsigned char ub[16];
 		CC_MD5(data, (CC_LONG)dataLength, ub);
-		REString retString;
+		REMutableString retString;
 		retString.appendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
 							   ub[0], ub[1], ub[2], ub[3], ub[4], ub[5], ub[6], ub[7], 
 							   ub[8], ub[9], ub[10], ub[11], ub[12], ub[13], ub[14], ub[15]);	

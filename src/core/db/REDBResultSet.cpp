@@ -17,5 +17,14 @@
 
 #include "../../../include/recore/REDBResultSet.h"
 
+REBOOL REDBResultSet::isOK() const
+{
+	return false;
+}
+
+REDBResultSet::~REDBResultSet()
+{
+	
+}
 
 

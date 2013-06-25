@@ -191,7 +191,7 @@ REBOOL REXMLSerializableReader::Read(const REString & xmlString)
 	if (_controller && _callBack.CreateNewObject) 
 	{
 		XMLDocument doc;
-		doc.Parse(xmlString.UTF8String());
+		doc.Parse(xmlString.getChars());
 		
 		if (doc.Error()) { return false; }
 		

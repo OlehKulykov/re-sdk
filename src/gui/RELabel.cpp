@@ -305,7 +305,7 @@ void RELabel::setCharsSpaceRatio(const REFloat32 newRatio)
 
 REBOOL RELabel::isCanReloadChars() const
 {
-	if (_font && _text.length()) 
+	if (_font && _text.getLength()) 
 	{
 		REArray<RETTFFontChar *> * charsArray = _font->getChars();
 		if (charsArray) 
@@ -572,7 +572,7 @@ void RELabel::reloadChars()
 
 void RELabel::setText(const REString & newText)
 {
-	_text.set(newText);
+	_text = newText;
 	this->reloadChars();
 }
 
@@ -602,7 +602,7 @@ const REString & RELabel::getTextLineTruncationString() const
 /// Setting new custom truncation string.
 void RELabel::setTextLineTruncationString(const REString & newTruncationString)
 {
-	_textLineTruncationString.set(newTruncationString);
+	_textLineTruncationString = newTruncationString;
 }
 
 REBOOL RELabel::acceptLabelStringParameter(RELabel * label, const char * key, const char * value)
@@ -816,7 +816,7 @@ RELabel::RELabel() : REView(),
 	_textAlignment(0),
 	_lineBreakMode(0)
 {
-	_textLineTruncationString.set("...");
+	_textLineTruncationString = "...";
 }
 
 RELabel::~RELabel()

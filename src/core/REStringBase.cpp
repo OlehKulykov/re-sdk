@@ -27,14 +27,12 @@ void * REStringBase::getStringBuffer() const
 
 REBOOL REStringBase::isEmpty() const
 {
-	const REBuffer * b = _p;
-	return b ? (b->getSize() == 0) : true;
+	return ( !REStringUtilsPrivate::isStringExists(_p) );
 }
 
 REBOOL REStringBase::isNotEmpty() const
 {
-	const REBuffer * b = _p;
-	return b ? (b->getSize() > 0) : false;
+	return REStringUtilsPrivate::isStringExists(_p);
 }
 
 void REStringBase::clear()

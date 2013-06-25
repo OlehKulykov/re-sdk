@@ -16,6 +16,8 @@
 
 
 #include "../../include/regui/RETextInputRespondersManager.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REWideString.h"
 
 __RE_PUBLIC_CLASS_API__ RETextInputRespondersManager * RETextInputRespondersManager::_defaulTextInputRespondersManager = NULL;
 
@@ -37,15 +39,15 @@ void RETextInputRespondersManager::setFirstState(RETextInputRespondersManager::R
 		{
 			if (_callBacks.StartUTF8TextInputCallBack)
 			{
-				if (_callBacks.StartUTF8TextInputCallBack(resp->object->getTextInputResponderText().UTF8String()))
+				if (_callBacks.StartUTF8TextInputCallBack(resp->object->getTextInputResponderText().getChars()))
 				{
 					resp->object->onTextInputResponderTextInputStarted();
 				}
 			}
 			else if (_callBacks.StartWideTextInputCallBack)
 			{
-				REStringPresentation p(resp->object->getTextInputResponderText());
-				if (_callBacks.StartWideTextInputCallBack(p.wideString()))
+				REWideString p(resp->object->getTextInputResponderText());
+				if (_callBacks.StartWideTextInputCallBack(p.getWideChars()))
 				{
 					resp->object->onTextInputResponderTextInputStarted();
 				}
@@ -85,8 +87,8 @@ REUInt32 RETextInputRespondersManager::acceptNewUTF8Text(const char * newText)
 	_mutex.lock();
 	REUInt32 r = 0;
 	
-	REStringPresentation newTextP(newText);
-	r = this->acceptNewWideText(newTextP.wideString());
+	REWideString newTextP(newText);
+	r = this->acceptNewWideText(newTextP.getWideChars());
 	
 	_mutex.unlock();
 	return r;

@@ -70,7 +70,6 @@
 		3D1F436113E29A4F001E480D /* RERect.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433313E29A4F001E480D /* RERect.h */; };
 		3D1F436213E29A4F001E480D /* REResourcesStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433413E29A4F001E480D /* REResourcesStorage.h */; };
 		3D1F436313E29A4F001E480D /* RESize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433513E29A4F001E480D /* RESize.h */; };
-		3D1F436413E29A4F001E480D /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433613E29A4F001E480D /* REString.h */; };
 		3D1F436513E29A4F001E480D /* RECoreC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433713E29A4F001E480D /* RECoreC.h */; };
 		3D1F436613E29A4F001E480D /* RETetragon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433813E29A4F001E480D /* RETetragon.h */; };
 		3D1F436713E29A4F001E480D /* RETime.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433913E29A4F001E480D /* RETime.h */; };
@@ -98,7 +97,6 @@
 		3D1F43A313E29AAB001E480D /* RERandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438013E29AAB001E480D /* RERandomizer.cpp */; };
 		3D1F43A413E29AAB001E480D /* RERect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438113E29AAB001E480D /* RERect.cpp */; };
 		3D1F43A513E29AAB001E480D /* REResourcesStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */; };
-		3D1F43A613E29AAB001E480D /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438313E29AAB001E480D /* REString.cpp */; };
 		3D1F43A713E29AAB001E480D /* RECoreC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438413E29AAB001E480D /* RECoreC.cpp */; };
 		3D1F43A813E29AAB001E480D /* REThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438513E29AAB001E480D /* REThread.cpp */; };
 		3D1F43A913E29AAB001E480D /* RETime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438613E29AAB001E480D /* RETime.cpp */; };
@@ -224,12 +222,12 @@
 		3D6DC5A613FD43820091A864 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */; };
 		3D78030114504B840059C648 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D78030014504B840059C648 /* REAffineTransform.cpp */; };
 		3D785CD715C66ABF006A12F9 /* REObjectProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D785CD615C66ABF006A12F9 /* REObjectProperty.h */; };
-		3D7A01751771B7EB00E7316E /* REMutableStringN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01741771B7EB00E7316E /* REMutableStringN.h */; };
-		3D7A01771771B7F100E7316E /* REStringN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01761771B7F100E7316E /* REStringN.h */; };
-		3D7A01791771B80800E7316E /* REWideStringN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01781771B80800E7316E /* REWideStringN.h */; };
-		3D7A017B1771B82800E7316E /* REWideStringN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017A1771B82800E7316E /* REWideStringN.cpp */; };
-		3D7A017D1771B83800E7316E /* REStringN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017C1771B83800E7316E /* REStringN.cpp */; };
-		3D7A017F1771B84F00E7316E /* REMutableStringN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017E1771B84F00E7316E /* REMutableStringN.cpp */; };
+		3D7A01751771B7EB00E7316E /* REMutableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01741771B7EB00E7316E /* REMutableString.h */; };
+		3D7A01771771B7F100E7316E /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01761771B7F100E7316E /* REString.h */; };
+		3D7A01791771B80800E7316E /* REWideString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01781771B80800E7316E /* REWideString.h */; };
+		3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017A1771B82800E7316E /* REWideString.cpp */; };
+		3D7A017D1771B83800E7316E /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017C1771B83800E7316E /* REString.cpp */; };
+		3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017E1771B84F00E7316E /* REMutableString.cpp */; };
 		3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */; };
 		3D7A01971771D87A00E7316E /* REStringUtilsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */; };
 		3D7A02511772031200E7316E /* REStringBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A02501772031200E7316E /* REStringBase.h */; };
@@ -352,7 +350,6 @@
 		3D1F433313E29A4F001E480D /* RERect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERect.h; path = ../../include/recore/RERect.h; sourceTree = SOURCE_ROOT; };
 		3D1F433413E29A4F001E480D /* REResourcesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REResourcesStorage.h; path = ../../include/recore/REResourcesStorage.h; sourceTree = SOURCE_ROOT; };
 		3D1F433513E29A4F001E480D /* RESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESize.h; path = ../../include/recore/RESize.h; sourceTree = SOURCE_ROOT; };
-		3D1F433613E29A4F001E480D /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
 		3D1F433713E29A4F001E480D /* RECoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreC.h; path = ../../include/recore/RECoreC.h; sourceTree = SOURCE_ROOT; };
 		3D1F433813E29A4F001E480D /* RETetragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETetragon.h; path = ../../include/recore/RETetragon.h; sourceTree = SOURCE_ROOT; };
 		3D1F433913E29A4F001E480D /* RETime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETime.h; path = ../../include/recore/RETime.h; sourceTree = SOURCE_ROOT; };
@@ -380,7 +377,6 @@
 		3D1F438013E29AAB001E480D /* RERandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERandomizer.cpp; path = ../../src/core/RERandomizer.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438113E29AAB001E480D /* RERect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERect.cpp; path = ../../src/core/RERect.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REResourcesStorage.cpp; path = ../../src/core/REResourcesStorage.cpp; sourceTree = SOURCE_ROOT; };
-		3D1F438313E29AAB001E480D /* REString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REString.cpp; path = ../../src/core/REString.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438413E29AAB001E480D /* RECoreC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECoreC.cpp; path = ../../src/core/RECoreC.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438513E29AAB001E480D /* REThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REThread.cpp; path = ../../src/core/REThread.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438613E29AAB001E480D /* RETime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETime.cpp; path = ../../src/core/RETime.cpp; sourceTree = SOURCE_ROOT; };
@@ -506,12 +502,12 @@
 		3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml_wrap1.cpp; path = ../../src/addlibs/tinyxml_wrap1.cpp; sourceTree = SOURCE_ROOT; };
 		3D78030014504B840059C648 /* REAffineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAffineTransform.cpp; path = ../../src/core/REAffineTransform.cpp; sourceTree = SOURCE_ROOT; };
 		3D785CD615C66ABF006A12F9 /* REObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectProperty.h; path = ../../include/recore/REObjectProperty.h; sourceTree = SOURCE_ROOT; };
-		3D7A01741771B7EB00E7316E /* REMutableStringN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutableStringN.h; path = ../../include/recore/REMutableStringN.h; sourceTree = SOURCE_ROOT; };
-		3D7A01761771B7F100E7316E /* REStringN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringN.h; path = ../../include/recore/REStringN.h; sourceTree = SOURCE_ROOT; };
-		3D7A01781771B80800E7316E /* REWideStringN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REWideStringN.h; path = ../../include/recore/REWideStringN.h; sourceTree = SOURCE_ROOT; };
-		3D7A017A1771B82800E7316E /* REWideStringN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REWideStringN.cpp; path = ../../src/core/REWideStringN.cpp; sourceTree = SOURCE_ROOT; };
-		3D7A017C1771B83800E7316E /* REStringN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringN.cpp; path = ../../src/core/REStringN.cpp; sourceTree = SOURCE_ROOT; };
-		3D7A017E1771B84F00E7316E /* REMutableStringN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutableStringN.cpp; path = ../../src/core/REMutableStringN.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A01741771B7EB00E7316E /* REMutableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutableString.h; path = ../../include/recore/REMutableString.h; sourceTree = SOURCE_ROOT; };
+		3D7A01761771B7F100E7316E /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
+		3D7A01781771B80800E7316E /* REWideString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REWideString.h; path = ../../include/recore/REWideString.h; sourceTree = SOURCE_ROOT; };
+		3D7A017A1771B82800E7316E /* REWideString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REWideString.cpp; path = ../../src/core/REWideString.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A017C1771B83800E7316E /* REString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REString.cpp; path = ../../src/core/REString.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A017E1771B84F00E7316E /* REMutableString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutableString.cpp; path = ../../src/core/REMutableString.cpp; sourceTree = SOURCE_ROOT; };
 		3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringUtilsPrivate.cpp; path = ../../src/core/REStringUtilsPrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringUtilsPrivate.h; path = ../../include/recore/private/REStringUtilsPrivate.h; sourceTree = SOURCE_ROOT; };
 		3D7A02501772031200E7316E /* REStringBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringBase.h; path = ../../include/recore/REStringBase.h; sourceTree = SOURCE_ROOT; };
@@ -550,8 +546,8 @@
 		3DB2352213E2A42900DA97C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DB34A0714156FF100CEA552 /* REMainThreadClassMethodWaitedPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMainThreadClassMethodWaitedPrivate.h; path = ../../include/recore/private/REMainThreadClassMethodWaitedPrivate.h; sourceTree = SOURCE_ROOT; };
 		3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigSelector.h; path = ../../include/reconfig/REConfigSelector.h; sourceTree = SOURCE_ROOT; };
-		3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
-		3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
+		3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/private/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
+		3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/private/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
 		3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDB.cpp; path = ../../src/core/RESQLiteDB.cpp; sourceTree = SOURCE_ROOT; };
 		3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDBResultSet.cpp; path = ../../src/core/RESQLiteDBResultSet.cpp; sourceTree = SOURCE_ROOT; };
 		3DBEF9571770415000503066 /* REDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDB.h; path = ../../include/recore/REDB.h; sourceTree = SOURCE_ROOT; };
@@ -950,16 +946,14 @@
 			children = (
 				3D7A02501772031200E7316E /* REStringBase.h */,
 				3D7A02521772032200E7316E /* REStringBase.cpp */,
-				3D7A01741771B7EB00E7316E /* REMutableStringN.h */,
-				3D7A017E1771B84F00E7316E /* REMutableStringN.cpp */,
-				3D7A01781771B80800E7316E /* REWideStringN.h */,
-				3D7A017A1771B82800E7316E /* REWideStringN.cpp */,
-				3D7A01761771B7F100E7316E /* REStringN.h */,
-				3D7A017C1771B83800E7316E /* REStringN.cpp */,
+				3D7A01741771B7EB00E7316E /* REMutableString.h */,
+				3D7A017E1771B84F00E7316E /* REMutableString.cpp */,
+				3D7A01781771B80800E7316E /* REWideString.h */,
+				3D7A017A1771B82800E7316E /* REWideString.cpp */,
+				3D7A01761771B7F100E7316E /* REString.h */,
+				3D7A017C1771B83800E7316E /* REString.cpp */,
 				3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */,
 				3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */,
-				3D1F433613E29A4F001E480D /* REString.h */,
-				3D1F438313E29AAB001E480D /* REString.cpp */,
 			);
 			name = string;
 			sourceTree = "<group>";
@@ -1109,7 +1103,6 @@
 				3D1F436113E29A4F001E480D /* RERect.h in Headers */,
 				3D1F436213E29A4F001E480D /* REResourcesStorage.h in Headers */,
 				3D1F436313E29A4F001E480D /* RESize.h in Headers */,
-				3D1F436413E29A4F001E480D /* REString.h in Headers */,
 				3D1F436513E29A4F001E480D /* RECoreC.h in Headers */,
 				3D1F436613E29A4F001E480D /* RETetragon.h in Headers */,
 				3D1F436713E29A4F001E480D /* RETime.h in Headers */,
@@ -1185,9 +1178,9 @@
 				3DBEF95C177041DC00503066 /* REDBResultSet.h in Headers */,
 				3DBEF9601770444900503066 /* REDictionary.h in Headers */,
 				3DBEF98417708E9100503066 /* RETypedArray.h in Headers */,
-				3D7A01751771B7EB00E7316E /* REMutableStringN.h in Headers */,
-				3D7A01771771B7F100E7316E /* REStringN.h in Headers */,
-				3D7A01791771B80800E7316E /* REWideStringN.h in Headers */,
+				3D7A01751771B7EB00E7316E /* REMutableString.h in Headers */,
+				3D7A01771771B7F100E7316E /* REString.h in Headers */,
+				3D7A01791771B80800E7316E /* REWideString.h in Headers */,
 				3D7A01971771D87A00E7316E /* REStringUtilsPrivate.h in Headers */,
 				3D7A02511772031200E7316E /* REStringBase.h in Headers */,
 			);
@@ -1308,7 +1301,6 @@
 				3D1F43A313E29AAB001E480D /* RERandomizer.cpp in Sources */,
 				3D1F43A413E29AAB001E480D /* RERect.cpp in Sources */,
 				3D1F43A513E29AAB001E480D /* REResourcesStorage.cpp in Sources */,
-				3D1F43A613E29AAB001E480D /* REString.cpp in Sources */,
 				3D1F43A713E29AAB001E480D /* RECoreC.cpp in Sources */,
 				3D1F43A813E29AAB001E480D /* REThread.cpp in Sources */,
 				3D1F43A913E29AAB001E480D /* RETime.cpp in Sources */,
@@ -1447,9 +1439,9 @@
 				3DBEF95E177041E000503066 /* REDBResultSet.cpp in Sources */,
 				3DBEF9621770445800503066 /* REDictionary.cpp in Sources */,
 				3DBEF98617708E9B00503066 /* RETypedArray.cpp in Sources */,
-				3D7A017B1771B82800E7316E /* REWideStringN.cpp in Sources */,
-				3D7A017D1771B83800E7316E /* REStringN.cpp in Sources */,
-				3D7A017F1771B84F00E7316E /* REMutableStringN.cpp in Sources */,
+				3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */,
+				3D7A017D1771B83800E7316E /* REString.cpp in Sources */,
+				3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */,
 				3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */,
 				3D7A02531772032200E7316E /* REStringBase.cpp in Sources */,
 			);

@@ -15,8 +15,8 @@
  */
 
 
-#include "../../include/recore/RESQLiteDB.h"
-#include "../../include/recore/RESQLiteDBResultSet.h"
+#include "../../include/recore/private/RESQLiteDB.h"
+#include "../../include/recore/private/RESQLiteDBResultSet.h"
 
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
 
@@ -163,7 +163,7 @@ REString RESQLiteDBResultSet::getStringForColumnIndex(const REUInt32 index) cons
 		{
 			if (sqlite3_column_type((sqlite3_stmt*)_st->statement, (int)index) == SQLITE_NULL) 
 			{
-				return REString("");
+				return REString();
 			}
 			
 			const char * cStr = (const char *)sqlite3_column_text((sqlite3_stmt*)_st->statement, (int)index);
@@ -181,7 +181,7 @@ REString RESQLiteDBResultSet::getStringForColumnIndex(const REUInt32 index) cons
 		}
 	}
 #endif	
-	return REString("");
+	return REString();
 }
 
 void RESQLiteDBResultSet::close()
@@ -261,9 +261,9 @@ RESQLiteDBResultSet & RESQLiteDBResultSet::operator=(const RESQLiteDBResultSet &
 	return (*this);
 }
 
-RESQLiteDBResultSet::RESQLiteDBResultSet(const RESQLiteDBResultSet & anotherSet) 
+RESQLiteDBResultSet::RESQLiteDBResultSet(const RESQLiteDBResultSet & anotherSet) : REDBResultSet()
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
-: _st(anotherSet._st)
+	,_st(anotherSet._st)
 #endif
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
@@ -274,9 +274,9 @@ RESQLiteDBResultSet::RESQLiteDBResultSet(const RESQLiteDBResultSet & anotherSet)
 #endif	
 }
 
-RESQLiteDBResultSet::RESQLiteDBResultSet(RESQLiteDBResultSet::StatementStruct * statement)
+RESQLiteDBResultSet::RESQLiteDBResultSet(RESQLiteDBResultSet::StatementStruct * statement) : REDBResultSet()
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
-: _st(statement)
+	,_st(statement)
 #endif
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	

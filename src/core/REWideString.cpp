@@ -15,110 +15,110 @@
  */
 
 
-#include "../../include/recore/REWideStringN.h"
-#include "../../include/recore/REStringN.h"
-#include "../../include/recore/REMutableStringN.h"
+#include "../../include/recore/REWideString.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
-REStringN REWideStringN::getString() const
+REString REWideString::getString() const
 {
-	return REStringN( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
+	return REString( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
 															this->getLength()) );
 }
 
-REMutableStringN REWideStringN::getMutableString() const
+REMutableString REWideString::getMutableString() const
 {
-	return REMutableStringN( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
+	return REMutableString( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
 																   this->getLength()) );
 }
 
-const REUInt32 REWideStringN::getLength() const
+const REUInt32 REWideString::getLength() const
 {
 	return REStringUtilsPrivate::stringLengthFromWideBuffer(_p);
 }
 
-const wchar_t * REWideStringN::getWideChars() const
+const wchar_t * REWideString::getWideChars() const
 {
 	const REBuffer * b = _p;
 	return b ? (const wchar_t *)b->getBuffer() : NULL;
 }
 
-REWideStringN & REWideStringN::operator=(const char * utf8String)
+REWideString & REWideString::operator=(const char * utf8String)
 {
 	_p = REStringUtilsPrivate::getWideFromUTF8(utf8String, 
 											   REStringUtilsPrivate::UTF8StringLength(utf8String));
 	return (*this);
 }
 
-REWideStringN & REWideStringN::operator=(const wchar_t * wideString)
+REWideString & REWideString::operator=(const wchar_t * wideString)
 {
 	_p = REStringUtilsPrivate::newBuffForWideString(wideString);
 	return (*this);
 }
 
-REWideStringN & REWideStringN::operator=(const REWideStringN & anotherString)
+REWideString & REWideString::operator=(const REWideString & anotherString)
 {
 	_p = anotherString._p;
 	return (*this);
 }
 
-REWideStringN & REWideStringN::operator=(const REStringN & anotherString)
+REWideString & REWideString::operator=(const REString & anotherString)
 {
 	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.getChars(), anotherString.getLength());
 	return (*this);
 }
 
-REWideStringN & REWideStringN::operator=(const REMutableStringN & anotherString)
+REWideString & REWideString::operator=(const REMutableString & anotherString)
 {
 	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.getChars(), anotherString.getLength());
 	return (*this);
 }
 
-REWideStringN::REWideStringN()
+REWideString::REWideString()
 {
 	
 }
 
-REWideStringN::REWideStringN(const char * utf8String, 
+REWideString::REWideString(const char * utf8String, 
 							 const REUInt32 utf8StringLength) :
 	REStringBase(utf8String, utf8StringLength, REStringTypeWide)
 {
 	
 }
 
-REWideStringN::REWideStringN(const wchar_t * wideString, 
+REWideString::REWideString(const wchar_t * wideString, 
 							 const REUInt32 wideStringLength) :
 	REStringBase(wideString, wideStringLength, REStringTypeWide)
 {
 	
 }
 
-REWideStringN::REWideStringN(const REWideStringN & anotherString) : 
+REWideString::REWideString(const REWideString & anotherString) : 
 	REStringBase(anotherString._p)
 {
 	
 }
 
-REWideStringN::REWideStringN(const REStringN & anotherString) : 
+REWideString::REWideString(const REString & anotherString) : 
 	REStringBase(anotherString.getChars(), anotherString.getLength(), REStringTypeWide)
 {
 	
 }
 
-REWideStringN::REWideStringN(const REMutableStringN & anotherString) : 
+REWideString::REWideString(const REMutableString & anotherString) : 
 	REStringBase(anotherString.getChars(), anotherString.getLength(), REStringTypeWide)
 {
 	
 }
 
-REWideStringN::REWideStringN(const REPtr<REBuffer> & wideStringBuffer) :
+REWideString::REWideString(const REPtr<REBuffer> & wideStringBuffer) :
 	REStringBase(wideStringBuffer)
 {
 	
 }
 
-REWideStringN::~REWideStringN()
+REWideString::~REWideString()
 {
 	
 }

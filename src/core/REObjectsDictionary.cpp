@@ -48,11 +48,11 @@ REBOOL REObjectsDictionary::writePairsToFilePath(REArray<REObjectsDictionary::Ke
 	if (f)
 	{
 		REXMLPropertyListWriter w;
-		REString plistStr;
+		REMutableString plistStr;
 		w.writeToString(pairs, &plistStr);
-		const REUInt32 writed = (REUInt32)fwrite(plistStr.UTF8String(), 1, plistStr.length(), f);
+		const REUInt32 writed = (REUInt32)fwrite(plistStr.getChars(), 1, plistStr.getLength(), f);
 		fclose(f);
-		return (writed == plistStr.length());
+		return (writed == plistStr.getLength());
 	}
 	return false;
 }

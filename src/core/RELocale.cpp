@@ -17,6 +17,8 @@
 
 #include "../../include/recore/RELocale.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 class RELocalePrivate 
 {	
@@ -51,17 +53,17 @@ RELocaleType RELocale::setCurrentLocaleFromString(const char * locString)
 {
 	if (locString)
 	{
-		REString loc(locString);
+		REMutableString loc(locString);
 		loc.replace("-", "_");
-		locString = loc.UTF8String();
+		locString = loc.getChars();
 		const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
 		
 		size_t compareLenght = 0;
-		if (loc.length() >= 5)
+		if (loc.getLength() >= 5)
 		{
 			compareLenght = 5;
 		}
-		else if (loc.length() >= 2)
+		else if (loc.getLength() >= 2)
 		{
 			compareLenght = 2;
 		}

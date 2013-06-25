@@ -53,6 +53,15 @@ public:
 		return wideString ? (REUInt32)wcslen(wideString) : 0;
 	}
 	
+	static REBOOL isStringExists(const REPtr<REBuffer> & stringBuffer)
+	{
+		if (stringBuffer.isNotEmpty())
+		{
+			return stringBuffer->getBuffer() ? true : false;
+		}
+		return false;
+	}
+	
 	static REUInt32 actualUTF8StringLength(const char * utf8String, const REUInt32 utf8StringLength = RENotFound)
 	{
 		const REUInt32 len = (utf8StringLength == RENotFound) ? REStringUtilsPrivate::UTF8StringLength(utf8String) : utf8StringLength;
@@ -70,8 +79,13 @@ public:
 	static REUInt32 stringLengthFromWideBuffer(const REPtr<REBuffer> & wideStringBuffer);
 	
 	static REPtr<REBuffer> getAppendedWithPathComponent(const REPtr<REBuffer> & utf8Buffer, 
-														const char * comp, 
-														const REUInt32 compLen = RENotFound);
+														const char * comp);
+	
+	static REPtr<REBuffer> getRemovedPathExtension(const REPtr<REBuffer> & utf8Buffer);
+	
+	static REPtr<REBuffer> getPathExtension(const REPtr<REBuffer> & utf8Buffer);
+	
+	static REPtr<REBuffer> getRemovedLastPathComponent(const REPtr<REBuffer> & utf8Buffer);
 };
 
 #endif /* __RESTRINGUTILSPRIVATE_H__  */

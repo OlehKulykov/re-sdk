@@ -191,7 +191,7 @@ REBOOL REAudioPlayerPrivate_iphone::initFromFilePath(const REString & filePath)
 		_p = NULL;
 	}
 	
-	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.UTF8String()];
+	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.getChars()];
 	if (fileOBJString) 
 	{
 		NSFileManager * manager = [[NSFileManager alloc] init];

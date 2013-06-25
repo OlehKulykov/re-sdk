@@ -229,8 +229,8 @@ REBOOL REData::initFromPath( const REString & filePath )
 		return false;
 	}
 	
-	const char * s = filePath.UTF8String();
-	const REUInt32 l = filePath.length();
+	const char * s = filePath.getChars();
+	const REUInt32 l = filePath.getLength();
 	return this->initFromPath(s, l);
 }
 

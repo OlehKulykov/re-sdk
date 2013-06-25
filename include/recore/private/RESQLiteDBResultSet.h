@@ -19,12 +19,13 @@
 #define __RESQLITEDBRESULTSET_H__
 
 
-#include "RECommonHeader.h"
-#include "REArray.h"
-#include "REString.h"
+#include "../RECommonHeader.h"
+#include "../REArray.h"
+#include "../REString.h"
+#include "../REDBResultSet.h"
 
 /// Class of Sqlite data base result sets.
-class __RE_PUBLIC_CLASS_API__ RESQLiteDBResultSet
+class RESQLiteDBResultSet : public REDBResultSet
 {
 public:
 	typedef struct _statementStruct
@@ -41,6 +42,8 @@ private:
 #endif
 	
 public:
+	virtual REBOOL isOK() const { return (!this->isNull()); }
+	
 	/// Checks is result set null(empty).
 	REBOOL isNull() const;
 	

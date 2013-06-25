@@ -19,7 +19,8 @@
 #define __RESQLITEDB_H__
 
 
-#include "RECommonHeader.h"
+#include "../RECommonHeader.h"
+#include "../REDB.h"
 #include "RESQLiteDBResultSet.h"
 
 #if (defined(__BUILDING_RECORE_DYNAMIC_LIBRARY__) || defined(__USING_RECORE_DYNAMIC_LIBRARY__))
@@ -32,7 +33,7 @@
 #endif
 
 /// Class of Sqlite data base.
-class __RE_PUBLIC_CLASS_API__ RESQLiteDB
+class RESQLiteDB : public REDB
 {
 private:
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
@@ -44,36 +45,38 @@ private:
 	
 	static REBOOL setColumnsNames(RESQLiteDBResultSet::StatementStruct * st);
 	
+	REBOOL closeSQLiteDB();
+	
 public:
 	/// Returns path to database.
-	const REString & getDatabasePath() const;
+	virtual REString getDatabaseFullPath() const;
 	
 	/// Opens data base.
-	REBOOL open();
+	virtual REBOOL open();
 	
 	/// Check is database opened.
-	REBOOL isOpened() const;
+	virtual REBOOL isOpened() const;
 	
 	/// Closes data base.
-	REBOOL close();
+	virtual REBOOL close();
 	
 	/// Returns last inserted row id.
-	REInt64 getLastInsertedRowId() const;
+	virtual REInt64 getLastInsertedRowId() const;
 	
 	/// Executes sql query string.
-	RESQLiteDBResultSet executeQuery(const REString & queryString);
+	virtual REPtr<REDBResultSet> executeQuery(const REString & queryString);
 	
 	/// Begins transaction.
-	REBOOL beginTransaction();
+	virtual REBOOL beginTransaction();
 	
 	/// Executes sql update query strind.
-	REBOOL executeUpdate(const REString & queryString);
+	virtual REBOOL executeUpdate(const REString & queryString);
 	
 	/// Commiting last transaction.
-	REBOOL commitTransaction();
+	virtual REBOOL commitTransaction();
 	
 	/// Rolls back last transaction.
-	REBOOL rollBackTransaction();
+	virtual REBOOL rollBackTransaction();
 	
 	/// Constructs bata base with file path.
 	RESQLiteDB(const REString & dbFilePath);

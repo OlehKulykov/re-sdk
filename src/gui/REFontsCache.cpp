@@ -60,8 +60,8 @@ REFontBase * REFontsCache::get(REFontBase * base)
 		{
 			base->charsArray = newChars;
 			base->heightPX = loader.getFontHeightInPixels();
-			base->familyName.set(loader.getFamilyName());
-			base->styleName.set(loader.getStyleName());
+			base->familyName = loader.getFamilyName();
+			base->styleName = loader.getStyleName();
 			base->isUseGammaCorection = loader.isUseGammaCorection();
 			base->gammaCorectionValue = loader.getGammaCorectionValue();
 			if (_cache.add(base))

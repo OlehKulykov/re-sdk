@@ -79,15 +79,10 @@
 #include "recore/REResourcesStorage.h"
 #include "recore/RERect.h"
 #include "recore/RESize.h"
-#include "recore/RESQLiteDB.h"
-#include "recore/RESQLiteDBResultSet.h"
-
 #include "recore/REStringBase.h"
 #include "recore/REString.h"
-#include "recore/REStringN.h"
-#include "recore/REWideStringN.h"
-#include "recore/REMutableStringN.h"
-
+#include "recore/REWideString.h"
+#include "recore/REMutableString.h"
 #include "recore/REStringObject.h"
 #include "recore/RETetragon.h"
 #include "recore/REThread.h"

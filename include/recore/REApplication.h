@@ -22,13 +22,15 @@
 #include "REAutoReleasePool.h"
 #include "RETime.h"
 #include "REObject.h"
+#include "REString.h"
+#include "REMutableString.h"
 
 /// Class of recore basic application
 class __RE_PUBLIC_CLASS_API__ REApplication : public REObject
 {
 private:
 	REAutoReleasePool * _appAutoReleasePool;
-	REString _errorDescriptionString;
+	REMutableString _errorDescriptionString;
 	
 	REBOOL reapplicationInit();
 	

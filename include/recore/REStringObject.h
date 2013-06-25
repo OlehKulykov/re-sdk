@@ -21,10 +21,11 @@
 
 #include "RECommonHeader.h"
 #include "REString.h"
+#include "REMutableString.h"
 #include "REObject.h"
 
 
-class __RE_PUBLIC_CLASS_API__ REStringObject : public REString, public REObject
+class __RE_PUBLIC_CLASS_API__ REStringObject : public REMutableString, public REObject
 {
 protected:
 	REStringObject(const wchar_t * wideStringValue);

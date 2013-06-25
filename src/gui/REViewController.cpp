@@ -262,7 +262,7 @@ REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackgr
 	REStringObject * strObj = REStringObject::createWithChars("data/vc/");
 	if (strObj) 
 	{
-		strObj->appendFormat("%s/vc.xml", name.UTF8String());
+		strObj->appendFormat("%s/vc.xml", name.getChars());
 		if (isLoadInBackground) 
 		{
 			REThread::detachNewThreadWithMethod(NEW_CLASS_METHOD(REViewController, this, LoadByNameThreadMethod), strObj);

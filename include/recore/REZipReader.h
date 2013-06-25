@@ -23,6 +23,7 @@
 #include "REBuffer.h"
 #include "IREFileReadable.h"
 #include "REData.h"
+#include "REString.h"
 
 /// Entry of zip file. Using with REZipReader.
 class __RE_PUBLIC_CLASS_API__ REZipEntry
