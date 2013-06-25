@@ -30,18 +30,18 @@ public:
 	RERetainProperty<MyApp *> myApp;
 	RERetainProperty<MyRootViewController *> myRootViewController;
 	
-	void Update();
-	void Render();
-	void Pause();
-	void Resume();
-	void Setup();
-	void SetNewScreenSize(const int newWidth, const int newHeight);
-	REBOOL IsCanUse() const;
+	void update();
+	void render();
+	void pause();
+	void resume();
+	void setup();
+	void setNewScreenSize(const int newWidth, const int newHeight);
+	REBOOL isCanUse() const;
 	
 	MyAppInterlayer();
 	~MyAppInterlayer();
 	
-	static REBOOL AddAppResourcePath(const char * resourcePath);
+	static REBOOL addAppResourcePath(const char * resourcePath);
 };
 
 

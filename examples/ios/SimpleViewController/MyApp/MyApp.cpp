@@ -17,18 +17,18 @@
 
 #include "MyApp.h"
 
-const REBOOL MyApp::IsStarted() const
+const REBOOL MyApp::isStarted() const
 {
 	return _isStarted;
 }
 
-REBOOL MyApp::Start()
+REBOOL MyApp::start()
 {
 	if (!_isStarted)
 	{
 		_isStarted = true;
 		
-		MyRootViewController * rootViewController = (MyRootViewController *)this->GetRootViewController();
+		MyRootViewController * rootViewController = (MyRootViewController *)this->getRootViewController();
 		
 		rootViewController->LoadByName(REString("mainmenu"), false);
 	}
@@ -40,12 +40,12 @@ MyApp::MyApp(MyRootViewController * rootViewController) : REGUIApplication(),
 {
 	if (rootViewController)
 	{
-		REGUIApplication::SetRootViewController(rootViewController);
+		REGUIApplication::setRootViewController(rootViewController);
 		
-		rootViewController->SetRespondsForUserAction(true);
+		rootViewController->setRespondsForUserAction(true);
 		
-		RERect controllerFrame(0.0f, 0.0f, MyApp::RendererWidth(), MyApp::RendererHeight());
-		rootViewController->SetFrame(controllerFrame);
+		RERect controllerFrame(0.0f, 0.0f, MyApp::rendererWidth(), MyApp::rendererHeight());
+		rootViewController->setFrame(controllerFrame);
 	}
 }
 
@@ -54,12 +54,12 @@ MyApp::~MyApp()
 	
 }
 
-REFloat32 MyApp::RendererWidth()
+REFloat32 MyApp::rendererWidth()
 {
 	return 2.66666f;
 }
 
-REFloat32 MyApp::RendererHeight()
+REFloat32 MyApp::rendererHeight()
 {
 	return 4.0f;
 }

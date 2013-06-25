@@ -32,36 +32,36 @@
 
 - (void) updateScreenFrame:(CGRect)frame
 {
-	_interLayer->SetNewScreenSize((int)frame.size.width, (int)frame.size.height);
+	_interLayer->setNewScreenSize((int)frame.size.width, (int)frame.size.height);
 }
 
 - (void) onSetupGL
 {
-	_interLayer->Setup();
+	_interLayer->setup();
 }
 
 #pragma mark GLKViewControllerDelegate
 - (void) glkViewControllerUpdate:(GLKViewController *)controller
 {
-	_interLayer->Update();
+	_interLayer->update();
 }
 
 - (void) glkViewController:(GLKViewController *)controller willPause:(BOOL)pause
 {
 	if (pause)
 	{
-		_interLayer->Pause();
+		_interLayer->pause();
 	}
 	else
 	{
-		_interLayer->Resume();
+		_interLayer->resume();
 	}
 }
 
 #pragma mark GLKViewDelegate
 - (void) glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-	_interLayer->Render();
+	_interLayer->render();
 }
 
 - (BOOL) initInterlayer
@@ -69,7 +69,7 @@
 	MyAppInterlayer * interLayer = new MyAppInterlayer();
 	if (interLayer)
 	{
-		if (interLayer->IsCanUse())
+		if (interLayer->isCanUse())
 		{
 			[iOSAppInterlayer initAppResources];
 			_interLayer = interLayer;
@@ -104,11 +104,11 @@
 	NSString * resourcePath = nil;
 	resourcePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"data0"
 																	ofType:@"dat"];
-	MyAppInterlayer::AddAppResourcePath([resourcePath UTF8String]);
+	MyAppInterlayer::addAppResourcePath([resourcePath UTF8String]);
 	
 	
 	resourcePath = [[NSBundle bundleForClass:[self class]] resourcePath];
-	MyAppInterlayer::AddAppResourcePath([resourcePath UTF8String]);
+	MyAppInterlayer::addAppResourcePath([resourcePath UTF8String]);
 }
 
 + (iOSAppInterlayer *) defaultInterlayer

@@ -25,17 +25,17 @@ class MyApp : public REGUIApplication
 protected:
 	REBOOL _isStarted;
 public:
-	const REBOOL IsStarted() const;
+	const REBOOL isStarted() const;
 	
-	REBOOL Start();
+	REBOOL start();
 	
 	
 	MyApp(MyRootViewController * rootViewController = NULL);
 	virtual ~MyApp();
 	
 	
-	static REFloat32 RendererWidth();
-	static REFloat32 RendererHeight();
+	static REFloat32 rendererWidth();
+	static REFloat32 rendererHeight();
 };
 
 #endif
