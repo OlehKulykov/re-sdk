@@ -208,8 +208,6 @@
 		3D4DEEDC14A8715600AECAD8 /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */; };
 		3D4DEEE014A8716000AECAD8 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */; };
 		3D4DEEE114A8716000AECAD8 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */; };
-		3D5B57C51765BF5D000B4527 /* REJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5B57C41765BF5D000B4527 /* REJSONParser.h */; };
-		3D5B57C81765BF8E000B4527 /* REJSONParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */; };
 		3D5D9022149039F300230851 /* webp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D9021149039F300230851 /* webp.h */; };
 		3D5D902514903A1500230851 /* webp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D902414903A1500230851 /* webp_config.h */; };
 		3D5D902714903A9900230851 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D902614903A9900230851 /* webp_wrap1.c */; };
@@ -297,6 +295,8 @@
 		3DF8753615F152C400363B51 /* REAutoReleasePoolPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */; };
 		3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF8753715F152CA00363B51 /* REAutoReleasePoolPrivate.h */; };
 		3DFD093114BDB81B0063730E /* REList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFD093014BDB81B0063730E /* REList.h */; };
+		3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD334A1783033C0057D47A /* OKJSONParser.c */; };
+		3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFD334B1783033C0057D47A /* OKJSONParser.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -488,8 +488,6 @@
 		3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
 		3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELZMACompression.cpp; path = ../../src/core/RELZMACompression.cpp; sourceTree = SOURCE_ROOT; };
 		3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZLIBCompression.cpp; path = ../../src/core/REZLIBCompression.cpp; sourceTree = SOURCE_ROOT; };
-		3D5B57C41765BF5D000B4527 /* REJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REJSONParser.h; path = ../../include/recore/REJSONParser.h; sourceTree = SOURCE_ROOT; };
-		3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REJSONParser.cpp; path = ../../src/core/REJSONParser.cpp; sourceTree = SOURCE_ROOT; };
 		3D5D9021149039F300230851 /* webp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp.h; path = ../../src/addlibs/webp.h; sourceTree = SOURCE_ROOT; };
 		3D5D902414903A1500230851 /* webp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp_config.h; path = ../../src/addlibs/webp_config.h; sourceTree = SOURCE_ROOT; };
 		3D5D902614903A9900230851 /* webp_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap1.c; path = ../../src/addlibs/webp_wrap1.c; sourceTree = SOURCE_ROOT; };
@@ -580,6 +578,8 @@
 		3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAutoReleasePoolPrivate.cpp; path = ../../src/core/REAutoReleasePoolPrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3DF8753715F152CA00363B51 /* REAutoReleasePoolPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAutoReleasePoolPrivate.h; path = ../../include/recore/private/REAutoReleasePoolPrivate.h; sourceTree = SOURCE_ROOT; };
 		3DFD093014BDB81B0063730E /* REList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REList.h; path = ../../include/recore/REList.h; sourceTree = SOURCE_ROOT; };
+		3DFD334A1783033C0057D47A /* OKJSONParser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = OKJSONParser.c; path = ../../src/core/json/OKJSONParser.c; sourceTree = SOURCE_ROOT; };
+		3DFD334B1783033C0057D47A /* OKJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKJSONParser.h; path = ../../src/core/json/OKJSONParser.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -909,8 +909,8 @@
 		3D5B57C31765BF44000B4527 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				3D5B57C41765BF5D000B4527 /* REJSONParser.h */,
-				3D5B57C71765BF8E000B4527 /* REJSONParser.cpp */,
+				3DFD334B1783033C0057D47A /* OKJSONParser.h */,
+				3DFD334A1783033C0057D47A /* OKJSONParser.c */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -1171,7 +1171,6 @@
 				3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */,
 				3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */,
 				3D9C86351758DC87009B516A /* REPtr.h in Headers */,
-				3D5B57C51765BF5D000B4527 /* REJSONParser.h in Headers */,
 				3D889135176D09C70086873B /* REConfigHardcoded.h in Headers */,
 				3D16878E176DE84500BFF707 /* RETypedPtr.h in Headers */,
 				3DBEF9581770415000503066 /* REDB.h in Headers */,
@@ -1183,6 +1182,7 @@
 				3D7A01791771B80800E7316E /* REWideString.h in Headers */,
 				3D7A01971771D87A00E7316E /* REStringUtilsPrivate.h in Headers */,
 				3D7A02511772031200E7316E /* REStringBase.h in Headers */,
+				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1433,7 +1433,6 @@
 				3DD0469E15EEA0F300642E45 /* REMainLoopUpdatable.cpp in Sources */,
 				3DD046A015EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
 				3DF8753615F152C400363B51 /* REAutoReleasePoolPrivate.cpp in Sources */,
-				3D5B57C81765BF8E000B4527 /* REJSONParser.cpp in Sources */,
 				3D168791176DE86C00BFF707 /* RETypedPtr.cpp in Sources */,
 				3DBEF95A1770415F00503066 /* REDB.cpp in Sources */,
 				3DBEF95E177041E000503066 /* REDBResultSet.cpp in Sources */,
@@ -1444,6 +1443,7 @@
 				3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */,
 				3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */,
 				3D7A02531772032200E7316E /* REStringBase.cpp in Sources */,
+				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

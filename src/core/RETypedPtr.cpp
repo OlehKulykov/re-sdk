@@ -348,4 +348,11 @@ RETypedPtr::~RETypedPtr()
 	this->release();
 }
 
+REBOOL RETypedPtr::isNotEmpty(RETypedPtr * ptr)
+{
+	return ptr ? (ptr->_object != (void *)0) : false;
+}
+
+
+
 

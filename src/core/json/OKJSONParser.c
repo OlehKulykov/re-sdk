@@ -1,33 +1,35 @@
 /*
- *   Copyright 2012 - 2013 Kulykov Oleh
+ * Copyright 2012 - 2013 Kulykov Oleh
  *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 
-#include "../../include/recore/REJSONParser.h"
-#include "../../include/recore/RENumberObject.h"
-#include "../../include/recore/RENULLObject.h"
-#include "../../include/recore/REObjectsArray.h"
+#include "OKJSONParser.h"
+
+/// needed only for inline define
 
 #include <inttypes.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 
 /// For PC better 32bit char
-//#define CHAR_TYPE uint32_t
+#define CHAR_TYPE uint32_t
 
 /// For device better 16bit char(16bit registers)
-#define CHAR_TYPE uint16_t
+//#define CHAR_TYPE uint16_t
 
 //#define CHAR_TYPE char
 
@@ -57,75 +59,54 @@
 #define ERR_INIT_NUMBER		(7)
 #define ERR_WRONG_LOGIC		(8)
 
-class REJSONParserPrivate
-{	
-public:
-	typedef struct _struct
-	{
-		uint8_t * data;
-		uint8_t * end;
-		REObject ** objects;
-		OBJ_TYPE_TYPE * types;
-		uint32_t capacity;
-		int32_t index;
-	} Struct;
+struct _OKJSONParserStruct
+{
+	OKJSONParserCallbacks * callbacks;
+	uint8_t * data;
+	uint8_t * end;
+	PARSED_OBJECT * objects;
+	OBJ_TYPE_TYPE * types;
+	uint32_t capacity;
+	int32_t index;
 	
-	static void FreeParserDataStruct(REJSONParserPrivate::Struct * p);
-	static void CleanAll(REJSONParserPrivate::Struct * p);
-	static void * NewMem(const size_t size);
-	static uint32_t IncCapacity(REJSONParserPrivate::Struct * p);
-	static const char * ErrorCodeDescription(const int32_t errorCode);
-	static void Error(REJSONParserPrivate::Struct * p, const int32_t errorCode);
-	static void BeforeOutWithError(REJSONParserPrivate::Struct * p, const int32_t errorCode);
-	static REObject * TryNumber(REJSONParserPrivate::Struct * p);
-	static uint32_t UniCharToUTF8(const uint32_t uniChar, uint8_t * cursor);
-	static void ParseReplacementString(const uint8_t * data, uint32_t len, REStringObject ** resString);
-	static void ParseString(REJSONParserPrivate::Struct * p, REStringObject ** resString);
-	static uint32_t AddObject(REJSONParserPrivate::Struct * p, REObject * obj, const OBJ_TYPE_TYPE type);
-	static void EndContainer(REJSONParserPrivate::Struct * p);
-	static REObject * Parse(const uint8_t * inData, const uint32_t inDataLength, void ** error);
 };
 
-void REJSONParserPrivate::FreeParserDataStruct(REJSONParserPrivate::Struct * p)
+typedef struct _OKJSONParserStruct OKJSONParserStruct;
+
+void OKJSONParserFreeParserDataStruct(OKJSONParserStruct * p)
 {
-	if (p->objects) free(p->objects);
+	if (p->objects) p->callbacks->freeMem(p->objects);
 	p->objects = 0;
 	
-	if (p->types) free(p->types);
+	if (p->types) p->callbacks->freeMem(p->types);
 	p->types = 0;
 }
 
-void REJSONParserPrivate::CleanAll(REJSONParserPrivate::Struct * p)
+void OKJSONParserCleanAll(OKJSONParserStruct * p)
 {
 	if (p->index >= 0)
 	{
-		REObject * rootObject = p->objects[0];
-		if (rootObject) rootObject->release();
+		PARSED_OBJECT rootObject = p->objects[0];
+		if (rootObject) p->callbacks->deleteObject(rootObject);
 	}
-	REJSONParserPrivate::FreeParserDataStruct(p);
+	OKJSONParserFreeParserDataStruct(p);
 }
 
-void * REJSONParserPrivate::NewMem(const size_t size)
-{
-	void * m = 0;
-	return posix_memalign((void**)&m, 4, size) == 0 ? m : 0;
-}
-
-uint32_t REJSONParserPrivate::IncCapacity(REJSONParserPrivate::Struct * p)
+uint32_t OKJSONParserIncCapacity(OKJSONParserStruct * p)
 {
 	const size_t newCapacity = p->capacity + 16;
 	
-	REObject ** o = (REObject **)REJSONParserPrivate::NewMem(newCapacity * sizeof(REObject*));
-	OBJ_TYPE_TYPE * t = (OBJ_TYPE_TYPE *)REJSONParserPrivate::NewMem(newCapacity * sizeof(OBJ_TYPE_TYPE));
+	PARSED_OBJECT * o = (PARSED_OBJECT *)p->callbacks->newMem(newCapacity * sizeof(PARSED_OBJECT));
+	OBJ_TYPE_TYPE * t = (OBJ_TYPE_TYPE *)p->callbacks->newMem(newCapacity * sizeof(OBJ_TYPE_TYPE));
 	
 	if (o && t)
 	{
 		if (p->capacity)
 		{
-			memcpy(o, p->objects, sizeof(REObject*) * p->capacity);
+			memcpy(o, p->objects, sizeof(PARSED_OBJECT) * p->capacity);
 			memcpy(t, p->types, sizeof(OBJ_TYPE_TYPE) * p->capacity);
 		}
-		REJSONParserPrivate::FreeParserDataStruct(p);
+		OKJSONParserFreeParserDataStruct(p);
 		p->objects = o;
 		p->types = t;
 		p->capacity = newCapacity;
@@ -133,13 +114,13 @@ uint32_t REJSONParserPrivate::IncCapacity(REJSONParserPrivate::Struct * p)
 	}
 	else 
 	{
-		if (o) free(o);
-		if (t) free(t);
+		if (o) p->callbacks->freeMem(o);
+		if (t) p->callbacks->freeMem(t);
 	}
 	return 0;
 }
 
-const char * REJSONParserPrivate::ErrorCodeDescription(const int32_t errorCode)
+const char * OKJSONParserErrorCodeDescription(const int32_t errorCode)
 {
 	switch (errorCode) 
 	{
@@ -156,21 +137,16 @@ const char * REJSONParserPrivate::ErrorCodeDescription(const int32_t errorCode)
 	return 0;
 }
 
-void REJSONParserPrivate::Error(REJSONParserPrivate::Struct * p, const int32_t errorCode)
+void OKJSONParserBeforeOutWithError(OKJSONParserStruct * p, 
+									const int32_t errorCode)
 {
-
-}
-
-void REJSONParserPrivate::BeforeOutWithError(REJSONParserPrivate::Struct * p, const int32_t errorCode)
-{
-	REJSONParserPrivate::CleanAll(p);
-	REJSONParserPrivate::Error(p, errorCode);
+	OKJSONParserCleanAll(p);
 }
 
 #define IS_CHAR_START_OF_DIGIT(c) (c>=CH('0')&&c<=CH('9'))||c==CH('-')||c==CH('+')
 #define IS_GIGIT_CHAR(c) (c>=CH('0')&&c<=CH('9'))||c==CH('-')||c==CH('+')||c==CH('.')||c==CH('e')||c==CH('E')
 
-REObject * REJSONParserPrivate::TryNumber(REJSONParserPrivate::Struct * p)
+PARSED_OBJECT OKJSONParserTryNumber(OKJSONParserStruct * p)
 {
 	switch (*p->data) 
 	{
@@ -178,19 +154,19 @@ REObject * REJSONParserPrivate::TryNumber(REJSONParserPrivate::Struct * p)
 			if (strncmp((const char *)p->data, "true", 4) == 0)
 			{
 				p->data += 3; /// don't set currect offset to last char
-				return RENumberObject::createWithBool(true);
+				return (PARSED_OBJECT)p->callbacks->createNumberWithBool(1, p->callbacks->userData);
 			} break;
 		case CH('f'): /// false
 			if (strncmp((const char *)p->data, "false", 5) == 0)
 			{
 				p->data += 4; /// don't set currect offset to last char
-				return RENumberObject::createWithBool(false);
+				return (PARSED_OBJECT)p->callbacks->createNumberWithBool(0, p->callbacks->userData);
 			} break;
 		case CH('n'): /// null
 			if (strncmp((const char *)p->data, "null", 4) == 0)
 			{
 				p->data += 3; /// don't set currect offset to last char
-				return RENULLObject::NULLObject();
+				return (PARSED_OBJECT)p->callbacks->createNull(p->callbacks->userData);
 			} break;
 		default: break; 
 	}
@@ -219,19 +195,19 @@ REObject * REJSONParserPrivate::TryNumber(REJSONParserPrivate::Struct * p)
 		char * endConvertion = 0;
 		const double v = strtod(start, &endConvertion);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return RENumberObject::createWithFloat64(v);
+		return (PARSED_OBJECT)p->callbacks->createNumberWithDouble(v, p->callbacks->userData);
 	}
 	else
 	{
 		char * endConvertion = 0;
 		const long long v = strtoll(start, &endConvertion, 10);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return RENumberObject::createWithInt64(v);
+		return (PARSED_OBJECT)p->callbacks->createNumberWithLongLong(v, p->callbacks->userData);
 	}
 	return 0;
 }
 
-uint32_t REJSONParserPrivate::UniCharToUTF8(const uint32_t uniChar, uint8_t * cursor)
+uint32_t OKJSONParserUniCharToUTF8(const uint32_t uniChar, uint8_t * cursor)
 {
 	int count = 0;
     wchar_t u = uniChar;
@@ -281,12 +257,15 @@ uint32_t REJSONParserPrivate::UniCharToUTF8(const uint32_t uniChar, uint8_t * cu
 	return count;
 }
 
-void REJSONParserPrivate::ParseReplacementString(const uint8_t * data, uint32_t len, REStringObject ** resString)
+void OKJSONParserParseReplacementString(OKJSONParserStruct * p, 
+										const uint8_t * data, 
+										uint32_t len, 
+										PARSED_OBJECT * resString)
 {
-	uint8_t * newBuffer = (uint8_t *)malloc(len + 1);
+	uint8_t * newBuffer = (uint8_t *)p->callbacks->newMem(len + 1);
 	if (newBuffer) 
 	{
-		const char * startNewBuff = (const char *)newBuffer;
+		const uint8_t * startNewBuff = newBuffer;
 		CHAR_TYPE prev = 0;
 		CHAR_TYPE curr = *data;
 		while (len--) 
@@ -308,7 +287,7 @@ void REJSONParserPrivate::ParseReplacementString(const uint8_t * data, uint32_t 
 					uint32_t uniChar = 0;
 					if (sscanf(++scanData, "%04x", &uniChar) == 1)
 					{
-						const uint32_t count = REJSONParserPrivate::UniCharToUTF8(uniChar, --newBuffer);
+						const uint32_t count = OKJSONParserUniCharToUTF8(uniChar, --newBuffer);
 						newBuffer += count;
 						len -= 4;
 						data += 4;
@@ -323,13 +302,14 @@ void REJSONParserPrivate::ParseReplacementString(const uint8_t * data, uint32_t 
 			curr = *++data;
 		}
 		
-		REStringObject * newString = REStringObject::createWithCharsAndLen(startNewBuff, (REUInt32)((const uint8_t *)newBuffer - (const uint8_t *)startNewBuff));
-		free(newBuffer);
-		if (newString) *resString = newString;
+		PARSED_OBJECT newString = (PARSED_OBJECT)p->callbacks->createStringWithUTF8((const char*)startNewBuff, ((const char*)newBuffer - (const char*)startNewBuff), p->callbacks->userData);
+		
+		if (newString) *resString = (PARSED_OBJECT)newString;
+		else p->callbacks->freeMem(newBuffer);
 	}
 }
 
-void REJSONParserPrivate::ParseString(REJSONParserPrivate::Struct * p, REStringObject ** resString)
+void OKJSONParserParseString(OKJSONParserStruct * p, PARSED_OBJECT * resString)
 {
 	int isHasReplacement = 0;
 	const uint8_t * start = p->data;
@@ -359,17 +339,21 @@ void REJSONParserPrivate::ParseString(REJSONParserPrivate::Struct * p, REStringO
 		prev = curr;
 	} while (++data <= end);
 	
-	if (isHasReplacement) REJSONParserPrivate::ParseReplacementString(start, (data - start), resString);
-	else *resString = REStringObject::createWithCharsAndLen((const char*)start, (REUInt32)(data - start));
+	if (isHasReplacement) OKJSONParserParseReplacementString(p, start, (data - start), resString);
+	else *resString = (PARSED_OBJECT)p->callbacks->createStringWithUTF8((const char*)start, (data - start), p->callbacks->userData);
+
+
 }
 
 #define IS_CONTAINER(o) ((o&O_DICT)||(o&O_ARRAY)) 
 
-uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObject * obj, const OBJ_TYPE_TYPE type)
+uint32_t OKJSONParserAddObject(OKJSONParserStruct * p, 
+							   PARSED_OBJECT obj, 
+							   const OBJ_TYPE_TYPE type)
 {	
 	const int addIndex = p->index + 1;
 	
-	if (addIndex >= p->capacity) if (!REJSONParserPrivate::IncCapacity(p)) return 0;
+	if (addIndex >= p->capacity) if (!OKJSONParserIncCapacity(p)) return 0;
 	
 	if (addIndex == 0)
 	{
@@ -381,9 +365,7 @@ uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObjec
 		const int currIndex = p->index;
 		if ( p->types[currIndex] & O_ARRAY )
 		{
-			REObjectsArray * arr = (REObjectsArray *)p->objects[currIndex];
-			arr->add(obj);
-			obj->release();
+			p->callbacks->addToArray((void**)p->objects[currIndex], (void**)obj);
 			if ( IS_CONTAINER(type) )
 			{
 				p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_ARRAY_ELEM);
@@ -404,10 +386,7 @@ uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObjec
 		if (prevIndex >= 0)
 			if ( p->types[prevIndex] & O_DICT )
 			{
-				REObjectsDictionary * dict = (REObjectsDictionary *)p->objects[prevIndex];
-				dict->setObject(obj, p->objects[currIndex]);
-				obj->release();
-				(p->objects[currIndex])->release();
+				p->callbacks->addToDictionary((void**)p->objects[prevIndex], (void**)p->objects[currIndex], (void**)obj);
 				if ( IS_CONTAINER(type) )
 				{
 					p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_DICT_VALUE);
@@ -422,7 +401,7 @@ uint32_t REJSONParserPrivate::AddObject(REJSONParserPrivate::Struct * p, REObjec
 	return 0;
 }
 
-void REJSONParserPrivate::EndContainer(REJSONParserPrivate::Struct * p)
+void OKJSONParserEndContainer(OKJSONParserStruct * p)
 {
 	const int currIndex = p->index;
 	if (currIndex > 0)
@@ -433,12 +412,16 @@ void REJSONParserPrivate::EndContainer(REJSONParserPrivate::Struct * p)
 	}
 }
 
-REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inDataLength, void ** error)
+EXTERN_C_BEGIN
+
+PARSED_OBJECT OKJSONParserParse(const uint8_t * inData, 
+					 const uint32_t inDataLength, 
+					 OKJSONParserCallbacks * callbacks)
 {
-	REJSONParserPrivate::Struct p = { 0 };
+	OKJSONParserStruct p = { 0 };
 	p.index = -1;
-	//p.error = (CFErrorRef *)error;
 	p.data = (uint8_t *)inData;
+	p.callbacks = callbacks;
 	const uint8_t * end = p.end = p.data + inDataLength;
 	
 	do 
@@ -449,39 +432,39 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 		{
 			case CH('{'):
 			{
-				REObjectsDictionary * newDict = REObjectsDictionary::create();
+				PARSED_OBJECT newDict = (PARSED_OBJECT)p.callbacks->createDictionary(p.callbacks->userData);
 				if (newDict)
 				{
-					if (!REJSONParserPrivate::AddObject(&p, newDict, O_DICT)) 
+					if (!OKJSONParserAddObject(&p, newDict, O_DICT)) 
 					{
-						REJSONParserPrivate::BeforeOutWithError(&p, ERR_STORE_DICT); 
+						OKJSONParserBeforeOutWithError(&p, ERR_STORE_DICT); 
 						return 0;
 					}
 				}
 				else 
 				{
-					REJSONParserPrivate::BeforeOutWithError(&p, ERR_INIT_DICT); 
+					OKJSONParserBeforeOutWithError(&p, ERR_INIT_DICT); 
 					return 0;
 				}
 			} break;
 				
-			case CH('}'): REJSONParserPrivate::EndContainer(&p); break;
-			case CH(']'): REJSONParserPrivate::EndContainer(&p); break;
+			case CH('}'): OKJSONParserEndContainer(&p); break;
+			case CH(']'): OKJSONParserEndContainer(&p); break;
 				
 			case CH('['):
 			{
-				REObjectsArray * newArray = REObjectsArray::createWithCapacity(2);
+				PARSED_OBJECT newArray = (PARSED_OBJECT)p.callbacks->createArray(p.callbacks->userData);
 				if (newArray) 
 				{
-					if (!REJSONParserPrivate::AddObject(&p, newArray , O_ARRAY)) 
+					if (!OKJSONParserAddObject(&p, newArray , O_ARRAY)) 
 					{
-						REJSONParserPrivate::BeforeOutWithError(&p, ERR_STORE_ARRAY);
+						OKJSONParserBeforeOutWithError(&p, ERR_STORE_ARRAY);
 						return 0;
 					}
 				}
 				else 
 				{
-					REJSONParserPrivate::BeforeOutWithError(&p, ERR_INIT_ARRAY);
+					OKJSONParserBeforeOutWithError(&p, ERR_INIT_ARRAY);
 					return 0; 
 				}
 			} break;
@@ -489,19 +472,19 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 			case CH('\"'):	
 			{
 				p.data++;
-				REStringObject * newString = 0;
-				REJSONParserPrivate::ParseString(&p, &newString);
+				PARSED_OBJECT newString = 0;
+				OKJSONParserParseString(&p, &newString);
 				if (newString) 
 				{
-					if (!REJSONParserPrivate::AddObject(&p, newString, O_STRING)) 
+					if (!OKJSONParserAddObject(&p, newString, O_STRING)) 
 					{
-						REJSONParserPrivate::BeforeOutWithError(&p, ERR_STORE_STRING);
+						OKJSONParserBeforeOutWithError(&p, ERR_STORE_STRING);
 						return 0; 
 					}
 				}
 				else 
 				{
-					REJSONParserPrivate::BeforeOutWithError(&p, ERR_INIT_STRING); 
+					OKJSONParserBeforeOutWithError(&p, ERR_INIT_STRING); 
 					return 0;
 				}
 			} break;
@@ -510,12 +493,12 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 			{
 				if (IS_CHAR_START_OF_DIGIT(c) || c == CH('t') || c == CH('f') || c == CH('n'))
 				{
-					REObject * newNumber = REJSONParserPrivate::TryNumber(&p);
+					PARSED_OBJECT newNumber = OKJSONParserTryNumber(&p);
 					if (newNumber) 
 					{
-						if (!REJSONParserPrivate::AddObject(&p, newNumber, O_NUMBER)) 
+						if (!OKJSONParserAddObject(&p, newNumber, O_NUMBER)) 
 						{
-							REJSONParserPrivate::BeforeOutWithError(&p, ERR_INIT_NUMBER);
+							OKJSONParserBeforeOutWithError(&p, ERR_INIT_NUMBER);
 							return 0;
 						}
 					}
@@ -526,77 +509,16 @@ REObject * REJSONParserPrivate::Parse(const uint8_t * inData, const uint32_t inD
 	
 	if ( p.index == 0 && IS_CONTAINER(p.types[0]) )
 	{
-		REObject * r = p.objects[0];
-		REJSONParserPrivate::FreeParserDataStruct(&p);
+		PARSED_OBJECT r = p.objects[0];
+		OKJSONParserFreeParserDataStruct(&p);
 		return r;
 	}
 	
-	REJSONParserPrivate::BeforeOutWithError(&p, ERR_WRONG_LOGIC);
+	OKJSONParserBeforeOutWithError(&p, ERR_WRONG_LOGIC);
 	
 	return 0;
 }
 
-
-REObject * REJSONParser::getRootObject() const
-{
-	return _rootObject;
-}
-
-REBOOL REJSONParser::parse()
-{
-	if (_buffer)
-	{
-		_rootObject = REJSONParserPrivate::Parse((const uint8_t *)_buffer->getBuffer(),
-												 (const uint32_t)_buffer->getSize(), 
-												 NULL);
-		return true;
-	}
-	return false;
-}
-
-REJSONParser::REJSONParser(const REData & data) :
-	_rootObject(NULL),
-	_buffer(NULL)
-{
-	if (!data.isEmpty())
-	{
-		_buffer = REBufferObject::createWithMemory((const void *)data.getBytes(), data.getSize());
-	}
-}
-
-REJSONParser::REJSONParser(REBufferObject * buffer) :
-	_rootObject(NULL),
-	_buffer(NULL)
-{
-	if (buffer)
-	{
-		_buffer = buffer;
-		_buffer->retain();
-	}
-}
-
-REJSONParser::REJSONParser(REObjectsDictionary * dictionary, REBufferObject * buffer) :
-	_rootObject(NULL),
-	_buffer(NULL)
-{
-	if (buffer)
-	{
-		_buffer = buffer;
-		_buffer->retain();
-	}
-}
-
-REJSONParser::~REJSONParser()
-{
-	if (_rootObject)
-	{
-		_rootObject->release();
-	}
-	
-	if (_buffer)
-	{
-		_buffer->release();
-	}
-}
+EXTERN_C_END
 
 

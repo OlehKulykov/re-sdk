@@ -52,6 +52,8 @@ protected:
 public:
 	virtual REBOOL isEqualToDictionary(const REDictionary & anotherDictionary) const;
 	
+	virtual REBOOL setValue(const RETypedPtr & newValue, const RETypedPtr & keyValue);
+	
 	virtual REBOOL setValue(const RETypedPtr & newValue, const char * key);
 	
 	virtual REBOOL removeValue(const char * key);
@@ -65,6 +67,8 @@ public:
 	RETypedArray getAllKeys() const;
 	
 	RETypedArray getAllValues() const;
+	
+	REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
 	
 	REDictionary();
 	virtual ~REDictionary();

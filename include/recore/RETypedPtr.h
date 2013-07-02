@@ -81,6 +81,8 @@ public:
 	RETypedPtr(void * object, const REPtrType type);
 	RETypedPtr();
 	~RETypedPtr();
+	
+	static REBOOL isNotEmpty(RETypedPtr * ptr);
 };
 
 #endif
