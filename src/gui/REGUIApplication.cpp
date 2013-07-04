@@ -43,7 +43,11 @@ REUInt32 REGUIApplicationPrivate::FindOnClickViewsPrivate(REArray<REView *> * st
 		if (view->getScreenFrame().isPointInRect(screenX, screenY)) 
 		{
 			storeArray->add(view);
+<<<<<<< HEAD
 			REArrayObject * subViews = (REArrayObject *)view->getSubViewsArray();
+=======
+			REObjectsArray * subViews = (REObjectsArray *)view->getSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			if (subViews) 
 			{
 				for (REUInt32 i = 0; i < subViews->count(); i++) 

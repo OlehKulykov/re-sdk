@@ -19,6 +19,7 @@
 
 #include "json/OKJSONParser.h"
 
+<<<<<<< HEAD
 #include "../../include/recore/private/REDictionaryJSONCallbacks.h"
 
 static void __REDictionary__SetupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks,
@@ -89,6 +90,207 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 		else
 		{
 			RETypedPtr parsedPointer = *((RETypedPtr*)parsedObject);
+=======
+class REDictionaryJSONCallbacks 
+{
+public:
+	REArray<RETypedPtr*> pointers;
+	~REDictionaryJSONCallbacks()
+	{
+		for (REUInt32 i = 0; i < pointers.count(); i++) 
+		{
+			RETypedPtr * p = pointers[i];
+			delete p;
+		}
+		pointers.clear();
+	}
+	
+	static void* newMem(const int size)
+	{
+		return malloc(size);
+	}
+	
+	static void freeMem(void*m)
+	{
+		free(m);
+	}
+	
+	static void** createNull(void * userData)
+	{
+		RENULLObject * n = RENULLObject::NULLObject();
+		if (n)
+		{
+			RETypedPtr * p = new RETypedPtr(n, REPtrTypeNull);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+		}
+		return (void**)0;
+	}
+	
+	static void** createNumberWithBool(const int isTrue, void * userData)
+	{
+		RENumber * n = new RENumber();
+		if (n)
+		{
+			RETypedPtr * p = new RETypedPtr(n, REPtrTypeNumber);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				n->setBoolValue(isTrue ? true : false);
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete n;
+		}
+		return (void**)0;
+	}
+	
+	static void** createNumberWithLongLong(const long long value, void * userData)
+	{
+		RENumber * n = new RENumber();
+		if (n)
+		{
+			RETypedPtr * p = new RETypedPtr(n, REPtrTypeNumber);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				n->setInt64Value((REInt64)value);
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete n;
+		}
+		return (void**)0;
+	}
+	
+	static void** createNumberWithDouble(const double value, void * userData)
+	{
+		RENumber * n = new RENumber();
+		if (n)
+		{
+			RETypedPtr * p = new RETypedPtr(n, REPtrTypeNumber);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				n->setFloat64Value((REFloat64)value);
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete n;
+		}
+		return (void**)0;
+	}
+	
+	static void** createStringWithUTF8(const char* utf8str, const int inLen, void * userData)
+	{
+		REString * s = new REString(utf8str, inLen);
+		if (s)
+		{
+			RETypedPtr * p = new RETypedPtr(s, REPtrTypeString);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete s;
+		}
+		return (void**)0;
+	}
+	
+	static void** createArray(void * userData)
+	{
+		RETypedArray * a = new RETypedArray();
+		if (a)
+		{
+			RETypedPtr * p = new RETypedPtr(a, REPtrTypeArray);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete a;
+		}
+		return (void**)0;
+	}
+	
+	static void** createDictionary(void * userData)
+	{
+		REDictionary * d = new REDictionary();
+		if (d)
+		{
+			RETypedPtr * p = new RETypedPtr(d, REPtrTypeDictionary);
+			if (RETypedPtr::isNotEmpty(p))
+			{
+				((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+				return (void**)p;
+			}
+			RE_SAFE_DELETE(p);
+			delete d;
+		}
+		return (void**)0;
+	}
+	
+	static void deleteObject(void** object)
+	{
+		RETypedPtr * p = (RETypedPtr *)object;
+		delete p;
+	}
+	
+	static void addToArray(void** array, void** object)
+	{
+		RETypedPtr * a = (RETypedPtr *)array;
+		RETypedPtr * o = (RETypedPtr *)object;
+		a->getArray()->add(*o);
+	}
+	
+	static void addToDictionary(void** dict, void** key, void** value)
+	{
+		RETypedPtr * d = (RETypedPtr *)dict;
+		RETypedPtr * k = (RETypedPtr *)key;
+		RETypedPtr * v = (RETypedPtr *)value;
+		d->getDictionary()->setValue(*v, *k);
+	}
+};
+
+
+
+REBOOL REDictionary::initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize)
+{
+	this->clearPairs();
+	
+	if (jsonData && jsonDataSize)
+	{
+		const uint32_t dataSize = jsonDataSize;
+		const uint8_t * uData = (const uint8_t *)jsonData;
+		
+		REDictionaryJSONCallbacks c;
+		OKJSONParserCallbacks callbacks;
+		
+		callbacks.userData = &c;
+		callbacks.newMem = REDictionaryJSONCallbacks::newMem;
+		callbacks.freeMem = REDictionaryJSONCallbacks::freeMem;
+		callbacks.createNull = REDictionaryJSONCallbacks::createNull;
+		callbacks.createNumberWithBool = REDictionaryJSONCallbacks::createNumberWithBool;
+		callbacks.createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberWithLongLong;
+		callbacks.createNumberWithDouble = REDictionaryJSONCallbacks::createNumberWithDouble;
+		callbacks.createStringWithUTF8 = REDictionaryJSONCallbacks::createStringWithUTF8;
+		callbacks.createArray = REDictionaryJSONCallbacks::createArray;
+		callbacks.createDictionary = REDictionaryJSONCallbacks::createDictionary;
+		callbacks.deleteObject = REDictionaryJSONCallbacks::deleteObject;
+		callbacks.addToArray = REDictionaryJSONCallbacks::addToArray;
+		callbacks.addToDictionary = REDictionaryJSONCallbacks::addToDictionary;
+		
+		PARSED_OBJECT parsedObject = OKJSONParserParse(uData, dataSize, &callbacks);
+		if (parsedObject)
+		{
+			RETypedPtr parsedPointer(*(RETypedPtr *)parsedObject);
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			REDictionary * dict = parsedPointer.getDictionary();
 			if (dict)
 			{
@@ -110,6 +312,7 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 	return false;
 }
 
+<<<<<<< HEAD
 REBOOL REDictionary::initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize)
 {
 	this->clearPairs();
@@ -120,6 +323,8 @@ REBOOL REDictionary::initializeFromJSONData(const REUByte * jsonData, const REUI
 	return false;
 }
 
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 REDictionary::Pair * REDictionary::pairForKey(const RETypedPtr & key, REUInt32 * resultIndex) const
 {
 	for (REUInt32 i = 0; i < _pairs.count(); i++) 
@@ -177,7 +382,10 @@ REBOOL REDictionary::setValue(const RETypedPtr & newValue, const RETypedPtr & ke
 			{
 				// set new value for existed key
 				pair->value = newValue;
+<<<<<<< HEAD
 				pair->value.release();
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				return true;
 			}
 			else if (index != RENotFound)

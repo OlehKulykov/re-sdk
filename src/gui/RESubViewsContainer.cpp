@@ -145,7 +145,11 @@ REBOOL RESubViewsContainer::addSubView(REView * v)
 	
 	if (v) 
 	{
+<<<<<<< HEAD
 		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
+=======
+		REObjectsArray * a = this->getOrCreateAndGetSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (a) 
 		{
 			if ( a->add(v) ) 
@@ -171,7 +175,11 @@ REBOOL RESubViewsContainer::insertSubViewAbove(REView * v, REView * targetView)
 	
 	if (v && targetView) 
 	{
+<<<<<<< HEAD
 		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
+=======
+		REObjectsArray * a = this->getOrCreateAndGetSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (a) 
 		{
 			REUInt32 insertIndex = a->search(targetView);
@@ -213,7 +221,11 @@ REBOOL RESubViewsContainer::insertSubViewBelow(REView * v, REView * targetView)
 	
 	if (v && targetView) 
 	{
+<<<<<<< HEAD
 		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
+=======
+		REObjectsArray * a = this->getOrCreateAndGetSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (a) 
 		{
 			REUInt32 insertIndex = a->search(targetView);
@@ -262,7 +274,11 @@ void RESubViewsContainer::removeAllSubViews()
 	_updateMutex.unlock();
 }
 
+<<<<<<< HEAD
 REArrayObject * RESubViewsContainer::getOrCreateAndGetSubViewsArray()
+=======
+REObjectsArray * RESubViewsContainer::getOrCreateAndGetSubViewsArray()
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 {
 	if (_subViewsArray) 
 	{
@@ -271,7 +287,11 @@ REArrayObject * RESubViewsContainer::getOrCreateAndGetSubViewsArray()
 	
 	_updateMutex.lock();
 	
+<<<<<<< HEAD
 	_subViewsArray = REArrayObject::create();
+=======
+	_subViewsArray = REObjectsArray::create();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	
 	_updateMutex.unlock();
 		

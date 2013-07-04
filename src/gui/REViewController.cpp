@@ -322,7 +322,11 @@ RERect REViewController::GetScreenFrame() const
 */
 void REViewController::render()
 {
+<<<<<<< HEAD
 	REArrayObject * arr = this->getSubViewsArray();
+=======
+	REObjectsArray * arr = this->getSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	if (arr) 
 	{
 		for (REUInt32 i = 0; i < arr->count(); i++) 
@@ -334,7 +338,11 @@ void REViewController::render()
 
 void REViewController::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
+<<<<<<< HEAD
 	REArrayObject * arr = this->getSubViewsArray();
+=======
+	REObjectsArray * arr = this->getSubViewsArray();
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	if (arr) 
 	{
 		for (REUInt32 i = 0; i < arr->count(); i++) 

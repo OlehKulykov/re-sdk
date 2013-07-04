@@ -24,16 +24,21 @@
 #include "REString.h"
 #include "REDBResultSet.h"
 
+<<<<<<< HEAD
 /**
  @brief Base data base class.
  @detailed Class for operating with database connection.
  */
+=======
+/// Base class of data base.
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 class __RE_PUBLIC_CLASS_API__ REDB
 {
 protected:
 	REDB();
 	
 public:
+<<<<<<< HEAD
 	/**
 	 @brief Database path getter.
 	 @detailed Getting opened database path.
@@ -111,16 +116,48 @@ public:
 	 @endcode
 	 @return True if successfully commited otherwice false.
 	 */
+=======
+	virtual REString getDatabaseFullPath() const;
+	
+	/// Opens data base.
+	virtual REBOOL open();
+	
+	/// Check is database opened.
+	virtual REBOOL isOpened() const;
+	
+	/// Closes data base.
+	virtual REBOOL close();
+	
+	/// Returns last inserted row id.
+	virtual REInt64 getLastInsertedRowId() const;
+	
+	/// Executes sql query string.
+	virtual REPtr<REDBResultSet> executeQuery(const REString & queryString);
+	
+	/// Begins transaction.
+	virtual REBOOL beginTransaction();
+	
+	/// Executes sql update query strind.
+	virtual REBOOL executeUpdate(const REString & queryString);
+	
+	/// Commiting last transaction.
+	virtual REBOOL commitTransaction();
+	
+	/// Rolls back last transaction.
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	virtual REBOOL rollBackTransaction();
 	
 	virtual ~REDB();
 	
+<<<<<<< HEAD
 	/**
 	 @brief Create SQLite database.
 	 @detailed Create opened SQLite database with file path.
 	 @param dbFilePath string with path to SQLite file.
 	 @return Autopointer with opened SQLite database object or with NULL object.
 	 */
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	static REPtr<REDB> createSQLiteWithFilePath(const REString & dbFilePath);
 };
 

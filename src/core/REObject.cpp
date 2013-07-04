@@ -20,6 +20,7 @@
 #include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 
+<<<<<<< HEAD
 const REUIdentifier REObject::getObjectIdentifier() const
 {
 	return _reObjectIdentifier;
@@ -35,6 +36,18 @@ REBOOL REObject::isImplementsClass(const REUInt32 classIdentifier) const
 	return (REObject::classIdentifier() == classIdentifier);
 }
 
+=======
+const REUInt32 REObject::getClassIdentifier() const
+{
+	return REObject::classIdentifier();	
+}
+
+REBOOL REObject::isImplementsClass(const REUInt32 classIdentifier) const
+{
+	return (REObject::classIdentifier() == classIdentifier);
+}
+
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 const REUInt32 REObject::classIdentifier()
 {	
 	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REObject");

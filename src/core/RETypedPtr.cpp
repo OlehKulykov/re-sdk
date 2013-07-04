@@ -20,6 +20,7 @@
 #include "../../include/recore/REObject.h"
 #include "../../include/recore/RETypedArray.h"
 
+<<<<<<< HEAD
 #include "../../include/recore/REStringObject.h"
 #include "../../include/recore/RENumberObject.h"
 #include "../../include/recore/REArrayObject.h"
@@ -27,6 +28,8 @@
 #include "../../include/recore/REBufferObject.h"
 #include "../../include/recore/REDictionaryObjectN.h"
 
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 class RETypedPtrPrivate 
 {
 public:
@@ -69,7 +72,10 @@ public:
 	static REBOOL compareDates(REDate * obj1, REDate * obj2)
 	{
 		return obj1->isEqualToDate(*obj2);
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	}
 };
 
@@ -100,7 +106,11 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 				break;
 				
 			case REPtrTypeNull:
+<<<<<<< HEAD
 				return ((RENULL *)_object)->isEqualToNULL(*((RENULL *)anotherPtr._object));
+=======
+				return true;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				break;
 				
 			case REPtrTypeBuffer:
@@ -118,10 +128,13 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 			case REPtrTypeDate:
 				return RETypedPtrPrivate::compareDates((REDate *)_object, (REDate *)anotherPtr._object);
 				break;
+<<<<<<< HEAD
 
 //			case REPtrTypeREObject:	
 //				return this->getREObject<REObject>()->isEqual(anotherPtr.getREObject<REObject>());
 //				break;
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				
 			default:
 				break;
@@ -178,6 +191,7 @@ void RETypedPtr::release()
 	_type = REPtrTypeNone;
 }
 
+<<<<<<< HEAD
 void RETypedPtr::deleteREObject(void * obj, const REPtrType type)
 {
 	switch (type) 
@@ -210,10 +224,13 @@ void RETypedPtr::deleteREObject(void * obj, const REPtrType type)
 	}
 }
 
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 void RETypedPtr::deleteObject()
 {
 	if (_object)
 	{
+<<<<<<< HEAD
 		if (_type & REPtrTypeREObject)
 		{
 			RETypedPtr::deleteREObject(_object, _type);
@@ -221,46 +238,78 @@ void RETypedPtr::deleteObject()
 			return;
 		}
 		
+=======
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		switch (_type) 
 		{
 			case REPtrTypeString:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<REString, void>(_object);
+=======
+				REString * str = (REString *)_object;
+				delete str;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeNumber:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<RENumber, void>(_object);
+=======
+				RENumber * num = (RENumber *)_object;
+				delete num;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeArray:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<REArray<RETypedPtr>, void>(_object);
+=======
+				REArray<RETypedPtr> * arr = (REArray<RETypedPtr> *)_object;
+				delete arr;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				_object = (void *)0;
 			}
 				break;
 			
 			case REPtrTypeNull:	
 			{
+<<<<<<< HEAD
 				delete REPtrCast<RENULL, void>(_object);
 				_object = (void *)0;
+=======
+				_object = (void *)0;
+				
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			}
 				break;
 				
 			case REPtrTypeBuffer:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<REBuffer, void>(_object);
+=======
+				REBuffer * buff = (REBuffer *)_object;
+				delete buff;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeDictionary:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<REDictionary, void>(_object);
+=======
+				REDictionary * dict = (REDictionary *)_object;
+				delete dict;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 				_object = (void *)0;
 			}
 				break;
@@ -271,11 +320,19 @@ void RETypedPtr::deleteObject()
 				
 			case REPtrTypeDate:
 			{
+<<<<<<< HEAD
 				delete REPtrCast<REDate, void>(_object);
 				_object = (void *)0;
 			}
 				break;
 				
+=======
+				REDate * date = (REDate *)_object;
+				delete date;
+				_object = (void *)0;
+			}
+				break;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			default:
 				break;
 		}
@@ -314,9 +371,15 @@ RETypedArray * RETypedPtr::getArray() const
 	return (_type == REPtrTypeArray) ? (RETypedArray *)_object : (RETypedArray *)0;
 }
 
+<<<<<<< HEAD
 RENULL * RETypedPtr::getNULL() const
 {
 	return (_type == REPtrTypeNull) ? (RENULL *)_object : (RENULL *)0;
+=======
+RENULLObject * RETypedPtr::getNULL() const
+{
+	return (_type == REPtrTypeNull) ? (RENULLObject *)_object : (RENULLObject *)0;
+>>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 }
 
 REBuffer * RETypedPtr::getBuffer() const
