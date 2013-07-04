@@ -33,6 +33,8 @@
 #endif
 #endif
 
+class REMutableString;
+
 /// Class for storing objects using by key value.
 class __RE_PUBLIC_CLASS_API__ REDictionary
 {
@@ -48,9 +50,11 @@ protected:
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.
 	REDictionary::Pair * pairForKey(const RETypedPtr & key, REUInt32 * resultIndex = NULL) const;
 	void clearPairs();
-	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize, const REPtrType type);
+	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
 	
 public:
+	const REArray<REDictionary::Pair> & getPairs() const;
+	
 	virtual REBOOL isEqualToDictionary(const REDictionary & anotherDictionary) const;
 	
 	virtual REBOOL setValue(const RETypedPtr & newValue, const RETypedPtr & keyValue);
@@ -70,6 +74,8 @@ public:
 	RETypedArray getAllValues() const;
 	
 	virtual REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
+	
+	virtual REMutableString getJSONString() const;
 	
 	REDictionary();
 	virtual ~REDictionary();

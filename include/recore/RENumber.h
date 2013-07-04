@@ -87,8 +87,10 @@ protected:
 	static void applyNumberValueToString(const RENumber & number, REString * string);
 	
 public:
+	REString toString() const;
+	
 	/// Returns type of number.
-	RENumberType getType() const { return _type; }
+	RENumberType getType() const;
 	
 	/// Check is number signed.
 	REBOOL isSigned() const;

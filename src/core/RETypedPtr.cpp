@@ -20,89 +20,96 @@
 #include "../../include/recore/REObject.h"
 #include "../../include/recore/RETypedArray.h"
 
-#include "../../include/recore/REStringObject.h"
-#include "../../include/recore/RENumberObject.h"
-#include "../../include/recore/REArrayObject.h"
-#include "../../include/recore/RENULLObject.h"
-#include "../../include/recore/REBufferObject.h"
-#include "../../include/recore/REDictionaryObjectN.h"
-
 class RETypedPtrPrivate 
 {
 public:
-	static REBOOL compareStrings(REString * obj1, REString * obj2)
-	{
-		return obj1->isEqual(*obj2);
-	}
-	
-	static REBOOL compareNumbers(RENumber * obj1, RENumber * obj2)
-	{
-		return obj1->isEqualToNumber(*obj2);
-	}
-	
-	static REBOOL compareBuffers(REBuffer * obj1, REBuffer * obj2)
-	{
-		return obj1->isEqualToBuffer(*obj2);
-	}
-	
-	static REBOOL compareArrays(RETypedArray * obj1, RETypedArray * obj2)
-	{
-		if (obj1->count() == obj2->count())
-		{
-			for (REUInt32 i = 0; i < obj1->count(); i++) 
-			{
-				if (!((*obj1)[i]).isEqualToTypedPointer((*obj2)[i]))
-				{
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-	
-	static REBOOL compareDictionaries(REDictionary * obj1, REDictionary * obj2)
-	{
-		return obj1->isEqualToDictionary(*obj2);
-	}
-	
-	static REBOOL compareDates(REDate * obj1, REDate * obj2)
-	{
-		return obj1->isEqualToDate(*obj2);
-	}
-	
-	static void deleteREObject(void * obj, const REPtrType type)
-	{
-		switch (type) 
-		{
-			case REPtrTypeREObject:
-				REPtrCast<REObject, void>(obj)->release();
-				break;
-			case REPtrTypeStringObject:
-				REPtrCast<REStringObject, void>(obj)->release();
-				break;
-			case REPtrTypeNumberObject:
-				REPtrCast<RENumberObject, void>(obj)->release();
-				break;
-			case REPtrTypeArrayObject:
-				REPtrCast<REArrayObject, void>(obj)->release();
-				break;
-			case REPtrTypeNullObject:
-				REPtrCast<RENULLObject, void>(obj)->release();
-				break;
-			case REPtrTypeBufferObject:
-				REPtrCast<REBufferObject, void>(obj)->release();
-				break;
-			case REPtrTypeDictionaryObject:
-				REPtrCast<REDictionaryObjectN, void>(obj)->release();
-				break;
-			case REPtrTypeDateObject:
-				break;
-			default:
-				break;
-		}
-	}
+	static REBOOL compareStrings(REString * obj1, REString * obj2);
+	static REBOOL compareNumbers(RENumber * obj1, RENumber * obj2);
+	static REBOOL compareBuffers(REBuffer * obj1, REBuffer * obj2);	
+	static REBOOL compareArrays(RETypedArray * obj1, RETypedArray * obj2);	
+	static REBOOL compareDictionaries(REDictionary * obj1, REDictionary * obj2);	
+	static REBOOL compareDates(REDate * obj1, REDate * obj2);
+	static void deleteObject(void * obj1, const REPtrType type);
 };
+
+REBOOL RETypedPtrPrivate::compareStrings(REString * obj1, REString * obj2)
+{
+	return obj1->isEqual(*obj2);
+}
+
+REBOOL RETypedPtrPrivate::compareNumbers(RENumber * obj1, RENumber * obj2)
+{
+	return obj1->isEqualToNumber(*obj2);
+}
+
+REBOOL RETypedPtrPrivate::compareBuffers(REBuffer * obj1, REBuffer * obj2)
+{
+	return obj1->isEqualToBuffer(*obj2);
+}
+
+REBOOL RETypedPtrPrivate::compareArrays(RETypedArray * obj1, RETypedArray * obj2)
+{
+	if (obj1->count() == obj2->count())
+	{
+		for (REUInt32 i = 0; i < obj1->count(); i++) 
+		{
+			if (!((*obj1)[i]).isEqualToTypedPointer((*obj2)[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+REBOOL RETypedPtrPrivate::compareDictionaries(REDictionary * obj1, REDictionary * obj2)
+{
+	return obj1->isEqualToDictionary(*obj2);
+}
+
+REBOOL RETypedPtrPrivate::compareDates(REDate * obj1, REDate * obj2)
+{
+	return obj1->isEqualToDate(*obj2);
+}
+
+void RETypedPtrPrivate::deleteObject(void * obj1, const REPtrType type)
+{
+	switch (type) 
+	{
+		case REPtrTypeString:
+			delete REPtrCast<REString, void>(obj1);
+			break;
+			
+		case REPtrTypeNumber:
+			delete REPtrCast<RENumber, void>(obj1);
+			break;
+			
+		case REPtrTypeArray:
+			delete REPtrCast<REArray<RETypedPtr>, void>(obj1);
+			break;
+			
+		case REPtrTypeNull:	
+			delete REPtrCast<RENULL, void>(obj1);
+			break;
+			
+		case REPtrTypeBuffer:
+			delete REPtrCast<REBuffer, void>(obj1);
+			break;
+			
+		case REPtrTypeDictionary:
+			delete REPtrCast<REDictionary, void>(obj1);
+			break;
+			
+		case REPtrTypeDate:
+			delete REPtrCast<REDate, void>(obj1);
+			break;
+			
+		default:
+			break;
+	}
+}
+
 
 REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 {
@@ -149,10 +156,6 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 			case REPtrTypeDate:
 				return RETypedPtrPrivate::compareDates((REDate *)_object, (REDate *)anotherPtr._object);
 				break;
-
-//			case REPtrTypeREObject:	
-//				return this->getREObject<REObject>()->isEqual(anotherPtr.getREObject<REObject>());
-//				break;
 				
 			default:
 				break;
@@ -213,71 +216,8 @@ void RETypedPtr::deleteObject()
 {
 	if (_object)
 	{
-		if (_type & REPtrTypeREObject)
-		{
-			RETypedPtrPrivate::deleteREObject(_object, _type);
-			_object = (void *)0;
-			return;
-		}
-		
-		switch (_type) 
-		{
-			case REPtrTypeString:
-			{
-				delete REPtrCast<REString, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-				
-			case REPtrTypeNumber:
-			{
-				delete REPtrCast<RENumber, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-				
-			case REPtrTypeArray:
-			{
-				delete REPtrCast<REArray<RETypedPtr>, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-			
-			case REPtrTypeNull:	
-			{
-				delete REPtrCast<RENULL, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-				
-			case REPtrTypeBuffer:
-			{
-				delete REPtrCast<REBuffer, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-				
-			case REPtrTypeDictionary:
-			{
-				delete REPtrCast<REDictionary, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-			
-			case REPtrTypeVoidPointer:
-				_object = (void *)0;
-				break;
-				
-			case REPtrTypeDate:
-			{
-				delete REPtrCast<REDate, void>(_object);
-				_object = (void *)0;
-			}
-				break;
-				
-			default:
-				break;
-		}
+		RETypedPtrPrivate::deleteObject(_object, _type);
+		_object = (void *)0;
 	}
 }
 
@@ -393,11 +333,15 @@ RETypedPtr::~RETypedPtr()
 	this->release();
 }
 
-REBOOL RETypedPtr::isNotEmpty(RETypedPtr * ptr)
+REBOOL RETypedPtr::isNotEmpty(const RETypedPtr * ptr)
 {
-	return ptr ? (ptr->_object != (void *)0) : false;
+	return ptr ? (ptr->_object != (const void *)0) : false;
 }
 
+REBOOL RETypedPtr::isNotEmpty(const RETypedPtr * ptr, const REPtrType type)
+{
+	return ptr ? ((ptr->_object != (const void *)0) && (ptr->_type == type)) : false;
+}
 
 
 

@@ -18,7 +18,6 @@
 #include "../RECommonHeader.h"
 #include "../RETypedPtr.h"
 #include "../REArray.h"
-#include "../REDictionaryObjectN.h"
 
 
 #ifndef __REDICTIONARYJSONCALLBACKS_H__
@@ -33,26 +32,16 @@ public:
 	
 	static void* newMem(const int size);	
 	static void freeMem(void*m);	
-	static void* createNullObject(void * userData);	
 	static void* createNull(void * userData);	
-	static void* createNumberObjectWithBool(const int isTrue, void * userData);	
 	static void* createNumberWithBool(const int isTrue, void * userData);	
-	static void* createNumberObjectWithLongLong(const long long value, void * userData);	
 	static void* createNumberWithLongLong(const long long value, void * userData);	
-	static void* createNumberObjectWithDouble(const double value, void * userData);	
 	static void* createNumberWithDouble(const double value, void * userData);	
-	static void* createStringObjectWithUTF8(const char* utf8str, const int inLen, void * userData);	
 	static void* createStringWithUTF8(const char* utf8str, const int inLen, void * userData);	
-	static void* createArrayObject(void * userData);	
 	static void* createArray(void * userData);	
-	static void* createDictionaryObject(void * userData);	
 	static void* createDictionary(void * userData);	
 	static void deleteObject(void* object);
-	static void deleteREObject(void* object);
 	static void addToArray(void* array, void* object);
-	static void addToArrayObject(void* array, void* object);
 	static void addToDictionary(void* dict, void* key, void* value);
-	static void addToDictionaryObject(void* dict, void* key, void* value);
 };
 
 #endif

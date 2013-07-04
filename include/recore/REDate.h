@@ -22,6 +22,7 @@
 #include "REPtr.h"
 
 class REDateInternal;
+class REString;
 
 /// Class presents date object.
 class __RE_PUBLIC_CLASS_API__ REDate
@@ -31,6 +32,8 @@ private:
 	void makeDateInternalCopy();
 	
 public:
+	REString toString() const;
+	
 	REBOOL isEqualToDate(const REDate & anotherDate) const;
 	
 	/// Getter for year.

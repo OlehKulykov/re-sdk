@@ -34,10 +34,51 @@
  
 */
 
-
-
 #include "../../include/recore/RENumber.h"
 #include <float.h>
+
+class RENumberPrivate 
+{	
+public:
+	static REString toString(const RENumber & number);
+};
+
+REString RENumberPrivate::toString(const RENumber & number)
+{
+	char cStr[64] = { 0 };
+	int writed = -1;
+	if (number.isInteger())
+	{
+		if (number.isSigned())
+		{
+			writed = sprintf(cStr, "%lld", (long long int)number.getInt64Value());
+		}
+		else if (number.isUnsigned())
+		{
+			writed = sprintf(cStr, "%llu", (long long unsigned int)number.getUInt64Value());
+		}
+	}
+	else if (number.isReal())
+	{
+		writed = sprintf(cStr, "%10.9Lf", (long double)number.getFloat64Value());
+	}
+	
+	if (writed > 0)
+	{
+		return REString(cStr, (REUInt32)writed);
+	}
+	return REString();
+}
+
+REString RENumber::toString() const
+{
+	return RENumberPrivate::toString(*this);
+}
+
+RENumberType RENumber::getType() const 
+{
+	return _type; 
+}
 
 REBOOL RENumber::isReal() const
 {

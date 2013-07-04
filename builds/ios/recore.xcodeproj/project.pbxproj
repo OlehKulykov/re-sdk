@@ -208,8 +208,6 @@
 		3D4DEEDC14A8715600AECAD8 /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */; };
 		3D4DEEE014A8716000AECAD8 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */; };
 		3D4DEEE114A8716000AECAD8 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */; };
-		3D4E08F2178450300023C08A /* REDictionaryObjectN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4E08F1178450300023C08A /* REDictionaryObjectN.h */; };
-		3D4E08F4178450420023C08A /* REDictionaryObjectN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */; };
 		3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */; };
 		3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */; };
 		3D5D9022149039F300230851 /* webp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D9021149039F300230851 /* webp.h */; };
@@ -494,8 +492,6 @@
 		3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
 		3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELZMACompression.cpp; path = ../../src/core/RELZMACompression.cpp; sourceTree = SOURCE_ROOT; };
 		3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZLIBCompression.cpp; path = ../../src/core/REZLIBCompression.cpp; sourceTree = SOURCE_ROOT; };
-		3D4E08F1178450300023C08A /* REDictionaryObjectN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObjectN.h; path = ../../include/recore/REDictionaryObjectN.h; sourceTree = SOURCE_ROOT; };
-		3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObjectN.cpp; path = ../../src/core/REDictionaryObjectN.cpp; sourceTree = SOURCE_ROOT; };
 		3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryJSONCallbacks.cpp; path = ../../src/core/json/REDictionaryJSONCallbacks.cpp; sourceTree = SOURCE_ROOT; };
 		3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryJSONCallbacks.h; path = ../../include/recore/private/REDictionaryJSONCallbacks.h; sourceTree = SOURCE_ROOT; };
 		3D5D9021149039F300230851 /* webp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp.h; path = ../../src/addlibs/webp.h; sourceTree = SOURCE_ROOT; };
@@ -1025,8 +1021,6 @@
 				3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */,
 				3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */,
 				3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */,
-				3D4E08F1178450300023C08A /* REDictionaryObjectN.h */,
-				3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */,
 			);
 			name = Dictionary;
 			path = ../tests/test_ios;
@@ -1202,7 +1196,6 @@
 				3D7A02511772031200E7316E /* REStringBase.h in Headers */,
 				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
 				3DFD335817831EAE0057D47A /* RENULL.h in Headers */,
-				3D4E08F2178450300023C08A /* REDictionaryObjectN.h in Headers */,
 				3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1466,7 +1459,6 @@
 				3D7A02531772032200E7316E /* REStringBase.cpp in Sources */,
 				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
 				3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */,
-				3D4E08F4178450420023C08A /* REDictionaryObjectN.cpp in Sources */,
 				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,7 @@
 
 
 #include "../../include/recore/REDate.h"
+#include "../../include/recore/REString.h"
 
 class REDateInternal 
 {
@@ -63,8 +64,24 @@ public:
 
 #define IS_LEAP_YEAR(y) ((((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) ? 1 : 0)
 
+REString REDate::toString() const
+{
+	if (_t.isNotEmpty())
+	{
+		//2012-01-10T12:48:12-07:00
+		char buffer[64] = { 0 };
+		const size_t writed = strftime(buffer, 64, "%Y-%m-%dT%H:%M:%ss-%z", &_t->timestruct);
+		if (writed > 0)
+		{
+			return REString(buffer, (REUInt32)writed);
+		}
+	}
+	return REString();
+}
+
 REBOOL REDate::isEqualToDate(const REDate & anotherDate) const
 {
+	//TODO: ...
 	return false;
 }
 
@@ -200,12 +217,6 @@ REDate::REDate()
 		{
 			_t = s;
 		}
-//		
-//		char buffer [80] = { 0 };
-//		strftime(buffer,80 ,"Now it's %Y-%m-%d %H:%M:%ss", ptm);
-//		
-//		int y = 0;
-//		y += 5;
 	}
 }
 
