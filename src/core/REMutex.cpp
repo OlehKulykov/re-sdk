@@ -155,11 +155,12 @@ REBOOL REMutex::isInitialized() const
 
 REMutex::REMutex()
 #if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
-: 	_pthreadMutexPtr(NULL)
+    :_pthreadMutexPtr(NULL),_successfulLocks(0)
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
-:	_mutexHANDLE((HANDLE)0)
+    :_mutexHANDLE((HANDLE)0),_successfulLocks(0)
+#else
+    :_successfulLocks(0)
 #endif
-,_successfulLocks(0)
 {
 	
 }

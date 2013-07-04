@@ -51,19 +51,19 @@ typedef void (*addToDictionary)(void*,void*,void*);
 
 typedef struct _OKJSONParserCallbacks
 {
-	newMem newMem;
-	freeMem freeMem;
-	createNull createNull;
-	createNumberWithBool createNumberWithBool;
-	createNumberWithLongLong createNumberWithLongLong;
-	createNumberWithDouble createNumberWithDouble;
-	createStringWithUTF8 createStringWithUTF8;
-	createArray createArray;
-	createDictionary createDictionary;
-	deleteObject deleteObject;
-	addToArray addToArray;
-	addToDictionary addToDictionary;
-	void * userData;
+    newMem _newMem;
+    freeMem _freeMem;
+    createNull _createNull;
+    createNumberWithBool _createNumberWithBool;
+    createNumberWithLongLong _createNumberWithLongLong;
+    createNumberWithDouble _createNumberWithDouble;
+    createStringWithUTF8 _createStringWithUTF8;
+    createArray _createArray;
+    createDictionary _createDictionary;
+    deleteObject _deleteObject;
+    addToArray _addToArray;
+    addToDictionary _addToDictionary;
+    void * userData;
 } OKJSONParserCallbacks;
 
 /// Returns NOT !!!! autoreleased JSON object. If use this function directly

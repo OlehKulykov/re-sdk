@@ -75,10 +75,10 @@ typedef struct _OKJSONParserStruct OKJSONParserStruct;
 
 void OKJSONParserFreeParserDataStruct(OKJSONParserStruct * p)
 {
-	if (p->objects) p->callbacks->freeMem(p->objects);
+    if (p->objects) p->callbacks->_freeMem(p->objects);
 	p->objects = 0;
 	
-	if (p->types) p->callbacks->freeMem(p->types);
+    if (p->types) p->callbacks->_freeMem(p->types);
 	p->types = 0;
 }
 
@@ -87,7 +87,7 @@ void OKJSONParserCleanAll(OKJSONParserStruct * p)
 	if (p->index >= 0)
 	{
 		PARSED_OBJECT rootObject = p->objects[0];
-		if (rootObject) p->callbacks->deleteObject(rootObject);
+        if (rootObject) p->callbacks->_deleteObject(rootObject);
 	}
 	OKJSONParserFreeParserDataStruct(p);
 }
@@ -96,8 +96,8 @@ uint32_t OKJSONParserIncCapacity(OKJSONParserStruct * p)
 {
 	const size_t newCapacity = p->capacity + 16;
 	
-	PARSED_OBJECT * o = (PARSED_OBJECT *)p->callbacks->newMem(newCapacity * sizeof(PARSED_OBJECT));
-	OBJ_TYPE_TYPE * t = (OBJ_TYPE_TYPE *)p->callbacks->newMem(newCapacity * sizeof(OBJ_TYPE_TYPE));
+    PARSED_OBJECT * o = (PARSED_OBJECT *)p->callbacks->_newMem(newCapacity * sizeof(PARSED_OBJECT));
+    OBJ_TYPE_TYPE * t = (OBJ_TYPE_TYPE *)p->callbacks->_newMem(newCapacity * sizeof(OBJ_TYPE_TYPE));
 	
 	if (o && t)
 	{
@@ -114,8 +114,8 @@ uint32_t OKJSONParserIncCapacity(OKJSONParserStruct * p)
 	}
 	else 
 	{
-		if (o) p->callbacks->freeMem(o);
-		if (t) p->callbacks->freeMem(t);
+        if (o) p->callbacks->_freeMem(o);
+        if (t) p->callbacks->_freeMem(t);
 	}
 	return 0;
 }
@@ -154,19 +154,19 @@ PARSED_OBJECT OKJSONParserTryNumber(OKJSONParserStruct * p)
 			if (strncmp((const char *)p->data, "true", 4) == 0)
 			{
 				p->data += 3; /// don't set currect offset to last char
-				return (PARSED_OBJECT)p->callbacks->createNumberWithBool(1, p->callbacks->userData);
+                return (PARSED_OBJECT)p->callbacks->_createNumberWithBool(1, p->callbacks->userData);
 			} break;
 		case CH('f'): /// false
 			if (strncmp((const char *)p->data, "false", 5) == 0)
 			{
 				p->data += 4; /// don't set currect offset to last char
-				return (PARSED_OBJECT)p->callbacks->createNumberWithBool(0, p->callbacks->userData);
+                return (PARSED_OBJECT)p->callbacks->_createNumberWithBool(0, p->callbacks->userData);
 			} break;
 		case CH('n'): /// null
 			if (strncmp((const char *)p->data, "null", 4) == 0)
 			{
 				p->data += 3; /// don't set currect offset to last char
-				return (PARSED_OBJECT)p->callbacks->createNull(p->callbacks->userData);
+                return (PARSED_OBJECT)p->callbacks->_createNull(p->callbacks->userData);
 			} break;
 		default: break; 
 	}
@@ -195,14 +195,14 @@ PARSED_OBJECT OKJSONParserTryNumber(OKJSONParserStruct * p)
 		char * endConvertion = 0;
 		const double v = strtod(start, &endConvertion);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return (PARSED_OBJECT)p->callbacks->createNumberWithDouble(v, p->callbacks->userData);
+        return (PARSED_OBJECT)p->callbacks->_createNumberWithDouble(v, p->callbacks->userData);
 	}
 	else
 	{
 		char * endConvertion = 0;
 		const long long v = strtoll(start, &endConvertion, 10);
 		if (endConvertion) p->data = (uint8_t *)--endConvertion;
-		return (PARSED_OBJECT)p->callbacks->createNumberWithLongLong(v, p->callbacks->userData);
+        return (PARSED_OBJECT)p->callbacks->_createNumberWithLongLong(v, p->callbacks->userData);
 	}
 	return 0;
 }
@@ -262,7 +262,7 @@ void OKJSONParserParseReplacementString(OKJSONParserStruct * p,
 										uint32_t len, 
 										PARSED_OBJECT * resString)
 {
-	uint8_t * newBuffer = (uint8_t *)p->callbacks->newMem(len + 1);
+    uint8_t * newBuffer = (uint8_t *)p->callbacks->_newMem(len + 1);
 	if (newBuffer) 
 	{
 		const uint8_t * startNewBuff = newBuffer;
@@ -302,10 +302,10 @@ void OKJSONParserParseReplacementString(OKJSONParserStruct * p,
 			curr = *++data;
 		}
 		
-		PARSED_OBJECT newString = (PARSED_OBJECT)p->callbacks->createStringWithUTF8((const char*)startNewBuff, ((const char*)newBuffer - (const char*)startNewBuff), p->callbacks->userData);
+        PARSED_OBJECT newString = (PARSED_OBJECT)p->callbacks->_createStringWithUTF8((const char*)startNewBuff, ((const char*)newBuffer - (const char*)startNewBuff), p->callbacks->userData);
 		
 		if (newString) *resString = (PARSED_OBJECT)newString;
-		else p->callbacks->freeMem(newBuffer);
+        else p->callbacks->_freeMem(newBuffer);
 	}
 }
 
@@ -340,7 +340,7 @@ void OKJSONParserParseString(OKJSONParserStruct * p, PARSED_OBJECT * resString)
 	} while (++data <= end);
 	
 	if (isHasReplacement) OKJSONParserParseReplacementString(p, start, (data - start), resString);
-	else *resString = (PARSED_OBJECT)p->callbacks->createStringWithUTF8((const char*)start, (data - start), p->callbacks->userData);
+    else *resString = (PARSED_OBJECT)p->callbacks->_createStringWithUTF8((const char*)start, (data - start), p->callbacks->userData);
 
 
 }
@@ -365,7 +365,7 @@ uint32_t OKJSONParserAddObject(OKJSONParserStruct * p,
 		const int currIndex = p->index;
 		if ( p->types[currIndex] & O_ARRAY )
 		{
-			p->callbacks->addToArray((void*)p->objects[currIndex], (void*)obj);
+            p->callbacks->_addToArray((void*)p->objects[currIndex], (void*)obj);
 			if ( IS_CONTAINER(type) )
 			{
 				p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_ARRAY_ELEM);
@@ -386,7 +386,7 @@ uint32_t OKJSONParserAddObject(OKJSONParserStruct * p,
 		if (prevIndex >= 0)
 			if ( p->types[prevIndex] & O_DICT )
 			{
-				p->callbacks->addToDictionary((void*)p->objects[prevIndex], (void*)p->objects[currIndex], (void*)obj);
+                p->callbacks->_addToDictionary((void*)p->objects[prevIndex], (void*)p->objects[currIndex], (void*)obj);
 				if ( IS_CONTAINER(type) )
 				{
 					p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_DICT_VALUE);
@@ -432,7 +432,7 @@ PARSED_OBJECT OKJSONParserParse(const uint8_t * inData,
 		{
 			case CH('{'):
 			{
-				PARSED_OBJECT newDict = (PARSED_OBJECT)p.callbacks->createDictionary(p.callbacks->userData);
+                PARSED_OBJECT newDict = (PARSED_OBJECT)p.callbacks->_createDictionary(p.callbacks->userData);
 				if (newDict)
 				{
 					if (!OKJSONParserAddObject(&p, newDict, O_DICT)) 
@@ -453,7 +453,7 @@ PARSED_OBJECT OKJSONParserParse(const uint8_t * inData,
 				
 			case CH('['):
 			{
-				PARSED_OBJECT newArray = (PARSED_OBJECT)p.callbacks->createArray(p.callbacks->userData);
+                PARSED_OBJECT newArray = (PARSED_OBJECT)p.callbacks->_createArray(p.callbacks->userData);
 				if (newArray) 
 				{
 					if (!OKJSONParserAddObject(&p, newArray , O_ARRAY)) 

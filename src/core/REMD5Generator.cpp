@@ -95,8 +95,8 @@ void REMD5Generator::final(REMD5Context * ctx, REUByte digest[16])
 	
 	if (_isBigEndianSystem)
 	{
-		((REUInt32 *)ctx->inBuff)[14] = LongSwap(val0);
-		((REUInt32 *)ctx->inBuff)[15] = LongSwap(val1);
+        ((REUInt32 *)ctx->inBuff)[14] = longSwap(val0);
+        ((REUInt32 *)ctx->inBuff)[15] = longSwap(val1);
 	}
 	else
 	{
@@ -129,7 +129,7 @@ void REMD5Generator::update(REMD5Context * ctx, REUByte const * buf, REUInt32 le
 			return;
 		}
 		REMem::Memcpy(p, buf, t);
-		this->Transform( ctx->state, (REUInt32 *)ctx->inBuff );
+        this->transform( ctx->state, (REUInt32 *)ctx->inBuff );
 		buf += t;
 		len -= t;
 	}

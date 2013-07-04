@@ -162,18 +162,18 @@ public:
 
 void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks)
 {
-	jsonCallbacks->newMem = REDictionaryJSONCallbacks::newMem;
-	jsonCallbacks->freeMem = REDictionaryJSONCallbacks::freeMem;	
-	jsonCallbacks->createNull = REDictionaryJSONCallbacks::createNull;
-	jsonCallbacks->createNumberWithBool = REDictionaryJSONCallbacks::createNumberWithBool;
-	jsonCallbacks->createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberWithLongLong;
-	jsonCallbacks->createNumberWithDouble = REDictionaryJSONCallbacks::createNumberWithDouble;
-	jsonCallbacks->createStringWithUTF8 = REDictionaryJSONCallbacks::createStringWithUTF8;
-	jsonCallbacks->createArray = REDictionaryJSONCallbacks::createArray;
-	jsonCallbacks->createDictionary = REDictionaryJSONCallbacks::createDictionary;
-	jsonCallbacks->addToArray = REDictionaryJSONCallbacks::addToArray;
-	jsonCallbacks->addToDictionary = REDictionaryJSONCallbacks::addToDictionary;
-	jsonCallbacks->deleteObject = REDictionaryJSONCallbacks::deleteObject;
+    jsonCallbacks->_newMem = REDictionaryJSONCallbacks::newMem;
+    jsonCallbacks->_freeMem = REDictionaryJSONCallbacks::freeMem;
+    jsonCallbacks->_createNull = REDictionaryJSONCallbacks::createNull;
+    jsonCallbacks->_createNumberWithBool = REDictionaryJSONCallbacks::createNumberWithBool;
+    jsonCallbacks->_createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberWithLongLong;
+    jsonCallbacks->_createNumberWithDouble = REDictionaryJSONCallbacks::createNumberWithDouble;
+    jsonCallbacks->_createStringWithUTF8 = REDictionaryJSONCallbacks::createStringWithUTF8;
+    jsonCallbacks->_createArray = REDictionaryJSONCallbacks::createArray;
+    jsonCallbacks->_createDictionary = REDictionaryJSONCallbacks::createDictionary;
+    jsonCallbacks->_addToArray = REDictionaryJSONCallbacks::addToArray;
+    jsonCallbacks->_addToDictionary = REDictionaryJSONCallbacks::addToDictionary;
+    jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObject;
 }
 
 REBOOL REDictionary::readJSONData(const REUByte * jsonData, 
