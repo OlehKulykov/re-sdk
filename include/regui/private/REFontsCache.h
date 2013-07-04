@@ -19,7 +19,7 @@
 #define __REFONTSCACHE_H__
 
 #include "../../../include/recore/RECommonHeader.h"
-#include "../../../include/recore/REObjectsArray.h"
+#include "../../../include/recore/REArrayObject.h"
 #include "../../../include/regui/private/REFontBase.h"
 
 class __RE_PUBLIC_CLASS_API__ REFontsCache

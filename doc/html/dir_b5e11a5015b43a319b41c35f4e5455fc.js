@@ -71,6 +71,19 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
     [ "REDate.h", "_r_e_date_8h.html", [
       [ "REDate", "class_r_e_date.html", "class_r_e_date" ]
     ] ],
+    [ "REDB.h", "_r_e_d_b_8h.html", [
+      [ "REDB", "class_r_e_d_b.html", "class_r_e_d_b" ]
+    ] ],
+    [ "REDBResultSet.h", "_r_e_d_b_result_set_8h.html", [
+      [ "REDBResultSet", "class_r_e_d_b_result_set.html", "class_r_e_d_b_result_set" ]
+    ] ],
+    [ "REDictionary.h", "_r_e_dictionary_8h.html", [
+      [ "REDictionary", "class_r_e_dictionary.html", "class_r_e_dictionary" ],
+      [ "_pair", "class_r_e_dictionary.html#struct_r_e_dictionary_1_1__pair", [
+        [ "key", "class_r_e_dictionary.html#ad20b9b871c0f30d435a8fe8669933b42", null ],
+        [ "value", "class_r_e_dictionary.html#acde481766bebbbed95c1d23e08df2c5c", null ]
+      ] ]
+    ] ],
     [ "REEdgeInsets.h", "_r_e_edge_insets_8h.html", [
       [ "REEdgeInsets", "class_r_e_edge_insets.html", "class_r_e_edge_insets" ],
       [ "REEdgeInsets.__unnamed__", "_r_e_edge_insets_8h.html#union_r_e_edge_insets_8____unnamed____", [
@@ -141,9 +154,15 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
     [ "REMem.h", "_r_e_mem_8h.html", [
       [ "REMem", "class_r_e_mem.html", "class_r_e_mem" ]
     ] ],
+    [ "REMutableString.h", "_r_e_mutable_string_8h.html", [
+      [ "REMutableString", "class_r_e_mutable_string.html", "class_r_e_mutable_string" ]
+    ] ],
     [ "REMutex.h", "_r_e_mutex_8h.html", "_r_e_mutex_8h" ],
     [ "RENotificationManager.h", "_r_e_notification_manager_8h.html", [
       [ "RENotificationManager", "class_r_e_notification_manager.html", "class_r_e_notification_manager" ]
+    ] ],
+    [ "RENULL.h", "_r_e_n_u_l_l_8h.html", [
+      [ "RENULL", "class_r_e_n_u_l_l.html", "class_r_e_n_u_l_l" ]
     ] ],
     [ "RENULLObject.h", "_r_e_n_u_l_l_object_8h.html", [
       [ "RENULLObject", "class_r_e_n_u_l_l_object.html", "class_r_e_n_u_l_l_object" ]
@@ -183,6 +202,9 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
       [ "IREProperty", "class_i_r_e_property.html", "class_i_r_e_property" ],
       [ "REProperty", "class_r_e_property.html", "class_r_e_property" ]
     ] ],
+    [ "REPtr.h", "_r_e_ptr_8h.html", [
+      [ "REPtr", "class_r_e_ptr.html", "class_r_e_ptr" ]
+    ] ],
     [ "REQuaternion.h", "_r_e_quaternion_8h.html", [
       [ "REQuaternion", "class_r_e_quaternion.html", "class_r_e_quaternion" ],
       [ "REQuaternion.__unnamed__", "_r_e_quaternion_8h.html#union_r_e_quaternion_8____unnamed____", [
@@ -213,22 +235,10 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
       [ "REResourcesStorage", "class_r_e_resources_storage.html", "class_r_e_resources_storage" ]
     ] ],
     [ "RESize.h", "_r_e_size_8h.html", "_r_e_size_8h" ],
-    [ "RESQLiteDB.h", "_r_e_s_q_lite_d_b_8h.html", [
-      [ "RESQLiteDB", "class_r_e_s_q_lite_d_b.html", "class_r_e_s_q_lite_d_b" ]
-    ] ],
-    [ "RESQLiteDBResultSet.h", "_r_e_s_q_lite_d_b_result_set_8h.html", [
-      [ "RESQLiteDBResultSet", "class_r_e_s_q_lite_d_b_result_set.html", "class_r_e_s_q_lite_d_b_result_set" ],
-      [ "_statementStruct", "class_r_e_s_q_lite_d_b_result_set.html#struct_r_e_s_q_lite_d_b_result_set_1_1__statement_struct", [
-        [ "columnsNames", "class_r_e_s_q_lite_d_b_result_set.html#a1a9bd948636536eba790c2092ceaefe1", null ],
-        [ "db", "class_r_e_s_q_lite_d_b_result_set.html#af5a04efc3668ffe239471b85defddc9d", null ],
-        [ "statement", "class_r_e_s_q_lite_d_b_result_set.html#a60ec02c35b4fbc6ac3ba93b0ca9e6560", null ],
-        [ "usingCount", "class_r_e_s_q_lite_d_b_result_set.html#a1e261bb3734dd7bb3ea105550e4ffec6", null ]
-      ] ]
-    ] ],
     [ "REString.h", "_r_e_string_8h.html", [
-      [ "REStringPresentation", "class_r_e_string_presentation.html", "class_r_e_string_presentation" ],
       [ "REString", "class_r_e_string.html", "class_r_e_string" ]
     ] ],
+    [ "REStringBase.h", "_r_e_string_base_8h.html", "_r_e_string_base_8h" ],
     [ "REStringObject.h", "_r_e_string_object_8h.html", [
       [ "REStringObject", "class_r_e_string_object.html", "class_r_e_string_object" ]
     ] ],
@@ -240,6 +250,10 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
     [ "RETimer.h", "_r_e_timer_8h.html", [
       [ "RETimer", "class_r_e_timer.html", "class_r_e_timer" ]
     ] ],
+    [ "RETypedArray.h", "_r_e_typed_array_8h.html", [
+      [ "RETypedArray", "class_r_e_typed_array.html", "class_r_e_typed_array" ]
+    ] ],
+    [ "RETypedPtr.h", "_r_e_typed_ptr_8h.html", "_r_e_typed_ptr_8h" ],
     [ "RETypes.h", "_r_e_types_8h.html", "_r_e_types_8h" ],
     [ "REUserCallBacks.h", "_r_e_user_call_backs_8h.html", [
       [ "REUserCallBacks", "class_r_e_user_call_backs.html", "class_r_e_user_call_backs" ]
@@ -264,6 +278,9 @@ var dir_b5e11a5015b43a319b41c35f4e5455fc =
         [ "y", "_r_e_vector3_8h.html#a415290769594460e2e485922904f345d", null ],
         [ "z", "_r_e_vector3_8h.html#afbade9e36a3f36d3d676c1b808451dd7", null ]
       ] ]
+    ] ],
+    [ "REWideString.h", "_r_e_wide_string_8h.html", [
+      [ "REWideString", "class_r_e_wide_string.html", "class_r_e_wide_string" ]
     ] ],
     [ "REXMLPropertyListReader.h", "_r_e_x_m_l_property_list_reader_8h.html", [
       [ "REXMLPropertyListReader", "class_r_e_x_m_l_property_list_reader.html", "class_r_e_x_m_l_property_list_reader" ]

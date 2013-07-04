@@ -2,7 +2,7 @@ var class_r_e_t_t_f_font_char =
 [
     [ "RETTFFontChar", "class_r_e_t_t_f_font_char.html#a8b64d7420fc24bbe6700dd158c4bb797", null ],
     [ "~RETTFFontChar", "class_r_e_t_t_f_font_char.html#a2074177d88f9ec79163dc2702af69d6f", null ],
-    [ "GetCharCode", "class_r_e_t_t_f_font_char.html#ad77211b8c271e7d5a8a4e273966e4ed7", null ],
+    [ "getCharCode", "class_r_e_t_t_f_font_char.html#ae41a0300e4a8763cf113ac2c9b716bf9", null ],
     [ "advanceX", "class_r_e_t_t_f_font_char.html#aa00816004bcbb49574776518ea9c5610", null ],
     [ "advanceY", "class_r_e_t_t_f_font_char.html#a61758837764ed9cbb7adfad55bd14a26", null ],
     [ "bitmap", "class_r_e_t_t_f_font_char.html#a8d2bb67bcee1c1e0ce0cfc5ca3b4c67d", null ],

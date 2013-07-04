@@ -48,6 +48,7 @@ protected:
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.
 	REDictionary::Pair * pairForKey(const RETypedPtr & key, REUInt32 * resultIndex = NULL) const;
 	void clearPairs();
+	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize, const REPtrType type);
 	
 public:
 	virtual REBOOL isEqualToDictionary(const REDictionary & anotherDictionary) const;
@@ -68,7 +69,7 @@ public:
 	
 	RETypedArray getAllValues() const;
 	
-	REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
+	virtual REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
 	
 	REDictionary();
 	virtual ~REDictionary();

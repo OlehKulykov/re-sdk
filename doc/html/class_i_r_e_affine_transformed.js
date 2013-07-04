@@ -1,9 +1,9 @@
 var class_i_r_e_affine_transformed =
 [
     [ "~IREAffineTransformed", "class_i_r_e_affine_transformed.html#a39ca292766447c6ae9a0525ce76fac57", null ],
-    [ "Rotate", "class_i_r_e_affine_transformed.html#a154323ef734a16d5effd3359c5e6cd3c", null ],
-    [ "Rotate", "class_i_r_e_affine_transformed.html#a8df989bc0413adc4d75d37ee5ab8f89c", null ],
-    [ "Scale", "class_i_r_e_affine_transformed.html#ac4af806c32295d2725ade7f6d774939d", null ],
-    [ "ToIdentity", "class_i_r_e_affine_transformed.html#a96dc7deb9b1728ac207f99c6fb81f48d", null ],
-    [ "Translate", "class_i_r_e_affine_transformed.html#a15dcba78c96dccf871253d75a6b07031", null ]
+    [ "rotate", "class_i_r_e_affine_transformed.html#a28db1a237cc4e9472eb86bf77aa1bb0a", null ],
+    [ "rotate", "class_i_r_e_affine_transformed.html#a1a11b73e88692bacd97811d656eefb62", null ],
+    [ "scale", "class_i_r_e_affine_transformed.html#a0309e560263aad6e2659a570ab111d9e", null ],
+    [ "toIdentity", "class_i_r_e_affine_transformed.html#ad7308dcd234e1b9416910b2c643761aa", null ],
+    [ "translate", "class_i_r_e_affine_transformed.html#ae47ecedb681bcf6f0e1acc56e34f2fc5", null ]
 ];

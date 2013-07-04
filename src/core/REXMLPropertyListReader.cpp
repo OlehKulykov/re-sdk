@@ -16,7 +16,7 @@
 
 
 #include "../../include/recore/REXMLPropertyListReader.h"
-#include "../../include/recore/REObjectsDictionary.h"
+#include "../../include/recore/REDictionaryObject.h"
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
@@ -30,12 +30,12 @@ using namespace tinyxml2;
 #endif
 
 
-void REXMLPropertyListReader::ClearPairs(REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+void REXMLPropertyListReader::ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
 	for (REUInt32 i = 0; i < pairs->count(); i++) 
 	{
-		REObjectsDictionary::KeyObjectStruct * p = &((*pairs)[i]);
+		REDictionaryObject::KeyObjectStruct * p = &((*pairs)[i]);
 		if (p->keyValue) 
 		{
 			p->keyValue->release();
@@ -93,10 +93,10 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 				}
 				else if (strncmp(eVal, "dict", 4) == 0)
 				{
-					REObjectsDictionary * dictValue = REObjectsDictionary::create();
+					REDictionaryObject * dictValue = REDictionaryObject::create();
 					if (dictValue) 
 					{
-						REArray<REObjectsDictionary::KeyObjectStruct> * newPairs = dictValue->getPairs();
+						REArray<REDictionaryObject::KeyObjectStruct> * newPairs = dictValue->getPairs();
 						if (newPairs) 
 						{
 							if ( REXMLPropertyListReader::ParseDictionaryElement(newPairs, elem) ) 
@@ -128,7 +128,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 			case 5:
 				if (strncmp(eVal, "array", 5) == 0)
 				{
-					REObjectsArray * arr = REObjectsArray::create();
+					REArrayObject * arr = REArrayObject::create();
 					if (arr) 
 					{
 						for(XMLElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )
@@ -185,7 +185,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 	return NULL;
 }
 
-REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * dictionaryElement)
+REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	REStringObject * keyString = NULL;
@@ -217,7 +217,7 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 				REObject * objValue = REXMLPropertyListReader::NewObjectFromElement(elem);
 				if (objValue) 
 				{
-					REObjectsDictionary::KeyObjectStruct pair;
+					REDictionaryObject::KeyObjectStruct pair;
 					pair.keyValue = keyString;
 					pair.objValue = objValue;
 					pairs->add(pair);
@@ -236,7 +236,7 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 	return true;
 }
 
-REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * propListElement)
+REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	XMLElement * element = (XMLElement *)propListElement;
@@ -256,7 +256,7 @@ REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REObjectsDiction
 	return false;
 }
 
-REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	if ((listString == NULL) || (pairs == NULL) ) { return false; }
@@ -284,7 +284,7 @@ REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<
 	return false;
 }
 
-REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
 	return this->ReadFromString(listString.getChars(), pairs);

@@ -37,17 +37,17 @@ REBOOL REStackedViewController::isImplementsClass(const REUInt32 classIdentifier
 REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubViews)
 {
 	this->lockUpdate();
-	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
+	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
 	if (subViews) 
 	{
 		if (_stackedSubViewsArray == NULL) 
 		{
-			_stackedSubViewsArray = new REArray<REObjectsArray *>(); 
+			_stackedSubViewsArray = new REArray<REArrayObject *>(); 
 		}
 		
 		if (_stackedSubViewsArray) 
 		{
-			REObjectsArray * newSubViews = REObjectsArray::createWithObjectsArray(subViews);
+			REArrayObject * newSubViews = REArrayObject::createWithObjectsArray(subViews);
 			if (newSubViews) 
 			{
 				if (_stackedSubViewsArray->add(newSubViews)) 
@@ -70,13 +70,13 @@ REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubView
 REBOOL REStackedViewController::popSubViews()
 {
 	this->lockUpdate();
-	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
+	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
 	if (_stackedSubViewsArray && subViews) 
 	{
 		if (_stackedSubViewsArray->count()) 
 		{
 			subViews->clear();
-			REObjectsArray * subViewsArray = _stackedSubViewsArray->lastObject();
+			REArrayObject * subViewsArray = _stackedSubViewsArray->lastObject();
 			subViews->set(*subViewsArray);
 			_stackedSubViewsArray->removeLast();
 			if (_stackedSubViewsArray->isEmpty()) 
@@ -105,7 +105,7 @@ void REStackedViewController::onReleased()
 	{
 		for (REUInt32 i = 0; i < _stackedSubViewsArray->count(); i++) 
 		{
-			REObjectsArray * subViewsArray = (*_stackedSubViewsArray)[i];
+			REArrayObject * subViewsArray = (*_stackedSubViewsArray)[i];
 			subViewsArray->release();
 		}
 		delete _stackedSubViewsArray;

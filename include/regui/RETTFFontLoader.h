@@ -21,7 +21,7 @@
 #include "../recore/RECommonHeader.h"
 #include "../recore/REBuffer.h"
 #include "../recore/REArray.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REImage.h"
 #include "RETTFFontChar.h"
 #include "RETextureObject.h"

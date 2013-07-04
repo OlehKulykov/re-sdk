@@ -365,7 +365,7 @@ uint32_t OKJSONParserAddObject(OKJSONParserStruct * p,
 		const int currIndex = p->index;
 		if ( p->types[currIndex] & O_ARRAY )
 		{
-			p->callbacks->addToArray((void**)p->objects[currIndex], (void**)obj);
+			p->callbacks->addToArray((void*)p->objects[currIndex], (void*)obj);
 			if ( IS_CONTAINER(type) )
 			{
 				p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_ARRAY_ELEM);
@@ -386,7 +386,7 @@ uint32_t OKJSONParserAddObject(OKJSONParserStruct * p,
 		if (prevIndex >= 0)
 			if ( p->types[prevIndex] & O_DICT )
 			{
-				p->callbacks->addToDictionary((void**)p->objects[prevIndex], (void**)p->objects[currIndex], (void**)obj);
+				p->callbacks->addToDictionary((void*)p->objects[prevIndex], (void*)p->objects[currIndex], (void*)obj);
 				if ( IS_CONTAINER(type) )
 				{
 					p->index = addIndex; p->objects[addIndex] = obj; p->types[addIndex] = (type | O_IS_DICT_VALUE);

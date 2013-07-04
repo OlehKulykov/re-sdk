@@ -23,21 +23,32 @@
 #include "REString.h"
 #include "RENumber.h"
 #include "REArray.h"
-#include "RENULLObject.h"
+#include "RENULL.h"
 #include "REBuffer.h"
 #include "REDate.h"
 
 typedef enum _rePtrType
 {
 	REPtrTypeNone = 0,
+	
 	REPtrTypeString = 1,
-	REPtrTypeNumber = 2,
-	REPtrTypeArray = 3,
-	REPtrTypeNull = 4,
-	REPtrTypeBuffer = 5,
-	REPtrTypeDictionary = 6,
-	REPtrTypeVoidPointer = 7,
-	REPtrTypeDate = 8
+	REPtrTypeNumber = 1 << 1,
+	REPtrTypeArray = 1 << 2,
+	REPtrTypeNull = 1 << 3,
+	REPtrTypeBuffer = 1 << 4,
+	REPtrTypeDictionary = 1 << 5,
+	REPtrTypeVoidPointer = 1 << 6,
+	REPtrTypeDate = 1 << 7,
+	
+	REPtrTypeREObject = 1 << 8,
+	REPtrTypeStringObject = (REPtrTypeREObject | REPtrTypeString),
+	REPtrTypeNumberObject = (REPtrTypeREObject | REPtrTypeNumber),
+	REPtrTypeArrayObject = (REPtrTypeREObject | REPtrTypeArray),
+	REPtrTypeNullObject = (REPtrTypeREObject | REPtrTypeNull),
+	REPtrTypeBufferObject = (REPtrTypeREObject | REPtrTypeBuffer),
+	REPtrTypeDictionaryObject = (REPtrTypeREObject | REPtrTypeDictionary),
+	REPtrTypeDateObject = (REPtrTypeREObject | REPtrTypeDate)
+	
 } REPtrType;
 
 class REDictionary;
@@ -69,7 +80,7 @@ public:
 	REString * getString() const;
 	RENumber * getNumber() const;
 	RETypedArray * getArray() const;
-	RENULLObject * getNULL() const;
+	RENULL * getNULL() const;
 	REBuffer * getBuffer() const;
 	REDictionary * getDictionary() const;
 	void * getVoidPointer() const;
@@ -81,6 +92,29 @@ public:
 	RETypedPtr(void * object, const REPtrType type);
 	RETypedPtr();
 	~RETypedPtr();
+	
+	template <typename reObjectTypeName> 
+	reObjectTypeName * getREObject() const
+	{
+		return (_type & REPtrTypeREObject) ? REPtrCast<reObjectTypeName, void>(_object) : (reObjectTypeName*)0;
+	}
+	
+	template <typename reObjectTypeName> 
+	void setREObject(reObjectTypeName * reObject, const REPtrType type)
+	{
+		this->release();
+		if (reObject && (type & REPtrTypeREObject))
+		{
+			REInt32 * count = (REInt32 *)malloc(sizeof(REInt32 *));
+			if (count)
+			{
+				*count = 1;
+				_referenceCount = count;
+				_object = REPtrCast<void, reObjectTypeName>(reObject);
+				_type = type;
+			}
+		}
+	}
 	
 	static REBOOL isNotEmpty(RETypedPtr * ptr);
 };

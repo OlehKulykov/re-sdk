@@ -40,7 +40,7 @@ protected:
 public:
 	/// Return type: REUIdentifier that is "unsigned int (32/64 bit, dependes of compiled platform)"
 	/// Return value is integer representation of "this" pointer when REObject creating.
-	const REUIdentifier getObjectIdentifier() const { return _reObjectIdentifier; }
+	const REUIdentifier getObjectIdentifier() const;
 	
 	/// Returns integer identifier of class. Each new class that inherits REObject must implement this method.
 	/// Return value is md5 value of name class. Usialy return ::classIdentifier() value.

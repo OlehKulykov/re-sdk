@@ -300,7 +300,7 @@ REBOOL REViewController::IsLoading() const
 /*
 const RERect & REViewController::GetFrame() const
 {
-	REObjectsArray * arr = const_cast<REObjectsArray *>(this->GetSubViewsArray());
+	REArrayObject * arr = const_cast<REArrayObject *>(this->GetSubViewsArray());
 	if (arr) 
 	{
 		RERect f(0.0f, 0.0f, 0.0f, 0.0f);
@@ -322,7 +322,7 @@ RERect REViewController::GetScreenFrame() const
 */
 void REViewController::render()
 {
-	REObjectsArray * arr = this->getSubViewsArray();
+	REArrayObject * arr = this->getSubViewsArray();
 	if (arr) 
 	{
 		for (REUInt32 i = 0; i < arr->count(); i++) 
@@ -334,7 +334,7 @@ void REViewController::render()
 
 void REViewController::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
-	REObjectsArray * arr = this->getSubViewsArray();
+	REArrayObject * arr = this->getSubViewsArray();
 	if (arr) 
 	{
 		for (REUInt32 i = 0; i < arr->count(); i++) 
@@ -361,7 +361,7 @@ REBOOL REViewController::isImplementsClass(const REUInt32 classIdentifier) const
 			REView::isImplementsClass(classIdentifier));
 }
 
-const REObjectsArray * REViewController::GetViews() const
+const REArrayObject * REViewController::GetViews() const
 {
 	return this->getSubViewsArray();
 }
@@ -378,7 +378,7 @@ REViewController::~REViewController()
 	
 }
 
-REViewController * REViewController::Create()
+REViewController * REViewController::create()
 {
 	REViewController * newViewController = new REViewController();
 	return newViewController;

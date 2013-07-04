@@ -25,7 +25,7 @@
 class __RE_PUBLIC_CLASS_API__ REStackedViewController : public REViewController
 {
 protected:
-	REArray<REObjectsArray *> * _stackedSubViewsArray;
+	REArray<REArrayObject *> * _stackedSubViewsArray;
 	
 	REStackedViewController();
 	virtual ~REStackedViewController();

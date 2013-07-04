@@ -37,14 +37,17 @@ REBOOL RENULLObject::isImplementsClass(const REUInt32 classIdentifier) const
 	return ((RENULLObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-RENULLObject::RENULLObject() : REObject()
+RENULLObject::RENULLObject() : RENULL(), REObject()
 {
 	
 }
 
 RENULLObject::~RENULLObject()
 {
-	
+	if (this == _defaultNull) 
+	{
+		_defaultNull = NULL;
+	}
 }
 
 RENULLObject * RENULLObject::NULLObject()

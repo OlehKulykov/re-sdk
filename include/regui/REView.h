@@ -23,7 +23,7 @@
 #include "../recore/RERect.h"
 #include "../recore/REString.h"
 #include "../recore/REColor.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REClassMethod.h"
 
 #include "REGUIObject.h"
@@ -58,7 +58,7 @@ protected:
 	
 	void renderSubViews(const REFloat32 x, const REFloat32 y)
 	{
-		REObjectsArray * subViews = this->getSubViewsArray();
+		REArrayObject * subViews = this->getSubViewsArray();
 		if (subViews) 
 		{
 			for (REUInt32 i = 0; i < subViews->count(); i++) 

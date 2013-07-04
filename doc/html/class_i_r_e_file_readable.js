@@ -1,13 +1,13 @@
 var class_i_r_e_file_readable =
 [
     [ "~IREFileReadable", "class_i_r_e_file_readable.html#ad8bcf90a229ce8027f14f0125135f5aa", null ],
-    [ "FileClose", "class_i_r_e_file_readable.html#ac5efbfa5c40121d824b4b77cf9e8e6d1", null ],
-    [ "FileFError", "class_i_r_e_file_readable.html#aa42a8b72b4e5339e304ef68b5a6cc6f5", null ],
-    [ "FileRead", "class_i_r_e_file_readable.html#a1db10f1b335af11bf698938a715eeb26", null ],
-    [ "FileSeek", "class_i_r_e_file_readable.html#a89fc29bad7334f411cfaa42942f7ac88", null ],
-    [ "FileSeekFromBeginFile", "class_i_r_e_file_readable.html#afbbf9f491e7a0663b52ec825cfb6a7de", null ],
-    [ "FileSeekFromCurrentFilePos", "class_i_r_e_file_readable.html#afb3b6ffb72328561230441f52931e49d", null ],
-    [ "FileSeekFromEndFile", "class_i_r_e_file_readable.html#aed79431b0d0759d24fb3d1282a24c019", null ],
-    [ "FileTell", "class_i_r_e_file_readable.html#ae7fdb2d1f2043f8d85cf2d5376868544", null ],
-    [ "IsEndOfFile", "class_i_r_e_file_readable.html#ada624d04ec627c3d310c50cf0db9b8d4", null ]
+    [ "fileClose", "class_i_r_e_file_readable.html#a1315e89ec5791d0e5e1e9d22e666c8ce", null ],
+    [ "fileFError", "class_i_r_e_file_readable.html#a768685324bd9ebf6c6720e038ed90ce7", null ],
+    [ "fileRead", "class_i_r_e_file_readable.html#a91897d1a05fe3aad393dc9e5ffd818d3", null ],
+    [ "fileSeek", "class_i_r_e_file_readable.html#ae50310f9607628c5ac77359b908515ae", null ],
+    [ "fileSeekFromBeginFile", "class_i_r_e_file_readable.html#a6e200aba7632fc51a57ca814de86301b", null ],
+    [ "fileSeekFromCurrentFilePos", "class_i_r_e_file_readable.html#a1e102bc9bfc974e92aa04c3f78ddafb7", null ],
+    [ "fileSeekFromEndFile", "class_i_r_e_file_readable.html#aa30704d87d9748cfe9bc2a863e3f844b", null ],
+    [ "fileTell", "class_i_r_e_file_readable.html#a69310d238eea424200fbb465eea6aead", null ],
+    [ "isEndOfFile", "class_i_r_e_file_readable.html#a2b7df81ffcf4fc2350d03b8686489f71", null ]
 ];

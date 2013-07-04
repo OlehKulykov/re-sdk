@@ -20,7 +20,7 @@
 
 #include "../recore/RECommonHeader.h"
 #include "../recore/REObject.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "RESubViewsContainer.h"
 #include "IRERenderable.h"
 #include "REView.h"
@@ -77,7 +77,7 @@ public:
 	REBOOL IsLoading() const;
 	
 	/// Returns subview array.
-	const REObjectsArray * GetViews() const;
+	const REArrayObject * GetViews() const;
 	
 	/* IRERenderable */
 	virtual void render();
@@ -89,7 +89,7 @@ public:
 	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Creates and returns new view controller object.
-	static REViewController * Create();
+	static REViewController * create();
 	
 	/// Returns XML key string for size.
 	static const char * getXMLSizeKeyString();

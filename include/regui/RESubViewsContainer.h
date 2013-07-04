@@ -19,7 +19,7 @@
 #define __RESUBVIEWSCONTAINER_H__
 
 #include "../recore/RECommonHeader.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REThread.h"
 #include "../recore/REMutex.h"
 
@@ -30,7 +30,7 @@ class REView;
 class __RE_PUBLIC_CLASS_API__ RESubViewsContainer
 {
 private:
-	REObjectsArray * _subViewsArray;
+	REArrayObject * _subViewsArray;
 	RESubViewsContainer * _parentSubViewsContainer;
 	REMutex _updateMutex;
 protected:
@@ -39,7 +39,7 @@ protected:
 	
 	/// Returns pointer to array contained subviews.
 	/// If array not created it will creates.
-	REObjectsArray * getOrCreateAndGetSubViewsArray();
+	REArrayObject * getOrCreateAndGetSubViewsArray();
 	
 	/// Called when some 'view' added to container.
 	virtual void onViewDidAdded(REView * view) { }
@@ -54,7 +54,7 @@ public:
 	
 	/// Return array of subviews.
 	/// Return array pointer or NULL
-	REObjectsArray * getSubViewsArray() const { return _subViewsArray; }
+	REArrayObject * getSubViewsArray() const { return _subViewsArray; }
 	
 	/// Check this container for childs view.
 	REBOOL isHasSubViews() const;

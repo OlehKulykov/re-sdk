@@ -20,6 +20,11 @@
 #include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 
+const REUIdentifier REObject::getObjectIdentifier() const
+{
+	return _reObjectIdentifier;
+}
+
 const REUInt32 REObject::getClassIdentifier() const
 {
 	return REObject::classIdentifier();	

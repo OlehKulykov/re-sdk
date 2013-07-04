@@ -19,10 +19,11 @@
 #define __RENULLOBJECT_H__
 
 #include "RECommonHeader.h"
+#include "RENULL.h"
 #include "REObject.h"
 
 /// Class of NULL object. Just existen object that inform that no normal object detected.
-class __RE_PUBLIC_CLASS_API__ RENULLObject : public REObject
+class __RE_PUBLIC_CLASS_API__ RENULLObject : public RENULL, public REObject
 {
 private:
 	static RENULLObject * _defaultNull;

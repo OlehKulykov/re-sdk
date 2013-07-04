@@ -35,20 +35,19 @@
 typedef void* (*newMem)(const int);
 typedef void (*freeMem)(void*);
 
-typedef void** (*createNull)(void*);
-typedef void** (*createNumberWithBool)(const int,void*);
-typedef void** (*createNumberWithLongLong)(const long long,void*);
-typedef void** (*createNumberWithDouble)(const double,void*);
-typedef void** (*createStringWithUTF8)(const char*,const int,void*);
-typedef void** (*createArray)(void*);
-typedef void** (*createDictionary)(void*);
+typedef void* (*createNull)(void*);
+typedef void* (*createNumberWithBool)(const int,void*);
+typedef void* (*createNumberWithLongLong)(const long long,void*);
+typedef void* (*createNumberWithDouble)(const double,void*);
+typedef void* (*createStringWithUTF8)(const char*,const int,void*);
+typedef void* (*createArray)(void*);
+typedef void* (*createDictionary)(void*);
 
-typedef void (*deleteObject)(void**);
+typedef void (*deleteObject)(void*);
 // array, object 
-typedef void (*addToArray)(void**,void**);
+typedef void (*addToArray)(void*,void*);
 // dictionary, key, value
-typedef void (*addToDictionary)(void**,void**,void**);
-
+typedef void (*addToDictionary)(void*,void*,void*);
 
 typedef struct _OKJSONParserCallbacks
 {

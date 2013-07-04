@@ -20,7 +20,7 @@
 
 #include "../recore/RECommonHeader.h"
 #include "../recore/REObject.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REClassMethod.h"
 #include "IREAnimation.h"
 

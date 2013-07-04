@@ -1,7 +1,6 @@
 var class_r_e_core =
 [
-    [ "BuildInfo", "class_r_e_core.html#a53ff82541c6ce821a070a577997c8e34", null ],
-    [ "GetPreferencesPath", "class_r_e_core.html#a078a929d561c10712fa382087512e70e", null ],
-    [ "LogTypesSizes", "class_r_e_core.html#aba7b7d46937905f64e422c2accdbc788", null ],
-    [ "SetPreferencesPath", "class_r_e_core.html#a00f2b50d9d902adfbe76e65b71576ada", null ]
+    [ "buildInfo", "class_r_e_core.html#a07516658c74e2e0b0f194ca48657ae7e", null ],
+    [ "getPreferencesPath", "class_r_e_core.html#a01284dd2d3f4aed57c73cfd5ad19f432", null ],
+    [ "setPreferencesPath", "class_r_e_core.html#a08a0916743e4f31eef9d0af44fe11b84", null ]
 ];

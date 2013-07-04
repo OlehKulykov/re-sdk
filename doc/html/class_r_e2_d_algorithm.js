@@ -1,12 +1,12 @@
 var class_r_e2_d_algorithm =
 [
-    [ "GetLineLengthFloat32", "class_r_e2_d_algorithm.html#af9ff3f16648bccd78d15e8291af71b1a", null ],
-    [ "GetLineLengthFloat32", "class_r_e2_d_algorithm.html#a29cba65e5490c17aef9c95b8baf36a9f", null ],
-    [ "GetLinesCrossPoint", "class_r_e2_d_algorithm.html#a18b8327b91c1c53c50eed8eb93f1af93", null ],
-    [ "IsEqualFloat32", "class_r_e2_d_algorithm.html#a37defab18af98eea464e30ca48ff1dae", null ],
-    [ "IsEqualFloat64", "class_r_e2_d_algorithm.html#af18bed6531897a170ffb59c0d9cc3386", null ],
-    [ "IsPointInPolygonFloat32", "class_r_e2_d_algorithm.html#a6aa3da7022399d825c2746312e0438f8", null ],
-    [ "IsPointInPolygonInt32", "class_r_e2_d_algorithm.html#a037e2e94be51c03cd402b80acd51d583", null ],
-    [ "RoundNumSignificantDigitsFloat32", "class_r_e2_d_algorithm.html#aa25139cd6bc6e7bd640fbd30b2589c40", null ],
-    [ "RoundNumSignificantDigitsFloat64", "class_r_e2_d_algorithm.html#aecbffee7d0d8cb0b0e4f0d4320d9feb5", null ]
+    [ "getLineLengthFloat32", "class_r_e2_d_algorithm.html#a25e31d5a79c75ebf41b08224c9c41ac8", null ],
+    [ "getLineLengthFloat32", "class_r_e2_d_algorithm.html#a9dbcf84d9aee00068756f631b3e05e25", null ],
+    [ "getLinesCrossPoint", "class_r_e2_d_algorithm.html#ace15f10ae5d590a5aef37bab43c89230", null ],
+    [ "isEqualFloat32", "class_r_e2_d_algorithm.html#a8fcd813d4a29eb5677b6419b5b397ce3", null ],
+    [ "isEqualFloat64", "class_r_e2_d_algorithm.html#aa8dc52a2c539203ff20aae38c702c26e", null ],
+    [ "isPointInPolygonFloat32", "class_r_e2_d_algorithm.html#a56c4cd143b0d920cb16e27b441f0b055", null ],
+    [ "isPointInPolygonInt32", "class_r_e2_d_algorithm.html#a62bf4ecdacb62f0f85d08e788a725f47", null ],
+    [ "roundNumSignificantDigitsFloat32", "class_r_e2_d_algorithm.html#afc93f7adc5b241452084d5f7483ef0ef", null ],
+    [ "roundNumSignificantDigitsFloat64", "class_r_e2_d_algorithm.html#a1940a78b2544683a4da54464665ab6c0", null ]
 ];

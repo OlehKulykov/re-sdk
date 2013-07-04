@@ -20,6 +20,13 @@
 #include "../../include/recore/REObject.h"
 #include "../../include/recore/RETypedArray.h"
 
+#include "../../include/recore/REStringObject.h"
+#include "../../include/recore/RENumberObject.h"
+#include "../../include/recore/REArrayObject.h"
+#include "../../include/recore/RENULLObject.h"
+#include "../../include/recore/REBufferObject.h"
+#include "../../include/recore/REDictionaryObjectN.h"
+
 class RETypedPtrPrivate 
 {
 public:
@@ -63,6 +70,38 @@ public:
 	{
 		return obj1->isEqualToDate(*obj2);
 	}
+	
+	static void deleteREObject(void * obj, const REPtrType type)
+	{
+		switch (type) 
+		{
+			case REPtrTypeREObject:
+				REPtrCast<REObject, void>(obj)->release();
+				break;
+			case REPtrTypeStringObject:
+				REPtrCast<REStringObject, void>(obj)->release();
+				break;
+			case REPtrTypeNumberObject:
+				REPtrCast<RENumberObject, void>(obj)->release();
+				break;
+			case REPtrTypeArrayObject:
+				REPtrCast<REArrayObject, void>(obj)->release();
+				break;
+			case REPtrTypeNullObject:
+				REPtrCast<RENULLObject, void>(obj)->release();
+				break;
+			case REPtrTypeBufferObject:
+				REPtrCast<REBufferObject, void>(obj)->release();
+				break;
+			case REPtrTypeDictionaryObject:
+				REPtrCast<REDictionaryObjectN, void>(obj)->release();
+				break;
+			case REPtrTypeDateObject:
+				break;
+			default:
+				break;
+		}
+	}
 };
 
 REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
@@ -92,7 +131,7 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 				break;
 				
 			case REPtrTypeNull:
-				return true;
+				return ((RENULL *)_object)->isEqualToNULL(*((RENULL *)anotherPtr._object));
 				break;
 				
 			case REPtrTypeBuffer:
@@ -110,6 +149,10 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 			case REPtrTypeDate:
 				return RETypedPtrPrivate::compareDates((REDate *)_object, (REDate *)anotherPtr._object);
 				break;
+
+//			case REPtrTypeREObject:	
+//				return this->getREObject<REObject>()->isEqual(anotherPtr.getREObject<REObject>());
+//				break;
 				
 			default:
 				break;
@@ -170,51 +213,53 @@ void RETypedPtr::deleteObject()
 {
 	if (_object)
 	{
+		if (_type & REPtrTypeREObject)
+		{
+			RETypedPtrPrivate::deleteREObject(_object, _type);
+			_object = (void *)0;
+			return;
+		}
+		
 		switch (_type) 
 		{
 			case REPtrTypeString:
 			{
-				REString * str = (REString *)_object;
-				delete str;
+				delete REPtrCast<REString, void>(_object);
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeNumber:
 			{
-				RENumber * num = (RENumber *)_object;
-				delete num;
+				delete REPtrCast<RENumber, void>(_object);
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeArray:
 			{
-				REArray<RETypedPtr> * arr = (REArray<RETypedPtr> *)_object;
-				delete arr;
+				delete REPtrCast<REArray<RETypedPtr>, void>(_object);
 				_object = (void *)0;
 			}
 				break;
 			
 			case REPtrTypeNull:	
 			{
+				delete REPtrCast<RENULL, void>(_object);
 				_object = (void *)0;
-				
 			}
 				break;
 				
 			case REPtrTypeBuffer:
 			{
-				REBuffer * buff = (REBuffer *)_object;
-				delete buff;
+				delete REPtrCast<REBuffer, void>(_object);
 				_object = (void *)0;
 			}
 				break;
 				
 			case REPtrTypeDictionary:
 			{
-				REDictionary * dict = (REDictionary *)_object;
-				delete dict;
+				delete REPtrCast<REDictionary, void>(_object);
 				_object = (void *)0;
 			}
 				break;
@@ -225,11 +270,11 @@ void RETypedPtr::deleteObject()
 				
 			case REPtrTypeDate:
 			{
-				REDate * date = (REDate *)_object;
-				delete date;
+				delete REPtrCast<REDate, void>(_object);
 				_object = (void *)0;
 			}
 				break;
+				
 			default:
 				break;
 		}
@@ -268,9 +313,9 @@ RETypedArray * RETypedPtr::getArray() const
 	return (_type == REPtrTypeArray) ? (RETypedArray *)_object : (RETypedArray *)0;
 }
 
-RENULLObject * RETypedPtr::getNULL() const
+RENULL * RETypedPtr::getNULL() const
 {
-	return (_type == REPtrTypeNull) ? (RENULLObject *)_object : (RENULLObject *)0;
+	return (_type == REPtrTypeNull) ? (RENULL *)_object : (RENULL *)0;
 }
 
 REBuffer * RETypedPtr::getBuffer() const

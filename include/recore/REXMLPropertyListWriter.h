@@ -20,9 +20,9 @@
 
 #include "RECommonHeader.h"
 #include "REBuffer.h"
-#include "REObjectsDictionary.h"
+#include "REDictionaryObject.h"
 #include "REStringObject.h"
-#include "REObjectsArray.h"
+#include "REArrayObject.h"
 #include "RENumberObject.h"
 #include "REBufferObject.h"
 
@@ -34,18 +34,18 @@ private:
 	REMutableString * _xmlStr;
 	
 	
-	REBOOL writePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair);
+	REBOOL writePair(const REString & prefixString, REDictionaryObject::KeyObjectStruct * pair);
 	REBOOL writeObject(const REString & prefixString, REObject * obj);
 	REBOOL writeString(const REString & prefixString, REStringObject * strObj);
-	REBOOL writeArray(const REString & prefixString, REObjectsArray * arrObj);
-	REBOOL writeDictionary(const REString & prefixString, REObjectsDictionary * dict);
+	REBOOL writeArray(const REString & prefixString, REArrayObject * arrObj);
+	REBOOL writeDictionary(const REString & prefixString, REDictionaryObject * dict);
 	REBOOL writeNumber(const REString & prefixString, RENumberObject * number);
 	REBOOL writeBuffer(const REString & prefixString, REBufferObject * buff);
 	
 public:
 	/// Writes to 'listString' string pointer generated XML property list from 'pairs' dictionary key/pairs.
 	/// Returns true if both pointers not NULL and operation done, otherwice returns false.
-	REBOOL writeToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REMutableString * listString);
+	REBOOL writeToString(REArray<REDictionaryObject::KeyObjectStruct> * pairs, REMutableString * listString);
 	
 	/// Default constructor.
 	REXMLPropertyListWriter();

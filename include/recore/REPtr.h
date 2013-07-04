@@ -167,4 +167,16 @@ public:
 };
 
 
+template <typename resultType, typename sourceType>
+static resultType* REPtrCast(sourceType* sourcePointer) 
+{
+	return static_cast<resultType*>( static_cast<void*>(sourcePointer) );
+}
+
+template <typename resultType, typename sourceType>
+static const resultType* REPtrCast(const sourceType* sourcePointer) 
+{
+	return static_cast<const resultType*>( static_cast<const void*>(sourcePointer) );
+}
+
 #endif

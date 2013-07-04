@@ -43,7 +43,7 @@ REUInt32 REGUIApplicationPrivate::FindOnClickViewsPrivate(REArray<REView *> * st
 		if (view->getScreenFrame().isPointInRect(screenX, screenY)) 
 		{
 			storeArray->add(view);
-			REObjectsArray * subViews = (REObjectsArray *)view->getSubViewsArray();
+			REArrayObject * subViews = (REArrayObject *)view->getSubViewsArray();
 			if (subViews) 
 			{
 				for (REUInt32 i = 0; i < subViews->count(); i++) 
@@ -190,10 +190,10 @@ void REGUIApplication::OnMouseMoveOnScreen(const REFloat32 screenX, const REFloa
  if (view->GetScreenFrame().IsPointInRect(screenX, screenY)) 
  {
  returnedView = view;
- const REObjectsArray * sv = view->GetSubViewsArray();
+ const REArrayObject * sv = view->GetSubViewsArray();
  if (sv) 
  {
- REObjectsArray * subViews = const_cast<REObjectsArray *>(sv);
+ REArrayObject * subViews = const_cast<REArrayObject *>(sv);
  for (REUInt32 i = 0; i < subViews->Count(); i++) 
  {
  REView * subView = (REView *)(*subViews)[i];

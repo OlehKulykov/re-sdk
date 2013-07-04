@@ -24,44 +24,103 @@
 #include "REString.h"
 #include "REDBResultSet.h"
 
-/// Base class of data base.
+/**
+ @brief Base data base class.
+ @detailed Class for operating with database connection.
+ */
 class __RE_PUBLIC_CLASS_API__ REDB
 {
 protected:
 	REDB();
 	
 public:
+	/**
+	 @brief Database path getter.
+	 @detailed Getting opened database path.
+	 @return String with path or empty string.
+	 */
 	virtual REString getDatabaseFullPath() const;
 	
-	/// Opens data base.
+	/**
+	 @brief Open database connection.
+	 @return True if opened otherwice false.
+	 */
 	virtual REBOOL open();
 	
-	/// Check is database opened.
+	/**
+	 @brief Check is database opened.
+	 @return True if opened otherwice false.
+	 */
 	virtual REBOOL isOpened() const;
 	
-	/// Closes data base.
+	/**
+	 @brief Closes database.
+	 @return True if successfully closed otherwice false.
+	 */
 	virtual REBOOL close();
 	
-	/// Returns last inserted row id.
+	/**
+	 @brief Getter for last inserted row identifier.
+	 @return 64 bit signed integer of last inserted row identifier.
+	 */
 	virtual REInt64 getLastInsertedRowId() const;
 	
-	/// Executes sql query string.
+	/**
+	 @brief Executes SQL query.
+	 @param queryString string with SQL query.
+	 @return Autopointer with result as REDBResultSet of execution.
+	 */
 	virtual REPtr<REDBResultSet> executeQuery(const REString & queryString);
 	
-	/// Begins transaction.
+	/**
+	 @brief Begin transaction.
+	 @return True if successfully started otherwice false.
+	 */
 	virtual REBOOL beginTransaction();
 	
-	/// Executes sql update query strind.
+	/**
+	 @brief Executes SQL update query.
+	 @param queryString string with SQL query.
+	 @return True if successfully started otherwice false.
+	 */
 	virtual REBOOL executeUpdate(const REString & queryString);
 	
-	/// Commiting last transaction.
+	/**
+	 @brief Commiting transaction.
+	 @detailed Commiting last opened transaction using method beginTransaction().
+	 @code
+	 REDB db;
+	 ... open data base
+	 db.beginTransaction();
+	 ... batabase changes
+	 db.commitTransaction();
+	 @endcode
+	 @return True if successfully commited otherwice false.
+	 */
 	virtual REBOOL commitTransaction();
 	
-	/// Rolls back last transaction.
+	/**
+	 @brief Rolls back transaction.
+	 @detailed Rolls back last opened transaction opened using method beginTransaction().
+	 @code
+	 REDB db;
+	 ... open data base
+	 db.beginTransaction();
+	 ... batabase changes
+	 db.rollBackTransaction();
+	 @endcode
+	 @return True if successfully commited otherwice false.
+	 */
 	virtual REBOOL rollBackTransaction();
 	
 	virtual ~REDB();
 	
+	/**
+	 @brief Create SQLite database.
+	 @detailed Create opened SQLite database with file path.
+	 @param dbFilePath string with path to SQLite file.
+	 @return Autopointer with opened SQLite database object or with NULL object.
+	 */
 	static REPtr<REDB> createSQLiteWithFilePath(const REString & dbFilePath);
 };
 
