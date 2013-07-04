@@ -70,6 +70,38 @@ public:
 	{
 		return obj1->isEqualToDate(*obj2);
 	}
+	
+	static void deleteREObject(void * obj, const REPtrType type)
+	{
+		switch (type) 
+		{
+			case REPtrTypeREObject:
+				REPtrCast<REObject, void>(obj)->release();
+				break;
+			case REPtrTypeStringObject:
+				REPtrCast<REStringObject, void>(obj)->release();
+				break;
+			case REPtrTypeNumberObject:
+				REPtrCast<RENumberObject, void>(obj)->release();
+				break;
+			case REPtrTypeArrayObject:
+				REPtrCast<REArrayObject, void>(obj)->release();
+				break;
+			case REPtrTypeNullObject:
+				REPtrCast<RENULLObject, void>(obj)->release();
+				break;
+			case REPtrTypeBufferObject:
+				REPtrCast<REBufferObject, void>(obj)->release();
+				break;
+			case REPtrTypeDictionaryObject:
+				REPtrCast<REDictionaryObjectN, void>(obj)->release();
+				break;
+			case REPtrTypeDateObject:
+				break;
+			default:
+				break;
+		}
+	}
 };
 
 REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
@@ -177,45 +209,13 @@ void RETypedPtr::release()
 	_type = REPtrTypeNone;
 }
 
-void RETypedPtr::deleteREObject(void * obj, const REPtrType type)
-{
-	switch (type) 
-	{
-		case REPtrTypeREObject:
-		REPtrCast<REObject, void>(obj)->release();
-			break;
-		case REPtrTypeStringObject:
-		REPtrCast<REStringObject, void>(obj)->release();
-			break;
-		case REPtrTypeNumberObject:
-			REPtrCast<RENumberObject, void>(obj)->release();
-			break;
-		case REPtrTypeArrayObject:
-			REPtrCast<REArrayObject, void>(obj)->release();
-			break;
-		case REPtrTypeNullObject:
-			REPtrCast<RENULLObject, void>(obj)->release();
-			break;
-		case REPtrTypeBufferObject:
-			REPtrCast<REBufferObject, void>(obj)->release();
-			break;
-		case REPtrTypeDictionaryObject:
-			REPtrCast<REDictionaryObjectN, void>(obj)->release();
-			break;
-		case REPtrTypeDateObject:
-			break;
-		default:
-			break;
-	}
-}
-
 void RETypedPtr::deleteObject()
 {
 	if (_object)
 	{
 		if (_type & REPtrTypeREObject)
 		{
-			RETypedPtr::deleteREObject(_object, _type);
+			RETypedPtrPrivate::deleteREObject(_object, _type);
 			_object = (void *)0;
 			return;
 		}

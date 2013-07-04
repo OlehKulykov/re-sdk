@@ -65,7 +65,6 @@ protected:
 	void retain();
 	
 	void deleteObject();
-	static void deleteREObject(void * obj, const REPtrType type);
 	
 public:
 	REBOOL isEmpty() const;
