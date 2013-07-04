@@ -43,7 +43,7 @@ typedef enum _reMutexType
 /// Enums type of mutexes.
 REMutexType;
 
-#ifndef __RE_USING_PTHREADS__
+#ifndef __RE_TRY_USE_PTHREADS__
 #ifdef __RE_OS_WINDOWS__
 #ifndef __RE_USING_WINDOWS_THREADS__
 #define __RE_USING_WINDOWS_THREADS__
@@ -56,7 +56,7 @@ REMutexType;
 class __RE_PUBLIC_CLASS_API__ REMutex
 {
 private:
-#if defined(__RE_USING_PTHREADS__)	
+#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
 	void * _pthreadMutexPtr;
 #elif defined(__RE_USING_WINDOWS_THREADS__)	
 	HANDLE _mutexHANDLE;
@@ -65,20 +65,20 @@ private:
 	
 public:
 	/// Checks is mutex initialized.
-	REBOOL IsInitialized() const;
+	REBOOL isInitialized() const;
 	
 	/// Initializes mutex with selected type.
 	/// Returns 'true' if successfuly initialized or allready initialized.
-	REBOOL Init(const REMutexType type);
+	REBOOL init(const REMutexType type);
 	
 	/// Locks mutex. Returns 'true' if success and 'false' - if fail.
-	REBOOL Lock();
+	REBOOL lock();
 	
 	/// Unlocks mutex. Returns 'true' if success and 'false' - if fail.
-	REBOOL Unlock();
+	REBOOL unlock();
 	
 	/// Returns value indicated that mutex is successfuly locked.
-	REBOOL IsLocked() const;
+	REBOOL isLocked() const;
 	
 	REMutex();
 	virtual ~REMutex();

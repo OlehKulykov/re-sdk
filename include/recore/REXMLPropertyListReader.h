@@ -20,9 +20,9 @@
 
 #include "RECommonHeader.h"
 #include "REBuffer.h"
-#include "REObjectsDictionary.h"
+#include "REDictionaryObject.h"
 #include "REStringObject.h"
-#include "REObjectsArray.h"
+#include "REArrayObject.h"
 #include "RENumberObject.h"
 #include "REBufferObject.h"
 #include "REXMLPropertyListWriter.h"
@@ -32,16 +32,16 @@
 class __RE_PUBLIC_CLASS_API__ REXMLPropertyListReader
 {
 private:
-	static void ClearPairs(REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
+	static void ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs);
 	static REObject * NewObjectFromElement(void * elementObject);
-	static REBOOL ParseDictionaryElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * dictionaryElement);
-	static REBOOL ReadPropertyListElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * propListElement);
+	static REBOOL ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement);
+	static REBOOL ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement);
 public:
 	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
-	REBOOL ReadFromString(const char * listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
+	REBOOL ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
 	
 	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
-	REBOOL ReadFromString(const REString & listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
+	REBOOL ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
 	
 	/// Default constructor.
 	REXMLPropertyListReader();

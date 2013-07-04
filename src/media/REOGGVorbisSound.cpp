@@ -127,32 +127,32 @@ long REOGGVorbisSoundPrivate::VorbisTell(void *datasource)
 #endif /* __RE_NO_OGG_VORBIS_SOUND_PRIVATE__ */
 
 
-void REOGGVorbisSound::Update(const RETimeInterval currentTime)
+void REOGGVorbisSound::update(const RETimeInterval currentTime)
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 	// update 20 milisec
 	if ( (currentTime - _lastDecodeTime) >= 0.017 )
 	{
-		this->DecodeAndPlay();
+		this->decodeAndPlay();
 		_lastDecodeTime = currentTime;
 	}
 #endif
 }
 
-const REUIdentifier REOGGVorbisSound::GetMainLoopUpdatableIdentifier() const
+const REUIdentifier REOGGVorbisSound::getMainLoopUpdatableIdentifier() const
 {
-	return this->GetObjectIdentifier();
+	return this->getObjectIdentifier();
 }
 
-REBOOL REOGGVorbisSound::Play()
+REBOOL REOGGVorbisSound::play()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 #ifdef __RE_USING_OPENAL__	
 	if ( _source )
 	{
-		this->AddToMainLoop();
+		this->addToMainLoop();
 		alSourcePlay(_source);
-		this->DecodeAndPlay();
+		this->decodeAndPlay();
 		return (alGetError() == AL_NO_ERROR);
 	}
 #endif	
@@ -160,7 +160,7 @@ REBOOL REOGGVorbisSound::Play()
 	return false;
 }
 
-REBOOL REOGGVorbisSound::IsPlaying() const
+REBOOL REOGGVorbisSound::isPlaying() const
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 #ifdef __RE_USING_OPENAL__
@@ -175,13 +175,13 @@ REBOOL REOGGVorbisSound::IsPlaying() const
 	return false;
 }
 
-REBOOL REOGGVorbisSound::Pause()
+REBOOL REOGGVorbisSound::pause()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
 	{
-		this->RemoveFromMainLoop();
+		this->removeFromMainLoop();
 		alSourcePause(_source);
 		return (alGetError() == AL_NO_ERROR);
 	}
@@ -190,13 +190,13 @@ REBOOL REOGGVorbisSound::Pause()
 	return false;
 }
 
-REBOOL REOGGVorbisSound::Stop()
+REBOOL REOGGVorbisSound::stop()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
 	{
-		this->RemoveFromMainLoop();
+		this->removeFromMainLoop();
 		alSourceStop(_source);
 		return (alGetError() == AL_NO_ERROR);
 	}
@@ -205,18 +205,18 @@ REBOOL REOGGVorbisSound::Stop()
 	return false;
 }
 
-REBOOL REOGGVorbisSound::SetLooped(const REBOOL isLooped)
+REBOOL REOGGVorbisSound::setLooped(const REBOOL isLooped)
 {
 	_isLooped = isLooped;
 	return true;
 }
 
-REBOOL REOGGVorbisSound::IsLooped() const
+REBOOL REOGGVorbisSound::isLooped() const
 {
 	return _isLooped;
 }
 
-REBOOL REOGGVorbisSound::SetVolume(const REFloat32 newVolume)
+REBOOL REOGGVorbisSound::setVolume(const REFloat32 newVolume)
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 	if ( newVolume < 0.0f )
@@ -241,12 +241,12 @@ REBOOL REOGGVorbisSound::SetVolume(const REFloat32 newVolume)
 	return false;
 }
 
-const REFloat32 REOGGVorbisSound::GetVolume() const
+const REFloat32 REOGGVorbisSound::getVolume() const
 {
 	return _volume;
 }
 
-void REOGGVorbisSound::GetVorbisInformation()
+void REOGGVorbisSound::getVorbisInformation()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
@@ -293,7 +293,7 @@ void REOGGVorbisSound::GetVorbisInformation()
 }
 
 #ifdef __RE_USING_OPENAL__
-void REOGGVorbisSound::GenerateAndSetupALResources()
+void REOGGVorbisSound::generateAndSetupALResources()
 {
 	alGenBuffers( OGG_BUFFERS_COUNT, _buffers );
 	alGenSources( 1, &_source );
@@ -307,7 +307,7 @@ void REOGGVorbisSound::GenerateAndSetupALResources()
 }
 #endif
 
-void REOGGVorbisSound::DecodeAndPlay()
+void REOGGVorbisSound::decodeAndPlay()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
@@ -322,11 +322,11 @@ void REOGGVorbisSound::DecodeAndPlay()
 #ifdef __RE_USING_OPENAL__		
 		alSourceUnqueueBuffers(_source, 1, &_buffer);
 #endif		
-		_bytesWritten = this->DecodeOggVorbis(ogStream, (char*)_decodeBuffer->GetBuffer(), _decodeBuffer->GetSize(), _channels);
+		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->getBuffer(), _decodeBuffer->getSize(), _channels);
 		if (_bytesWritten > 0)
 		{
 #ifdef __RE_USING_OPENAL__			
-			alBufferData(_buffer, (ALenum)_format, _decodeBuffer->GetBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
+			alBufferData(_buffer, (ALenum)_format, _decodeBuffer->getBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
 			alSourceQueueBuffers(_source, 1, &_buffer);
 #endif	
 		}
@@ -353,7 +353,7 @@ void REOGGVorbisSound::DecodeAndPlay()
 			_bytesWritten = 0;
 			_lastDecodeTime = 0.0;
 			_totalBuffersProcessed = 0;
-			this->FillBuffersWithDecodedAudioData();
+			this->fillBuffersWithDecodedAudioData();
 			_totalBuffersProcessed = 0;
 			
 			if (_isLooped)
@@ -362,7 +362,7 @@ void REOGGVorbisSound::DecodeAndPlay()
 			}
 			else
 			{
-				this->RemoveFromMainLoop();
+				this->removeFromMainLoop();
 			}
 		}
 	}
@@ -371,7 +371,7 @@ void REOGGVorbisSound::DecodeAndPlay()
 	//glutTimerFunc(20, DecodeAndPlay, sound);
 }
 
-REUInt32 REOGGVorbisSound::DecodeOggVorbis(void * psOggVorbisFileVoid, char * pDecodeBuffer, const REUInt32 ulBufferSize, const REUInt32 ulChannels)
+REUInt32 REOGGVorbisSound::decodeOggVorbis(void * psOggVorbisFileVoid, char * pDecodeBuffer, const REUInt32 ulBufferSize, const REUInt32 ulChannels)
 {
 	REUInt32 bytesDone = 0;
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
@@ -413,17 +413,17 @@ REUInt32 REOGGVorbisSound::DecodeOggVorbis(void * psOggVorbisFileVoid, char * pD
 	return bytesDone;
 }
 
-void REOGGVorbisSound::FillBuffersWithDecodedAudioData()
+void REOGGVorbisSound::fillBuffersWithDecodedAudioData()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
 	for (int i = 0; i < OGG_BUFFERS_COUNT; i++)
 	{
-		_bytesWritten = this->DecodeOggVorbis(ogStream, (char*)_decodeBuffer->GetBuffer(), _decodeBuffer->GetSize(), _channels);
+		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->getBuffer(), _decodeBuffer->getSize(), _channels);
 		if (_bytesWritten)
 		{
 #ifdef __RE_USING_OPENAL__			
-			alBufferData(_buffers[i], (ALenum)_format, _decodeBuffer->GetBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
+			alBufferData(_buffers[i], (ALenum)_format, _decodeBuffer->getBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
 			alSourceQueueBuffers(_source, 1, &_buffers[i]);
 #endif			
 		}
@@ -431,10 +431,10 @@ void REOGGVorbisSound::FillBuffersWithDecodedAudioData()
 #endif
 }
 
-REBOOL REOGGVorbisSound::InitWithData(const REData & soundFileData)
+REBOOL REOGGVorbisSound::initWithData(const REData & soundFileData)
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__	
-	this->Clear();
+	this->clear();
 	 
 	_oggMemoryFile.oggFileData = new REData(soundFileData);
 	if (_oggMemoryFile.oggFileData == NULL) { return false; }
@@ -453,13 +453,13 @@ REBOOL REOGGVorbisSound::InitWithData(const REData & soundFileData)
 	vorbisCallbacks.seek_func = REOGGVorbisSoundPrivate::VorbisSeek;
 	vorbisCallbacks.tell_func = REOGGVorbisSoundPrivate::VorbisTell;
 	
-	_oggMemoryFile.oggData = _oggMemoryFile.oggFileData->GetBytes();
-	_oggMemoryFile.dataSize = _oggMemoryFile.oggFileData->GetSize();
+	_oggMemoryFile.oggData = _oggMemoryFile.oggFileData->getBytes();
+	_oggMemoryFile.dataSize = _oggMemoryFile.oggFileData->getSize();
 		
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
 	if (ov_open_callbacks(&_oggMemoryFile, ogStream, NULL, 0, vorbisCallbacks) == 0)
 	{
-		this->GetVorbisInformation();
+		this->getVorbisInformation();
 		
 		if (_format == 0)
 		{
@@ -482,9 +482,9 @@ REBOOL REOGGVorbisSound::InitWithData(const REData & soundFileData)
 			return false;
 		}
 #ifdef __RE_USING_OPENAL__		
-		this->GenerateAndSetupALResources();
+		this->generateAndSetupALResources();
 #endif		
-		this->FillBuffersWithDecodedAudioData();
+		this->fillBuffersWithDecodedAudioData();
 		_totalBuffersProcessed = 0;
 		return true;
 	}
@@ -492,7 +492,7 @@ REBOOL REOGGVorbisSound::InitWithData(const REData & soundFileData)
 	return false;
 }
 
-void REOGGVorbisSound::Clear()
+void REOGGVorbisSound::clear()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__	
 #ifdef __RE_USING_OPENAL__	
@@ -576,15 +576,16 @@ REOGGVorbisSound::REOGGVorbisSound() : REObject(),
 
 REOGGVorbisSound::~REOGGVorbisSound()
 {
-	this->Stop();
-	this->Clear();
+	this->stop();
+	
+	this->clear();
 }
 
-REBOOL REOGGVorbisSound::IsValidData(const REData & data)
+REBOOL REOGGVorbisSound::isValidData(const REData & data)
 {
-	if ( data.GetSize() > 4 )
+	if ( data.getSize() > 4 )
 	{
-		const char * dataString = (const char *)data.GetBytes();
+		const char * dataString = (const char *)data.getBytes();
 		return ( strncmp(dataString, "OggS", 4) == 0 );
 	}
 	return false;

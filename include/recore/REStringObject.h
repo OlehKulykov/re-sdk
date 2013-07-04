@@ -21,10 +21,11 @@
 
 #include "RECommonHeader.h"
 #include "REString.h"
+#include "REMutableString.h"
 #include "REObject.h"
 
 
-class __RE_PUBLIC_CLASS_API__ REStringObject : public REString, public REObject
+class __RE_PUBLIC_CLASS_API__ REStringObject : public REMutableString, public REObject
 {
 protected:
 	REStringObject(const wchar_t * wideStringValue);
@@ -36,34 +37,34 @@ protected:
 	virtual ~REStringObject();
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual REBOOL IsEqual(REObject * anotherObject);
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
 	
 	/// Creates and return new string object with wide string value or NULL on error.
 	/// After using this string object call Release().
-	static REStringObject * CreateWithWideChars(const wchar_t * wideStringValue);
+	static REStringObject * createWithWideChars(const wchar_t * wideStringValue);
 	
 	/// Creates and return new string object with UTF8 string value or NULL on error.
 	/// After using this string object call Release().
-	static REStringObject * CreateWithChars(const char * charsStringValue);
+	static REStringObject * createWithChars(const char * charsStringValue);
 	
 	/// Creates and return new string object with UTF8 string value with string length or NULL on error.
 	/// After using this string object call Release().
-	static REStringObject * CreateWithCharsAndLen(const char * charsStringValue, const REUInt32 stringLength);
+	static REStringObject * createWithCharsAndLen(const char * charsStringValue, const REUInt32 stringLength);
 	
 	/// Creates and return new string object with another string value or NULL on error.
 	/// After using this string object call Release().
-	static REStringObject * CreateWithString(const REString & anotherString);
+	static REStringObject * createWithString(const REString & anotherString);
 	
 	/// Creates and return new string object with another string value or NULL on error.
 	/// After using this string object call Release().
-	static REStringObject * CreateWithStringObject(const REStringObject * anotherString);
+	static REStringObject * createWithStringObject(const REStringObject * anotherString);
 	
 	/// Creates and return new string object with formated UTF8 string value or NULL on error.
 	/// After using this string call Release().
-	static REStringObject * CreateWithFormatChars(const char * format, ...);
+	static REStringObject * createWithFormatChars(const char * format, ...);
 };
 
 #endif /* __RESTRING_H__ */

@@ -19,20 +19,20 @@
 
 #include <limits.h>
 
-REBOOL REBase64::BufferToBase64String(const REBuffer & buff, REString * base64String)
+REBOOL REBase64::bufferToBase64String(const REBuffer & buff, REString * base64String)
 {
 	if (base64String) 
 	{ 
 		static const char b64str[64] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 			'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m',
 			'n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/'};
-		const char * in = (const char *)buff.GetBuffer();
-		size_t inlen = buff.GetSize();
+		const char * in = (const char *)buff.getBuffer();
+		size_t inlen = buff.getSize();
 		
 		size_t outlen = ((((inlen) + 2) / 3) * 4) + 4;
 		REBuffer outBuffer((REUInt32)outlen);
 		
-		char * out = (char *)outBuffer.GetBuffer();
+		char * out = (char *)outBuffer.getBuffer();
 		
 		while (inlen && outlen)
 		{
@@ -55,7 +55,7 @@ REBOOL REBase64::BufferToBase64String(const REBuffer & buff, REString * base64St
 		
 		if (outlen) *out = '\0';
 		
-		base64String->Set((const char*)outBuffer.GetBuffer());
+		*base64String = (const char *)outBuffer.getBuffer();
 		
 		return true;
 	}
@@ -204,18 +204,18 @@ static const signed char b64[0x100] = {
 
 #define isbase64(ch) uchar_in_range(((unsigned char)(ch))) && 0 <= b64[((unsigned char)(ch))]
 
-REBOOL REBase64::Base64StringToBuffer(const REString & base64String, REBuffer * buff)
+REBOOL REBase64::base64StringToBuffer(const REString & base64String, REBuffer * buff)
 {
 	if (buff == NULL) { return false; }
-	size_t inlen = base64String.Length();
+	size_t inlen = base64String.getLength();
 	if (inlen == 0) { return false; }
 	
-	const char * in = base64String.UTF8String();
+	const char * in = base64String.getChars();
 	size_t needlen = 3 * (inlen / 4) + 2;
 	
-	if ( !buff->Resize((REUInt32)needlen, false) ) { return false; }
+	if ( !buff->resize((REUInt32)needlen, false) ) { return false; }
 
-	char * out = (char*)buff->GetBuffer();
+	char * out = (char*)buff->getBuffer();
 	size_t outleft = needlen;
 	
 	while (inlen >= 2)
@@ -283,7 +283,7 @@ REBOOL REBase64::Base64StringToBuffer(const REString & base64String, REBuffer * 
 	
 	needlen -= outleft;
 
-	buff->Resize(needlen, true);
+	buff->resize(needlen, true);
 	
 	if (inlen != 0)
 		return false;

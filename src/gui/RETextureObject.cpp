@@ -35,22 +35,22 @@
 
 
 /* REObject */
-const REUInt32 RETextureObject::GetClassIdentifier() const
+const REUInt32 RETextureObject::getClassIdentifier() const
 {
-	return RETextureObject::ClassIdentifier();
+	return RETextureObject::classIdentifier();
 }
 
-const REUInt32 RETextureObject::ClassIdentifier()
+const REUInt32 RETextureObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RETextureObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETextureObject");
 	return clasIdentif;
 }
 
-REBOOL RETextureObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RETextureObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RETextureObject::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IRETexture") == classIdentifier) ||
-			REGUIObject::IsImplementsClass(classIdentifier));
+	return ((RETextureObject::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IRETexture") == classIdentifier) ||
+			REGUIObject::isImplementsClass(classIdentifier));
 }
 
 RERenderDeviceTextureObject * RETextureObject::CreateNewRenderDeviceTexture()
@@ -64,23 +64,23 @@ RERenderDeviceTextureObject * RETextureObject::CreateNewRenderDeviceTexture()
 }
 
 /* REGUIObject */
-void RETextureObject::OnPrepareGUIObjectForSetuping()
+void RETextureObject::onPrepareGUIObjectForSetuping()
 {
 	if (_texture)
 	{
-		_texture->Release();
+		_texture->release();
 	}
 	
 	_texture = RETextureObject::CreateNewRenderDeviceTexture();
 }
 
-void RETextureObject::OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
+void RETextureObject::onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
 {
 	if (_texture) 
 	{
 		if (_texture->IsNull()) 
 		{
-			_texture->Release();
+			_texture->release();
 			_texture = NULL;
 		}
 	}
@@ -123,14 +123,14 @@ REBOOL RETextureObject::AcceptStringParameterForTexture(const char * key, const 
 				   &f.arr[6],
 				   &f.arr[7]) == 8)
 		{
-			texture->_frame.Set(f);
+			texture->_frame.set(f);
 			return true;
 		}
 	}
 	return false;
 }
 
-REBOOL RETextureObject::AcceptStringParameter(const char * key, const char * value)
+REBOOL RETextureObject::acceptStringParameter(const char * key, const char * value)
 {
 	if (key && value)
 	{
@@ -143,15 +143,15 @@ REBOOL RETextureObject::UpdateFromImageFilePath(const REString & imageFilePath, 
 {
 	if (_texture) 
 	{
-		if (imageFilePath.IsEmpty()) { return false; }
+		if (imageFilePath.isEmpty()) { return false; }
 		
 		REData fileData;
-		if (fileData.InitFromPath(imageFilePath)) 
+		if (fileData.initFromPath(imageFilePath)) 
 		{ 
 			REImage image;
 			if (image.InitFromFileData(fileData)) 
 			{
-				fileData.Clear();
+				fileData.clear();
                 return this->UpdateFromImage(image, filterType);
 			}
 		}
@@ -239,7 +239,7 @@ RETextureObject & RETextureObject::operator=(const RETextureObject & anotherText
 	if (anotherTexture._texture) 
 	{
 		_texture = anotherTexture._texture;
-		_texture->Retain();
+		_texture->retain();
 		_frame = anotherTexture._frame;
 	}
 	return (*this);
@@ -249,23 +249,23 @@ void RETextureObject::Clear()
 {
 	if (_texture) 
 	{
-		_texture->Release();
+		_texture->release();
 		_texture = NULL;
 	}
-	_frame.Set(RERect(0.0f, 0.0f, 1.0f, 1.0f));
+	_frame.set(RERect(0.0f, 0.0f, 1.0f, 1.0f));
 }
 
-void RETextureObject::OnReleased()
+void RETextureObject::onReleased()
 {
 	RE_SAFE_RELEASE(_texture);
 	
-	REGUIObject::OnReleased();
+	REGUIObject::onReleased();
 }
 
 RETextureObject::RETextureObject() : REGUIObject(),
 	_texture(NULL)
 {
-	_frame.Set(RERect(0.0f, 0.0f, 1.0f, 1.0f));
+	_frame.set(RERect(0.0f, 0.0f, 1.0f, 1.0f));
 }
 
 RETextureObject::~RETextureObject()
@@ -336,18 +336,18 @@ const RETextureFilterType RETextureObject::GetFilterType() const
 
 void RETextureObject::SetFrame(const RETetragon & newFrame)
 {
-	_frame.Set(newFrame);
+	_frame.set(newFrame);
 }
 
 void RETextureObject::SetFrameAnimated(const RETetragon & newFrame)
 {
-	if (REAnimation::IsSetuping()) 
+	if (REAnimation::isSetuping()) 
 	{
 		for (REUInt32 i = 0; i < 8; i++) 
 		{
 			if (_frame.arr[i] != newFrame.arr[i]) 
 			{
-				REAnimation::AddFloatParam(this,
+				REAnimation::addFloatParam(this,
 										   NULL,
 										   &_frame.arr[i],
 										   _frame.arr[i],
@@ -363,7 +363,7 @@ void RETextureObject::SetFrameAnimated(const RETetragon & newFrame)
 
 void RETextureObject::StopAnimation(const REAnimationStopType stopType, REBOOL isNeedCallDelegate)
 {
-	REAnimationController::GetDefaultController()->StopAllAnimationForView(this, stopType, isNeedCallDelegate);
+	REAnimationController::getDefaultController()->stopAllAnimationForView(this, stopType, isNeedCallDelegate);
 }
 
 REUInt32 RETextureObject::GetNearestPowerOfTwo(const REUInt32 inValue)
@@ -462,11 +462,11 @@ RETextureObject * RETextureObject::CreateWithImage(const REImage & image,
 	return NULL;
 }
 
-const char * RETextureObject::GetXMLFilterKeyString() { return RE_TEXTURE_XML_FILTER_KEY_STRING; }
-const char * RETextureObject::GetXMLPathKeyString() { return RE_TEXTURE_XML_PATH_KEY_STRING; }
-const char * RETextureObject::GetXMLFrameKeyString() { return RE_TEXTURE_XML_FRAME_KEY_STRING; }
-const char * RETextureObject::GetXMLFrameFormatString() { return RE_TEXTURE_XML_FRAME_FORMAT_STRING; }
-const char * RETextureObject::GetXMLFilterStringByType(const RETextureFilterType filterType)
+const char * RETextureObject::getXMLFilterKeyString() { return RE_TEXTURE_XML_FILTER_KEY_STRING; }
+const char * RETextureObject::getXMLPathKeyString() { return RE_TEXTURE_XML_PATH_KEY_STRING; }
+const char * RETextureObject::getXMLFrameKeyString() { return RE_TEXTURE_XML_FRAME_KEY_STRING; }
+const char * RETextureObject::getXMLFrameFormatString() { return RE_TEXTURE_XML_FRAME_FORMAT_STRING; }
+const char * RETextureObject::getXMLFilterStringByType(const RETextureFilterType filterType)
 {
     switch (filterType)
     {

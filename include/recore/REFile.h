@@ -30,18 +30,18 @@ protected:
 	REUInt32 _fileSize;
 public:
 	/* IREFileReadable */
-	virtual REUInt32 FileRead(void * bufferForReading, const REUInt32 dataSizeToRead);
-	virtual REUInt32 FileTell();
-	virtual REInt32 FileSeek(const REUInt32 fileOffset, int origin);
-	virtual REInt32 FileSeekFromEndFile(const REUInt32 fileOffset);
-	virtual REInt32 FileSeekFromBeginFile(const REUInt32 fileOffset);
-	virtual REInt32 FileSeekFromCurrentFilePos(const REUInt32 fileOffset);
-	virtual REInt32 FileFError();
-	virtual REInt32 FileClose();
-	virtual REBOOL IsEndOfFile();
+	virtual REUInt32 fileRead(void * bufferForReading, const REUInt32 dataSizeToRead);
+	virtual REUInt32 fileTell();
+	virtual REInt32 fileSeek(const REUInt32 fileOffset, int origin);
+	virtual REInt32 fileSeekFromEndFile(const REUInt32 fileOffset);
+	virtual REInt32 fileSeekFromBeginFile(const REUInt32 fileOffset);
+	virtual REInt32 fileSeekFromCurrentFilePos(const REUInt32 fileOffset);
+	virtual REInt32 fileFError();
+	virtual REInt32 fileClose();
+	virtual REBOOL isEndOfFile();
 	
 	/// Returns size of file.
-	const REUInt32 GetFileSize() const;
+	const REUInt32 getFileSize() const;
 	
 	/// Construct file object with file path and open mode.
 	REFile(const REString & filePath, const char * openMode);
@@ -53,7 +53,7 @@ public:
 	virtual ~REFile();
 	
 	/// Opens file with path and opne mode.
-	static FILE * FOpen(const REString & filePath, const char * openMode);
+	static FILE * fileOpen(const REString & filePath, const char * openMode);
 };
 
 

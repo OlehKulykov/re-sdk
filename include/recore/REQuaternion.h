@@ -48,7 +48,7 @@ public:
 	};
 	
 	/// length
-	const REFloat32 GetMagnitude() const
+	const REFloat32 getMagnitude() const
 	{
 #if defined(__ARM_NEON__)
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&armNeonQuaternion);
@@ -60,9 +60,9 @@ public:
 #endif
 	}
 	
-	REQuaternion & Normalize()
+	REQuaternion & normalize()
 	{
-		const REFloat32 scale = 1.0f / this->GetMagnitude();
+		const REFloat32 scale = 1.0f / this->getMagnitude();
 #if defined(__ARM_NEON__)
 		armNeonQuaternion = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, vdupq_n_f32((float32_t)scale));
 #else
@@ -74,7 +74,7 @@ public:
 		return (*this);
 	}
 	
-	REQuaternion GetConjugateQuaternion() const
+	REQuaternion getConjugateQuaternion() const
 	{
 #if defined(__ARM_NEON__)
 		float32x4_t *q = (float32x4_t *)&armNeonQuaternion;
@@ -88,7 +88,7 @@ public:
 #endif
 	}
 	
-	REQuaternion GetInverseQuaternion() const
+	REQuaternion getInverseQuaternion() const
 	{
 #if defined(__ARM_NEON__)
 		float32x4_t * q = (float32x4_t *)&armNeonQuaternion;
@@ -108,12 +108,12 @@ public:
 #endif
 	}
 	
-	REQuaternion & Rotate(const REVector3 & vector)
+	REQuaternion & rotate(const REVector3 & vector)
 	{
 		REQuaternion rotatedQuaternion(vector.x, vector.y, vector.z, 0.0f);
 		REQuaternion multiplied(*this);
-		multiplied.Multiply(rotatedQuaternion);
-		multiplied.Multiply(this->GetInverseQuaternion());
+		multiplied.multiply(rotatedQuaternion);
+		multiplied.multiply(this->getInverseQuaternion());
 #if defined(__ARM_NEON__)
 		armNeonQuaternion = multiplied.armNeonQuaternion;
 #else
@@ -122,7 +122,7 @@ public:
 		return (*this);
 	}
 	
-	REQuaternion & Multiply(const REQuaternion & aq)
+	REQuaternion & multiply(const REQuaternion & aq)
 	{
 		const REFloat32 x1 = (q[3] * aq.q[0]) + (q[0] * aq.q[3]) + (q[1] * aq.q[2]) - (q[2] * aq.q[1]);
 		const REFloat32 y1 = (q[3] * aq.q[1]) + (q[1] * aq.q[3]) + (q[2] * aq.q[0]) - (q[0] * aq.q[2]);
@@ -134,7 +134,7 @@ public:
 		return (*this);
 	}
 	
-	REQuaternion & Subtract(const REQuaternion & aq)
+	REQuaternion & subtract(const REQuaternion & aq)
 	{
 #if defined(__ARM_NEON__)
 		armNeonQuaternion = vsubq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&aq.armNeonQuaternion);
@@ -147,7 +147,7 @@ public:
 		return (*this);
 	}
 	
-	REQuaternion & Add(const REQuaternion & aq)
+	REQuaternion & add(const REQuaternion & aq)
 	{
 #if defined(__ARM_NEON__)
 		armNeonQuaternion = vaddq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&aq.armNeonQuaternion);

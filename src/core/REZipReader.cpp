@@ -44,7 +44,7 @@ voidpf REZipReaderPrivateCallBacks::Open(voidpf opaque, const char * filename, i
 
 uLong REZipReaderPrivateCallBacks::Read(voidpf opaque, voidpf stream, void * buf, uLong size)
 {
-	return (uLong)((REFile *)opaque)->FileRead(buf, (const REUInt32)size);
+	return (uLong)((REFile *)opaque)->fileRead(buf, (const REUInt32)size);
 }
 
 uLong REZipReaderPrivateCallBacks::Write(voidpf opaque, voidpf stream, const void * buf, uLong size)
@@ -55,7 +55,7 @@ uLong REZipReaderPrivateCallBacks::Write(voidpf opaque, voidpf stream, const voi
 
 long REZipReaderPrivateCallBacks::Tell(voidpf opaque, voidpf stream)
 {
-	return (long)((REFile *)opaque)->FileTell();
+	return (long)((REFile *)opaque)->fileTell();
 }
 
 long REZipReaderPrivateCallBacks::Seek(voidpf opaque, voidpf stream, uLong offset, int origin)
@@ -63,13 +63,13 @@ long REZipReaderPrivateCallBacks::Seek(voidpf opaque, voidpf stream, uLong offse
 	switch (origin)
     {
 		case ZLIB_FILEFUNC_SEEK_CUR :
-			return (long)((REFile *)opaque)->FileSeek((const REUInt32)offset, SEEK_CUR);
+			return (long)((REFile *)opaque)->fileSeek((const REUInt32)offset, SEEK_CUR);
 			break;
 		case ZLIB_FILEFUNC_SEEK_END :
-			return (long)((REFile *)opaque)->FileSeek((const REUInt32)offset, SEEK_END);
+			return (long)((REFile *)opaque)->fileSeek((const REUInt32)offset, SEEK_END);
 			break;
 		case ZLIB_FILEFUNC_SEEK_SET :
-			return (long)((REFile *)opaque)->FileSeek((const REUInt32)offset, SEEK_SET);
+			return (long)((REFile *)opaque)->fileSeek((const REUInt32)offset, SEEK_SET);
 			break;
 		default: return -1;
     }
@@ -78,12 +78,12 @@ long REZipReaderPrivateCallBacks::Seek(voidpf opaque, voidpf stream, uLong offse
 
 int REZipReaderPrivateCallBacks::Close(voidpf opaque, voidpf stream)
 {
-	return (int)((REFile *)opaque)->FileClose();
+	return (int)((REFile *)opaque)->fileClose();
 }
 
 int REZipReaderPrivateCallBacks::Error(voidpf opaque, voidpf stream)
 {
-	return (int)((REFile *)opaque)->FileFError();
+	return (int)((REFile *)opaque)->fileFError();
 }
 
 class __RE_PUBLIC_CLASS_API__ REEditableZipEntry : public REZipEntry
@@ -92,14 +92,14 @@ protected:
 	unzFile _unZipFile;
 	REUInt32 _unzipFileOffset;
 public:
-	void SetCRC32(const REUInt32 newCRC32) { _crc32 = newCRC32; }
-	void SetSize(const REUInt32 newSize) { _size = newSize; }
-	void SetPath(const REString & newPath) { _path.Set(newPath); }
-	void SetPath(const char * newPath) { _path.Set(newPath); }
-	void SetUnZipFileOffset(const REUInt32 newOffset) { _unzipFileOffset = newOffset; }
-	const REUInt32 GetUnZipFileOffset() const { return _unzipFileOffset; }
+	void setCRC32(const REUInt32 newCRC32) { _crc32 = newCRC32; }
+	void setSize(const REUInt32 newSize) { _size = newSize; }
+	void setPath(const REString & newPath) { _path = newPath; }
+	void setPath(const char * newPath) { _path = newPath; }
+	void setUnZipFileOffset(const REUInt32 newOffset) { _unzipFileOffset = newOffset; }
+	const REUInt32 getUnZipFileOffset() const { return _unzipFileOffset; }
 	
-	virtual REBOOL Read(REBuffer * buff) const;
+	virtual REBOOL read(REBuffer * buff) const;
 	
 	REEditableZipEntry(unzFile unZipFile) : REZipEntry() ,
 		_unZipFile(unZipFile),
@@ -111,18 +111,18 @@ public:
 
 /// Reads to entries array all avaiable arcrchive entries.
 /// Note: all archive entries will be deleted with archive. 
-REBOOL REZipReader::ReadAvaiableEntries(REArray<REZipEntry*> * entries) const
+REBOOL REZipReader::readAvaiableEntries(REArray<REZipEntry*> * entries) const
 {
 	if (entries && _entries)  
 	{
-		entries->Clear();
+		entries->clear();
 		REArray<REEditableZipEntry*> * from = (REArray<REEditableZipEntry*> *)_entries;
-		if (entries->SetCapacity(from->Count() + 1)) 
+		if (entries->setCapacity(from->count() + 1)) 
 		{
-			for (REUInt32 i = 0; i < from->Count(); i++) 
+			for (REUInt32 i = 0; i < from->count(); i++) 
 			{
 				REEditableZipEntry * e = (*from)[i];
-				entries->Add(e);
+				entries->add(e);
 			}
 			return true;
 		}
@@ -130,9 +130,9 @@ REBOOL REZipReader::ReadAvaiableEntries(REArray<REZipEntry*> * entries) const
 	return false;
 }
 
-REZipEntry * REZipReader::GetEntry(const REString & entryPath) const
+REZipEntry * REZipReader::getEntry(const REString & entryPath) const
 {
-	if (entryPath.IsEmpty())
+	if (entryPath.isEmpty())
 	{
 		return NULL;
 	}
@@ -140,9 +140,9 @@ REZipEntry * REZipReader::GetEntry(const REString & entryPath) const
 	if (_entries)
 	{
 		REArray<REEditableZipEntry*> * entries = (REArray<REEditableZipEntry*> *)_entries;
-		for (REUInt32 i = 0; i < entries->Count(); i++)
+		for (REUInt32 i = 0; i < entries->count(); i++)
 		{
-			if ( (*entries)[i]->GetPath().IsEqual(entryPath) ) 
+			if ( (*entries)[i]->getPath().isEqual(entryPath) ) 
 			{
 				return (*entries)[i];
 			}
@@ -152,7 +152,7 @@ REZipEntry * REZipReader::GetEntry(const REString & entryPath) const
 	return NULL;
 }
 
-void REZipReader::InitEntries()
+void REZipReader::initEntries()
 {
 	unzFile unZipFile = (unzFile)_archiveFile;
 	int result = unzGoToFirstFile(unZipFile);
@@ -190,12 +190,12 @@ void REZipReader::InitEntries()
 			REEditableZipEntry * newEntry = new REEditableZipEntry(unZipFile);
 			if (newEntry)
 			{
-				if (entries->Add(newEntry))
+				if (entries->add(newEntry))
 				{
-					newEntry->SetCRC32((REUInt32)pfile_info.crc);
-					newEntry->SetPath(szFileName);
-					newEntry->SetSize((REUInt32)pfile_info.uncompressed_size);
-					newEntry->SetUnZipFileOffset(offsetInFile);
+					newEntry->setCRC32((REUInt32)pfile_info.crc);
+					newEntry->setPath(szFileName);
+					newEntry->setSize((REUInt32)pfile_info.uncompressed_size);
+					newEntry->setUnZipFileOffset(offsetInFile);
 				}
 				else
 				{
@@ -207,22 +207,22 @@ void REZipReader::InitEntries()
 	}
 }
 
-const REUInt32 REZipReader::GetEntriesCount() const
+const REUInt32 REZipReader::getEntriesCount() const
 {
 	if (_entries)
 	{
 		REArray<REEditableZipEntry*> * entries = (REArray<REEditableZipEntry*> *)_entries;
-		return entries->Count();
+		return entries->count();
 	}
 	return 0;
 }
 
-REBOOL REZipReader::IsEmpty() const
+REBOOL REZipReader::isEmpty() const
 {
-	return (this->GetEntriesCount() == 0);
+	return (this->getEntriesCount() == 0);
 }
 
-REBOOL REZipReader::OpenArchiveFile()
+REBOOL REZipReader::openArchiveFile()
 {
 	zlib_filefunc_def * callBacks = (zlib_filefunc_def *)REMem::Malloc(sizeof(zlib_filefunc_def));
 	if (callBacks)
@@ -250,18 +250,18 @@ REBOOL REZipReader::OpenArchiveFile()
 	return false;
 }
 
-REBOOL REZipReader::OpenPath(const REString & zipFilePath)
+REBOOL REZipReader::openPath(const REString & zipFilePath)
 {
 	REFileManager manager;
-	if (manager.IsFileExistsAtPath(zipFilePath))
+	if (manager.isFileExistsAtPath(zipFilePath))
 	{
 		REFile * zipFile = new REFile(zipFilePath);
 		if (zipFile)
 		{
-			if (zipFile->GetFileSize())
+			if (zipFile->getFileSize())
 			{
 				_source = zipFile;
-				if (this->OpenArchiveFile()) 
+				if (this->openArchiveFile()) 
 				{
 					unz_global_info globalInfo;
 					globalInfo.number_entry = 0;
@@ -274,7 +274,7 @@ REBOOL REZipReader::OpenPath(const REString & zipFilePath)
 						if (entries)
 						{
 							_entries = entries;
-							this->InitEntries();
+							this->initEntries();
 							return true;
 						}
 						delete entries;
@@ -288,15 +288,15 @@ REBOOL REZipReader::OpenPath(const REString & zipFilePath)
 	return false;
 }
 
-REBOOL REZipReader::OpenData(const REData & zipFileData)
+REBOOL REZipReader::openData(const REData & zipFileData)
 {
 	REData * zipData = new REData(zipFileData);
 	if (zipData) 
 	{
-		if (zipData->GetSize()) 
+		if (zipData->getSize()) 
 		{
 			_source = zipData;
-			if (this->OpenArchiveFile()) 
+			if (this->openArchiveFile()) 
 			{
 				unz_global_info globalInfo;
 				globalInfo.number_entry = 0;
@@ -309,7 +309,7 @@ REBOOL REZipReader::OpenData(const REData & zipFileData)
 					if (entries)
 					{
 						_entries = entries;
-						this->InitEntries();
+						this->initEntries();
 						return true;
 					}
 					delete entries;
@@ -330,7 +330,7 @@ REZipReader::REZipReader(const REData & zipFileData) :
 	_callBacks(NULL),
 	_source(NULL)
 {
-	this->OpenData(zipFileData);
+	this->openData(zipFileData);
 }
 
 REZipReader::REZipReader(const REString & zipFilePath) : 
@@ -339,7 +339,7 @@ REZipReader::REZipReader(const REString & zipFilePath) :
 	_callBacks(NULL),
 	_source(NULL)
 {
-	this->OpenPath(zipFilePath);
+	this->openPath(zipFilePath);
 }
 
 REZipReader::~REZipReader()
@@ -364,12 +364,12 @@ REZipReader::~REZipReader()
 	if (_entries)
 	{
 		REArray<REEditableZipEntry*> * entries = (REArray<REEditableZipEntry*> *)_entries;
-		for (REUInt32 i = 0; i < entries->Count(); i++) 
+		for (REUInt32 i = 0; i < entries->count(); i++) 
 		{
 			REEditableZipEntry * en = (*entries)[i];
 			delete en;
 		}
-		entries->Clear();
+		entries->clear();
 		delete entries;
 	}
 	
@@ -377,17 +377,17 @@ REZipReader::~REZipReader()
 
 
 
-const REString & REZipEntry::GetPath() const
+const REString & REZipEntry::getPath() const
 {
 	return _path;
 }
 
-const REUInt32 REZipEntry::GetSize() const
+const REUInt32 REZipEntry::getSize() const
 {
 	return _size;
 }
 
-const REUInt32 REZipEntry::GetCRC32() const
+const REUInt32 REZipEntry::getCRC32() const
 {
 	return _crc32;
 }
@@ -404,16 +404,16 @@ REZipEntry::~REZipEntry()
 	
 }
 
-REBOOL REEditableZipEntry::Read(REBuffer * buff) const
+REBOOL REEditableZipEntry::read(REBuffer * buff) const
 {
 	if (buff && _unzipFileOffset && _unZipFile)
 	{
 		if (unzSetOffset(_unZipFile, (uLong)_unzipFileOffset) != UNZ_OK) { return false; }
 		if (unzOpenCurrentFile(_unZipFile) != UNZ_OK) { return false; }
 		REBOOL isReaded = false;
-		if (buff->Resize(_size, false))
+		if (buff->resize(_size, false))
 		{
-			const REUInt32 readedSize = (REUInt32)unzReadCurrentFile(_unZipFile, buff->GetBuffer(), buff->GetSize());
+			const REUInt32 readedSize = (REUInt32)unzReadCurrentFile(_unZipFile, buff->getBuffer(), buff->getSize());
 			isReaded = (readedSize == _size);
 		}
 		unzCloseCurrentFile(_unZipFile);

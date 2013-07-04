@@ -23,11 +23,11 @@
 #include "REClassMethod.h"
 #include "REAutoReleasePool.h"
 
-#if defined(__RE_USING_PTHREADS__)
+#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
 #include <pthread.h>
 #endif
 
-#ifndef __RE_USING_PTHREADS__
+#ifndef __RE_TRY_USE_PTHREADS__
 #ifdef __RE_OS_WINDOWS__
 #ifndef __RE_USING_WINDOWS_THREADS__
 #define __RE_USING_WINDOWS_THREADS__
@@ -53,7 +53,7 @@ REThreadState;
 class __RE_PUBLIC_CLASS_API__ REThread : public REObject
 {
 private:
-#if defined(__RE_USING_PTHREADS__)	
+#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
 	pthread_t _reThreadThread;
 #elif defined(__RE_USING_WINDOWS_THREADS__)	
 	HANDLE _reThreadThread;
@@ -62,86 +62,86 @@ private:
 	REUInt16 _reThreadStates;
 	REBOOL _reThreadIsAutoreleaseWhenDone;
 
-	void _ThreadBody();
-	void AddState(const REThreadState & state);
-	void RemoveState(const REThreadState & state);
-	REBOOL IsHasState(const REThreadState & state) const;
+	void _threadBody();
+	void addState(const REThreadState & state);
+	void removeState(const REThreadState & state);
+	REBOOL isHasState(const REThreadState & state) const;
 	
-#if defined(__RE_USING_PTHREADS__) 
-	static void * ThreadFunction(void * th);
+#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+	static void * threadFunction(void * th);
 #elif defined(__RE_USING_WINDOWS_THREADS__)
-	static DWORD WINAPI ThreadProc(LPVOID lpParameter);
+	static DWORD WINAPI threadProc(LPVOID lpParameter);
 #endif	
 	
 protected:	
-	virtual void ThreadBody() = 0;
+	virtual void threadBody() = 0;
 	
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Returns working thread priority. Value in range: [0.0f, 1.0f]
-	REFloat32 GetPriority() const;
+	REFloat32 getPriority() const;
 	
 	/// Setting working thread priority. Value must be in range: [0.0f, 1.0f]
-	REBOOL SetPriority(const REFloat32 newPriority);
+	REBOOL setPriority(const REFloat32 newPriority);
 	
 	/// Return flag is thread placed to autorelease pool when it's work done.
-	REBOOL IsAutoReleaseWhenDone() const { return _reThreadIsAutoreleaseWhenDone; }
+	REBOOL isAutoReleaseWhenDone() const { return _reThreadIsAutoreleaseWhenDone; }
 	
 	/// Mark thread that it must be placed to autorelease pool when it's work done.
-	void SetAutoReleaseWhenDone(REBOOL isAutorelease) { _reThreadIsAutoreleaseWhenDone = isAutorelease; }
+	void setAutoReleaseWhenDone(REBOOL isAutorelease) { _reThreadIsAutoreleaseWhenDone = isAutorelease; }
 	
 	/// Start thread's work
-	REBOOL Start();
+	REBOOL start();
 	
 	/// Stop thread
-	REBOOL Stop();
+	REBOOL stop();
 	
 	/// Check thread working or not.
-	REBOOL IsWorking() const;
+	REBOOL isWorking() const;
 	
 	REThread();
 	virtual ~REThread();
 	
 	/// Checking is executing in main thread.
-	static REBOOL IsMainThread();
+	static REBOOL isMainThread();
 	
 	/// Return main thread priority. Range [0.0f, 1.0f]
-	static REFloat32 GetMainThreadPriority();
+	static REFloat32 getMainThreadPriority();
 	
 	/// Setting main thread priority. Range [0.0f, 1.0f] 
-	static REBOOL SetMainThreadPriority(const REFloat32 newPriority);
+	static REBOOL setMainThreadPriority(const REFloat32 newPriority);
 	
 	/// If at least one aditional thread is created.
-	static REBOOL IsMultiThreaded();
+	static REBOOL isMultiThreaded();
 	
 	/// Returns identifier of main thread.
-	static REUIdentifier GetMainThreadIdentifier();
+	static REUIdentifier getMainThreadIdentifier();
 	
 	/// Returns identifier of current thread. Mean thread from which was called this method.
-	static REUIdentifier GetCurrentThreadIdentifier();
+	static REUIdentifier getCurrentThreadIdentifier();
 	
 	/// Sleps current thread for time in micro seconds.
 	static void uSleep(const REUInt32 microseconds);
 	
 	/// Invokes class method in separate thread.
 	/// Sending object will be ratained on start and released on the end of work.
-	static void DetachNewThreadWithMethod(REClassMethod * method, REObject * methodObjectOrNULL);
+	static void detachNewThreadWithMethod(REClassMethod * method, REObject * methodObjectOrNULL);
 	
 	/// After delay in seconds invokes class method in separate thread.
 	/// Sending object will be ratained on start and released on the end of work.
-	static void DetachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, RETimeInterval delayTime);
+	static void detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, RETimeInterval delayTime);
 	
 	/// Invokes class method in main thread.
 	/// Sending object will be ratained on start and released on the end of work.
-	static void PerformMethodOnMainThread(REClassMethod * method, REObject * methodObjectOrNULL);
+	static void performMethodOnMainThread(REClassMethod * method, REObject * methodObjectOrNULL);
 	
 	/// Invokes class method in main thread and waiting while thread finished.
 	/// Sending object will be ratained on start and released on the end of work.
-	static void PerformMethodOnMainThreadAndWaitUntilDone(REClassMethod * method, REObject * methodObjectOrNULL);
+	static void performMethodOnMainThreadAndWaitUntilDone(REClassMethod * method, REObject * methodObjectOrNULL);
 };
 
 

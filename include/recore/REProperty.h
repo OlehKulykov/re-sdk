@@ -27,10 +27,10 @@ class __RE_PUBLIC_CLASS_API__ IREProperty
 { 
 public: 
     /// Settes property value from pointer of another value.
-	virtual void SetFromValuePointer(const void* v) = 0; 
+	virtual void setFromValuePointer(const void* v) = 0; 
 	
 	/// Getter for pointer of propert value.
-	virtual void * GetValuePointer() const = 0;
+	virtual void * getValuePointer() const = 0;
 	
 	/// Desctructor.
 	virtual ~IREProperty() { } 
@@ -46,17 +46,17 @@ private:
 public:
     /// Settes property value from pointer of another value.
 	/// Example: REProperty<int> prop; int value = 1; prop.SetFromValuePointer(&value);
-	virtual void SetFromValuePointer(const void* v) { if (v) _value = *((PT*)const_cast<void*>(v)); }
+	virtual void setFromValuePointer(const void* v) { if (v) _value = *((PT*)const_cast<void*>(v)); }
 	
 	/// Getter for pointer of propert value.
-	virtual void * GetValuePointer() const { return (void*)(&_value); }
+	virtual void * getValuePointer() const { return (void*)(&_value); }
 	
 	/// Setter for property. 
 	/// Example: REProperty<int> prop; prop.Set(4);
-	void Set(const PT & v) { _value = v; }
+	void set(const PT & v) { _value = v; }
 	
 	/// Getter of property address value. 
-	PT & Get() const { return *(PT*)&_value; }
+	PT & get() const { return *(PT*)&_value; }
 	
 	/// Overloaded basic assignment operator.
 	REProperty & operator=(const PT & v) { _value = v; return (*this); }
@@ -72,7 +72,7 @@ public:
 	
 	/// Constructor with property value.
 	/// Example: REProperty<int> prop(-5);
-	REProperty(const REProperty & v) { memset(&_value, 0, sizeof(PT)); this->Set(v._value); }
+	REProperty(const REProperty & v) { memset(&_value, 0, sizeof(PT)); this->set(v._value); }
 	
 	/// Constructor with property value setted to zero.
 	REProperty() { memset(&_value, 0, sizeof(PT)); }

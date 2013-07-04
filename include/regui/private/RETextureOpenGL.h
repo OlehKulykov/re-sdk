@@ -79,7 +79,7 @@ public:
 	virtual void Bind() const { glBindTexture(GL_TEXTURE_2D, _textureIdentifierOpenGL); }
 	
 	/* REObject */
-	virtual void OnReleased();
+	virtual void onReleased();
 	
 	static RETextureOpenGL * Create();
 };

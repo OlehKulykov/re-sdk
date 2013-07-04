@@ -50,12 +50,12 @@ private:
 #ifndef __RE_OS_IPHONE__	
 	int _isBigEndianSystem;
 	
-	void Final(REMD5Context * ctx, REUByte digest[16]);
-	void Update(REMD5Context * ctx, REUByte const * buf, REUInt32 len);
-	void Init(REMD5Context * ctx);
-	void Transform(REUInt32 state[4], REUInt32 inBuff[16]);
-	void RevBytesSwap(void * bp, const REUInt32 elsize, REUInt32 elcount);
-	REUInt32 LongSwap(const REUInt32 l)
+	void final(REMD5Context * ctx, REUByte digest[16]);
+	void update(REMD5Context * ctx, REUByte const * buf, REUInt32 len);
+	void init(REMD5Context * ctx);
+	void transform(REUInt32 state[4], REUInt32 inBuff[16]);
+	void revBytesSwap(void * bp, const REUInt32 elsize, REUInt32 elcount);
+	REUInt32 longSwap(const REUInt32 l)
 	{
 		const REUByte b1 = (REUByte)(l & 255);
 		const REUByte b2 = (REUByte)((l >> 8) & 255);
@@ -66,13 +66,13 @@ private:
 #endif	
 public:
 	/// Returns md5 integer value from data with length.
-	const REUInt32 GetFromData(const void * data, const REUInt32 dataLength);
+	const REUInt32 getFromData(const void * data, const REUInt32 dataLength);
 	
 	/// Returns md5 string value from data with length.
-	const REString GetStringFromData(const void * data, const REUInt32 dataLength);
+	const REString getStringFromData(const void * data, const REUInt32 dataLength);
 	
 	/// Returns md5 integer value from string.
-	static const REUInt32 GenerateFromString(const char * s);
+	static const REUInt32 generateFromString(const char * s);
 	
 	/// Constructor.
 	REMD5Generator();

@@ -56,7 +56,7 @@ public:
 	
 	/// Set current texture frame index.
 	/// Can be animated using REAnimation, call this method between REAnimation::Setup() and REAnimation::Execute().
-	/// If animation is not settuping !REAnimation::IsSetuping() than SetFrameIndex() will be called.
+	/// If animation is not settuping !REAnimation::isSetuping() than SetFrameIndex() will be called.
 	REBOOL SetFrameIndexAnimated(const REUInt32 newIndex);
 	
 	/// Checks is view params is animating.
@@ -67,13 +67,13 @@ public:
 	void StopAnimation(const REAnimationStopType stopType, const REBOOL isNeedCallDelegate);
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/* REGUIObject */
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
 	
 	/* IREAnimationRespondent */
 	virtual void REAnimationRespondentDidAddedToAnimation(const REUIdentifier animationIdentifier) { }

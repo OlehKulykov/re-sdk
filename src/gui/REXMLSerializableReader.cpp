@@ -19,6 +19,7 @@
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+using namespace tinyxml2;
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -29,9 +30,9 @@
 REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * obj, REGUIObject * fromCallBack)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * element = (TiXmlElement *)objectElement;
+	XMLElement * element = (XMLElement *)objectElement;
 
-	for (TiXmlElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
+	for (XMLElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = childElem->Value();
 		if (nodeValue) 
@@ -40,7 +41,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 			{
 				const char * className = NULL;
 				const char * key = NULL;
-				for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+				for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 				{
 					const char * name = attrib->Name();
 					if (name) 
@@ -63,14 +64,14 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 					//REGUIObject * xmlSerializable = newObject->GetCasted<IREXMLSerializable>();
 					//if (xmlSerializable) 
 					//{
-					newObject->OnPrepareGUIObjectForSetuping();
+					newObject->onPrepareGUIObjectForSetuping();
 					this->ParseObject(childElem, newObject, newObject);
-					isAccepted = obj->AcceptObjectParameter(className, key, newObject);
-					newObject->OnSetupingGUIObjectFinished(isAccepted);
+					isAccepted = obj->acceptObjectParameter(className, key, newObject);
+					newObject->onSetupingGUIObjectFinished(isAccepted);
 					//}
 					if (!isAccepted)
 					{
-						newObject->Release();
+						newObject->release();
 					}
 				}
 				else 
@@ -81,7 +82,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 			else
 			{
 				const char * key = NULL;
-				for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+				for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 				{
 					const char * name = attrib->Name();
 					if (name) 
@@ -101,7 +102,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 					{
 						if (strcmp(nodeValue, "property") == 0) 
 						{
-							IREObjectProperty * prop = obj->GetPropertyForKey(key);
+							IREObjectProperty * prop = obj->getPropertyForKey(key);
 							if (prop) 
 							{
 								int propIdentif = 0;
@@ -110,7 +111,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 									REXMLSerializableReader::PropertyStruct newStruct;
 									newStruct.property = prop;
 									newStruct.editorid = (REInt32)propIdentif;
-									_properties.Add(newStruct);
+									_properties.add(newStruct);
 								}
 							}
 						}
@@ -119,13 +120,13 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 							int propIdentif = 0;
 							if (sscanf(value, "%i", &propIdentif) == 1) 
 							{
-								for (REUInt32 i = 0; i < _properties.Count(); i++) 
+								for (REUInt32 i = 0; i < _properties.count(); i++) 
 								{
 									if (_properties[i].editorid == (REInt32)propIdentif)
 									{
 										IREObjectProperty * prop = _properties[i].property;
-										prop->SetObject(fromCallBack);
-										_properties.RemoveAt(i);
+										prop->setObject(fromCallBack);
+										_properties.removeAt(i);
 										break;
 									}
 								}
@@ -133,7 +134,7 @@ REBOOL REXMLSerializableReader::ParseObject(void * objectElement, REGUIObject * 
 						}
 						else
 						{
-							obj->AcceptStringParameter(key, value);
+							obj->acceptStringParameter(key, value);
 						}
 					}
 				}
@@ -149,13 +150,13 @@ REUInt32 REXMLSerializableReader::CalculateElements(void * objectElement)
 {
 	REUInt32 count = 0;
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * element = (TiXmlElement *)objectElement;
-	for (TiXmlElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
+	XMLElement * element = (XMLElement *)objectElement;
+	for (XMLElement * childElem = element->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = childElem->Value();
 		if (nodeValue) 
 		{
-			for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
+			for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next()) 
 			{
 				count++;
 			}
@@ -189,12 +190,12 @@ REBOOL REXMLSerializableReader::Read(const REString & xmlString)
 	_isError = false;
 	if (_controller && _callBack.CreateNewObject) 
 	{
-		TiXmlDocument doc;
-		doc.Parse(xmlString.UTF8String());
+		XMLDocument doc;
+		doc.Parse(xmlString.getChars());
 		
 		if (doc.Error()) { return false; }
 		
-		TiXmlElement * root = doc.RootElement();
+		XMLElement * root = doc.RootElement();
 		if (root == NULL) { return false; }
 		
 		const char * rootVal = root->Value();

@@ -1637,7 +1637,7 @@ REUInt32 REYUVtoRGBPrivate::YUVtoBGR565Table[768] =
     0xE6365800U   
 };
 
-const REUInt32 * REYUVtoRGB::GetYUVtoBGR565Table() 
+const REUInt32 * REYUVtoRGB::getYUVtoBGR565Table() 
 {
 #ifndef __RE_CORE_NO_YUV_TO_RGB_CONVERSION__		
 	return REYUVtoRGBPrivate::YUVtoBGR565Table;
@@ -1645,7 +1645,7 @@ const REUInt32 * REYUVtoRGB::GetYUVtoBGR565Table()
 	return NULL;
 #endif		
 }
-const REUInt32 * REYUVtoRGB::GetYUVtoRGB565Table() 
+const REUInt32 * REYUVtoRGB::getYUVtoRGB565Table() 
 {
 #ifndef __RE_CORE_NO_YUV_TO_RGB_CONVERSION__		
 	return REYUVtoRGBPrivate::YUVtoRGB565Table;

@@ -19,92 +19,92 @@
 #include "../../include/remedia/private/REOGGTheoraPlayerPrivate.h"
 
 
-const REUInt32 REVideoView::GetClassIdentifier() const
+const REUInt32 REVideoView::getClassIdentifier() const
 {
-	return REView::ClassIdentifier();
+	return REView::classIdentifier();
 }
 
-const REUInt32 REVideoView::ClassIdentifier()
+const REUInt32 REVideoView::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REMD5Generator::GenerateFromString("REVideoView");
+	static const REUInt32 clasIdentif = REMD5Generator::generateFromString("REVideoView");
 	return clasIdentif;
 }
 
-REBOOL REVideoView::Play()
+REBOOL REVideoView::play()
 {
 	if (_fields) 
 	{
 		REOGGTheoraPlayerPrivate * player = (REOGGTheoraPlayerPrivate *)_fields;
-		this->SetTexture(player->GetTexture());
-		return player->Play();
+		this->setTexture(player->getTexture());
+		return player->play();
 	}
 	return false;
 }
 
-REBOOL REVideoView::IsPlaying() const
+REBOOL REVideoView::isPlaying() const
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->IsPlaying();
+		return ((REOGGTheoraPlayerPrivate *)_fields)->isPlaying();
 	}
 	return false;
 }
 
-REBOOL REVideoView::Pause()
+REBOOL REVideoView::pause()
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->Pause();
+		return ((REOGGTheoraPlayerPrivate *)_fields)->pause();
 	}
 	return false;
 }
 
-REBOOL REVideoView::Stop()
+REBOOL REVideoView::stop()
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->Stop();
+		return ((REOGGTheoraPlayerPrivate *)_fields)->stop();
 	}
 	return false;
 }
 
-REBOOL REVideoView::SetLooped(const REBOOL isLooped)
+REBOOL REVideoView::setLooped(const REBOOL isLooped)
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->SetLooped(isLooped);
+		return ((REOGGTheoraPlayerPrivate *)_fields)->setLooped(isLooped);
 	}
 	return false;
 }
 
-REBOOL REVideoView::IsLooped() const /* by default is not looped */
+REBOOL REVideoView::isLooped() const /* by default is not looped */
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->IsLooped();
+		return ((REOGGTheoraPlayerPrivate *)_fields)->isLooped();
 	}
 	return false;
 }
 
-REBOOL REVideoView::SetVolume(const REFloat32 newVolume)
+REBOOL REVideoView::setVolume(const REFloat32 newVolume)
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->SetVolume(newVolume);
+		return ((REOGGTheoraPlayerPrivate *)_fields)->setVolume(newVolume);
 	}
 	return false;
 }
 
-const REFloat32 REVideoView::GetVolume() const
+const REFloat32 REVideoView::getVolume() const
 {
 	if (_fields) 
 	{
-		return ((REOGGTheoraPlayerPrivate *)_fields)->GetVolume();
+		return ((REOGGTheoraPlayerPrivate *)_fields)->getVolume();
 	}
 	return 0.0f;
 }
 
-REBOOL REVideoView::InitWithData(const REData & soundFileData)
+REBOOL REVideoView::initWithData(const REData & soundFileData)
 {
 	if (_fields) 
 	{
@@ -116,7 +116,7 @@ REBOOL REVideoView::InitWithData(const REData & soundFileData)
 	REOGGTheoraPlayerPrivate * player = new REOGGTheoraPlayerPrivate();
 	if (player) 
 	{
-		if (player->InitWithData(soundFileData)) 
+		if (player->initWithData(soundFileData)) 
 		{
 			_fields = player;
 			return true;

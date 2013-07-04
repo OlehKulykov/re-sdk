@@ -24,64 +24,64 @@
 #include <wctype.h>
 #endif /* __RE_OS_BADA__ */
 
-const REUInt32 REStringObject::GetClassIdentifier() const
+const REUInt32 REStringObject::getClassIdentifier() const
 {
-	return REStringObject::ClassIdentifier();
+	return REStringObject::classIdentifier();
 }
 
-const REUInt32 REStringObject::ClassIdentifier()
+const REUInt32 REStringObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REMD5Generator::GenerateFromString("REStringObject");
+	static const REUInt32 clasIdentif = REMD5Generator::generateFromString("REStringObject");
 	return clasIdentif;
 }
 
-REBOOL REStringObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REStringObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REStringObject::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier) ||
-			(REMD5Generator::GenerateFromString("REString") == classIdentifier));
+	return ((REStringObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
+			(REMD5Generator::generateFromString("REString") == classIdentifier));
 }
 
-REBOOL REStringObject::IsEqual(REObject * anotherObject)
+REBOOL REStringObject::isEqual(REObject * anotherObject)
 {
-	if (REObject::IsEqual(anotherObject)) { return true; }
+	if (REObject::isEqual(anotherObject)) { return true; }
 	
 	if (anotherObject) 
 	{
-		if (anotherObject->GetClassIdentifier() == REStringObject::ClassIdentifier()) 
+		if (anotherObject->getClassIdentifier() == REStringObject::classIdentifier()) 
 		{
 			REStringObject * anotherString = (REStringObject*)anotherObject;
-			return REString::IsEqual((*anotherString));
+			return REMutableString::isEqual((*anotherString));
 		}
 	}
 	return false;
 }
 
-REStringObject::REStringObject(const wchar_t * wideStringValue) : REString(wideStringValue), REObject()
+REStringObject::REStringObject(const wchar_t * wideStringValue) : REMutableString(wideStringValue), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const char * charsStringValue) : REString(charsStringValue), REObject()
+REStringObject::REStringObject(const char * charsStringValue) : REMutableString(charsStringValue), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const char * charsStringValue, const REUInt32 stringLength) : REString(charsStringValue, stringLength), REObject()
+REStringObject::REStringObject(const char * charsStringValue, const REUInt32 stringLength) : REMutableString(charsStringValue, stringLength), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const REString & anotherString) : REString(anotherString), REObject()
+REStringObject::REStringObject(const REString & anotherString) : REMutableString(anotherString), REObject()
 {
 	
 }
 
-REStringObject::REStringObject(const REStringObject & anotherString) : REString(anotherString.UTF8String()), REObject()
+REStringObject::REStringObject(const REStringObject & anotherString) : REMutableString(anotherString.getChars(), anotherString.getLength()), REObject()
 {
 	
 }
 
-REStringObject::REStringObject() : REString(), REObject()
+REStringObject::REStringObject() : REMutableString(), REObject()
 {
 	
 }
@@ -93,31 +93,31 @@ REStringObject::~REStringObject()
 
 
 
-REStringObject * REStringObject::CreateWithWideChars(const wchar_t * wideStringValue)
+REStringObject * REStringObject::createWithWideChars(const wchar_t * wideStringValue)
 {
 	REStringObject * newStr = new REStringObject(wideStringValue);
 	return newStr;
 }
 
-REStringObject * REStringObject::CreateWithChars(const char * charsStringValue)
+REStringObject * REStringObject::createWithChars(const char * charsStringValue)
 {
 	REStringObject * newStr = new REStringObject(charsStringValue);
 	return newStr;
 }
 
-REStringObject * REStringObject::CreateWithCharsAndLen(const char * charsStringValue, const REUInt32 stringLength)
+REStringObject * REStringObject::createWithCharsAndLen(const char * charsStringValue, const REUInt32 stringLength)
 {
 	REStringObject * newStr = new REStringObject(charsStringValue, stringLength);
 	return newStr;
 }
 
-REStringObject * REStringObject::CreateWithString(const REString & anotherString)
+REStringObject * REStringObject::createWithString(const REString & anotherString)
 {
 	REStringObject * newStr = new REStringObject(anotherString);
 	return newStr;
 }
 
-REStringObject * REStringObject::CreateWithStringObject(const REStringObject * anotherString)
+REStringObject * REStringObject::createWithStringObject(const REStringObject * anotherString)
 {
 	REStringObject * newStr = NULL;
 	if (anotherString) 
@@ -132,7 +132,7 @@ REStringObject * REStringObject::CreateWithStringObject(const REStringObject * a
 }
 
 
-REStringObject * REStringObject::CreateWithFormatChars(const char * format, ...)
+REStringObject * REStringObject::createWithFormatChars(const char * format, ...)
 {
 	if (format) 
 	{
@@ -145,7 +145,7 @@ REStringObject * REStringObject::CreateWithFormatChars(const char * format, ...)
 			int writed = vsprintf(strBuff, format, args);
 			if (writed > 0)
 			{
-				newStr->AppendWithLen(strBuff, (REUInt32)writed);
+				newStr->append(strBuff, (REUInt32)writed);
 			}
 			va_end(args);
 			

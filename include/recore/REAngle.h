@@ -36,13 +36,13 @@ public:
 	}
 	
 	/// Returns float value of angle in degrees.
-	const REFloat32 GetDegree() const { return degreeAngle; }
+	const REFloat32 getDegree() const { return degreeAngle; }
 	
 	/// Returns float value of angle in radians.
-	const REFloat32 GetRadian() const { return DEG_TO_RAD(degreeAngle); }
+	const REFloat32 getRadian() const { return DEG_TO_RAD(degreeAngle); }
 
 	/// Set value in degrees.
-	REDegreeAngle & SetDegree(const REFloat32 degAngle) 
+	REDegreeAngle & setDegree(const REFloat32 degAngle) 
 	{
 		if ( fabsf(degAngle) >= 360.0f ) 
 		{
@@ -56,15 +56,15 @@ public:
 	}
 	
 	/// Set value in radians.
-	REDegreeAngle & SetRadian(const REFloat32 radAngle)
+	REDegreeAngle & setRadian(const REFloat32 radAngle)
 	{
 		if (fabsf(radAngle) >= MATH_2_MUL_PI)
 		{
-			this->SetDegree(fmodf(radAngle, MATH_2_MUL_PI));
+			this->setDegree(fmodf(radAngle, MATH_2_MUL_PI));
 		}
 		else
 		{
-			this->SetDegree(RAD_TO_DEG(radAngle));
+			this->setDegree(RAD_TO_DEG(radAngle));
 		}
 		return (*this);
 	}

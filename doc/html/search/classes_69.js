@@ -11,6 +11,5 @@ var searchData=
   ['iretextinputresponder',['IRETextInputResponder',['../class_i_r_e_text_input_responder.html',1,'']]],
   ['iretexture',['IRETexture',['../class_i_r_e_texture.html',1,'']]],
   ['ireurlconnectiondelegate',['IREURLConnectionDelegate',['../class_i_r_e_u_r_l_connection_delegate.html',1,'']]],
-  ['ireuseractionresponder',['IREUserActionResponder',['../class_i_r_e_user_action_responder.html',1,'']]],
-  ['iterator',['Iterator',['../struct_r_e_array_1_1_iterator.html',1,'REArray']]]
+  ['ireuseractionresponder',['IREUserActionResponder',['../class_i_r_e_user_action_responder.html',1,'']]]
 ];

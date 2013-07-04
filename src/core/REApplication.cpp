@@ -23,97 +23,97 @@
 
 
 /* REObject */
-const REUInt32 REApplication::GetClassIdentifier() const
+const REUInt32 REApplication::getClassIdentifier() const
 {
-	return REApplication::ClassIdentifier();
+	return REApplication::classIdentifier();
 }
 
-const REUInt32 REApplication::ClassIdentifier()
+const REUInt32 REApplication::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REApplication");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REApplication");
 	return clasIdentif;
 }
 
-REBOOL REApplication::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REApplication::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REApplication::ClassIdentifier() == classIdentifier) || REObject::IsImplementsClass(classIdentifier));
+	return ((REApplication::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-const REString & REApplication::GetErrorDescriptionString() const
+const REString & REApplication::getErrorDescriptionString() const
 {
 	return _errorDescriptionString;
 }
 
-void REApplication::AddToErrorDescription(const REString & errorString)
+void REApplication::addToErrorDescription(const REString & errorString)
 {
-	const char * errStr = errorString.UTF8String();
-	if (errStr && (!errorString.IsEmpty())) 
+	const char * errStr = errorString.getChars();
+	if (errStr && (!errorString.isEmpty())) 
 	{
-		if (_errorDescriptionString.IsEmpty()) 
+		if (_errorDescriptionString.isEmpty()) 
 		{
-			_errorDescriptionString.Set(errStr);
+			_errorDescriptionString = errStr;
 		}
 		else
 		{
-			_errorDescriptionString.AppendFormat("\n%s", errStr);
+			_errorDescriptionString.appendFormat("\n%s", errStr);
 		}
 	}
 }
 
-void REApplication::ClearErrorDescription()
+void REApplication::clearErrorDescription()
 {
-	_errorDescriptionString.Clear();
+	_errorDescriptionString.clear();
 }
 
-REString REApplication::GetName() const
+REString REApplication::getName() const
 {
 	return REString("REApplication");
 }
 
-REFloat32 REApplication::GetVersion() const
+REFloat32 REApplication::getVersion() const
 {
 	return 0.0f;
 }
 
-REString REApplication::GetDescription() const
+REString REApplication::getDescription() const
 {
 	return REString("This is base application");
 }
 
-REBOOL REApplication::IsOK() const
+REBOOL REApplication::isOK() const
 {
 	return true;
 }
 
-REBOOL REApplication::Pause()
+REBOOL REApplication::pause()
 {
-	return RETime::Pause();
+	return RETime::pause();
 }
 
-REBOOL REApplication::Resume()
+REBOOL REApplication::resume()
 {
-	return RETime::Resume();
+	return RETime::resume();
 }
 
-REBOOL REApplication::IsPaused() const
+REBOOL REApplication::isPaused() const
 {
-	return RETime::IsPaused();
+	return RETime::isPaused();
 }
 
-void REApplication::Update()
+void REApplication::update()
 {
 	//REAutoReleasePoolPrivate::Update();
 	
-	_appAutoReleasePool->Update(0);
+	_appAutoReleasePool->update(0);
 	
-	REMainLoopsObjectsStoragePrivate::UpdateStorage(RETime::Time());
+	REMainLoopsObjectsStoragePrivate::updateStorage(RETime::time());
 }
 
-REBOOL REApplication::REApplicationInit()
+REBOOL REApplication::reapplicationInit()
 {
-	REThread::IsMainThread();
+	REThread::isMainThread();
 	
-	this->ClearErrorDescription();
+	this->clearErrorDescription();
 	
 	if (_appAutoReleasePool)
 	{
@@ -121,7 +121,7 @@ REBOOL REApplication::REApplicationInit()
 		return true;
 	}
 	
-	REAutoReleasePool * pool = REAutoReleasePool::GetDefaultPool();
+	REAutoReleasePool * pool = REAutoReleasePool::getDefaultPool();
 	if (pool) 
 	{
 		_appAutoReleasePool = pool;
@@ -129,27 +129,27 @@ REBOOL REApplication::REApplicationInit()
 	}
 	else
 	{
-		this->AddToErrorDescription(REString("Can't initialize application default REAutoReleasePool."));
+		this->addToErrorDescription(REString("Can't initialize application default REAutoReleasePool."));
 	}
 	return false;
 }
 
-REBOOL REApplication::Initialize()
+REBOOL REApplication::initialize()
 {
-	return REApplicationInit();
+	return reapplicationInit();
 }
 
 REApplication::REApplication() : REObject(),
 	_appAutoReleasePool(NULL)
 {
-	this->REApplicationInit();
+	this->reapplicationInit();
 }
 
-void REApplication::OnReleased()
+void REApplication::onReleased()
 {
-	this->Update();
+	this->update();
 	
-	REAutoReleasePool::ReleaseDefaultPool();
+	REAutoReleasePool::releaseDefaultPool();
 }
 
 REApplication::~REApplication()

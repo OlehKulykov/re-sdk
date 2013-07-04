@@ -61,23 +61,23 @@ public:
 	};
 	
 	/// Return transformed point from 'x', 'y' values of source point.
-	REPoint2 GetTransformedPoint(const REFloat32 x, const REFloat32 y) const;
+	REPoint2 getTransformedPoint(const REFloat32 x, const REFloat32 y) const;
 	
 	/// Return transformed point from 'point' source point.
-	REPoint2 GetTransformedPoint(const REPoint2 & point) const;
+	REPoint2 getTransformedPoint(const REPoint2 & point) const;
 	
 	/// Transforms 'point'.
-	REBOOL TransformPoint(REPoint2 * point) const;
+	REBOOL transformPoint(REPoint2 * point) const;
 	
 	/// Return transformed tetragon from 'tetr' source tetragon.
-	RETetragon GetTransformedTetragon(const RETetragon & tetr) const;
+	RETetragon getTransformedTetragon(const RETetragon & tetr) const;
 	
 	/// Transforms tetragon 'tetr'.
-	REBOOL TransformTetragon(RETetragon * tetr) const;
+	REBOOL transformTetragon(RETetragon * tetr) const;
 	
 	/// Concatenetes this transform with another 't2' transform.
 	/// A new affine transformation matrix. That is, t’ = this * t2.
-	REAffineTransform & Concat(const REAffineTransform & t2)
+	REAffineTransform & concat(const REAffineTransform & t2)
 	{
 		REFloat32 arr1[6];
 		arr1[0] = (t2.a * a) + (t2.b * c);
@@ -92,7 +92,7 @@ public:
 	
 	/// Concatenetes this transform with another transform values.
 	/// A new affine transformation matrix. That is, t’ = this * t2. 
-	REAffineTransform & Concat(const REFloat32 tra,
+	REAffineTransform & concat(const REFloat32 tra,
 							   const REFloat32 trb,
 							   const REFloat32 trc,
 							   const REFloat32 trd,
@@ -111,37 +111,37 @@ public:
 	}
 	
 	/// Translates this for 'x' and 'y' values.
-	REAffineTransform & Translate(const REFloat32 x, const REFloat32 y)
+	REAffineTransform & translate(const REFloat32 x, const REFloat32 y)
 	{
-		return this->Concat(1.0f, 0.0f, 0.0f, 1.0f, x, y);
+		return this->concat(1.0f, 0.0f, 0.0f, 1.0f, x, y);
 	}
 	
 	/// Rotates this for 'radianAngle' angle in radians.
-	REAffineTransform & Rotate(const REFloat32 radianAngle)
+	REAffineTransform & rotate(const REFloat32 radianAngle)
 	{
 		const REFloat32 sinusValue = sinf(radianAngle);
 		const REFloat32 cosinusValue = cosf(radianAngle);
-		return this->Concat(cosinusValue, sinusValue, -sinusValue, cosinusValue, 0.0f, 0.0f);
+		return this->concat(cosinusValue, sinusValue, -sinusValue, cosinusValue, 0.0f, 0.0f);
 	}
 	
 	/// Rotates this arround center by 'radianAngle' in radians arround 'anchorPointX' and 'anchorPointY' coordinates.
-	REAffineTransform & Rotate(const REFloat32 radianAngle, const REFloat32 anchorPointX, const REFloat32 anchorPointY)
+	REAffineTransform & rotate(const REFloat32 radianAngle, const REFloat32 anchorPointX, const REFloat32 anchorPointY)
 	{
-		this->Translate(anchorPointX, anchorPointY);
+		this->translate(anchorPointX, anchorPointY);
 		const REFloat32 sinusValue = sinf(radianAngle);
 		const REFloat32 cosinusValue = cosf(radianAngle);
-		this->Concat(cosinusValue, sinusValue, -sinusValue, cosinusValue, 0.0f, 0.0f);
-		return this->Translate(-anchorPointX, -anchorPointY);
+		this->concat(cosinusValue, sinusValue, -sinusValue, cosinusValue, 0.0f, 0.0f);
+		return this->translate(-anchorPointX, -anchorPointY);
 	}
 	
 	/// Scale object by 'sx' and 'sy' values.
-	REAffineTransform & Scale(const REFloat32 sx, const REFloat32 sy)
+	REAffineTransform & scale(const REFloat32 sx, const REFloat32 sy)
 	{
-		return this->Concat(sx, 0.0f, 0.0f, sy, 0.0f, 0.0f);
+		return this->concat(sx, 0.0f, 0.0f, sy, 0.0f, 0.0f);
 	}
 	
 	/// Set transform values to identity.
-	REAffineTransform & ToIdentity()
+	REAffineTransform & toIdentity()
 	{
 		b = c = tx = ty = 0.0f;
 		a = d = 1.0f;
@@ -159,24 +159,24 @@ public:
 	REAffineTransform operator*(const REAffineTransform & anotherTransform) const
 	{
 		REAffineTransform t(*this);
-		t.Concat(anotherTransform);
+		t.concat(anotherTransform);
 		return t;
 	}
 	
 	/// Returns rotation value in radians.
-	const REFloat32 GetRotationRadAngle() const { return atan2f(b, a); }
+	const REFloat32 getRotationRadAngle() const { return atan2f(b, a); }
 	
 	/// Returns scale 'x' value.
-	const REFloat32 GetScaleX() const { return sqrtf(a*a + c*c); }
+	const REFloat32 getScaleX() const { return sqrtf(a*a + c*c); }
 	
 	/// Returns scale 'y' value.
-	const REFloat32 GetScaleY() const { return sqrtf(b*b + d*d); }
+	const REFloat32 getScaleY() const { return sqrtf(b*b + d*d); }
 	
 	/// Returns translation 'x' value.
-	const REFloat32 GetTranslationX() const { return tx; }
+	const REFloat32 getTranslationX() const { return tx; }
 	
 	/// Returns translation 'y' value.
-	const REFloat32 GetTranslationY() const { return ty; }
+	const REFloat32 getTranslationY() const { return ty; }
 	
 	/*
 	REAffineTransformParamsStruct GetTransformParams() const
@@ -227,8 +227,47 @@ public:
 	~REAffineTransform() { }
 	
 #ifdef __RE_DEBUG_MODE__
-	void Log() const;
+	void log() const;
 #endif	
+	
+	/// Objective-c additions
+#if (defined(CG_EXTERN) || defined(CG_INLINE)) && defined(CGFLOAT_TYPE)
+	
+	CGAffineTransform getCGAffineTransform() const 
+	{
+		CGAffineTransform t;
+		t.a = (CGFloat)a;
+		t.b = (CGFloat)b;
+		t.c = (CGFloat)c;
+		t.d = (CGFloat)d;
+		t.tx = (CGFloat)tx;
+		t.ty = (CGFloat)ty;
+		return t;
+	}
+	
+	REAffineTransform & operator=(const CGAffineTransform & tr)
+	{
+		a = (REFloat32)tr.a;
+		b = (REFloat32)tr.b;
+		c = (REFloat32)tr.c;
+		d = (REFloat32)tr.d;
+		tx = (REFloat32)tr.tx;
+		ty = (REFloat32)tr.ty;
+		return (*this);
+	}
+	
+	REAffineTransform(const CGAffineTransform & tr) : 
+		a((REFloat32)tr.a), 
+		b((REFloat32)tr.b), 
+		c((REFloat32)tr.c), 
+		d((REFloat32)tr.d), 
+		tx((REFloat32)tr.tx), 
+		ty((REFloat32)tr.ty) 
+	{
+		
+	}
+	
+#endif
 	
 };
 

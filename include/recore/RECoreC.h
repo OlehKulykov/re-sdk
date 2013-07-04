@@ -29,31 +29,28 @@
 class __RE_PUBLIC_CLASS_API__ RECore
 {
 public:
-	/// Writes to RELog system types sizes in bytes
-	static void LogTypesSizes();
-	
 	/// Returns c string with build information
-	static const char * BuildInfo();
+	static const char * buildInfo();
 	
 #ifdef __RE_OS_ANDROID__
 	/// Setting Andoroid JNI Environment
-	static void SetAndroidJNIEnvironment(JNIEnv * jniEnvironment);
+	static void setAndroidJNIEnvironment(JNIEnv * jniEnvironment);
 	
 	/// Getting Andoroid JNI Environment
-	static JNIEnv * GetAndroidJNIEnvironment();
+	static JNIEnv * getAndroidJNIEnvironment();
 	
 	/// Setting Android Activity JNI Class
-	static void SetAndroidApplicationActivityJNIClass(jclass jniClass);
+	static void setAndroidApplicationActivityJNIClass(jclass jniClass);
 	
 	/// Getting Android Activity JNI Class
-	static jclass GetAndroidApplicationActivityJNIClass();
+	static jclass getAndroidApplicationActivityJNIClass();
 #endif
 
 	/// Returns string with preferences path
-	static const REString & GetPreferencesPath();
+	static const REString & getPreferencesPath();
 	
 	/// Setting custom preferences path
-	static REBOOL SetPreferencesPath(const REString & newPrefPath);
+	static REBOOL setPreferencesPath(const REString & newPrefPath);
 };
 
 

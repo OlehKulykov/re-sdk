@@ -23,22 +23,22 @@
 
 /// Interface of main loop updatable object.
 /// Object that implements this interface will updates from main loop.
-/// For adding object to main loop and start update call AddToMainLoop();
-/// For removing object from main loop call RemoveFromMainLoop();
+/// For adding object to main loop and start update call addToMainLoop();
+/// For removing object from main loop call removeFromMainLoop();
 class __RE_PUBLIC_CLASS_API__ REMainLoopUpdatable
 {
 public:
 	/// Called from main thread with current time in seconds.
-	virtual void Update(const RETimeInterval currentTime) = 0;
+	virtual void update(const RETimeInterval currentTime) = 0;
 	
 	/// Must return unique identifier of object. Usialy returns 'REObject::GetObjectIdentifier()'.
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const = 0;
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const = 0;
 	
 	/// Adds object to main loop.
-	REBOOL AddToMainLoop();
+	REBOOL addToMainLoop();
 	
 	/// Removes object from main loop.
-	REBOOL RemoveFromMainLoop();
+	REBOOL removeFromMainLoop();
 	
 	/// Destructor.
 	virtual ~REMainLoopUpdatable() { }

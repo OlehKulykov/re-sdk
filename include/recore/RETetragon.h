@@ -78,13 +78,13 @@ public:
 	};
 	
 	/// Returns center point of tetragon.
-	REPoint2 GetCenter() const;
+	REPoint2 getCenter() const;
 	
 	/// Returns bounding rectangle.
-	RERect GetBoundRect() const;
+	RERect getBoundRect() const;
 	
 	/// Translates tetragon by X, Y values.
-	RETetragon & Translate(const REFloat32 x, const REFloat32 y)
+	RETetragon & translate(const REFloat32 x, const REFloat32 y)
 	{
 //#if defined(__ARM_NEON__)
 //	TODO: __ARM_NEON__ optimization.
@@ -103,13 +103,13 @@ public:
 	}
 	
 	/// Sets tetragon from rectangle struct.
-	void Set(const RERectStruct & rect);
+	void set(const RERectStruct & rect);
 	
 	/// Sets tetragon from rectangle.
-	void Set(const RERect & rect);
+	void set(const RERect & rect);
 	
 	/// Sets tetragon from another tetragon.
-	void Set(const RETetragon & tetr);
+	void set(const RETetragon & tetr);
 	
 	/// Basic assignment operator from rectangle struct.
 	RETetragon & operator=(const RERectStruct & anotherRect);
@@ -123,13 +123,13 @@ public:
 	/// Constructs tetragon from rectangle struct.
 	RETetragon(const RERectStruct & rect)
 	{
-		this->Set(rect);
+		this->set(rect);
 	}
 	
 	/// Constructs tetragon from rectangle.
 	RETetragon(const RERect & rect)
 	{
-		this->Set(rect);
+		this->set(rect);
 	}
 	
 	/// Constructs tetragon from another tetragon.
@@ -139,7 +139,10 @@ public:
 	}
 	
 	/// Constructs tetragon with zero value coordinates.
-	RETetragon() { REMem::Memset(arr, 0, 8 * sizeof(REFloat32)); }
+	RETetragon() 
+	{
+		REMem::Memset(arr, 0, 8 * sizeof(REFloat32)); 
+	}
 	
 	/// Destructor.
 	~RETetragon() { }

@@ -20,7 +20,7 @@
 #define RE_BUTTON_XML_PRESSED_TEXTURE_OBJECT_KEY_STRING "pressedtexture"
 #define RE_BUTTON_XML_DISABLED_TEXTURE_OBJECT_KEY_STRING "disabledtexture"
 
-void REButton::Render()
+void REButton::render()
 {
 	RETextureObject * originalTexture = _texture;
 	switch (_state) 
@@ -35,12 +35,12 @@ void REButton::Render()
 			break;
 	}
 	
-	REView::Render();
+	REView::render();
 	
 	_texture = originalTexture;
 }
 
-void REButton::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void REButton::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	RETextureObject * originalTexture = _texture;
 	switch (_state) 
@@ -55,12 +55,12 @@ void REButton::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY
 			break;
 	}
 	
-	REView::RenderWithOffset(offsetX, offsetY);
+	REView::renderWithOffset(offsetX, offsetY);
 	
 	_texture = originalTexture;
 }
 
-RETextureObject * REButton::GetTextureForState(REButton::StateType state)
+RETextureObject * REButton::getTextureForState(REButton::StateType state)
 {
 	switch (state) 
 	{
@@ -79,12 +79,12 @@ RETextureObject * REButton::GetTextureForState(REButton::StateType state)
 	return NULL;
 }
 
-void REButton::SetTextureForState(RETextureObject * newTexture, REButton::StateType state)
+void REButton::setTextureForState(RETextureObject * newTexture, REButton::StateType state)
 {
 	switch (state) 
 	{
 		case REButton::StateDefault:
-			this->SetTexture(newTexture);
+			this->setTexture(newTexture);
 			break;
 		case REButton::StatePressed:
 		{
@@ -93,7 +93,7 @@ void REButton::SetTextureForState(RETextureObject * newTexture, REButton::StateT
 			if (newTexture) 
 			{
 				_pressedTexture = newTexture;
-				_pressedTexture->Retain();
+				_pressedTexture->retain();
 			}
 		}
 			break;
@@ -104,7 +104,7 @@ void REButton::SetTextureForState(RETextureObject * newTexture, REButton::StateT
 			if (newTexture) 
 			{
 				_disabledTexture = newTexture;
-				_disabledTexture->Retain();
+				_disabledTexture->retain();
 			}
 		}
 			break;
@@ -113,7 +113,7 @@ void REButton::SetTextureForState(RETextureObject * newTexture, REButton::StateT
 	}
 }
 
-void REButton::SetButtonDownTargetMethod(REClassMethod * buttonDownTargetMethod)
+void REButton::setButtonDownTargetMethod(REClassMethod * buttonDownTargetMethod)
 {
 	if (_buttonDownTargetMethod) 
 	{
@@ -126,12 +126,12 @@ void REButton::SetButtonDownTargetMethod(REClassMethod * buttonDownTargetMethod)
 	}
 }
 
-REBOOL REButton::IsDisabled() const
+REBOOL REButton::isDisabled() const
 {
 	return (_state == REButton::StateDisabled);
 }
 
-void REButton::SetDisabled(const REBOOL isDisabled)
+void REButton::setDisabled(const REBOOL isDisabled)
 {
 	if (isDisabled) 
 	{
@@ -144,7 +144,7 @@ void REButton::SetDisabled(const REBOOL isDisabled)
 }
 
 /* IREUserActionResponder */
-REBOOL REButton::IsRespondsForUserAction() const 
+REBOOL REButton::isRespondsForUserAction() const 
 {
 	if (_state != REButton::StateDisabled) 
 	{
@@ -154,36 +154,36 @@ REBOOL REButton::IsRespondsForUserAction() const
 }
 
 #ifdef __RE_OS_DESKTOP__
-void REButton::UserCursorMoved(const REFloat32 coordX, const REFloat32 coordY)
+void REButton::userCursorMoved(const REFloat32 coordX, const REFloat32 coordY)
 {
 	
 }
-REUInt32 REButton::GetUserCursorIdentifier() const
+REUInt32 REButton::getUserCursorIdentifier() const
 {
 	return 0;
 }
 #endif	
-void REButton::UserActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY)
+void REButton::userActionClickDidStart(const REFloat32 coordX, const REFloat32 coordY)
 {
 	if (_state != REButton::StateDisabled) 
 	{
-		if (this->GetScreenFrame().IsPointInRect(coordX, coordY)) 
+		if (this->getScreenFrame().isPointInRect(coordX, coordY)) 
 		{
 			_state = REButton::StatePressed;
 		}
 	}
 }
 
-void REButton::UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+void REButton::userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 								   const REFloat32 currentCoordX, const REFloat32 currentCoordY)
 {
 	if (_state == REButton::StatePressed) 
 	{
-		if ( this->GetScreenFrame().IsPointInRect(currentCoordX, currentCoordY) ) 
+		if ( this->getScreenFrame().isPointInRect(currentCoordX, currentCoordY) ) 
 		{
 			if (_buttonDownTargetMethod) 
 			{
-				_buttonDownTargetMethod->InvokeWithObject(this);
+				_buttonDownTargetMethod->invokeWithObject(this);
 			}
 		}
 		
@@ -194,16 +194,16 @@ void REButton::UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat3
 	}
 }
 
-void REButton::UserActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+void REButton::userActionClickMoving(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 									 const REFloat32 currentCoordX, const REFloat32 currentCoordY)
 {
 	if (_state != REButton::StateDisabled) 
 	{
 		REBOOL isInside = false;
-		RERect screenFrame( this->GetScreenFrame() );
-		if ( screenFrame.IsPointInRect(startCoordX, startCoordY) ) 
+		RERect screenFrame( this->getScreenFrame() );
+		if ( screenFrame.isPointInRect(startCoordX, startCoordY) ) 
 		{
-			isInside = screenFrame.IsPointInRect(currentCoordX, currentCoordY);
+			isInside = screenFrame.isPointInRect(currentCoordX, currentCoordY);
 		}
 		
 		if (isInside) 
@@ -217,19 +217,19 @@ void REButton::UserActionClickMoving(const REFloat32 startCoordX, const REFloat3
 	}
 }
 
-void REButton::UserActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+void REButton::userActionClickMovingDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 										   const REFloat32 endCoordX, const REFloat32 endCoordY)
 {
 	
 }
 
 /* IREXMLSerializable */
-REBOOL REButton::AcceptStringParameter(const char * key, const char * value)
+REBOOL REButton::acceptStringParameter(const char * key, const char * value)
 {
-	return REView::AcceptStringParameter(key, value);
+	return REView::acceptStringParameter(key, value);
 }
 
-REBOOL REButton::AcceptObjectParameter(const char * className, const char * key, REGUIObject * value)
+REBOOL REButton::acceptObjectParameter(const char * className, const char * key, REGUIObject * value)
 {
 	if (key && value) 
 	{
@@ -238,8 +238,8 @@ REBOOL REButton::AcceptObjectParameter(const char * className, const char * key,
             RETextureObject * texture = (RETextureObject *)value;
 			if (texture) 
 			{
-				this->SetTextureForState(texture, REButton::StatePressed);
-				texture->Release();
+				this->setTextureForState(texture, REButton::StatePressed);
+				texture->release();
 				return true;
 			}
 		}
@@ -248,30 +248,30 @@ REBOOL REButton::AcceptObjectParameter(const char * className, const char * key,
             RETextureObject * texture = (RETextureObject *)value;
 			if (texture)
 			{
-				this->SetTextureForState(texture, REButton::StateDisabled);
-				texture->Release();
+				this->setTextureForState(texture, REButton::StateDisabled);
+				texture->release();
 				return true;
 			}
 		}
 	}
 	
-	return REView::AcceptObjectParameter(className, key, value);
+	return REView::acceptObjectParameter(className, key, value);
 }
 
-const REUInt32 REButton::GetClassIdentifier() const
+const REUInt32 REButton::getClassIdentifier() const
 {
-	return REButton::ClassIdentifier();
+	return REButton::classIdentifier();
 }
 
-const REUInt32 REButton::ClassIdentifier()
+const REUInt32 REButton::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REButton");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REButton");
 	return clasIdentif;
 }
 
-REBOOL REButton::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REButton::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REButton::ClassIdentifier() == classIdentifier) || REView::IsImplementsClass(classIdentifier));
+	return ((REButton::classIdentifier() == classIdentifier) || REView::isImplementsClass(classIdentifier));
 }
 
 REButton::REButton() : REView(),
@@ -283,13 +283,13 @@ REButton::REButton() : REView(),
 	
 }
 
-void REButton::OnReleased()
+void REButton::onReleased()
 {
 	RE_SAFE_RELEASE(_pressedTexture);
 	RE_SAFE_RELEASE(_disabledTexture);
 	RE_SAFE_DELETE(_buttonDownTargetMethod);
 	
-	REView::OnReleased();
+	REView::onReleased();
 }
 
 REButton::~REButton()
@@ -297,12 +297,12 @@ REButton::~REButton()
 	
 }
 
-REButton * REButton::Create()
+REButton * REButton::create()
 {
 	REButton * newButton = new REButton();
 	return newButton;
 }
 
-const char * REButton::GetXMLPressedTextureObjectKeyString() { return RE_BUTTON_XML_PRESSED_TEXTURE_OBJECT_KEY_STRING; }
-const char * REButton::GetXMLDisabledTextureObjectKeyString() { return RE_BUTTON_XML_DISABLED_TEXTURE_OBJECT_KEY_STRING; }
+const char * REButton::getXMLPressedTextureObjectKeyString() { return RE_BUTTON_XML_PRESSED_TEXTURE_OBJECT_KEY_STRING; }
+const char * REButton::getXMLDisabledTextureObjectKeyString() { return RE_BUTTON_XML_DISABLED_TEXTURE_OBJECT_KEY_STRING; }
 

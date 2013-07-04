@@ -28,7 +28,7 @@ void REAnimationBase::Update(const RETimeInterval currentTime)
 	{
 		if (_isNeedCallStartMethod) 
 		{
-			_info->GetStartMethod()->InvokeWithObject(_info);
+			_info->GetStartMethod()->invokeWithObject(_info);
 			_isNeedCallStartMethod = false;
 		}
 		
@@ -49,73 +49,73 @@ void REAnimationBase::Update(const RETimeInterval currentTime)
 	}
 }
 */
-void REAnimationBase::ToStartValues()
+void REAnimationBase::toStartValues()
 {
-	for (REUInt32 i = 0; i < _params->Count(); i++) 
+	for (REUInt32 i = 0; i < _params->count(); i++) 
 	{
-		((*_params)[i])->ToStartValues();
+		((*_params)[i])->toStartValues();
 	}
 }
 
-void REAnimationBase::ToEndValues()
+void REAnimationBase::toEndValues()
 {
-	for (REUInt32 i = 0; i < _params->Count(); i++) 
+	for (REUInt32 i = 0; i < _params->count(); i++) 
 	{
-		((*_params)[i])->ToEndValues();
+		((*_params)[i])->toEndValues();
 	}
 }
 
-void REAnimationBase::Finish()
+void REAnimationBase::finish()
 {
-	this->ToEndValues();
+	this->toEndValues();
 	
-	this->FromMainLoop();
+	this->fromMainLoop();
 	
-	for (REUInt32 i = 0; i < _params->Count(); i++) 
+	for (REUInt32 i = 0; i < _params->count(); i++) 
 	{ 
 		REAnimationFloatParams * p = (*_params)[i]; 
-		if (p->respondent) { p->respondent->REAnimationRespondentAnimationDidFinished(this->GetAnimationIdentifier()); } 
+		if (p->respondent) { p->respondent->REAnimationRespondentAnimationDidFinished(this->getAnimationIdentifier()); } 
 	} 
 	
-	REAnimationController::GetDefaultController()->AnimationFinishedSuccessfully(_info);
+	REAnimationController::getDefaultController()->animationFinishedSuccessfully(_info);
 }
 
-void REAnimationBase::LoopTypeFromStartToEnd()
+void REAnimationBase::loopTypeFromStartToEnd()
 {
-	if (_info->GetLoopsCount() != RENotFound)
+	if (_info->getLoopsCount() != RENotFound)
 	{
 		//not looped
-		if (_info->GetLoopsCount() == _loopsDone) 
+		if (_info->getLoopsCount() == _loopsDone) 
 		{
-			this->Finish();
+			this->finish();
 			return;
 		}
 		_loopsDone++;
 	}
 	
-	this->ToStartValues();
+	this->toStartValues();
 	
-	_startTime = RETime::Time();
+	_startTime = RETime::time();
 	_endTime = _startTime + _workingTime;
 }
 
-void REAnimationBase::LoopTypeFromEndToStart()
+void REAnimationBase::loopTypeFromEndToStart()
 {
-	if (_info->GetLoopsCount() != RENotFound)
+	if (_info->getLoopsCount() != RENotFound)
 	{
 		//not looped
-		if (_info->GetLoopsCount() == _loopsDone) 
+		if (_info->getLoopsCount() == _loopsDone) 
 		{
-			this->Finish();
+			this->finish();
 			return;
 		}
 		_loopsDone++;
 	}
 	
-	for (REUInt32 i = 0; i < _params->Count(); i++) 
+	for (REUInt32 i = 0; i < _params->count(); i++) 
 	{
 		REAnimationFloatParams * p = (*_params)[i];
-		for (REUInt32 j = 0; j < p->params.Count(); j++) 
+		for (REUInt32 j = 0; j < p->params.count(); j++) 
 		{
 			REAnimationFloatParams::ParamStruct * s = &(p->params[j]);
 			const REFloat32 temp = s->end;
@@ -125,74 +125,74 @@ void REAnimationBase::LoopTypeFromEndToStart()
 			(*s->paramPtr) = temp;
 		}
 	}
-	_startTime = RETime::Time();
+	_startTime = RETime::time();
 	_endTime = _startTime + _workingTime;
 }
 
-void REAnimationBase::TimeIsOver()
+void REAnimationBase::timeIsOver()
 {
 	_progress = 1.0f;
-	switch (_info->GetLoopType()) 
+	switch (_info->getLoopType()) 
 	{
 		case REAnimationLoopTypeNone:
-			this->Finish();
+			this->finish();
 			break;
 		case REAnimationLoopTypeFromStartToEnd:
-			this->LoopTypeFromStartToEnd();
+			this->loopTypeFromStartToEnd();
 			break;
 		case REAnimationLoopTypeFromEndToStart:
-			this->LoopTypeFromEndToStart();
+			this->loopTypeFromEndToStart();
 			break;
 		default:
 			break;
 	}
 }
 
-void REAnimationBase::Start()
+void REAnimationBase::start()
 {
 	if (_isPaused)
 	{
-		const RETimeInterval pauseTime = RETime::Time() - _endTime;
+		const RETimeInterval pauseTime = RETime::time() - _endTime;
 		_startTime += pauseTime;
 		_endTime = _startTime + _workingTime;
 		_isPaused = false;
 	}
 	else
 	{
-		_startTime = RETime::Time() + _info->GetStartDelay();
+		_startTime = RETime::time() + _info->getStartDelay();
 		_endTime = _startTime + _workingTime;
 	}
 	
-	this->ToMainLoop();
+	this->toMainLoop();
 }
 
-void REAnimationBase::Pause()
+void REAnimationBase::pause()
 {
 	if ( !_isPaused )
 	{
-		this->FromMainLoop();
+		this->fromMainLoop();
 		
-		_endTime = RETime::Time();
+		_endTime = RETime::time();
 		_isPaused = true;
 	}
 }
 
-void REAnimationBase::Stop(const REAnimationStopType stopType)
+void REAnimationBase::stop(const REAnimationStopType stopType)
 {
 	switch (stopType) 
 	{
 		case REAnimationStopTypeImmediatelyToStart:
-			this->ToStartValues();
+			this->toStartValues();
 			break;
 		case REAnimationStopTypeImmediatelyToEnd:
-			this->ToEndValues();
+			this->toEndValues();
 			break;
 		default:
 			break;
 	}
 	
-	this->FromMainLoop();
-	REAnimationController::GetDefaultController()->AnimationFinishedSuccessfully(_info);
+	this->fromMainLoop();
+	REAnimationController::getDefaultController()->animationFinishedSuccessfully(_info);
 }
 
 REAnimationBase::REAnimationBase(REAnimationInfo * info, REArray<REAnimationFloatParams *> * params) : 
@@ -206,12 +206,12 @@ REAnimationBase::REAnimationBase(REAnimationInfo * info, REArray<REAnimationFloa
 	_isPaused(false),
 	_isNeedCallStartMethod(false)
 {
-	_workingTime = _info->GetTime();
-	if (_info->GetStartMethod()) 
+	_workingTime = _info->getTime();
+	if (_info->getStartMethod()) 
 	{
 		_isNeedCallStartMethod = true;
 	}
-	for (REUInt32 i = 0; i < _params->Count(); i++) 
+	for (REUInt32 i = 0; i < _params->count(); i++) 
 	{ 
 		REAnimationFloatParams * p = (*_params)[i]; 
 		if (p->respondent) 

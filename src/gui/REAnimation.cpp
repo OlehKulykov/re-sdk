@@ -19,92 +19,92 @@
 #include "../../include/regui/private/REAnimationController.h"
 
 
-REUIdentifier REAnimation::Setup(void * customDataOrNull)
+REUIdentifier REAnimation::setup(void * customDataOrNull)
 {
-	return REAnimationController::GetDefaultController()->StartSetupNewAnimation(customDataOrNull);
+	return REAnimationController::getDefaultController()->startSetupNewAnimation(customDataOrNull);
 }
 
-REBOOL REAnimation::IsSetuping()
+REBOOL REAnimation::isSetuping()
 {
-	return (REAnimationController::GetDefaultController()->LastInfo() != NULL);
+	return (REAnimationController::getDefaultController()->lastInfo() != NULL);
 }
 
-REBOOL REAnimation::AddFloatParam(REObject * animatedObject, 
+REBOOL REAnimation::addFloatParam(REObject * animatedObject, 
 								  REUInt16 * animationsCounterOrNULL,
 								  REFloat32 * param, 
 								  const REFloat32 startValue, 
 								  const REFloat32 endValue)
 {
-	return REAnimationController::GetDefaultController()->AddFloatParam(animatedObject,
+	return REAnimationController::getDefaultController()->addFloatParam(animatedObject,
 																		animationsCounterOrNULL,
 																		param,
 																		startValue,
 																		endValue);
 }
 
-void REAnimation::SetTime(const RETimeInterval animationTime)
+void REAnimation::setTime(const RETimeInterval animationTime)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetTime(animationTime); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setTime(animationTime); }
 }
 
-void REAnimation::SetStartDelay(const RETimeInterval delayTime)
+void REAnimation::setStartDelay(const RETimeInterval delayTime)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetStartDelay(delayTime); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setStartDelay(delayTime); }
 }
 
-void REAnimation::SetType(const REAnimationType animationType)
+void REAnimation::setType(const REAnimationType animationType)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetAnimationType(animationType); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setAnimationType(animationType); }
 }
 
-void REAnimation::SetLoopType(const REAnimationLoopType loopType, const REUInt32 loopsCount)
+void REAnimation::setLoopType(const REAnimationLoopType loopType, const REUInt32 loopsCount)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetLoopType(loopType); info->SetLoopsCount(loopsCount); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setLoopType(loopType); info->setLoopsCount(loopsCount); }
 }
 
-void REAnimation::SetDidStartMethod(REClassMethod * startMethod)
+void REAnimation::setDidStartMethod(REClassMethod * startMethod)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetStartMethod(startMethod); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setStartMethod(startMethod); }
 }
 
-void REAnimation::SetDidStopMethod(REClassMethod * stopMethod)
+void REAnimation::setDidStopMethod(REClassMethod * stopMethod)
 {
-	REEditableAnimationInfo * info = REAnimationController::GetDefaultController()->LastInfo();
-	if (info) { info->SetStopMethod(stopMethod); }
+	REEditableAnimationInfo * info = REAnimationController::getDefaultController()->lastInfo();
+	if (info) { info->setStopMethod(stopMethod); }
 }
 
-REBOOL REAnimation::Execute()
+REBOOL REAnimation::execute()
 {
-	return REAnimationController::GetDefaultController()->ExecuteLastAnimation();
+	return REAnimationController::getDefaultController()->executeLastAnimation();
 }
 
-void REAnimation::PauseAllAnimations()
+void REAnimation::pauseAllAnimations()
 {
-	REAnimationController::GetDefaultController()->Pause();
+	REAnimationController::getDefaultController()->pause();
 }
 
-void REAnimation::ContinueAllAnimations()
+void REAnimation::continueAllAnimations()
 {
-	REAnimationController::GetDefaultController()->Continue();
+	REAnimationController::getDefaultController()->Continue();
 }
 
-REBOOL REAnimation::StopAllAnimations(REObject * animatedObject,
+REBOOL REAnimation::stopAllAnimations(REObject * animatedObject,
 									  const REAnimationStopType stopType, 
 									  REBOOL isNeedCallDelegate)
 {
-	return REAnimationController::GetDefaultController()->StopAllAnimationForView(animatedObject, stopType, isNeedCallDelegate);
+	return REAnimationController::getDefaultController()->stopAllAnimationForView(animatedObject, stopType, isNeedCallDelegate);
 }
 
-const REFloat32 REAnimation::GetProgress(REObject * animatedObject)
+const REFloat32 REAnimation::getProgress(REObject * animatedObject)
 {
 	if (animatedObject) 
 	{
-		return REAnimationController::GetDefaultController()->GetProgress(animatedObject);
+		return REAnimationController::getDefaultController()->getProgress(animatedObject);
 	}
 	return -1.0f;
 }

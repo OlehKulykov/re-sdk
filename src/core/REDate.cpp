@@ -17,92 +17,196 @@
 
 #include "../../include/recore/REDate.h"
 
+class REDateInternal 
+{
+private:
+	void setTimeZone(const char * tz)
+	{
+		RE_SAFE_FREE(timestruct.tm_zone);
+		if (tz)
+		{
+			const size_t len = strlen(tz);
+			if (len > 0)
+			{
+				timestruct.tm_zone = (char *)malloc(len + 1);
+				memcpy(timestruct.tm_zone, tz, len);
+				timestruct.tm_zone[len] = 0;
+			}
+		}
+	}
+	
+public:
+	time_t rawtime;
+	struct tm timestruct;
+	
+	REDateInternal(const REDateInternal & di) :
+		rawtime(di.rawtime),
+		timestruct(di.timestruct)
+	{
+		timestruct.tm_zone = 0;
+		this->setTimeZone(di.timestruct.tm_zone);
+	}
+	
+	REDateInternal(const time_t rt, const struct tm & ts) : 
+		rawtime(rt),
+		timestruct(ts)
+	{
+		timestruct.tm_zone = 0;
+		this->setTimeZone(ts.tm_zone);
+	}
+	
+	~REDateInternal()
+	{
+		RE_SAFE_FREE(timestruct.tm_zone);
+	}
+};
+
 #define IS_LEAP_YEAR(y) ((((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) ? 1 : 0)
 
-const RETimeInterval REDate::GetSeconds() const { return _seconds; }
-const REUInt32 REDate::GetYear() const { return _year; }
-const REUInt32 REDate::GetMonth() const { return _month; }
-const REUInt32 REDate::GetDay() const { return _day; }
-const REUInt32 REDate::GetHour() const { return _hour; }
-const REUInt32 REDate::GetMinutes() const { return _minutes; }
-const REUInt32 REDate::GetMilliseconds() const
+REBOOL REDate::isEqualToDate(const REDate & anotherDate) const
+{
+	return false;
+}
+
+const RETimeInterval REDate::getSeconds() const 
+{
+	return _t.isNotEmpty() ? _t->timestruct.tm_sec : 0; 
+}
+
+const REUInt32 REDate::getYear() const 
+{
+	return _t.isNotEmpty() ? (1900 + _t->timestruct.tm_year) : 0;
+}
+
+const REUInt32 REDate::getMonth() const 
+{
+	return _t.isNotEmpty() ? _t->timestruct.tm_mon : 0;
+}
+
+const REUInt32 REDate::getDay() const
+{
+	return _t.isNotEmpty() ? _t->timestruct.tm_mday : 0;
+}
+
+const REUInt32 REDate::getHour() const 
+{
+	return _t.isNotEmpty() ? _t->timestruct.tm_hour : 0;
+}
+
+const REUInt32 REDate::getMinutes() const
+{ 
+	return _t.isNotEmpty() ? _t->timestruct.tm_min : 0;
+}
+
+const REUInt32 REDate::getMilliseconds() const
 {
 	double intPart; 
-	const double fractPart = modf(_seconds, &intPart);
+	const RETimeInterval seconds = _t.isNotEmpty() ? _t->timestruct.tm_sec : 0;
+	const double fractPart = modf(seconds, &intPart);
 	return (REUInt32)(fractPart * 1000);
 	// 1 second = 1 000 milliseconds
 }
 
-const REUInt32 REDate::GetMicroseconds() const
+const REUInt32 REDate::getMicroseconds() const
 {
 	double intPart; 
-	const double fractPart = modf(_seconds, &intPart);
+	const RETimeInterval seconds = _t.isNotEmpty() ? _t->timestruct.tm_sec : 0;
+	const double fractPart = modf(seconds, &intPart);
 	return (REUInt32)(fractPart * 1000000);
 	// 1 second = 1 000 000 microseconds
 }
 
-void REDate::SetYear(const REUInt32 year)
+void REDate::makeDateInternalCopy()
 {
-	_year = (REUInt16)year;
+	REDateInternal * oldInternal = _t;
+	if (oldInternal)
+	{
+		REDateInternal * newInternal = new REDateInternal(*oldInternal);
+		_t = newInternal;
+	}
 }
 
-void REDate::SetMonth(const REUInt32 month)
+void REDate::setYear(const REUInt32 year)
 {
-	if ((month < 13) && (month > 0)) { _month = (REUByte)month; }
+	if (_t.isMultipleOwners())
+	{
+		this->makeDateInternalCopy();
+	}
+	
+	if (_t.isNotEmpty())
+	{
+		_t->timestruct.tm_year = year - 1900;
+	}
 }
 
-void REDate::SetDay(const REUInt32 day)
+void REDate::setMonth(const REUInt32 month)
 {
-	if ((day < 32) && (day > 0)) { _day = (REUByte)day; }
+
 }
 
-void REDate::SetHour(const REUInt32 hour)
+void REDate::setDay(const REUInt32 day)
 {
-	if (hour < 24) { _hour = (REUByte)hour; }
+
 }
 
-void REDate::SetMinutes(const REUInt32 minutes)
+void REDate::setHour(const REUInt32 hour)
 {
-	if (minutes < 60) { _minutes = (REUByte)minutes; }
+
 }
 
-void REDate::SetSeconds(const RETimeInterval seconds)
+void REDate::setMinutes(const REUInt32 minutes)
 {
-	if (seconds < 60.0) { _seconds = seconds; }
+
+}
+
+void REDate::setSeconds(const RETimeInterval seconds)
+{
+	
 }
 
 REDate & REDate::operator=(const REDate & anotherDate)
 {
-	_seconds = anotherDate._seconds;
-	_year = anotherDate._year;
-	_month = anotherDate._month;
-	_day = anotherDate._day;
-	_hour = anotherDate._hour;
-	_minutes = anotherDate._minutes;
-	
+	_t = anotherDate._t;	
 	return (*this);
 }
 
-REDate::REDate(const REDate & anotherDate) :
-	_seconds(anotherDate._seconds),
-	_year(anotherDate._year),
-	_month(anotherDate._month),
-	_day(anotherDate._day),
-	_hour(anotherDate._hour),
-	_minutes(anotherDate._minutes)
+REDate::REDate(const REDate & anotherDate)
 {
-	
+	_t = anotherDate._t;
 }
 
-REDate::REDate() :
-	_seconds(0.0),
-	_year(0),
-	_month(0),
-	_day(0),
-	_hour(0),
-	_minutes(0)
+REDate::REDate()
 {
-	
+/*
+ struct tm {
+ int tm_sec;   // seconds of minutes from 0 to 61
+ int tm_min;   // minutes of hour from 0 to 59
+ int tm_hour;  // hours of day from 0 to 24
+ int tm_mday;  // day of month from 1 to 31
+ int tm_mon;   // month of year from 0 to 11
+ int tm_year;  // year since 1900
+ int tm_wday;  // days since sunday
+ int tm_yday;  // days since January 1st
+ int tm_isdst; // hours of daylight savings time
+ }
+*/	
+	time_t rawtime = 0;
+	time(&rawtime);
+	struct tm * ptm = gmtime(&rawtime);
+	if (ptm)
+	{
+		REDateInternal * s = new REDateInternal(rawtime, *ptm);
+		if (s)
+		{
+			_t = s;
+		}
+//		
+//		char buffer [80] = { 0 };
+//		strftime(buffer,80 ,"Now it's %Y-%m-%d %H:%M:%ss", ptm);
+//		
+//		int y = 0;
+//		y += 5;
+	}
 }
 
 REDate::~REDate()
@@ -110,9 +214,9 @@ REDate::~REDate()
 	
 }
 
-REUInt32 REDate::GetDaysPerMonth(const REUInt32 month, const REUInt32 year)
+REUInt32 REDate::getDaysPerMonth(const REUInt32 month, const REUInt32 year)
 {
-	if (IS_LEAP_YEAR(year) && (month == 2))
+	if ( (IS_LEAP_YEAR(year)) && (month == 2))
 	{
 		return 29;
 	}
@@ -143,7 +247,7 @@ REUInt32 REDate::GetDaysPerMonth(const REUInt32 month, const REUInt32 year)
 	return 0;
 }
 
-REBOOL REDate::IsLeapYear(const REUInt32 year)
+REBOOL REDate::isLeapYear(const REUInt32 year)
 {
 	return IS_LEAP_YEAR(year);
 }

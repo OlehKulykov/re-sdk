@@ -110,6 +110,35 @@ public:
 	/// Constructs 2D Point and sets 'x' and 'y' coordinates to 0.
 	REPoint2() : x(0.0f), y(0.0f) { }
 	~REPoint2() { }
+	
+	
+/// Objective-c additions
+#if (defined(CG_EXTERN) || defined(CG_INLINE)) && defined(CGFLOAT_TYPE)
+
+	CGPoint getCGPoint() const 
+	{
+		CGPoint p;
+		p.x = (CGFloat)x; 
+		p.y = (CGFloat)y;
+		return p;
+	}
+	
+	REPoint2 & operator=(const CGPoint & anotherPoint)
+	{
+		x = (REFloat32)anotherPoint.x;
+		y = (REFloat32)anotherPoint.y;
+		return (*this);
+	}
+
+	REPoint2(const CGPoint & anotherPoint) : 
+		x((REFloat32)anotherPoint.x), 
+		y((REFloat32)anotherPoint.y) 
+	{
+		
+	}
+	
+#endif
+	
 };
 
 

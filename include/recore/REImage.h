@@ -114,15 +114,15 @@ public:
 								 const REUInt32 destHeight);
 	
 	/// Creates and return new image object with image base object or NULL on error.
-	/// After using this array call Release().
+	/// After using this image delete it.
 	static REImage * CreateWithBase(REImageBase * base);
 	
 	/// Creates and return new image object with another image object or NULL on error.
-	/// After using this array call Release().
+	/// After using this image delete it.
 	static REImage * CreateWithImage(const REImage & anotherImage);
 	
 	/// Creates and return new image object with image data(pixels), data size, format, width and height or NULL on error.
-	/// After using this array call Release().
+	/// After using this image delete it.
 	static REImage * CreateWithPixelsData(const REUByte * pixelsData, 
 										  const REUInt32 pixelsDataSize, 
 										  const REImagePixelFormat pixelsFormat, 
@@ -130,13 +130,13 @@ public:
 										  const REUInt32 height);
 	
 	/// Creates and return new image object with image format, width and height or NULL on error.
-	/// After using this array call Release().
+	/// After using this image delete it.
 	static REImage * CreateBlankImage(const REImagePixelFormat pixelsFormat, 
 									  const REUInt32 width, 
 									  const REUInt32 height);
 	
 	/// Creates and return new image object by reading from file path or NULL on error.
-	/// After using this array call Release().
+	/// After using this image delete it.
 	static REImage * CreateWithFilePath(const REString & filePath);
 };
 

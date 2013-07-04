@@ -20,43 +20,43 @@
 #include "../../include/recore/REMath.h"
 #include "../../include/recore/REMem.h"
 
-REPoint2 RETetragon::GetCenter() const
+REPoint2 RETetragon::getCenter() const
 {
 	const REFloat32 x = topLeftX + ((bottomRightX - topLeftX) / 2.0f);	
 	const REFloat32 y = topLeftY + ((bottomRightY - topLeftY) / 2.0f);	
 	return REPoint2(x, y);
 }
 
-RERect RETetragon::GetBoundRect() const
+RERect RETetragon::getBoundRect() const
 {
-	const REFloat32 x = REMath::Min<REFloat32>(topLeftX, topRightX, bottomLeftX, bottomRightX);
-	const REFloat32 y = REMath::Min<REFloat32>(topLeftY, topRightY, bottomLeftY, bottomRightY);
+	const REFloat32 x = REMath::min<REFloat32>(topLeftX, topRightX, bottomLeftX, bottomRightX);
+	const REFloat32 y = REMath::min<REFloat32>(topLeftY, topRightY, bottomLeftY, bottomRightY);
 	
 	return RERect(x, 
 				  y,
-				  REMath::Max<REFloat32>(topLeftX, topRightX, bottomLeftX, bottomRightX) - x,
-				  REMath::Max<REFloat32>(topLeftY, topRightY, bottomLeftY, bottomRightY) - y);
+				  REMath::max<REFloat32>(topLeftX, topRightX, bottomLeftX, bottomRightX) - x,
+				  REMath::max<REFloat32>(topLeftY, topRightY, bottomLeftY, bottomRightY) - y);
 }
 
 RETetragon & RETetragon::operator=(const RERectStruct & anotherRect)
 {
-	this->Set(anotherRect);
+	this->set(anotherRect);
 	return (*this);
 }
 
 RETetragon & RETetragon::operator=(const RERect & anotherRect)
 {
-	this->Set(anotherRect);
+	this->set(anotherRect);
 	return (*this);
 }
 
 RETetragon & RETetragon::operator=(const RETetragon & tetr)
 {
-	this->Set(tetr);
+	this->set(tetr);
 	return (*this);
 }
 
-void RETetragon::Set(const RERectStruct & rect)
+void RETetragon::set(const RERectStruct & rect)
 {
 	topLeftX = bottomLeftX = rect.x;
 	topLeftY = topRightY = rect.y;
@@ -65,7 +65,7 @@ void RETetragon::Set(const RERectStruct & rect)
 	bottomLeftY = bottomRightY = (rect.y + rect.height);
 }
 
-void RETetragon::Set(const RERect & rect)
+void RETetragon::set(const RERect & rect)
 {	
 	topLeftX = bottomLeftX = rect.x;
 	topLeftY = topRightY = rect.y;
@@ -74,7 +74,7 @@ void RETetragon::Set(const RERect & rect)
 	bottomLeftY = bottomRightY = (rect.y + rect.height);
 }
 
-void RETetragon::Set(const RETetragon & tetr)
+void RETetragon::set(const RETetragon & tetr)
 {
 #if defined(__ARM_NEON__)
 	armNeonTop = tetr.armNeonTop;

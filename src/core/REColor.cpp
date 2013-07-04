@@ -63,7 +63,7 @@ void REColorPrivate::SetColorFromHEXString(REColor * color, const char * hexStri
 }
 
 
-void REColor::SetRGB(const REUByte newRed, const REUByte newGreen, const REUByte newBlue)
+void REColor::setRGB(const REUByte newRed, const REUByte newGreen, const REUByte newBlue)
 {
 	red = (REFloat32)newRed / 255.0f;
 	green = (REFloat32)newGreen / 255.0f;
@@ -71,7 +71,7 @@ void REColor::SetRGB(const REUByte newRed, const REUByte newGreen, const REUByte
 	alpha = 1.0f;
 }
 
-void REColor::SetRGBA(const REUByte newRed, const REUByte newGreen, const REUByte newBlue, const REUByte newAlpha)
+void REColor::setRGBA(const REUByte newRed, const REUByte newGreen, const REUByte newBlue, const REUByte newAlpha)
 {
 	red = (REFloat32)newRed / 255.0f;
 	green = (REFloat32)newGreen / 255.0f;
@@ -79,7 +79,7 @@ void REColor::SetRGBA(const REUByte newRed, const REUByte newGreen, const REUByt
 	alpha = (REFloat32)newAlpha / 255.0f;
 }
 
-void REColor::SetHEX(const char * hexString)
+void REColor::setHEX(const char * hexString)
 {
 	if (hexString)
 	{
@@ -102,7 +102,7 @@ REColor::REColor(const char * hexString) :
 	blue(1.0f),
 	alpha(1.0f)
 {
-	this->SetHEX(hexString);
+	this->setHEX(hexString);
 }
 
 REColor::REColor() : 

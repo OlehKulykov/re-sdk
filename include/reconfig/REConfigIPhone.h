@@ -28,7 +28,7 @@
 #define __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__
 
 /// Using posix threads in REThread object.
-#define __RE_USING_PTHREADS__
+#define __RE_TRY_USE_PTHREADS__
 
 /// Using posix memalign for alocating memory. Used in REMem "posix_memalign"
 #define __RE_USING_POSIX_MEMALIGN__
@@ -62,37 +62,37 @@
 #define __RE_USING_ADITIONAL_ZLIB_LIBRARY__
 
 /// Using system provided zlib library. Will include as <zlib.h>
-//#define __RE_USING_SYSTEM_ZLIB_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_ZLIB_LIBRARY__
 
 /// Using png library from addlibs folder. Will include as "addlibs/png.h". All png wrappers must be compiled.
 #define __RE_USING_ADITIONAL_PNG_LIBRARY__
 
 /// Using system provided png library. Will include as <png.h>
-//#define __RE_USING_SYSTEM_PNG_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_PNG_LIBRARY__
 
 /// Using jpeg library from addlibs folder. Will include as "addlibs/jpeg.h". All jpeg wrappers must be compiled.
 #define __RE_USING_ADITIONAL_JPEG_LIBRARY__
 
 /// Using system provided jpeg library. Will include as <jpeglib.h>
-//#define __RE_USING_SYSTEM_JPEG_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_JPEG_LIBRARY__
 
 /// Using openjpeg library from addlibs folder. Will include as "addlibs/openjpeg.h". All openjpeg wrappers must be compiled.
 #define __RE_USING_ADITIONAL_OPENJPEG_LIBRARY__
 
 /// Using system provided openjpeg library. Will include as <openjpeg.h>
-//#define __RE_USING_SYSTEM_OPENJPEG_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_OPENJPEG_LIBRARY__
 
 /// Using webp library from addlibs folder. Will include as "addlibs/webp.h". All webp wrappers must be compiled.
 #define __RE_USING_ADITIONAL_WEBP_LIBRARY__
 
 /// Using system provided webp library. Will include as <webp/types.h>, <webp/mux.h>, <webp/decode.h> and <webp/encode.h>
-//#define __RE_USING_SYSTEM_WEBP_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_WEBP_LIBRARY__
 
 /// Using sqlite library from addlibs folder. Will include as "addlibs/sqlite.h". All sqlite wrappers must be compiled.
-//#define __RE_USING_ADITIONAL_SQLITE_LIBRARY__
+#define __RE_USING_ADITIONAL_SQLITE_LIBRARY__
 
 /// Using system provided sqlite library. Will include as <sqlite3.h>
-#define __RE_USING_SYSTEM_SQLITE_LIBRARY__
+//#define __RE_USING_SYSTEM_SQLITE_LIBRARY__
 
 /// Disables reading/writing to sqlite database. Requires sqlite3 library. Classes RESQLite... will do nothing.
 //#define __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
@@ -101,7 +101,7 @@
 #define __RE_USING_ADITIONAL_LZMA_LIBRARY__
 
 /// Using system provided lzma library. Will include as <LzmaLib.h>
-//#define __RE_USING_SYSTEM_LZMA_LIBRARY__
+//#define __RE_TRY_USE_SYSTEM_LZMA_LIBRARY__
 
 /// Using FreeType library from addlibs folder. Will include as "addlibs/freetype.h". All freetype wrappers must be compiled.
 #define __RE_USING_ADITIONAL_FREETYPE_LIBRARY__

@@ -1,12 +1,12 @@
 var class_i_r_e_media_playable =
 [
     [ "~IREMediaPlayable", "class_i_r_e_media_playable.html#abd9993f91598edd0e34d4ce74fabbe4a", null ],
-    [ "GetVolume", "class_i_r_e_media_playable.html#a5b670b5bc22bb932e43e39da3e3ac3b2", null ],
-    [ "IsLooped", "class_i_r_e_media_playable.html#a2bed8c54d898bbd260d6c20fd843e551", null ],
-    [ "IsPlaying", "class_i_r_e_media_playable.html#ae406ea92d29c217c3e5c6f1efc304865", null ],
-    [ "Pause", "class_i_r_e_media_playable.html#a2398616890e4568535b2dbe514c70ac8", null ],
-    [ "Play", "class_i_r_e_media_playable.html#afa7026183529f06a22b31037c5520c14", null ],
-    [ "SetLooped", "class_i_r_e_media_playable.html#a2c57a50a400a229974b977748919438d", null ],
-    [ "SetVolume", "class_i_r_e_media_playable.html#a7262112c3a3533eae1bc6179b45ee62c", null ],
-    [ "Stop", "class_i_r_e_media_playable.html#a072274fa009f25b3d082cb68ad96a072", null ]
+    [ "getVolume", "class_i_r_e_media_playable.html#a1021e51a39a5a0d6d8b2a4ca7373a106", null ],
+    [ "isLooped", "class_i_r_e_media_playable.html#a805e5168418c5f5c6b5ca5a801204183", null ],
+    [ "isPlaying", "class_i_r_e_media_playable.html#a88b9f2e028045439ffb5c721d2a4efd9", null ],
+    [ "pause", "class_i_r_e_media_playable.html#a18d6baa3110c9d9f4019fdbe99d19eb1", null ],
+    [ "play", "class_i_r_e_media_playable.html#a459b0d9726304c4ed42b1c7fb60f8cd9", null ],
+    [ "setLooped", "class_i_r_e_media_playable.html#a89b824cbdafb67b3e23908d4fadda328", null ],
+    [ "setVolume", "class_i_r_e_media_playable.html#ad2896a037d49a12ca65e74817d2d05e9", null ],
+    [ "stop", "class_i_r_e_media_playable.html#ae93e9f080ccf1c5bb59ccfdccd89baf5", null ]
 ];

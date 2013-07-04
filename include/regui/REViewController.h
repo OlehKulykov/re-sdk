@@ -20,7 +20,7 @@
 
 #include "../recore/RECommonHeader.h"
 #include "../recore/REObject.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "RESubViewsContainer.h"
 #include "IRERenderable.h"
 #include "REView.h"
@@ -64,7 +64,7 @@ protected:
 	virtual ~REViewController();
 public:
 	/* REGUIObject */
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
 
 	/// Loads view controller using it's name
 	/// Loading can process in current or aditional thread.
@@ -77,25 +77,25 @@ public:
 	REBOOL IsLoading() const;
 	
 	/// Returns subview array.
-	const REObjectsArray * GetViews() const;
+	const REArrayObject * GetViews() const;
 	
 	/* IRERenderable */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Creates and returns new view controller object.
-	static REViewController * Create();
+	static REViewController * create();
 	
 	/// Returns XML key string for size.
-	static const char * GetXMLSizeKeyString();
+	static const char * getXMLSizeKeyString();
 	
 	/// Returns XML format string for size.
-	static const char * GetXMLSizeFormatString();
+	static const char * getXMLSizeFormatString();
 };
 
 

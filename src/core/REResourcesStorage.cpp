@@ -19,30 +19,32 @@
 #include "../../include/recore/REZipReader.h"
 #include "../../include/recore/REFileManager.h"
 #include "../../include/recore/REFile.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 class IREResourcesStorageContainer
 {
 public:
-	virtual REBOOL ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer) = 0;
-	virtual REBOOL IsExists(const REString & resourcePath) = 0;
+	virtual REBOOL readToBuffer(const REString & resourcePath, REBuffer * toBuffer) = 0;
+	virtual REBOOL isExists(const REString & resourcePath) = 0;
 	virtual ~IREResourcesStorageContainer() { }
 };
 
 class REZipArchiveResource : public REZipReader, public IREResourcesStorageContainer
 {
 public:
-	virtual REBOOL ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer)
+	virtual REBOOL readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 	{
-		REZipEntry * entry = this->GetEntry(resourcePath);
+		REZipEntry * entry = this->getEntry(resourcePath);
 		if (entry) 
 		{
-			return entry->Read(toBuffer);
+			return entry->read(toBuffer);
 		}
 		return false;
 	}
-	virtual REBOOL IsExists(const REString & resourcePath)
+	virtual REBOOL isExists(const REString & resourcePath)
 	{
-		REZipEntry * entry = this->GetEntry(resourcePath);
+		REZipEntry * entry = this->getEntry(resourcePath);
 		if (entry) 
 		{
 			return true;
@@ -58,19 +60,19 @@ class REDirectoryResource : public IREResourcesStorageContainer
 private:
 	REString * _rootPath;
 public:
-	virtual REBOOL ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer)
+	virtual REBOOL readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 	{
 		if (_rootPath)
 		{
-			REString p(*_rootPath);
-			p.AppendPathComponent(resourcePath.UTF8String());
+			REMutableString p(*_rootPath);
+			p.appendPathComponent(resourcePath.getChars());
 			REFile f(p, "rb");
-			const REUInt32 fileSize = f.GetFileSize();
+			const REUInt32 fileSize = f.getFileSize();
 			if (fileSize) 
 			{
-				if (toBuffer->Resize(fileSize, false)) 
+				if (toBuffer->resize(fileSize, false)) 
 				{
-					if (f.FileRead(toBuffer->GetBuffer(), fileSize))
+					if (f.fileRead(toBuffer->getBuffer(), fileSize))
 					{
 						return true;
 					}
@@ -80,15 +82,15 @@ public:
 		return false;
 	}
 	
-	virtual REBOOL IsExists(const REString & resourcePath)
+	virtual REBOOL isExists(const REString & resourcePath)
 	{
 		if (_rootPath)
 		{
-			REString p(*_rootPath);
-			p.AppendPathComponent(resourcePath.UTF8String());
+			REMutableString p(*_rootPath);
+			p.appendPathComponent(resourcePath.getChars());
 			REFileManager m;
 			REBOOL isDir = false;
-			if (m.IsFileExistsAtPath(p, &isDir))
+			if (m.isFileExistsAtPath(p, &isDir))
 			{
 				return (!isDir);
 			}
@@ -96,7 +98,7 @@ public:
 		return false;
 	}
 	
-	REBOOL IsCanRead() const
+	REBOOL isCanRead() const
 	{
 		return (_rootPath) ? true : false;
 	}
@@ -105,9 +107,9 @@ public:
 	{
 		REBOOL isDir = false;
 		REFileManager m;
-		if (m.IsFileExistsAtPath(path, &isDir)) 
+		if (m.isFileExistsAtPath(path, &isDir)) 
 		{
-			if (isDir && m.IsReadableFileAtPath(path)) 
+			if (isDir && m.isReadableFileAtPath(path)) 
 			{
 				_rootPath = new REString(path);
 			}
@@ -133,10 +135,10 @@ public:
 	} CallBacks;
 	static REResourcesStoragePrivate::CallBacks staticCallBacks;
 #endif	
-	static REBOOL AddResourcesPath(const REString & resourcesPath);
-	static REBOOL ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer);
-	static REBOOL IsExists(const REString & resourcePath);
-	static void Clear();
+	static REBOOL addResourcesPath(const REString & resourcesPath);
+	static REBOOL readToBuffer(const REString & resourcePath, REBuffer * toBuffer);
+	static REBOOL isExists(const REString & resourcePath);
+	static void clear();
 };
 
 REArray<IREResourcesStorageContainer *> REResourcesStoragePrivate::_resources;
@@ -144,12 +146,12 @@ REArray<IREResourcesStorageContainer *> REResourcesStoragePrivate::_resources;
 REResourcesStoragePrivate::CallBacks REResourcesStoragePrivate::staticCallBacks = { 0 };
 #endif	
 
-REBOOL REResourcesStoragePrivate::IsExists(const REString & resourcePath)
+REBOOL REResourcesStoragePrivate::isExists(const REString & resourcePath)
 {
-	for (REUInt32 i = 0; i < _resources.Count(); i++) 
+	for (REUInt32 i = 0; i < _resources.count(); i++) 
 	{
 		IREResourcesStorageContainer * r = _resources[i];
-		if (r->IsExists(resourcePath))
+		if (r->isExists(resourcePath))
 		{
 			return true;
 		}
@@ -157,30 +159,30 @@ REBOOL REResourcesStoragePrivate::IsExists(const REString & resourcePath)
 	return false;
 }
 
-void REResourcesStoragePrivate::Clear()
+void REResourcesStoragePrivate::clear()
 {
-	for (REUInt32 i = 0; i < _resources.Count(); i++) 
+	for (REUInt32 i = 0; i < _resources.count(); i++) 
 	{
 		IREResourcesStorageContainer * r = _resources[i];
 		delete r;
 	}
-	_resources.SetCapacity(0);
+	_resources.setCapacity(0);
 }
 
-REBOOL REResourcesStoragePrivate::AddResourcesPath(const REString & resourcesPath)
+REBOOL REResourcesStoragePrivate::addResourcesPath(const REString & resourcesPath)
 {
 	REBOOL isDir = false;
 	REFileManager m;
-	if (m.IsFileExistsAtPath(resourcesPath, &isDir)) 
+	if (m.isFileExistsAtPath(resourcesPath, &isDir)) 
 	{
 		if (isDir) 
 		{
 			REDirectoryResource * dirRes = new REDirectoryResource(resourcesPath);
 			if (dirRes) 
 			{
-				if (dirRes->IsCanRead()) 
+				if (dirRes->isCanRead()) 
 				{
-					if (_resources.Add(dirRes)) 
+					if (_resources.add(dirRes)) 
 					{
 						return true; 
 					}
@@ -193,9 +195,9 @@ REBOOL REResourcesStoragePrivate::AddResourcesPath(const REString & resourcesPat
 			REZipArchiveResource * zip = new REZipArchiveResource(resourcesPath);
 			if (zip)
 			{
-				if (zip->GetEntriesCount() > 0) 
+				if (zip->getEntriesCount() > 0) 
 				{
-					if (_resources.Add(zip))
+					if (_resources.add(zip))
 					{
 						return true;
 					}
@@ -207,11 +209,11 @@ REBOOL REResourcesStoragePrivate::AddResourcesPath(const REString & resourcesPat
 	return false;
 }
 
-REBOOL REResourcesStoragePrivate::ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer)
+REBOOL REResourcesStoragePrivate::readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 {
-	for (REUInt32 i = 0; i < _resources.Count(); i++) 
+	for (REUInt32 i = 0; i < _resources.count(); i++) 
 	{
-		if (_resources[i]->ReadToBuffer(resourcePath, toBuffer))
+		if (_resources[i]->readToBuffer(resourcePath, toBuffer))
 		{
 			return true;
 		}
@@ -222,20 +224,20 @@ REBOOL REResourcesStoragePrivate::ReadToBuffer(const REString & resourcePath, RE
 
 
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
-void REResourcesStorage::SetReadToBufferCallBack(REBOOL (*ReadToBuf)(const char *, REBuffer *))
+void REResourcesStorage::setReadToBufferCallBack(REBOOL (*ReadToBuf)(const char *, REBuffer *))
 {
 	REResourcesStoragePrivate::staticCallBacks.ReadToBuf = ReadToBuf;
 }
 
-void REResourcesStorage::SetIsExistsCallBack(REBOOL (*IsExists)(const char *))
+void REResourcesStorage::setIsExistsCallBack(REBOOL (*IsExists)(const char *))
 {
 	REResourcesStoragePrivate::staticCallBacks.IsExists = IsExists;
 }
 #endif	
 
-void REResourcesStorage::Clear()
+void REResourcesStorage::clear()
 {
-	REResourcesStoragePrivate::Clear();	
+	REResourcesStoragePrivate::clear();	
 }
 
 REResourcesStorage::REResourcesStorage()
@@ -248,47 +250,47 @@ REResourcesStorage::~REResourcesStorage()
 	
 }
 
-REBOOL REResourcesStorage::ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer)
+REBOOL REResourcesStorage::readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 {
-	if (resourcePath.Length() && toBuffer)
+	if (resourcePath.getLength() && toBuffer)
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf)
 		{
-			const char * p = resourcePath.UTF8String();
+			const char * p = resourcePath.getChars();
 			if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf(p, toBuffer))
 			{
 				return true;
 			}
 		}
 #endif
-		return REResourcesStoragePrivate::ReadToBuffer(resourcePath, toBuffer);			
+		return REResourcesStoragePrivate::readToBuffer(resourcePath, toBuffer);			
 	}
 	return false;
 }
 
-REBOOL REResourcesStorage::IsExists(const REString & resourcePath)
+REBOOL REResourcesStorage::isExists(const REString & resourcePath)
 {
-	if (resourcePath.Length())
+	if (resourcePath.getLength())
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.IsExists)
 		{
-			const char * p = resourcePath.UTF8String();
+			const char * p = resourcePath.getChars();
 			if (REResourcesStoragePrivate::staticCallBacks.IsExists(p))
 			{
 				return true;
 			}
 		}
 #endif		
-		return REResourcesStoragePrivate::IsExists(resourcePath);
+		return REResourcesStoragePrivate::isExists(resourcePath);
 	}
 	return false;
 }
 
-REBOOL REResourcesStorage::AddResourcesPath(const REString & resourcesPath)
+REBOOL REResourcesStorage::addResourcesPath(const REString & resourcesPath)
 {	
-	return REResourcesStoragePrivate::AddResourcesPath(resourcesPath);
+	return REResourcesStoragePrivate::addResourcesPath(resourcesPath);
 }
 
 

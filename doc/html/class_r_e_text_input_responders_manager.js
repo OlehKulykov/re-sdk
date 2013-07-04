@@ -1,16 +1,16 @@
 var class_r_e_text_input_responders_manager =
 [
-    [ "AcceptNewUTF8Text", "class_r_e_text_input_responders_manager.html#a0ab5cf1e2b13006f5ea74df532a60aaa", null ],
-    [ "AcceptNewWideText", "class_r_e_text_input_responders_manager.html#a4721778dad62c67dea2370e53c29f7a1", null ],
-    [ "GetDefaultManager", "class_r_e_text_input_responders_manager.html#a24e615806e497691027bccd889a23a52", null ],
-    [ "IsFirstResponder", "class_r_e_text_input_responders_manager.html#a8ca9e5d4e5998aba53a72c2f6270eb6f", null ],
-    [ "OnTextInputEnded", "class_r_e_text_input_responders_manager.html#a306c89af5cf4e21d3c73ff34c77dd373", null ],
-    [ "RegisterResponder", "class_r_e_text_input_responders_manager.html#a3859b904ce57a964be1af980b199c3f2", null ],
-    [ "ReleaseDefaultManager", "class_r_e_text_input_responders_manager.html#a7644f2a6f158212bdf7288410887a960", null ],
-    [ "RemoveFirstResponder", "class_r_e_text_input_responders_manager.html#ad3e053e4cdb61f84d56df0993b8dfeb6", null ],
-    [ "SetEndTextInputCallBack", "class_r_e_text_input_responders_manager.html#ac3bb088d9dd70d9caa13dab8bc6c6c3e", null ],
-    [ "SetFirstResponder", "class_r_e_text_input_responders_manager.html#ab658fa2374e1d443737d4deb3ae12c88", null ],
-    [ "SetStartUTF8TextInputCallBack", "class_r_e_text_input_responders_manager.html#ae16ede959de2e8b10107dc832d8b4960", null ],
-    [ "SetStartWideTextInputCallBack", "class_r_e_text_input_responders_manager.html#a356814cdac5750fcd511d03c5fa46e2e", null ],
-    [ "UnRegisterResponder", "class_r_e_text_input_responders_manager.html#a5f9cf8898b05b5a60e834954bba51df8", null ]
+    [ "acceptNewUTF8Text", "class_r_e_text_input_responders_manager.html#a38b9f100a96be35c2c0e74fb7d2404ff", null ],
+    [ "acceptNewWideText", "class_r_e_text_input_responders_manager.html#aa8ead6b0392d8e48c1850d3d2f2e5229", null ],
+    [ "getDefaultManager", "class_r_e_text_input_responders_manager.html#a8c89f3a829dc353edd16de0342625422", null ],
+    [ "isFirstResponder", "class_r_e_text_input_responders_manager.html#a187d539565b2ccf94006231e60c0d6de", null ],
+    [ "onTextInputEnded", "class_r_e_text_input_responders_manager.html#ac9e0e4b2a5154f49b7346db269742f75", null ],
+    [ "registerResponder", "class_r_e_text_input_responders_manager.html#a34ae89af97e376f5a149f57699a9076b", null ],
+    [ "releaseDefaultManager", "class_r_e_text_input_responders_manager.html#ac9398bc199e2159e0b855a79d4354584", null ],
+    [ "removeFirstResponder", "class_r_e_text_input_responders_manager.html#a63c08b5c0a4d82a0ebba3856b010fdb6", null ],
+    [ "setEndTextInputCallBack", "class_r_e_text_input_responders_manager.html#a29366626e6127022665ee81f67012f57", null ],
+    [ "setFirstResponder", "class_r_e_text_input_responders_manager.html#a8f53d0977210867279ff71f0eb13e313", null ],
+    [ "setStartUTF8TextInputCallBack", "class_r_e_text_input_responders_manager.html#a9545dce665ab6a4e39d48cb9192330c5", null ],
+    [ "setStartWideTextInputCallBack", "class_r_e_text_input_responders_manager.html#a77c888dab0e1922f0036281ca3056347", null ],
+    [ "unRegisterResponder", "class_r_e_text_input_responders_manager.html#a9c633c9e5e2ef44131d5367d53a44e03", null ]
 ];

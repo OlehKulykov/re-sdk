@@ -25,15 +25,15 @@
 #include "../../include/renetwork.h"
 #endif
 
-REUInt32 REData::FileRead(void * bufferForReading, const REUInt32 dataSizeToRead)
+REUInt32 REData::fileRead(void * bufferForReading, const REUInt32 dataSizeToRead)
 {
 	if (bufferForReading && dataSizeToRead )
 	{
-		REUByte * buff = (REUByte *)this->GetBuffer();
+		REUByte * buff = (REUByte *)this->getBuffer();
 		if (buff) 
 		{
 			REUInt32 sizeToRead = dataSizeToRead;
-			REUInt32 avaiableSize = this->GetSize() - _fileOffset;
+			REUInt32 avaiableSize = this->getSize() - _fileOffset;
 			if (avaiableSize < sizeToRead)
 			{
 				sizeToRead = avaiableSize;
@@ -48,12 +48,12 @@ REUInt32 REData::FileRead(void * bufferForReading, const REUInt32 dataSizeToRead
 	return 0;
 }
 
-REUInt32 REData::FileTell()
+REUInt32 REData::fileTell()
 {
 	return _fileOffset;
 }
 
-REInt32 REData::FileSeek(const REUInt32 fileOffset, int origin)
+REInt32 REData::fileSeek(const REUInt32 fileOffset, int origin)
 {
 	REUInt32 resultOffset = fileOffset;
 	if (origin == SEEK_CUR)
@@ -62,14 +62,14 @@ REInt32 REData::FileSeek(const REUInt32 fileOffset, int origin)
 	}
 	else if (origin == SEEK_END)
 	{
-		if (this->GetSize() < fileOffset)
+		if (this->getSize() < fileOffset)
 		{
 			return 2; // out of bounds
 		}
-		resultOffset = (this->GetSize() - fileOffset);
+		resultOffset = (this->getSize() - fileOffset);
 	}
 
-	if (resultOffset > this->GetSize()) // common for SEEK_CUR && SEEK_SET
+	if (resultOffset > this->getSize()) // common for SEEK_CUR && SEEK_SET
 	{
 		return 3; // out of bounds
 	}
@@ -78,59 +78,59 @@ REInt32 REData::FileSeek(const REUInt32 fileOffset, int origin)
 	return 0;
 }
 
-REInt32 REData::FileSeekFromEndFile(const REUInt32 fileOffset)
+REInt32 REData::fileSeekFromEndFile(const REUInt32 fileOffset)
 {
-	return this->FileSeek(fileOffset, SEEK_END);
+	return this->fileSeek(fileOffset, SEEK_END);
 }
 
-REInt32 REData::FileSeekFromBeginFile(const REUInt32 fileOffset)
+REInt32 REData::fileSeekFromBeginFile(const REUInt32 fileOffset)
 {
-	return this->FileSeek(fileOffset, SEEK_SET);
+	return this->fileSeek(fileOffset, SEEK_SET);
 }
 
-REInt32 REData::FileSeekFromCurrentFilePos(const REUInt32 fileOffset)
+REInt32 REData::fileSeekFromCurrentFilePos(const REUInt32 fileOffset)
 {
-	return this->FileSeek(fileOffset, SEEK_CUR);
+	return this->fileSeek(fileOffset, SEEK_CUR);
 }
 
-REInt32 REData::FileFError()
+REInt32 REData::fileFError()
 {
 	return 0;
 }
 
-REInt32 REData::FileClose()
+REInt32 REData::fileClose()
 {
 	return 0;	
 }
 
-REBOOL REData::IsEndOfFile()
+REBOOL REData::isEndOfFile()
 {
-	return (this->GetSize() == _fileOffset);
+	return (this->getSize() == _fileOffset);
 }
 
 REData & REData::operator=(const REData & anotherData)
 {
-	this->Clear();
+	this->clear();
 	
-	this->Set(anotherData.GetBuffer(), anotherData.GetSize());
+	this->set(anotherData.getBuffer(), anotherData.getSize());
 		
 	return (*this);
 }
 
-const REUByte * REData::GetBytes() const
+const REUByte * REData::getBytes() const
 {
-	return (const REUByte *)this->GetBuffer();
+	return (const REUByte *)this->getBuffer();
 }
 
-REUInt32 REData::GetHash() const
+REUInt32 REData::getHash() const
 {
 	REMD5Generator g;
-	return g.GetFromData(this->GetBuffer(), this->GetSize());
+	return g.getFromData(this->getBuffer(), this->getSize());
 }
 
-REBOOL REData::IsEmpty() const 
+REBOOL REData::isEmpty() const 
 {
-	return (this->GetSize() == 0);
+	return (this->getSize() == 0);
 }
 
 REData::REData(const REBuffer & buffer) : REBuffer(buffer),
@@ -156,11 +156,11 @@ REData::~REData()
 	
 }
 
-REBOOL REData::InitializeFromFilePath(const char * filePath, const REUInt32 filePathLength)
+REBOOL REData::initializeFromFilePath(const char * filePath, const REUInt32 filePathLength)
 {
-	this->Clear();
+	this->clear();
 	
-	FILE * fileHandle = REFile::FOpen(REString(filePath), "rb");
+	FILE * fileHandle = REFile::fileOpen(REString(filePath), "rb");
 	if ( fileHandle == NULL ) 
 	{
 		return false;
@@ -185,17 +185,17 @@ REBOOL REData::InitializeFromFilePath(const char * filePath, const REUInt32 file
 		return false;
 	}
 	
-	if (this->Resize((REUInt32)fileSize, false))
+	if (this->resize((REUInt32)fileSize, false))
 	{
-		size_t readedSize = fread(this->GetBuffer(), 1, this->GetSize(), fileHandle);
-		if (readedSize == this->GetSize())
+		size_t readedSize = fread(this->getBuffer(), 1, this->getSize(), fileHandle);
+		if (readedSize == this->getSize())
 		{
 			fclose(fileHandle);
 			return true;
 		}
 		else
 		{
-			this->Clear();
+			this->clear();
 		}
 	}
 	
@@ -203,52 +203,52 @@ REBOOL REData::InitializeFromFilePath(const char * filePath, const REUInt32 file
 	return false;
 }
 
-REBOOL REData::InitializeFromResourcePath(const char * filePath, const REUInt32 filePathLength)
+REBOOL REData::initializeFromResourcePath(const char * filePath, const REUInt32 filePathLength)
 {
-	this->Clear();
+	this->clear();
 	
 	REResourcesStorage r;
-	return r.ReadToBuffer(REString(filePath), this);
+	return r.readToBuffer(REString(filePath), this);
 }
 
-REBOOL REData::InitFromPath(const char * filePath, const REUInt32 filePathLength)
+REBOOL REData::initFromPath(const char * filePath, const REUInt32 filePathLength)
 {
-	this->Clear();
+	this->clear();
 	
-	if ( this->InitializeFromResourcePath(filePath, filePathLength) ) { return true; }
-	else if ( this->InitializeFromFilePath(filePath, filePathLength) ) { return true; }
+	if ( this->initializeFromResourcePath(filePath, filePathLength) ) { return true; }
+	else if ( this->initializeFromFilePath(filePath, filePathLength) ) { return true; }
 	return false;
 }
 
-REBOOL REData::InitFromPath( const REString & filePath )
+REBOOL REData::initFromPath( const REString & filePath )
 {
-	this->Clear();
+	this->clear();
 	
-	if ( filePath.IsEmpty() ) 
+	if ( filePath.isEmpty() ) 
 	{
 		return false;
 	}
 	
-	const char * s = filePath.UTF8String();
-	const REUInt32 l = filePath.Length();
-	return this->InitFromPath(s, l);
+	const char * s = filePath.getChars();
+	const REUInt32 l = filePath.getLength();
+	return this->initFromPath(s, l);
 }
 
-REBOOL REData::InitFromPath( const char * filePath )
+REBOOL REData::initFromPath( const char * filePath )
 {
-	this->Clear();	
+	this->clear();	
 	
 	if (filePath) 
 	{
 		const REUInt32 filePathLength = (REUInt32)strlen(filePath);
-		return this->InitFromPath(filePath, filePathLength);
+		return this->initFromPath(filePath, filePathLength);
 	}
 	return false;
 }
 
-REBOOL REData::InitFromBuffer(const REBuffer & buffer)
+REBOOL REData::initFromBuffer(const REBuffer & buffer)
 {
-	this->Clear();
+	this->clear();
 	
 	(*this) = buffer;
 
@@ -256,9 +256,9 @@ REBOOL REData::InitFromBuffer(const REBuffer & buffer)
 }
 
 /// __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
-REBOOL REData::InitFromURLString(const REString & urlString)
+REBOOL REData::initFromURLString(const REString & urlString)
 {
-	this->Clear();
+	this->clear();
 	
 #ifdef __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
 	REURL url(urlString);
@@ -273,7 +273,7 @@ REBOOL REData::InitFromURLString(const REString & urlString)
 		{
 			REBuffer downlBuff;
 			const REBOOL isSended = REURLConnectionObject::SendRequest(request, &downlBuff, NULL);
-			request->Release();
+			request->release();
 			if (isSended)
 			{
 				if (downlBuff.GetSize()) 

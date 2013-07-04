@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['makecopy',['makeCopy',['../class_r_e_string_utils_private.html#a349f3d04a3f463a4cf2fa4d7d6c5f46d',1,'REStringUtilsPrivate']]],
   ['malloc',['Malloc',['../class_r_e_mem.html#abea297d76e6b939f02951a2a335ba0c2',1,'REMem']]],
   ['mallocalign',['MallocAlign',['../class_r_e_mem.html#a28665fa067a5e53b5298ccb53b04596c',1,'REMem']]],
   ['mallocalignzeros',['MallocAlignZeros',['../class_r_e_mem.html#a1e1200a22a0fdbdeb378c532840d9fae',1,'REMem']]],
@@ -22,12 +23,12 @@ var searchData=
   ['math_5fradian',['MATH_RADIAN',['../_r_e_math_8h.html#ad14cf921dabaee9e8762b1aa712b2e82',1,'REMath.h']]],
   ['math_5fround',['MATH_ROUND',['../_r_e_math_8h.html#ad8f32ac2118655fdd49bcc1706c4a374',1,'REMath.h']]],
   ['math_5fsqrt_5f2',['MATH_SQRT_2',['../_r_e_math_8h.html#a8d082eb07b859a58acb940d0b4004b0e',1,'REMath.h']]],
-  ['max',['Max',['../class_r_e_math.html#ac552547afee27ee5b4fc18bccb878d35',1,'REMath::Max(const T &amp;v1, const T &amp;v2)'],['../class_r_e_math.html#a6972957894bceaada70f6fbc047703da',1,'REMath::Max(const T &amp;v1, const T &amp;v2, const T &amp;v3)'],['../class_r_e_math.html#a30f2e483423da27abafa487e82baa30f',1,'REMath::Max(const T &amp;v1, const T &amp;v2, const T &amp;v3, const T &amp;v4)'],['../_r_e_math_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f',1,'MAX():&#160;REMath.h']]],
+  ['max',['max',['../class_r_e_math.html#a6e0685654c9c79314735df2eb607cf2a',1,'REMath::max(const T &amp;v1, const T &amp;v2)'],['../class_r_e_math.html#a3a6ba43a2e5d06d109dbec190995ade7',1,'REMath::max(const T &amp;v1, const T &amp;v2, const T &amp;v3)'],['../class_r_e_math.html#ab68f1d932043a138da0cace9238ac3c9',1,'REMath::max(const T &amp;v1, const T &amp;v2, const T &amp;v3, const T &amp;v4)'],['../_r_e_math_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f',1,'MAX():&#160;REMath.h']]],
   ['memcpy',['Memcpy',['../class_r_e_mem.html#a4375b0b12b820b748a4cc31bf7b0b1ff',1,'REMem']]],
   ['memmove',['Memmove',['../class_r_e_mem.html#a380c6e971d409f129a0606083d832b2e',1,'REMem']]],
   ['memset',['Memset',['../class_r_e_mem.html#a1adb23484180b53139db2d1efe25e9a1',1,'REMem']]],
-  ['min',['Min',['../class_r_e_math.html#a76ce45159463e3c3aa3ee339bce7697b',1,'REMath::Min(const T &amp;v1, const T &amp;v2)'],['../class_r_e_math.html#a7e00e2069c5fad334af59da0a62d984e',1,'REMath::Min(const T &amp;v1, const T &amp;v2, const T &amp;v3)'],['../class_r_e_math.html#a579ddc9041c9e8d8f930ca47a3a8a8b4',1,'REMath::Min(const T &amp;v1, const T &amp;v2, const T &amp;v3, const T &amp;v4)'],['../_r_e_math_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f',1,'MIN():&#160;REMath.h']]],
+  ['min',['min',['../class_r_e_math.html#ac27fdffca1865d34e1493b5ba98a5b9e',1,'REMath::min(const T &amp;v1, const T &amp;v2)'],['../class_r_e_math.html#a3e57ea9078b2c1e890351039e3e05fbf',1,'REMath::min(const T &amp;v1, const T &amp;v2, const T &amp;v3)'],['../class_r_e_math.html#a528c6a46d5dd3639e3f894dcaaa1fb49',1,'REMath::min(const T &amp;v1, const T &amp;v2, const T &amp;v3, const T &amp;v4)'],['../_r_e_math_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f',1,'MIN():&#160;REMath.h']]],
   ['modelview',['modelView',['../class_r_e_camera.html#a26732c0c765fbba30e8f2ebc1f1bc16b',1,'RECamera']]],
-  ['multiply',['Multiply',['../class_r_e_matrix4.html#a992c3cf3cb1373fa45f85d87bab80df2',1,'REMatrix4::Multiply()'],['../class_r_e_quaternion.html#a6f976c3bf71830d950c3c7f5fb740dfb',1,'REQuaternion::Multiply()'],['../class_r_e_vector2.html#a4f346722ffe6071fc30d2bd80b899c0b',1,'REVector2::Multiply()'],['../class_r_e_vector3.html#aaa114644fb9714721c3fa819e0bc83bf',1,'REVector3::Multiply()']]],
-  ['multiplyscalar',['MultiplyScalar',['../class_r_e_vector2.html#a6754fb29a92db156af138be2ea7f794d',1,'REVector2::MultiplyScalar()'],['../class_r_e_vector3.html#ae43fafcb9eae7d4f1849f0a4f08bb30e',1,'REVector3::MultiplyScalar()']]]
+  ['multiply',['multiply',['../class_r_e_matrix4.html#ab5ff5e523d1a318a98599aef3ecd253d',1,'REMatrix4::multiply()'],['../class_r_e_quaternion.html#aa0ed92ee38ad9a7de295d3715c5ce9f3',1,'REQuaternion::multiply()'],['../class_r_e_vector2.html#a541eed7dc072e8899f2cb465cc015528',1,'REVector2::multiply()'],['../class_r_e_vector3.html#a3a91c2eef1b0c52bddcdda065217c16a',1,'REVector3::multiply()']]],
+  ['multiplyscalar',['multiplyScalar',['../class_r_e_vector2.html#a945bb04f07320e85ae18088527f1ddd7',1,'REVector2::multiplyScalar()'],['../class_r_e_vector3.html#ae8e2c558b997d470a19412e985d6423d',1,'REVector3::multiplyScalar()']]]
 ];

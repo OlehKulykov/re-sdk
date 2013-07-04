@@ -28,18 +28,18 @@
 /// Class template of array.
 template<class T> class REArray
 {
-private:
+protected:
 	T * _arr;
 	REUInt32 _count;
 	REUInt32 _capacity;
-	T * NewMemory(const REUInt32 capacity)
+	T * newMemory(const REUInt32 capacity)
 	{
 		return (T*)REMem::MallocAlignZeros(sizeof(T) * capacity, sizeof(T));
 	}
 	
-	REBOOL Resize(const REUInt32 newCapacity)
+	REBOOL resize(const REUInt32 newCapacity)
 	{
-		T * newArray = this->NewMemory(newCapacity);
+		T * newArray = this->newMemory(newCapacity);
 		if (newArray)
 		{
 			T * prevArray = _arr;
@@ -56,7 +56,7 @@ private:
 		return false;
 	}
 
-	REBOOL QSort(int (*compareFunction)(T*, T*), REUInt32 left, REUInt32 right)
+	REBOOL qSort(int (*compareFunction)(T*, T*), REUInt32 left, REUInt32 right)
 	{
 		if (right > left + 1)
 		{
@@ -70,7 +70,7 @@ private:
 				{
 					if ( compareFunction(&_arr[l], piv) > 0 )
 					{
-						this->Swap(l, --r);
+						this->swap(l, --r);
 					}
 					else
 					{
@@ -84,7 +84,7 @@ private:
 				{
 					if (_arr[l] > (*piv))
 					{
-						this->Swap(l, --r);
+						this->swap(l, --r);
 					}
 					else
 					{
@@ -93,16 +93,16 @@ private:
 				}
 			}
 
-			this->Swap(--l, left);
-			QSort(compareFunction, left, l);
-			QSort(compareFunction, r, right);
+			this->swap(--l, left);
+			this->qSort(compareFunction, left, l);
+			this->qSort(compareFunction, r, right);
 		}
 		return true;
 	}
 	
 public:
 	/// Array iterator struct.
-	typedef struct Iterator
+	typedef struct _iterator
 	{
 	private:
 		REArray<T> * _arrPtr;
@@ -111,7 +111,7 @@ public:
 	public:
 		/// Go to next object.
 		/// If can go next returns true, otherwice return false.
-		REBOOL Next()
+		REBOOL next()
 		{
 			if ( _nextIndex < _arrPtr->_count )
 			{
@@ -122,20 +122,20 @@ public:
 			return false;
 		}
 		/// Returns address of current object.
-		T & Object()
+		T & object()
 		{
 			return (*_cur);
 		}
 		/// Removes current object.
 		/// Returns true if removed, otherwice returns false if can't remove or index not exists.
-		REBOOL RemoveObject()
+		REBOOL removeObject()
 		{
 			REUInt32 removeIndex = 0;
 			if (_nextIndex) 
 			{ 
 				removeIndex = (_nextIndex - 1); 
 			}
-			if (_arrPtr->RemoveAt(removeIndex)) 
+			if (_arrPtr->removeAt(removeIndex)) 
 			{
 				_nextIndex = removeIndex;
 				_cur = _arrPtr->_arr + _nextIndex;
@@ -146,40 +146,40 @@ public:
 		
 		/// Replaces current object with another object.
 		/// Returns true if replaced, otherwice returns false if can't replace or index not exists.
-		REBOOL ReplaceWithObject(const T & withObject)
+		REBOOL replaceWithObject(const T & withObject)
 		{
 			REUInt32 replaceIndex = 0;
 			if (_nextIndex)
 			{
 				replaceIndex = (_nextIndex - 1);
 			}
-			return _arrPtr->Replace(replaceIndex, withObject);
+			return _arrPtr->replace(replaceIndex, withObject);
 		}
 		
 		/// Cancels iteration.
-		void Break() { _nextIndex = _arrPtr->_count; }
+		void breakIteration() { _nextIndex = _arrPtr->_count; }
 		
 		/// Returns current index.
-		REUInt32 Index() const
+		REUInt32 index() const
 		{
 			if (_nextIndex) { return (_nextIndex - 1); }
 			return 0;
 		}
 		/// Construct iterator object with array pointer.
-		Iterator(REArray<T> * arrPtr) : _arrPtr(arrPtr), _cur(0), _nextIndex(0) { }
+		_iterator(REArray<T> * arrPtr) : _arrPtr(arrPtr), _cur(0), _nextIndex(0) { }
 	} 
 	/// Array iterator struct.
 	Iterator;
 
 	/// Returns array iterator.
-	Iterator GetIterator()
+	Iterator getIterator()
 	{
 		return Iterator(this);
 	}
 	
 	/// Set object at index.
 	/// Returns true if setted, otherwice returns false if index not exists.
-	REBOOL SetAt(const REUInt32 index, const T & obj)
+	REBOOL setAt(const REUInt32 index, const T & obj)
 	{
 		if (index < _count)
 		{
@@ -191,13 +191,32 @@ public:
 	
 	/// Returns object address at index. 
 	/// Unsecure because no checking for correct index.
-	T & operator [](const REUInt32 & index)
+	T & operator [](const REUInt32 index)
+	{
+		return _arr[index];
+	}
+	
+	/// Returns object address at index. 
+	/// Unsecure because no checking for correct index.
+	T & operator [](const REUInt32 index) const
 	{
 		return _arr[index];
 	}
 	
 	/// Returns address of object at index or if index not exists address of static object memset()'ed with 0 value.
-	T & At(const REUInt32 index) const
+	T & at(const REUInt32 index)
+	{
+		if ( index >= _count )
+		{
+			static T err;
+			REMem::Memset(&err, 0, sizeof(T));
+			return err;
+		}
+		return _arr[index];
+	}
+	
+	/// Returns address of object at index or if index not exists address of static object memset()'ed with 0 value.
+	T & at(const REUInt32 index) const
 	{
 		if ( index >= _count )
 		{
@@ -209,7 +228,7 @@ public:
 	}
 	
 	/// Returns address of last object or if index not exists address of static object memset()'ed with 0 value.
-	T & LastObject() const
+	T & lastObject() const
 	{
 		if ( _count == 0 )
 		{
@@ -217,22 +236,22 @@ public:
 			REMem::Memset(&err, 0, sizeof(T));
 			return err;
 		}
-		return this->At(_count - 1);
+		return this->at(_count - 1);
 	}
 
 	/// Returns address of first object or if index not exists address of static object memset()'ed with 0 value.
-	T & FirstObject() const
+	T & firstObject() const
 	{
-		return this->At(0);
+		return this->at(0);
 	}
 
 	/// Adds object to the endof array.
 	/// Returns true if added, otherwice returns false if can't add new object.
-	REBOOL Add(const T & object)
+	REBOOL add(const T & object)
 	{
 		if (_count == _capacity)
 		{
-			if ( !this->Resize(_capacity + REARRAY_CAPACITY_INCREMENT) ) 
+			if ( !this->resize(_capacity + REARRAY_CAPACITY_INCREMENT) ) 
 			{
 				return false;
 			}
@@ -244,7 +263,7 @@ public:
 
 	/// Removes object at index.
 	/// Returns true if removed or false if index not exists.
-	REBOOL RemoveAt(const REUInt32 index)
+	REBOOL removeAt(const REUInt32 index)
 	{
 		if (index >= _count) 
 		{ 
@@ -257,27 +276,27 @@ public:
 
 	/// Removes last object in array.
 	/// Returns true if rempved or false on error or array is empty.
-	REBOOL RemoveLast() 
+	REBOOL removeLast() 
 	{
 		REUInt32 removeIndex = 0;
 		if (_count) 
 		{ 
 			removeIndex = (_count - 1); 
 		} 
-		return this->RemoveAt(removeIndex);
+		return this->removeAt(removeIndex);
 	}
 
 	/// Removes first object in array.
 	/// Returns true if removed or false on error or array is empty.
-	REBOOL RemoveFirst()
+	REBOOL removeFirst()
 	{
-		return this->RemoveAt(0);
+		return this->removeAt(0);
 	}
 
-	/// Swaps two objects by it's indexes.
+	/// swaps two objects by it's indexes.
 	/// Returns true if swaped or false if indexes not exists or on error.
 	/// Indexes not cheched for equation.
-	REBOOL Swap(const REUInt32 firstIndex, const REUInt32 secondIndex)
+	REBOOL swap(const REUInt32 firstIndex, const REUInt32 secondIndex)
 	{
 		if ( (firstIndex < _count) && (secondIndex < _count) ) 
 		{
@@ -309,11 +328,11 @@ public:
 	/// }
 	///  
 	/// REArray<int> array; ....; array.Sort(INTCompareFunction);
-	REBOOL Sort(int (*compareFunction)(T*, T*))
+	REBOOL sort(int (*compareFunction)(T*, T*))
 	{
 		if (compareFunction != NULL) 
 		{
-			return this->QSort(compareFunction, 0, _count);
+			return this->qSort(compareFunction, 0, _count);
 		}
 		return false;
 	}
@@ -321,16 +340,16 @@ public:
 	
 	/// Sort array
 	/// T must implement operator '>'
-	REBOOL Sort()
+	REBOOL sort()
 	{
-		return this->QSort(0, 0, _count);
+		return this->qSort(0, 0, _count);
 	}
 	
 
 	/// Binary search for object, array must be sorted
 	/// T must implement operator '==' and operator '>'
 	/// Return object index or RENotFound if not found.
-	REUInt32 BinarySearch(const T & object)
+	REUInt32 binarySearch(const T & object)
 	{
 		if (_count)
 		{
@@ -368,7 +387,7 @@ public:
 	/// Linear search for object
 	/// T must implement operator '=='
 	/// Return object index or RENotFound if not found
-	REUInt32 Search(const T & object)
+	REUInt32 search(const T & object)
 	{
 		for (REUInt32 index = 0; index < _count; index++) 
 		{
@@ -382,13 +401,13 @@ public:
 	
 	/// Inserts object at index.
 	/// Returns true if inserted or false if index not exists
-	REBOOL Insert(const REUInt32 insertAtIndex, const T & object)
+	REBOOL insert(const REUInt32 insertAtIndex, const T & object)
 	{
 		if (insertAtIndex < _count)
 		{
 			if (_count == _capacity)
 			{
-				if (!this->Resize(_capacity + REARRAY_CAPACITY_INCREMENT)) 
+				if (!this->resize(_capacity + REARRAY_CAPACITY_INCREMENT)) 
 				{
 					return false;
 				}
@@ -400,14 +419,14 @@ public:
 		}
 		else if ((insertAtIndex == 0) && (_count == 0))
 		{
-			return this->Add(object);
+			return this->add(object);
 		}
 		return false;
 	}
 
 	/// Replaces existed object at index with another object.
 	/// Returns true if replaces or false if index not exists.
-	REBOOL Replace(const REUInt32 replaceAtIndex, const T & withObject)
+	REBOOL replace(const REUInt32 replaceAtIndex, const T & withObject)
 	{
 		if (replaceAtIndex < _count)
 		{
@@ -420,12 +439,12 @@ public:
 	/// Sets capacity of array. 
 	/// If new capacity is equal current capacity the return true and do nothing.
 	/// Be careful: if you provide new capacity les than current capacity you can lost data.
-	REBOOL SetCapacity(const REUInt32 newCapacity)
+	REBOOL setCapacity(const REUInt32 newCapacity)
 	{
 		if (_capacity == newCapacity) { return true; }
 		const REUInt32 newCap = (newCapacity > 0) ? newCapacity : REARRAY_CAPACITY_INCREMENT;
 		const REUInt32 newCnt = (_count > newCap) ? newCap : _count;
-		if (this->Resize(newCap))
+		if (this->resize(newCap))
 		{
 			_count = newCnt;
 			return true;
@@ -434,16 +453,16 @@ public:
 	}
 	
 	/// Returns count of objects in array.
-	const REUInt32 Count() const { return _count; }
+	const REUInt32 count() const { return _count; }
 	
     /// Returns capacity of array.
-    const REUInt32 Capacity() const { return _capacity; }
+    const REUInt32 capacity() const { return _capacity; }
 
 	/// Check is array empty.
-	REBOOL IsEmpty() const { return (_count == 0); }
+	REBOOL isEmpty() const { return (_count == 0); }
 	
 	/// Setes count of array to zero. 
-    void Clear() { _count = 0; }
+	virtual void clear() { _count = 0; }
 
 	/// Setes object from another array.
 	REArray<T> & operator=(const REArray<T> & anotherArray)
@@ -463,7 +482,7 @@ public:
 		}
 		
 		if (_capacity == 0) { _capacity = REARRAY_CAPACITY_INCREMENT; }
-		_arr = this->NewMemory(_capacity);
+		_arr = this->newMemory(_capacity);
 		if (_arr) 
 		{ 
 			if (_count > 0) { REMem::Memcpy(_arr, anotherArray._arr, _count * sizeof(T)); } 
@@ -481,7 +500,7 @@ public:
 	REArray(REUInt32 newCapacity = REARRAY_CAPACITY_INCREMENT) : _arr(0), _count(0), _capacity(newCapacity)
 	{
 		if (_capacity == 0) { _capacity = REARRAY_CAPACITY_INCREMENT; }
-		_arr = this->NewMemory(_capacity);
+		_arr = this->newMemory(_capacity);
 		if ( _arr == 0 ) { _capacity = 0; }
 	}
 	
@@ -489,7 +508,7 @@ public:
 	REArray(const REArray<T> & anotherArray) : _arr(0), _count(anotherArray._count), _capacity(anotherArray._capacity)
 	{
 		if (_capacity == 0) { _capacity = REARRAY_CAPACITY_INCREMENT; }
-		_arr = this->NewMemory(_capacity);
+		_arr = this->newMemory(_capacity);
 		if (_arr) 
 		{
 			if (_count > 0) { REMem::Memcpy(_arr, anotherArray._arr, _count * sizeof(T)); }
@@ -510,24 +529,16 @@ public:
 	
 	/// Check is array pointer exists and array not empty.
 	/// Returns true if pointer is not NULL and array has objects, otherwice returns false.
-	static REBOOL IsNotEmpty(const REArray<T> * array) 
+	static REBOOL isNotEmpty(const REArray<T> * array) 
 	{
-		if (array) 
-		{
-			return (array->_count > 0);
-		}
-		return false;
+		return array ? (array->_count > 0) : false;
 	}
 	
 	/// Check is array empty.
 	/// Returns true if pointer is NULL or array has no objects.
-	static REBOOL IsEmpty(const REArray<T> * array) 
+	static REBOOL isEmpty(const REArray<T> * array) 
 	{
-		if (array) 
-		{
-			return array->IsEmpty();
-		}
-		return true;
+		return array ? array->isEmpty() : true;
 	}
 };
 

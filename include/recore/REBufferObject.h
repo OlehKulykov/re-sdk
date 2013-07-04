@@ -41,30 +41,30 @@ protected:
 	virtual ~REBufferObject();
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual REBOOL IsEqual(REObject * anotherObject);
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
 	
 	/// Creates and return pointer to new buffer object with zero size or NULL on error.
 	/// After using call Release().
-	static REBufferObject * Create();
+	static REBufferObject * create();
 	
 	/// Creates and return pointer to new buffer object with 'buffSize' data size or NULL on error.
 	/// After using call Release().
-	static REBufferObject * CreateWithSize(const REUInt32 buffSize);
+	static REBufferObject * createWithSize(const REUInt32 buffSize);
 	
 	/// Creates and return pointer to new buffer object with content of string object 'str' or NULL on error or string is empty of NULL.
 	/// After using call Release().
-	static REBufferObject * CreateWithStringObject(REStringObject * str);
+	static REBufferObject * createWithStringObject(REStringObject * str);
 	
 	/// Creates and return pointer to new buffer object with content of string object or NULL on error or string is empty.
 	/// After using call Release().
-	static REBufferObject * CreateWithString(const REString & str);
+	static REBufferObject * createWithString(const REString & str);
 	
 	/// Creates and return pointer to new buffer object with content of 'memoryBuff' buffer data with 'memoryBuffSize' size or NULL on error.
 	/// After using call Release().
-	static REBufferObject * CreateWithMemory(const void * memoryBuff, const REUInt32 memoryBuffSize);
+	static REBufferObject * createWithMemory(const void * memoryBuff, const REUInt32 memoryBuffSize);
 };
 
 

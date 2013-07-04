@@ -40,47 +40,47 @@ private:
 	REArray<REAnimationFloatParams *> _viewParams;
 	REAnimationBase * _animation;
 	
-	static REAnimationBase * CreateAnimationForTypeWithInfoAndParams(const REAnimationType type,
+	static REAnimationBase * createAnimationForTypeWithInfoAndParams(const REAnimationType type,
 																	 REEditableAnimationInfo * info,
 																	 REArray<REAnimationFloatParams *> * params);
-	static REAnimationFloatParams * FindParamForObjectInParams(REObject * view, REArray<REAnimationFloatParams *> * params);
-	static REFloat32 GetProgressForObjectAnimationInParams(REObject * animatedObject,
+	static REAnimationFloatParams * findParamForObjectInParams(REObject * view, REArray<REAnimationFloatParams *> * params);
+	static REFloat32 getProgressForObjectAnimationInParams(REObject * animatedObject,
 														   REAnimationBase * animation,
 														   REArray<REAnimationFloatParams *> * params);
-	static REBOOL StopAllAnimationForObjectWithStopType(REObject * animatedObject,
+	static REBOOL stopAllAnimationForObjectWithStopType(REObject * animatedObject,
 														const REAnimationStopType stopType,
 														REArray<REAnimationFloatParams *> * params);
 protected:
 	REEditableAnimationInfo(void * customDataOrNull);	
 	virtual ~REEditableAnimationInfo();
 public:
-	const REFloat32 GetProgress(REObject * animatedObject);
-	REBOOL StopAllAnimationForView(REObject * view, const REAnimationStopType stopType);
-	void Pause();
+	const REFloat32 getProgress(REObject * animatedObject);
+	REBOOL stopAllAnimationForView(REObject * view, const REAnimationStopType stopType);
+	void pause();
 	void Continue();
-	REBOOL ExecuteAnimation();
-	REBOOL AddFloatParam(REObject * view, 
+	REBOOL executeAnimation();
+	REBOOL addFloatParam(REObject * view, 
 						 REUInt16 * animationsCounter,
 						 REFloat32 * param, 
 						 const REFloat32 startValue, 
 						 const REFloat32 endValue);	
-	virtual const REUInt32 GetObjectsCount() const;
-	virtual void GetObjects(REArray<REObject *> * views) const;
-	virtual REBOOL IsEmpty() const;
-	void DecrementCounterAndReleaseAllViews();
-	void SetStartMethod(REClassMethod * m);
-	void SetStopMethod(REClassMethod * m);
-	void SetTime(const RETimeInterval t) { _time = t; }
-	void SetStartDelay(const RETimeInterval t) { _startDelay = t; }
-	void SetLoopsCount(const REUInt32 v) { _loopsCount = v; }
-	void SetAnimationType(const REAnimationType v) { _animationType = (REUByte)v; }
-	void SetLoopType(const REAnimationLoopType v) { _loopType = (REUByte)v; }
-	void SetStopType(const REAnimationStopType v) { _stopType = (REUByte)v; }
+	virtual const REUInt32 getObjectsCount() const;
+	virtual void getObjects(REArray<REObject *> * views) const;
+	virtual REBOOL isEmpty() const;
+	void decrementCounterAndReleaseAllViews();
+	void setStartMethod(REClassMethod * m);
+	void setStopMethod(REClassMethod * m);
+	void setTime(const RETimeInterval t) { _time = t; }
+	void setStartDelay(const RETimeInterval t) { _startDelay = t; }
+	void setLoopsCount(const REUInt32 v) { _loopsCount = v; }
+	void setAnimationType(const REAnimationType v) { _animationType = (REUByte)v; }
+	void setLoopType(const REAnimationLoopType v) { _loopType = (REUByte)v; }
+	void setStopType(const REAnimationStopType v) { _stopType = (REUByte)v; }
 	
 	/* REObject */
-	virtual void OnReleased();
+	virtual void onReleased();
 	
-	static REEditableAnimationInfo * CreateWithCustomData(void * customDataOrNull);	
+	static REEditableAnimationInfo * createWithCustomData(void * customDataOrNull);	
 };
 
 

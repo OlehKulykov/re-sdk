@@ -44,7 +44,7 @@ private:
 	REPoint2 _lastUserClickPos;
 	REUInt32 _isLastUserClickMoving;
 
-	REBOOL InitGUIApplication(REViewController * rootViewController, void * windowHandle);
+	REBOOL initGUIApplication(REViewController * rootViewController, void * windowHandle);
 
 protected:
 	/// Constructs empty gui application.
@@ -55,47 +55,47 @@ protected:
 	
 public:
 	/// Returns pointer to root view controller.
-	REViewController * GetRootViewController() const;
+	REViewController * getRootViewController() const;
 	
 	/// Setting new root view controller. 
 	/// Previous view controller will be Release()'ed and 'newRootViewController' exists it will be Retain()ed.
-	void SetRootViewController(REViewController * newRootViewController);
+	void setRootViewController(REViewController * newRootViewController);
 	
 	/// Try to initialize base REApplication and than GUI application.
-	virtual REBOOL Initialize();
+	virtual REBOOL initialize();
 	
 	/// Try to initialize base REApplication and than GUI application with root view controller.
 	/// If default RERenderDevice if not initialized it will try to init.
 	/// 'rootViewController' will be Retain()'ed.
-	virtual REBOOL Initialize(REViewController * rootViewController);
+	virtual REBOOL initialize(REViewController * rootViewController);
 	
 	/// Try to initialize base REApplication and than GUI application with root view controller
 	/// and window handle.
 	/// Window handle using when creating application using DirectX. 
 	/// If default RERenderDevice if not initialized it will try to init.
 	/// 'rootViewController' will be Retain()'ed.
-	virtual REBOOL Initialize(REViewController * rootViewController, void * windowHandle);
+	virtual REBOOL initialize(REViewController * rootViewController, void * windowHandle);
 	
 	/// Checks is application successfully initialized and ready to work.
-	virtual REBOOL IsOK() const;
+	virtual REBOOL isOK() const;
 	
 	/// Suspends execution of the application
 	/// Returns true if application paused and false on error or if application already paused
-	virtual REBOOL Pause();
+	virtual REBOOL pause();
 	
 	/// Resumes execution of the application
 	/// Returns true if application resumed and false on error or if application already resumed
-	virtual REBOOL Resume();
+	virtual REBOOL resume();
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/* IRERenderable */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 #ifdef __RE_OS_DESKTOP__
 	/// Call when user mouse click moved on screen without clicking with 'screenX' and 'screenY' coords.
@@ -106,18 +106,18 @@ public:
 	
 	/// Call when user click(mouse or touch) starts with 'screenX' and 'screenY' coords.
 	/// 'screenX' and 'screenY' this is coordinates from top left of window using window coordinate system.
-	void OnClickOnScreenStart(const REFloat32 screenX, const REFloat32 screenY);
+	void onClickOnScreenStart(const REFloat32 screenX, const REFloat32 screenY);
 	
 	/// Call when user click(mouse or touch) end with 'screenX' and 'screenY' coords.
 	/// 'screenX' and 'screenY' this is coordinates from top left of window using window coordinate system.
-	void OnClickOnScreenEnd(const REFloat32 screenX, const REFloat32 screenY);
+	void onClickOnScreenEnd(const REFloat32 screenX, const REFloat32 screenY);
 	
 	/// Call when user click(mouse or touch) moving after starts and before end with 'screenX' and 'screenY' coords.
 	/// 'screenX' and 'screenY' this is coordinates from top left of window using window coordinate system.
-	void OnClickMoveOnScreen(const REFloat32 screenX, const REFloat32 screenY);
+	void onClickMoveOnScreen(const REFloat32 screenX, const REFloat32 screenY);
 	
 	/// Creates and returns new gui application object.
-	static REGUIApplication * Create();
+	static REGUIApplication * create();
 };
 
 

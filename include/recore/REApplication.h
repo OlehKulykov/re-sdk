@@ -22,60 +22,62 @@
 #include "REAutoReleasePool.h"
 #include "RETime.h"
 #include "REObject.h"
+#include "REString.h"
+#include "REMutableString.h"
 
 /// Class of recore basic application
 class __RE_PUBLIC_CLASS_API__ REApplication : public REObject
 {
 private:
 	REAutoReleasePool * _appAutoReleasePool;
-	REString _errorDescriptionString;
+	REMutableString _errorDescriptionString;
 	
-	REBOOL REApplicationInit();
+	REBOOL reapplicationInit();
 	
 protected:
-	void AddToErrorDescription(const REString & errorString);
-	void ClearErrorDescription();
+	void addToErrorDescription(const REString & errorString);
+	void clearErrorDescription();
 	REApplication();
 	virtual ~REApplication();
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/// Returns string with application error description string.
-	const REString & GetErrorDescriptionString() const;
+	const REString & getErrorDescriptionString() const;
 	
 	/// Returns name of application.
-	virtual REString GetName() const;
+	virtual REString getName() const;
 	
 	/// Returns float value of application version
-	virtual REFloat32 GetVersion() const;
+	virtual REFloat32 getVersion() const;
 	
 	/// Returns application description.
-	virtual REString GetDescription() const;
+	virtual REString getDescription() const;
 	
 	/// Initializes application.
-	virtual REBOOL Initialize();
+	virtual REBOOL initialize();
 	
 	/// Checks is application successfully initialized and ready to work
-	virtual REBOOL IsOK() const;
+	virtual REBOOL isOK() const;
 	
 	/// Suspends execution of the application
 	/// Returns true if application paused and false on error or if application already paused
-	virtual REBOOL Pause();
+	virtual REBOOL pause();
 	
 	/// Resumes execution of the application
 	/// Returns true if application resumed and false on error or if application already resumed
-	virtual REBOOL Resume();
+	virtual REBOOL resume();
 	
 	/// Checks is application paused
-	virtual REBOOL IsPaused() const;
+	virtual REBOOL isPaused() const;
 	
 	/// Updates application logic. Call this method from thread in witch application was created.
 	/// Need for updating application time, main loop objects and default auto release pool.
-	void Update();
+	void update();
 };
 
 

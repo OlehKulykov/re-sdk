@@ -29,14 +29,14 @@
 #define RE_TEXTFIELD_XML_SHOW_CURSOR_KEY_STRING "showcursor"
 #define RE_TEXTFIELD_XML_SHOW_CURSOR_FORMAT_STRING "%i"
 
-REBOOL RETextField::AcceptTextFieldStringParameter(RETextField * textField, const char * key, const char * value)
+REBOOL RETextField::acceptTextFieldStringParameter(RETextField * textField, const char * key, const char * value)
 {
     if (strcmp(key, RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_KEY_STRING) == 0)
     {
         float v = 0.0f;
         if (sscanf(value, RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_FORMAT_STRING, &v) == 1)
         {
-            textField->SetCursorBlinkTime((v > 0.0f) ? (RETimeInterval)v : 0.0);
+            textField->setCursorBlinkTime((v > 0.0f) ? (RETimeInterval)v : 0.0);
             return true;
         }
     }
@@ -45,7 +45,7 @@ REBOOL RETextField::AcceptTextFieldStringParameter(RETextField * textField, cons
         int v = 0;
         if (sscanf(value, RE_TEXTFIELD_XML_MAX_TEXT_LEN_FORMAT_STRING, &v) == 1)
         {
-            textField->SetMaximumInputedTextLength((v >= 0) ? (REUInt32)v : 0);
+            textField->setMaximumInputedTextLength((v >= 0) ? (REUInt32)v : 0);
             return true;
         }
     }
@@ -54,7 +54,7 @@ REBOOL RETextField::AcceptTextFieldStringParameter(RETextField * textField, cons
         int v = 0;
         if (sscanf(value, RE_TEXTFIELD_XML_HAS_MAX_TEXT_LEN_FORMAT_STRING, &v) == 1)
         {
-            textField->SetHasMaximumInputedTextLength((v != 0));
+            textField->setHasMaximumInputedTextLength((v != 0));
             return true;
         }
     }
@@ -63,7 +63,7 @@ REBOOL RETextField::AcceptTextFieldStringParameter(RETextField * textField, cons
         int v = 0;
         if (sscanf(value, RE_TEXTFIELD_XML_CLEAR_PREV_TEXT_FORMAT_STRING, &v) == 1)
         {
-            textField->SetClearPreviousInputedText((v != 0));
+            textField->setClearPreviousInputedText((v != 0));
             return true;
         }
     }
@@ -72,43 +72,43 @@ REBOOL RETextField::AcceptTextFieldStringParameter(RETextField * textField, cons
         int v = 0;
         if (sscanf(value, RE_TEXTFIELD_XML_SHOW_CURSOR_FORMAT_STRING, &v) == 1)
         {
-            textField->SetShowCursor((v != 0));
+            textField->setShowCursor((v != 0));
             return true;
         }
     }
     return false;
 }
 
-REBOOL RETextField::AcceptStringParameter(const char * key, const char * value)
+REBOOL RETextField::acceptStringParameter(const char * key, const char * value)
 {
-    if (RELabel::AcceptStringParameter(key, value))
+    if (RELabel::acceptStringParameter(key, value))
     {
         return true;
     }
 
     if (key && value)
     {
-        return RETextField::AcceptTextFieldStringParameter(this, key, value);
+        return RETextField::acceptTextFieldStringParameter(this, key, value);
     }
 
     return false;
 }
 
-void RETextField::UserActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
+void RETextField::userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 										const REFloat32 currentCoordX, const REFloat32 currentCoordY)
 {
-	RERect frame(this->GetScreenFrame());
-	if (frame.IsPointInRect(startCoordX, startCoordY) && frame.IsPointInRect(currentCoordX, currentCoordY)) 
+	RERect frame(this->getScreenFrame());
+	if (frame.isPointInRect(startCoordX, startCoordY) && frame.isPointInRect(currentCoordX, currentCoordY)) 
 	{
-		RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+		RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 		if (m) 
 		{
-			if (!m->IsFirstResponder(this)) 
+			if (!m->isFirstResponder(this)) 
 			{
-				this->BecomeFirstTextInputResponder();
+				this->becomeFirstTextInputResponder();
 				if (_isShowCursor) 
 				{
-					_isActualShowCursor = m->IsFirstResponder(this);
+					_isActualShowCursor = m->isFirstResponder(this);
 					_lastBlinkTime = 0.0f;
 				}
 			}
@@ -116,239 +116,239 @@ void RETextField::UserActionClickDidEnd(const REFloat32 startCoordX, const REFlo
 	}
 }
 
-void RETextField::Update(const RETimeInterval currentTime)
+void RETextField::update(const RETimeInterval currentTime)
 {
 	if ((currentTime - _lastBlinkTime) >= _cursorBlinkTime) 
 	{
 		if (_cursorView)
 		{
-			if (REAnimation::Setup(NULL))
+			if (REAnimation::setup(NULL))
 			{
-				REAnimation::SetTime((_cursorBlinkTime / 8.0));				
-				if (_cursorView->GetAlpha() < 0.1f) 
+				REAnimation::setTime((_cursorBlinkTime / 8.0));				
+				if (_cursorView->getAlpha() < 0.1f) 
 				{
-					_cursorView->SetAlphaAnimated(1.0f);
+					_cursorView->setAlphaAnimated(1.0f);
 				}
 				else 
 				{
-					_cursorView->SetAlphaAnimated(0.0f);
+					_cursorView->setAlphaAnimated(0.0f);
 				}
-				REAnimation::Execute();
+				REAnimation::execute();
 			}
 		}
 		_lastBlinkTime = currentTime;
 	}
 }
 
-void RETextField::Render()
+void RETextField::render()
 {
 	if (_cursorView) 
 	{
-		_cursorView->SetVisible(_isActualShowCursor);
-		if (_cursorView->IsVisible()) 
+		_cursorView->setVisible(_isActualShowCursor);
+		if (_cursorView->isVisible()) 
 		{
-			RERect textFrame(this->GetTextFrame());
-			RERect frame(_cursorView->GetFrame());
+			RERect textFrame(this->getTextFrame());
+			RERect frame(_cursorView->getFrame());
 			frame.x = textFrame.x + textFrame.width;
-			_cursorView->SetFrame(frame);
+			_cursorView->setFrame(frame);
 		}
 	}
 	
-	RELabel::Render();
+	RELabel::render();
 }
 
-void RETextField::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void RETextField::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if (_cursorView) 
 	{
-		_cursorView->SetVisible(_isActualShowCursor);
-		if (_cursorView->IsVisible()) 
+		_cursorView->setVisible(_isActualShowCursor);
+		if (_cursorView->isVisible()) 
 		{
-			RERect textFrame(this->GetTextFrame());
-			RERect frame(_cursorView->GetFrame());
+			RERect textFrame(this->getTextFrame());
+			RERect frame(_cursorView->getFrame());
 			frame.x = textFrame.x + textFrame.width;
 			
-			_cursorView->SetFrame(frame);
+			_cursorView->setFrame(frame);
 		}
 	}
 	
-	RELabel::RenderWithOffset(offsetX, offsetY);
+	RELabel::renderWithOffset(offsetX, offsetY);
 }
 
 /// Setting rectangular frame of view.
 void RETextField::SetFrame(const RERect & newViewFrame)
 {
-	RELabel::SetFrame(newViewFrame);
+	RELabel::setFrame(newViewFrame);
 	
 	if (_cursorView) 
 	{
 		const REFloat32 w2px = 2.0f * RERenderDevice::GetDefaultDevice()->GetScreenToRenderSizeRatio().width;
-		_cursorView->SetFrame(RERect(0.0f, 0.0f, w2px, newViewFrame.height));
+		_cursorView->setFrame(RERect(0.0f, 0.0f, w2px, newViewFrame.height));
 	}
 }
 
-void RETextField::OnTextInputResponderTextInputStarted()
+void RETextField::onTextInputResponderTextInputStarted()
 {
 	
 }
 
-void RETextField::OnTextInputResponderTextInputEnded()
+void RETextField::onTextInputResponderTextInputEnded()
 {
 	_isActualShowCursor = false;
 }
 
-void RETextField::OnTextInputResponderTextChanged(const REString & newTextString)
+void RETextField::onTextInputResponderTextChanged(const REString & newTextString)
 {
-	this->SetText(newTextString);
+	this->setText(newTextString);
 }
 
-REBOOL RETextField::BecomeFirstTextInputResponder()
+REBOOL RETextField::becomeFirstTextInputResponder()
 {
-	RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+	RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 	if (m) 
 	{
-		return m->SetFirstResponder(this);
+		return m->setFirstResponder(this);
 	}
 	return false;
 }
 
-REBOOL RETextField::ResignFirstTextInputResponder()
+REBOOL RETextField::resignFirstTextInputResponder()
 {
-	RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+	RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 	if (m) 
 	{
-		return m->RemoveFirstResponder(this);
+		return m->removeFirstResponder(this);
 	}
 	return false;
 }
 
-const REUInt32 RETextField::GetTextInputResponderMaximumTextLength() const
+const REUInt32 RETextField::getTextInputResponderMaximumTextLength() const
 {
 	return _maximumInputedTextLength;
 }
 
-REBOOL RETextField::IsTextInputResponderHasMaximumTextLength() const
+REBOOL RETextField::isTextInputResponderHasMaximumTextLength() const
 {
 	return _isHasMaximumInputedTextLength;
 }
 
-REBOOL RETextField::IsClearPreviousInputedText() const
+REBOOL RETextField::isClearPreviousInputedText() const
 {
 	return _isClearPreviousTextInputText;
 }
 
-const REString & RETextField::GetTextInputResponderText() const
+const REString & RETextField::getTextInputResponderText() const
 {
 	return _text;
 }
 
-void RETextField::SetMaximumInputedTextLength(const REUInt32 newMaxInputLen)
+void RETextField::setMaximumInputedTextLength(const REUInt32 newMaxInputLen)
 {
 	_maximumInputedTextLength = newMaxInputLen;
 }
 
-void RETextField::SetClearPreviousInputedText(REBOOL isClear)
+void RETextField::setClearPreviousInputedText(REBOOL isClear)
 {
 	_isClearPreviousTextInputText = isClear;
 }
 
-void RETextField::SetHasMaximumInputedTextLength(REBOOL isHasMaxTextLen)
+void RETextField::setHasMaximumInputedTextLength(REBOOL isHasMaxTextLen)
 {
 	_isHasMaximumInputedTextLength = isHasMaxTextLen;
 }
 
 /// Is text input cursor showing
-REBOOL RETextField::IsShowCursor() const
+REBOOL RETextField::isShowCursor() const
 {
 	return _isShowCursor;
 }
 
 /// Set is need to show text input cursor.
-void RETextField::SetShowCursor(REBOOL isShow)
+void RETextField::setShowCursor(REBOOL isShow)
 {
 	if (_isShowCursor != isShow) 
 	{
 		_lastBlinkTime = 0.0;
 		if (isShow) 
 		{
-			this->AddToMainLoop();
+			this->addToMainLoop();
 		}
 		else
 		{
-			this->RemoveFromMainLoop();
+			this->removeFromMainLoop();
 		}
 	}
 	_isShowCursor = isShow;
 	_isActualShowCursor = false;
 	if (isShow) 
 	{
-		RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+		RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 		if (m) 
 		{
-			_isActualShowCursor = m->IsFirstResponder(this);
+			_isActualShowCursor = m->isFirstResponder(this);
 			_lastBlinkTime = 0.0;
 		}
 	}
 }
 
 /// Returns time in seconds of cursor blinking.
-const RETimeInterval RETextField::GetCursorBlinkTime() const
+const RETimeInterval RETextField::getCursorBlinkTime() const
 {
 	return _cursorBlinkTime;
 }
 
 /// Setting time in seconds of cursor blinking. 
-void RETextField::SetCursorBlinkTime(const RETimeInterval newBlinkTime)
+void RETextField::setCursorBlinkTime(const RETimeInterval newBlinkTime)
 {
 	_cursorBlinkTime = newBlinkTime;
 }
 
-REView * RETextField::GetCursorView() const
+REView * RETextField::getCursorView() const
 {
 	return _cursorView;
 }
 
 /* REObject */
-const REUInt32 RETextField::GetClassIdentifier() const
+const REUInt32 RETextField::getClassIdentifier() const
 {
-	return RETextField::ClassIdentifier();
+	return RETextField::classIdentifier();
 }
 
-const REUInt32 RETextField::ClassIdentifier()
+const REUInt32 RETextField::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RETextField");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETextField");
 	return clasIdentif;
 }
 
-REBOOL RETextField::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RETextField::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RETextField::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IRETextInputResponder") == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			RELabel::IsImplementsClass(classIdentifier));
+	return ((RETextField::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IRETextInputResponder") == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
+			RELabel::isImplementsClass(classIdentifier));
 }
 
-void RETextField::OnReleased()
+void RETextField::onReleased()
 {
-	this->RemoveFromMainLoop();
+	this->removeFromMainLoop();
 	
-	RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+	RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 	if (m) 
 	{
-		m->UnRegisterResponder(this);
+		m->unRegisterResponder(this);
 	}
 	
 	if (_cursorView) 
 	{
-		if (_cursorView->IsAnimating()) 
+		if (_cursorView->isAnimating()) 
 		{
-			_cursorView->StopAnimation(REAnimationStopTypeImmediately,true, false);
+			_cursorView->stopAnimation(REAnimationStopTypeImmediately, true, false);
 		}
-		_cursorView->Release();
+		_cursorView->release();
 		_cursorView = NULL;
 	}
 	
-	RELabel::OnReleased();
+	RELabel::onReleased();
 }
 
 RETextField::RETextField() : RELabel(),
@@ -361,28 +361,28 @@ RETextField::RETextField() : RELabel(),
 	_isShowCursor(false),
 	_isActualShowCursor(false)
 {
-    REView * cursorView = REView::Create();
+    REView * cursorView = REView::create();
 	if (cursorView) 
 	{
-		if (this->AddSubView(cursorView)) 
+		if (this->addSubView(cursorView)) 
 		{
 			_cursorView = cursorView;
-            _cursorView->SetColor(REColor(0.0f, 0.0f, 0.0f, 1.0f));
+            _cursorView->setColor(REColor(0.0f, 0.0f, 0.0f, 1.0f));
 		}
 		else 
 		{
-            REObject::Delete(cursorView);
+            REObject::deleteObject(cursorView);
 		}
 	}
 
-	RETextInputRespondersManager * m = RETextInputRespondersManager::GetDefaultManager();
+	RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
 	if (m) 
 	{
-		m->RegisterResponder(this);
+		m->registerResponder(this);
 	}
 	
-	this->SetShowCursor(true);
-	this->SetRespondsForUserAction(true);
+	this->setShowCursor(true);
+	this->setRespondsForUserAction(true);
 }
 
 RETextField::~RETextField()
@@ -390,20 +390,20 @@ RETextField::~RETextField()
 
 }
 
-RETextField * RETextField::Create()
+RETextField * RETextField::create()
 {
 	RETextField * tf = new RETextField();
 	return tf;
 }
 
-const char * RETextField::GetXMLCursorBlinkTimeKeyString() { return RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_KEY_STRING; }
-const char * RETextField::GetXMLCursorBlinkTimeFormatString() { return RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_FORMAT_STRING; }
-const char * RETextField::GetXMLMaximumTextLengthKeyString() { return RE_TEXTFIELD_XML_MAX_TEXT_LEN_KEY_STRING; }
-const char * RETextField::GetXMLMaximumTextLengthFormatString() { return RE_TEXTFIELD_XML_MAX_TEXT_LEN_FORMAT_STRING; }
-const char * RETextField::GetXMLHasMaximumTextLengthKeyString() { return RE_TEXTFIELD_XML_HAS_MAX_TEXT_LEN_KEY_STRING; }
-const char * RETextField::GetXMLHasMaximumTextLengthFormatString() { return RE_TEXTFIELD_XML_HAS_MAX_TEXT_LEN_FORMAT_STRING; }
-const char * RETextField::GetXMLClearPreviousTextKeyString() { return RE_TEXTFIELD_XML_CLEAR_PREV_TEXT_KEY_STRING; }
-const char * RETextField::GetXMLClearPreviousTextFormatString() { return RE_TEXTFIELD_XML_CLEAR_PREV_TEXT_FORMAT_STRING; }
-const char * RETextField::GetXMLShowCursorKeyString() { return RE_TEXTFIELD_XML_SHOW_CURSOR_KEY_STRING; }
-const char * RETextField::GetXMLShowCursorFormatString() { return RE_TEXTFIELD_XML_SHOW_CURSOR_FORMAT_STRING; }
+const char * RETextField::getXMLCursorBlinkTimeKeyString() { return RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_KEY_STRING; }
+const char * RETextField::getXMLCursorBlinkTimeFormatString() { return RE_TEXTFIELD_XML_CURSOR_BLINK_TIME_FORMAT_STRING; }
+const char * RETextField::getXMLMaximumTextLengthKeyString() { return RE_TEXTFIELD_XML_MAX_TEXT_LEN_KEY_STRING; }
+const char * RETextField::getXMLMaximumTextLengthFormatString() { return RE_TEXTFIELD_XML_MAX_TEXT_LEN_FORMAT_STRING; }
+const char * RETextField::getXMLHasMaximumTextLengthKeyString() { return RE_TEXTFIELD_XML_HAS_MAX_TEXT_LEN_KEY_STRING; }
+const char * RETextField::getXMLHasMaximumTextLengthFormatString() { return RE_TEXTFIELD_XML_HAS_MAX_TEXT_LEN_FORMAT_STRING; }
+const char * RETextField::getXMLClearPreviousTextKeyString() { return RE_TEXTFIELD_XML_CLEAR_PREV_TEXT_KEY_STRING; }
+const char * RETextField::getXMLClearPreviousTextFormatString() { return RE_TEXTFIELD_XML_CLEAR_PREV_TEXT_FORMAT_STRING; }
+const char * RETextField::getXMLShowCursorKeyString() { return RE_TEXTFIELD_XML_SHOW_CURSOR_KEY_STRING; }
+const char * RETextField::getXMLShowCursorFormatString() { return RE_TEXTFIELD_XML_SHOW_CURSOR_FORMAT_STRING; }
 

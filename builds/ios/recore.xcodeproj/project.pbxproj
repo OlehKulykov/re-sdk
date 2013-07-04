@@ -30,6 +30,8 @@
 		3D0DEED5152AE6BB00BF020F /* IREAffineTransformed.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D0DEED4152AE6BB00BF020F /* IREAffineTransformed.h */; };
 		3D0E62B2145586070030C4FD /* REMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D0E62B1145586070030C4FD /* REMutex.h */; };
 		3D0E62B5145586180030C4FD /* REMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E62B4145586180030C4FD /* REMutex.cpp */; };
+		3D16878E176DE84500BFF707 /* RETypedPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D16878D176DE84500BFF707 /* RETypedPtr.h */; };
+		3D168791176DE86C00BFF707 /* RETypedPtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D168790176DE86C00BFF707 /* RETypedPtr.cpp */; };
 		3D16D4801446EDB9009B13AA /* RELocale_iphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */; };
 		3D1788EB13E2987E00520FC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1788EA13E2987E00520FC2 /* Foundation.framework */; };
 		3D183DB7146928760004F6F6 /* RE2DAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */; };
@@ -68,7 +70,6 @@
 		3D1F436113E29A4F001E480D /* RERect.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433313E29A4F001E480D /* RERect.h */; };
 		3D1F436213E29A4F001E480D /* REResourcesStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433413E29A4F001E480D /* REResourcesStorage.h */; };
 		3D1F436313E29A4F001E480D /* RESize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433513E29A4F001E480D /* RESize.h */; };
-		3D1F436413E29A4F001E480D /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433613E29A4F001E480D /* REString.h */; };
 		3D1F436513E29A4F001E480D /* RECoreC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433713E29A4F001E480D /* RECoreC.h */; };
 		3D1F436613E29A4F001E480D /* RETetragon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433813E29A4F001E480D /* RETetragon.h */; };
 		3D1F436713E29A4F001E480D /* RETime.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433913E29A4F001E480D /* RETime.h */; };
@@ -96,7 +97,6 @@
 		3D1F43A313E29AAB001E480D /* RERandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438013E29AAB001E480D /* RERandomizer.cpp */; };
 		3D1F43A413E29AAB001E480D /* RERect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438113E29AAB001E480D /* RERect.cpp */; };
 		3D1F43A513E29AAB001E480D /* REResourcesStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */; };
-		3D1F43A613E29AAB001E480D /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438313E29AAB001E480D /* REString.cpp */; };
 		3D1F43A713E29AAB001E480D /* RECoreC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438413E29AAB001E480D /* RECoreC.cpp */; };
 		3D1F43A813E29AAB001E480D /* REThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438513E29AAB001E480D /* REThread.cpp */; };
 		3D1F43A913E29AAB001E480D /* RETime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438613E29AAB001E480D /* RETime.cpp */; };
@@ -208,8 +208,10 @@
 		3D4DEEDC14A8715600AECAD8 /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */; };
 		3D4DEEE014A8716000AECAD8 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */; };
 		3D4DEEE114A8716000AECAD8 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */; };
-		3D56CF4A16552A7100B66EE0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D56CF4916552A7100B66EE0 /* SenTestingKit.framework */; };
-		3D56CF4D16552A7100B66EE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1788EA13E2987E00520FC2 /* Foundation.framework */; };
+		3D4E08F2178450300023C08A /* REDictionaryObjectN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4E08F1178450300023C08A /* REDictionaryObjectN.h */; };
+		3D4E08F4178450420023C08A /* REDictionaryObjectN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */; };
+		3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */; };
+		3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */; };
 		3D5D9022149039F300230851 /* webp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D9021149039F300230851 /* webp.h */; };
 		3D5D902514903A1500230851 /* webp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5D902414903A1500230851 /* webp_config.h */; };
 		3D5D902714903A9900230851 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D902614903A9900230851 /* webp_wrap1.c */; };
@@ -222,17 +224,24 @@
 		3D6DC5A613FD43820091A864 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */; };
 		3D78030114504B840059C648 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D78030014504B840059C648 /* REAffineTransform.cpp */; };
 		3D785CD715C66ABF006A12F9 /* REObjectProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D785CD615C66ABF006A12F9 /* REObjectProperty.h */; };
+		3D7A01751771B7EB00E7316E /* REMutableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01741771B7EB00E7316E /* REMutableString.h */; };
+		3D7A01771771B7F100E7316E /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01761771B7F100E7316E /* REString.h */; };
+		3D7A01791771B80800E7316E /* REWideString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01781771B80800E7316E /* REWideString.h */; };
+		3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017A1771B82800E7316E /* REWideString.cpp */; };
+		3D7A017D1771B83800E7316E /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017C1771B83800E7316E /* REString.cpp */; };
+		3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A017E1771B84F00E7316E /* REMutableString.cpp */; };
+		3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */; };
+		3D7A01971771D87A00E7316E /* REStringUtilsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */; };
+		3D7A02511772031200E7316E /* REStringBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A02501772031200E7316E /* REStringBase.h */; };
+		3D7A02531772032200E7316E /* REStringBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A02521772032200E7316E /* REStringBase.cpp */; };
 		3D7BB1F714C5D31F00AFDBF7 /* REMatrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */; };
 		3D827EC514D7D04D00B539FF /* RECPUFeatures.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EC414D7D04D00B539FF /* RECPUFeatures.h */; };
 		3D827EC814D7D05600B539FF /* RECPUFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D827EC714D7D05600B539FF /* RECPUFeatures.cpp */; };
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
+		3D889135176D09C70086873B /* REConfigHardcoded.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D889134176D09C70086873B /* REConfigHardcoded.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
 		3D9C86351758DC87009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
-		3D9C86361758DC9B009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
-		3D9C86371758DD5B009B516A /* REPtr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
-		3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
-		3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */; };
 		3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
 		3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
 		3DB07B3B144CAFF400FF99AB /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B39144CAFF400FF99AB /* REApplication.cpp */; };
@@ -248,253 +257,32 @@
 		3DB07B54144CB04C00FF99AB /* REStringObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B46144CB04C00FF99AB /* REStringObject.cpp */; };
 		3DB07B55144CB04C00FF99AB /* REXMLPropertyListWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */; };
 		3DB07B56144CB04C00FF99AB /* REXMLPropertyListWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */; };
-		3DB07B57144CB04C00FF99AB /* REObjectsDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B49144CB04C00FF99AB /* REObjectsDictionary.h */; };
-		3DB07B58144CB04C00FF99AB /* REObjectsDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B4A144CB04C00FF99AB /* REObjectsDictionary.cpp */; };
+		3DB07B57144CB04C00FF99AB /* REDictionaryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */; };
+		3DB07B58144CB04C00FF99AB /* REDictionaryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */; };
 		3DB07B78144CB0EF00FF99AB /* RENULLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B74144CB0EF00FF99AB /* RENULLObject.h */; };
 		3DB07B79144CB0EF00FF99AB /* RENULLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */; };
-		3DB07B7A144CB0EF00FF99AB /* REObjectsArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B76144CB0EF00FF99AB /* REObjectsArray.h */; };
-		3DB07B7B144CB0EF00FF99AB /* REObjectsArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B77144CB0EF00FF99AB /* REObjectsArray.cpp */; };
+		3DB07B7A144CB0EF00FF99AB /* REArrayObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B76144CB0EF00FF99AB /* REArrayObject.h */; };
+		3DB07B7B144CB0EF00FF99AB /* REArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B77144CB0EF00FF99AB /* REArrayObject.cpp */; };
 		3DB34A0814156FF100CEA552 /* REMainThreadClassMethodWaitedPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB34A0714156FF100CEA552 /* REMainThreadClassMethodWaitedPrivate.h */; };
 		3DB8EADB14DAB7DC008CBBD6 /* REConfigSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */; };
 		3DB8EAEE14DABD07008CBBD6 /* RESQLiteDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */; };
 		3DB8EAEF14DABD07008CBBD6 /* RESQLiteDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */; };
 		3DB8EAF314DABD23008CBBD6 /* RESQLiteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */; };
 		3DB8EAF414DABD23008CBBD6 /* RESQLiteDBResultSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */; };
+		3DBEF9581770415000503066 /* REDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBEF9571770415000503066 /* REDB.h */; };
+		3DBEF95A1770415F00503066 /* REDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEF9591770415F00503066 /* REDB.cpp */; };
+		3DBEF95C177041DC00503066 /* REDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBEF95B177041DC00503066 /* REDBResultSet.h */; };
+		3DBEF95E177041E000503066 /* REDBResultSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEF95D177041E000503066 /* REDBResultSet.cpp */; };
+		3DBEF9601770444900503066 /* REDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBEF95F1770444900503066 /* REDictionary.h */; };
+		3DBEF9621770445800503066 /* REDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEF9611770445800503066 /* REDictionary.cpp */; };
+		3DBEF98417708E9100503066 /* RETypedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DBEF98317708E9000503066 /* RETypedArray.h */; };
+		3DBEF98617708E9B00503066 /* RETypedArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DBEF98517708E9B00503066 /* RETypedArray.cpp */; };
 		3DC9F08D14A4A759008B46F4 /* lzma.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC9F08A14A4A759008B46F4 /* lzma.h */; };
 		3DC9F08E14A4A759008B46F4 /* lzma_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC9F08B14A4A759008B46F4 /* lzma_config.h */; };
 		3DC9F08F14A4A759008B46F4 /* lzma_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9F08C14A4A759008B46F4 /* lzma_wrap1.c */; };
 		3DD0469E15EEA0F300642E45 /* REMainLoopUpdatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469D15EEA0F300642E45 /* REMainLoopUpdatable.cpp */; };
 		3DD046A015EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */; };
 		3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD046A115EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h */; };
-		3DD65C7515F68EAE00E34829 /* REAutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437113E29AAB001E480D /* REAutoReleasePool.cpp */; };
-		3DD65C7615F68EAE00E34829 /* REAutoReleasePoolPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */; };
-		3DD65C7715F68EAE00E34829 /* REMainLoopUpdatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469D15EEA0F300642E45 /* REMainLoopUpdatable.cpp */; };
-		3DD65C7815F68EAE00E34829 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */; };
-		3DD65C7915F68EAE00E34829 /* RELog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D079FD715C81870004FAA9E /* RELog.cpp */; };
-		3DD65C7A15F68EAE00E34829 /* RECPUFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D827EC714D7D05600B539FF /* RECPUFeatures.cpp */; };
-		3DD65C7B15F68EAE00E34829 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */; };
-		3DD65C7C15F68EAE00E34829 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */; };
-		3DD65C7D15F68EAE00E34829 /* RE2DAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */; };
-		3DD65C7E15F68EAE00E34829 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D78030014504B840059C648 /* REAffineTransform.cpp */; };
-		3DD65C7F15F68EAE00E34829 /* REMatrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */; };
-		3DD65C8015F68EAE00E34829 /* RENULLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */; };
-		3DD65C8115F68EAE00E34829 /* REObjectsArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B77144CB0EF00FF99AB /* REObjectsArray.cpp */; };
-		3DD65C8215F68EAE00E34829 /* REXMLPropertyListReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B3E144CB04C00FF99AB /* REXMLPropertyListReader.cpp */; };
-		3DD65C8315F68EAE00E34829 /* REBase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B40144CB04C00FF99AB /* REBase64.cpp */; };
-		3DD65C8415F68EAE00E34829 /* REBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B42144CB04C00FF99AB /* REBufferObject.cpp */; };
-		3DD65C8515F68EAE00E34829 /* RENumberObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B44144CB04C00FF99AB /* RENumberObject.cpp */; };
-		3DD65C8615F68EAE00E34829 /* REStringObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B46144CB04C00FF99AB /* REStringObject.cpp */; };
-		3DD65C8715F68EAE00E34829 /* REXMLPropertyListWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */; };
-		3DD65C8815F68EAE00E34829 /* REObjectsDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B4A144CB04C00FF99AB /* REObjectsDictionary.cpp */; };
-		3DD65C8915F68EAE00E34829 /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B39144CAFF400FF99AB /* REApplication.cpp */; };
-		3DD65C8A15F68EAE00E34829 /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
-		3DD65C8B15F68EAE00E34829 /* REImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437913E29AAB001E480D /* REImage.cpp */; };
-		3DD65C8C15F68EAE00E34829 /* REImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437A13E29AAB001E480D /* REImageManager.cpp */; };
-		3DD65C8D15F68EAE00E34829 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */; };
-		3DD65C8E15F68EAE00E34829 /* REData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437513E29AAB001E480D /* REData.cpp */; };
-		3DD65C8F15F68EAE00E34829 /* REThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438513E29AAB001E480D /* REThread.cpp */; };
-		3DD65C9015F68EAE00E34829 /* RETetragon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D068761143DFA9C00AF92AF /* RETetragon.cpp */; };
-		3DD65C9115F68EAE00E34829 /* RENumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437E13E29AAB001E480D /* RENumber.cpp */; };
-		3DD65C9215F68EAE00E34829 /* RENotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437D13E29AAB001E480D /* RENotificationManager.cpp */; };
-		3DD65C9315F68EAE00E34829 /* RECoreC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438413E29AAB001E480D /* RECoreC.cpp */; };
-		3DD65C9415F68EAE00E34829 /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438313E29AAB001E480D /* REString.cpp */; };
-		3DD65C9515F68EAE00E34829 /* RETime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438613E29AAB001E480D /* RETime.cpp */; };
-		3DD65C9615F68EAE00E34829 /* RESQLiteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */; };
-		3DD65C9715F68EAE00E34829 /* RESQLiteDBResultSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */; };
-		3DD65C9815F68EAE00E34829 /* REUserCallBacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438813E29AAB001E480D /* REUserCallBacks.cpp */; };
-		3DD65C9915F68EAE00E34829 /* REMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E62B4145586180030C4FD /* REMutex.cpp */; };
-		3DD65C9A15F68EAE00E34829 /* RELocale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D09526614165071003082A8 /* RELocale.cpp */; };
-		3DD65C9B15F68EAE00E34829 /* REResourcesStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */; };
-		3DD65C9C15F68EAE00E34829 /* REZipReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438913E29AAB001E480D /* REZipReader.cpp */; };
-		3DD65C9D15F68EAE00E34829 /* REObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437F13E29AAB001E480D /* REObject.cpp */; };
-		3DD65C9E15F68EAE00E34829 /* REMD5Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437C13E29AAB001E480D /* REMD5Generator.cpp */; };
-		3DD65C9F15F68EAE00E34829 /* REMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CC87214E90AA400A0D9C7 /* REMath.cpp */; };
-		3DD65CA015F68EAE00E34829 /* REFileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437813E29AAB001E480D /* REFileManager.cpp */; };
-		3DD65CA115F68EAE00E34829 /* RETimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438713E29AAB001E480D /* RETimer.cpp */; };
-		3DD65CA215F68EAE00E34829 /* REFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437713E29AAB001E480D /* REFile.cpp */; };
-		3DD65CA315F68EAE00E34829 /* RE2DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436E13E29AAB001E480D /* RE2DVector.cpp */; };
-		3DD65CA415F68EAE00E34829 /* RE3DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436F13E29AAB001E480D /* RE3DVector.cpp */; };
-		3DD65CA515F68EAE00E34829 /* REAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437013E29AAB001E480D /* REAngle.cpp */; };
-		3DD65CA615F68EAE00E34829 /* REBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437313E29AAB001E480D /* REBuffer.cpp */; };
-		3DD65CA715F68EAE00E34829 /* REColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437413E29AAB001E480D /* REColor.cpp */; };
-		3DD65CA815F68EAE00E34829 /* REDate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437613E29AAB001E480D /* REDate.cpp */; };
-		3DD65CA915F68EAE00E34829 /* RERandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438013E29AAB001E480D /* RERandomizer.cpp */; };
-		3DD65CAA15F68EAE00E34829 /* RERect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438113E29AAB001E480D /* RERect.cpp */; };
-		3DD65CAB15F68EAE00E34829 /* REYUV420toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */; };
-		3DD65CAC15F68EAE00E34829 /* REYUV420toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492B14D693D200306830 /* REYUV420toRGB888.cpp */; };
-		3DD65CAD15F68EAE00E34829 /* REYUV420toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492C14D693D200306830 /* REYUV420toRGB8888.cpp */; };
-		3DD65CAE15F68EAE00E34829 /* REYUV422toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492D14D693D200306830 /* REYUV422toRGB565.cpp */; };
-		3DD65CAF15F68EAE00E34829 /* REYUV422toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492E14D693D200306830 /* REYUV422toRGB888.cpp */; };
-		3DD65CB015F68EAE00E34829 /* REYUV422toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492F14D693D200306830 /* REYUV422toRGB8888.cpp */; };
-		3DD65CB115F68EAE00E34829 /* REYUV444toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0493014D693D200306830 /* REYUV444toRGB565.cpp */; };
-		3DD65CB215F68EAE00E34829 /* REYUV444toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0493114D693D200306830 /* REYUV444toRGB888.cpp */; };
-		3DD65CB315F68EAE00E34829 /* REYUV444toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0493214D693D200306830 /* REYUV444toRGB8888.cpp */; };
-		3DD65CB415F68EAE00E34829 /* REYUVtoRGB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0493314D693D200306830 /* REYUVtoRGB.cpp */; };
-		3DD65CB915F6913C00E34829 /* lzma_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9F08C14A4A759008B46F4 /* lzma_wrap1.c */; };
-		3DD65CBA15F6913C00E34829 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D902614903A9900230851 /* webp_wrap1.c */; };
-		3DD65CBB15F6913C00E34829 /* webp_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D902814903C4D00230851 /* webp_wrap2.c */; };
-		3DD65CBC15F6913C00E34829 /* webp_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D628DEB1557CCB300B1CCCC /* webp_wrap3.c */; };
-		3DD65CBD15F6913C00E34829 /* webp_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D628DEC1557CCB300B1CCCC /* webp_wrap4.c */; };
-		3DD65CBE15F6913C00E34829 /* jpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C213E29F3A001E480D /* jpeg_wrap1.c */; };
-		3DD65CBF15F6913C00E34829 /* jpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C313E29F3A001E480D /* jpeg_wrap2.c */; };
-		3DD65CC015F6913C00E34829 /* jpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C413E29F3A001E480D /* jpeg_wrap3.c */; };
-		3DD65CC115F6913C00E34829 /* jpeg_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C513E29F3A001E480D /* jpeg_wrap4.c */; };
-		3DD65CC215F6913C00E34829 /* jpeg_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C613E29F3A001E480D /* jpeg_wrap5.c */; };
-		3DD65CC315F6913C00E34829 /* jpeg_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C713E29F3A001E480D /* jpeg_wrap6.c */; };
-		3DD65CC415F6913C00E34829 /* jpeg_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C813E29F3A001E480D /* jpeg_wrap7.c */; };
-		3DD65CC515F6913C00E34829 /* jpeg_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43C913E29F3A001E480D /* jpeg_wrap8.c */; };
-		3DD65CC615F6913C00E34829 /* jpeg_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CA13E29F3A001E480D /* jpeg_wrap9.c */; };
-		3DD65CC715F6913C00E34829 /* jpeg_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CB13E29F3A001E480D /* jpeg_wrap10.c */; };
-		3DD65CC815F6913C00E34829 /* jpeg_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CC13E29F3A001E480D /* jpeg_wrap11.c */; };
-		3DD65CC915F6913C00E34829 /* jpeg_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CD13E29F3A001E480D /* jpeg_wrap12.c */; };
-		3DD65CCA15F6913C00E34829 /* jpeg_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CE13E29F3A001E480D /* jpeg_wrap13.c */; };
-		3DD65CCB15F6913C00E34829 /* jpeg_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43CF13E29F3A001E480D /* jpeg_wrap14.c */; };
-		3DD65CCC15F6913C00E34829 /* jpeg_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D013E29F3A001E480D /* jpeg_wrap15.c */; };
-		3DD65CCD15F6913C00E34829 /* jpeg_wrap16.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D113E29F3A001E480D /* jpeg_wrap16.c */; };
-		3DD65CCE15F6913C00E34829 /* jpeg_wrap17.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D213E29F3A001E480D /* jpeg_wrap17.c */; };
-		3DD65CCF15F6913C00E34829 /* jpeg_wrap18.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D313E29F3A001E480D /* jpeg_wrap18.c */; };
-		3DD65CD015F6913C00E34829 /* jpeg_wrap19.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D413E29F3A001E480D /* jpeg_wrap19.c */; };
-		3DD65CD115F6913C00E34829 /* jpeg_wrap20.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D513E29F3A001E480D /* jpeg_wrap20.c */; };
-		3DD65CD215F6913C00E34829 /* jpeg_wrap21.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D613E29F3A001E480D /* jpeg_wrap21.c */; };
-		3DD65CD315F6913C00E34829 /* jpeg_wrap22.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D713E29F3A001E480D /* jpeg_wrap22.c */; };
-		3DD65CD415F6913C00E34829 /* jpeg_wrap23.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D813E29F3A001E480D /* jpeg_wrap23.c */; };
-		3DD65CD515F6913C00E34829 /* jpeg_wrap24.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43D913E29F3A001E480D /* jpeg_wrap24.c */; };
-		3DD65CD615F6913C00E34829 /* jpeg_wrap25.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DA13E29F3A001E480D /* jpeg_wrap25.c */; };
-		3DD65CD715F6913C00E34829 /* jpeg_wrap26.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DB13E29F3A001E480D /* jpeg_wrap26.c */; };
-		3DD65CD815F6913C00E34829 /* jpeg_wrap27.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DC13E29F3A001E480D /* jpeg_wrap27.c */; };
-		3DD65CD915F6913C00E34829 /* jpeg_wrap28.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DD13E29F3A001E480D /* jpeg_wrap28.c */; };
-		3DD65CDA15F6913C00E34829 /* jpeg_wrap29.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DE13E29F3A001E480D /* jpeg_wrap29.c */; };
-		3DD65CDB15F6913C00E34829 /* jpeg_wrap30.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43DF13E29F3A001E480D /* jpeg_wrap30.c */; };
-		3DD65CDC15F6913C00E34829 /* jpeg_wrap31.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E013E29F3A001E480D /* jpeg_wrap31.c */; };
-		3DD65CDD15F6913C00E34829 /* jpeg_wrap32.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E113E29F3A001E480D /* jpeg_wrap32.c */; };
-		3DD65CDE15F6913C00E34829 /* jpeg_wrap33.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E213E29F3A001E480D /* jpeg_wrap33.c */; };
-		3DD65CDF15F6913C00E34829 /* jpeg_wrap34.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E313E29F3A001E480D /* jpeg_wrap34.c */; };
-		3DD65CE015F6913C00E34829 /* jpeg_wrap35.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E413E29F3A001E480D /* jpeg_wrap35.c */; };
-		3DD65CE115F6913C00E34829 /* jpeg_wrap36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E513E29F3A001E480D /* jpeg_wrap36.c */; };
-		3DD65CE215F6913C00E34829 /* jpeg_wrap37.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E613E29F3A001E480D /* jpeg_wrap37.c */; };
-		3DD65CE315F6913C00E34829 /* jpeg_wrap38.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E713E29F3A001E480D /* jpeg_wrap38.c */; };
-		3DD65CE415F6913C00E34829 /* jpeg_wrap39.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E813E29F3A001E480D /* jpeg_wrap39.c */; };
-		3DD65CE515F6913C00E34829 /* jpeg_wrap40.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43E913E29F3A001E480D /* jpeg_wrap40.c */; };
-		3DD65CE615F6913C00E34829 /* jpeg_wrap41.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43EA13E29F3A001E480D /* jpeg_wrap41.c */; };
-		3DD65CE715F6913C00E34829 /* jpeg_wrap42.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43EB13E29F3A001E480D /* jpeg_wrap42.c */; };
-		3DD65CE815F6913C00E34829 /* jpeg_wrap43.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43EC13E29F3A001E480D /* jpeg_wrap43.c */; };
-		3DD65CE915F6913C00E34829 /* jpeg_wrap44.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43ED13E29F3A001E480D /* jpeg_wrap44.c */; };
-		3DD65CEA15F6913C00E34829 /* jpeg_wrap45.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43EE13E29F3A001E480D /* jpeg_wrap45.c */; };
-		3DD65CEB15F6913C00E34829 /* jpeg_wrap46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43EF13E29F3A001E480D /* jpeg_wrap46.c */; };
-		3DD65CEC15F6913C00E34829 /* jpeg_wrap47.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F013E29F3A001E480D /* jpeg_wrap47.c */; };
-		3DD65CED15F6913C00E34829 /* jpeg_wrap48.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F113E29F3A001E480D /* jpeg_wrap48.c */; };
-		3DD65CEE15F6913C00E34829 /* jpeg_wrap49.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F213E29F3A001E480D /* jpeg_wrap49.c */; };
-		3DD65CEF15F6913C00E34829 /* jpeg_wrap50.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F313E29F3A001E480D /* jpeg_wrap50.c */; };
-		3DD65CF015F6913C00E34829 /* jpeg_wrap51.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F413E29F3A001E480D /* jpeg_wrap51.c */; };
-		3DD65CF115F6913C00E34829 /* jpeg_wrap52.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F513E29F3A001E480D /* jpeg_wrap52.c */; };
-		3DD65CF215F6913C00E34829 /* jpeg_wrap53.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F613E29F3A001E480D /* jpeg_wrap53.c */; };
-		3DD65CF315F6913C00E34829 /* jpeg_wrap54.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F713E29F3A001E480D /* jpeg_wrap54.c */; };
-		3DD65CF415F6913C00E34829 /* jpeg_wrap55.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F813E29F3A001E480D /* jpeg_wrap55.c */; };
-		3DD65CF515F6913C00E34829 /* jpeg_wrap56.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43F913E29F3A001E480D /* jpeg_wrap56.c */; };
-		3DD65CF615F6913C00E34829 /* jpeg_wrap57.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FA13E29F3A001E480D /* jpeg_wrap57.c */; };
-		3DD65CF715F6913C00E34829 /* jpeg_wrap58.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FB13E29F3A001E480D /* jpeg_wrap58.c */; };
-		3DD65CF815F6913C00E34829 /* jpeg_wrap59.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FC13E29F3A001E480D /* jpeg_wrap59.c */; };
-		3DD65CF915F6913C00E34829 /* jpeg_wrap60.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FD13E29F3A001E480D /* jpeg_wrap60.c */; };
-		3DD65CFA15F6913C00E34829 /* openjpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440013E29F3A001E480D /* openjpeg_wrap1.c */; };
-		3DD65CFB15F6913C00E34829 /* openjpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440113E29F3A001E480D /* openjpeg_wrap2.c */; };
-		3DD65CFC15F6913C00E34829 /* openjpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440213E29F3A001E480D /* openjpeg_wrap3.c */; };
-		3DD65CFD15F6913C00E34829 /* png_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440513E29F3A001E480D /* png_wrap1.c */; };
-		3DD65CFE15F6913C00E34829 /* sqlite_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440813E29F3A001E480D /* sqlite_wrap1.c */; };
-		3DD65CFF15F6913C00E34829 /* zlib_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440B13E29F3A001E480D /* zlib_wrap1.c */; };
-		3DD65D0015F6913C00E34829 /* zlib_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440C13E29F3A001E480D /* zlib_wrap2.c */; };
-		3DD65D0115F6913C00E34829 /* zlib_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440D13E29F3A001E480D /* zlib_wrap3.c */; };
-		3DD65D0215F6913C00E34829 /* zlib_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440E13E29F3A001E480D /* zlib_wrap4.c */; };
-		3DD65D0315F6913D00E34829 /* zlib_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440F13E29F3A001E480D /* zlib_wrap5.c */; };
-		3DD65D0415F6913D00E34829 /* zlib_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441013E29F3A001E480D /* zlib_wrap6.c */; };
-		3DD65D0515F6913D00E34829 /* zlib_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441113E29F3A001E480D /* zlib_wrap7.c */; };
-		3DD65D0615F6913D00E34829 /* zlib_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441213E29F3A001E480D /* zlib_wrap8.c */; };
-		3DD65D0715F6913D00E34829 /* zlib_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441313E29F3A001E480D /* zlib_wrap9.c */; };
-		3DD65D0815F6913D00E34829 /* zlib_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441413E29F3A001E480D /* zlib_wrap10.c */; };
-		3DD65D0915F6913D00E34829 /* zlib_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441513E29F3A001E480D /* zlib_wrap11.c */; };
-		3DD65D0A15F6913D00E34829 /* zlib_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441613E29F3A001E480D /* zlib_wrap12.c */; };
-		3DD65D0B15F6913D00E34829 /* zlib_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441713E29F3A001E480D /* zlib_wrap13.c */; };
-		3DD65D0C15F6913D00E34829 /* zlib_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441813E29F3A001E480D /* zlib_wrap14.c */; };
-		3DD65D0D15F6913D00E34829 /* zlib_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441913E29F3A001E480D /* zlib_wrap15.c */; };
-		3DD65D0E15F6913D00E34829 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438D13E29AAB001E480D /* ioapi.c */; };
-		3DD65D0F15F6913D00E34829 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F438F13E29AAB001E480D /* unzip.c */; };
-		3DD65D1615F6962F00E34829 /* recore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F430D13E29A2E001E480D /* recore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3DD65D4215F6971400E34829 /* REConfigIPhone.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
-		3DD65D4415F6976500E34829 /* REAutoReleasePool.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431B13E29A4F001E480D /* REAutoReleasePool.h */; };
-		3DD65D4515F6976500E34829 /* REMainLoopUpdatable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431213E29A4F001E480D /* REMainLoopUpdatable.h */; };
-		3DD65D4615F6976500E34829 /* RELog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D079FD415C8182E004FAA9E /* RELog.h */; };
-		3DD65D4715F6976500E34829 /* RECPUFeatures.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D827EC414D7D04D00B539FF /* RECPUFeatures.h */; };
-		3DD65D4815F6976500E34829 /* REMem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D48489D14D6F3D0000C07C0 /* REMem.h */; };
-		3DD65D4915F6976500E34829 /* REFloat16.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DF1DEAA14BF0FA400263F9A /* REFloat16.h */; };
-		3DD65D4A15F6976500E34829 /* REList.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DFD093014BDB81B0063730E /* REList.h */; };
-		3DD65D4B15F6976500E34829 /* REProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DE386FA14B45D5E00366267 /* REProperty.h */; };
-		3DD65D4C15F6976500E34829 /* REObjectProperty.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D785CD615C66ABF006A12F9 /* REObjectProperty.h */; };
-		3DD65D4D15F6976500E34829 /* REZLIBCompression.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */; };
-		3DD65D4E15F6976500E34829 /* RELZMACompression.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D4DEED914A8715600AECAD8 /* RELZMACompression.h */; };
-		3DD65D4F15F6976500E34829 /* REInterpolation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D5FB90F146C12980039FBE9 /* REInterpolation.h */; };
-		3DD65D5015F6976500E34829 /* RE2DAlgorithm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */; };
-		3DD65D5115F6976500E34829 /* IREAffineTransformed.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D0DEED4152AE6BB00BF020F /* IREAffineTransformed.h */; };
-		3DD65D5215F6976500E34829 /* REAffineTransform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D3F689014503B47002409DD /* REAffineTransform.h */; };
-		3DD65D5315F6976500E34829 /* REMatrix4.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D3F6852145029D2002409DD /* REMatrix4.h */; };
-		3DD65D5415F6976500E34829 /* REQuaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D06AD0D14C851DA008D7787 /* REQuaternion.h */; };
-		3DD65D5515F6976500E34829 /* REPoint2.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431513E29A4F001E480D /* REPoint2.h */; };
-		3DD65D5615F6976500E34829 /* REPoint3.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431713E29A4F001E480D /* REPoint3.h */; };
-		3DD65D5715F6976500E34829 /* REVector2.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431613E29A4F001E480D /* REVector2.h */; };
-		3DD65D5815F6976500E34829 /* REVector3.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D0805DF14E3F04900C88C37 /* REVector3.h */; };
-		3DD65D5915F6976500E34829 /* RENULLObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B74144CB0EF00FF99AB /* RENULLObject.h */; };
-		3DD65D5A15F6976500E34829 /* REObjectsArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B76144CB0EF00FF99AB /* REObjectsArray.h */; };
-		3DD65D5B15F6976500E34829 /* REXMLPropertyListReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B3D144CB04C00FF99AB /* REXMLPropertyListReader.h */; };
-		3DD65D5C15F6976500E34829 /* REBase64.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B3F144CB04C00FF99AB /* REBase64.h */; };
-		3DD65D5D15F6976500E34829 /* REBufferObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B41144CB04C00FF99AB /* REBufferObject.h */; };
-		3DD65D5E15F6976500E34829 /* RENumberObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B43144CB04C00FF99AB /* RENumberObject.h */; };
-		3DD65D5F15F6976500E34829 /* REStringObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B45144CB04C00FF99AB /* REStringObject.h */; };
-		3DD65D6015F6976500E34829 /* REXMLPropertyListWriter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */; };
-		3DD65D6115F6976500E34829 /* REObjectsDictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B49144CB04C00FF99AB /* REObjectsDictionary.h */; };
-		3DD65D6215F6976500E34829 /* REApplication.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
-		3DD65D6315F6976500E34829 /* REImageBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
-		3DD65D6415F6976500E34829 /* REImage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432913E29A4F001E480D /* REImage.h */; };
-		3DD65D6515F6976500E34829 /* REImageManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432A13E29A4F001E480D /* REImageManager.h */; };
-		3DD65D6615F6976500E34829 /* IREFileReadable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431113E29A4F001E480D /* IREFileReadable.h */; };
-		3DD65D6715F6976500E34829 /* REAngle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431913E29A4F001E480D /* REAngle.h */; };
-		3DD65D6815F6976500E34829 /* REArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431A13E29A4F001E480D /* REArray.h */; };
-		3DD65D6915F6976500E34829 /* REBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431D13E29A4F001E480D /* REBuffer.h */; };
-		3DD65D6A15F6976500E34829 /* REClassMethod.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431E13E29A4F001E480D /* REClassMethod.h */; };
-		3DD65D6B15F6976500E34829 /* REColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F431F13E29A4F001E480D /* REColor.h */; };
-		3DD65D6C15F6976500E34829 /* RECommonHeader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432013E29A4F001E480D /* RECommonHeader.h */; };
-		3DD65D6D15F6976500E34829 /* RECoreIncludes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432113E29A4F001E480D /* RECoreIncludes.h */; };
-		3DD65D6E15F6976500E34829 /* RECoreOSSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432213E29A4F001E480D /* RECoreOSSelector.h */; };
-		3DD65D6F15F6976500E34829 /* RECorePlatformSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432313E29A4F001E480D /* RECorePlatformSelector.h */; };
-		3DD65D7015F6976500E34829 /* RECoreSettings.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432413E29A4F001E480D /* RECoreSettings.h */; };
-		3DD65D7115F6976500E34829 /* REDate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432613E29A4F001E480D /* REDate.h */; };
-		3DD65D7215F6976500E34829 /* REEdgeInsets.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
-		3DD65D7315F6976500E34829 /* REMath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432D13E29A4F001E480D /* REMath.h */; };
-		3DD65D7415F6976500E34829 /* REMD5Generator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432E13E29A4F001E480D /* REMD5Generator.h */; };
-		3DD65D7515F6976500E34829 /* RERandomizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433213E29A4F001E480D /* RERandomizer.h */; };
-		3DD65D7615F6976500E34829 /* RERect.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433313E29A4F001E480D /* RERect.h */; };
-		3DD65D7715F6976500E34829 /* RESize.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433513E29A4F001E480D /* RESize.h */; };
-		3DD65D7815F6976500E34829 /* RETypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433B13E29A4F001E480D /* RETypes.h */; };
-		3DD65D7915F6976500E34829 /* REYUVtoRGB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433D13E29A4F001E480D /* REYUVtoRGB.h */; };
-		3DD65D7A15F6976500E34829 /* REFile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432713E29A4F001E480D /* REFile.h */; };
-		3DD65D7B15F6976500E34829 /* RETimer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433A13E29A4F001E480D /* RETimer.h */; };
-		3DD65D7C15F6976500E34829 /* REFileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432813E29A4F001E480D /* REFileManager.h */; };
-		3DD65D7D15F6976500E34829 /* RERange.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DE67B3C1535BC17003E5BF5 /* RERange.h */; };
-		3DD65D7E15F6976500E34829 /* REObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433113E29A4F001E480D /* REObject.h */; };
-		3DD65D7F15F6976500E34829 /* REZipReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433E13E29A4F001E480D /* REZipReader.h */; };
-		3DD65D8015F6976500E34829 /* REResourcesStorage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433413E29A4F001E480D /* REResourcesStorage.h */; };
-		3DD65D8115F6976500E34829 /* RELocale.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432B13E29A4F001E480D /* RELocale.h */; };
-		3DD65D8215F6976500E34829 /* REMutex.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D0E62B1145586070030C4FD /* REMutex.h */; };
-		3DD65D8315F6976600E34829 /* REUserCallBacks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433C13E29A4F001E480D /* REUserCallBacks.h */; };
-		3DD65D8415F6976600E34829 /* RESQLiteDB.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */; };
-		3DD65D8515F6976600E34829 /* RESQLiteDBResultSet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */; };
-		3DD65D8615F6976600E34829 /* RETime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433913E29A4F001E480D /* RETime.h */; };
-		3DD65D8715F6976600E34829 /* REString.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433613E29A4F001E480D /* REString.h */; };
-		3DD65D8815F6976600E34829 /* RECoreC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433713E29A4F001E480D /* RECoreC.h */; };
-		3DD65D8915F6976600E34829 /* RENotificationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432F13E29A4F001E480D /* RENotificationManager.h */; };
-		3DD65D8A15F6976600E34829 /* RENumber.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433013E29A4F001E480D /* RENumber.h */; };
-		3DD65D8B15F6976600E34829 /* RETetragon.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F433813E29A4F001E480D /* RETetragon.h */; };
-		3DD65D8C15F6976600E34829 /* REThread.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F43B213E29B6D001E480D /* REThread.h */; };
-		3DD65D8D15F6976600E34829 /* REData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3D1F432513E29A4F001E480D /* REData.h */; };
-		3DD65DD315F69AE800E34829 /* RELocale_iphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */; };
-		3DD65DD615F69B4400E34829 /* REConfigSelector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */; };
 		3DE386FB14B45D5E00366267 /* REProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE386FA14B45D5E00366267 /* REProperty.h */; };
 		3DE67B3D1535BC17003E5BF5 /* RERange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE67B3C1535BC17003E5BF5 /* RERange.h */; };
 		3DF0493414D693D200306830 /* REYUV420toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */; };
@@ -511,115 +299,11 @@
 		3DF8753615F152C400363B51 /* REAutoReleasePoolPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */; };
 		3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DF8753715F152CA00363B51 /* REAutoReleasePoolPrivate.h */; };
 		3DFD093114BDB81B0063730E /* REList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFD093014BDB81B0063730E /* REList.h */; };
+		3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD334A1783033C0057D47A /* OKJSONParser.c */; };
+		3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFD334B1783033C0057D47A /* OKJSONParser.h */; };
+		3DFD335817831EAE0057D47A /* RENULL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFD335717831EAE0057D47A /* RENULL.h */; };
+		3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD335917831ECD0057D47A /* RENULL.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3D56CF5C16552A9000B66EE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D1788DE13E2987E00520FC2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D1788E613E2987E00520FC2;
-			remoteInfo = recore;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		3DD65D4015F696FD00E34829 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/reconfig";
-			dstSubfolderSpec = 16;
-			files = (
-				3DD65DD615F69B4400E34829 /* REConfigSelector.h in CopyFiles */,
-				3DD65D4215F6971400E34829 /* REConfigIPhone.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DD65D4315F6973C00E34829 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Headers/recore";
-			dstSubfolderSpec = 16;
-			files = (
-				3D9C86371758DD5B009B516A /* REPtr.h in CopyFiles */,
-				3DD65D4415F6976500E34829 /* REAutoReleasePool.h in CopyFiles */,
-				3DD65D4515F6976500E34829 /* REMainLoopUpdatable.h in CopyFiles */,
-				3DD65D4615F6976500E34829 /* RELog.h in CopyFiles */,
-				3DD65D4715F6976500E34829 /* RECPUFeatures.h in CopyFiles */,
-				3DD65D4815F6976500E34829 /* REMem.h in CopyFiles */,
-				3DD65D4915F6976500E34829 /* REFloat16.h in CopyFiles */,
-				3DD65D4A15F6976500E34829 /* REList.h in CopyFiles */,
-				3DD65D4B15F6976500E34829 /* REProperty.h in CopyFiles */,
-				3DD65D4C15F6976500E34829 /* REObjectProperty.h in CopyFiles */,
-				3DD65D4D15F6976500E34829 /* REZLIBCompression.h in CopyFiles */,
-				3DD65D4E15F6976500E34829 /* RELZMACompression.h in CopyFiles */,
-				3DD65D4F15F6976500E34829 /* REInterpolation.h in CopyFiles */,
-				3DD65D5015F6976500E34829 /* RE2DAlgorithm.h in CopyFiles */,
-				3DD65D5115F6976500E34829 /* IREAffineTransformed.h in CopyFiles */,
-				3DD65D5215F6976500E34829 /* REAffineTransform.h in CopyFiles */,
-				3DD65D5315F6976500E34829 /* REMatrix4.h in CopyFiles */,
-				3DD65D5415F6976500E34829 /* REQuaternion.h in CopyFiles */,
-				3DD65D5515F6976500E34829 /* REPoint2.h in CopyFiles */,
-				3DD65D5615F6976500E34829 /* REPoint3.h in CopyFiles */,
-				3DD65D5715F6976500E34829 /* REVector2.h in CopyFiles */,
-				3DD65D5815F6976500E34829 /* REVector3.h in CopyFiles */,
-				3DD65D5915F6976500E34829 /* RENULLObject.h in CopyFiles */,
-				3DD65D5A15F6976500E34829 /* REObjectsArray.h in CopyFiles */,
-				3DD65D5B15F6976500E34829 /* REXMLPropertyListReader.h in CopyFiles */,
-				3DD65D5C15F6976500E34829 /* REBase64.h in CopyFiles */,
-				3DD65D5D15F6976500E34829 /* REBufferObject.h in CopyFiles */,
-				3DD65D5E15F6976500E34829 /* RENumberObject.h in CopyFiles */,
-				3DD65D5F15F6976500E34829 /* REStringObject.h in CopyFiles */,
-				3DD65D6015F6976500E34829 /* REXMLPropertyListWriter.h in CopyFiles */,
-				3DD65D6115F6976500E34829 /* REObjectsDictionary.h in CopyFiles */,
-				3DD65D6215F6976500E34829 /* REApplication.h in CopyFiles */,
-				3DD65D6315F6976500E34829 /* REImageBase.h in CopyFiles */,
-				3DD65D6415F6976500E34829 /* REImage.h in CopyFiles */,
-				3DD65D6515F6976500E34829 /* REImageManager.h in CopyFiles */,
-				3DD65D6615F6976500E34829 /* IREFileReadable.h in CopyFiles */,
-				3DD65D6715F6976500E34829 /* REAngle.h in CopyFiles */,
-				3DD65D6815F6976500E34829 /* REArray.h in CopyFiles */,
-				3DD65D6915F6976500E34829 /* REBuffer.h in CopyFiles */,
-				3DD65D6A15F6976500E34829 /* REClassMethod.h in CopyFiles */,
-				3DD65D6B15F6976500E34829 /* REColor.h in CopyFiles */,
-				3DD65D6C15F6976500E34829 /* RECommonHeader.h in CopyFiles */,
-				3DD65D6D15F6976500E34829 /* RECoreIncludes.h in CopyFiles */,
-				3DD65D6E15F6976500E34829 /* RECoreOSSelector.h in CopyFiles */,
-				3DD65D6F15F6976500E34829 /* RECorePlatformSelector.h in CopyFiles */,
-				3DD65D7015F6976500E34829 /* RECoreSettings.h in CopyFiles */,
-				3DD65D7115F6976500E34829 /* REDate.h in CopyFiles */,
-				3DD65D7215F6976500E34829 /* REEdgeInsets.h in CopyFiles */,
-				3DD65D7315F6976500E34829 /* REMath.h in CopyFiles */,
-				3DD65D7415F6976500E34829 /* REMD5Generator.h in CopyFiles */,
-				3DD65D7515F6976500E34829 /* RERandomizer.h in CopyFiles */,
-				3DD65D7615F6976500E34829 /* RERect.h in CopyFiles */,
-				3DD65D7715F6976500E34829 /* RESize.h in CopyFiles */,
-				3DD65D7815F6976500E34829 /* RETypes.h in CopyFiles */,
-				3DD65D7915F6976500E34829 /* REYUVtoRGB.h in CopyFiles */,
-				3DD65D7A15F6976500E34829 /* REFile.h in CopyFiles */,
-				3DD65D7B15F6976500E34829 /* RETimer.h in CopyFiles */,
-				3DD65D7C15F6976500E34829 /* REFileManager.h in CopyFiles */,
-				3DD65D7D15F6976500E34829 /* RERange.h in CopyFiles */,
-				3DD65D7E15F6976500E34829 /* REObject.h in CopyFiles */,
-				3DD65D7F15F6976500E34829 /* REZipReader.h in CopyFiles */,
-				3DD65D8015F6976500E34829 /* REResourcesStorage.h in CopyFiles */,
-				3DD65D8115F6976500E34829 /* RELocale.h in CopyFiles */,
-				3DD65D8215F6976500E34829 /* REMutex.h in CopyFiles */,
-				3DD65D8315F6976600E34829 /* REUserCallBacks.h in CopyFiles */,
-				3DD65D8415F6976600E34829 /* RESQLiteDB.h in CopyFiles */,
-				3DD65D8515F6976600E34829 /* RESQLiteDBResultSet.h in CopyFiles */,
-				3DD65D8615F6976600E34829 /* RETime.h in CopyFiles */,
-				3DD65D8715F6976600E34829 /* REString.h in CopyFiles */,
-				3DD65D8815F6976600E34829 /* RECoreC.h in CopyFiles */,
-				3DD65D8915F6976600E34829 /* RENotificationManager.h in CopyFiles */,
-				3DD65D8A15F6976600E34829 /* RENumber.h in CopyFiles */,
-				3DD65D8B15F6976600E34829 /* RETetragon.h in CopyFiles */,
-				3DD65D8C15F6976600E34829 /* REThread.h in CopyFiles */,
-				3DD65D8D15F6976600E34829 /* REData.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3D068761143DFA9C00AF92AF /* RETetragon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETetragon.cpp; path = ../../src/core/RETetragon.cpp; sourceTree = SOURCE_ROOT; };
@@ -631,6 +315,8 @@
 		3D0DEED4152AE6BB00BF020F /* IREAffineTransformed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREAffineTransformed.h; path = ../../include/recore/IREAffineTransformed.h; sourceTree = SOURCE_ROOT; };
 		3D0E62B1145586070030C4FD /* REMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutex.h; path = ../../include/recore/REMutex.h; sourceTree = SOURCE_ROOT; };
 		3D0E62B4145586180030C4FD /* REMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutex.cpp; path = ../../src/core/REMutex.cpp; sourceTree = SOURCE_ROOT; };
+		3D16878D176DE84500BFF707 /* RETypedPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypedPtr.h; path = ../../include/recore/RETypedPtr.h; sourceTree = SOURCE_ROOT; };
+		3D168790176DE86C00BFF707 /* RETypedPtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETypedPtr.cpp; path = ../../src/core/RETypedPtr.cpp; sourceTree = SOURCE_ROOT; };
 		3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RELocale_iphone.mm; path = ../../src/core/RELocale_iphone.mm; sourceTree = SOURCE_ROOT; };
 		3D1788E713E2987E00520FC2 /* librecore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librecore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1788EA13E2987E00520FC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -670,7 +356,6 @@
 		3D1F433313E29A4F001E480D /* RERect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERect.h; path = ../../include/recore/RERect.h; sourceTree = SOURCE_ROOT; };
 		3D1F433413E29A4F001E480D /* REResourcesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REResourcesStorage.h; path = ../../include/recore/REResourcesStorage.h; sourceTree = SOURCE_ROOT; };
 		3D1F433513E29A4F001E480D /* RESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESize.h; path = ../../include/recore/RESize.h; sourceTree = SOURCE_ROOT; };
-		3D1F433613E29A4F001E480D /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
 		3D1F433713E29A4F001E480D /* RECoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreC.h; path = ../../include/recore/RECoreC.h; sourceTree = SOURCE_ROOT; };
 		3D1F433813E29A4F001E480D /* RETetragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETetragon.h; path = ../../include/recore/RETetragon.h; sourceTree = SOURCE_ROOT; };
 		3D1F433913E29A4F001E480D /* RETime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETime.h; path = ../../include/recore/RETime.h; sourceTree = SOURCE_ROOT; };
@@ -698,7 +383,6 @@
 		3D1F438013E29AAB001E480D /* RERandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERandomizer.cpp; path = ../../src/core/RERandomizer.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438113E29AAB001E480D /* RERect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERect.cpp; path = ../../src/core/RERect.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REResourcesStorage.cpp; path = ../../src/core/REResourcesStorage.cpp; sourceTree = SOURCE_ROOT; };
-		3D1F438313E29AAB001E480D /* REString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REString.cpp; path = ../../src/core/REString.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438413E29AAB001E480D /* RECoreC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECoreC.cpp; path = ../../src/core/RECoreC.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438513E29AAB001E480D /* REThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REThread.cpp; path = ../../src/core/REThread.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F438613E29AAB001E480D /* RETime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETime.cpp; path = ../../src/core/RETime.cpp; sourceTree = SOURCE_ROOT; };
@@ -810,8 +494,10 @@
 		3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
 		3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELZMACompression.cpp; path = ../../src/core/RELZMACompression.cpp; sourceTree = SOURCE_ROOT; };
 		3D4DEEDF14A8716000AECAD8 /* REZLIBCompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZLIBCompression.cpp; path = ../../src/core/REZLIBCompression.cpp; sourceTree = SOURCE_ROOT; };
-		3D56CF4816552A7100B66EE0 /* recore_tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recore_tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D56CF4916552A7100B66EE0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3D4E08F1178450300023C08A /* REDictionaryObjectN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObjectN.h; path = ../../include/recore/REDictionaryObjectN.h; sourceTree = SOURCE_ROOT; };
+		3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObjectN.cpp; path = ../../src/core/REDictionaryObjectN.cpp; sourceTree = SOURCE_ROOT; };
+		3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryJSONCallbacks.cpp; path = ../../src/core/json/REDictionaryJSONCallbacks.cpp; sourceTree = SOURCE_ROOT; };
+		3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryJSONCallbacks.h; path = ../../include/recore/private/REDictionaryJSONCallbacks.h; sourceTree = SOURCE_ROOT; };
 		3D5D9021149039F300230851 /* webp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp.h; path = ../../src/addlibs/webp.h; sourceTree = SOURCE_ROOT; };
 		3D5D902414903A1500230851 /* webp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp_config.h; path = ../../src/addlibs/webp_config.h; sourceTree = SOURCE_ROOT; };
 		3D5D902614903A9900230851 /* webp_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap1.c; path = ../../src/addlibs/webp_wrap1.c; sourceTree = SOURCE_ROOT; };
@@ -824,14 +510,25 @@
 		3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml_wrap1.cpp; path = ../../src/addlibs/tinyxml_wrap1.cpp; sourceTree = SOURCE_ROOT; };
 		3D78030014504B840059C648 /* REAffineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAffineTransform.cpp; path = ../../src/core/REAffineTransform.cpp; sourceTree = SOURCE_ROOT; };
 		3D785CD615C66ABF006A12F9 /* REObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectProperty.h; path = ../../include/recore/REObjectProperty.h; sourceTree = SOURCE_ROOT; };
+		3D7A01741771B7EB00E7316E /* REMutableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutableString.h; path = ../../include/recore/REMutableString.h; sourceTree = SOURCE_ROOT; };
+		3D7A01761771B7F100E7316E /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
+		3D7A01781771B80800E7316E /* REWideString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REWideString.h; path = ../../include/recore/REWideString.h; sourceTree = SOURCE_ROOT; };
+		3D7A017A1771B82800E7316E /* REWideString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REWideString.cpp; path = ../../src/core/REWideString.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A017C1771B83800E7316E /* REString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REString.cpp; path = ../../src/core/REString.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A017E1771B84F00E7316E /* REMutableString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutableString.cpp; path = ../../src/core/REMutableString.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringUtilsPrivate.cpp; path = ../../src/core/REStringUtilsPrivate.cpp; sourceTree = SOURCE_ROOT; };
+		3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringUtilsPrivate.h; path = ../../include/recore/private/REStringUtilsPrivate.h; sourceTree = SOURCE_ROOT; };
+		3D7A02501772031200E7316E /* REStringBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringBase.h; path = ../../include/recore/REStringBase.h; sourceTree = SOURCE_ROOT; };
+		3D7A02521772032200E7316E /* REStringBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringBase.cpp; path = ../../src/core/REStringBase.cpp; sourceTree = SOURCE_ROOT; };
 		3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = REMatrix4.cpp; path = ../../src/core/REMatrix4.cpp; sourceTree = SOURCE_ROOT; };
 		3D827EC414D7D04D00B539FF /* RECPUFeatures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECPUFeatures.h; path = ../../include/recore/RECPUFeatures.h; sourceTree = SOURCE_ROOT; };
 		3D827EC714D7D05600B539FF /* RECPUFeatures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECPUFeatures.cpp; path = ../../src/core/RECPUFeatures.cpp; sourceTree = SOURCE_ROOT; };
 		3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigIPhone.h; path = ../../include/reconfig/REConfigIPhone.h; sourceTree = SOURCE_ROOT; };
+		3D889132176CFD810086873B /* librecore copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librecore copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D889134176D09C70086873B /* REConfigHardcoded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REConfigHardcoded.h; sourceTree = "<group>"; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
 		3D9C86341758DC87009B516A /* REPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPtr.h; path = ../../include/recore/REPtr.h; sourceTree = SOURCE_ROOT; };
-		3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigHardcodedOs.h; path = ../../include/reconfig/REConfigHardcodedOs.h; sourceTree = SOURCE_ROOT; };
 		3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
 		3DB07B38144CAFF400FF99AB /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
 		3DB07B39144CAFF400FF99AB /* REApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REApplication.cpp; path = ../../src/core/REApplication.cpp; sourceTree = SOURCE_ROOT; };
@@ -847,27 +544,34 @@
 		3DB07B46144CB04C00FF99AB /* REStringObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringObject.cpp; path = ../../src/core/REStringObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListWriter.h; path = ../../include/recore/REXMLPropertyListWriter.h; sourceTree = SOURCE_ROOT; };
 		3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REXMLPropertyListWriter.cpp; path = ../../src/core/REXMLPropertyListWriter.cpp; sourceTree = SOURCE_ROOT; };
-		3DB07B49144CB04C00FF99AB /* REObjectsDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsDictionary.h; path = ../../include/recore/REObjectsDictionary.h; sourceTree = SOURCE_ROOT; };
-		3DB07B4A144CB04C00FF99AB /* REObjectsDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REObjectsDictionary.cpp; path = ../../src/core/REObjectsDictionary.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObject.h; path = ../../include/recore/REDictionaryObject.h; sourceTree = SOURCE_ROOT; };
+		3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObject.cpp; path = ../../src/core/REDictionaryObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB07B74144CB0EF00FF99AB /* RENULLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENULLObject.h; path = ../../include/recore/RENULLObject.h; sourceTree = SOURCE_ROOT; };
 		3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENULLObject.cpp; path = ../../src/core/RENULLObject.cpp; sourceTree = SOURCE_ROOT; };
-		3DB07B76144CB0EF00FF99AB /* REObjectsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsArray.h; path = ../../include/recore/REObjectsArray.h; sourceTree = SOURCE_ROOT; };
-		3DB07B77144CB0EF00FF99AB /* REObjectsArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REObjectsArray.cpp; path = ../../src/core/REObjectsArray.cpp; sourceTree = SOURCE_ROOT; };
+		3DB07B76144CB0EF00FF99AB /* REArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REArrayObject.h; path = ../../include/recore/REArrayObject.h; sourceTree = SOURCE_ROOT; };
+		3DB07B77144CB0EF00FF99AB /* REArrayObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REArrayObject.cpp; path = ../../src/core/REArrayObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB2352113E2A42900DA97C3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3DB2352213E2A42900DA97C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DB34A0714156FF100CEA552 /* REMainThreadClassMethodWaitedPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMainThreadClassMethodWaitedPrivate.h; path = ../../include/recore/private/REMainThreadClassMethodWaitedPrivate.h; sourceTree = SOURCE_ROOT; };
 		3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigSelector.h; path = ../../include/reconfig/REConfigSelector.h; sourceTree = SOURCE_ROOT; };
-		3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
-		3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
+		3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/private/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
+		3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/private/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
 		3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDB.cpp; path = ../../src/core/RESQLiteDB.cpp; sourceTree = SOURCE_ROOT; };
 		3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDBResultSet.cpp; path = ../../src/core/RESQLiteDBResultSet.cpp; sourceTree = SOURCE_ROOT; };
+		3DBEF9571770415000503066 /* REDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDB.h; path = ../../include/recore/REDB.h; sourceTree = SOURCE_ROOT; };
+		3DBEF9591770415F00503066 /* REDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDB.cpp; path = ../../src/core/db/REDB.cpp; sourceTree = SOURCE_ROOT; };
+		3DBEF95B177041DC00503066 /* REDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDBResultSet.h; path = ../../include/recore/REDBResultSet.h; sourceTree = SOURCE_ROOT; };
+		3DBEF95D177041E000503066 /* REDBResultSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDBResultSet.cpp; path = ../../src/core/db/REDBResultSet.cpp; sourceTree = SOURCE_ROOT; };
+		3DBEF95F1770444900503066 /* REDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionary.h; path = ../../include/recore/REDictionary.h; sourceTree = SOURCE_ROOT; };
+		3DBEF9611770445800503066 /* REDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionary.cpp; path = ../../src/core/REDictionary.cpp; sourceTree = SOURCE_ROOT; };
+		3DBEF98317708E9000503066 /* RETypedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypedArray.h; path = ../../include/recore/RETypedArray.h; sourceTree = SOURCE_ROOT; };
+		3DBEF98517708E9B00503066 /* RETypedArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETypedArray.cpp; path = ../../src/core/RETypedArray.cpp; sourceTree = SOURCE_ROOT; };
 		3DC9F08A14A4A759008B46F4 /* lzma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzma.h; path = ../../src/addlibs/lzma.h; sourceTree = SOURCE_ROOT; };
 		3DC9F08B14A4A759008B46F4 /* lzma_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzma_config.h; path = ../../src/addlibs/lzma_config.h; sourceTree = SOURCE_ROOT; };
 		3DC9F08C14A4A759008B46F4 /* lzma_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzma_wrap1.c; path = ../../src/addlibs/lzma_wrap1.c; sourceTree = SOURCE_ROOT; };
 		3DD0469D15EEA0F300642E45 /* REMainLoopUpdatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopUpdatable.cpp; path = ../../src/core/REMainLoopUpdatable.cpp; sourceTree = SOURCE_ROOT; };
 		3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopsObjectsStoragePrivate.cpp; path = ../../src/core/REMainLoopsObjectsStoragePrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3DD046A115EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMainLoopsObjectsStoragePrivate.h; path = ../../include/recore/private/REMainLoopsObjectsStoragePrivate.h; sourceTree = SOURCE_ROOT; };
-		3DD65C6615F68CC300E34829 /* RECore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RECore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE386FA14B45D5E00366267 /* REProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REProperty.h; path = ../../include/recore/REProperty.h; sourceTree = SOURCE_ROOT; };
 		3DE67B3C1535BC17003E5BF5 /* RERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERange.h; path = ../../include/recore/RERange.h; sourceTree = SOURCE_ROOT; };
 		3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV420toRGB565.cpp; path = ../../src/core/yuv2rgb/REYUV420toRGB565.cpp; sourceTree = SOURCE_ROOT; };
@@ -884,6 +588,10 @@
 		3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAutoReleasePoolPrivate.cpp; path = ../../src/core/REAutoReleasePoolPrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3DF8753715F152CA00363B51 /* REAutoReleasePoolPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAutoReleasePoolPrivate.h; path = ../../include/recore/private/REAutoReleasePoolPrivate.h; sourceTree = SOURCE_ROOT; };
 		3DFD093014BDB81B0063730E /* REList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REList.h; path = ../../include/recore/REList.h; sourceTree = SOURCE_ROOT; };
+		3DFD334A1783033C0057D47A /* OKJSONParser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = OKJSONParser.c; path = ../../src/core/json/OKJSONParser.c; sourceTree = SOURCE_ROOT; };
+		3DFD334B1783033C0057D47A /* OKJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKJSONParser.h; path = ../../src/core/json/OKJSONParser.h; sourceTree = SOURCE_ROOT; };
+		3DFD335717831EAE0057D47A /* RENULL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENULL.h; path = ../../include/recore/RENULL.h; sourceTree = SOURCE_ROOT; };
+		3DFD335917831ECD0057D47A /* RENULL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENULL.cpp; path = ../../src/core/RENULL.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -895,25 +603,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D56CF4416552A7100B66EE0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D56CF4A16552A7100B66EE0 /* SenTestingKit.framework in Frameworks */,
-				3D56CF4D16552A7100B66EE0 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DD65C6315F68CC300E34829 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D16878F176DE84C00BFF707 /* Ptr */ = {
+			isa = PBXGroup;
+			children = (
+				3D9C86341758DC87009B516A /* REPtr.h */,
+				3D16878D176DE84500BFF707 /* RETypedPtr.h */,
+				3D168790176DE86C00BFF707 /* RETypedPtr.cpp */,
+				3DBEF98317708E9000503066 /* RETypedArray.h */,
+				3DBEF98517708E9B00503066 /* RETypedArray.cpp */,
+			);
+			name = Ptr;
+			sourceTree = "<group>";
+		};
 		3D1788DC13E2987E00520FC2 = {
 			isa = PBXGroup;
 			children = (
@@ -928,8 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				3D1788E713E2987E00520FC2 /* librecore.a */,
-				3DD65C6615F68CC300E34829 /* RECore.framework */,
-				3D56CF4816552A7100B66EE0 /* recore_tests.octest */,
+				3D889132176CFD810086873B /* librecore copy.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -938,7 +641,6 @@
 			isa = PBXGroup;
 			children = (
 				3D1788EA13E2987E00520FC2 /* Foundation.framework */,
-				3D56CF4916552A7100B66EE0 /* SenTestingKit.framework */,
 				3DB2351F13E2A42900DA97C3 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -947,6 +649,8 @@
 		3D1788EC13E2987E00520FC2 /* recore */ = {
 			isa = PBXGroup;
 			children = (
+				3D6693C5176F0D4200AAE726 /* DB */,
+				3D5B57C31765BF44000B4527 /* JSON */,
 				3DF8753415F1525100363B51 /* AutoReleasePool */,
 				3DD0469B15EEA04200642E45 /* MainLoop */,
 				3D079FD415C8182E004FAA9E /* RELog.h */,
@@ -954,7 +658,7 @@
 				3D827EC414D7D04D00B539FF /* RECPUFeatures.h */,
 				3D827EC714D7D05600B539FF /* RECPUFeatures.cpp */,
 				3D48489D14D6F3D0000C07C0 /* REMem.h */,
-				3D9C86341758DC87009B516A /* REPtr.h */,
+				3D16878F176DE84C00BFF707 /* Ptr */,
 				3DF1DEAA14BF0FA400263F9A /* REFloat16.h */,
 				3DFD093014BDB81B0063730E /* REList.h */,
 				3DE386FA14B45D5E00366267 /* REProperty.h */,
@@ -964,10 +668,12 @@
 				3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */,
 				3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */,
 				3D3F6850145029C8002409DD /* Matrix Vector */,
+				3DFD335717831EAE0057D47A /* RENULL.h */,
+				3DFD335917831ECD0057D47A /* RENULL.cpp */,
 				3DB07B74144CB0EF00FF99AB /* RENULLObject.h */,
 				3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */,
-				3DB07B76144CB0EF00FF99AB /* REObjectsArray.h */,
-				3DB07B77144CB0EF00FF99AB /* REObjectsArray.cpp */,
+				3DB07B76144CB0EF00FF99AB /* REArrayObject.h */,
+				3DB07B77144CB0EF00FF99AB /* REArrayObject.cpp */,
 				3DB07B3C144CB04C00FF99AB /* Dictionary */,
 				3DB07B36144CAFE600FF99AB /* Application */,
 				3D9818B51427748800793F3C /* image */,
@@ -982,6 +688,7 @@
 		3D1F430F13E29A4F001E480D /* recore */ = {
 			isa = PBXGroup;
 			children = (
+				3D7A01731771B78E00E7316E /* string */,
 				3D1F431313E29A4F001E480D /* private */,
 				3D1F431113E29A4F001E480D /* IREFileReadable.h */,
 				3D1F431913E29A4F001E480D /* REAngle.h */,
@@ -994,7 +701,6 @@
 				3D1F432213E29A4F001E480D /* RECoreOSSelector.h */,
 				3D1F432313E29A4F001E480D /* RECorePlatformSelector.h */,
 				3D1F432413E29A4F001E480D /* RECoreSettings.h */,
-				3D1F432613E29A4F001E480D /* REDate.h */,
 				3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */,
 				3D1F432D13E29A4F001E480D /* REMath.h */,
 				3D1F432E13E29A4F001E480D /* REMD5Generator.h */,
@@ -1006,14 +712,11 @@
 				3D1F433A13E29A4F001E480D /* RETimer.h */,
 				3D1F432813E29A4F001E480D /* REFileManager.h */,
 				3DE67B3C1535BC17003E5BF5 /* RERange.h */,
-				3D1F433113E29A4F001E480D /* REObject.h */,
 				3D1F433E13E29A4F001E480D /* REZipReader.h */,
 				3D1F433413E29A4F001E480D /* REResourcesStorage.h */,
 				3D1F432B13E29A4F001E480D /* RELocale.h */,
 				3D0E62B1145586070030C4FD /* REMutex.h */,
 				3D1F433C13E29A4F001E480D /* REUserCallBacks.h */,
-				3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */,
-				3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */,
 				3D1F433913E29A4F001E480D /* RETime.h */,
 				3D1F433713E29A4F001E480D /* RECoreC.h */,
 				3D1F432F13E29A4F001E480D /* RENotificationManager.h */,
@@ -1022,7 +725,8 @@
 				3D1F432513E29A4F001E480D /* REData.h */,
 				3D1F433013E29A4F001E480D /* RENumber.h */,
 				3D1F432713E29A4F001E480D /* REFile.h */,
-				3D1F433613E29A4F001E480D /* REString.h */,
+				3D1F432613E29A4F001E480D /* REDate.h */,
+				3D1F433113E29A4F001E480D /* REObject.h */,
 			);
 			name = recore;
 			path = ../../../include/recore;
@@ -1042,7 +746,8 @@
 		3D1F436D13E29AAB001E480D /* core */ = {
 			isa = PBXGroup;
 			children = (
-				3D1F438313E29AAB001E480D /* REString.cpp */,
+				3D1F437F13E29AAB001E480D /* REObject.cpp */,
+				3D1F437613E29AAB001E480D /* REDate.cpp */,
 				3D1F437413E29AAB001E480D /* REColor.cpp */,
 				3D1F437713E29AAB001E480D /* REFile.cpp */,
 				3D1F437E13E29AAB001E480D /* RENumber.cpp */,
@@ -1052,14 +757,11 @@
 				3D1F437D13E29AAB001E480D /* RENotificationManager.cpp */,
 				3D1F438413E29AAB001E480D /* RECoreC.cpp */,
 				3D1F438613E29AAB001E480D /* RETime.cpp */,
-				3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */,
-				3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */,
 				3D1F438813E29AAB001E480D /* REUserCallBacks.cpp */,
 				3D0E62B4145586180030C4FD /* REMutex.cpp */,
 				3D09526614165071003082A8 /* RELocale.cpp */,
 				3D1F438213E29AAB001E480D /* REResourcesStorage.cpp */,
 				3D1F438913E29AAB001E480D /* REZipReader.cpp */,
-				3D1F437F13E29AAB001E480D /* REObject.cpp */,
 				3D1F437C13E29AAB001E480D /* REMD5Generator.cpp */,
 				3D1CC87214E90AA400A0D9C7 /* REMath.cpp */,
 				3D1F437813E29AAB001E480D /* REFileManager.cpp */,
@@ -1069,7 +771,6 @@
 				3D1F436F13E29AAB001E480D /* RE3DVector.cpp */,
 				3D1F437013E29AAB001E480D /* REAngle.cpp */,
 				3D1F437313E29AAB001E480D /* REBuffer.cpp */,
-				3D1F437613E29AAB001E480D /* REDate.cpp */,
 				3D1F438013E29AAB001E480D /* RERandomizer.cpp */,
 				3D1F438113E29AAB001E480D /* RERect.cpp */,
 				3DF0492814D693C100306830 /* yuv2rgb */,
@@ -1219,6 +920,30 @@
 			name = "Matrix Vector";
 			sourceTree = "<group>";
 		};
+		3D5B57C31765BF44000B4527 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3DFD334B1783033C0057D47A /* OKJSONParser.h */,
+				3DFD334A1783033C0057D47A /* OKJSONParser.c */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		3D6693C5176F0D4200AAE726 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				3DBEF9571770415000503066 /* REDB.h */,
+				3DBEF9591770415F00503066 /* REDB.cpp */,
+				3DBEF95B177041DC00503066 /* REDBResultSet.h */,
+				3DBEF95D177041E000503066 /* REDBResultSet.cpp */,
+				3DB8EAEC14DABD07008CBBD6 /* RESQLiteDB.h */,
+				3DB8EAF114DABD23008CBBD6 /* RESQLiteDB.cpp */,
+				3DB8EAED14DABD07008CBBD6 /* RESQLiteDBResultSet.h */,
+				3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */,
+			);
+			name = DB;
+			sourceTree = "<group>";
+		};
 		3D6BF781148D1B150082B649 /* Compression */ = {
 			isa = PBXGroup;
 			children = (
@@ -1230,10 +955,27 @@
 			name = Compression;
 			sourceTree = "<group>";
 		};
+		3D7A01731771B78E00E7316E /* string */ = {
+			isa = PBXGroup;
+			children = (
+				3D7A02501772031200E7316E /* REStringBase.h */,
+				3D7A02521772032200E7316E /* REStringBase.cpp */,
+				3D7A01741771B7EB00E7316E /* REMutableString.h */,
+				3D7A017E1771B84F00E7316E /* REMutableString.cpp */,
+				3D7A01781771B80800E7316E /* REWideString.h */,
+				3D7A017A1771B82800E7316E /* REWideString.cpp */,
+				3D7A01761771B7F100E7316E /* REString.h */,
+				3D7A017C1771B83800E7316E /* REString.cpp */,
+				3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */,
+				3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */,
+			);
+			name = string;
+			sourceTree = "<group>";
+		};
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C86381758F82E009B516A /* REConfigHardcodedOs.h */,
+				3D889134176D09C70086873B /* REConfigHardcoded.h */,
 				3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */,
 				3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */,
 			);
@@ -1265,6 +1007,10 @@
 		3DB07B3C144CB04C00FF99AB /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */,
+				3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */,
+				3DBEF95F1770444900503066 /* REDictionary.h */,
+				3DBEF9611770445800503066 /* REDictionary.cpp */,
 				3DB07B3D144CB04C00FF99AB /* REXMLPropertyListReader.h */,
 				3DB07B3E144CB04C00FF99AB /* REXMLPropertyListReader.cpp */,
 				3DB07B3F144CB04C00FF99AB /* REBase64.h */,
@@ -1277,8 +1023,10 @@
 				3DB07B46144CB04C00FF99AB /* REStringObject.cpp */,
 				3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */,
 				3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */,
-				3DB07B49144CB04C00FF99AB /* REObjectsDictionary.h */,
-				3DB07B4A144CB04C00FF99AB /* REObjectsDictionary.cpp */,
+				3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */,
+				3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */,
+				3D4E08F1178450300023C08A /* REDictionaryObjectN.h */,
+				3D4E08F3178450420023C08A /* REDictionaryObjectN.cpp */,
 			);
 			name = Dictionary;
 			path = ../tests/test_ios;
@@ -1373,7 +1121,6 @@
 				3D1F436113E29A4F001E480D /* RERect.h in Headers */,
 				3D1F436213E29A4F001E480D /* REResourcesStorage.h in Headers */,
 				3D1F436313E29A4F001E480D /* RESize.h in Headers */,
-				3D1F436413E29A4F001E480D /* REString.h in Headers */,
 				3D1F436513E29A4F001E480D /* RECoreC.h in Headers */,
 				3D1F436613E29A4F001E480D /* RETetragon.h in Headers */,
 				3D1F436713E29A4F001E480D /* RETime.h in Headers */,
@@ -1409,9 +1156,9 @@
 				3DB07B51144CB04C00FF99AB /* RENumberObject.h in Headers */,
 				3DB07B53144CB04C00FF99AB /* REStringObject.h in Headers */,
 				3DB07B55144CB04C00FF99AB /* REXMLPropertyListWriter.h in Headers */,
-				3DB07B57144CB04C00FF99AB /* REObjectsDictionary.h in Headers */,
+				3DB07B57144CB04C00FF99AB /* REDictionaryObject.h in Headers */,
 				3DB07B78144CB0EF00FF99AB /* RENULLObject.h in Headers */,
-				3DB07B7A144CB0EF00FF99AB /* REObjectsArray.h in Headers */,
+				3DB07B7A144CB0EF00FF99AB /* REArrayObject.h in Headers */,
 				3D3F6853145029D2002409DD /* REMatrix4.h in Headers */,
 				3D3F689114503B47002409DD /* REAffineTransform.h in Headers */,
 				3D0E62B2145586070030C4FD /* REMutex.h in Headers */,
@@ -1442,17 +1189,21 @@
 				3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */,
 				3DF8753815F152CA00363B51 /* REAutoReleasePoolPrivate.h in Headers */,
 				3D9C86351758DC87009B516A /* REPtr.h in Headers */,
-				3D9C86391758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DD65CB515F68EC100E34829 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DD65D1615F6962F00E34829 /* recore.h in Headers */,
-				3D9C86361758DC9B009B516A /* REPtr.h in Headers */,
-				3D9C863A1758F82E009B516A /* REConfigHardcodedOs.h in Headers */,
+				3D889135176D09C70086873B /* REConfigHardcoded.h in Headers */,
+				3D16878E176DE84500BFF707 /* RETypedPtr.h in Headers */,
+				3DBEF9581770415000503066 /* REDB.h in Headers */,
+				3DBEF95C177041DC00503066 /* REDBResultSet.h in Headers */,
+				3DBEF9601770444900503066 /* REDictionary.h in Headers */,
+				3DBEF98417708E9100503066 /* RETypedArray.h in Headers */,
+				3D7A01751771B7EB00E7316E /* REMutableString.h in Headers */,
+				3D7A01771771B7F100E7316E /* REString.h in Headers */,
+				3D7A01791771B80800E7316E /* REWideString.h in Headers */,
+				3D7A01971771D87A00E7316E /* REStringUtilsPrivate.h in Headers */,
+				3D7A02511772031200E7316E /* REStringBase.h in Headers */,
+				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
+				3DFD335817831EAE0057D47A /* RENULL.h in Headers */,
+				3D4E08F2178450300023C08A /* REDictionaryObjectN.h in Headers */,
+				3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,44 +1227,20 @@
 			productReference = 3D1788E713E2987E00520FC2 /* librecore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		3D56CF4716552A7100B66EE0 /* recore_tests */ = {
+		3D88902A176CFD810086873B /* CreateREConfigHardcoded */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D56CF5A16552A7100B66EE0 /* Build configuration list for PBXNativeTarget "recore_tests" */;
+			buildConfigurationList = 3D88912F176CFD810086873B /* Build configuration list for PBXNativeTarget "CreateREConfigHardcoded" */;
 			buildPhases = (
-				3D56CF4316552A7100B66EE0 /* Sources */,
-				3D56CF4416552A7100B66EE0 /* Frameworks */,
-				3D56CF4516552A7100B66EE0 /* Resources */,
-				3D56CF4616552A7100B66EE0 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D56CF5D16552A9000B66EE0 /* PBXTargetDependency */,
-			);
-			name = recore_tests;
-			productName = recore_tests;
-			productReference = 3D56CF4816552A7100B66EE0 /* recore_tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		3DD65C6515F68CC300E34829 /* RECore_Framework */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3DD65C7315F68CC300E34829 /* Build configuration list for PBXNativeTarget "RECore_Framework" */;
-			buildPhases = (
-				3DD65C6215F68CC300E34829 /* Sources */,
-				3DD65C6315F68CC300E34829 /* Frameworks */,
-				3DD65C6415F68CC300E34829 /* Resources */,
-				3DD65CB515F68EC100E34829 /* Headers */,
-				3DD65D4015F696FD00E34829 /* CopyFiles */,
-				3DD65D4315F6973C00E34829 /* CopyFiles */,
+				3D889133176CFDBB0086873B /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = RECore_Framework;
-			productName = RECore_Framework;
-			productReference = 3DD65C6615F68CC300E34829 /* RECore.framework */;
-			productType = "com.apple.product-type.bundle";
+			name = CreateREConfigHardcoded;
+			productName = recore;
+			productReference = 3D889132176CFD810086873B /* librecore copy.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -1521,7 +1248,7 @@
 		3D1788DE13E2987E00520FC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 3D1788E113E2987E00520FC2 /* Build configuration list for PBXProject "recore" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1536,32 +1263,14 @@
 			projectRoot = "";
 			targets = (
 				3D1788E613E2987E00520FC2 /* recore */,
-				3DD65C6515F68CC300E34829 /* RECore_Framework */,
 				3DD65D1015F691D200E34829 /* RECore_Agregate */,
-				3D56CF4716552A7100B66EE0 /* recore_tests */,
+				3D88902A176CFD810086873B /* CreateREConfigHardcoded */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		3D56CF4516552A7100B66EE0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DD65C6415F68CC300E34829 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
-		3D56CF4616552A7100B66EE0 /* ShellScript */ = {
+		3D889133176CFDBB0086873B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1572,7 +1281,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = ./../conf.sh;
 		};
 		3DD65D1415F691FD00E34829 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1613,7 +1322,6 @@
 				3D1F43A313E29AAB001E480D /* RERandomizer.cpp in Sources */,
 				3D1F43A413E29AAB001E480D /* RERect.cpp in Sources */,
 				3D1F43A513E29AAB001E480D /* REResourcesStorage.cpp in Sources */,
-				3D1F43A613E29AAB001E480D /* REString.cpp in Sources */,
 				3D1F43A713E29AAB001E480D /* RECoreC.cpp in Sources */,
 				3D1F43A813E29AAB001E480D /* REThread.cpp in Sources */,
 				3D1F43A913E29AAB001E480D /* RETime.cpp in Sources */,
@@ -1714,9 +1422,9 @@
 				3DB07B52144CB04C00FF99AB /* RENumberObject.cpp in Sources */,
 				3DB07B54144CB04C00FF99AB /* REStringObject.cpp in Sources */,
 				3DB07B56144CB04C00FF99AB /* REXMLPropertyListWriter.cpp in Sources */,
-				3DB07B58144CB04C00FF99AB /* REObjectsDictionary.cpp in Sources */,
+				3DB07B58144CB04C00FF99AB /* REDictionaryObject.cpp in Sources */,
 				3DB07B79144CB0EF00FF99AB /* RENULLObject.cpp in Sources */,
-				3DB07B7B144CB0EF00FF99AB /* REObjectsArray.cpp in Sources */,
+				3DB07B7B144CB0EF00FF99AB /* REArrayObject.cpp in Sources */,
 				3D78030114504B840059C648 /* REAffineTransform.cpp in Sources */,
 				3D0E62B5145586180030C4FD /* REMutex.cpp in Sources */,
 				3D183DBA1469287E0004F6F6 /* RE2DAlgorithm.cpp in Sources */,
@@ -1746,184 +1454,24 @@
 				3DD0469E15EEA0F300642E45 /* REMainLoopUpdatable.cpp in Sources */,
 				3DD046A015EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
 				3DF8753615F152C400363B51 /* REAutoReleasePoolPrivate.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D56CF4316552A7100B66EE0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3DD65C6215F68CC300E34829 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3DD65DD315F69AE800E34829 /* RELocale_iphone.mm in Sources */,
-				3DD65CB915F6913C00E34829 /* lzma_wrap1.c in Sources */,
-				3DD65CBA15F6913C00E34829 /* webp_wrap1.c in Sources */,
-				3DD65CBB15F6913C00E34829 /* webp_wrap2.c in Sources */,
-				3DD65CBC15F6913C00E34829 /* webp_wrap3.c in Sources */,
-				3DD65CBD15F6913C00E34829 /* webp_wrap4.c in Sources */,
-				3DD65CBE15F6913C00E34829 /* jpeg_wrap1.c in Sources */,
-				3DD65CBF15F6913C00E34829 /* jpeg_wrap2.c in Sources */,
-				3DD65CC015F6913C00E34829 /* jpeg_wrap3.c in Sources */,
-				3DD65CC115F6913C00E34829 /* jpeg_wrap4.c in Sources */,
-				3DD65CC215F6913C00E34829 /* jpeg_wrap5.c in Sources */,
-				3DD65CC315F6913C00E34829 /* jpeg_wrap6.c in Sources */,
-				3DD65CC415F6913C00E34829 /* jpeg_wrap7.c in Sources */,
-				3DD65CC515F6913C00E34829 /* jpeg_wrap8.c in Sources */,
-				3DD65CC615F6913C00E34829 /* jpeg_wrap9.c in Sources */,
-				3DD65CC715F6913C00E34829 /* jpeg_wrap10.c in Sources */,
-				3DD65CC815F6913C00E34829 /* jpeg_wrap11.c in Sources */,
-				3DD65CC915F6913C00E34829 /* jpeg_wrap12.c in Sources */,
-				3DD65CCA15F6913C00E34829 /* jpeg_wrap13.c in Sources */,
-				3DD65CCB15F6913C00E34829 /* jpeg_wrap14.c in Sources */,
-				3DD65CCC15F6913C00E34829 /* jpeg_wrap15.c in Sources */,
-				3DD65CCD15F6913C00E34829 /* jpeg_wrap16.c in Sources */,
-				3DD65CCE15F6913C00E34829 /* jpeg_wrap17.c in Sources */,
-				3DD65CCF15F6913C00E34829 /* jpeg_wrap18.c in Sources */,
-				3DD65CD015F6913C00E34829 /* jpeg_wrap19.c in Sources */,
-				3DD65CD115F6913C00E34829 /* jpeg_wrap20.c in Sources */,
-				3DD65CD215F6913C00E34829 /* jpeg_wrap21.c in Sources */,
-				3DD65CD315F6913C00E34829 /* jpeg_wrap22.c in Sources */,
-				3DD65CD415F6913C00E34829 /* jpeg_wrap23.c in Sources */,
-				3DD65CD515F6913C00E34829 /* jpeg_wrap24.c in Sources */,
-				3DD65CD615F6913C00E34829 /* jpeg_wrap25.c in Sources */,
-				3DD65CD715F6913C00E34829 /* jpeg_wrap26.c in Sources */,
-				3DD65CD815F6913C00E34829 /* jpeg_wrap27.c in Sources */,
-				3DD65CD915F6913C00E34829 /* jpeg_wrap28.c in Sources */,
-				3DD65CDA15F6913C00E34829 /* jpeg_wrap29.c in Sources */,
-				3DD65CDB15F6913C00E34829 /* jpeg_wrap30.c in Sources */,
-				3DD65CDC15F6913C00E34829 /* jpeg_wrap31.c in Sources */,
-				3DD65CDD15F6913C00E34829 /* jpeg_wrap32.c in Sources */,
-				3DD65CDE15F6913C00E34829 /* jpeg_wrap33.c in Sources */,
-				3DD65CDF15F6913C00E34829 /* jpeg_wrap34.c in Sources */,
-				3DD65CE015F6913C00E34829 /* jpeg_wrap35.c in Sources */,
-				3DD65CE115F6913C00E34829 /* jpeg_wrap36.c in Sources */,
-				3DD65CE215F6913C00E34829 /* jpeg_wrap37.c in Sources */,
-				3DD65CE315F6913C00E34829 /* jpeg_wrap38.c in Sources */,
-				3DD65CE415F6913C00E34829 /* jpeg_wrap39.c in Sources */,
-				3DD65CE515F6913C00E34829 /* jpeg_wrap40.c in Sources */,
-				3DD65CE615F6913C00E34829 /* jpeg_wrap41.c in Sources */,
-				3DD65CE715F6913C00E34829 /* jpeg_wrap42.c in Sources */,
-				3DD65CE815F6913C00E34829 /* jpeg_wrap43.c in Sources */,
-				3DD65CE915F6913C00E34829 /* jpeg_wrap44.c in Sources */,
-				3DD65CEA15F6913C00E34829 /* jpeg_wrap45.c in Sources */,
-				3DD65CEB15F6913C00E34829 /* jpeg_wrap46.c in Sources */,
-				3DD65CEC15F6913C00E34829 /* jpeg_wrap47.c in Sources */,
-				3DD65CED15F6913C00E34829 /* jpeg_wrap48.c in Sources */,
-				3DD65CEE15F6913C00E34829 /* jpeg_wrap49.c in Sources */,
-				3DD65CEF15F6913C00E34829 /* jpeg_wrap50.c in Sources */,
-				3DD65CF015F6913C00E34829 /* jpeg_wrap51.c in Sources */,
-				3DD65CF115F6913C00E34829 /* jpeg_wrap52.c in Sources */,
-				3DD65CF215F6913C00E34829 /* jpeg_wrap53.c in Sources */,
-				3DD65CF315F6913C00E34829 /* jpeg_wrap54.c in Sources */,
-				3DD65CF415F6913C00E34829 /* jpeg_wrap55.c in Sources */,
-				3DD65CF515F6913C00E34829 /* jpeg_wrap56.c in Sources */,
-				3DD65CF615F6913C00E34829 /* jpeg_wrap57.c in Sources */,
-				3DD65CF715F6913C00E34829 /* jpeg_wrap58.c in Sources */,
-				3DD65CF815F6913C00E34829 /* jpeg_wrap59.c in Sources */,
-				3DD65CF915F6913C00E34829 /* jpeg_wrap60.c in Sources */,
-				3DD65CFA15F6913C00E34829 /* openjpeg_wrap1.c in Sources */,
-				3DD65CFB15F6913C00E34829 /* openjpeg_wrap2.c in Sources */,
-				3DD65CFC15F6913C00E34829 /* openjpeg_wrap3.c in Sources */,
-				3DD65CFD15F6913C00E34829 /* png_wrap1.c in Sources */,
-				3DD65CFE15F6913C00E34829 /* sqlite_wrap1.c in Sources */,
-				3DD65CFF15F6913C00E34829 /* zlib_wrap1.c in Sources */,
-				3DD65D0015F6913C00E34829 /* zlib_wrap2.c in Sources */,
-				3DD65D0115F6913C00E34829 /* zlib_wrap3.c in Sources */,
-				3DD65D0215F6913C00E34829 /* zlib_wrap4.c in Sources */,
-				3DD65D0315F6913D00E34829 /* zlib_wrap5.c in Sources */,
-				3DD65D0415F6913D00E34829 /* zlib_wrap6.c in Sources */,
-				3DD65D0515F6913D00E34829 /* zlib_wrap7.c in Sources */,
-				3DD65D0615F6913D00E34829 /* zlib_wrap8.c in Sources */,
-				3DD65D0715F6913D00E34829 /* zlib_wrap9.c in Sources */,
-				3DD65D0815F6913D00E34829 /* zlib_wrap10.c in Sources */,
-				3DD65D0915F6913D00E34829 /* zlib_wrap11.c in Sources */,
-				3DD65D0A15F6913D00E34829 /* zlib_wrap12.c in Sources */,
-				3DD65D0B15F6913D00E34829 /* zlib_wrap13.c in Sources */,
-				3DD65D0C15F6913D00E34829 /* zlib_wrap14.c in Sources */,
-				3DD65D0D15F6913D00E34829 /* zlib_wrap15.c in Sources */,
-				3DD65D0E15F6913D00E34829 /* ioapi.c in Sources */,
-				3DD65D0F15F6913D00E34829 /* unzip.c in Sources */,
-				3DD65C7515F68EAE00E34829 /* REAutoReleasePool.cpp in Sources */,
-				3DD65C7615F68EAE00E34829 /* REAutoReleasePoolPrivate.cpp in Sources */,
-				3DD65C7715F68EAE00E34829 /* REMainLoopUpdatable.cpp in Sources */,
-				3DD65C7815F68EAE00E34829 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
-				3DD65C7915F68EAE00E34829 /* RELog.cpp in Sources */,
-				3DD65C7A15F68EAE00E34829 /* RECPUFeatures.cpp in Sources */,
-				3DD65C7B15F68EAE00E34829 /* REZLIBCompression.cpp in Sources */,
-				3DD65C7C15F68EAE00E34829 /* RELZMACompression.cpp in Sources */,
-				3DD65C7D15F68EAE00E34829 /* RE2DAlgorithm.cpp in Sources */,
-				3DD65C7E15F68EAE00E34829 /* REAffineTransform.cpp in Sources */,
-				3DD65C7F15F68EAE00E34829 /* REMatrix4.cpp in Sources */,
-				3DD65C8015F68EAE00E34829 /* RENULLObject.cpp in Sources */,
-				3DD65C8115F68EAE00E34829 /* REObjectsArray.cpp in Sources */,
-				3DD65C8215F68EAE00E34829 /* REXMLPropertyListReader.cpp in Sources */,
-				3DD65C8315F68EAE00E34829 /* REBase64.cpp in Sources */,
-				3DD65C8415F68EAE00E34829 /* REBufferObject.cpp in Sources */,
-				3DD65C8515F68EAE00E34829 /* RENumberObject.cpp in Sources */,
-				3DD65C8615F68EAE00E34829 /* REStringObject.cpp in Sources */,
-				3DD65C8715F68EAE00E34829 /* REXMLPropertyListWriter.cpp in Sources */,
-				3DD65C8815F68EAE00E34829 /* REObjectsDictionary.cpp in Sources */,
-				3DD65C8915F68EAE00E34829 /* REApplication.cpp in Sources */,
-				3DD65C8A15F68EAE00E34829 /* REImageBase.cpp in Sources */,
-				3DD65C8B15F68EAE00E34829 /* REImage.cpp in Sources */,
-				3DD65C8C15F68EAE00E34829 /* REImageManager.cpp in Sources */,
-				3DD65C8D15F68EAE00E34829 /* tinyxml_wrap1.cpp in Sources */,
-				3DD65C8E15F68EAE00E34829 /* REData.cpp in Sources */,
-				3DD65C8F15F68EAE00E34829 /* REThread.cpp in Sources */,
-				3DD65C9015F68EAE00E34829 /* RETetragon.cpp in Sources */,
-				3DD65C9115F68EAE00E34829 /* RENumber.cpp in Sources */,
-				3DD65C9215F68EAE00E34829 /* RENotificationManager.cpp in Sources */,
-				3DD65C9315F68EAE00E34829 /* RECoreC.cpp in Sources */,
-				3DD65C9415F68EAE00E34829 /* REString.cpp in Sources */,
-				3DD65C9515F68EAE00E34829 /* RETime.cpp in Sources */,
-				3DD65C9615F68EAE00E34829 /* RESQLiteDB.cpp in Sources */,
-				3DD65C9715F68EAE00E34829 /* RESQLiteDBResultSet.cpp in Sources */,
-				3DD65C9815F68EAE00E34829 /* REUserCallBacks.cpp in Sources */,
-				3DD65C9915F68EAE00E34829 /* REMutex.cpp in Sources */,
-				3DD65C9A15F68EAE00E34829 /* RELocale.cpp in Sources */,
-				3DD65C9B15F68EAE00E34829 /* REResourcesStorage.cpp in Sources */,
-				3DD65C9C15F68EAE00E34829 /* REZipReader.cpp in Sources */,
-				3DD65C9D15F68EAE00E34829 /* REObject.cpp in Sources */,
-				3DD65C9E15F68EAE00E34829 /* REMD5Generator.cpp in Sources */,
-				3DD65C9F15F68EAE00E34829 /* REMath.cpp in Sources */,
-				3DD65CA015F68EAE00E34829 /* REFileManager.cpp in Sources */,
-				3DD65CA115F68EAE00E34829 /* RETimer.cpp in Sources */,
-				3DD65CA215F68EAE00E34829 /* REFile.cpp in Sources */,
-				3DD65CA315F68EAE00E34829 /* RE2DVector.cpp in Sources */,
-				3DD65CA415F68EAE00E34829 /* RE3DVector.cpp in Sources */,
-				3DD65CA515F68EAE00E34829 /* REAngle.cpp in Sources */,
-				3DD65CA615F68EAE00E34829 /* REBuffer.cpp in Sources */,
-				3DD65CA715F68EAE00E34829 /* REColor.cpp in Sources */,
-				3DD65CA815F68EAE00E34829 /* REDate.cpp in Sources */,
-				3DD65CA915F68EAE00E34829 /* RERandomizer.cpp in Sources */,
-				3DD65CAA15F68EAE00E34829 /* RERect.cpp in Sources */,
-				3DD65CAB15F68EAE00E34829 /* REYUV420toRGB565.cpp in Sources */,
-				3DD65CAC15F68EAE00E34829 /* REYUV420toRGB888.cpp in Sources */,
-				3DD65CAD15F68EAE00E34829 /* REYUV420toRGB8888.cpp in Sources */,
-				3DD65CAE15F68EAE00E34829 /* REYUV422toRGB565.cpp in Sources */,
-				3DD65CAF15F68EAE00E34829 /* REYUV422toRGB888.cpp in Sources */,
-				3DD65CB015F68EAE00E34829 /* REYUV422toRGB8888.cpp in Sources */,
-				3DD65CB115F68EAE00E34829 /* REYUV444toRGB565.cpp in Sources */,
-				3DD65CB215F68EAE00E34829 /* REYUV444toRGB888.cpp in Sources */,
-				3DD65CB315F68EAE00E34829 /* REYUV444toRGB8888.cpp in Sources */,
-				3DD65CB415F68EAE00E34829 /* REYUVtoRGB.cpp in Sources */,
+				3D168791176DE86C00BFF707 /* RETypedPtr.cpp in Sources */,
+				3DBEF95A1770415F00503066 /* REDB.cpp in Sources */,
+				3DBEF95E177041E000503066 /* REDBResultSet.cpp in Sources */,
+				3DBEF9621770445800503066 /* REDictionary.cpp in Sources */,
+				3DBEF98617708E9B00503066 /* RETypedArray.cpp in Sources */,
+				3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */,
+				3D7A017D1771B83800E7316E /* REString.cpp in Sources */,
+				3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */,
+				3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */,
+				3D7A02531772032200E7316E /* REStringBase.cpp in Sources */,
+				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
+				3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */,
+				3D4E08F4178450420023C08A /* REDictionaryObjectN.cpp in Sources */,
+				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3D56CF5D16552A9000B66EE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D1788E613E2987E00520FC2 /* recore */;
-			targetProxy = 3D56CF5C16552A9000B66EE0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3D1788EF13E2987E00520FC2 /* Debug */ = {
@@ -1939,7 +1487,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1957,7 +1505,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -1974,13 +1522,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
+					"DEBUG=1",
 					__RE_OS_IPHONE__,
 				);
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
@@ -1996,148 +1545,57 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
 			};
 			name = Release;
 		};
-		3D56CF5816552A7100B66EE0 /* Debug */ = {
+		3D889130176CFD810086873B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librecore.a";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "recore_tests/recore_tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
+					DEBUG,
+					__RE_OS_IPHONE__,
 				);
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "recore_tests/recore_tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "recore copy";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		3D56CF5916552A7100B66EE0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librecore.a";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "recore_tests/recore_tests-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "recore_tests/recore_tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
-				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
-		3DD65C7115F68CC300E34829 /* Debug */ = {
+		3D889131176CFD810086873B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_object;
-				MACOSX_DEPLOYMENT_TARGET = "";
-				ONLY_ACTIVE_ARCH = NO;
-				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
-				PRODUCT_NAME = RECore;
-				SDKROOT = iphoneos;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "recore copy";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
-				VERSION_INFO_FILE = "";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Debug;
-		};
-		3DD65C7215F68CC300E34829 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_object;
-				MACOSX_DEPLOYMENT_TARGET = "";
-				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
-				PRODUCT_NAME = RECore;
-				SDKROOT = iphoneos;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
-				VERSION_INFO_FILE = "";
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
@@ -2180,20 +1638,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D56CF5A16552A7100B66EE0 /* Build configuration list for PBXNativeTarget "recore_tests" */ = {
+		3D88912F176CFD810086873B /* Build configuration list for PBXNativeTarget "CreateREConfigHardcoded" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D56CF5816552A7100B66EE0 /* Debug */,
-				3D56CF5916552A7100B66EE0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3DD65C7315F68CC300E34829 /* Build configuration list for PBXNativeTarget "RECore_Framework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3DD65C7115F68CC300E34829 /* Debug */,
-				3DD65C7215F68CC300E34829 /* Release */,
+				3D889130176CFD810086873B /* Debug */,
+				3D889131176CFD810086873B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

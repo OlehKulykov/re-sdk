@@ -17,6 +17,8 @@
 
 #include "../../include/recore/REMD5Generator.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #ifdef __RE_OS_IPHONE__
 #include <CommonCrypto/CommonDigest.h>
@@ -67,7 +69,7 @@
  =================
  */
 
-void REMD5Generator::Final(REMD5Context * ctx, REUByte digest[16])
+void REMD5Generator::final(REMD5Context * ctx, REUByte digest[16])
 {
 	REUInt32 count = (ctx->bits[0] >> 3) & 0x3F;
 	REUByte * p = ctx->inBuff + count;
@@ -78,7 +80,7 @@ void REMD5Generator::Final(REMD5Context * ctx, REUByte digest[16])
 	if ( count < 8 ) 
 	{
 		memset( p, 0, count );
-		this->Transform( ctx->state, (REUInt32 *)ctx->inBuff );
+		this->transform( ctx->state, (REUInt32 *)ctx->inBuff );
 		
 		memset( ctx->inBuff, 0, 56 );
 	} 
@@ -102,12 +104,12 @@ void REMD5Generator::Final(REMD5Context * ctx, REUByte digest[16])
 		((REUInt32 *)ctx->inBuff)[15] = val1;
 	}
 	
-	this->Transform( ctx->state, (REUInt32 *)ctx->inBuff );
+	this->transform( ctx->state, (REUInt32 *)ctx->inBuff );
 	REMem::Memcpy( digest, ctx->state, 16 );
 	memset(ctx, 0, sizeof( REMD5Context ) );
 }
 
-void REMD5Generator::Update(REMD5Context * ctx, REUByte const * buf, REUInt32 len)
+void REMD5Generator::update(REMD5Context * ctx, REUByte const * buf, REUInt32 len)
 {	
 	REUInt32 t = ctx->bits[0];
 	if ( ( ctx->bits[0] = t + ((REUInt32)len << 3) ) < t ) 
@@ -135,7 +137,7 @@ void REMD5Generator::Update(REMD5Context * ctx, REUByte const * buf, REUInt32 le
 	while( len >= 64 ) 
 	{
 		REMem::Memcpy(ctx->inBuff, buf, 64);
-		this->Transform(ctx->state, (REUInt32 *) ctx->inBuff );
+		this->transform(ctx->state, (REUInt32 *) ctx->inBuff );
 		buf += 64;
 		len -= 64;
 	}
@@ -143,7 +145,7 @@ void REMD5Generator::Update(REMD5Context * ctx, REUByte const * buf, REUInt32 le
 	REMem::Memcpy(ctx->inBuff, buf, len );
 }
 
-void REMD5Generator::Init(REMD5Context * ctx)
+void REMD5Generator::init(REMD5Context * ctx)
 {
 	ctx->state[0] = 0x67452301;
 	ctx->state[1] = 0xefcdab89;
@@ -154,7 +156,7 @@ void REMD5Generator::Init(REMD5Context * ctx)
 	ctx->bits[1] = 0;
 }
 
-void REMD5Generator::RevBytesSwap(void * bp, const REUInt32 elsize, REUInt32 elcount)
+void REMD5Generator::revBytesSwap(void * bp, const REUInt32 elsize, REUInt32 elcount)
 {
 	REUByte * p = (REUByte *)bp;
 	if ( elsize == 2 ) 
@@ -187,7 +189,7 @@ void REMD5Generator::RevBytesSwap(void * bp, const REUInt32 elsize, REUInt32 elc
 }
 
 
-void REMD5Generator::Transform(REUInt32 state[4], REUInt32 inBuff[16])
+void REMD5Generator::transform(REUInt32 state[4], REUInt32 inBuff[16])
 {
 	REUInt32 a = state[0];
     REUInt32 b = state[1];
@@ -196,7 +198,7 @@ void REMD5Generator::Transform(REUInt32 state[4], REUInt32 inBuff[16])
 	
 	if (_isBigEndianSystem)
 	{
-		this->RevBytesSwap( inBuff, sizeof(REUInt32), 16 );
+		this->revBytesSwap( inBuff, sizeof(REUInt32), 16 );
 	}
 	
     MD5ChecksumSTEP(MD5ChecksumF1, a, b, c, d, inBuff[0] + 0xd76aa478, 7);
@@ -269,7 +271,7 @@ void REMD5Generator::Transform(REUInt32 state[4], REUInt32 inBuff[16])
 	
 	if (_isBigEndianSystem)
 	{
-		this->RevBytesSwap( inBuff, sizeof(REUInt32), 16 );
+		this->revBytesSwap( inBuff, sizeof(REUInt32), 16 );
 	}
 	
     state[0] += a;
@@ -279,17 +281,17 @@ void REMD5Generator::Transform(REUInt32 state[4], REUInt32 inBuff[16])
 }
 #endif
 
-const REUInt32 REMD5Generator::GetFromData(const void * data, const REUInt32 dataLength)
+const REUInt32 REMD5Generator::getFromData(const void * data, const REUInt32 dataLength)
 {
 	if (data && dataLength) 
 	{
 #ifndef __RE_OS_IPHONE__		
 		REMD5Context ctx;
-		this->Init( &ctx );
-		this->Update( &ctx, (REUByte *)data, dataLength );
+		this->init( &ctx );
+		this->update( &ctx, (REUByte *)data, dataLength );
 		
 		REUInt32 digest[4];
-		this->Final( &ctx, (REUByte *)digest );
+		this->final( &ctx, (REUByte *)digest );
 		
 		return (digest[0] ^ digest[1] ^ digest[2] ^ digest[3]);
 #else
@@ -305,28 +307,28 @@ const REUInt32 REMD5Generator::GetFromData(const void * data, const REUInt32 dat
 	return 0;
 }
 
-const REString REMD5Generator::GetStringFromData(const void * data, const REUInt32 dataLength)
+const REString REMD5Generator::getStringFromData(const void * data, const REUInt32 dataLength)
 {
 	if (data && dataLength) 
 	{
 #ifndef __RE_OS_IPHONE__		
 		REMD5Context ctx;
-		this->Init( &ctx );
-		this->Update( &ctx, (REUByte *)data, dataLength );
+		this->init( &ctx );
+		this->update( &ctx, (REUByte *)data, dataLength );
 		
 		REUByte ub[16];
-		this->Final( &ctx, (REUByte *)ub );
+		this->final( &ctx, (REUByte *)ub );
 		
-		REString retString;
-		retString.AppendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
+		REMutableString retString;
+		retString.appendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
 							   ub[0], ub[1], ub[2], ub[3], ub[4], ub[5], ub[6], ub[7], 
 							   ub[8], ub[9], ub[10], ub[11], ub[12], ub[13], ub[14], ub[15]);	
 		return retString;
 #else
 		unsigned char ub[16];
 		CC_MD5(data, (CC_LONG)dataLength, ub);
-		REString retString;
-		retString.AppendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
+		REMutableString retString;
+		retString.appendFormat("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", 
 							   ub[0], ub[1], ub[2], ub[3], ub[4], ub[5], ub[6], ub[7], 
 							   ub[8], ub[9], ub[10], ub[11], ub[12], ub[13], ub[14], ub[15]);	
 		return retString;
@@ -357,12 +359,12 @@ REMD5Generator::~REMD5Generator()
 	
 }
 
-const REUInt32 REMD5Generator::GenerateFromString(const char * s)
+const REUInt32 REMD5Generator::generateFromString(const char * s)
 {
 	if (s) 
 	{
 		REMD5Generator g;
-		return g.GetFromData(s, (REUInt32)strlen(s));
+		return g.getFromData(s, (REUInt32)strlen(s));
 	}
 	return 0;
 }

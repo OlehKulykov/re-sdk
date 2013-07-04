@@ -1,13 +1,13 @@
 var class_r_e_time =
 [
-    [ "ConvertSecondsToMicroseconds", "class_r_e_time.html#a4169eb642200f2090d4159562d77592b", null ],
-    [ "ConvertSecondsToMilliseconds", "class_r_e_time.html#a12c77e5eb7e3a9ee6e83a0fa9beccafd", null ],
-    [ "GetTime", "class_r_e_time.html#abe35a2872c6a69e86240cf950af9a937", null ],
-    [ "IsPaused", "class_r_e_time.html#a09c68badbef1ecd1dd4a9741155ff90d", null ],
-    [ "IsTimePaused", "class_r_e_time.html#a33035928dae03a731d677d73d2b4c142", null ],
-    [ "Pause", "class_r_e_time.html#a580e410c4feb0d3d3cd643e5ed849f69", null ],
-    [ "PauseTime", "class_r_e_time.html#a418ac2893b51d9a6782c9e048cac4265", null ],
-    [ "Resume", "class_r_e_time.html#a99560ac059538ad6beecd782c8498fab", null ],
-    [ "ResumeTime", "class_r_e_time.html#acd3b922210e70f5cc1a113959c22ef60", null ],
-    [ "Time", "class_r_e_time.html#ae6ef7afb77f1b47a5dc1b9165785a73f", null ]
+    [ "convertSecondsToMicroseconds", "class_r_e_time.html#a3dece410babc99622ed0b5b961f34b0e", null ],
+    [ "convertSecondsToMilliseconds", "class_r_e_time.html#ae6c7ce8e62b2c3d3c44c13ae0863b2db", null ],
+    [ "getTime", "class_r_e_time.html#a250861cd331f8b730d988e6371ee7b6e", null ],
+    [ "isPaused", "class_r_e_time.html#aa970dc09a298a488294a61846fe885c7", null ],
+    [ "isTimePaused", "class_r_e_time.html#a0a1c9247b72ed57558a109c3dc691ded", null ],
+    [ "pause", "class_r_e_time.html#ae7888b440498450fc065f117743b74e9", null ],
+    [ "pauseTime", "class_r_e_time.html#a26dd7f34fd0a202c5c797d7d4146d1a3", null ],
+    [ "resume", "class_r_e_time.html#a566d5bd3fce8292e343fc3b8e8bb5750", null ],
+    [ "resumeTime", "class_r_e_time.html#ad57144db14d6293210a9ea6d07288f12", null ],
+    [ "time", "class_r_e_time.html#adb025cfd959c0fb002bfb8a000537d4e", null ]
 ];

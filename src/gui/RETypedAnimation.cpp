@@ -22,19 +22,19 @@
 if ( ( currentTime >= _startTime ) && ( currentTime < _endTime ) ) \
 {	if (_isNeedCallStartMethod) \
 	{ \
-		if (_info->GetStartMethod()) { _info->GetStartMethod()->InvokeWithObject(_info); } \
+		if (_info->getStartMethod()) { _info->getStartMethod()->invokeWithObject(_info); } \
 		_isNeedCallStartMethod = false; \
-		for (REUInt32 i = 0; i < _params->Count(); i++) \
+		for (REUInt32 i = 0; i < _params->count(); i++) \
 		{ \
 			REAnimationFloatParams * p = (*_params)[i]; \
-			if (p->respondent) { p->respondent->REAnimationRespondentAnimationDidStarted(this->GetAnimationIdentifier()); } \
+			if (p->respondent) { p->respondent->REAnimationRespondentAnimationDidStarted(this->getAnimationIdentifier()); } \
 		} \
 	} \
 	_progress = (REFloat32)((currentTime - _startTime) / _workingTime); \
-	for (REUInt32 i = 0; i < _params->Count(); i++) \
+	for (REUInt32 i = 0; i < _params->count(); i++) \
 	{ \
 		REAnimationFloatParams * p = (*_params)[i]; \
-		for (REUInt32 j = 0; j < p->params.Count(); j++) \
+		for (REUInt32 j = 0; j < p->params.count(); j++) \
 		{ \
 			REAnimationFloatParams::ParamStruct * s = &(p->params[j]); \
 			(*s->paramPtr) = (s->start + (s->length * mulLenghtParam)); \
@@ -43,212 +43,212 @@ if ( ( currentTime >= _startTime ) && ( currentTime < _endTime ) ) \
 		if (p->respondent) { p->respondent->REAnimationRespondentAnimationDidStep(_progress); } \
 	} \
 } \
-else if ( currentTime >= _endTime ) { this->TimeIsOver(); }
+else if ( currentTime >= _endTime ) { this->timeIsOver(); }
 
 
-void RELinearAnimation::Update(const RETimeInterval currentTime)
+void RELinearAnimation::update(const RETimeInterval currentTime)
 {
 	ANIMATION_BODY(_progress);
 }
 
-void REQuadEaseInAnimation::Update(const RETimeInterval currentTime)
+void REQuadEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuadEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::quadEaseIn(_progress));
 }
 
-void REQuadEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REQuadEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuadEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::quadEaseOut(_progress));
 }
 
-void REQuadEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REQuadEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuadEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::quadEaseInOut(_progress));
 }
 
-void REQuadEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REQuadEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuadEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::quadEaseOutIn(_progress));
 }
 
-void RECubicEaseInAnimation::Update(const RETimeInterval currentTime)
+void RECubicEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CubicEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::cubicEaseIn(_progress));
 }
 
-void RECubicEaseOutAnimation::Update(const RETimeInterval currentTime)
+void RECubicEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CubicEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::cubicEaseOut(_progress));
 }
 
-void RECubicEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void RECubicEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CubicEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::cubicEaseInOut(_progress));
 }
 
-void RECubicEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void RECubicEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CubicEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::cubicEaseOutIn(_progress));
 }
 
-void REQuarticEaseInAnimation::Update(const RETimeInterval currentTime)
+void REQuarticEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuarticEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::quarticEaseIn(_progress));
 }
 
-void REQuarticEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REQuarticEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuarticEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::quarticEaseOut(_progress));
 }
 
-void REQuarticEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REQuarticEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuarticEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::quarticEaseInOut(_progress));
 }
 
-void REQuarticEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REQuarticEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuarticEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::quarticEaseOutIn(_progress));
 }
 
-void REQuinticEaseInAnimation::Update(const RETimeInterval currentTime)
+void REQuinticEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuinticEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::quinticEaseIn(_progress));
 }
 
-void REQuinticEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REQuinticEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuinticEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::quinticEaseOut(_progress));
 }
 
-void REQuinticEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REQuinticEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuinticEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::quinticEaseInOut(_progress));
 }
 
-void REQuinticEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REQuinticEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::QuinticEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::quinticEaseOutIn(_progress));
 }
 
-void RESinusoidalEaseInAnimation::Update(const RETimeInterval currentTime)
+void RESinusoidalEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::SinusoidalEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::sinusoidalEaseIn(_progress));
 }
 
-void RESinusoidalEaseOutAnimation::Update(const RETimeInterval currentTime)
+void RESinusoidalEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::SinusoidalEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::sinusoidalEaseOut(_progress));
 }
 
-void RESinusoidalEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void RESinusoidalEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::SinusoidalEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::sinusoidalEaseInOut(_progress));
 }
 
-void RESinusoidalEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void RESinusoidalEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::SinusoidalEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::sinusoidalEaseOutIn(_progress));
 }
 
-void REExponentialEaseInAnimation::Update(const RETimeInterval currentTime)
+void REExponentialEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ExponentialEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::exponentialEaseIn(_progress));
 }
 
-void REExponentialEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REExponentialEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ExponentialEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::exponentialEaseOut(_progress));
 }
 
-void REExponentialEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REExponentialEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ExponentialEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::exponentialEaseInOut(_progress));
 }
 
-void REExponentialEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REExponentialEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ExponentialEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::exponentialEaseOutIn(_progress));
 }
 
-void RECircularEaseInAnimation::Update(const RETimeInterval currentTime)
+void RECircularEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CircularEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::circularEaseIn(_progress));
 }
 
-void RECircularEaseOutAnimation::Update(const RETimeInterval currentTime)
+void RECircularEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CircularEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::circularEaseOut(_progress));
 }
 
-void RECircularEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void RECircularEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CircularEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::circularEaseInOut(_progress));
 }
 
-void RECircularEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void RECircularEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::CircularEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::circularEaseOutIn(_progress));
 }
 
-void REElasticEaseInAnimation::Update(const RETimeInterval currentTime)
+void REElasticEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ElasticEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::elasticEaseIn(_progress));
 }
 
-void REElasticEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REElasticEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ElasticEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::elasticEaseOut(_progress));
 }
 
-void REElasticEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REElasticEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ElasticEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::elasticEaseInOut(_progress));
 }
 
-void REElasticEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REElasticEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::ElasticEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::elasticEaseOutIn(_progress));
 }
 
-void REBackEaseInAnimation::Update(const RETimeInterval currentTime)
+void REBackEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BackEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::backEaseIn(_progress));
 }
 
-void REBackEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REBackEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BackEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::backEaseOut(_progress));
 }
 
-void REBackEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REBackEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BackEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::backEaseInOut(_progress));
 }
 
-void REBackEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REBackEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BackEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::backEaseOutIn(_progress));
 }
 
-void REBounceEaseInAnimation::Update(const RETimeInterval currentTime)
+void REBounceEaseInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BounceEaseIn(_progress));
+	ANIMATION_BODY(REInterpolation::bounceEaseIn(_progress));
 }
 
-void REBounceEaseOutAnimation::Update(const RETimeInterval currentTime)
+void REBounceEaseOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BounceEaseOut(_progress));
+	ANIMATION_BODY(REInterpolation::bounceEaseOut(_progress));
 }
 
-void REBounceEaseInOutAnimation::Update(const RETimeInterval currentTime)
+void REBounceEaseInOutAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BounceEaseInOut(_progress));
+	ANIMATION_BODY(REInterpolation::bounceEaseInOut(_progress));
 }
 
-void REBounceEaseOutInAnimation::Update(const RETimeInterval currentTime)
+void REBounceEaseOutInAnimation::update(const RETimeInterval currentTime)
 {
-	ANIMATION_BODY(REInterpolation::BounceEaseOutIn(_progress));
+	ANIMATION_BODY(REInterpolation::bounceEaseOutIn(_progress));
 }
 
 

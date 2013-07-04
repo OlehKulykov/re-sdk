@@ -18,44 +18,44 @@
 #include "../../include/recore/REXMLPropertyListWriter.h"
 #include "../../include/recore/REBase64.h"
 
-REBOOL REXMLPropertyListWriter::WriteNumber(const REString & prefixString, RENumberObject * number)
+REBOOL REXMLPropertyListWriter::writeNumber(const REString & prefixString, RENumberObject * number)
 {
-	if (number->GetType() == RENumberTypeBool) 
+	if (number->getType() == RENumberTypeBool) 
 	{
-		if (number->GetBoolValue()) { _xmlStr->AppendFormat("\n%s<true/>", prefixString.UTF8String()); }
-		else { _xmlStr->AppendFormat("\n%s<false/>", prefixString.UTF8String()); }
+		if (number->getBoolValue()) { _xmlStr->appendFormat("\n%s<true/>", prefixString.getChars()); }
+		else { _xmlStr->appendFormat("\n%s<false/>", prefixString.getChars()); }
 		return true;
 	}
-	else if (number->IsInteger()) 
+	else if (number->isInteger()) 
 	{
-		_xmlStr->AppendFormat("\n%s<integer>%s</integer>", prefixString.UTF8String(), number->GetStringValue().UTF8String());
+		_xmlStr->appendFormat("\n%s<integer>%s</integer>", prefixString.getChars(), number->getStringValue().getChars());
 		return true;
 	}
-	else if (number->IsReal())
+	else if (number->isReal())
 	{
-		_xmlStr->AppendFormat("\n%s<real>%s</real>", prefixString.UTF8String(), number->GetStringValue().UTF8String());
+		_xmlStr->appendFormat("\n%s<real>%s</real>", prefixString.getChars(), number->getStringValue().getChars());
 		return true;
 	}
 	
 	return false;
 }
 
-REBOOL REXMLPropertyListWriter::WriteDictionary(const REString & prefixString, REObjectsDictionary * dict)
+REBOOL REXMLPropertyListWriter::writeDictionary(const REString & prefixString, REDictionaryObject * dict)
 {
-	_xmlStr->AppendFormat("\n%s<dict>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s<dict>", prefixString.getChars());
 	
-	REArray<REObjectsDictionary::KeyObjectStruct> * pairs = dict->GetPairs();
+	REArray<REDictionaryObject::KeyObjectStruct> * pairs = dict->getPairs();
 	if (pairs) 
 	{
-		REString newPrefix(prefixString);
-		newPrefix.Append("\t");
+		REMutableString newPrefix(prefixString);
+		newPrefix.append("\t");
 		
-		for (REUInt32 i = 0; i < pairs->Count(); i++) 
+		for (REUInt32 i = 0; i < pairs->count(); i++) 
 		{
-			REObjectsDictionary::KeyObjectStruct p = (*pairs)[i];
+			REDictionaryObject::KeyObjectStruct p = (*pairs)[i];
 			if (p.keyValue && p.objValue) 
 			{
-				if ( !this->WritePair(newPrefix, &p) )
+				if ( !this->writePair(newPrefix, &p) )
 				{
 					return false;
 				}
@@ -66,113 +66,113 @@ REBOOL REXMLPropertyListWriter::WriteDictionary(const REString & prefixString, R
 			}
 		}
 	}
-	_xmlStr->AppendFormat("\n%s</dict>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s</dict>", prefixString.getChars());
 	
 	return true;
 }
 
-REBOOL REXMLPropertyListWriter::WriteArray(const REString & prefixString, REObjectsArray * arrObj)
+REBOOL REXMLPropertyListWriter::writeArray(const REString & prefixString, REArrayObject * arrObj)
 {
-	_xmlStr->AppendFormat("\n%s<array>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s<array>", prefixString.getChars());
 	
-	REString newPrefix(prefixString);
-	newPrefix.Append("\t");
+	REMutableString newPrefix(prefixString);
+	newPrefix.append("\t");
 	
-	for (REUInt32 i = 0; i < arrObj->Count(); i++) 
+	for (REUInt32 i = 0; i < arrObj->count(); i++) 
 	{
-		this->WriteObject(newPrefix, (*arrObj)[i]);
+		this->writeObject(newPrefix, (*arrObj)[i]);
 	}
 	
-	_xmlStr->AppendFormat("\n%s</array>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s</array>", prefixString.getChars());
 	return true;
 }
 
-REBOOL REXMLPropertyListWriter::WriteString(const REString & prefixString, REStringObject * strObj)
+REBOOL REXMLPropertyListWriter::writeString(const REString & prefixString, REStringObject * strObj)
 {
-	_xmlStr->AppendFormat("\n%s<string>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s<string>", prefixString.getChars());
 	
-	REString clearString(*strObj);
-	clearString.Replace("&", "&amp;");
-	clearString.Replace("<", "&lt;");
-	clearString.Replace(">", "&gt;");
-	clearString.Replace("\"", "&quot;");
-	clearString.Replace("'", "&apos;");
+	REMutableString clearString(*strObj);
+	clearString.replace("&", "&amp;");
+	clearString.replace("<", "&lt;");
+	clearString.replace(">", "&gt;");
+	clearString.replace("\"", "&quot;");
+	clearString.replace("'", "&apos;");
 	
-	_xmlStr->Append(clearString.UTF8String());
-	_xmlStr->Append("</string>");
+	_xmlStr->append(clearString.getChars());
+	_xmlStr->append("</string>");
 	return true;
 }
 
-REBOOL REXMLPropertyListWriter::WriteBuffer(const REString & prefixString, REBufferObject * buff)
+REBOOL REXMLPropertyListWriter::writeBuffer(const REString & prefixString, REBufferObject * buff)
 {
-	_xmlStr->AppendFormat("\n%s<data>", prefixString.UTF8String());
+	_xmlStr->appendFormat("\n%s<data>", prefixString.getChars());
 	
 	REBase64 b;
 	REString s;
-	b.BufferToBase64String(*buff, &s);
-	_xmlStr->Append(s.UTF8String());
-	_xmlStr->Append("</data>");
+	b.bufferToBase64String(*buff, &s);
+	_xmlStr->append(s.getChars());
+	_xmlStr->append("</data>");
 	
 	return true;
 }
 
-REBOOL REXMLPropertyListWriter::WriteObject(const REString & prefixString, REObject * obj)
+REBOOL REXMLPropertyListWriter::writeObject(const REString & prefixString, REObject * obj)
 {
-	const REUInt32 objClassIdentifier = obj->GetClassIdentifier();
-	if (objClassIdentifier == REStringObject::ClassIdentifier()) 
+	const REUInt32 objClassIdentifier = obj->getClassIdentifier();
+	if (objClassIdentifier == REStringObject::classIdentifier()) 
 	{
-		return this->WriteString(prefixString, (REStringObject*)obj);
+		return this->writeString(prefixString, (REStringObject *)obj);
 	}
-	else if (objClassIdentifier == REObjectsArray::ClassIdentifier())
+	else if (objClassIdentifier == REArrayObject::classIdentifier())
 	{
-		return this->WriteArray(prefixString, (REObjectsArray*)obj);
+		return this->writeArray(prefixString, (REArrayObject *)obj);
 	}
-	else if (objClassIdentifier == REObjectsDictionary::ClassIdentifier())
+	else if (objClassIdentifier == REDictionaryObject::classIdentifier())
 	{
-		return this->WriteDictionary(prefixString, (REObjectsDictionary*)obj);
+		return this->writeDictionary(prefixString, (REDictionaryObject *)obj);
 	}
-	else if (objClassIdentifier == RENumberObject::ClassIdentifier())
+	else if (objClassIdentifier == RENumberObject::classIdentifier())
 	{
-		return this->WriteNumber(prefixString, (RENumberObject*)obj);
+		return this->writeNumber(prefixString, (RENumberObject *)obj);
 	}
-	else if (objClassIdentifier == REBufferObject::ClassIdentifier())
+	else if (objClassIdentifier == REBufferObject::classIdentifier())
 	{
-		return this->WriteBuffer(prefixString, (REBufferObject*)obj);
+		return this->writeBuffer(prefixString, (REBufferObject *)obj);
 	}
 	return false;
 }
 
-REBOOL REXMLPropertyListWriter::WritePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair)
+REBOOL REXMLPropertyListWriter::writePair(const REString & prefixString, REDictionaryObject::KeyObjectStruct * pair)
 {
-	if (pair->keyValue->GetClassIdentifier() != REStringObject::ClassIdentifier())
+	if (pair->keyValue->getClassIdentifier() != REStringObject::classIdentifier())
 	{
 		_errorString = "Dictionary key object must be a string";
 		return false;
 	}
 	
 	REStringObject * keyString = (REStringObject*)pair->keyValue;
-	_xmlStr->AppendFormat("\n%s<key>%s</key>", prefixString.UTF8String(), keyString->UTF8String());
+	_xmlStr->appendFormat("\n%s<key>%s</key>", prefixString.getChars(), keyString->getChars());
 	
-	return this->WriteObject(prefixString, pair->objValue);
+	return this->writeObject(prefixString, pair->objValue);
 }
 
-REBOOL REXMLPropertyListWriter::WriteToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REString * listString)
+REBOOL REXMLPropertyListWriter::writeToString(REArray<REDictionaryObject::KeyObjectStruct> * pairs, REMutableString * listString)
 {
-	_errorString.Clear();
+	_errorString.clear();
 	
 	if (pairs && listString) 
 	{
 		_xmlStr = listString;
-		_xmlStr->Set("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>");
+		*_xmlStr = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>";
 		
 		REString prefixString("\t");
 		
-		for (REUInt32 i = 0; i < pairs->Count(); i++) 
+		for (REUInt32 i = 0; i < pairs->count(); i++) 
 		{
-			REObjectsDictionary::KeyObjectStruct p = (*pairs)[i];
+			REDictionaryObject::KeyObjectStruct p = (*pairs)[i];
 			if (p.keyValue && p.objValue) 
 			{
-				if ( !this->WritePair(prefixString, &p) )
+				if ( !this->writePair(prefixString, &p) )
 				{
 					return false;
 				}
@@ -183,7 +183,7 @@ REBOOL REXMLPropertyListWriter::WriteToString(REArray<REObjectsDictionary::KeyOb
 			}
 		}
 		
-		_xmlStr->Append("\n</dict>\n</plist>\n");
+		_xmlStr->append("\n</dict>\n</plist>\n");
 		
 		return true;
 	}
@@ -191,7 +191,7 @@ REBOOL REXMLPropertyListWriter::WriteToString(REArray<REObjectsDictionary::KeyOb
 }
 
 REXMLPropertyListWriter::REXMLPropertyListWriter() :
-	_xmlStr(NULL)
+_xmlStr(NULL)
 {
 	
 }

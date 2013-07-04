@@ -201,13 +201,13 @@ void RERenderDeviceDirectX9::ClearDX()
 
 	if (_d3dDevice)
 	{
-		_d3dDevice->Release();
+		_d3dDevice->release();
 		_d3dDevice = NULL;
 	}
 
 	if (_d3dInterface)
 	{
-		_d3dInterface->Release();
+		_d3dInterface->release();
 		_d3dInterface = NULL;
 	}
 
@@ -766,7 +766,7 @@ RETextureBase * RERenderDeviceDirectX9::CreateNewTexture(const REUByte * pixelsD
 	D3DLOCKED_RECT lockedRect;
 	if ( dxTexture->LockRect(0, &lockedRect, 0, 0) != D3D_OK )
 	{
-		dxTexture->Release();
+		dxTexture->release();
 		if ( normalPixelsData ) { free(normalPixelsData); }
 		return NULL;
 	}
@@ -837,7 +837,7 @@ RETextureBase * RERenderDeviceDirectX9::CreateNewTexture(const REUByte * pixelsD
 
 	if ( dxTexture->UnlockRect(0) != D3D_OK)
 	{
-		dxTexture->Release();
+		dxTexture->release();
 		if ( normalPixelsData ) { free(normalPixelsData); }
 		return NULL;
 	}	
@@ -866,7 +866,7 @@ RERenderDeviceTextureObject * RERenderDeviceDirectX9::CreateNewTexture()
 	{
 		if (dxTexture->IsNull())
 		{
-			dxTexture->Release();
+			dxTexture->release();
 			return NULL;
 		}
 		return dxTexture;

@@ -1,6 +1,8 @@
 var hierarchy =
 [
+    [ "REArray< T >::_iterator", "struct_r_e_array_1_1__iterator.html", null ],
     [ "REObjectsDictionary::_keyObjectStruct", "class_r_e_objects_dictionary.html#struct_r_e_objects_dictionary_1_1__key_object_struct", null ],
+    [ "REDictionary::_pair", "class_r_e_dictionary.html#struct_r_e_dictionary_1_1__pair", null ],
     [ "REAnimationFloatParams::_paramStruct", "class_r_e_animation_float_params.html#struct_r_e_animation_float_params_1_1__param_struct", null ],
     [ "_reMD5Context", "_r_e_m_d5_generator_8h.html#struct__re_m_d5_context", null ],
     [ "_reOggStreamStruct", "_r_e_o_g_g_vorbis_sound_8h.html#struct__re_ogg_stream_struct", null ],
@@ -66,26 +68,29 @@ var hierarchy =
     [ "IREUserActionResponder", "class_i_r_e_user_action_responder.html", [
       [ "REView", "class_r_e_view.html", null ]
     ] ],
-    [ "REArray< T >::Iterator", "struct_r_e_array_1_1_iterator.html", null ],
     [ "RE2DAlgorithm", "class_r_e2_d_algorithm.html", null ],
     [ "REAffineTransform", "class_r_e_affine_transform.html", null ],
     [ "REAffineTransform.__unnamed__", "_r_e_affine_transform_8h.html#union_r_e_affine_transform_8____unnamed____", null ],
     [ "REAffineTransform.__unnamed__.__unnamed__", "_r_e_affine_transform_8h.html#struct_r_e_affine_transform_8____unnamed_____8____unnamed____", null ],
     [ "REAnimation", "class_r_e_animation.html", null ],
     [ "REArray< T >", "class_r_e_array.html", null ],
+    [ "REArray< _reRectStruct >", "class_r_e_array.html", null ],
     [ "REArray< REAnimationFloatParams * >", "class_r_e_array.html", null ],
-    [ "REArray< REAnimationFloatParams::ParamStruct >", "class_r_e_array.html", null ],
+    [ "REArray< REAnimationFloatParams::REAnimationFloatParams::_paramStruct >", "class_r_e_array.html", null ],
+    [ "REArray< REDictionary::REDictionary::_pair >", "class_r_e_array.html", null ],
     [ "REArray< REEditableAnimationInfo * >", "class_r_e_array.html", null ],
     [ "REArray< REFontBase * >", "class_r_e_array.html", null ],
     [ "REArray< REMainLoopUpdatable * >", "class_r_e_array.html", null ],
     [ "REArray< REObject * >", "class_r_e_array.html", null ],
     [ "REArray< REObjectsArray * >", "class_r_e_array.html", null ],
-    [ "REArray< REObjectsDictionary::KeyObjectStruct >", "class_r_e_array.html", null ],
-    [ "REArray< RERectStruct >", "class_r_e_array.html", null ],
+    [ "REArray< REObjectsDictionary::REObjectsDictionary::_keyObjectStruct >", "class_r_e_array.html", null ],
     [ "REArray< RESQLiteDBResultSet::StatementStruct * >", "class_r_e_array.html", null ],
     [ "REArray< REString * >", "class_r_e_array.html", null ],
     [ "REArray< RETextInputRespondersManager::Responder * >", "class_r_e_array.html", null ],
     [ "REArray< RETTFFontChar * >", "class_r_e_array.html", null ],
+    [ "REArray< RETypedPtr >", "class_r_e_array.html", [
+      [ "RETypedArray", "class_r_e_typed_array.html", null ]
+    ] ],
     [ "REArray< REView * >", "class_r_e_array.html", null ],
     [ "REArray< REXMLSerializableReader::PropertyStruct >", "class_r_e_array.html", null ],
     [ "REBase64", "class_r_e_base64.html", null ],
@@ -102,7 +107,14 @@ var hierarchy =
     [ "RECore", "class_r_e_core.html", null ],
     [ "RECPUFeatures", "class_r_e_c_p_u_features.html", null ],
     [ "REDate", "class_r_e_date.html", null ],
+    [ "REDB", "class_r_e_d_b.html", [
+      [ "RESQLiteDB", "class_r_e_s_q_lite_d_b.html", null ]
+    ] ],
+    [ "REDBResultSet", "class_r_e_d_b_result_set.html", [
+      [ "RESQLiteDBResultSet", "class_r_e_s_q_lite_d_b_result_set.html", null ]
+    ] ],
     [ "REDegreeAngle", "class_r_e_degree_angle.html", null ],
+    [ "REDictionary", "class_r_e_dictionary.html", null ],
     [ "REEdgeInsets", "class_r_e_edge_insets.html", null ],
     [ "REEdgeInsets.__unnamed__", "_r_e_edge_insets_8h.html#union_r_e_edge_insets_8____unnamed____", null ],
     [ "REEdgeInsets.__unnamed__.__unnamed__", "_r_e_edge_insets_8h.html#struct_r_e_edge_insets_8____unnamed_____8____unnamed____", null ],
@@ -136,6 +148,9 @@ var hierarchy =
     [ "REMem", "class_r_e_mem.html", null ],
     [ "REMutex", "class_r_e_mutex.html", null ],
     [ "RENotificationManager", "class_r_e_notification_manager.html", null ],
+    [ "RENULL", "class_r_e_n_u_l_l.html", [
+      [ "RENULLObject", "class_r_e_n_u_l_l_object.html", null ]
+    ] ],
     [ "RENumber", "class_r_e_number.html", [
       [ "RENumberObject", "class_r_e_number_object.html", null ]
     ] ],
@@ -187,6 +202,9 @@ var hierarchy =
     [ "REPoint3", "class_r_e_point3.html", null ],
     [ "REPoint3.__unnamed__", "_r_e_point3_8h.html#union_r_e_point3_8____unnamed____", null ],
     [ "REPoint3.__unnamed__.__unnamed__", "_r_e_point3_8h.html#struct_r_e_point3_8____unnamed_____8____unnamed____", null ],
+    [ "REPtr< PointerType >", "class_r_e_ptr.html", null ],
+    [ "REPtr< REBuffer >", "class_r_e_ptr.html", null ],
+    [ "REPtr< REDateInternal >", "class_r_e_ptr.html", null ],
     [ "REQuaternion", "class_r_e_quaternion.html", null ],
     [ "REQuaternion.__unnamed__", "_r_e_quaternion_8h.html#union_r_e_quaternion_8____unnamed____", null ],
     [ "REQuaternion.__unnamed__.__unnamed__", "_r_e_quaternion_8h.html#struct_r_e_quaternion_8____unnamed_____8____unnamed____", null ],
@@ -202,12 +220,15 @@ var hierarchy =
     [ "RESize", "class_r_e_size.html", null ],
     [ "RESize.__unnamed__", "_r_e_size_8h.html#union_r_e_size_8____unnamed____", null ],
     [ "RESize.__unnamed__.__unnamed__", "_r_e_size_8h.html#struct_r_e_size_8____unnamed_____8____unnamed____", null ],
-    [ "RESQLiteDB", "class_r_e_s_q_lite_d_b.html", null ],
-    [ "RESQLiteDBResultSet", "class_r_e_s_q_lite_d_b_result_set.html", null ],
-    [ "REString", "class_r_e_string.html", [
-      [ "REStringObject", "class_r_e_string_object.html", null ]
+    [ "REStringBase", "class_r_e_string_base.html", [
+      [ "REString", "class_r_e_string.html", [
+        [ "REMutableString", "class_r_e_mutable_string.html", [
+          [ "REStringObject", "class_r_e_string_object.html", null ]
+        ] ]
+      ] ],
+      [ "REWideString", "class_r_e_wide_string.html", null ]
     ] ],
-    [ "REStringPresentation", "class_r_e_string_presentation.html", null ],
+    [ "REStringUtilsPrivate", "class_r_e_string_utils_private.html", null ],
     [ "RESubViewsContainer", "class_r_e_sub_views_container.html", [
       [ "REView", "class_r_e_view.html", null ]
     ] ],
@@ -218,6 +239,7 @@ var hierarchy =
     [ "RETime", "class_r_e_time.html", null ],
     [ "RETTFFontChar", "class_r_e_t_t_f_font_char.html", null ],
     [ "RETTFFontLoader", "class_r_e_t_t_f_font_loader.html", null ],
+    [ "RETypedPtr", "class_r_e_typed_ptr.html", null ],
     [ "REURL", "class_r_e_u_r_l.html", [
       [ "REURLObject", "class_r_e_u_r_l_object.html", null ]
     ] ],

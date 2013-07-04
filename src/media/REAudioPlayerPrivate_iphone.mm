@@ -24,7 +24,7 @@
 #import <AVFoundation/AVAudioPlayer.h>
 #endif
 
-REBOOL REAudioPlayerPrivate_iphone::Play()
+REBOOL REAudioPlayerPrivate_iphone::play()
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -39,7 +39,7 @@ REBOOL REAudioPlayerPrivate_iphone::Play()
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::IsPlaying() const
+REBOOL REAudioPlayerPrivate_iphone::isPlaying() const
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -54,7 +54,7 @@ REBOOL REAudioPlayerPrivate_iphone::IsPlaying() const
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::Pause()
+REBOOL REAudioPlayerPrivate_iphone::pause()
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -67,7 +67,7 @@ REBOOL REAudioPlayerPrivate_iphone::Pause()
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::Stop()
+REBOOL REAudioPlayerPrivate_iphone::stop()
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -80,7 +80,7 @@ REBOOL REAudioPlayerPrivate_iphone::Stop()
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::SetLooped(const REBOOL isLooped)
+REBOOL REAudioPlayerPrivate_iphone::setLooped(const REBOOL isLooped)
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -93,7 +93,7 @@ REBOOL REAudioPlayerPrivate_iphone::SetLooped(const REBOOL isLooped)
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::IsLooped() const /* by default is not looped */
+REBOOL REAudioPlayerPrivate_iphone::isLooped() const /* by default is not looped */
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -110,7 +110,7 @@ REBOOL REAudioPlayerPrivate_iphone::IsLooped() const /* by default is not looped
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::SetVolume(const REFloat32 newVolume)
+REBOOL REAudioPlayerPrivate_iphone::setVolume(const REFloat32 newVolume)
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -123,7 +123,7 @@ REBOOL REAudioPlayerPrivate_iphone::SetVolume(const REFloat32 newVolume)
 	return false;
 }
 
-const REFloat32 REAudioPlayerPrivate_iphone::GetVolume() const
+const REFloat32 REAudioPlayerPrivate_iphone::getVolume() const
 {
 #ifdef __OBJC__
 	if (_p) 
@@ -135,9 +135,9 @@ const REFloat32 REAudioPlayerPrivate_iphone::GetVolume() const
 	return 0.0f;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::InitWithData(const REData & soundFileData)
+REBOOL REAudioPlayerPrivate_iphone::initWithData(const REData & soundFileData)
 {
-	_soundFileData.Clear();
+	_soundFileData.clear();
 	
 #ifdef __OBJC__
 	if (_p) 
@@ -148,7 +148,7 @@ REBOOL REAudioPlayerPrivate_iphone::InitWithData(const REData & soundFileData)
 	}
 #endif
 	
-	if ( soundFileData.IsEmpty() ) 
+	if ( soundFileData.isEmpty() ) 
 	{
 		return false;
 	}
@@ -156,8 +156,8 @@ REBOOL REAudioPlayerPrivate_iphone::InitWithData(const REData & soundFileData)
 	_soundFileData = soundFileData;
 	
 #ifdef __OBJC__
-	NSData * fileData = [NSData dataWithBytesNoCopy:(void *)_soundFileData.GetBytes()
-											 length:(NSUInteger)_soundFileData.GetSize()
+	NSData * fileData = [NSData dataWithBytesNoCopy:(void *)_soundFileData.getBytes()
+											 length:(NSUInteger)_soundFileData.getSize()
 									   freeWhenDone:NO];
 	if (fileData)
 	{
@@ -174,11 +174,11 @@ REBOOL REAudioPlayerPrivate_iphone::InitWithData(const REData & soundFileData)
 	return false;
 }
 
-REBOOL REAudioPlayerPrivate_iphone::InitFromFilePath(const REString & filePath)
+REBOOL REAudioPlayerPrivate_iphone::initFromFilePath(const REString & filePath)
 {
-	_soundFileData.Clear();
+	_soundFileData.clear();
 	
-	if (filePath.IsEmpty()) 
+	if (filePath.isEmpty()) 
 	{
 		return false;
 	}
@@ -191,7 +191,7 @@ REBOOL REAudioPlayerPrivate_iphone::InitFromFilePath(const REString & filePath)
 		_p = NULL;
 	}
 	
-	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.UTF8String()];
+	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.getChars()];
 	if (fileOBJString) 
 	{
 		NSFileManager * manager = [[NSFileManager alloc] init];
@@ -213,10 +213,10 @@ REBOOL REAudioPlayerPrivate_iphone::InitFromFilePath(const REString & filePath)
 		else
 		{
 			REData data;
-			if (data.InitFromPath(filePath)) 
+			if (data.initFromPath(filePath)) 
 			{
 				[manager release];
-				return this->InitWithData(data);
+				return this->initWithData(data);
 			}
 		}
 		[manager release];

@@ -20,6 +20,7 @@
 
 #include "RECommonHeader.h"
 #include "REBuffer.h"
+#include "RETypedPtr.h"
 
 /*
  
@@ -34,11 +35,13 @@
 class __RE_PUBLIC_CLASS_API__ RELZMACompression
 {
 public:
-	/// Compress data from buffer 'inBuffer' to buffer 'compressedBuffer' with 'compressionLevel' in range [0.0f, 1.0f].
-	static REBOOL Compress(const REBuffer & inBuffer, REBuffer * compressedBuffer, const REFloat32 compressionLevel);
+	/// Compress data from buffer 'inBuffer' with 'compressionLevel' in range [0.0f, 1.0f].
+	/// Return result containes pointer with REBuffer or with NULL.
+	static RETypedPtr compress(const REBuffer & inBuffer, const REFloat32 compressionLevel);
 	
-	/// Decompress data from buffer 'inBuffer' to buffer 'compressedBuffer'.
-	static REBOOL Decompress(const REBuffer & inBuffer, REBuffer * unCompressedBuffer);
+	/// Decompress data from buffer 'inBuffer'.
+	/// Return result containes pointer with REBuffer or with NULL.
+	static RETypedPtr decompress(const REBuffer & inBuffer);
 };
 
 

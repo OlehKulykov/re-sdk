@@ -36,28 +36,28 @@ protected:
 	virtual ~RETransformedView();
 public:
 	const REAffineTransform & GetTransform() const;
-	void SetTransform(const REAffineTransform & newTransform);
-	void SetTransformAnimated(const REAffineTransform & newTransform);
+	void setTransform(const REAffineTransform & newTransform);
+	void setTransformAnimated(const REAffineTransform & newTransform);
 	
-	const RETetragon & GetTransformedFrame() const;
-	void SetTransformedFrame(const RETetragon & newFrame);
-	void SetTransformedFrameAnimated(const RETetragon & newFrame);
+	const RETetragon & getTransformedFrame() const;
+	void setTransformedFrame(const RETetragon & newFrame);
+	void setTransformedFrameAnimated(const RETetragon & newFrame);
 	
 	/* REView */
-	virtual void SetFrame(const RERect & newViewFrame);
-	virtual void SetFrameAnimated(const RERect & newViewFrame);
+	virtual void setFrame(const RERect & newViewFrame);
+	virtual void setFrameAnimated(const RERect & newViewFrame);
 	
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/* IRERenderable */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/// Creates and returns new transformed view object.
-	static RETransformedView * Create();
+	static RETransformedView * create();
 };
 
 #endif /* __RETRANSFORMEDVIEW_H__ */

@@ -19,17 +19,16 @@
 #define __REPTR_H__
 
 #include "RECommonHeader.h"
-#include <stdlib.h>
-#include <inttypes.h>
+
 
 template <typename PointerType>
 class REPtr 
 {
 private:
 	PointerType* _object;
-	int32_t* _referenceCount;
+	REInt32* _referenceCount;
 	
-	void Retain()
+	void retain()
 	{
 		if (_referenceCount)
 		{
@@ -37,47 +36,65 @@ private:
 		}
 	}
 	
+	void deleteObject()
+	{
+		if (_object)
+		{
+			delete _object;
+		}
+		_object = (PointerType*)0;
+	}
+	
 public:
-	bool IsEmpty() const 
+	REBOOL isEmpty() const 
 	{
 		return (_object == (PointerType*)0);
 	}
 	
-	bool IsNotEmpty() const 
+	REBOOL isNotEmpty() const 
 	{
 		return (_object != (PointerType*)0); 
 	}
 	
-	void Release()
+	REBOOL isSingleOwner() const
+	{
+		return _referenceCount ? ((*_referenceCount) <= 1) : false;
+	}
+	
+	REBOOL isMultipleOwners() const
+	{
+		return _referenceCount ? ((*_referenceCount) > 1) : false;
+	}
+	
+	void release()
 	{
 		if (_referenceCount)
 		{
 			*_referenceCount = (*_referenceCount) - 1;
 			if ((*_referenceCount) <= 0)
 			{
-				if (_object)
-				{
-					delete _object;
-				}
-				_object = (PointerType*)0;
+				this->deleteObject();
 				
 				free(_referenceCount);
-				_referenceCount = (int32_t*)0;
+				_referenceCount = (REInt32 *)0;
 			}
 		}
 		
-		_object = (PointerType*)0;
-		_referenceCount = (int32_t*)0;
+		_object = (PointerType *)0;
+		_referenceCount = (REInt32 *)0;
 	}
 	
 	REPtr<PointerType> & operator=(const REPtr<PointerType> & anotherPtr)
 	{
-		this->Release();
-		if (anotherPtr.IsNotEmpty())
+		if (this != &anotherPtr)
 		{
-			_object = anotherPtr._object;
-			_referenceCount = anotherPtr._referenceCount;
-			this->Retain();
+			this->release();
+			if (anotherPtr.isNotEmpty())
+			{
+				_object = anotherPtr._object;
+				_referenceCount = anotherPtr._referenceCount;
+				this->retain();
+			}
 		}
 		return (*this);
 	}
@@ -103,19 +120,19 @@ public:
 	}
 	
 	REPtr() : 
-		_object((PointerType*)0),
-		_referenceCount((int32_t*)0) 
+		_object((PointerType *)0),
+		_referenceCount((REInt32 *)0) 
 	{
 		
 	}
 	
 	REPtr(PointerType* object) : 
 		_object(object),
-		_referenceCount((int32_t*)0) 
+		_referenceCount((REInt32 *)0) 
 	{
 		if (_object)
 		{
-			int32_t* count = (int32_t*)malloc(sizeof(int32_t*));
+			REInt32 * count = (REInt32 *)malloc(sizeof(REInt32 *));
 			if (count)
 			{
 				*count = 1;
@@ -123,28 +140,43 @@ public:
 			}
 			else
 			{
-				_object = (PointerType*)0;
+				_object = (PointerType *)0;
 			}
 		}
 	}
 	
 	REPtr(const REPtr<PointerType> & anotherPtr) :
-		_object((PointerType*)0),
-		_referenceCount((int32_t*)0) 
+		_object((PointerType *)0),
+		_referenceCount((REInt32 *)0) 
 	{
-		if (anotherPtr.IsNotEmpty())
+		if (this != &anotherPtr)
 		{
-			_object = anotherPtr._object;
-			_referenceCount = anotherPtr._referenceCount;
-			this->Retain();
+			if (anotherPtr.isNotEmpty())
+			{
+				_object = anotherPtr._object;
+				_referenceCount = anotherPtr._referenceCount;
+				this->retain();
+			}
 		}
 	}
 	
 	~REPtr()
 	{
-		this->Release();
+		this->release();
 	}
 };
 
+
+template <typename resultType, typename sourceType>
+static resultType* REPtrCast(sourceType* sourcePointer) 
+{
+	return static_cast<resultType*>( static_cast<void*>(sourcePointer) );
+}
+
+template <typename resultType, typename sourceType>
+static const resultType* REPtrCast(const sourceType* sourcePointer) 
+{
+	return static_cast<const resultType*>( static_cast<const void*>(sourcePointer) );
+}
 
 #endif

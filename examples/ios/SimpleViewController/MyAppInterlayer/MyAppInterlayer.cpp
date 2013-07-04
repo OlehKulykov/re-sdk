@@ -17,45 +17,45 @@
 
 #include "MyAppInterlayer.h"
 
-void MyAppInterlayer::Update()
+void MyAppInterlayer::update()
 {
-	myApp->Update();
+	myApp->update();
 }
 
-void MyAppInterlayer::Render()
+void MyAppInterlayer::render()
 {
-	myApp->Render();
+	myApp->render();
 }
 
-void MyAppInterlayer::Pause()
+void MyAppInterlayer::pause()
 {
-	myApp->Pause();
+	myApp->pause();
 }
 
-void MyAppInterlayer::Resume()
+void MyAppInterlayer::resume()
 {
-	myApp->Resume();
+	myApp->resume();
 }
 
-void MyAppInterlayer::Setup()
+void MyAppInterlayer::setup()
 {
 	RERenderDevice * device = RERenderDevice::GetDefaultDevice();
 	if (device)
 	{
-		device->SetRenderSize(MyApp::RendererWidth(), MyApp::RendererHeight());
+		device->SetRenderSize(MyApp::rendererWidth(), MyApp::rendererHeight());
 				
 		device->SetClearColor(REColor(0.0f, 0.0f, 0.0f, 1.0f));
 	}
 	
-	myApp->Initialize();
+	myApp->initialize();
 	
-	if (!myApp->IsStarted())
+	if (!myApp->isStarted())
 	{
-		myApp->Start();
+		myApp->start();
 	}
 }
 
-void MyAppInterlayer::SetNewScreenSize(const int newWidth, const int newHeight)
+void MyAppInterlayer::setNewScreenSize(const int newWidth, const int newHeight)
 {
 	RERenderDevice * device = RERenderDevice::GetDefaultDevice();
 	if (device)
@@ -64,9 +64,9 @@ void MyAppInterlayer::SetNewScreenSize(const int newWidth, const int newHeight)
 	}
 }
 
-REBOOL MyAppInterlayer::IsCanUse() const
+REBOOL MyAppInterlayer::isCanUse() const
 {
-	return ( myApp.IsNotNull() && myRootViewController.IsNotNull() );
+	return ( myApp.isNotNull() && myRootViewController.isNotNull() );
 }
 
 void MyAppInterlayer::CreateMyAppWithRootViewController()
@@ -97,12 +97,12 @@ MyAppInterlayer::~MyAppInterlayer()
 	
 }
 
-REBOOL MyAppInterlayer::AddAppResourcePath(const char * resourcePath)
+REBOOL MyAppInterlayer::addAppResourcePath(const char * resourcePath)
 {
 	if (resourcePath)
 	{
 		REResourcesStorage storage;
-		return storage.AddResourcesPath(REString(resourcePath));
+		return storage.addResourcesPath(REString(resourcePath));
 	}
 	return false;
 }

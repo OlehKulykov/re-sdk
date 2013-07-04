@@ -17,9 +17,12 @@
 
 #include "../../include/regui/REFramedTextureObject.h"
 #include "../../include/regui/REAnimation.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/REMutableString.h"
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+using namespace tinyxml2;
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -30,7 +33,7 @@
 /// Returns 0 or 'RENotFound' if no frames avaiable.
 const REUInt32 REFramedTextureObject::GetFirstFrameIndex() const
 {
-	if (_frames.Count()) 
+	if (_frames.count()) 
 	{
 		return 0;
 	}
@@ -40,9 +43,9 @@ const REUInt32 REFramedTextureObject::GetFirstFrameIndex() const
 /// Returns 0 or 'RENotFound' if no frames avaiable.
 const REUInt32 REFramedTextureObject::GetLastFrameIndex() const
 {
-	if (_frames.Count()) 
+	if (_frames.count()) 
 	{
-		return (_frames.Count() - 1);
+		return (_frames.count() - 1);
 	}
 	return RENotFound;
 }
@@ -50,14 +53,14 @@ const REUInt32 REFramedTextureObject::GetLastFrameIndex() const
 void REFramedTextureObject::REAnimationRespondentAnimationDidStep(const REFloat32 progress)
 {
 	const REUInt32 index = (REUInt32)_frameIndexParam;
-	_frame.Set(_frames[index]);
+	_frame.set(_frames[index]);
 }
 
 /// Set current texture frame index.
 /// Can be animated using REAnimation, call this method between REAnimation::Setup(...) and REAnimation::Execute().
 REBOOL REFramedTextureObject::SetFrameIndex(const REUInt32 newIndex)
 {
-	if (newIndex < _frames.Count())
+	if (newIndex < _frames.count())
 	{
 		const REUInt32 currentIndex = (REUInt32)_frameIndexParam;
 		if (newIndex != currentIndex) 
@@ -72,14 +75,14 @@ REBOOL REFramedTextureObject::SetFrameIndex(const REUInt32 newIndex)
 
 REBOOL REFramedTextureObject::SetFrameIndexAnimated(const REUInt32 newIndex)
 {
-	if (REAnimation::IsSetuping()) 
+	if (REAnimation::isSetuping()) 
 	{
-		if (newIndex < _frames.Count())
+		if (newIndex < _frames.count())
 		{
 			const REUInt32 currentIndex = (REUInt32)_frameIndexParam;
 			if (newIndex != currentIndex) 
 			{
-				REAnimation::AddFloatParam(this, 
+				REAnimation::addFloatParam(this, 
 											   &_animationsCount, 
 											   &_frameIndexParam, 
 											   (REFloat32)currentIndex, 
@@ -102,27 +105,27 @@ void REFramedTextureObject::StopAnimation(const REAnimationStopType stopType, co
 {
 	if (this->IsAnimating())
 	{
-		REAnimation::StopAllAnimations(this, stopType, isNeedCallDelegate);
+		REAnimation::stopAllAnimations(this, stopType, isNeedCallDelegate);
 	}
 }
 
 /* REObject */
-const REUInt32 REFramedTextureObject::GetClassIdentifier() const
+const REUInt32 REFramedTextureObject::getClassIdentifier() const
 {
-	return REFramedTextureObject::ClassIdentifier();
+	return REFramedTextureObject::classIdentifier();
 }
 
-const REUInt32 REFramedTextureObject::ClassIdentifier()
+const REUInt32 REFramedTextureObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REFramedTextureObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REFramedTextureObject");
 	return clasIdentif;
 }
 
-REBOOL REFramedTextureObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REFramedTextureObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REFramedTextureObject::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IREAnimationRespondent") == classIdentifier) ||
-			RETextureObject::IsImplementsClass(classIdentifier));
+	return ((REFramedTextureObject::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IREAnimationRespondent") == classIdentifier) ||
+			RETextureObject::isImplementsClass(classIdentifier));
 }
 
 REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTextureObject * texture)
@@ -130,12 +133,12 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
 	if (data)
 	{
-		TiXmlDocument doc;
+		XMLDocument doc;
 		doc.Parse(data);
 		
 		if (doc.Error()) { return false; }
 		
-		TiXmlElement * root = doc.RootElement();
+		XMLElement * root = doc.RootElement();
 		if (root == NULL) { return false; }
 		
 		const char * rootVal = root->Value();
@@ -145,7 +148,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 			{
 				int readedCount = 0;
 				RESize canvasSize(-1.0f, -1.0f);
-				for (TiXmlAttribute * attrib = root->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
+				for (const XMLAttribute * attrib = root->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
 				{
 					const char * name = attrib->Name();
 					const char * value = attrib->Value();
@@ -169,7 +172,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 				}
 				const REFloat32 xWidthKoef = 1.0f / canvasSize.width;
 				const REFloat32 yHeightKoef = 1.0f / canvasSize.height;
-				for (TiXmlElement * childElem = root->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement())
+				for (XMLElement * childElem = root->FirstChildElement(); childElem != NULL; childElem = childElem->NextSiblingElement())
 				{
 					const char * nodeValue = childElem->Value();
 					if (nodeValue)
@@ -178,7 +181,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 						{
 							RERectStruct rect;
 							readedCount = 0;
-							for (TiXmlAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
+							for (const XMLAttribute * attrib = childElem->FirstAttribute(); attrib != NULL; attrib = attrib->Next())
 							{
 								const char * name = attrib->Name();
 								const char * value = attrib->Value();
@@ -212,7 +215,7 @@ REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTe
 								rect.width *= xWidthKoef;
 								rect.y *= yHeightKoef;
 								rect.height *= yHeightKoef;
-								texture->_frames.Add(rect);
+								texture->_frames.add(rect);
 							}
 						}
 					}
@@ -232,50 +235,50 @@ REBOOL REFramedTextureObject::InitFrames(const char * data)
 
 REBOOL REFramedTextureObject::InitFramedTextureFromPath(const REString & path)
 {
-	_frames.Clear();
+	_frames.clear();
 	_frameIndexParam = 0.0f;
-	if (path.IsEmpty()) 
+	if (path.isEmpty()) 
 	{
 		return false;
 	}
 
 	REData xmlData;
-	REString xmlPath(path);
-	xmlPath.RemovePathExtension();
-	xmlPath.Append(".xml");
-	if (!xmlData.InitFromPath(xmlPath)) 
+	REMutableString xmlPath(path);
+	xmlPath.removePathExtension();
+	xmlPath.append(".xml");
+	if (!xmlData.initFromPath(xmlPath)) 
 	{
 		return false;	
 	}
 	
-	if (!this->InitFrames((const char *)xmlData.GetBytes()))
+	if (!this->InitFrames((const char *)xmlData.getBytes()))
 	{
 		return false;
 	}
 	
-	xmlData.Clear();
+	xmlData.clear();
 	
 	if (this->UpdateFromImageFilePath(path, this->GetFilterType())) 
 	{
-		if (_frames.Count()) 
+		if (_frames.count()) 
 		{
 			this->REAnimationRespondentAnimationDidStep(0.0f);
 		}
 		return true;
 	}
 	
-	_frames.Clear();
+	_frames.clear();
 	return true;
 }
 
 /* IREXMLSerializable */
-REBOOL REFramedTextureObject::AcceptStringParameter(const char * key, const char * value)
+REBOOL REFramedTextureObject::acceptStringParameter(const char * key, const char * value)
 {
 	if (strcmp(key, "path") == 0) 
 	{
 		return this->InitFramedTextureFromPath(REString(value));
 	}
-	return RETextureObject::AcceptStringParameter(key, value);
+	return RETextureObject::acceptStringParameter(key, value);
 }
 
 REFramedTextureObject::REFramedTextureObject() : RETextureObject(), 
@@ -285,14 +288,14 @@ REFramedTextureObject::REFramedTextureObject() : RETextureObject(),
 	
 }
 
-void REFramedTextureObject::OnReleased()
+void REFramedTextureObject::onReleased()
 {
 	if (this->IsAnimating())
 	{
-		REAnimation::StopAllAnimations(this, REAnimationStopTypeImmediately, false);
+		REAnimation::stopAllAnimations(this, REAnimationStopTypeImmediately, false);
 	}
 	
-	RETextureObject::OnReleased();
+	RETextureObject::onReleased();
 }
 
 REFramedTextureObject::~REFramedTextureObject()

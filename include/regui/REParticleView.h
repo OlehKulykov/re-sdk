@@ -38,69 +38,69 @@ private:
 	REFloat32 _particleGlobalTime;
 	REFloat32 _particleGlobalStartTime;
 
-    REBOOL InitFromParticleViewFile(void * file);
+    REBOOL initFromParticleViewFile(void * file);
 #endif
 
 protected:
 	REParticleView();
 	virtual ~REParticleView();
 	
-	void Clear();
+	void clear();
 private:
-    static REBOOL AcceptParticleViewStringParameter(REParticleView * particle, const char * key, const char * value);
+    static REBOOL acceptParticleViewStringParameter(REParticleView * particle, const char * key, const char * value);
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/* IRERenderable */
-	virtual void Render();
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
-	virtual void SetFrame(const RERect & newViewFrame);
+	virtual void render();
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
+	virtual void setFrame(const RERect & newViewFrame);
 	
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime);
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual void update(const RETimeInterval currentTime);
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
     /* REGUIObject */
     /// Acepting string parameter and value string presentation from XML document.
     /// Using when view controller loading from XML. This method can be invoked from non-main thread if view controller loading in background.
-    virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+    virtual REBOOL acceptStringParameter(const char * key, const char * value);
 
 	/// Initializes particle from file path.
-	REBOOL InitFromFilePath(const REString & filePath);
+	REBOOL initFromFilePath(const REString & filePath);
 	
 	/// Initializes particle from file data.
-    REBOOL InitFromFileData(const REData & fileData);
+    REBOOL initFromFileData(const REData & fileData);
 	
 	/// Initializes particle from file buffer.
-    REBOOL InitFromFileBuffer(const REBuffer & fileBuffer);
+    REBOOL initFromFileBuffer(const REBuffer & fileBuffer);
 
 	/// Resets particle view.
-	void Reset();
+	void reset();
 	
 	/// Sets center coordinates of particle view.
-	void SetCenter(const REFloat32 centerX, const REFloat32 centerY);
+	void setCenter(const REFloat32 centerX, const REFloat32 centerY);
 	
 	/// Sets center point of particle view.
-	void SetCenter(const REPoint2 & center);
+	void setCenter(const REPoint2 & center);
 	
 	/// Returns center point of particle view.
-	REPoint2 GetCenter() const;
+	REPoint2 getCenter() const;
 	
 	/// Creates and returns new particle view object.
-	static REParticleView * Create();
+	static REParticleView * create();
 
 	/// Returns XML key string for file path.
-    static const char * GetXMLPathKeyString();
+    static const char * getXMLPathKeyString();
 	
 	/// Returns XML key string for center coordinates.
-    static const char * GetXMLCenterKeyString();
+    static const char * getXMLCenterKeyString();
 	
 	/// Returns XML format string for center coordinates.
-    static const char * GetXMLCenterFormatString();
+    static const char * getXMLCenterFormatString();
 };
 
 

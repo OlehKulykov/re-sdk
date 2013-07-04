@@ -18,7 +18,7 @@
 #include "../../include/remedia/REWAVSound.h"
 
 #ifdef __RE_USING_OPENAL__		
-REBOOL REWAVSound::LoadPcmWavData(const REUByte * data, ALuint * buffer, ALuint * source)
+REBOOL REWAVSound::loadPcmWavData(const REUByte * data, ALuint * buffer, ALuint * source)
 {
 	*buffer = 0;
 	*source = 0;
@@ -80,23 +80,23 @@ REBOOL REWAVSound::LoadPcmWavData(const REUByte * data, ALuint * buffer, ALuint 
 }
 #endif
 
-REBOOL REWAVSound::InitWithData(const REData & soundFileData)
+REBOOL REWAVSound::initWithData(const REData & soundFileData)
 {
-	this->Clear();	
+	this->clear();
 	
-	if ( soundFileData.IsEmpty() ) 
+	if ( soundFileData.isEmpty() ) 
 	{
 		return false; 
 	}
 	
 #ifdef __RE_USING_OPENAL__	
-	return REWAVSound::LoadPcmWavData(soundFileData.GetBytes(), &_buffer, &_source);
+	return REWAVSound::loadPcmWavData(soundFileData.getBytes(), &_buffer, &_source);
 #endif
 	
 	return false;
 }
  
-REBOOL REWAVSound::Play()
+REBOOL REWAVSound::play()
 {
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
@@ -108,7 +108,7 @@ REBOOL REWAVSound::Play()
 	return false;
 }
 
-REBOOL REWAVSound::IsPlaying() const
+REBOOL REWAVSound::isPlaying() const
 {
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
@@ -121,7 +121,7 @@ REBOOL REWAVSound::IsPlaying() const
 	return false;
 }
 
-REBOOL REWAVSound::Pause()
+REBOOL REWAVSound::pause()
 {
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
@@ -133,7 +133,7 @@ REBOOL REWAVSound::Pause()
 	return false;
 }
 
-REBOOL REWAVSound::Stop()
+REBOOL REWAVSound::stop()
 {
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
@@ -145,7 +145,7 @@ REBOOL REWAVSound::Stop()
 	return false;
 }
 
-REBOOL REWAVSound::SetLooped(const REBOOL isLooped)
+REBOOL REWAVSound::setLooped(const REBOOL isLooped)
 {
 #ifdef __RE_USING_OPENAL__
 	if ( _source )
@@ -162,12 +162,12 @@ REBOOL REWAVSound::SetLooped(const REBOOL isLooped)
 	return false;
 }
 
-REBOOL REWAVSound::IsLooped() const
+REBOOL REWAVSound::isLooped() const
 {
 	return _isLooped;
 }
 
-REBOOL REWAVSound::SetVolume(const REFloat32 newVolume)
+REBOOL REWAVSound::setVolume(const REFloat32 newVolume)
 {
 	if ( newVolume < 0.0f )
 	{
@@ -193,7 +193,7 @@ REBOOL REWAVSound::SetVolume(const REFloat32 newVolume)
 	return false;
 }
 
-const REFloat32 REWAVSound::GetVolume() const
+const REFloat32 REWAVSound::getVolume() const
 {
 	return _volume;
 }
@@ -210,12 +210,13 @@ _isLooped(false)
 	
 }
 
-void REWAVSound::Clear()
+void REWAVSound::clear()
 {
+	this->stop();
+	
 #ifdef __RE_USING_OPENAL__	
 	if ( _source )
 	{
-		this->Stop();
 		alDeleteBuffers(1, &_buffer);
 		alDeleteSources(1, &_source); 
 	}
@@ -224,14 +225,14 @@ void REWAVSound::Clear()
 
 REWAVSound::~REWAVSound()
 {
-	this->Clear();
+	this->clear();
 }
 
-REBOOL REWAVSound::IsValidData(const REData & data)
+REBOOL REWAVSound::isValidData(const REData & data)
 {
-	if ( data.GetSize() > 12 )
+	if ( data.getSize() > 12 )
 	{
-		const char * dataString = (const char *)data.GetBytes();
+		const char * dataString = (const char *)data.getBytes();
 		REBOOL isValidData = ( (strncmp(dataString, "RIFF", 4) == 0) && (strncmp(&dataString[8], "WAVE", 4) == 0) );
 		return isValidData;
 	}

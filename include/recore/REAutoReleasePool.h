@@ -48,22 +48,22 @@ private:
 	
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
-	REBOOL AddObject(REObject * autoReleasableObject);
+	REBOOL addObject(REObject * autoReleasableObject);
 
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime);
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const;
+	virtual void update(const RETimeInterval currentTime);
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const;
 	
 	REAutoReleasePool();
 	virtual ~REAutoReleasePool();
 	
-	static REAutoReleasePool * GetDefaultPool();
-	static void ReleaseDefaultPool();
+	static REAutoReleasePool * getDefaultPool();
+	static void releaseDefaultPool();
 };
 
 #endif /* __REAUTORELEASEPOOL_H__ */

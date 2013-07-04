@@ -23,6 +23,7 @@
 #include "REBuffer.h"
 #include "IREFileReadable.h"
 #include "REData.h"
+#include "REString.h"
 
 /// Entry of zip file. Using with REZipReader.
 class __RE_PUBLIC_CLASS_API__ REZipEntry
@@ -34,16 +35,16 @@ protected:
 	
 public:
 	/// Return path as presented in zip file
-	const REString & GetPath() const;
+	const REString & getPath() const;
 	
 	/// Return size in bytes of uncompressed entry
-	const REUInt32 GetSize() const;
+	const REUInt32 getSize() const;
 	
 	/// Return crc32 value of entry
-	const REUInt32 GetCRC32() const;
+	const REUInt32 getCRC32() const;
 	
 	/// Reads uncompressed bytes of entry to buffer
-	virtual REBOOL Read(REBuffer * buff) const = 0;
+	virtual REBOOL read(REBuffer * buff) const = 0;
 	
 	
 	REZipEntry();
@@ -61,24 +62,24 @@ private:
 	void * _callBacks;
 	IREFileReadable * _source;
 	
-	void InitEntries();
-	REBOOL OpenArchiveFile();
-	REBOOL OpenPath(const REString & zipFilePath);
-	REBOOL OpenData(const REData & zipFileData);
+	void initEntries();
+	REBOOL openArchiveFile();
+	REBOOL openPath(const REString & zipFilePath);
+	REBOOL openData(const REData & zipFileData);
 	
 public:
 	/// Reads to entries array all avaiable arcrchive entries.
 	/// Note: all archive entries will be deleted with archive. 
-	REBOOL ReadAvaiableEntries(REArray<REZipEntry*> * entries) const;
+	REBOOL readAvaiableEntries(REArray<REZipEntry*> * entries) const;
 	
 	/// Return entry for path of NULL if not found.
-	REZipEntry * GetEntry(const REString & entryPath) const;
+	REZipEntry * getEntry(const REString & entryPath) const;
 	
 	/// Return count of zip entries
-	const REUInt32 GetEntriesCount() const;
+	const REUInt32 getEntriesCount() const;
 	
 	/// Check is archive have no entries e.g. is empty of file not found
-	REBOOL IsEmpty() const;
+	REBOOL isEmpty() const;
 	
 	/// Initialized zip reader with zip file data 
 	REZipReader(const REData & zipFileData);

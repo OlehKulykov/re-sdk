@@ -19,22 +19,22 @@
 #include "../../include/recore/RETime.h"
 
 /* REObject */
-const REUInt32 RETimer::GetClassIdentifier() const 
+const REUInt32 RETimer::getClassIdentifier() const 
 {
-	return RETimer::ClassIdentifier();
+	return RETimer::classIdentifier();
 }
 
-const REUInt32 RETimer::ClassIdentifier() 
+const REUInt32 RETimer::classIdentifier() 
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RETimer");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETimer");
 	return clasIdentif;
 }
 
-REBOOL RETimer::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RETimer::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RETimer::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REObject::IsImplementsClass(classIdentifier));
+	return ((RETimer::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
+			REObject::isImplementsClass(classIdentifier));
 }
 
 void RETimer::Update(const RETimeInterval currentTime)
@@ -45,13 +45,13 @@ void RETimer::Update(const RETimeInterval currentTime)
 		{
 			if (_targetMethod) 
 			{ 
-				_targetMethod->InvokeWithObject(this); 
+				_targetMethod->invokeWithObject(this); 
 			}
 			
 			if (_loopsCount == 0) 
 			{
 				_isActive = false;
-				this->RemoveFromMainLoop();
+				this->removeFromMainLoop();
 			}
 			else if (_loopsCount > 0)
 			{
@@ -59,7 +59,7 @@ void RETimer::Update(const RETimeInterval currentTime)
 				if (_loopsCount == _doneLoopsCount) 
 				{
 					_isActive = false;
-					this->RemoveFromMainLoop();
+					this->removeFromMainLoop();
 				}
 				else
 				{
@@ -72,10 +72,10 @@ void RETimer::Update(const RETimeInterval currentTime)
 
 const REUIdentifier RETimer::GetMainLoopUpdatableIdentifier() const
 {
-	return this->GetObjectIdentifier();
+	return this->getObjectIdentifier();
 }
 
-void RETimer::SetTrigerTargetMethod(REClassMethod * targetMethod) 
+void RETimer::setTrigerTargetMethod(REClassMethod * targetMethod) 
 {
 	if (_targetMethod) 
 	{
@@ -85,44 +85,44 @@ void RETimer::SetTrigerTargetMethod(REClassMethod * targetMethod)
 	_targetMethod = targetMethod; 
 }
 
-void RETimer::Start()
+void RETimer::start()
 {
 	if (_time > 0.0)
 	{
 		_isActive = true;
 		_doneLoopsCount = 0;
-		_startTime = RETime::Time();
-		this->AddToMainLoop();
+		_startTime = RETime::time();
+		this->addToMainLoop();
 	}
 }
 
-void RETimer::Stop()
+void RETimer::stop()
 {
 	_isActive = false;
-	this->RemoveFromMainLoop();
+	this->removeFromMainLoop();
 }
 
-REBOOL RETimer::IsActive() const
+REBOOL RETimer::isActive() const
 {
 	return _isActive;
 }
 
-void RETimer::SetTime(const RETimeInterval time)
+void RETimer::setTime(const RETimeInterval time)
 {
 	_time = time;
 }
 
-const RETimeInterval RETimer::GetTime() const
+const RETimeInterval RETimer::getTime() const
 {
 	return _time;
 }
 
-void RETimer::SetLoopsCount(const REInt32 loopsCount)
+void RETimer::setLoopsCount(const REInt32 loopsCount)
 {
 	_loopsCount = loopsCount;
 }
 
-const REInt32 RETimer::GetLoopsCount() const
+const REInt32 RETimer::getLoopsCount() const
 {
 	return _loopsCount;
 }
@@ -141,7 +141,7 @@ RETimer::RETimer() : REObject(),
 RETimer::~RETimer()
 {
 	_isActive = false;
-	this->RemoveFromMainLoop();
+	this->removeFromMainLoop();
 	if (_targetMethod)
 	{
 		delete _targetMethod;

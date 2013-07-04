@@ -27,10 +27,10 @@ class __RE_PUBLIC_CLASS_API__ RELog
 {
 public:
 	/// Log message with arguments.
-	static void Log(const char * logString, ...);
+	static void log(const char * logString, ...);
 	
 	/// Log message with arguments.
-	static void LogA(const char * logString, va_list arguments);
+	static void logA(const char * logString, va_list arguments);
 };
 
 

@@ -23,79 +23,79 @@
 
 
 
-REBOOL REAudioPlayer::Play()
+REBOOL REAudioPlayer::play()
 {
 	if (_media) 
 	{
-		return _media->Play();
+		return _media->play();
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::IsPlaying() const
+REBOOL REAudioPlayer::isPlaying() const
 {
 	if (_media) 
 	{
-		return _media->IsPlaying();
+		return _media->isPlaying();
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::Pause()
+REBOOL REAudioPlayer::pause()
 {
 	if (_media) 
 	{
-		return _media->Pause();
+		return _media->pause();
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::Stop()
+REBOOL REAudioPlayer::stop()
 {
 	if (_media) 
 	{
-		return _media->Stop();
+		return _media->stop();
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::SetLooped(const REBOOL isLooped)
+REBOOL REAudioPlayer::setLooped(const REBOOL isLooped)
 {
 	if (_media) 
 	{
-		return _media->SetLooped(isLooped);
+		return _media->setLooped(isLooped);
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::IsLooped() const /* by default is not looped */
+REBOOL REAudioPlayer::isLooped() const /* by default is not looped */
 {
 	if (_media) 
 	{
-		return _media->IsLooped();
+		return _media->isLooped();
 	}
 	return false;
 }
 
-REBOOL REAudioPlayer::SetVolume(const REFloat32 newVolume)
+REBOOL REAudioPlayer::setVolume(const REFloat32 newVolume)
 {
 	if (_media) 
 	{
-		return _media->SetVolume(newVolume);
+		return _media->setVolume(newVolume);
 	}
 	return false;
 }
 
-const REFloat32 REAudioPlayer::GetVolume() const
+const REFloat32 REAudioPlayer::getVolume() const
 {
 	if (_media) 
 	{
-		return _media->GetVolume();
+		return _media->getVolume();
 	}
 	return false;	
 }
 
-REBOOL REAudioPlayer::InitWithData(const REData & soundFileData)
+REBOOL REAudioPlayer::initWithData(const REData & soundFileData)
 {
 	RE_SAFE_DELETE(_media);
 
@@ -103,7 +103,7 @@ REBOOL REAudioPlayer::InitWithData(const REData & soundFileData)
 	REAudioPlayerPrivate_iphone * pl = new REAudioPlayerPrivate_iphone();
 	if (pl) 
 	{
-		if (pl->InitWithData(soundFileData)) 
+		if (pl->initWithData(soundFileData)) 
 		{
 			_media = pl;
 			return true;
@@ -112,12 +112,12 @@ REBOOL REAudioPlayer::InitWithData(const REData & soundFileData)
 	}
 #endif
 	
-	if (REOGGVorbisSound::IsValidData(soundFileData)) 
+	if (REOGGVorbisSound::isValidData(soundFileData)) 
 	{
 		REOGGVorbisSound * s = new REOGGVorbisSound();
 		if (s) 
 		{
-			if (s->InitWithData(soundFileData)) 
+			if (s->initWithData(soundFileData)) 
 			{
 				_media = s;
 				return true;
@@ -125,12 +125,12 @@ REBOOL REAudioPlayer::InitWithData(const REData & soundFileData)
 			delete s;
 		}
 	}
-	else if (REWAVSound::IsValidData(soundFileData)) 
+	else if (REWAVSound::isValidData(soundFileData)) 
 	{
 		REWAVSound * s = new REWAVSound();
 		if (s) 
 		{
-			if (s->InitWithData(soundFileData)) 
+			if (s->initWithData(soundFileData)) 
 			{
 				_media = s;
 				return true;
@@ -142,17 +142,17 @@ REBOOL REAudioPlayer::InitWithData(const REData & soundFileData)
 	return false;
 }
 
-REBOOL REAudioPlayer::InitFromFilePath(const REString & filePath)
+REBOOL REAudioPlayer::initFromFilePath(const REString & filePath)
 {
-	if (filePath.IsEmpty()) 
+	if (filePath.isEmpty()) 
 	{
 		return false;
 	}
 	
 	REData d;
-	if (d.InitFromPath(filePath)) 
+	if (d.initFromPath(filePath)) 
 	{
-		return this->InitWithData(d);
+		return this->initWithData(d);
 	}
 	return false;
 }

@@ -19,7 +19,7 @@
 #define __REFONTSCACHE_H__
 
 #include "../../../include/recore/RECommonHeader.h"
-#include "../../../include/recore/REObjectsArray.h"
+#include "../../../include/recore/REArrayObject.h"
 #include "../../../include/regui/private/REFontBase.h"
 
 class __RE_PUBLIC_CLASS_API__ REFontsCache
@@ -27,8 +27,8 @@ class __RE_PUBLIC_CLASS_API__ REFontsCache
 private:
 	static REArray<REFontBase *> _cache;
 public:
-	REFontBase * Get(REFontBase * base);
-	void Deleted(REFontBase * base);
+	REFontBase * get(REFontBase * base);
+	void deleted(REFontBase * base);
 	
 	REFontsCache();
 	~REFontsCache();

@@ -47,7 +47,7 @@ private:
 	REUInt16 _data;
 public:
 	/// Settes value from Float32 value
-	void Set(const REFloat32 & f)
+	void set(const REFloat32 & f)
 	{
 		if ((f >= FLOAT16_MIN) || (f <= -FLOAT16_MIN))
         {
@@ -67,7 +67,7 @@ public:
 	}
 	
 	/// Getter of float16 value. Result is Float32.
-	const REFloat32 Get() const
+	const REFloat32 get() const
 	{
 		if (_data)
         {
@@ -84,49 +84,49 @@ public:
 	}
 	
 	/// Getter operator of float32 value.
-	operator REFloat32() const { return this->Get(); }
+	operator REFloat32() const { return this->get(); }
 	
 	/// Getter operator of float64 value.
-	operator REFloat64() const { return (REFloat64)this->Get(); }
+	operator REFloat64() const { return (REFloat64)this->get(); }
 	
 	/// Overloaded basic assignment operator.
 	REFloat16 & operator=(const REFloat16 & f) { _data = f._data; return (*this); }
 	
 	/// Overloaded basic assignment operator.
-	REFloat16 & operator=(const REFloat32 & f) { this->Set(f); return (*this); }
+	REFloat16 & operator=(const REFloat32 & f) { this->set(f); return (*this); }
 	
 	/// Overloaded basic assignment operator.
-	REFloat16 & operator=(const REFloat64 & f) { this->Set((REFloat32)f); return (*this); }
+	REFloat16 & operator=(const REFloat64 & f) { this->set((REFloat32)f); return (*this); }
 	
 	/// Overloaded addition operator.
-	REFloat16 operator+(const REFloat16 & f) const { REFloat16 r(this->Get() + f.Get()); return r; }
+	REFloat16 operator+(const REFloat16 & f) const { REFloat16 r(this->get() + f.get()); return r; }
 	
 	/// Overloaded addition operator.
-	REFloat16 operator+(const REFloat32 & f) const { REFloat16 r(this->Get() + f); return r; }
+	REFloat16 operator+(const REFloat32 & f) const { REFloat16 r(this->get() + f); return r; }
 	
 	/// Overloaded addition operator.
-	friend REFloat16 operator+(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.Get() + b.Get()); return r; }
+	friend REFloat16 operator+(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.get() + b.get()); return r; }
 	
 	/// Overloaded addition operator.
-	friend REFloat16 operator+(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.Get() + b); return r; }
+	friend REFloat16 operator+(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.get() + b); return r; }
 	
 	/// Overloaded addition operator.
-	friend REFloat32 operator+(const REFloat32 & a, const REFloat16 & b) { return (a + b.Get()); }
+	friend REFloat32 operator+(const REFloat32 & a, const REFloat16 & b) { return (a + b.get()); }
 	
 	/// Overloaded subtraction operator.
-	REFloat16 operator-(const REFloat16 & f) const { REFloat16 r(this->Get() - f.Get()); return r; }
+	REFloat16 operator-(const REFloat16 & f) const { REFloat16 r(this->get() - f.get()); return r; }
 	
 	/// Overloaded subtraction operator.
-	REFloat16 operator-(const REFloat32 & f) const { REFloat16 r(this->Get() - f); return r; }
+	REFloat16 operator-(const REFloat32 & f) const { REFloat16 r(this->get() - f); return r; }
 	
 	/// Overloaded subtraction operator.
-	friend REFloat16 operator-(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.Get() - b.Get()); return r; }
+	friend REFloat16 operator-(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.get() - b.get()); return r; }
 	
 	/// Overloaded subtraction operator.
-	friend REFloat16 operator-(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.Get() - b); return r; }
+	friend REFloat16 operator-(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.get() - b); return r; }
 	
 	/// Overloaded subtraction operator.
-	friend REFloat32 operator-(const REFloat32 & a, const REFloat16 & b) { return (a - b.Get()); }
+	friend REFloat32 operator-(const REFloat32 & a, const REFloat16 & b) { return (a - b.get()); }
 	
 	/// Overloaded Unary plus (integer promotion) operator.
 	REFloat16 operator+() const { REFloat16 f; f._data = _data; return f; }
@@ -135,34 +135,34 @@ public:
 	REFloat16 operator-() const { REFloat16 f; f._data = _data ^ 0x8000; return f; }
 	
 	/// Overloaded multiplication operator.
-	REFloat16 operator*(const REFloat16 & f) const { REFloat16 r(this->Get() * f.Get()); return r; }
+	REFloat16 operator*(const REFloat16 & f) const { REFloat16 r(this->get() * f.get()); return r; }
 	
 	/// Overloaded multiplication operator.
-	REFloat16 operator*(const REFloat32 & f) const { REFloat16 r(this->Get() * f); return r; }
+	REFloat16 operator*(const REFloat32 & f) const { REFloat16 r(this->get() * f); return r; }
 	
 	/// Overloaded multiplication operator.
-	friend REFloat16 operator*(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.Get() * b.Get()); return r; }
+	friend REFloat16 operator*(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.get() * b.get()); return r; }
 	
 	/// Overloaded multiplication operator.
-	friend REFloat16 operator*(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.Get() * b); return r; }
+	friend REFloat16 operator*(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.get() * b); return r; }
 	
 	/// Overloaded multiplication operator.
-	friend REFloat32 operator*(const REFloat32 & a, const REFloat16 & b) { return (a * b.Get()); }
+	friend REFloat32 operator*(const REFloat32 & a, const REFloat16 & b) { return (a * b.get()); }
 	
 	/// Overloaded division operator.
-	REFloat16 operator/(const REFloat16 & f) const { REFloat16 r(this->Get() / f.Get()); return r; }
+	REFloat16 operator/(const REFloat16 & f) const { REFloat16 r(this->get() / f.get()); return r; }
 	
 	/// Overloaded division operator.
-	REFloat16 operator/(const REFloat32 & f) const { REFloat16 r(this->Get() / f); return r; }
+	REFloat16 operator/(const REFloat32 & f) const { REFloat16 r(this->get() / f); return r; }
 	
 	/// Overloaded division operator.
-	friend REFloat16 operator/(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.Get() / b.Get()); return r; }
+	friend REFloat16 operator/(const REFloat16 & a, const REFloat16 & b) { REFloat16 r(a.get() / b.get()); return r; }
 	
 	/// Overloaded division operator.
-	friend REFloat16 operator/(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.Get() / b); return r; }
+	friend REFloat16 operator/(const REFloat16 & a, const REFloat32 & b) { REFloat16 r(a.get() / b); return r; }
 	
 	/// Overloaded division operator.
-	friend REFloat32 operator/(const REFloat32 & a, const REFloat16 & b) { return (a / b.Get()); }
+	friend REFloat32 operator/(const REFloat32 & a, const REFloat16 & b) { return (a / b.get()); }
 	
 	/// Overloaded 'Equal to' operator.
 	bool operator==(const REFloat16 & f) const { return (_data == f._data); }
@@ -174,10 +174,10 @@ public:
 	friend bool operator==(const REFloat16 & a, const REFloat16 & b) { return (a._data == b._data); }
 	
 	/// Overloaded 'Equal to' operator.
-	friend bool operator==(const REFloat16 & a, const REFloat32 & b) { return (a.Get() == b); }
+	friend bool operator==(const REFloat16 & a, const REFloat32 & b) { return (a.get() == b); }
 	
 	/// Overloaded 'Equal to' operator.
-	friend bool operator==(const REFloat32 & a, const REFloat16 & b) { return (a == b.Get()); }
+	friend bool operator==(const REFloat32 & a, const REFloat16 & b) { return (a == b.get()); }
 	
 	/// Overloaded 'Not equal to' operator.
 	bool operator!=(const REFloat16 & f) const { return (_data != f._data); }
@@ -189,127 +189,127 @@ public:
 	friend bool operator!=(const REFloat16 & a, const REFloat16 & b) { return (a._data != b._data); }
 	
 	/// Overloaded 'Not equal to' operator.
-	friend bool operator!=(const REFloat16 & a, const REFloat32 & b) { return (a.Get() != b); }
+	friend bool operator!=(const REFloat16 & a, const REFloat32 & b) { return (a.get() != b); }
 	
 	/// Overloaded 'Not equal to' operator.
-	friend bool operator!=(const REFloat32 & a, const REFloat16 & b) { return (a != b.Get()); }
+	friend bool operator!=(const REFloat32 & a, const REFloat16 & b) { return (a != b.get()); }
 	
 	/// Overloaded 'Greater than' operator.
-	bool operator>(const REFloat16 & f) const { return (this->Get() > f.Get()); }
+	bool operator>(const REFloat16 & f) const { return (this->get() > f.get()); }
 	
 	/// Overloaded 'Greater than' operator.
-	bool operator>(const REFloat32 & f) const { return (this->Get() > f); }
+	bool operator>(const REFloat32 & f) const { return (this->get() > f); }
 	
 	/// Overloaded 'Greater than' operator.
-	friend bool operator>(const REFloat16 & a, const REFloat16 & b) { return (a.Get() > b.Get()); }
+	friend bool operator>(const REFloat16 & a, const REFloat16 & b) { return (a.get() > b.get()); }
 	
 	/// Overloaded 'Greater than' operator.
-	friend bool operator>(const REFloat16 & a, const REFloat32 & b) { return (a.Get() > b); }
+	friend bool operator>(const REFloat16 & a, const REFloat32 & b) { return (a.get() > b); }
 	
 	/// Overloaded 'Greater than' operator.
-	friend bool operator>(const REFloat32 & a, const REFloat16 & b) { return (a > b.Get()); }
+	friend bool operator>(const REFloat32 & a, const REFloat16 & b) { return (a > b.get()); }
 	
 	/// Overloaded 'Less than' operator.
-	bool operator<(const REFloat16 & f) const { return (this->Get() < f.Get()); }
+	bool operator<(const REFloat16 & f) const { return (this->get() < f.get()); }
 	
 	/// Overloaded 'Less than' operator.
-	bool operator<(const REFloat32 & f) const { return (this->Get() < f); }
+	bool operator<(const REFloat32 & f) const { return (this->get() < f); }
 	
 	/// Overloaded 'Less than' operator.
-	friend bool operator<(const REFloat16 & a, const REFloat16 & b) { return (a.Get() < b.Get()); }
+	friend bool operator<(const REFloat16 & a, const REFloat16 & b) { return (a.get() < b.get()); }
 	
 	/// Overloaded 'Less than' operator.
-	friend bool operator<(const REFloat16 & a, const REFloat32 & b) { return (a.Get() < b); }
+	friend bool operator<(const REFloat16 & a, const REFloat32 & b) { return (a.get() < b); }
 	
 	/// Overloaded 'Less than' operator.
-	friend bool operator<(const REFloat32 & a, const REFloat16 & b) { return (a < b.Get()); }
+	friend bool operator<(const REFloat32 & a, const REFloat16 & b) { return (a < b.get()); }
 	
 	/// Overloaded 'Greater than or equal to' operator.
-	bool operator>=(const REFloat16 & f) const { return (this->Get() >= f.Get()); }
+	bool operator>=(const REFloat16 & f) const { return (this->get() >= f.get()); }
 	
 	/// Overloaded 'Greater than or equal to' operator.
-	bool operator>=(const REFloat32 & f) const { return (this->Get() >= f); }
+	bool operator>=(const REFloat32 & f) const { return (this->get() >= f); }
 	
 	/// Overloaded 'Greater than or equal to' operator.
-	friend bool operator>=(const REFloat16 & a, const REFloat16 & b) { return (a.Get() >= b.Get()); }
+	friend bool operator>=(const REFloat16 & a, const REFloat16 & b) { return (a.get() >= b.get()); }
 	
 	/// Overloaded 'Greater than or equal to' operator.
-	friend bool operator>=(const REFloat16 & a, const REFloat32 & b) { return (a.Get() >= b); }
+	friend bool operator>=(const REFloat16 & a, const REFloat32 & b) { return (a.get() >= b); }
 	
 	/// Overloaded 'Greater than or equal to' operator.
-	friend bool operator>=(const REFloat32 & a, const REFloat16 & b) { return (a >= b.Get()); }
+	friend bool operator>=(const REFloat32 & a, const REFloat16 & b) { return (a >= b.get()); }
 	
 	/// Overloaded 'Less than or equal to' operator.
-	bool operator<=(const REFloat16 & f) const { return (this->Get() <= f.Get()); }
+	bool operator<=(const REFloat16 & f) const { return (this->get() <= f.get()); }
 	
 	/// Overloaded 'Less than or equal to' operator.
-	bool operator<=(const REFloat32 & f) const { return (this->Get() <= f); }
+	bool operator<=(const REFloat32 & f) const { return (this->get() <= f); }
 	
 	/// Overloaded 'Less than or equal to' operator.
-	friend bool operator<=(const REFloat16 & a, const REFloat16 & b) { return (a.Get() <= b.Get()); }
+	friend bool operator<=(const REFloat16 & a, const REFloat16 & b) { return (a.get() <= b.get()); }
 	
 	/// Overloaded 'Less than or equal to' operator.
-	friend bool operator<=(const REFloat16 & a, const REFloat32 & b) { return (a.Get() <= b); }
+	friend bool operator<=(const REFloat16 & a, const REFloat32 & b) { return (a.get() <= b); }
 	
 	/// Overloaded 'Less than or equal to' operator.
-	friend bool operator<=(const REFloat32 & a, const REFloat16 & b) { return (a <= b.Get()); }
+	friend bool operator<=(const REFloat32 & a, const REFloat16 & b) { return (a <= b.get()); }
 	
 	/// Overloaded 'Addition assignment' operator.
-	REFloat16 & operator+=(const REFloat16 & f) { this->Set(this->Get() + f.Get()); return (*this); }
+	REFloat16 & operator+=(const REFloat16 & f) { this->set(this->get() + f.get()); return (*this); }
 	
 	/// Overloaded 'Addition assignment' operator.
-	REFloat16 & operator+=(const REFloat32 & f) { this->Set(this->Get() + f); return (*this); }
+	REFloat16 & operator+=(const REFloat32 & f) { this->set(this->get() + f); return (*this); }
 	
 	/// Overloaded 'Addition assignment' operator.
-	friend REFloat16 & operator+=(REFloat16 & a, const REFloat16 & b) { a.Set(a.Get() + b.Get()); return a; }
+	friend REFloat16 & operator+=(REFloat16 & a, const REFloat16 & b) { a.set(a.get() + b.get()); return a; }
 	
 	/// Overloaded 'Addition assignment' operator.
-	friend REFloat16 & operator+=(REFloat16 & a, const REFloat32 & b) { a.Set(a.Get() + b); return a; }
+	friend REFloat16 & operator+=(REFloat16 & a, const REFloat32 & b) { a.set(a.get() + b); return a; }
 	
 	/// Overloaded 'Subtraction assignment' operator.
-	REFloat16 & operator-=(const REFloat16 & f) { this->Set(this->Get() - f.Get()); return (*this); }
+	REFloat16 & operator-=(const REFloat16 & f) { this->set(this->get() - f.get()); return (*this); }
 	
 	/// Overloaded 'Subtraction assignment' operator.
-	REFloat16 & operator-=(const REFloat32 & f) { this->Set(this->Get() - f); return (*this); }
+	REFloat16 & operator-=(const REFloat32 & f) { this->set(this->get() - f); return (*this); }
 	
 	/// Overloaded 'Subtraction assignment' operator.
-	friend REFloat16 & operator-=(REFloat16 & a, const REFloat16 & b) { a.Set(a.Get() - b.Get()); return a; }
+	friend REFloat16 & operator-=(REFloat16 & a, const REFloat16 & b) { a.set(a.get() - b.get()); return a; }
 	
 	/// Overloaded 'Subtraction assignment' operator.
-	friend REFloat16 & operator-=(REFloat16 & a, const REFloat32 & b) { a.Set(a.Get() - b); return a; }
+	friend REFloat16 & operator-=(REFloat16 & a, const REFloat32 & b) { a.set(a.get() - b); return a; }
 	
 	/// Overloaded 'Multiplication assignment' operator.
-	REFloat16 & operator*=(const REFloat16 & f) { this->Set(this->Get() * f.Get()); return (*this); }
+	REFloat16 & operator*=(const REFloat16 & f) { this->set(this->get() * f.get()); return (*this); }
 	
 	/// Overloaded 'Multiplication assignment' operator.
-	REFloat16 & operator*=(const REFloat32 & f) { this->Set(this->Get() * f); return (*this); }
+	REFloat16 & operator*=(const REFloat32 & f) { this->set(this->get() * f); return (*this); }
 	
 	/// Overloaded 'Multiplication assignment' operator.
-	friend REFloat16 & operator*=(REFloat16 & a, const REFloat16 & b) { a.Set(a.Get() * b.Get()); return a; }
+	friend REFloat16 & operator*=(REFloat16 & a, const REFloat16 & b) { a.set(a.get() * b.get()); return a; }
 	
 	/// Overloaded 'Multiplication assignment' operator.
-	friend REFloat16 & operator*=(REFloat16 & a, const REFloat32 & b) { a.Set(a.Get() * b); return a; }
+	friend REFloat16 & operator*=(REFloat16 & a, const REFloat32 & b) { a.set(a.get() * b); return a; }
 	
 	/// Overloaded 'Division assignment' operator.
-	REFloat16 & operator/=(const REFloat16 & f) { this->Set(this->Get() / f.Get()); return (*this); }
+	REFloat16 & operator/=(const REFloat16 & f) { this->set(this->get() / f.get()); return (*this); }
 	
 	/// Overloaded 'Division assignment' operator.
-	REFloat16 & operator/=(const REFloat32 & f) { this->Set(this->Get() / f); return (*this); }
+	REFloat16 & operator/=(const REFloat32 & f) { this->set(this->get() / f); return (*this); }
 	
 	/// Overloaded 'Division assignment' operator.
-	friend REFloat16 & operator/=(REFloat16 & a, const REFloat16 & b) { a.Set(a.Get() / b.Get()); return a; }
+	friend REFloat16 & operator/=(REFloat16 & a, const REFloat16 & b) { a.set(a.get() / b.get()); return a; }
 	
 	/// Overloaded 'Division assignment' operator.
-	friend REFloat16 & operator/=(REFloat16 & a, const REFloat32 & b) { a.Set(a.Get() / b); return a; }
+	friend REFloat16 & operator/=(REFloat16 & a, const REFloat32 & b) { a.set(a.get() / b); return a; }
 	
 	/// Initialized with float16 value.
 	REFloat16(const REFloat16 & f) : _data(f._data) { }
 	
 	/// Initialized with float32 value.
-	REFloat16(const REFloat32 & f) { this->Set(f); }
+	REFloat16(const REFloat32 & f) { this->set(f); }
 	
 	/// Initialized with float64 value.
-	REFloat16(const REFloat64 & f) { this->Set((REFloat32)f); }
+	REFloat16(const REFloat64 & f) { this->set((REFloat32)f); }
 	
 	/// Initialized with zero value.
 	REFloat16() : _data(0) { }

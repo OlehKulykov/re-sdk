@@ -65,15 +65,15 @@ protected:
 	
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/* REGUIObject */
-	virtual void OnPrepareGUIObjectForSetuping();
-	virtual void OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+	virtual void onPrepareGUIObjectForSetuping();
+	virtual void onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
 	
 	/* IRETexture */
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
@@ -111,7 +111,7 @@ public:
 	
 	/// Settes frame with texture coordinates.
 	/// Can be animated using REAnimation, call this method between REAnimation::Setup() and REAnimation::Execute().
-	/// If animation is not settuping !REAnimation::IsSetuping() than SetFrame() will be called.
+	/// If animation is not settuping !REAnimation::isSetuping() than SetFrame() will be called.
 	void SetFrameAnimated(const RETetragon & newFrame);
 	
 	/// Stops all animations of object
@@ -144,19 +144,19 @@ public:
 											 const RETextureFilterType filterType = RETextureFilterLinear);
 
 	/// Returns XML key string for texture filter.
-    static const char * GetXMLFilterKeyString();
+    static const char * getXMLFilterKeyString();
 	
 	/// Returns XML key string for texture image path.
-    static const char * GetXMLPathKeyString();
+    static const char * getXMLPathKeyString();
 	
 	/// Returns XML key string for frame.
-    static const char * GetXMLFrameKeyString();
+    static const char * getXMLFrameKeyString();
 	
 	/// Returns XML format string for frame.
-    static const char * GetXMLFrameFormatString();
+    static const char * getXMLFrameFormatString();
 	
 	/// Returns XML string of texture filter type.
-    static const char * GetXMLFilterStringByType(const RETextureFilterType filterType);
+    static const char * getXMLFilterStringByType(const RETextureFilterType filterType);
 };
 
 #endif /* __RETEXTUREOBJECT_H__ */

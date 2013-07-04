@@ -39,7 +39,7 @@
 #include "../../include/recore/RENumber.h"
 #include <float.h>
 
-REBOOL RENumber::IsReal() const
+REBOOL RENumber::isReal() const
 {
 	switch (_type) 
 	{
@@ -55,7 +55,7 @@ REBOOL RENumber::IsReal() const
 	return false;
 }
 
-REBOOL RENumber::IsInteger() const
+REBOOL RENumber::isInteger() const
 {
 	switch (_type) 
 	{
@@ -72,7 +72,7 @@ REBOOL RENumber::IsInteger() const
 	return true;
 }
 
-REBOOL RENumber::IsUnsigned() const
+REBOOL RENumber::isUnsigned() const
 {
 	switch (_type) 
 	{
@@ -91,7 +91,7 @@ REBOOL RENumber::IsUnsigned() const
 	return false;
 }
 
-REBOOL RENumber::IsSigned() const
+REBOOL RENumber::isSigned() const
 {
 	switch (_type) 
 	{
@@ -111,214 +111,214 @@ REBOOL RENumber::IsSigned() const
 	return false;
 }
 
-REBOOL RENumber::GetBoolValue() const
+REBOOL RENumber::getBoolValue() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REBOOL)_uint64Value;
 	}
 	return (REBOOL)((REUInt64)_float64Value);
 }
 
-REByte RENumber::GetByteValue() const
+REByte RENumber::getByteValue() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REByte)_int64Value;
 	}
 	return (REByte)((REInt64)_float64Value);
 }
 
-REUByte RENumber::GetUByteValue() const
+REUByte RENumber::getUByteValue() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REUByte)_uint64Value;
 	}
 	return (REUByte)((REUInt64)_float64Value);
 }
 
-REInt16 RENumber::GetInt16Value() const
+REInt16 RENumber::getInt16Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REInt16)_int64Value;
 	}
 	return (REInt16)((REInt64)_float64Value);
 }
 
-REUInt16 RENumber::GetUInt16Value() const
+REUInt16 RENumber::getUInt16Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REUInt16)_uint64Value;
 	}
 	return (REUInt16)((REUInt64)_float64Value);
 }
 
-REInt32 RENumber::GetInt32Value() const
+REInt32 RENumber::getInt32Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REInt32)_int64Value;
 	}
 	return (REInt32)((REInt64)_float64Value);
 }
 
-REUInt32 RENumber::GetUInt32Value() const
+REUInt32 RENumber::getUInt32Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REUInt32)_uint64Value;
 	}
 	return (REUInt32)((REUInt64)_float64Value);
 }
 
-REInt64 RENumber::GetInt64Value() const
+REInt64 RENumber::getInt64Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REInt64)_int64Value;
 	}
 	return (REInt64)((REInt64)_float64Value);
 }
 
-REUInt64 RENumber::GetUInt64Value() const
+REUInt64 RENumber::getUInt64Value() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return (REUInt64)_uint64Value;
 	}
 	return (REUInt64)((REUInt64)_float64Value);
 }
 
-void * RENumber::GetPointerValue() const
+void * RENumber::getPointerValue() const
 {
-	if (this->IsInteger()) 
+	if (this->isInteger()) 
 	{
 		return _pointerValue;
 	}
 	return (void*)((REUInt64)_float64Value);
 }
 
-REFloat32 RENumber::GetFloat32Value() const
+REFloat32 RENumber::getFloat32Value() const
 {
-	if (this->IsReal()) 
+	if (this->isReal()) 
 	{
 		return (REFloat32)_float64Value;
 	}
 	return (REFloat32)(_int64Value);
 }
 
-REFloat64 RENumber::GetFloat64Value() const
+REFloat64 RENumber::getFloat64Value() const
 {
-	if (this->IsReal()) 
+	if (this->isReal()) 
 	{
 		return (REFloat64)_float64Value;
 	}
 	return (REFloat64)(_int64Value);
 }
 
-RETimeInterval RENumber::GetTimeIntervalValue() const
+RETimeInterval RENumber::getTimeIntervalValue() const
 {
-	if (this->IsReal()) 
+	if (this->isReal()) 
 	{
 		return (RETimeInterval)_float64Value;
 	}
 	return (RETimeInterval)(_int64Value);
 }
 
-void RENumber::SetBoolValue(REBOOL newValue)
+void RENumber::setBoolValue(REBOOL newValue)
 {
 	_type = RENumberTypeBool;
 	_uint64Value = 0;
 	_uint64Value = (REUInt64)newValue;
 }
 
-void RENumber::SetByteValue(REByte newValue)
+void RENumber::setByteValue(REByte newValue)
 {
 	_type = RENumberTypeByte;
 	_uint64Value = 0;
 	_int64Value = (REInt64)newValue;
 }
 
-void RENumber::SetUByteValue(REUByte newValue)
+void RENumber::setUByteValue(REUByte newValue)
 {
 	_type = RENumberTypeUByte;
 	_uint64Value = 0;
 	_uint64Value = (REUInt64)newValue;
 }
 
-void RENumber::SetInt16Value(REInt16 newValue)
+void RENumber::setInt16Value(REInt16 newValue)
 {
 	_type = RENumberTypeInt16;
 	_uint64Value = 0;
 	_int64Value = (REInt64)newValue;
 }
 
-void RENumber::SetUInt16Value(REUInt16 newValue)
+void RENumber::setUInt16Value(REUInt16 newValue)
 {
 	_type = RENumberTypeUInt16;
 	_uint64Value = 0;
 	_uint64Value = (REUInt64)newValue;
 }
 
-void RENumber::SetInt32Value(REInt32 newValue)
+void RENumber::setInt32Value(REInt32 newValue)
 {
 	_type = RENumberTypeInt32;
 	_uint64Value = 0;
 	_int64Value = (REInt64)newValue;
 }
 
-void RENumber::SetUInt32Value(REUInt32 newValue)
+void RENumber::setUInt32Value(REUInt32 newValue)
 {
 	_type = RENumberTypeUInt32;
 	_uint64Value = 0;
 	_uint64Value = (REUInt64)newValue;
 }
 
-void RENumber::SetInt64Value(REInt64 newValue)
+void RENumber::setInt64Value(REInt64 newValue)
 {
 	_type = RENumberTypeInt64;
 	_int64Value = newValue;
 }
 
-void RENumber::SetUInt64Value(REUInt64 newValue)
+void RENumber::setUInt64Value(REUInt64 newValue)
 {
 	_type = RENumberTypeUInt64;
 	_uint64Value = newValue;
 }
 
-void RENumber::SetPointerValue(void * newValue)
+void RENumber::setPointerValue(void * newValue)
 {
 	_type = RENumberTypePointer;
 	_pointerValue = newValue;
 }
 
-void RENumber::SetFloat32Value(REFloat32 newValue)
+void RENumber::setFloat32Value(REFloat32 newValue)
 {
 	_type = RENumberTypeFloat32;
 	_uint64Value = 0;
 	_float64Value = (REFloat64)newValue;
 }
 
-void RENumber::SetFloat64Value(REFloat64 newValue)
+void RENumber::setFloat64Value(REFloat64 newValue)
 {
 	_type = RENumberTypeFloat64;
 	_uint64Value = 0;
 	_float64Value = newValue;
 }
 
-void RENumber::SetTimeIntervalValue(RETimeInterval newValue)
+void RENumber::setTimeIntervalValue(RETimeInterval newValue)
 {
 	_type = RENumberTypeTimeInterval;
 	_uint64Value = 0;
 	_float64Value = newValue;
 }
 
-REBOOL RENumber::IsEqualToNumber(const RENumber & anotherNumber) const
+REBOOL RENumber::isEqualToNumber(const RENumber & anotherNumber) const
 {
-	const int compResult = this->CompareWithNumber(anotherNumber);
+	const int compResult = this->compareWithNumber(anotherNumber);
 	return (compResult == 0);
 }
 
@@ -331,29 +331,29 @@ RENumber & RENumber::operator=(const RENumber & anotherNumber)
 
 bool RENumber::operator>(const RENumber & anotherNumber) const
 {
-	const int compResult = this->CompareWithNumber(anotherNumber);
+	const int compResult = this->compareWithNumber(anotherNumber);
 	return (compResult > 0);
 }
 
 bool RENumber::operator<(const RENumber & anotherNumber) const
 {
-	const int compResult = this->CompareWithNumber(anotherNumber);
+	const int compResult = this->compareWithNumber(anotherNumber);
 	return (compResult < 0);
 }
 
 bool RENumber::operator==(const RENumber & anotherNumber) const
 {
-	const int compResult = this->CompareWithNumber(anotherNumber);
+	const int compResult = this->compareWithNumber(anotherNumber);
 	return (compResult == 0);
 }
 
 bool RENumber::operator!=(const RENumber & anotherNumber) const
 {
-	const int compResult = this->CompareWithNumber(anotherNumber);
+	const int compResult = this->compareWithNumber(anotherNumber);
 	return (compResult != 0);
 }
 
-void RENumber::Clear()
+void RENumber::clear()
 {
 	_uint64Value = 0;
 	_type = RENumberTypeNone;
@@ -374,19 +374,47 @@ RENumber::RENumber() :
 RENumber::RENumber(const REString & stringValue) :
 	_type(RENumberTypeNone)
 {
-	if (!this->SetValueFromString(stringValue))
+	if (!this->setValueFromString(stringValue))
 	{
-		this->Clear();
+		this->clear();
 	}
 }
 
 RENumber::RENumber(const char * stringValue) :
 	_type(RENumberTypeNone)
 {
-	if (!this->SetValueFromString(stringValue))
+	if (!this->setValueFromString(stringValue))
 	{
-		this->Clear();
+		this->clear();
 	}
+}
+
+/// Constructs number from REInt64 value.
+RENumber::RENumber(const REInt64 int64Value) :
+	_type(RENumberTypeInt64)
+{
+	_int64Value = int64Value;
+}
+
+/// Constructs number from REUInt64 value.
+RENumber::RENumber(const REUInt64 uint64Value) :
+	_type(RENumberTypeUInt64)
+{
+	_uint64Value = uint64Value;
+}
+
+/// Constructs number from pointer value.
+RENumber::RENumber(void * pointerValue) :
+	_type(RENumberTypePointer)
+{
+	_pointerValue = pointerValue;
+}
+
+/// Constructs number from REFloat64 value.
+RENumber::RENumber(const REFloat64 float64Value) :
+	_type(RENumberTypeFloat64)
+{
+	_float64Value = float64Value;
 }
 
 RENumber::~RENumber()
@@ -394,7 +422,7 @@ RENumber::~RENumber()
 	
 }
 
-REBOOL RENumber::ApplyValueFromString(RENumber * number, const char * strValue)
+REBOOL RENumber::applyValueFromString(RENumber * number, const char * strValue)
 {
 	if (strValue)
 	{
@@ -424,7 +452,7 @@ REBOOL RENumber::ApplyValueFromString(RENumber * number, const char * strValue)
 			long double resNum = 0;
 			if (sscanf(strValue, "%Lf", &resNum) == 1)
 			{
-				number->SetFloat64Value((REFloat64)resNum);
+				number->setFloat64Value((REFloat64)resNum);
 				return true;
 			}
 		}
@@ -434,7 +462,7 @@ REBOOL RENumber::ApplyValueFromString(RENumber * number, const char * strValue)
 			long long int resNum = 0;
 			if (sscanf(strValue, "%lld", &resNum) == 1)
 			{
-				number->SetInt64Value((REInt64)resNum);
+				number->setInt64Value((REInt64)resNum);
 				return true;
 			}
 		}
@@ -444,7 +472,7 @@ REBOOL RENumber::ApplyValueFromString(RENumber * number, const char * strValue)
 			long long unsigned int resNum = 0;
 			if (sscanf(strValue, "%llu", &resNum) == 1)
 			{
-				number->SetUInt64Value((REUInt64)resNum);
+				number->setUInt64Value((REUInt64)resNum);
 				return true;
 			}
 		}
@@ -453,128 +481,128 @@ REBOOL RENumber::ApplyValueFromString(RENumber * number, const char * strValue)
 	return false;
 }
 
-REBOOL RENumber::SetValueFromString(const REString & strValue)
+REBOOL RENumber::setValueFromString(const REString & strValue)
 {
-	return RENumber::ApplyValueFromString(this, strValue.UTF8String());
+	return RENumber::applyValueFromString(this, strValue.getChars());
 }
 
-REBOOL RENumber::SetValueFromString(const char * strValue)
+REBOOL RENumber::setValueFromString(const char * strValue)
 {
-	return RENumber::ApplyValueFromString(this, strValue);
+	return RENumber::applyValueFromString(this, strValue);
 }
 
-void RENumber::ApplyNumberValueToString(const RENumber & number, REString * string)
+void RENumber::applyNumberValueToString(const RENumber & number, REString * string)
 {
 	char cStr[129] = { 0 };
-	if (number.IsInteger())
+	if (number.isInteger())
 	{
-		if (number.IsSigned())
+		if (number.isSigned())
 		{
-			sprintf(cStr, "%lld", (long long int)number.GetInt64Value());
+			sprintf(cStr, "%lld", (long long int)number.getInt64Value());
 		}
-		else if (number.IsUnsigned())
+		else if (number.isUnsigned())
 		{
-			sprintf(cStr, "%llu", (long long unsigned int)number.GetUInt64Value());
+			sprintf(cStr, "%llu", (long long unsigned int)number.getUInt64Value());
 		}
 	}
-	else if (number.IsReal())
+	else if (number.isReal())
 	{
-		sprintf(cStr, "%10.9Lf", (long double)number.GetFloat64Value());
+		sprintf(cStr, "%10.9Lf", (long double)number.getFloat64Value());
 	}
-	string->Set(cStr);
+	*string = cStr;
 }
 
-REString RENumber::GetStringValue() const
+REString RENumber::getStringValue() const
 {
 	REString resultString;
-	RENumber::ApplyNumberValueToString(*this, &resultString);
+	RENumber::applyNumberValueToString(*this, &resultString);
 	return resultString;
 }
 
-int RENumber::CompareNumbers(const RENumber & number, const RENumber & anotherNumber)
+int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNumber)
 {
-	if (number.IsInteger())
+	if (number.isInteger())
 	{
-		if (number.IsSigned())
+		if (number.isSigned())
 		{
-			const REInt64 thisValue = number.GetInt64Value();
-			if (anotherNumber.IsInteger())
+			const REInt64 thisValue = number.getInt64Value();
+			if (anotherNumber.isInteger())
 			{
-				if (anotherNumber.IsSigned())
+				if (anotherNumber.isSigned())
 				{
-					const REInt64 anValue = anotherNumber.GetInt64Value();
+					const REInt64 anValue = anotherNumber.getInt64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
-				else if (anotherNumber.IsUnsigned())
+				else if (anotherNumber.isUnsigned())
 				{
-					const REUInt64 anValue = anotherNumber.GetUInt64Value();
+					const REUInt64 anValue = anotherNumber.getUInt64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
 			}
-			else if (anotherNumber.IsReal())
+			else if (anotherNumber.isReal())
 			{
-				const REFloat64 anValue = anotherNumber.GetFloat64Value();
+				const REFloat64 anValue = anotherNumber.getFloat64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
 			}
 		}
-		else if (number.IsUnsigned())
+		else if (number.isUnsigned())
 		{
-			const REUInt64 thisValue = number.GetUInt64Value();
-			if (anotherNumber.IsInteger())
+			const REUInt64 thisValue = number.getUInt64Value();
+			if (anotherNumber.isInteger())
 			{
-				if (anotherNumber.IsSigned())
+				if (anotherNumber.isSigned())
 				{
-					const REInt64 anValue = anotherNumber.GetInt64Value();
+					const REInt64 anValue = anotherNumber.getInt64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
-				else if (anotherNumber.IsUnsigned())
+				else if (anotherNumber.isUnsigned())
 				{
-					const REUInt64 anValue = anotherNumber.GetUInt64Value();
+					const REUInt64 anValue = anotherNumber.getUInt64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
 			}
-			else if (anotherNumber.IsReal())
+			else if (anotherNumber.isReal())
 			{
-				const REFloat64 anValue = anotherNumber.GetFloat64Value();
+				const REFloat64 anValue = anotherNumber.getFloat64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
 			}
 		}
 	}
-	else if (number.IsReal())
+	else if (number.isReal())
 	{
-		const REFloat64 thisValue = number.GetFloat64Value();
-		if (anotherNumber.IsInteger())
+		const REFloat64 thisValue = number.getFloat64Value();
+		if (anotherNumber.isInteger())
 		{
-			if (anotherNumber.IsSigned())
+			if (anotherNumber.isSigned())
 			{
-				const REInt64 anValue = anotherNumber.GetInt64Value();
+				const REInt64 anValue = anotherNumber.getInt64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
 			}
-			else if (anotherNumber.IsUnsigned())
+			else if (anotherNumber.isUnsigned())
 			{
-				const REUInt64 anValue = anotherNumber.GetUInt64Value();
+				const REUInt64 anValue = anotherNumber.getUInt64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
 			}
 		}
-		else if (anotherNumber.IsReal())
+		else if (anotherNumber.isReal())
 		{
-			const REFloat64 anValue = anotherNumber.GetFloat64Value();
+			const REFloat64 anValue = anotherNumber.getFloat64Value();
 			if (thisValue == anValue) { return 0; }
 			else if (thisValue > anValue) { return 1; }
 			else return -1;
@@ -588,8 +616,8 @@ int RENumber::CompareNumbers(const RENumber & number, const RENumber & anotherNu
  -1 this < anotherNumber
  0 this == anotherNumber
  1 this > anotherNumber OR anotherNumber is NULL, mean nothing   */
-int RENumber::CompareWithNumber(const RENumber & anotherNumber) const
+int RENumber::compareWithNumber(const RENumber & anotherNumber) const
 {
-	return RENumber::CompareNumbers(*this, anotherNumber);
+	return RENumber::compareNumbers(*this, anotherNumber);
 }
 

@@ -28,19 +28,19 @@ class __RE_PUBLIC_CLASS_API__ RENotificationManager
 {
 public:
 	/// Adds observer object for notification name using observer object class method.
-	static REBOOL AddObserverForNotificationName(REObject * observerObject, const REString & notificationName, REClassMethod * observerMethod);
+	static REBOOL addObserverForNotificationName(REObject * observerObject, const REString & notificationName, REClassMethod * observerMethod);
 	
 	/// Removes observer object.
-	static REBOOL RemoveObserver(REObject * observerObject);
+	static REBOOL removeObserver(REObject * observerObject);
 	
 	/// Removes observer object for notification name.
-	static REBOOL RemoveObserverForNotificationName(REObject * observerObject, const REString & notificationName);
+	static REBOOL removeObserverForNotificationName(REObject * observerObject, const REString & notificationName);
 	
 	/// Posts notification with name.
-	static REBOOL PostNotificationName(const REString & notificationName);
+	static REBOOL postNotificationName(const REString & notificationName);
 	
 	/// Posts notification with name and object.
-	static REBOOL PostNotificationNameWithObject(const REString & notificationName, REObject * object);
+	static REBOOL postNotificationNameWithObject(const REString & notificationName, REObject * object);
 };
 
 

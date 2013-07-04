@@ -24,92 +24,92 @@ const REAffineTransform & RETransformedView::GetTransform() const
 	return _transform;
 }
 
-void RETransformedView::SetTransform(const REAffineTransform & newTransform)
+void RETransformedView::setTransform(const REAffineTransform & newTransform)
 {
 	_transform = newTransform;
-	RETetragon newTetr(_transform.GetTransformedTetragon(_transformedFrame));
-	this->SetTransformedFrame(newTetr);
+	RETetragon newTetr(_transform.getTransformedTetragon(_transformedFrame));
+	this->setTransformedFrame(newTetr);
 }
 
-void RETransformedView::SetTransformAnimated(const REAffineTransform & newTransform)
+void RETransformedView::setTransformAnimated(const REAffineTransform & newTransform)
 {
 	_transform = newTransform;
-	RETetragon newTetr(_transform.GetTransformedTetragon(_transformedFrame));
-	if (REAnimation::IsSetuping()) 
+	RETetragon newTetr(_transform.getTransformedTetragon(_transformedFrame));
+	if (REAnimation::isSetuping()) 
 	{
-		this->SetTransformedFrameAnimated(newTetr);
+		this->setTransformedFrameAnimated(newTetr);
 	}
 	else
 	{
-		this->SetTransformedFrame(newTetr);
+		this->setTransformedFrame(newTetr);
 	}
 }
 
-const RETetragon & RETransformedView::GetTransformedFrame() const
+const RETetragon & RETransformedView::getTransformedFrame() const
 {
 	return _transformedFrame;
 }
 
-void RETransformedView::SetTransformedFrame(const RETetragon & newFrame)
+void RETransformedView::setTransformedFrame(const RETetragon & newFrame)
 {
 	_transformedFrame = newFrame;
 }
 
-void RETransformedView::SetTransformedFrameAnimated(const RETetragon & newFrame)
+void RETransformedView::setTransformedFrameAnimated(const RETetragon & newFrame)
 {
-	if (REAnimation::IsSetuping()) 
+	if (REAnimation::isSetuping()) 
 	{
 		for (REUInt32 i = 0; i < 8; i++) 
 		{
 			if (_transformedFrame.arr[i] != newFrame.arr[i]) 
 			{
-				REAnimation::AddFloatParam(this, &_animationsCount, &_transformedFrame.arr[i], _transformedFrame.arr[i], newFrame.arr[i]);
+				REAnimation::addFloatParam(this, &_animationsCount, &_transformedFrame.arr[i], _transformedFrame.arr[i], newFrame.arr[i]);
 			}
 		}
 	}
 	else
 	{
-		this->SetTransformedFrame(newFrame);
+		this->setTransformedFrame(newFrame);
 	}
 }
 
-void RETransformedView::SetFrame(const RERect & newViewFrame)
+void RETransformedView::setFrame(const RERect & newViewFrame)
 {
 	RETetragon tetrFrame(newViewFrame);
-	this->SetTransformedFrame(tetrFrame);
+	this->setTransformedFrame(tetrFrame);
 }
 
-void RETransformedView::SetFrameAnimated(const RERect & newViewFrame)
+void RETransformedView::setFrameAnimated(const RERect & newViewFrame)
 {
-	if (REAnimation::IsSetuping()) 
+	if (REAnimation::isSetuping()) 
 	{
 		RETetragon tetrFrame(newViewFrame);
-		this->SetTransformedFrameAnimated(tetrFrame);
+		this->setTransformedFrameAnimated(tetrFrame);
 	}
 	else
 	{
-		this->SetFrame(newViewFrame);
+		this->setFrame(newViewFrame);
 	}
 }
 
-const REUInt32 RETransformedView::GetClassIdentifier() const
+const REUInt32 RETransformedView::getClassIdentifier() const
 {
-	return RETransformedView::ClassIdentifier();
+	return RETransformedView::classIdentifier();
 }
 
-const REUInt32 RETransformedView::ClassIdentifier()
+const REUInt32 RETransformedView::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("RETransformedView");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETransformedView");
 	return clasIdentif;
 }
 
-REBOOL RETransformedView::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL RETransformedView::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((RETransformedView::ClassIdentifier() == classIdentifier) || REView::IsImplementsClass(classIdentifier));
+	return ((RETransformedView::classIdentifier() == classIdentifier) || REView::isImplementsClass(classIdentifier));
 }
 
 /* IRERenderable */
-void RETransformedView::Render()
+void RETransformedView::render()
 {
 	if (_isVisible)
 	{
@@ -127,18 +127,18 @@ void RETransformedView::Render()
 			}
 		}
 		
-		this->RenderSubViews(_frame.x, _frame.y);
+		this->renderSubViews(_frame.x, _frame.y);
 	}
 }
 
-void RETransformedView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void RETransformedView::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if (_isVisible)
 	{
 		if (_color.alpha > 0.0f) 
 		{
 			RETetragon rectWithOffset(_transformedFrame);
-			rectWithOffset.Translate(offsetX, offsetY);
+			rectWithOffset.translate(offsetX, offsetY);
 			RERenderDevice * device = RERenderDevice::GetDefaultDevice();
 			if (_texture) 
 			{
@@ -151,13 +151,13 @@ void RETransformedView::RenderWithOffset(const REFloat32 offsetX, const REFloat3
 			}
 		}
 		
-		this->RenderSubViews(_transformedFrame.topLeftX + offsetX, _transformedFrame.topLeftY + offsetY);
+		this->renderSubViews(_transformedFrame.topLeftX + offsetX, _transformedFrame.topLeftY + offsetY);
 	}
 }
 
 RETransformedView::RETransformedView() : REView()
 {
-	_transform.ToIdentity();
+	_transform.toIdentity();
 }
 
 RETransformedView::~RETransformedView()
@@ -165,7 +165,7 @@ RETransformedView::~RETransformedView()
 	
 }
 
-RETransformedView * RETransformedView::Create()
+RETransformedView * RETransformedView::create()
 {
 	RETransformedView * newView = new RETransformedView();
 	return newView;

@@ -25,10 +25,10 @@ class __RE_PUBLIC_CLASS_API__ IRERenderable
 {
 public:
 	/// Called for render. Top left posint is [0.0f, 0.0f]
-	virtual void Render() = 0;
+	virtual void render() = 0;
 	
 	/// Called for render using offset point. Top left posint is ['offsetX', 'offsetY']
-	virtual void RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY) = 0;
+	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY) = 0;
 	
 	virtual ~IRERenderable() { }
 };

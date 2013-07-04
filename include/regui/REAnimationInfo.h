@@ -20,7 +20,7 @@
 
 #include "../recore/RECommonHeader.h"
 #include "../recore/REObject.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REClassMethod.h"
 #include "IREAnimation.h"
 
@@ -46,46 +46,46 @@ protected:
 	virtual ~REAnimationInfo();
 public: 
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void OnReleased();
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual void onReleased();
 	
 	/// Returns count of animated objects.
-	virtual const REUInt32 GetObjectsCount() const = 0;
+	virtual const REUInt32 getObjectsCount() const = 0;
 	
 	/// Copyes animated objects to array without retaining.
-	virtual void GetObjects(REArray<REObject *> * views) const = 0;
+	virtual void getObjects(REArray<REObject *> * views) const = 0;
 	
 	/// Checks info for containing animated objects.
-	virtual REBOOL IsEmpty() const = 0;
+	virtual REBOOL isEmpty() const = 0;
 	
 	/// Returns pointer to method called when animation started.
-	REClassMethod * GetStartMethod() const;
+	REClassMethod * getStartMethod() const;
 	
 	/// Returns pointer to method called when animation finished.
-	REClassMethod * GetStopMethod() const;
+	REClassMethod * getStopMethod() const;
 	
 	/// Returns pointer to custom data assigned on setuping new animation.
-	void * GetCustomData() const;
+	void * getCustomData() const;
 	
 	/// Returns time of animation.
-	const RETimeInterval GetTime() const;
+	const RETimeInterval getTime() const;
 	
 	/// Returns time of delay before starting animation.
-	const RETimeInterval GetStartDelay() const;
+	const RETimeInterval getStartDelay() const;
 	
 	/// Returns animation loops count. 'RENotFound' - mean looped without loops count.
-	const REUInt32 GetLoopsCount() const;
+	const REUInt32 getLoopsCount() const;
 	
 	/// Returns type of animation.
-	const REAnimationType GetAnimationType() const;
+	const REAnimationType getAnimationType() const;
 	
 	/// Returns type of animation looping.
-	const REAnimationLoopType GetLoopType() const;
+	const REAnimationLoopType getLoopType() const;
 	
 	/// Return type of animation stoping.
-	const REAnimationStopType GetStopType() const;
+	const REAnimationStopType getStopType() const;
 };
 
 

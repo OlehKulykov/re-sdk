@@ -102,16 +102,16 @@ class __RE_PUBLIC_CLASS_API__ IREAnimation
 {
 public:
 	/// Return progress of animation in range [0.0f, 1.0f].
-	virtual const REFloat32 GetProgress() const = 0;
+	virtual const REFloat32 getProgress() const = 0;
 	
 	/// Starts animation.
-	virtual void Start() = 0;
+	virtual void start() = 0;
 	
 	/// Pausing animation.
-	virtual void Pause() = 0;
+	virtual void pause() = 0;
 	
 	/// Stops animation.
-	virtual void Stop(const REAnimationStopType stopType) = 0;
+	virtual void stop(const REAnimationStopType stopType) = 0;
 	
 	/// Destructor.
 	virtual ~IREAnimation() { }

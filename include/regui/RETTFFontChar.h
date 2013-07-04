@@ -21,7 +21,7 @@
 #include "../recore/RECommonHeader.h"
 #include "../recore/REBuffer.h"
 #include "../recore/REArray.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REPoint2.h"
 #include "../recore/RESize.h"
 #include "../recore/RETetragon.h"
@@ -51,7 +51,7 @@ public:
 	REUByte bitmapHeight;
 	REUByte bitmapPitch;
 	
-	const wchar_t GetCharCode() const { return _charCode; }
+	const wchar_t getCharCode() const { return _charCode; }
 	RETTFFontChar(const wchar_t charCode);
 	~RETTFFontChar();
 };

@@ -31,16 +31,16 @@ protected:
 	REBOOL _isWaiting;
 public:
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime)
+	virtual void update(const RETimeInterval currentTime)
 	{	
-		_mainThreadMethodForInvoke->InvokeWithObject(_mainThreadMethodObject);
-		this->RemoveFromMainLoop();
+		_mainThreadMethodForInvoke->invokeWithObject(_mainThreadMethodObject);
+		this->removeFromMainLoop();
 		_isWaiting = false;
 	}
 	
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
-	const REBOOL IsWaiting() const { return _isWaiting; }
+	const REBOOL isWaiting() const { return _isWaiting; }
 	
 	REMainThreadClassMethodWaitedPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(),
 		_mainThreadMethodForInvoke(methodForInvoke),
@@ -49,12 +49,12 @@ public:
 	{ 
 		if (_mainThreadMethodObject) 
 		{
-			_mainThreadMethodObject->Retain();
+			_mainThreadMethodObject->retain();
 		}
 		
 		if (_mainThreadMethodForInvoke)
 		{
-			this->AddToMainLoop();
+			this->addToMainLoop();
 		}
 		else
 		{
@@ -66,7 +66,7 @@ public:
 	{
 		if (_mainThreadMethodObject) 
 		{
-			_mainThreadMethodObject->Release();
+			_mainThreadMethodObject->release();
 		}
 		
 		if ( _mainThreadMethodForInvoke ) 

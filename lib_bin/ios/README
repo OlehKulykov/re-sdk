@@ -1,8 +1,3 @@
-Place iOS binary files here.
+Place iOS framework RECoreSDK.framework here.
 
-- librecore.a
-- libregui.a
-- libremedia.a
-
-Use XCode projects located: builds/ios
-Or use script: builds/ios/build_ios_static
+Use script: builds/ios/build_ios_static

@@ -20,14 +20,14 @@
 
 
 /// Adds object to main loop
-REBOOL REMainLoopUpdatable::AddToMainLoop()
+REBOOL REMainLoopUpdatable::addToMainLoop()
 {
-	return REMainLoopsObjectsStoragePrivate::AddObject(this);
+	return REMainLoopsObjectsStoragePrivate::addObject(this);
 }
 
 /// Removes object from main loop
-REBOOL REMainLoopUpdatable::RemoveFromMainLoop()
+REBOOL REMainLoopUpdatable::removeFromMainLoop()
 {
-	return REMainLoopsObjectsStoragePrivate::RemoveObject(this);
+	return REMainLoopsObjectsStoragePrivate::removeObject(this);
 }
 

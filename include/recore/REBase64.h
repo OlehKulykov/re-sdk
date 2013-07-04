@@ -28,11 +28,11 @@ class __RE_PUBLIC_CLASS_API__ REBase64
 public:
 	/// Generates Base64 string from 'buff' data buffer.
 	/// Returns true if string pointer 'base64String' is not NULL and string generated, otherwice returns false.
-	REBOOL BufferToBase64String(const REBuffer & buff, REString * base64String);
+	REBOOL bufferToBase64String(const REBuffer & buff, REString * base64String);
 	
 	/// Generates 'buff' data buffer from Base64 string.
 	/// Returns true if buffer pointer 'buff' is not NULL and buffer generated, otherwice returns false.
-	REBOOL Base64StringToBuffer(const REString & base64String, REBuffer * buff);
+	REBOOL base64StringToBuffer(const REString & base64String, REBuffer * buff);
 	
 	/// Default constructor.
 	REBase64();

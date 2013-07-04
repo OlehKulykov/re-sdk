@@ -29,279 +29,283 @@ class __RE_PUBLIC_CLASS_API__ REInterpolation
 {
 public:
 	/// Returns linear interpolation value of argument.
-	static const REFloat32 Linear(const REFloat32 p)
+	static const REFloat32 linear(const REFloat32 p)
 	{
 		return p;
 	}
 	
 	/// Returns quad ease in interpolation value of argument.
-	static const REFloat32 QuadEaseIn(const REFloat32 p)
+	static const REFloat32 quadEaseIn(const REFloat32 p)
 	{
 		return (p * p);
 	}
 	
 	/// Returns quad ease out interpolation value of argument.
-	static const REFloat32 QuadEaseOut(const REFloat32 p)
+	static const REFloat32 quadEaseOut(const REFloat32 p)
 	{
 		return -(p * (p - 2.0f));
 	}
 	
 	/// Returns quad ease in out interpolation value of argument.
-	static const REFloat32 QuadEaseInOut(const REFloat32 p)
+	static const REFloat32 quadEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return (REInterpolation::QuadEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f;
+			return (REInterpolation::quadEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f;
 		}
-		return (REInterpolation::QuadEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::quadEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns quad ease out in interpolation value of argument.
-	static const REFloat32 QuadEaseOutIn(const REFloat32 p)
+	static const REFloat32 quadEaseOutIn(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::QuadEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::quadEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::QuadEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::quadEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns cubic ease in interpolation value of argument.
-	static const REFloat32 CubicEaseIn(const REFloat32 p)
+	static const REFloat32 cubicEaseIn(const REFloat32 p)
 	{
 		return (p * p * p);
 	}
 	
 	/// Returns cubic ease out interpolation value of argument.
-	static const REFloat32 CubicEaseOut(const REFloat32 p)
+	static const REFloat32 cubicEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
 		return ((np * np * np) + 1.0f);
 	}
 	
 	/// Returns cubic ease in out interpolation value of argument.
-	static const REFloat32 CubicEaseInOut(const REFloat32 p)
+	static const REFloat32 cubicEaseInOut(const REFloat32 p)
 	{			
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::CubicEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::cubicEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::CubicEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::cubicEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns cubic ease out in interpolation value of argument.
-	static const REFloat32 CubicEaseOutIn(const REFloat32 p)
+	static const REFloat32 cubicEaseOutIn(const REFloat32 p)
 	{ 
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::CubicEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::cubicEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::CubicEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::cubicEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns quartic ease in interpolation value of argument.
-	static const REFloat32 QuarticEaseIn(const REFloat32 p)
+	static const REFloat32 quarticEaseIn(const REFloat32 p)
 	{
-		return (p * p * p * p);
+		const REFloat32 pp = p * p;
+		return (pp * pp);
 	}
 	
 	/// Returns quartic ease out interpolation value of argument.
-	static const REFloat32 QuarticEaseOut(const REFloat32 p)
+	static const REFloat32 quarticEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
-		return -((np * np * np * np) - 1.0f);
+		const REFloat32 npnp = np * np;
+		return -((npnp * npnp) - 1.0f);
 	}
 	
 	/// Returns quartic ease in out interpolation value of argument.
-	static const REFloat32 QuarticEaseInOut(const REFloat32 p)
+	static const REFloat32 quarticEaseInOut(const REFloat32 p)
 	{			
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::QuarticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::quarticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::QuarticEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::quarticEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns quartic ease out in interpolation value of argument.
-	static const REFloat32 QuarticEaseOutIn(const REFloat32 p)
+	static const REFloat32 quarticEaseOutIn(const REFloat32 p)
 	{ 
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::QuarticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::quarticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::QuarticEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::quarticEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns quantic ease in interpolation value of argument.
-	static const REFloat32 QuinticEaseIn(const REFloat32 p) 
+	static const REFloat32 quinticEaseIn(const REFloat32 p) 
 	{
-		return (p * p * p * p * p);
+		const REFloat32 pp = p * p;
+		return (pp * pp * p);
 	}
 	
 	/// Returns quantic ease out interpolation value of argument.
-	static const REFloat32 QuinticEaseOut(const REFloat32 p)
+	static const REFloat32 quinticEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
-		return ((np * np * np * np * np) + 1.0f);
+		const REFloat32 npnp = np * np;
+		return ((npnp * npnp * np) + 1.0f);
 	}
 	
 	/// Returns quintic ease in out interpolation value of argument.
-	static const REFloat32 QuinticEaseInOut(const REFloat32 p)
+	static const REFloat32 quinticEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::QuinticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::quinticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::QuinticEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::quinticEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns quintic ease out in interpolation value of argument.
-	static const REFloat32 QuinticEaseOutIn(const REFloat32 p) 
+	static const REFloat32 quinticEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::QuinticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::quinticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::QuinticEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::quinticEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns sinusoidal ease in interpolation value of argument.
-	static const REFloat32 SinusoidalEaseIn(const REFloat32 p)
+	static const REFloat32 sinusoidalEaseIn(const REFloat32 p)
 	{
 		return (REFloat32)(1.0 - cos(MATH_PI_DIV_2 * p));
 	}
 	
 	/// Returns sinusoidal ease out interpolation value of argument.
-	static const REFloat32 SinusoidalEaseOut(const REFloat32 p)
+	static const REFloat32 sinusoidalEaseOut(const REFloat32 p)
 	{
 		return (REFloat32)sin(MATH_PI_DIV_2 * p);
 	}
 	
 	/// Returns sinusoidal ease in out interpolation value of argument.
-	static const REFloat32 SinusoidalEaseInOut(const REFloat32 p)
+	static const REFloat32 sinusoidalEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::SinusoidalEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::sinusoidalEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::SinusoidalEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::sinusoidalEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns sinusoidal ease out in interpolation value of argument.
-	static const REFloat32 SinusoidalEaseOutIn(const REFloat32 p) 
+	static const REFloat32 sinusoidalEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::SinusoidalEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::sinusoidalEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::SinusoidalEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::sinusoidalEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns exponential ease in interpolation value of argument.
-	static const REFloat32 ExponentialEaseIn(const REFloat32 p)
+	static const REFloat32 exponentialEaseIn(const REFloat32 p)
 	{	 
 		return (powf(2.0f, 10.0f * (p - 1.0f)) - 0.001f);
 	}
 	
 	/// Returns exponential ease out interpolation value of argument.
-	static const REFloat32 ExponentialEaseOut(const REFloat32 p)
+	static const REFloat32 exponentialEaseOut(const REFloat32 p)
 	{
 		return (1.001f * (1.0f - powf(2.0f, -10.0f * p)));
 	}
 	
 	/// Returns exponential ease in out interpolation value of argument.
-	static const REFloat32 ExponentialEaseInOut(const REFloat32 p)
+	static const REFloat32 exponentialEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::ExponentialEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::exponentialEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::ExponentialEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::exponentialEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns exponential ease out in interpolation value of argument.
-	static const REFloat32 ExponentialEaseOutIn(const REFloat32 p) 
+	static const REFloat32 exponentialEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::ExponentialEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::exponentialEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::ExponentialEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::exponentialEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns circular ease in interpolation value of argument.
-	static const REFloat32 CircularEaseIn(const REFloat32 p)
+	static const REFloat32 circularEaseIn(const REFloat32 p)
 	{
 		return -(sqrtf(1.0f - (p * p)) - 1.0f);
 	}
 	
 	/// Returns circular ease out interpolation value of argument.
-	static const REFloat32 CircularEaseOut(const REFloat32 p)
+	static const REFloat32 circularEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
 		return sqrtf(1.0f - (np * np));
 	}
 	
 	/// Returns circular ease in out interpolation value of argument.
-	static const REFloat32 CircularEaseInOut(const REFloat32 p)
+	static const REFloat32 circularEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::CircularEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::circularEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::CircularEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::circularEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns circular ease out in interpolation value of argument.
-	static const REFloat32 CircularEaseOutIn(const REFloat32 p) 
+	static const REFloat32 circularEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::CircularEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::circularEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::CircularEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::circularEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns elastic ease in interpolation value of argument.
-	static const REFloat32 ElasticEaseIn(const REFloat32 p)
+	static const REFloat32 elasticEaseIn(const REFloat32 p)
 	{
 		return (-1.0f * powf(2.0f, 10.0f * (p - 1.0f)) * sinf(((p - 1.0f) - 0.075f) * MATH_2_MUL_PI / 0.3f));
 	}
 	
 	/// Returns elastic ease out interpolation value of argument.
-	static const REFloat32 ElasticEaseOut(const REFloat32 p)
+	static const REFloat32 elasticEaseOut(const REFloat32 p)
 	{
 		return powf(2.0f, -10.0f * p) * sinf((p - 0.075f) * MATH_2_MUL_PI / 0.3f) + 1.0f;
 	}
 	
 	/// Returns elastic ease in out interpolation value of argument.
-	static const REFloat32 ElasticEaseInOut(const REFloat32 p)
+	static const REFloat32 elasticEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::ElasticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::elasticEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::ElasticEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::elasticEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns elastic ease out in interpolation value of argument.
-	static const REFloat32 ElasticEaseOutIn(const REFloat32 p) 
+	static const REFloat32 elasticEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::ElasticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::elasticEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::ElasticEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::elasticEaseOut(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns back ease in interpolation value of argument.
-	static const REFloat32 BackEaseIn(const REFloat32 p)
+	static const REFloat32 backEaseIn(const REFloat32 p)
 	{
 		return (p * p * ((2.7016f * p) - 1.7016f));
 	}
 	
 	/// Returns back ease out interpolation value of argument.
-	static const REFloat32 BackEaseOut(const REFloat32 p)
+	static const REFloat32 backEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
 		return (np * np) * ((2.7016f * (p - 1.0f)) + 1.7016f) + 1.0f;
@@ -309,27 +313,27 @@ public:
 	
 	
 	/// Returns back ease in out interpolation value of argument.
-	static const REFloat32 BackEaseInOut(const REFloat32 p)
+	static const REFloat32 backEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::BackEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::backEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::BackEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::backEaseIn(p * 2.0f) / 2.0f);
 	}
 	
 	/// Returns back ease out in interpolation value of argument.
-	static const REFloat32 BackEaseOutIn(const REFloat32 p) 
+	static const REFloat32 backEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::BackEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::backEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::BackEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::backEaseOut(p * 2.0f) / 2.0f);
 	} 
 	
 	/// Returns bounce ease in interpolation value of argument.
-	static const REFloat32 BounceEaseIn(const REFloat32 p)
+	static const REFloat32 bounceEaseIn(const REFloat32 p)
 	{
 		REFloat32 np = 1.0f - p;
 		if (np < (1.0f / 2.75f))
@@ -355,7 +359,7 @@ public:
 	}
 	
 	/// Returns bounce ease out interpolation value of argument.
-	static const REFloat32 BounceEaseOut(const REFloat32 p)
+	static const REFloat32 bounceEaseOut(const REFloat32 p)
 	{
 		REFloat32 np = p;
 		if (np < 1.0f / 2.75f)
@@ -381,23 +385,23 @@ public:
 	}
 	 
 	/// Returns bounce ease in out interpolation value of argument.
-	static const REFloat32 BounceEaseInOut(const REFloat32 p)
+	static const REFloat32 bounceEaseInOut(const REFloat32 p)
 	{
 		if (p > 0.5)
 		{
-			return ((REInterpolation::BounceEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::bounceEaseOut((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::BounceEaseIn(p * 2.0f) / 2.0f);
+		return (REInterpolation::bounceEaseIn(p * 2.0f) / 2.0f);
 	}
 	 
 	/// Returns bounce ease out in interpolation value of argument.
-	static const REFloat32 BounceEaseOutIn(const REFloat32 p) 
+	static const REFloat32 bounceEaseOutIn(const REFloat32 p) 
 	{
 		if (p > 0.5f)
 		{
-			return ((REInterpolation::BounceEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
+			return ((REInterpolation::bounceEaseIn((p - 0.5f) * 2.0f) / 2.0f) + 0.5f);
 		}
-		return (REInterpolation::BounceEaseOut(p * 2.0f) / 2.0f);
+		return (REInterpolation::bounceEaseOut(p * 2.0f) / 2.0f);
 	}   
 	
 	

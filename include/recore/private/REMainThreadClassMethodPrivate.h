@@ -31,14 +31,14 @@ protected:
 	
 public:
 	/* REMainLoopUpdatable */ 
-	virtual void Update(const RETimeInterval currentTime)
+	virtual void update(const RETimeInterval currentTime)
 	{	
-		_mainThreadMethodForInvoke->InvokeWithObject(_mainThreadMethodObject);
-		this->RemoveFromMainLoop();
-		REAutoReleasePool::GetDefaultPool()->AddObject(this);
+		_mainThreadMethodForInvoke->invokeWithObject(_mainThreadMethodObject);
+		this->removeFromMainLoop();
+		REAutoReleasePool::getDefaultPool()->addObject(this);
 	}
 	
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
 	REMainThreadClassMethodPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(),
 		_mainThreadMethodForInvoke(methodForInvoke),
@@ -46,16 +46,16 @@ public:
 	{ 
 		if (_mainThreadMethodObject) 
 		{
-			_mainThreadMethodObject->Retain();
+			_mainThreadMethodObject->retain();
 		}
 		
 		if ( _mainThreadMethodForInvoke ) 
 		{
-			this->AddToMainLoop();
+			this->addToMainLoop();
 		}
 		else 
 		{
-			REAutoReleasePool::GetDefaultPool()->AddObject(this);
+			REAutoReleasePool::getDefaultPool()->addObject(this);
 		}
 	}
 	
@@ -63,7 +63,7 @@ public:
 	{
 		if (_mainThreadMethodObject) 
 		{
-			_mainThreadMethodObject->Release();
+			_mainThreadMethodObject->release();
 		}
 		
 		if ( _mainThreadMethodForInvoke ) 

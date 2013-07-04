@@ -21,29 +21,31 @@
 #include "../../include/regui/RETTFFontLoader.h"
 #include "../../include/regui/RERenderDevice.h"
 
+#include "../../include/recore/REWideString.h"
+
 #define RE_FONT_XML_HEIGHT_KEY_STRING "heightf"
 #define RE_FONT_XML_HEIGHT_FORMAT_STRING "%f"
 #define RE_FONT_XML_PATH_KEY_STRING "path"
 
 /* REObject */
-const REUInt32 REFontObject::GetClassIdentifier() const
+const REUInt32 REFontObject::getClassIdentifier() const
 {
-    return REFontObject::ClassIdentifier();
+    return REFontObject::classIdentifier();
 }
 
-const REUInt32 REFontObject::ClassIdentifier()
+const REUInt32 REFontObject::classIdentifier()
 {
-    static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REFontObject");
+    static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REFontObject");
     return clasIdentif;
 }
 
-REBOOL REFontObject::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REFontObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REFontObject::ClassIdentifier() == classIdentifier) ||
-			REGUIObject::IsImplementsClass(classIdentifier));
+	return ((REFontObject::classIdentifier() == classIdentifier) ||
+			REGUIObject::isImplementsClass(classIdentifier));
 }
 
-void REFontObject::RecalculateScaleRatio(const REFloat32 needHeight, const REFloat32 loadedHeight)
+void REFontObject::recalculateScaleRatio(const REFloat32 needHeight, const REFloat32 loadedHeight)
 {
 	RERenderDevice * device = RERenderDevice::GetDefaultDevice();
 	if (device) 
@@ -60,14 +62,14 @@ void REFontObject::RecalculateScaleRatio(const REFloat32 needHeight, const REFlo
 	}
 }
 
-REBOOL REFontObject::FillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> * charsArray,
+REBOOL REFontObject::fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> * charsArray,
 													   const REString & text,
 													   REArray<RETTFFontChar*> * fontChars)
 {
-	REStringPresentation p(text);
-	charsArray->SetCapacity(p.GetWideLength() + 1);
-	const REUInt32 startRight = fontChars->Count() - 1;
-	const wchar_t * wideText = p.WideString();
+	REWideString p(text);
+	charsArray->setCapacity(p.getLength() + 1);
+	const REUInt32 startRight = fontChars->count() - 1;
+	const wchar_t * wideText = p.getWideChars();
 	wchar_t needChar;
 	while ((needChar = *wideText++))
 	{
@@ -77,8 +79,8 @@ REBOOL REFontObject::FillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 		{
 			const REUInt32 middle = (left + right) / 2;
 			RETTFFontChar * middleValue = (*fontChars)[middle];
-			const wchar_t foundChar = middleValue->GetCharCode();
-			if (foundChar == needChar) { charsArray->Add(middleValue); break; }
+			const wchar_t foundChar = middleValue->getCharCode();
+			if (foundChar == needChar) { charsArray->add(middleValue); break; }
 			else if (foundChar > needChar)
 			{
 				if (middle)
@@ -96,29 +98,29 @@ REBOOL REFontObject::FillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 	return true;
 }
 
-REBOOL REFontObject::FillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray,
+REBOOL REFontObject::fillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray,
 											   const REString & text)
 {
-	if (charsArray && text.Length())
+	if (charsArray && text.getLength())
 	{
-		REArray<RETTFFontChar*> * fontChars = this->GetChars();
-		if (REArray<RETTFFontChar *>::IsNotEmpty(fontChars))
+		REArray<RETTFFontChar*> * fontChars = this->getChars();
+		if (REArray<RETTFFontChar *>::isNotEmpty(fontChars))
 		{
-			return REFontObject::FillArrayWithCharsForTextFromFont(charsArray, text, fontChars);
+			return REFontObject::fillArrayWithCharsForTextFromFont(charsArray, text, fontChars);
 		}
 	}
 	return false;
 }
 
-REArray<RETTFFontChar*> * REFontObject::GetChars()
+REArray<RETTFFontChar*> * REFontObject::getChars()
 {
 	if (_base) 
 	{
-		if ( ((REFontBase *)_base)->IsLoaded() ) 
+		if ( ((REFontBase *)_base)->isLoaded() ) 
 		{
 			return ((REFontBase *)_base)->charsArray;
 		}
-		else if (this->Load())
+		else if (this->load())
 		{
 			return ((REFontBase *)_base)->charsArray;
 		}
@@ -126,7 +128,7 @@ REArray<RETTFFontChar*> * REFontObject::GetChars()
 	return NULL;
 }
 
-REBOOL REFontObject::Load()
+REBOOL REFontObject::load()
 {
 	REBOOL isLoaded = false;
 	if (_base) 
@@ -134,28 +136,28 @@ REBOOL REFontObject::Load()
 		REFontBase * oldBase = (REFontBase*)_base;
 		_base = NULL;
 		REFontsCache c;
-		REFontBase * newBase = c.Get(oldBase);
+		REFontBase * newBase = c.get(oldBase);
 		if (newBase) 
 		{
 			_base = newBase;
-			newBase->Retain();
-			this->RecalculateScaleRatio(oldBase->height, newBase->height);
+			newBase->retain();
+			this->recalculateScaleRatio(oldBase->height, newBase->height);
 			isLoaded = true;
 		}
 		
-		oldBase->Release();
+		oldBase->release();
 	}
 	return isLoaded;
 }
 
-REBOOL REFontObject::PrepareForSetParams()
+REBOOL REFontObject::prepareForSetParams()
 {
 	if (_base) 
 	{
 		REFontBase * base = (REFontBase*)_base;
-		if (base->IsLoaded()) 
+		if (base->isLoaded()) 
 		{
-			base->Release();
+			base->release();
 			_base = NULL;
 		}
 		else 
@@ -164,7 +166,7 @@ REBOOL REFontObject::PrepareForSetParams()
 		}
 	}
 	
-	REFontBase * newBase = REFontBase::Create();
+	REFontBase * newBase = REFontBase::create();
 	if (newBase) 
 	{
 		_base = newBase;
@@ -174,37 +176,37 @@ REBOOL REFontObject::PrepareForSetParams()
 	return false;
 }
 
-void REFontObject::SetPath(const REString & newPath)
+void REFontObject::setPath(const REString & newPath)
 {
-	if (this->PrepareForSetParams()) 
+	if (this->prepareForSetParams()) 
 	{
-		((REFontBase*)_base)->path.Set(newPath);
+		((REFontBase*)_base)->path = newPath;
 	}
 }
 
-void REFontObject::SetHeight(const REFloat32 newHeight)
+void REFontObject::setHeight(const REFloat32 newHeight)
 {
-	if (this->PrepareForSetParams()) 
+	if (this->prepareForSetParams()) 
 	{
 		_height = newHeight;
 		((REFontBase*)_base)->height = newHeight;
 	}
 }
 
-void REFontObject::OnPrepareGUIObjectForSetuping()
+void REFontObject::onPrepareGUIObjectForSetuping()
 {
-	this->PrepareForSetParams();
+	this->prepareForSetParams();
 }
 
-void REFontObject::OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
+void REFontObject::onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent)
 {
 	if (isAcceptedByParent) 
 	{
-		this->Load();
+		this->load();
 	}
 }
 
-REBOOL REFontObject::AcceptStringParameter(const char * key, const char * value)
+REBOOL REFontObject::acceptStringParameter(const char * key, const char * value)
 {
 	if (key && value) 
 	{
@@ -213,13 +215,13 @@ REBOOL REFontObject::AcceptStringParameter(const char * key, const char * value)
 			float h = 0.0f;
             if (sscanf(value, RE_FONT_XML_HEIGHT_FORMAT_STRING, &h) == 1)
 			{
-				this->SetHeight((REFloat32)h);
+				this->setHeight((REFloat32)h);
 				return true;
 			}
 		}
         else if (strcmp(key, RE_FONT_XML_PATH_KEY_STRING) == 0)
 		{
-			this->SetPath(REString(value));
+			this->setPath(REString(value));
 			return true;
 		}
 	}
@@ -233,17 +235,17 @@ REFontObject::REFontObject() : REGUIObject(),
 	
 }
 
-void REFontObject::OnReleased()
+void REFontObject::onReleased()
 {
 	if (_base) 
 	{
 		REFontBase * base = (REFontBase*)_base;
 		_base = NULL;
 		
-		base->Release();
+		base->release();
 	}
 	
-	REGUIObject::OnReleased();
+	REGUIObject::onReleased();
 }
 
 REFontObject::~REFontObject()
@@ -251,20 +253,20 @@ REFontObject::~REFontObject()
 	
 }
 
-REFontObject * REFontObject::Create()
+REFontObject * REFontObject::create()
 {
 	REFontObject * newFont = new REFontObject();
 	return newFont;
 }
 
-REFontObject * REFontObject::CreateWithPath(const REString & path, const REFloat32 height)
+REFontObject * REFontObject::createWithPath(const REString & path, const REFloat32 height)
 {
 	REFontObject * newFont = new REFontObject();
 	if (newFont) 
 	{
-		newFont->SetPath(path);
-		newFont->SetHeight(height);
-		if (newFont->Load())
+		newFont->setPath(path);
+		newFont->setHeight(height);
+		if (newFont->load())
 		{
 			return newFont;
 		}
@@ -274,9 +276,9 @@ REFontObject * REFontObject::CreateWithPath(const REString & path, const REFloat
 }
 
 
-const char * REFontObject::GetXMLPathKeyString() { return RE_FONT_XML_PATH_KEY_STRING; }
-const char * REFontObject::GetXMLHeightKeyString() { return RE_FONT_XML_HEIGHT_KEY_STRING; }
-const char * REFontObject::GetXMLHeightFormatString() { return RE_FONT_XML_HEIGHT_FORMAT_STRING; }
+const char * REFontObject::getXMLPathKeyString() { return RE_FONT_XML_PATH_KEY_STRING; }
+const char * REFontObject::getXMLHeightKeyString() { return RE_FONT_XML_HEIGHT_KEY_STRING; }
+const char * REFontObject::getXMLHeightFormatString() { return RE_FONT_XML_HEIGHT_FORMAT_STRING; }
 
 
 

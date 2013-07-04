@@ -36,10 +36,10 @@
 class __RE_PUBLIC_CLASS_API__ REAudioOpenAL
 {
 private:
-	static ALCdevice * OpenAllDevices();
-	static ALCdevice * OpenDefaultDevice();
-	static ALCdevice * OpenDevice();
-	static REBOOL InitDevice();
+	static ALCdevice * openAllDevices();
+	static ALCdevice * openDefaultDevice();
+	static ALCdevice * openDevice();
+	static REBOOL initDevice();
 	
 protected:	
 	static ALCdevice * _alDevice;

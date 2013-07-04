@@ -24,60 +24,34 @@
 #include "RECoreIncludes.h"
 
 
-#include <stdint.h>
-typedef uint8_t REUByte;
-typedef uint16_t REUInt16;
-typedef uint32_t REUInt32;
-typedef uint64_t REUInt64;
-typedef int8_t REByte;
-typedef int16_t REInt16;
-typedef int32_t REInt32;
-typedef int64_t REInt64;
+#ifndef __RETYPES_DEFINED___
 
+typedef unsigned char REUByte;
+typedef unsigned short REUInt16;
+typedef unsigned int REUInt32;
 
-#ifdef __RE_OS_IPHONE__
-#endif /* __RE_OS_IPHONE__ */
+typedef signed char REByte;
+typedef signed short REInt16;
+typedef signed int REInt32;
 
+typedef float REFloat32;
+typedef double REFloat64;
+typedef double RETimeInterval;
 
-#ifdef __RE_OS_MACOSX__
-#endif /* __RE_OS_MACOSX__ */
+typedef bool REBOOL;
 
+typedef unsigned long long int REUInt64;
+typedef signed long long int REInt64;
 
-#ifdef __RE_OS_WINDOWS__
-#endif /* __RE_OS_WINDOWS__ */
-
-
-#ifdef __RE_OS_ANDROID__
-#endif /* __RE_OS_ANDROID__ */
-
-#ifdef __RE_OS_LINUX__
-#endif /* __RE_OS_LINUX__ */
-
-
-#ifdef __RE_OS_BADA__
-#endif /* __RE_OS_BADA__ */
-
-
-#if defined(_UINTPTR_T) 
-typedef uintptr_t REUIdentifier;
-#elif defined(_UINTPTR_T_DEFINED) 
-typedef uintptr_t REUIdentifier;
-#else
 #if defined(__RE_64BIT_PLATFORM__) 
 typedef REUInt64 REUIdentifier;
 #elif defined(__RE_32BIT_PLATFORM__) 
 typedef REUInt32 REUIdentifier;
 #endif
+
 #endif
 
 
-typedef float REFloat32;
-typedef double REFloat64;
-
-
-typedef REFloat64 RETimeInterval;
-
-typedef bool REBOOL;
 
 #ifndef NULL
 #define NULL 0

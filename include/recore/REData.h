@@ -32,9 +32,9 @@ class __RE_PUBLIC_CLASS_API__ REData : public REBuffer, public IREFileReadable
 protected:
 	REUInt32 _fileOffset;
 	
-	REBOOL InitializeFromFilePath(const char * filePath, const REUInt32 filePathLength);
-	REBOOL InitializeFromResourcePath(const char * filePath, const REUInt32 filePathLength);
-	REBOOL InitFromPath(const char * filePath, const REUInt32 filePathLength);
+	REBOOL initializeFromFilePath(const char * filePath, const REUInt32 filePathLength);
+	REBOOL initializeFromResourcePath(const char * filePath, const REUInt32 filePathLength);
+	REBOOL initFromPath(const char * filePath, const REUInt32 filePathLength);
 public:
 	/// Constructs empty data.
 	REData();
@@ -49,28 +49,28 @@ public:
 	virtual ~REData();
 	
 	/* IREFileReadable */
-	virtual REUInt32 FileRead(void * bufferForReading, const REUInt32 dataSizeToRead);
-	virtual REUInt32 FileTell();
-	virtual REInt32 FileSeek(const REUInt32 fileOffset, int origin);
-	virtual REInt32 FileSeekFromEndFile(const REUInt32 fileOffset);
-	virtual REInt32 FileSeekFromBeginFile(const REUInt32 fileOffset);
-	virtual REInt32 FileSeekFromCurrentFilePos(const REUInt32 fileOffset);
-	virtual REInt32 FileFError();
-	virtual REInt32 FileClose();
-	virtual REBOOL IsEndOfFile();
+	virtual REUInt32 fileRead(void * bufferForReading, const REUInt32 dataSizeToRead);
+	virtual REUInt32 fileTell();
+	virtual REInt32 fileSeek(const REUInt32 fileOffset, int origin);
+	virtual REInt32 fileSeekFromEndFile(const REUInt32 fileOffset);
+	virtual REInt32 fileSeekFromBeginFile(const REUInt32 fileOffset);
+	virtual REInt32 fileSeekFromCurrentFilePos(const REUInt32 fileOffset);
+	virtual REInt32 fileFError();
+	virtual REInt32 fileClose();
+	virtual REBOOL isEndOfFile();
 	
 	/// Initializes data from file path.
 	/// First wtry to init data from avaiable resources
 	/// and than try to init directly from file.
-	REBOOL InitFromPath(const char * filePath);
+	REBOOL initFromPath(const char * filePath);
 	
 	/// Initializes data from file path.
 	/// First wtry to init data from avaiable resources
 	/// and than try to init directly from file.
-	REBOOL InitFromPath(const REString & filePath);
+	REBOOL initFromPath(const REString & filePath);
 	
 	/// Initializes data from buffer.
-	REBOOL InitFromBuffer(const REBuffer & buffer);
+	REBOOL initFromBuffer(const REBuffer & buffer);
 	
 	/// Basic assignment operator.
 	REData & operator=(const REData & anotherData);
@@ -80,16 +80,16 @@ public:
 	/// Initializing data object from URL String.
 	/// Example: http://example.com/index.html for downloading from web.
 	/// Example: file:///Volumes/Data/file.dat for reading from from file. See file url scemes.
-	REBOOL InitFromURLString(const REString & urlString);
+	REBOOL initFromURLString(const REString & urlString);
 	
 	/// Returns pointer to data memory buffer.
-	const REUByte * GetBytes() const;
+	const REUByte * getBytes() const;
 	
 	/// Returns hash of data.
-	REUInt32 GetHash() const;
+	REUInt32 getHash() const;
 	
 	/// Checks is data empty.
-	REBOOL IsEmpty() const;
+	REBOOL isEmpty() const;
 };
 
 #endif /* __REDATA_H__ */

@@ -36,13 +36,13 @@ private:
 	static UserCallBacks _callBacks;
 	 
 public:
-	void SetCreateAudioPlayer(REInt32 (*CreateAudioPlayer)(const char *));
-	REBOOL IsCreateAudioPlayer();
-	REInt32 CallCreateAudioPlayer(const char * filePath);
+	void setCreateAudioPlayer(REInt32 (*CreateAudioPlayer)(const char *));
+	REBOOL isCreateAudioPlayer();
+	REInt32 callCreateAudioPlayer(const char * filePath);
 	
-	void SetSendAudioPlayerMessage(REInt32 (*SendAudioPlayerMessage)(REInt32, REInt32, REInt32));
-	REBOOL IsSendAudioPlayerMessage();
-	REInt32 CallSendAudioPlayerMessage(REInt32 audioPlayerID, REInt32 message, REInt32 param);
+	void setSendAudioPlayerMessage(REInt32 (*SendAudioPlayerMessage)(REInt32, REInt32, REInt32));
+	REBOOL isSendAudioPlayerMessage();
+	REInt32 callSendAudioPlayerMessage(REInt32 audioPlayerID, REInt32 message, REInt32 param);
 	
 	REUserCallBacks();
 	~REUserCallBacks();

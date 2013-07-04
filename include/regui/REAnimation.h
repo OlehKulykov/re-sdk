@@ -32,54 +32,54 @@ public:
 	/// Start new animation block.
 	/// Returns 0 - on error and non zero value of animation identifier.
 	/// 'customDataOrNull' - pointer to any custom data. Don't forget clean up memory of custom data after animation finished.
-	static REUIdentifier Setup(void * customDataOrNull);
+	static REUIdentifier setup(void * customDataOrNull);
 	
 	/// Returns value indicating that animation is setuping.
-	static REBOOL IsSetuping();
+	static REBOOL isSetuping();
 	
 	/// Adding float param for animation.
 	/// 'animationsCounterOrNULL' - may be NULL.
-	static REBOOL AddFloatParam(REObject * animatedObject, 
+	static REBOOL addFloatParam(REObject * animatedObject, 
 								REUInt16 * animationsCounterOrNULL,
 								REFloat32 * param, 
 								const REFloat32 startValue, 
 								const REFloat32 endValue);
 	
 	/// Setting time of animation.
-	static void SetTime(const RETimeInterval animationTime);
+	static void setTime(const RETimeInterval animationTime);
 	
 	/// Setting start delay of animation.
-	static void SetStartDelay(const RETimeInterval delayTime);
+	static void setStartDelay(const RETimeInterval delayTime);
 	
 	/// Setting type of animation.
-	static void SetType(const REAnimationType animationType);
+	static void setType(const REAnimationType animationType);
 	
 	/// Setting animation looping.
-	static void SetLoopType(const REAnimationLoopType loopType, const REUInt32 loopsCount = RENotFound);
+	static void setLoopType(const REAnimationLoopType loopType, const REUInt32 loopsCount = RENotFound);
 	
 	/// Setting method called when animation did start.
-	static void SetDidStartMethod(REClassMethod * startMethod);
+	static void setDidStartMethod(REClassMethod * startMethod);
 	
 	/// Setting method called when animation did end.
-	static void SetDidStopMethod(REClassMethod * stopMethod);
+	static void setDidStopMethod(REClassMethod * stopMethod);
 	
 	/// Executing/starting animation.
-	static REBOOL Execute();
+	static REBOOL execute();
 	
 	/// Globaly pause all application animation.
-	static void PauseAllAnimations();
+	static void pauseAllAnimations();
 	
 	/// Globaly continue all application animation.
-	static void ContinueAllAnimations();
+	static void continueAllAnimations();
 	
 	/// Stops all assigned object animations.
-	static REBOOL StopAllAnimations(REObject * animatedObject,
+	static REBOOL stopAllAnimations(REObject * animatedObject,
 									const REAnimationStopType stopType, 
 									REBOOL isNeedCallDelegate);
 	
 	/// Returns animation progress in range [0.0f, 1.0f] of 'animatedObject'.
 	/// If 'animatedObject' is NULL or not currently animating a negative value will return(usially -1.0f).
-	static const REFloat32 GetProgress(REObject * animatedObject);
+	static const REFloat32 getProgress(REObject * animatedObject);
 };
 
 

@@ -225,7 +225,7 @@ REBOOL RETextureOpenGL::Update(const REUByte * pixelsData,
 							   const REUInt32 height)
 {
 	// don't need check _textureIdentifierOpenGL. It's will create if needed.
-	if (REThread::IsMainThread()) 
+	if (REThread::isMainThread()) 
 	{
 		return this->UpdateMainThread(pixelsData, pixelsFormat, width, height);
 	}
@@ -237,7 +237,7 @@ REBOOL RETextureOpenGL::Update(const REUByte * pixelsData,
 		task.width = width;
 		task.height = height;
 		task.exeResult = false;
-		REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, UpdateTaskMethod),
+		REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, UpdateTaskMethod),
 															&task);
 		return task.exeResult;
 	}
@@ -252,7 +252,7 @@ void RETextureOpenGL::SetFilterType(const RETextureFilterType filter)
 	
 	if (_textureIdentifierOpenGL) 
 	{
-		if (REThread::IsMainThread()) 
+		if (REThread::isMainThread()) 
 		{
 			this->SetFilterTypeMainThread(filter);
 		}
@@ -260,7 +260,7 @@ void RETextureOpenGL::SetFilterType(const RETextureFilterType filter)
 		{
 			RETextureOpenGLSetFilterTypeMainThreadTaskPrivate task;
 			task.filterType = filter;
-			REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, SetFilterTypeTaskMethod), 
+			REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, SetFilterTypeTaskMethod), 
 																&task);
 		}
 	}
@@ -308,11 +308,11 @@ RETextureOpenGL::RETextureOpenGL() : RERenderDeviceTextureObject(),
 
 }
 
-void RETextureOpenGL::OnReleased()
+void RETextureOpenGL::onReleased()
 {
 	if (_textureIdentifierOpenGL) 
 	{
-		if (REThread::IsMainThread()) 
+		if (REThread::isMainThread()) 
 		{
 			this->DeleteTextureIdentifierMainThread(_textureIdentifierOpenGL);
 		}
@@ -320,13 +320,13 @@ void RETextureOpenGL::OnReleased()
 		{
 			RETextureOpenGLDeleteTextureIdentifierMainThreadTaskPrivate task;
 			task.textureIdentifier = _textureIdentifierOpenGL;
-			REThread::PerformMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, DeleteTextureIdentifierTaskMethod),
+			REThread::performMethodOnMainThreadAndWaitUntilDone(NEW_CLASS_METHOD(RETextureOpenGL, this, DeleteTextureIdentifierTaskMethod),
 																&task);
 		}
 		_textureIdentifierOpenGL = 0;
 	}
 	
-	RERenderDeviceTextureObject::OnReleased();
+	RERenderDeviceTextureObject::onReleased();
 }
 
 RETextureOpenGL::~RETextureOpenGL() 

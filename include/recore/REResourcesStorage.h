@@ -33,26 +33,26 @@ public:
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 	/// Setting callback for reading resource to buffer
 	/// Note: use this method if __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__ is defined
-	void SetReadToBufferCallBack(REBOOL (*ReadToBuf)(const char *, REBuffer *));
+	void setReadToBufferCallBack(REBOOL (*ReadToBuf)(const char *, REBuffer *));
 	
 	/// Setting callback for checking is resource exists 
 	/// Note: use this method if __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__ is defined
-	void SetIsExistsCallBack(REBOOL (*IsExists)(const char *));
+	void setIsExistsCallBack(REBOOL (*IsExists)(const char *));
 #endif	
 
 	/// Adding resource container. 
 	/// User may add path to zip archive or path to directory.
-	REBOOL AddResourcesPath(const REString & resourcesPath);
+	REBOOL addResourcesPath(const REString & resourcesPath);
 	
 	/// Reading from avaiable resources first ocurence of resourcePath to buffer object.
 	/// 'resourcePath' will be looked at allready added containers(zip's or directories).
-	REBOOL ReadToBuffer(const REString & resourcePath, REBuffer * toBuffer);
+	REBOOL readToBuffer(const REString & resourcePath, REBuffer * toBuffer);
 	
 	/// Check is resource with path exists
-	REBOOL IsExists(const REString & resourcePath);
+	REBOOL isExists(const REString & resourcePath);
 	
 	/// Removes all added resources.
-	void Clear();
+	void clear();
 	
 	REResourcesStorage();
 	~REResourcesStorage();

@@ -19,33 +19,33 @@
 
 __RE_PUBLIC_CLASS_API__ REAnimationController * REAnimationController::_defaultController = NULL;
 
-REEditableAnimationInfo * REAnimationController::LastInfo() 
+REEditableAnimationInfo * REAnimationController::lastInfo() 
 {
-	return _setuping.LastObject();
+	return _setuping.lastObject();
 }
 
-void REAnimationController::TrySelfRelease()
+void REAnimationController::trySelfRelease()
 {
-	if (_setuping.IsEmpty() && _working.IsEmpty()) 
+	if (_setuping.isEmpty() && _working.isEmpty()) 
 	{
 		_defaultController = NULL;
-		this->Release();
+		this->release();
 	}
 }
 
-REBOOL REAnimationController::StopAllAnimationForView(REObject * view, const REAnimationStopType stopType, REBOOL isNeedCallDelegate)
+REBOOL REAnimationController::stopAllAnimationForView(REObject * view, const REAnimationStopType stopType, REBOOL isNeedCallDelegate)
 {
-	for (REUInt32 i = 0; i < _working.Count(); i++) 
+	for (REUInt32 i = 0; i < _working.count(); i++) 
 	{
-		REEditableAnimationInfo * info = _working.At(i);
+		REEditableAnimationInfo * info = _working.at(i);
 		if (info)
 		{
-			info->StopAllAnimationForView(view, stopType);
-			if (info->IsEmpty() && (!isNeedCallDelegate)) 
+			info->stopAllAnimationForView(view, stopType);
+			if (info->isEmpty() && (!isNeedCallDelegate)) 
 			{
-				if (_working.RemoveAt(i))
+				if (_working.removeAt(i))
 				{
-					info->Release();
+					info->release();
 				}
 			}
 		}
@@ -53,88 +53,88 @@ REBOOL REAnimationController::StopAllAnimationForView(REObject * view, const REA
 	return true;
 }
 
-void REAnimationController::AnimationFinishedSuccessfully(REAnimationInfo * animationInfo)
+void REAnimationController::animationFinishedSuccessfully(REAnimationInfo * animationInfo)
 {
-	const REUIdentifier animationID = animationInfo->GetObjectIdentifier();
-	for (REUInt32 i = 0; i < _working.Count(); i++) 
+	const REUIdentifier animationID = animationInfo->getObjectIdentifier();
+	for (REUInt32 i = 0; i < _working.count(); i++) 
 	{
-		REEditableAnimationInfo * info = _working.At(i);
+		REEditableAnimationInfo * info = _working.at(i);
 		if (info)
 		{
-			if (animationID == info->GetObjectIdentifier()) 
+			if (animationID == info->getObjectIdentifier()) 
 			{
-				if (!_working.RemoveAt(i)) { _working.SetAt(i, NULL); }
-				info->DecrementCounterAndReleaseAllViews();
+				if (!_working.removeAt(i)) { _working.setAt(i, NULL); }
+				info->decrementCounterAndReleaseAllViews();
 				break;
 			}
 		}
 	}
 	
-	if (animationInfo->GetStopMethod()) 
+	if (animationInfo->getStopMethod()) 
 	{
-		animationInfo->GetStopMethod()->InvokeWithObject(animationInfo);
+		animationInfo->getStopMethod()->invokeWithObject(animationInfo);
 	}
-	animationInfo->Release();
+	animationInfo->release();
 	
-	this->TrySelfRelease();
+	this->trySelfRelease();
 }
 
-REBOOL REAnimationController::AddFloatParam(REObject * view, 
+REBOOL REAnimationController::addFloatParam(REObject * view, 
 											REUInt16 * animationsCounter,
 											REFloat32 * param, 
 											const REFloat32 startValue, 
 											const REFloat32 endValue)
 {
-	REEditableAnimationInfo * lastInfo = _setuping.LastObject();
+	REEditableAnimationInfo * lastInfo = _setuping.lastObject();
 	if (lastInfo && view && param) 
 	{
-		return lastInfo->AddFloatParam(view, animationsCounter, param, startValue, endValue);
+		return lastInfo->addFloatParam(view, animationsCounter, param, startValue, endValue);
 	}
 	return false;
 }
 
-REUIdentifier REAnimationController::StartSetupNewAnimation(void * data)
+REUIdentifier REAnimationController::startSetupNewAnimation(void * data)
 {	
-	REEditableAnimationInfo * newInfo = REEditableAnimationInfo::CreateWithCustomData(data);
+	REEditableAnimationInfo * newInfo = REEditableAnimationInfo::createWithCustomData(data);
 	if (newInfo) 
 	{
-		if (_setuping.Add(newInfo))
+		if (_setuping.add(newInfo))
 		{
-			return newInfo->GetObjectIdentifier();
+			return newInfo->getObjectIdentifier();
 		}
 		else
 		{
-			newInfo->Release();
+			newInfo->release();
 		}
 	}
 	return 0;
 }
 
-REBOOL REAnimationController::ExecuteLastAnimation()
+REBOOL REAnimationController::executeLastAnimation()
 {
-	REEditableAnimationInfo * lastInfo = _setuping.LastObject();
+	REEditableAnimationInfo * lastInfo = _setuping.lastObject();
 	if (lastInfo) 
 	{
-		if (lastInfo->ExecuteAnimation())
+		if (lastInfo->executeAnimation())
 		{
-			_working.Add(lastInfo);
-			_setuping.RemoveLast();
+			_working.add(lastInfo);
+			_setuping.removeLast();
 			return true;
 		}
 	}
 	return false;
 }
 
-void REAnimationController::Pause()
+void REAnimationController::pause()
 {
 	if (!_isPaused) 
 	{
-		for (REUInt32 i = 0; i < _working.Count(); i++)
+		for (REUInt32 i = 0; i < _working.count(); i++)
 		{
-			REEditableAnimationInfo * info = _working.At(i);
+			REEditableAnimationInfo * info = _working.at(i);
 			if (info) 
 			{
-				info->Pause();
+				info->pause();
 			}
 		}
 	}
@@ -144,9 +144,9 @@ void REAnimationController::Continue()
 {
 	if (_isPaused) 
 	{
-		for (REUInt32 i = 0; i < _working.Count(); i++)
+		for (REUInt32 i = 0; i < _working.count(); i++)
 		{
-			REEditableAnimationInfo * info = _working.At(i);
+			REEditableAnimationInfo * info = _working.at(i);
 			if (info) 
 			{
 				info->Continue();
@@ -155,15 +155,15 @@ void REAnimationController::Continue()
 	}
 }
 
-const REFloat32 REAnimationController::GetProgress(REObject * animatedObject)
+const REFloat32 REAnimationController::getProgress(REObject * animatedObject)
 {
 	REUInt32 i = 0;
-	while (i < _working.Count()) 
+	while (i < _working.count()) 
 	{
-		REEditableAnimationInfo * info = _working.At(i);
+		REEditableAnimationInfo * info = _working.at(i);
 		if (info) 
 		{
-			const REFloat32 p = info->GetProgress(animatedObject);
+			const REFloat32 p = info->getProgress(animatedObject);
 			if (p < 0.0f) { i++; }
 			else { return p; }
 		}
@@ -183,20 +183,20 @@ REAnimationController::REAnimationController() : REObject(),
 
 REAnimationController::~REAnimationController()
 {
-	for (REUInt32 i = 0; i < _working.Count(); i++) 
+	for (REUInt32 i = 0; i < _working.count(); i++) 
 	{
-		REEditableAnimationInfo * info = _working.At(i);
-		if (info) { _working.SetAt(i, NULL); info->Release(); };
+		REEditableAnimationInfo * info = _working.at(i);
+		if (info) { _working.setAt(i, NULL); info->release(); };
 	}
 	
-	for (REUInt32 i = 0; i < _setuping.Count(); i++) 
+	for (REUInt32 i = 0; i < _setuping.count(); i++) 
 	{
-		REEditableAnimationInfo * info = _setuping.At(i);
-		if (info) { _setuping.SetAt(i, NULL); info->Release(); }
+		REEditableAnimationInfo * info = _setuping.at(i);
+		if (info) { _setuping.setAt(i, NULL); info->release(); }
 	}
 }
 
-REAnimationController * REAnimationController::GetDefaultController()
+REAnimationController * REAnimationController::getDefaultController()
 {
 	if (_defaultController)
 	{
@@ -207,7 +207,7 @@ REAnimationController * REAnimationController::GetDefaultController()
 	return _defaultController;
 }
 
-void REAnimationController::ReleaseDefaultController()
+void REAnimationController::releaseDefaultController()
 {
 	REAnimationController * c = _defaultController;
 	_defaultController = NULL;

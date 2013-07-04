@@ -19,7 +19,7 @@
 #define __RESUBVIEWSCONTAINER_H__
 
 #include "../recore/RECommonHeader.h"
-#include "../recore/REObjectsArray.h"
+#include "../recore/REArrayObject.h"
 #include "../recore/REThread.h"
 #include "../recore/REMutex.h"
 
@@ -30,66 +30,66 @@ class REView;
 class __RE_PUBLIC_CLASS_API__ RESubViewsContainer
 {
 private:
-	REObjectsArray * _subViewsArray;
+	REArrayObject * _subViewsArray;
 	RESubViewsContainer * _parentSubViewsContainer;
 	REMutex _updateMutex;
 protected:
-	void LockUpdate();
-	void UnLockUpdate();
+	void lockUpdate();
+	void unLockUpdate();
 	
 	/// Returns pointer to array contained subviews.
 	/// If array not created it will creates.
-	REObjectsArray * GetOrCreateAndGetSubViewsArray();
+	REArrayObject * getOrCreateAndGetSubViewsArray();
 	
 	/// Called when some 'view' added to container.
-	virtual void OnViewDidAdded(REView * view) { }
+	virtual void onViewDidAdded(REView * view) { }
 	
 	/// Called when some 'view' removed from container.
 	/// Before calling this method 'view' Retain()'s and after calling 'view' Release()'d.
-	virtual void OnViewDidRemoved(REView * view) { }
+	virtual void onViewDidRemoved(REView * view) { }
 public:
 	/// Return view that containes this container.
 	/// Return view or NULL.
-	REView * GetParentSubViewsContainer() const;
+	REView * getParentSubViewsContainer() const;
 	
 	/// Return array of subviews.
 	/// Return array pointer or NULL
-	REObjectsArray * GetSubViewsArray() const { return _subViewsArray; }
+	REArrayObject * getSubViewsArray() const { return _subViewsArray; }
 	
 	/// Check this container for childs view.
-	REBOOL IsHasSubViews() const;
+	REBOOL isHasSubViews() const;
 	
 	/// Adds view to this container.
 	/// After adding view Retain will call and 'OnViewDidAdded(REView *)' to this object.
-	REBOOL AddSubView(REView * v);
+	REBOOL addSubView(REView * v);
 	
 	/// Inserts view above 'targetView'.
 	/// After adding view Retain will call.
 	/// Returns false if one of params is NULL or 'targetView' not containes.
-	REBOOL InsertSubViewAbove(REView * v, REView * targetView);
+	REBOOL insertSubViewAbove(REView * v, REView * targetView);
 	
 	/// Inserts view below 'targetView'.
 	/// After adding view Retain will call.
 	/// Returns false if one of params is NULL or 'targetView' not containes.
-	REBOOL InsertSubViewBelow(REView * v, REView * targetView);
+	REBOOL insertSubViewBelow(REView * v, REView * targetView);
 	
 	/// Removes view from this container.
 	/// After removing view Release will call.
-	REBOOL RemoveSubView(REView * v);
+	REBOOL removeSubView(REView * v);
 	
 	/// Removes all views from this container.
 	/// For all contained views Release will call.
-	void RemoveAllSubViews();
+	void removeAllSubViews();
 	
 	/// Replaces first view with second view.
 	/// After replacing for first view will call Release and for second will call Retain.
-	REBOOL ReplaceSubView(REView * v, REView * withView);
+	REBOOL replaceSubView(REView * v, REView * withView);
 	
 	/// Return first oqurence of view with 'viewTag'
-	REView * FindSubViewWithTag(const REInt32 viewTag);
+	REView * findSubViewWithTag(const REInt32 viewTag);
 	
 	/// Return first oqurence of view with 'className'
-	REView * FindSubViewWithClassName(const char * className);
+	REView * findSubViewWithClassName(const char * className);
 	
 	
 	RESubViewsContainer();

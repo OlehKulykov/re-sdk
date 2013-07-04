@@ -36,34 +36,34 @@ private:
 	
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Sets method wich will invoke in timer tick.
-	void SetTrigerTargetMethod(REClassMethod * targetMethod);
+	void setTrigerTargetMethod(REClassMethod * targetMethod);
 	
 	/// Sets time interval.
-	void SetTime(const RETimeInterval time);
+	void setTime(const RETimeInterval time);
 	
 	/// Returns time interval.
-	const RETimeInterval GetTime() const;
+	const RETimeInterval getTime() const;
 	
 	/// Sets loops count.
 	/// "0" - No loop(default);  "> 0" - loopsCount; "< 0" - looped.
-	void SetLoopsCount(const REInt32 loopsCount);
+	void setLoopsCount(const REInt32 loopsCount);
 	
 	/// Returns count of loops.
-	const REInt32 GetLoopsCount() const;
+	const REInt32 getLoopsCount() const;
 	
 	/// Check is timer active.
-	REBOOL IsActive() const;
+	REBOOL isActive() const;
 	
 	/// Starts timer.
-	void Start();
+	void start();
 	
 	/// Stops timer.
-	void Stop();
+	void stop();
 	
 	/* REMainLoopUpdatable */
 	virtual void Update(const RETimeInterval currentTime);

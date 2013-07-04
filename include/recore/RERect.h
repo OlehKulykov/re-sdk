@@ -87,7 +87,7 @@ public:
 	};
 	
 	/// Sets center coordinates of rectangle.
-	RERect & SetCenter(const REFloat32 centerX, const REFloat32 centerY)
+	RERect & setCenter(const REFloat32 centerX, const REFloat32 centerY)
 	{
 		x = (centerX - (width / 2.0f));
 		y = (centerY - (height / 2.0f));
@@ -95,7 +95,7 @@ public:
 	}
 	
 	/// Sets center point of rectangle.
-	RERect & SetCenter(const REPoint2 & centerPoint)
+	RERect & setCenter(const REPoint2 & centerPoint)
 	{
 		x = (centerPoint.x - (width / 2.0f));
 		y = (centerPoint.y - (height / 2.0f));
@@ -103,19 +103,19 @@ public:
 	}
 	
 	/// Returns center point of rectangle.
-	REPoint2 GetCenter() const
+	REPoint2 getCenter() const
 	{
 		return REPoint2((x + (width / 2)), (y + (height / 2)));
 	}
 	
 	/// Returns top center point of rectangle.
-	REPoint2 GetTopCenter() const
+	REPoint2 getTopCenter() const
 	{
 		return REPoint2((x + (width / 2)), y);
 	}
 	
 	/// Sets top center point of rectangle.
-	RERect & SetTopCenter(const REPoint2 & topCenter)
+	RERect & setTopCenter(const REPoint2 & topCenter)
 	{
 		x = topCenter.x - (width / 2);
 		y = topCenter.y;
@@ -123,7 +123,7 @@ public:
 	}
 	
 	/// Sets top center coordinates of rectangle
-	RERect & SetTopCenter(const REFloat32 topCenterX, const REFloat32 topCenterY)
+	RERect & setTopCenter(const REFloat32 topCenterX, const REFloat32 topCenterY)
 	{
 		x = topCenterX - (width / 2);
 		y = topCenterY;
@@ -131,13 +131,13 @@ public:
 	}
 	
 	/// Returns bottom center point of rectangle.
-	REPoint2 GetBottomCenter() const
+	REPoint2 setBottomCenter() const
 	{
 		return REPoint2(x + (width / 2), y + height);
 	}
 	
 	/// Sets bottom center point of rectangle.
-	RERect & SetBottomCenter(const REPoint2 & bottomCenter)
+	RERect & setBottomCenter(const REPoint2 & bottomCenter)
 	{
 		x = bottomCenter.x - (width / 2);
 		y = bottomCenter.y - height;
@@ -145,7 +145,7 @@ public:
 	}
 	
 	/// Sets bottom center coordinates of rectangle.
-	RERect & SetBottomCenter(const REFloat32 bottomCenterX, const REFloat32 bottomCenterY)
+	RERect & setBottomCenter(const REFloat32 bottomCenterX, const REFloat32 bottomCenterY)
 	{
 		x = bottomCenterX - (width / 2);
 		y = bottomCenterY - height;
@@ -153,13 +153,13 @@ public:
 	}
 	
 	/// Returns left center point of rectangle.
-	REPoint2 GetLeftCenter() const
+	REPoint2 setLeftCenter() const
 	{
 		return REPoint2(x, y + (height / 2));
 	}
 	
 	/// Sets left center point of rectangle.
-	RERect & SetLeftCenter(const REPoint2 & leftCenter)
+	RERect & setLeftCenter(const REPoint2 & leftCenter)
 	{
 		x = leftCenter.x;
 		y = leftCenter.y - (height / 2);
@@ -167,7 +167,7 @@ public:
 	}
 	
 	/// Sets left center coordinates of rectangle.
-	RERect & SetLeftCenter(const REFloat32 leftCenterX, const REFloat32 leftCenterY)
+	RERect & setLeftCenter(const REFloat32 leftCenterX, const REFloat32 leftCenterY)
 	{
 		x = leftCenterX;
 		y = leftCenterY - (height / 2);
@@ -175,13 +175,13 @@ public:
 	}
 	
 	/// Returns right center point of rectangle.
-	REPoint2 GetRightCenter() const
+	REPoint2 getRightCenter() const
 	{
 		return REPoint2(x + width, y + (height / 2));
 	}
 	
 	/// Sets right center point of rectangle.
-	RERect & SetRightCenter(const REPoint2 & rightCenter)
+	RERect & setRightCenter(const REPoint2 & rightCenter)
 	{
 		x = rightCenter.x - width;
 		y = rightCenter.y - (height / 2);
@@ -189,7 +189,7 @@ public:
 	}
 	
 	/// Sets right center coordinates of rectangle.
-	RERect & SetRightCenter(const REFloat32 rightCenterX, const REFloat32 rightCenterY)
+	RERect & setRightCenter(const REFloat32 rightCenterX, const REFloat32 rightCenterY)
 	{
 		x = rightCenterX - width;
 		y = rightCenterY - (height / 2);
@@ -197,13 +197,13 @@ public:
 	}
 	
 	/// Returns top right point.
-	REPoint2 GetTopRight() const
+	REPoint2 getTopRight() const
 	{
 		return REPoint2(x + width, y);
 	}
 	
 	/// Sets top right point of rectangle.
-	RERect & SetTopRight(const REPoint2 & topRight)
+	RERect & setTopRight(const REPoint2 & topRight)
 	{
 		x = topRight.x - width;
 		y = topRight.y;
@@ -211,7 +211,7 @@ public:
 	}
 	
 	/// Sets top right coordinates of rectangle.
-	RERect & SetTopRight(const REFloat32 topRightX, const REFloat32 topRightY)
+	RERect & setTopRight(const REFloat32 topRightX, const REFloat32 topRightY)
 	{
 		x = topRightX - width;
 		y = topRightY;
@@ -219,13 +219,13 @@ public:
 	}
 	
 	/// Returns bottom right point of rectangle.
-	REPoint2 GetBottomRight() const
+	REPoint2 getBottomRight() const
 	{
 		return REPoint2(x + width, y + height);
 	}
 	
 	/// Sets bottom right point of rectangle.
-	RERect & SetBottomRight(const REPoint2 & bottomRight)
+	RERect & setBottomRight(const REPoint2 & bottomRight)
 	{
 		x = bottomRight.x - width;
 		y = bottomRight.y - height;
@@ -233,7 +233,7 @@ public:
 	}
 	
 	/// Sets bottom right coordinates of rectangle.
-	RERect & SetBottomRight(const REFloat32 bottomRightX, const REFloat32 bottomRightY)
+	RERect & setBottomRight(const REFloat32 bottomRightX, const REFloat32 bottomRightY)
 	{
 		x = bottomRightX - width;
 		y = bottomRightY - height;
@@ -241,13 +241,13 @@ public:
 	}
 	
 	/// Returns bottom left point.
-	REPoint2 GetBottomLeft() const
+	REPoint2 getBottomLeft() const
 	{
 		return REPoint2(x, y + height);
 	}
 	
 	/// Sets bottom left point of rectangle.
-	RERect & SetBottomLeft(const REPoint2 & bottomLeft)
+	RERect & setBottomLeft(const REPoint2 & bottomLeft)
 	{
 		x = bottomLeft.x;
 		y = bottomLeft.y - height;
@@ -255,7 +255,7 @@ public:
 	}
 	
 	/// Sets bottom left coordinates of rectangle.
-	RERect & SetBottomLeft(const REFloat32 bottomLeftX, const REFloat32 bottomLeftY)
+	RERect & setBottomLeft(const REFloat32 bottomLeftX, const REFloat32 bottomLeftY)
 	{
 		x = bottomLeftX;
 		y = bottomLeftY - height;
@@ -263,14 +263,14 @@ public:
 	}
 	
 	/// Clear rectangle. Sets all values to zeros.
-	RERect & Clear()
+	RERect & clear()
 	{
 		REMem::Memset(xywh, 0, sizeof(REFloat32) * 4);
 		return (*this);
 	}
 	
 	/// Sets size of rectangle.
-	RERect & SetSize(const RESize & newSize)
+	RERect & setSize(const RESize & newSize)
 	{
 		width = newSize.width;
 		height = newSize.height;
@@ -278,7 +278,7 @@ public:
 	}
 	
 	/// Sets size values of rectangle.
-	RERect & SetSize(const REFloat32 newSizeWidth, const REFloat32 newSizeHeight)
+	RERect & setSize(const REFloat32 newSizeWidth, const REFloat32 newSizeHeight)
 	{
 		width = newSizeWidth;
 		height = newSizeHeight;
@@ -286,13 +286,13 @@ public:
 	}
 	
 	/// Returns size of rectangle.
-	RESize GetSize() const
+	RESize getSize() const
 	{
 		return RESize(width, height);
 	}
 	
 	/// Sets origin point of rectangle. Means sets top left coordinates.
-	RERect & SetOrigin(const REPoint2 & newOrigin)
+	RERect & setOrigin(const REPoint2 & newOrigin)
 	{
 		x = newOrigin.x;
 		y = newOrigin.y;
@@ -300,7 +300,7 @@ public:
 	}
 	
 	/// Sets origin coordinates of rectangle. Means sets top left coordinates.
-	RERect & SetOrigin(const REFloat32 newOriginX, const REFloat32 newOriginY)
+	RERect & setOrigin(const REFloat32 newOriginX, const REFloat32 newOriginY)
 	{
 		x = newOriginX;
 		y = newOriginY;
@@ -308,31 +308,31 @@ public:
 	}
 	
 	/// Checks if point coordinates inside rectangle.
-	REBOOL IsPointInRect(const REFloat32 pointX, const REFloat32 pointY) const
+	REBOOL isPointInRect(const REFloat32 pointX, const REFloat32 pointY) const
 	{
 		return ((pointX > x) && (pointX < (x + width)) && (pointY > y) && (pointY < (y + height)));
 	}
 	
 	/// Checks if point inside rectangle.
-	REBOOL IsPointInRect(const REPoint2 & point) const
+	REBOOL isPointInRect(const REPoint2 & point) const
 	{
 		return ((point.x > x) && (point.x < (x + width)) && (point.y > y) && (point.y < (y + height)));
 	}
 	
 	/// Checks if rectangle intersepts with another rectangle.
-	REBOOL IsIntersects(const RERect & b) const
+	REBOOL isIntersects(const RERect & b) const
 	{
 		return !( ((x + width) <= b.x) || (x >= (b.x + b.width)) || ((y + height) <= b.y) || (y >= (b.y + b.height)) );
 	}
 	
 	/// Checks is rectangle containes another rectangle.
-	REBOOL IsContainsRect(const RERect & b) const
+	REBOOL isContainsRect(const RERect & b) const
 	{
 		return ((x < b.x) && (y < b.y) && ((x + width) > (b.x + b.width)) && ((y + height) > (b.y + b.height)));
 	}
 	
 	/// Returns intersected rectangle with another rectangle.
-	RERect GetIntersection(const RERect & b) const
+	RERect getIntersection(const RERect & b) const
 	{
 		const REFloat32 bottomX = (x + width);
 		const REFloat32 bottomY = (y + height);
@@ -354,7 +354,7 @@ public:
 	}
 	
 	/// Returns union rectangle with another rectangle.
-	RERect GetUnion(const RERect & b) const
+	RERect getUnion(const RERect & b) const
 	{
 		const REFloat32 newX = MIN(x, b.x);
 		const REFloat32 newY = MIN(y, b.y);
@@ -391,7 +391,7 @@ public:
 #endif
 		return (*this);
 	}
-
+	
 #if defined(__ARM_NEON__)
 	/// Constructs rectangle with arm neon vector.
 	RERect(const float32x4_t & armNVec) : armNeonVector(armNVec) { }
@@ -416,8 +416,42 @@ public:
 	/// Constructs zero value rectangle.
 	RERect() : x(0.0f), y(0.0f), width(0.0f), height(0.0f) { }
 	
-	/// Desctructor.
 	~RERect() { }
+	
+	
+	/// Objective-c additions
+#if (defined(CG_EXTERN) || defined(CG_INLINE)) && defined(CGFLOAT_TYPE)
+
+	CGRect getCGRect() const 
+	{
+		CGRect r;
+		r.origin.x = (CGFloat)x; 
+		r.origin.y = (CGFloat)y;
+		r.size.width = (CGFloat)width;
+		r.size.height = (CGFloat)height;
+		return r;
+	}
+	
+	RERect & operator=(const CGRect & anotherRect)
+	{
+		x = (REFloat32)anotherRect.origin.x; 
+		y = (REFloat32)anotherRect.origin.y;
+		width = (REFloat32)anotherRect.size.width;
+		height = (REFloat32)anotherRect.size.height;
+		return (*this);
+	}
+	
+	RERect(const CGRect & anotherRect) : 
+		x((REFloat32)anotherRect.origin.x), 
+		y((REFloat32)anotherRect.origin.y), 
+		width((REFloat32)anotherRect.size.width),
+		height((REFloat32)anotherRect.size.height) 
+	{
+		
+	}
+	
+#endif	
+	
 };
 
 

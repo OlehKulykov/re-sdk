@@ -21,18 +21,18 @@
 class REFilePrivate
 {
 public:
-	static void InitFileWithSizeFromPathAndMode(FILE ** file,
+	static void initFileWithSizeFromPathAndMode(FILE ** file,
 												REUInt32 * size,
 												const REString & filePath,
 												const char * openMode = NULL);
 };
 
-void REFilePrivate::InitFileWithSizeFromPathAndMode(FILE ** file,
+void REFilePrivate::initFileWithSizeFromPathAndMode(FILE ** file,
 													REUInt32 * size,
 													const REString & filePath,
 													const char * openMode)
 {
-	FILE * f = REFile::FOpen(filePath, openMode ? openMode : "rb");
+	FILE * f = REFile::fileOpen(filePath, openMode ? openMode : "rb");
 	if (f)
 	{
 		if ( fseek(f, 0, SEEK_END) != 0 )
@@ -57,7 +57,7 @@ void REFilePrivate::InitFileWithSizeFromPathAndMode(FILE ** file,
 
 
 /* IREFileReadable */
-REUInt32 REFile::FileRead(void * bufferForReading, const REUInt32 dataSizeToRead)
+REUInt32 REFile::fileRead(void * bufferForReading, const REUInt32 dataSizeToRead)
 {
 	if (_file && bufferForReading) 
 	{
@@ -66,7 +66,7 @@ REUInt32 REFile::FileRead(void * bufferForReading, const REUInt32 dataSizeToRead
 	return 0;
 }
 
-REUInt32 REFile::FileTell()
+REUInt32 REFile::fileTell()
 {
 	if (_file) 
 	{
@@ -75,7 +75,7 @@ REUInt32 REFile::FileTell()
 	return 0;
 }
 
-REInt32 REFile::FileSeek(const REUInt32 fileOffset, int origin)
+REInt32 REFile::fileSeek(const REUInt32 fileOffset, int origin)
 {
 	if (_file) 
 	{	
@@ -84,7 +84,7 @@ REInt32 REFile::FileSeek(const REUInt32 fileOffset, int origin)
 	return 1; //error
 }
 
-REInt32 REFile::FileSeekFromEndFile(const REUInt32 fileOffset)
+REInt32 REFile::fileSeekFromEndFile(const REUInt32 fileOffset)
 {
 	if (_file) 
 	{	
@@ -93,7 +93,7 @@ REInt32 REFile::FileSeekFromEndFile(const REUInt32 fileOffset)
 	return 1; //error
 }
 
-REInt32 REFile::FileSeekFromBeginFile(const REUInt32 fileOffset)
+REInt32 REFile::fileSeekFromBeginFile(const REUInt32 fileOffset)
 {
 	if (_file) 
 	{	
@@ -102,7 +102,7 @@ REInt32 REFile::FileSeekFromBeginFile(const REUInt32 fileOffset)
 	return 1; //error
 }
 
-REInt32 REFile::FileSeekFromCurrentFilePos(const REUInt32 fileOffset)
+REInt32 REFile::fileSeekFromCurrentFilePos(const REUInt32 fileOffset)
 {
 	if (_file) 
 	{	
@@ -111,7 +111,7 @@ REInt32 REFile::FileSeekFromCurrentFilePos(const REUInt32 fileOffset)
 	return 1; //error
 }
 
-REInt32 REFile::FileFError()
+REInt32 REFile::fileFError()
 {
 	if (_file)
 	{
@@ -120,7 +120,7 @@ REInt32 REFile::FileFError()
 	return 0;
 }
 
-REInt32 REFile::FileClose()
+REInt32 REFile::fileClose()
 {
 	if (_file)
 	{
@@ -132,12 +132,12 @@ REInt32 REFile::FileClose()
 	return 1; //error
 }
 
-REBOOL REFile::IsEndOfFile()
+REBOOL REFile::isEndOfFile()
 {
-	return (_fileSize == this->FileTell());
+	return (_fileSize == this->fileTell());
 }
 
-const REUInt32 REFile::GetFileSize() const
+const REUInt32 REFile::getFileSize() const
 {
 	return _fileSize;
 }
@@ -146,7 +146,7 @@ REFile::REFile(const REString & filePath, const char * openMode) :
 	_file(NULL),
 	_fileSize(0)
 {
-	REFilePrivate::InitFileWithSizeFromPathAndMode(&_file,
+	REFilePrivate::initFileWithSizeFromPathAndMode(&_file,
 												   &_fileSize,
 												   filePath,
 												   openMode);
@@ -156,7 +156,7 @@ REFile::REFile(const REString & filePath) :
 	_file(NULL),
 	_fileSize(0)
 {
-	REFilePrivate::InitFileWithSizeFromPathAndMode(&_file,
+	REFilePrivate::initFileWithSizeFromPathAndMode(&_file,
 												   &_fileSize,
 												   filePath);
 }
@@ -170,9 +170,9 @@ REFile::~REFile()
 }
 
 
-FILE * REFile::FOpen(const REString & filePath, const char * openMode)
+FILE * REFile::fileOpen(const REString & filePath, const char * openMode)
 {
-	if ( filePath.IsEmpty() ) { return NULL; }
+	if ( filePath.isEmpty() ) { return NULL; }
 	
 #ifndef __RE_OS_WINDOWS__
 	// NOT WIN
@@ -180,7 +180,7 @@ FILE * REFile::FOpen(const REString & filePath, const char * openMode)
 	if (openMode) { mode = openMode; }
 	else { mode = "rb"; }
 	
-	FILE * f = fopen(filePath.UTF8String(), mode);
+	FILE * f = fopen(filePath.getChars(), mode);
 	return f;
 #endif	
 	

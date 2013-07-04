@@ -66,32 +66,32 @@ protected:
  	REFloat32 _volume;
 	REBOOL _isLooped;
 	
-	void Clear();
+	void clear();
 	
-	void DecodeAndPlay();
-	void GetVorbisInformation();
+	void decodeAndPlay();
+	void getVorbisInformation();
 #ifdef __RE_USING_OPENAL__	
-	void GenerateAndSetupALResources();
+	void generateAndSetupALResources();
 #endif	
-	void FillBuffersWithDecodedAudioData();
-	REUInt32 DecodeOggVorbis(void * psOggVorbisFileVoid, char * pDecodeBuffer, const REUInt32 ulBufferSize, const REUInt32 ulChannels);
+	void fillBuffersWithDecodedAudioData();
+	REUInt32 decodeOggVorbis(void * psOggVorbisFileVoid, char * pDecodeBuffer, const REUInt32 ulBufferSize, const REUInt32 ulChannels);
 	
 public:
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime);
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const;
+	virtual void update(const RETimeInterval currentTime);
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const;
 	
-	REBOOL InitWithData(const REData & soundFileData);
-	virtual REBOOL Play();
-	virtual REBOOL IsPlaying() const;
-	virtual REBOOL Pause();
-	virtual REBOOL Stop();
-	virtual REBOOL SetLooped(const REBOOL isLooped);
-	virtual REBOOL IsLooped() const;
-	virtual REBOOL SetVolume(const REFloat32 newVolume);
-	virtual const REFloat32 GetVolume() const;
+	REBOOL initWithData(const REData & soundFileData);
+	virtual REBOOL play();
+	virtual REBOOL isPlaying() const;
+	virtual REBOOL pause();
+	virtual REBOOL stop();
+	virtual REBOOL setLooped(const REBOOL isLooped);
+	virtual REBOOL isLooped() const;
+	virtual REBOOL setVolume(const REFloat32 newVolume);
+	virtual const REFloat32 getVolume() const;
 	
-	static REBOOL IsValidData(const REData & data);
+	static REBOOL isValidData(const REData & data);
 	
 	REOGGVorbisSound();
 	virtual ~REOGGVorbisSound();

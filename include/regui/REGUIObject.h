@@ -31,28 +31,28 @@ protected:
 
 public:
 	/* REObject */
-	virtual const REUInt32 GetClassIdentifier() const;
-	static const REUInt32 ClassIdentifier();
-	virtual REBOOL IsImplementsClass(const REUInt32 classIdentifier) const;
+	virtual const REUInt32 getClassIdentifier() const;
+	static const REUInt32 classIdentifier();
+	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Informs object about begining of setuping. 
-	virtual void OnPrepareGUIObjectForSetuping();
+	virtual void onPrepareGUIObjectForSetuping();
 	
 	/// Informs object that setuping is done and tell that the object was accepted by parent 'GUIObject' object.
 	/// If parent object not accept this object than this object will be deleted after receiving this info.
-	virtual void OnSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
+	virtual void onSetupingGUIObjectFinished(const REBOOL isAcceptedByParent);
 	
 	/// Acepting string parameter and value string presentation from XML document. 
 	/// Using when view controller loading from XML. This method can be invoked from non-main thread if view controller loading in background.
-	virtual REBOOL AcceptStringParameter(const char * key, const char * value);
+	virtual REBOOL acceptStringParameter(const char * key, const char * value);
 	
 	/// Acepting object value for key from XML document with object's class name . 
 	/// Using when view controller loading from XML. This method can be invoked from non-main thread if view controller loading in background.
-	virtual REBOOL AcceptObjectParameter(const char * className, const char * key, REGUIObject * value);
+	virtual REBOOL acceptObjectParameter(const char * className, const char * key, REGUIObject * value);
 	
 	/// If object containes property than it's will be askes for pointer to property by key.
 	/// If property not fount than return NULL.
-	virtual IREObjectProperty * GetPropertyForKey(const char * key);
+	virtual IREObjectProperty * getPropertyForKey(const char * key);
 };
 
 

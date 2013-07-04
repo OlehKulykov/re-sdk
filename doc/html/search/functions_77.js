@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['widestring',['WideString',['../class_r_e_string_presentation.html#aa21f27bc975be1c7d83655016bbea413',1,'REStringPresentation']]],
-  ['widetochars',['WideToChars',['../class_r_e_string_presentation.html#a881d70144eb6d0e2b7eb78af9ab57080',1,'REStringPresentation']]],
-  ['writetofile',['WriteToFile',['../class_r_e_objects_dictionary.html#a408c8e766009257fa20f382b3f6d5324',1,'REObjectsDictionary']]],
-  ['writetostring',['WriteToString',['../class_r_e_x_m_l_property_list_writer.html#a16074301af941379953db598f2308074',1,'REXMLPropertyListWriter']]]
+  ['widestringlength',['wideStringLength',['../class_r_e_string_utils_private.html#a2afd24ae270c35aed2ed9124c1eaf7e4',1,'REStringUtilsPrivate']]],
+  ['writetofile',['writeToFile',['../class_r_e_objects_dictionary.html#a99fb86f5e61c78a2987542581f17448b',1,'REObjectsDictionary']]],
+  ['writetostring',['writeToString',['../class_r_e_x_m_l_property_list_writer.html#ad4af58b26c6e9c5f2c74476220b94242',1,'REXMLPropertyListWriter']]]
 ];

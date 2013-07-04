@@ -17,64 +17,64 @@
 
 #include "../../include/regui/REAnimationInfo.h"
 
-const REUInt32 REAnimationInfo::GetClassIdentifier() const
+const REUInt32 REAnimationInfo::getClassIdentifier() const
 {
-	return REAnimationInfo::ClassIdentifier();
+	return REAnimationInfo::classIdentifier();
 }
 
-const REUInt32 REAnimationInfo::ClassIdentifier()
+const REUInt32 REAnimationInfo::classIdentifier()
 {
-	static const REUInt32 classIdentif = REObject::GenerateClassIdentifierFromClassName("REAnimationInfo");
+	static const REUInt32 classIdentif = REObject::generateClassIdentifierFromClassName("REAnimationInfo");
 	return classIdentif;
 }
 
-REBOOL REAnimationInfo::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REAnimationInfo::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REAnimationInfo::ClassIdentifier() == classIdentifier) ||
-			REObject::IsImplementsClass(classIdentifier));
+	return ((REAnimationInfo::classIdentifier() == classIdentifier) ||
+			REObject::isImplementsClass(classIdentifier));
 }
 
-REClassMethod * REAnimationInfo::GetStartMethod() const
+REClassMethod * REAnimationInfo::getStartMethod() const
 {
 	return _startMethod;
 }
 
-REClassMethod * REAnimationInfo::GetStopMethod() const
+REClassMethod * REAnimationInfo::getStopMethod() const
 {
 	return _stopMethod;
 }
 
-void * REAnimationInfo::GetCustomData() const
+void * REAnimationInfo::getCustomData() const
 {
 	return _customData;
 }
 
-const RETimeInterval REAnimationInfo::GetTime() const
+const RETimeInterval REAnimationInfo::getTime() const
 {
 	return _time;
 }
 
-const RETimeInterval REAnimationInfo::GetStartDelay() const
+const RETimeInterval REAnimationInfo::getStartDelay() const
 {
 	return _startDelay;
 }
 
-const REUInt32 REAnimationInfo::GetLoopsCount() const
+const REUInt32 REAnimationInfo::getLoopsCount() const
 {
 	return _loopsCount;
 }
 
-const REAnimationType REAnimationInfo::GetAnimationType() const
+const REAnimationType REAnimationInfo::getAnimationType() const
 {
 	return (REAnimationType)_animationType;
 }
 
-const REAnimationLoopType REAnimationInfo::GetLoopType() const
+const REAnimationLoopType REAnimationInfo::getLoopType() const
 {
 	return (REAnimationLoopType)_loopType;
 }
 
-const REAnimationStopType REAnimationInfo::GetStopType() const
+const REAnimationStopType REAnimationInfo::getStopType() const
 {
 	return (REAnimationStopType)_stopType;
 }
@@ -93,12 +93,12 @@ REAnimationInfo::REAnimationInfo() : REObject(),
 	
 }
 
-void REAnimationInfo::OnReleased()
+void REAnimationInfo::onReleased()
 {
 	RE_SAFE_DELETE(_startMethod);
 	RE_SAFE_DELETE(_stopMethod);
 	
-	REObject::OnReleased();
+	REObject::onReleased();
 }
 
 REAnimationInfo::~REAnimationInfo()

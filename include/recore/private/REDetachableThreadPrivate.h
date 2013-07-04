@@ -31,39 +31,39 @@ private:
 	RETimeInterval _reThreadStartTime;
 	
 protected:
-	virtual void ThreadBody()
+	virtual void threadBody()
 	{
 		if (_reThreadClassMethod)
 		{
-			_reThreadClassMethod->InvokeWithObject(_reThreadClassMethodObject);
+			_reThreadClassMethod->invokeWithObject(_reThreadClassMethodObject);
 		}
 	}
 	
 public:
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime)
+	virtual void update(const RETimeInterval currentTime)
 	{
 		if (currentTime >= _reThreadStartTime) 
 		{
-			this->RemoveFromMainLoop();
+			this->removeFromMainLoop();
 			
-			this->Start();
+			this->start();
 		}
 	}
 	
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const { return this->GetObjectIdentifier(); }
+	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
-	REBOOL StartWithDelay(const RETimeInterval delayTime)
+	REBOOL startWithDelay(const RETimeInterval delayTime)
 	{
 		if (delayTime > 0.0)
 		{
-			_reThreadStartTime = RETime::Time() + delayTime;
+			_reThreadStartTime = RETime::time() + delayTime;
 			
-			this->AddToMainLoop();
+			this->addToMainLoop();
 		}
 		else 
 		{
-			return this->Start();
+			return this->start();
 		}
 		
 		return true;
@@ -77,7 +77,7 @@ public:
 	{
 		if (_reThreadClassMethodObject) 
 		{
-			_reThreadClassMethodObject->Retain();
+			_reThreadClassMethodObject->retain();
 		}
 	}
 	
@@ -89,7 +89,7 @@ public:
 		}
 		if (_reThreadClassMethodObject) 
 		{
-			_reThreadClassMethodObject->Release();
+			_reThreadClassMethodObject->release();
 		}
 	}
 };

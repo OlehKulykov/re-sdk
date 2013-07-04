@@ -35,14 +35,14 @@
 #define RE_VIEW_XML_SUBVIEW_OBJECT_KEY_STRING "subview"
 #define RE_VIEW_XML_TEXTURE_OBJECT_KEY_STRING "texture"
 
-REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const char * value)
+REBOOL REView::acceptViewStringParameter(REView * view, const char * key, const char * value)
 {
     if (strcmp(key, RE_VIEW_XML_TAG_KEY_STRING) == 0)
     {
         int t = 0;
         if (sscanf(value, RE_VIEW_XML_TAG_FORMAT_STRING, &t) == 1)
         {
-            view->SetTag((REInt32)t);
+            view->setTag((REInt32)t);
             return true;
         }
     }
@@ -51,7 +51,7 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
         int v = 0;
         if (sscanf(value, RE_VIEW_XML_VISIBILITY_FORMAT_STRING, &v) == 1)
         {
-            view->SetVisible((v != 0));
+            view->setVisible((v != 0));
             return true;
         }
     }
@@ -60,7 +60,7 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
         RERect f;
         if (sscanf(value, RE_VIEW_XML_FRAME_FORMAT_STRING, &f.x, &f.y, &f.width, &f.height) == 4)
         {
-            view->SetFrame(f);
+            view->setFrame(f);
             return true;
         }
     }
@@ -69,7 +69,7 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
         REColor c;
         if (sscanf(value, RE_VIEW_XML_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
         {
-            view->SetColor(c);
+            view->setColor(c);
             return true;
         }
     }
@@ -78,7 +78,7 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
         int v = 0;
         if (sscanf(value, RE_VIEW_XML_RESPONDS_USER_ACTION_FORMAT_STRING, &v) == 1)
         {
-            view->SetRespondsForUserAction((v != 0));
+            view->setRespondsForUserAction((v != 0));
             return true;
         }
     }
@@ -87,7 +87,7 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
         int v = 0;
         if (sscanf(value, RE_VIEW_XML_INTERCEPTS_USER_ACTION_FORMAT_STRING, &v) == 1)
         {
-            view->SetInterceptsUserAction((v != 0));
+            view->setInterceptsUserAction((v != 0));
             return true;
         }
     }
@@ -95,31 +95,31 @@ REBOOL REView::AcceptViewStringParameter(REView * view, const char * key, const 
 }
 
 /* REGUIObject */
-REBOOL REView::AcceptStringParameter(const char * key, const char * value)
+REBOOL REView::acceptStringParameter(const char * key, const char * value)
 {
     if (key && value)
     {
-        return REView::AcceptViewStringParameter(this, key, value);
+        return REView::acceptViewStringParameter(this, key, value);
     }
     return false;
 }
 
-REBOOL REView::AcceptObjectParameter(const char * className, const char * key, REGUIObject * value)
+REBOOL REView::acceptObjectParameter(const char * className, const char * key, REGUIObject * value)
 {
 	if (value && className && key) 
 	{
 		if (strcmp(key, RE_VIEW_XML_SUBVIEW_OBJECT_KEY_STRING) == 0) 
 		{
 			REView * v = (REView *)value;
-			this->AddSubView(v);
-			value->Release();
+			this->addSubView(v);
+			value->release();
 			return true;
 		}
 		else if (strcmp(key, RE_VIEW_XML_TEXTURE_OBJECT_KEY_STRING) == 0) 
 		{
 			RETextureObject * texture = (RETextureObject *)value;
-			this->SetTexture(texture);
-			value->Release();
+			this->setTexture(texture);
+			value->release();
 			return true;
 		}
 	}
@@ -127,28 +127,28 @@ REBOOL REView::AcceptObjectParameter(const char * className, const char * key, R
 	return false;
 }
 
-const REUInt32 REView::GetClassIdentifier() const
+const REUInt32 REView::getClassIdentifier() const
 {
-	return REView::ClassIdentifier();
+	return REView::classIdentifier();
 }
 
-const REUInt32 REView::ClassIdentifier()
+const REUInt32 REView::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::GenerateClassIdentifierFromClassName("REView");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REView");
 	return clasIdentif;
 }
 
-REBOOL REView::IsImplementsClass(const REUInt32 classIdentifier) const
+REBOOL REView::isImplementsClass(const REUInt32 classIdentifier) const
 {
-	return ((REView::ClassIdentifier() == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("RESubViewsContainer") == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IRERenderable") == classIdentifier) ||
-			(REObject::GenerateClassIdentifierFromClassName("IREUserActionResponder") == classIdentifier) ||
-			REGUIObject::IsImplementsClass(classIdentifier));
+	return ((REView::classIdentifier() == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("RESubViewsContainer") == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IRERenderable") == classIdentifier) ||
+			(REObject::generateClassIdentifierFromClassName("IREUserActionResponder") == classIdentifier) ||
+			REGUIObject::isImplementsClass(classIdentifier));
 }
 
 /* IREView */
-void REView::Render()
+void REView::render()
 {
 	if (_isVisible)
 	{
@@ -165,11 +165,11 @@ void REView::Render()
 			}
 		}
 		
-		this->RenderSubViews(_frame.x, _frame.y);
+		this->renderSubViews(_frame.x, _frame.y);
 	}
 }
 
-void REView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
+void REView::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
 	if ( _isVisible )
 	{	
@@ -190,95 +190,95 @@ void REView::RenderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 			}
 		}
 		
-		this->RenderSubViews(renderX, renderY);
+		this->renderSubViews(renderX, renderY);
 	}
 }
 
-void REView::SetFrame(const RERect & newViewFrame)
+void REView::setFrame(const RERect & newViewFrame)
 {	
 	_frame = newViewFrame;
 }
 
-void REView::SetFrameAnimated(const RERect & newViewFrame)
+void REView::setFrameAnimated(const RERect & newViewFrame)
 {
-	if (REAnimation::IsSetuping())
+	if (REAnimation::isSetuping())
 	{
 		if (_frame.x != newViewFrame.x)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_frame.x, _frame.x, newViewFrame.x);
+			REAnimation::addFloatParam(this, &_animationsCount, &_frame.x, _frame.x, newViewFrame.x);
 		}
 		if (_frame.y != newViewFrame.y)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_frame.y, _frame.y, newViewFrame.y);
+			REAnimation::addFloatParam(this, &_animationsCount, &_frame.y, _frame.y, newViewFrame.y);
 		}
 		if (_frame.width != newViewFrame.width)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_frame.width, _frame.width, newViewFrame.width);
+			REAnimation::addFloatParam(this, &_animationsCount, &_frame.width, _frame.width, newViewFrame.width);
 		}
 		if (_frame.height != newViewFrame.height)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_frame.height, _frame.height, newViewFrame.height);
+			REAnimation::addFloatParam(this, &_animationsCount, &_frame.height, _frame.height, newViewFrame.height);
 		}
 	}
 	else
 	{
-		this->SetFrame(newViewFrame);
+		this->setFrame(newViewFrame);
 	}
 }
 
-const RERect & REView::GetFrame() const
+const RERect & REView::getFrame() const
 {
 	return _frame;
 }
 
-void REView::SetColor(const REColor & newViewColor)
+void REView::setColor(const REColor & newViewColor)
 {
 	_color = newViewColor;
 }
 
-void REView::SetColorAnimated(const REColor & newViewColor)
+void REView::setColorAnimated(const REColor & newViewColor)
 {
-	if (REAnimation::IsSetuping())
+	if (REAnimation::isSetuping())
 	{
 		if (_color.red != newViewColor.red)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_color.red, _color.red, newViewColor.red);
+			REAnimation::addFloatParam(this, &_animationsCount, &_color.red, _color.red, newViewColor.red);
 		}
 		if (_color.green != newViewColor.green)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_color.green, _color.green, newViewColor.green);
+			REAnimation::addFloatParam(this, &_animationsCount, &_color.green, _color.green, newViewColor.green);
 		}
 		if (_color.blue != newViewColor.blue)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_color.blue, _color.blue, newViewColor.blue);
+			REAnimation::addFloatParam(this, &_animationsCount, &_color.blue, _color.blue, newViewColor.blue);
 		}
 		if (_color.alpha != newViewColor.alpha)
 		{
-			REAnimation::AddFloatParam(this, &_animationsCount, &_color.alpha, _color.alpha, newViewColor.alpha);
+			REAnimation::addFloatParam(this, &_animationsCount, &_color.alpha, _color.alpha, newViewColor.alpha);
 		}
 	}
 	else
 	{
-		this->SetColor(newViewColor);
+		this->setColor(newViewColor);
 	}
 }
 
-const REColor & REView::GetColor() const
+const REColor & REView::getColor() const
 {
 	return _color;
 }
 
-void REView::SetAlpha(const REFloat32 newAlpha, const REBOOL isWithSubViews)
+void REView::setAlpha(const REFloat32 newAlpha, const REBOOL isWithSubViews)
 {
 	if (isWithSubViews) 
 	{
-		REObjectsArray * subViews = this->GetSubViewsArray();
+		REArrayObject * subViews = this->getSubViewsArray();
 		if (subViews) 
 		{
-			for (REUInt32 index = 0; index < subViews->Count(); index++) 
+			for (REUInt32 index = 0; index < subViews->count(); index++) 
 			{
 				REView * subView = (REView*)(*subViews)[index];
-				subView->SetAlpha(newAlpha, isWithSubViews);
+				subView->setAlpha(newAlpha, isWithSubViews);
 			}
 		}
 	}
@@ -286,76 +286,76 @@ void REView::SetAlpha(const REFloat32 newAlpha, const REBOOL isWithSubViews)
 	_color.alpha = newAlpha;
 }
 
-void REView::SetAlphaAnimated(const REFloat32 newAlpha, const REBOOL isWithSubViews)
+void REView::setAlphaAnimated(const REFloat32 newAlpha, const REBOOL isWithSubViews)
 {
 	if (isWithSubViews) 
 	{
-		REObjectsArray * subViews = this->GetSubViewsArray();
+		REArrayObject * subViews = this->getSubViewsArray();
 		if (subViews) 
 		{
-			for (REUInt32 index = 0; index < subViews->Count(); index++) 
+			for (REUInt32 index = 0; index < subViews->count(); index++) 
 			{
 				REView * subView = (REView*)(*subViews)[index];
-				subView->SetAlphaAnimated(newAlpha, isWithSubViews);
+				subView->setAlphaAnimated(newAlpha, isWithSubViews);
 			}
 		}
 	}
 	
-	if (REAnimation::IsSetuping())
+	if (REAnimation::isSetuping())
 	{
 		if (_color.alpha != newAlpha)
 		{
-			REAnimation::AddFloatParam(this,&_animationsCount,&_color.alpha,_color.alpha,newAlpha);
+			REAnimation::addFloatParam(this,&_animationsCount,&_color.alpha,_color.alpha,newAlpha);
 		}
 	}
 	else
 	{
-		this->SetAlpha(newAlpha, isWithSubViews);
+		this->setAlpha(newAlpha, isWithSubViews);
 	}
 }
 
-const REFloat32 REView::GetAlpha() const
+const REFloat32 REView::getAlpha() const
 {
 	return _color.alpha;
 }
 
-void REView::StopAnimation(const REAnimationStopType stopType, const REBOOL isStopWithSubviews, const REBOOL isNeedCallDelegate)
+void REView::stopAnimation(const REAnimationStopType stopType, const REBOOL isStopWithSubviews, const REBOOL isNeedCallDelegate)
 {
-	if ( this->IsAnimating() )
+	if ( this->isAnimating() )
 	{
-		REAnimation::StopAllAnimations(this, stopType, isNeedCallDelegate);
+		REAnimation::stopAllAnimations(this, stopType, isNeedCallDelegate);
 	}
 	
 	if (isStopWithSubviews) 
 	{
-		REObjectsArray * subViews = this->GetSubViewsArray();
+		REArrayObject * subViews = this->getSubViewsArray();
 		if (subViews) 
 		{
-			for (REUInt32 index = 0; index < subViews->Count(); index++) 
+			for (REUInt32 index = 0; index < subViews->count(); index++) 
 			{
 				REView * subView = (REView*)((*subViews)[index]);
-				subView->StopAnimation(stopType, isStopWithSubviews, isNeedCallDelegate);
+				subView->stopAnimation(stopType, isStopWithSubviews, isNeedCallDelegate);
 			}
 		}
 	}
 }
 
-REBOOL REView::RemoveFromParentView()
+REBOOL REView::removeFromParentView()
 {
-	REView * parent = this->GetParentSubViewsContainer();
+	REView * parent = this->getParentSubViewsContainer();
 	if (parent) 
 	{
-		parent->RemoveSubView(this);
+		parent->removeSubView(this);
 	}
 	return true;
 }
 
-RERect REView::GetScreenFrame() const
+RERect REView::getScreenFrame() const
 {
-	REView * parent = this->GetParentSubViewsContainer();
+	REView * parent = this->getParentSubViewsContainer();
     if (parent)
 	{
-		RERect parentScreenFrame(parent->GetScreenFrame());
+		RERect parentScreenFrame(parent->getScreenFrame());
 		return RERect(_frame.x + parentScreenFrame.x,
 					  _frame.y + parentScreenFrame.y,
 					  _frame.width,
@@ -364,34 +364,34 @@ RERect REView::GetScreenFrame() const
 	return _frame;
 }
 
-RETextureObject * REView::GetTexture()
+RETextureObject * REView::getTexture()
 {
 	return _texture;
 }
 
-void REView::SetTexture(RETextureObject * newTexture)
+void REView::setTexture(RETextureObject * newTexture)
 {
 	RE_SAFE_RELEASE(_texture);
 	
 	if (newTexture)
 	{
 		_texture = newTexture;
-		_texture->Retain();
+		_texture->retain();
 	}
 }
 
-void REView::OnReleased()
+void REView::onReleased()
 {
-	this->RemoveFromParentView();
+	this->removeFromParentView();
 	
 	RE_SAFE_RELEASE(_texture);
 	
-	if (this->IsAnimating())
+	if (this->isAnimating())
 	{
-		REAnimation::StopAllAnimations(this, REAnimationStopTypeImmediately, false);
+		REAnimation::stopAllAnimations(this, REAnimationStopTypeImmediately, false);
 	}
 	
-	REGUIObject::OnReleased();
+	REGUIObject::onReleased();
 }
 
 REView::REView() : REGUIObject(), RESubViewsContainer(),
@@ -413,34 +413,34 @@ REView::~REView()
 	
 }
 
-REView * REView::Create()
+REView * REView::create()
 {
 	REView * newView = new REView();
 	return newView;
 }
 
-REView * REView::CreateWithFrame(const RERect & frame)
+REView * REView::createWithFrame(const RERect & frame)
 {
 	REView * newView = new REView();
 	if (newView)
 	{
-		newView->SetFrame(frame);
+		newView->setFrame(frame);
 	}
 	return newView;
 }
 
-const char * REView::GetXMLTagKeyString() { return RE_VIEW_XML_TAG_KEY_STRING; }
-const char * REView::GetXMLTagFormatString() { return RE_VIEW_XML_TAG_FORMAT_STRING; }
-const char * REView::GetXMLVisibilityKeyString() { return RE_VIEW_XML_VISIBILITY_KEY_STRING; }
-const char * REView::GetXMLVisibilityFormatString() { return RE_VIEW_XML_VISIBILITY_FORMAT_STRING; }
-const char * REView::GetXMLFrameKeyString() { return RE_VIEW_XML_FRAME_KEY_STRING; }
-const char * REView::GetXMLFrameFormatString() { return RE_VIEW_XML_FRAME_FORMAT_STRING; }
-const char * REView::GetXMLColorKeyString() { return RE_VIEW_XML_COLOR_KEY_STRING; }
-const char * REView::GetXMLColorFormatString() { return RE_VIEW_XML_COLOR_FORMAT_STRING; }
-const char * REView::GetXMLRespondsUserActionKeyString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_KEY_STRING; }
-const char * REView::GetXMLRespondsUserActionFormatString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_FORMAT_STRING; }
-const char * REView::GetXMLInterceptsUserActionKeyString() { return RE_VIEW_XML_INTERCEPTS_USER_ACTION_KEY_STRING; }
-const char * REView::GetXMLInterceptsUserActionFormatString() { return RE_VIEW_XML_INTERCEPTS_USER_ACTION_FORMAT_STRING; }
-const char * REView::GetXMLSubViewObjectKeyString() { return RE_VIEW_XML_SUBVIEW_OBJECT_KEY_STRING; }
-const char * REView::GetXMLTextureObjectKeyString() { return RE_VIEW_XML_TEXTURE_OBJECT_KEY_STRING; }
+const char * REView::getXMLTagKeyString() { return RE_VIEW_XML_TAG_KEY_STRING; }
+const char * REView::getXMLTagFormatString() { return RE_VIEW_XML_TAG_FORMAT_STRING; }
+const char * REView::getXMLVisibilityKeyString() { return RE_VIEW_XML_VISIBILITY_KEY_STRING; }
+const char * REView::getXMLVisibilityFormatString() { return RE_VIEW_XML_VISIBILITY_FORMAT_STRING; }
+const char * REView::getXMLFrameKeyString() { return RE_VIEW_XML_FRAME_KEY_STRING; }
+const char * REView::getXMLFrameFormatString() { return RE_VIEW_XML_FRAME_FORMAT_STRING; }
+const char * REView::getXMLColorKeyString() { return RE_VIEW_XML_COLOR_KEY_STRING; }
+const char * REView::getXMLColorFormatString() { return RE_VIEW_XML_COLOR_FORMAT_STRING; }
+const char * REView::getXMLRespondsUserActionKeyString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_KEY_STRING; }
+const char * REView::getXMLRespondsUserActionFormatString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_FORMAT_STRING; }
+const char * REView::getXMLInterceptsUserActionKeyString() { return RE_VIEW_XML_INTERCEPTS_USER_ACTION_KEY_STRING; }
+const char * REView::getXMLInterceptsUserActionFormatString() { return RE_VIEW_XML_INTERCEPTS_USER_ACTION_FORMAT_STRING; }
+const char * REView::getXMLSubViewObjectKeyString() { return RE_VIEW_XML_SUBVIEW_OBJECT_KEY_STRING; }
+const char * REView::getXMLTextureObjectKeyString() { return RE_VIEW_XML_TEXTURE_OBJECT_KEY_STRING; }
 

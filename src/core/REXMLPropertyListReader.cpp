@@ -16,10 +16,13 @@
 
 
 #include "../../include/recore/REXMLPropertyListReader.h"
-#include "../../include/recore/REObjectsDictionary.h"
+#include "../../include/recore/REDictionaryObject.h"
 
 #if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
+
+using namespace tinyxml2;
+
 #elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
 #include <tinyxml.h>
 #else
@@ -27,19 +30,19 @@
 #endif
 
 
-void REXMLPropertyListReader::ClearPairs(REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+void REXMLPropertyListReader::ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	for (REUInt32 i = 0; i < pairs->Count(); i++) 
+	for (REUInt32 i = 0; i < pairs->count(); i++) 
 	{
-		REObjectsDictionary::KeyObjectStruct * p = &((*pairs)[i]);
+		REDictionaryObject::KeyObjectStruct * p = &((*pairs)[i]);
 		if (p->keyValue) 
 		{
-			p->keyValue->Release();
+			p->keyValue->release();
 		}
 		if (p->objValue) 
 		{
-			p->objValue->Release();
+			p->objValue->release();
 		}
 	}
 #endif
@@ -48,7 +51,7 @@ void REXMLPropertyListReader::ClearPairs(REArray<REObjectsDictionary::KeyObjectS
 REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	TiXmlElement * elem = (TiXmlElement *)elementObject;
+	XMLElement * elem = (XMLElement *)elementObject;
 	const char * eVal = elem->Value();
 	if (eVal) 
 	{
@@ -61,7 +64,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 					const char * numberString = elem->GetText();
 					if (numberString) 
 					{
-						RENumberObject * numberValue = RENumberObject::CreateWithStringPresentation(numberString);
+						RENumberObject * numberValue = RENumberObject::createWithStringPresentation(numberString);
 						if (numberValue) 
 						{
 							return numberValue;
@@ -71,29 +74,29 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 				else if (strncmp(eVal, "data", 4) == 0)
 				{
 					REString base64String(elem->GetText());
-					if (!base64String.IsEmpty()) 
+					if (!base64String.isEmpty()) 
 					{
-						REBufferObject * bufferValue = REBufferObject::Create();
+						REBufferObject * bufferValue = REBufferObject::create();
 						if (bufferValue) 
 						{
 							REBase64 b;
-							if ( b.Base64StringToBuffer(base64String, bufferValue) )
+							if ( b.base64StringToBuffer(base64String, bufferValue) )
 							{
 								return bufferValue;
 							}
 							else
 							{
-								bufferValue->Release();
+								bufferValue->release();
 							}
 						}
 					}
 				}
 				else if (strncmp(eVal, "dict", 4) == 0)
 				{
-					REObjectsDictionary * dictValue = REObjectsDictionary::Create();
+					REDictionaryObject * dictValue = REDictionaryObject::create();
 					if (dictValue) 
 					{
-						REArray<REObjectsDictionary::KeyObjectStruct> * newPairs = dictValue->GetPairs();
+						REArray<REDictionaryObject::KeyObjectStruct> * newPairs = dictValue->getPairs();
 						if (newPairs) 
 						{
 							if ( REXMLPropertyListReader::ParseDictionaryElement(newPairs, elem) ) 
@@ -102,18 +105,18 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 							}
 							else
 							{
-								dictValue->Release();
+								dictValue->release();
 							}
 						}
 						else
 						{
-							dictValue->Release();
+							dictValue->release();
 						}
 					}
 				}
 				else if (strncmp(eVal, "true", 4) == 0)
 				{
-					RENumberObject * numberValue = RENumberObject::CreateWithBool((REBOOL)true);
+					RENumberObject * numberValue = RENumberObject::createWithBool((REBOOL)true);
 					if (numberValue) 
 					{
 						return numberValue;
@@ -125,15 +128,15 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 			case 5:
 				if (strncmp(eVal, "array", 5) == 0)
 				{
-					REObjectsArray * arr = REObjectsArray::Create();
+					REArrayObject * arr = REArrayObject::create();
 					if (arr) 
 					{
-						for(TiXmlElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )
+						for(XMLElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )
 						{
 							REObject * arrObjValue = REXMLPropertyListReader::NewObjectFromElement(arrElem);
 							if (arrObjValue) 
 							{
-								arr->Add(arrObjValue);
+								arr->add(arrObjValue);
 							}
 						}
 					}
@@ -141,7 +144,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 				}
 				else if (strncmp(eVal, "false", 5) == 0)
 				{
-					RENumberObject * numberValue = RENumberObject::CreateWithBool((REBOOL)false);
+					RENumberObject * numberValue = RENumberObject::createWithBool((REBOOL)false);
 					if (numberValue) 
 					{
 						return numberValue;
@@ -152,7 +155,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 			case 6:
 				if (strncmp(eVal, "string", 6) == 0)
 				{
-					REStringObject * stringValue = REStringObject::CreateWithChars(elem->GetText());
+					REStringObject * stringValue = REStringObject::createWithChars(elem->GetText());
 					return stringValue;
 				}
 				break;
@@ -164,7 +167,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 					const char * numberString = elem->GetText();
 					if (numberString) 
 					{
-						RENumberObject * numberValue = RENumberObject::CreateWithStringPresentation(numberString);
+						RENumberObject * numberValue = RENumberObject::createWithStringPresentation(numberString);
 						if (numberValue) 
 						{
 							return numberValue;
@@ -182,12 +185,12 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 	return NULL;
 }
 
-REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * dictionaryElement)
+REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	REStringObject * keyString = NULL;
-	TiXmlElement * dictElement = (TiXmlElement *)dictionaryElement;
-	for(TiXmlElement * elem = dictElement->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement() )
+	XMLElement * dictElement = (XMLElement *)dictionaryElement;
+	for(XMLElement * elem = dictElement->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement() )
 	{
 		const char * eVal = elem->Value();
 		if (eVal) 
@@ -198,12 +201,12 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 				if (strncmp(eVal, "key", 3) == 0) 
 				{
 					RE_SAFE_RELEASE(keyString);
-					keyString = REStringObject::CreateWithChars(elem->GetText());
+					keyString = REStringObject::createWithChars(elem->GetText());
 					if (keyString) 
 					{
-						if (keyString->IsEmpty()) 
+						if (keyString->isEmpty()) 
 						{
-							keyString->Release();
+							keyString->release();
 							return false;
 						}
 					}
@@ -214,10 +217,10 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 				REObject * objValue = REXMLPropertyListReader::NewObjectFromElement(elem);
 				if (objValue) 
 				{
-					REObjectsDictionary::KeyObjectStruct pair;
+					REDictionaryObject::KeyObjectStruct pair;
 					pair.keyValue = keyString;
 					pair.objValue = objValue;
-					pairs->Add(pair);
+					pairs->add(pair);
 					keyString = NULL;
 				}
 			}
@@ -227,18 +230,18 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REObjectsDictiona
 	
 	if (keyString) 
 	{
-		keyString->Release();
+		keyString->release();
 	}
 #endif
 	return true;
 }
 
-REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, void * propListElement)
+REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
-	TiXmlElement * element = (TiXmlElement *)propListElement;
+	XMLElement * element = (XMLElement *)propListElement;
 	
-	for (TiXmlElement * dictElem = element->FirstChildElement(); dictElem != NULL; dictElem = dictElem->NextSiblingElement()) 
+	for (XMLElement * dictElem = element->FirstChildElement(); dictElem != NULL; dictElem = dictElem->NextSiblingElement()) 
 	{
 		const char * nodeValue = dictElem->Value();
 		if (nodeValue) 
@@ -253,19 +256,19 @@ REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REObjectsDiction
 	return false;
 }
 
-REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	if ((listString == NULL) || (pairs == NULL) ) { return false; }
 	
 	REXMLPropertyListReader::ClearPairs(pairs);
 	
-	TiXmlDocument doc;
+	XMLDocument doc;
 	doc.Parse(listString);
 	
 	if (doc.Error()) { return false; }
 	
-	TiXmlElement * root = doc.RootElement();
+	XMLElement * root = doc.RootElement();
 	if (root == NULL) { return false; }
 	
 	const char * rootVal = root->Value();
@@ -281,10 +284,10 @@ REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<
 	return false;
 }
 
-REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REObjectsDictionary::KeyObjectStruct> * pairs)
+REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
-	return this->ReadFromString(listString.UTF8String(), pairs);
+	return this->ReadFromString(listString.getChars(), pairs);
 #else
 	return false;
 #endif
