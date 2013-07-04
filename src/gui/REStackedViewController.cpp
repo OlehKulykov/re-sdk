@@ -37,11 +37,7 @@ REBOOL REStackedViewController::isImplementsClass(const REUInt32 classIdentifier
 REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubViews)
 {
 	this->lockUpdate();
-<<<<<<< HEAD
 	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
-=======
-	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	if (subViews) 
 	{
 		if (_stackedSubViewsArray == NULL) 
@@ -51,11 +47,7 @@ REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubView
 		
 		if (_stackedSubViewsArray) 
 		{
-<<<<<<< HEAD
 			REArrayObject * newSubViews = REArrayObject::createWithObjectsArray(subViews);
-=======
-			REObjectsArray * newSubViews = REObjectsArray::createWithObjectsArray(subViews);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			if (newSubViews) 
 			{
 				if (_stackedSubViewsArray->add(newSubViews)) 
@@ -78,21 +70,13 @@ REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubView
 REBOOL REStackedViewController::popSubViews()
 {
 	this->lockUpdate();
-<<<<<<< HEAD
 	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
-=======
-	REObjectsArray * subViews = this->getOrCreateAndGetSubViewsArray(); 
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	if (_stackedSubViewsArray && subViews) 
 	{
 		if (_stackedSubViewsArray->count()) 
 		{
 			subViews->clear();
-<<<<<<< HEAD
 			REArrayObject * subViewsArray = _stackedSubViewsArray->lastObject();
-=======
-			REObjectsArray * subViewsArray = _stackedSubViewsArray->lastObject();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			subViews->set(*subViewsArray);
 			_stackedSubViewsArray->removeLast();
 			if (_stackedSubViewsArray->isEmpty()) 
@@ -121,11 +105,7 @@ void REStackedViewController::onReleased()
 	{
 		for (REUInt32 i = 0; i < _stackedSubViewsArray->count(); i++) 
 		{
-<<<<<<< HEAD
 			REArrayObject * subViewsArray = (*_stackedSubViewsArray)[i];
-=======
-			REObjectsArray * subViewsArray = (*_stackedSubViewsArray)[i];
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 			subViewsArray->release();
 		}
 		delete _stackedSubViewsArray;

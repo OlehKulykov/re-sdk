@@ -23,18 +23,13 @@
 #include "REString.h"
 #include "RENumber.h"
 #include "REArray.h"
-<<<<<<< HEAD
 #include "RENULL.h"
-=======
-#include "RENULLObject.h"
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 #include "REBuffer.h"
 #include "REDate.h"
 
 typedef enum _rePtrType
 {
 	REPtrTypeNone = 0,
-<<<<<<< HEAD
 	
 	REPtrTypeString = 1,
 	REPtrTypeNumber = 1 << 1,
@@ -54,16 +49,6 @@ typedef enum _rePtrType
 	REPtrTypeDictionaryObject = (REPtrTypeREObject | REPtrTypeDictionary),
 	REPtrTypeDateObject = (REPtrTypeREObject | REPtrTypeDate)
 	
-=======
-	REPtrTypeString = 1,
-	REPtrTypeNumber = 2,
-	REPtrTypeArray = 3,
-	REPtrTypeNull = 4,
-	REPtrTypeBuffer = 5,
-	REPtrTypeDictionary = 6,
-	REPtrTypeVoidPointer = 7,
-	REPtrTypeDate = 8
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 } REPtrType;
 
 class REDictionary;
@@ -80,10 +65,7 @@ protected:
 	void retain();
 	
 	void deleteObject();
-<<<<<<< HEAD
 	static void deleteREObject(void * obj, const REPtrType type);
-=======
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	
 public:
 	REBOOL isEmpty() const;
@@ -99,11 +81,7 @@ public:
 	REString * getString() const;
 	RENumber * getNumber() const;
 	RETypedArray * getArray() const;
-<<<<<<< HEAD
 	RENULL * getNULL() const;
-=======
-	RENULLObject * getNULL() const;
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	REBuffer * getBuffer() const;
 	REDictionary * getDictionary() const;
 	void * getVoidPointer() const;
@@ -116,7 +94,6 @@ public:
 	RETypedPtr();
 	~RETypedPtr();
 	
-<<<<<<< HEAD
 	template <typename reObjectTypeName> 
 	reObjectTypeName * getREObject() const
 	{
@@ -140,8 +117,6 @@ public:
 		}
 	}
 	
-=======
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	static REBOOL isNotEmpty(RETypedPtr * ptr);
 };
 

@@ -272,11 +272,7 @@ void REView::setAlpha(const REFloat32 newAlpha, const REBOOL isWithSubViews)
 {
 	if (isWithSubViews) 
 	{
-<<<<<<< HEAD
 		REArrayObject * subViews = this->getSubViewsArray();
-=======
-		REObjectsArray * subViews = this->getSubViewsArray();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (subViews) 
 		{
 			for (REUInt32 index = 0; index < subViews->count(); index++) 
@@ -294,11 +290,7 @@ void REView::setAlphaAnimated(const REFloat32 newAlpha, const REBOOL isWithSubVi
 {
 	if (isWithSubViews) 
 	{
-<<<<<<< HEAD
 		REArrayObject * subViews = this->getSubViewsArray();
-=======
-		REObjectsArray * subViews = this->getSubViewsArray();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (subViews) 
 		{
 			for (REUInt32 index = 0; index < subViews->count(); index++) 
@@ -336,11 +328,7 @@ void REView::stopAnimation(const REAnimationStopType stopType, const REBOOL isSt
 	
 	if (isStopWithSubviews) 
 	{
-<<<<<<< HEAD
 		REArrayObject * subViews = this->getSubViewsArray();
-=======
-		REObjectsArray * subViews = this->getSubViewsArray();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (subViews) 
 		{
 			for (REUInt32 index = 0; index < subViews->count(); index++) 

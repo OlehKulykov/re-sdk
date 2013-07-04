@@ -40,19 +40,11 @@ REBOOL REXMLPropertyListWriter::writeNumber(const REString & prefixString, RENum
 	return false;
 }
 
-<<<<<<< HEAD
 REBOOL REXMLPropertyListWriter::writeDictionary(const REString & prefixString, REDictionaryObject * dict)
 {
 	_xmlStr->appendFormat("\n%s<dict>", prefixString.getChars());
 	
 	REArray<REDictionaryObject::KeyObjectStruct> * pairs = dict->getPairs();
-=======
-REBOOL REXMLPropertyListWriter::writeDictionary(const REString & prefixString, REObjectsDictionary * dict)
-{
-	_xmlStr->appendFormat("\n%s<dict>", prefixString.getChars());
-	
-	REArray<REObjectsDictionary::KeyObjectStruct> * pairs = dict->getPairs();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	if (pairs) 
 	{
 		REMutableString newPrefix(prefixString);
@@ -79,11 +71,7 @@ REBOOL REXMLPropertyListWriter::writeDictionary(const REString & prefixString, R
 	return true;
 }
 
-<<<<<<< HEAD
 REBOOL REXMLPropertyListWriter::writeArray(const REString & prefixString, REArrayObject * arrObj)
-=======
-REBOOL REXMLPropertyListWriter::writeArray(const REString & prefixString, REObjectsArray * arrObj)
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 {
 	_xmlStr->appendFormat("\n%s<array>", prefixString.getChars());
 	
@@ -135,7 +123,6 @@ REBOOL REXMLPropertyListWriter::writeObject(const REString & prefixString, REObj
 	{
 		return this->writeString(prefixString, (REStringObject *)obj);
 	}
-<<<<<<< HEAD
 	else if (objClassIdentifier == REArrayObject::classIdentifier())
 	{
 		return this->writeArray(prefixString, (REArrayObject *)obj);
@@ -143,15 +130,6 @@ REBOOL REXMLPropertyListWriter::writeObject(const REString & prefixString, REObj
 	else if (objClassIdentifier == REDictionaryObject::classIdentifier())
 	{
 		return this->writeDictionary(prefixString, (REDictionaryObject *)obj);
-=======
-	else if (objClassIdentifier == REObjectsArray::classIdentifier())
-	{
-		return this->writeArray(prefixString, (REObjectsArray *)obj);
-	}
-	else if (objClassIdentifier == REObjectsDictionary::classIdentifier())
-	{
-		return this->writeDictionary(prefixString, (REObjectsDictionary *)obj);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	}
 	else if (objClassIdentifier == RENumberObject::classIdentifier())
 	{
@@ -164,11 +142,7 @@ REBOOL REXMLPropertyListWriter::writeObject(const REString & prefixString, REObj
 	return false;
 }
 
-<<<<<<< HEAD
 REBOOL REXMLPropertyListWriter::writePair(const REString & prefixString, REDictionaryObject::KeyObjectStruct * pair)
-=======
-REBOOL REXMLPropertyListWriter::writePair(const REString & prefixString, REObjectsDictionary::KeyObjectStruct * pair)
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 {
 	if (pair->keyValue->getClassIdentifier() != REStringObject::classIdentifier())
 	{
@@ -182,11 +156,7 @@ REBOOL REXMLPropertyListWriter::writePair(const REString & prefixString, REObjec
 	return this->writeObject(prefixString, pair->objValue);
 }
 
-<<<<<<< HEAD
 REBOOL REXMLPropertyListWriter::writeToString(REArray<REDictionaryObject::KeyObjectStruct> * pairs, REMutableString * listString)
-=======
-REBOOL REXMLPropertyListWriter::writeToString(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, REMutableString * listString)
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 {
 	_errorString.clear();
 	

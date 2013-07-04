@@ -39,11 +39,7 @@ protected:
 	
 	/// Returns pointer to array contained subviews.
 	/// If array not created it will creates.
-<<<<<<< HEAD
 	REArrayObject * getOrCreateAndGetSubViewsArray();
-=======
-	REObjectsArray * getOrCreateAndGetSubViewsArray();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	
 	/// Called when some 'view' added to container.
 	virtual void onViewDidAdded(REView * view) { }
@@ -58,11 +54,7 @@ public:
 	
 	/// Return array of subviews.
 	/// Return array pointer or NULL
-<<<<<<< HEAD
 	REArrayObject * getSubViewsArray() const { return _subViewsArray; }
-=======
-	REObjectsArray * getSubViewsArray() const { return _subViewsArray; }
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 	
 	/// Check this container for childs view.
 	REBOOL isHasSubViews() const;

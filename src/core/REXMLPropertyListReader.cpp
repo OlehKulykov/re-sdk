@@ -93,17 +93,10 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 				}
 				else if (strncmp(eVal, "dict", 4) == 0)
 				{
-<<<<<<< HEAD
 					REDictionaryObject * dictValue = REDictionaryObject::create();
 					if (dictValue) 
 					{
 						REArray<REDictionaryObject::KeyObjectStruct> * newPairs = dictValue->getPairs();
-=======
-					REObjectsDictionary * dictValue = REObjectsDictionary::create();
-					if (dictValue) 
-					{
-						REArray<REObjectsDictionary::KeyObjectStruct> * newPairs = dictValue->getPairs();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 						if (newPairs) 
 						{
 							if ( REXMLPropertyListReader::ParseDictionaryElement(newPairs, elem) ) 
@@ -135,11 +128,7 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 			case 5:
 				if (strncmp(eVal, "array", 5) == 0)
 				{
-<<<<<<< HEAD
 					REArrayObject * arr = REArrayObject::create();
-=======
-					REObjectsArray * arr = REObjectsArray::create();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 					if (arr) 
 					{
 						for(XMLElement * arrElem = elem->FirstChildElement(); arrElem != NULL; arrElem = arrElem->NextSiblingElement() )

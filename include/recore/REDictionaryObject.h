@@ -46,21 +46,13 @@ public:
 	} KeyObjectStruct;
 
 private:
-<<<<<<< HEAD:include/recore/REDictionaryObject.h
 	REArray<REDictionaryObject::KeyObjectStruct> _pairs;
 	REDictionaryObject::KeyObjectStruct * pairForKey(REObject * keyObj);
 
 	static REBOOL isEqualByPairs(REObject * anotherObject, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
 	static REBOOL writePairsToFilePath(REArray<REDictionaryObject::KeyObjectStruct> * pairs, const REString & path);
 	static REBOOL readPairsFromFilePath(REArray<REDictionaryObject::KeyObjectStruct> * pairs, const REString & path);
-=======
-	REArray<REObjectsDictionary::KeyObjectStruct> _pairs;
-	REObjectsDictionary::KeyObjectStruct * pairForKey(REObject * keyObj);
 
-	static REBOOL isEqualByPairs(REObject * anotherObject, REArray<REObjectsDictionary::KeyObjectStruct> * pairs);
-	static REBOOL writePairsToFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
-	static REBOOL readPairsFromFilePath(REArray<REObjectsDictionary::KeyObjectStruct> * pairs, const REString & path);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsDictionary.h
 	
 protected:
 	/// Default constructor.
@@ -72,11 +64,7 @@ protected:
 public:
 	/// Return pointer for array of key object pairs.
 	/// All objects is Retain()'ed.
-<<<<<<< HEAD:include/recore/REDictionaryObject.h
 	REArray<REDictionaryObject::KeyObjectStruct> * getPairs();
-=======
-	REArray<REObjectsDictionary::KeyObjectStruct> * getPairs();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsDictionary.h
 	
 	/* REObject */
 	virtual const REUInt32 getClassIdentifier() const;
@@ -130,11 +118,7 @@ public:
 	REObject * getObjectForKey(const char * stringKey);
 	
 	/// Creates and return new dictionary object.
-<<<<<<< HEAD:include/recore/REDictionaryObject.h
 	static REDictionaryObject * create();
-=======
-	static REObjectsDictionary * create();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsDictionary.h
 };
 
 #endif /* __REDICTIONARYOBJECT_H__ */

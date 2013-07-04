@@ -100,11 +100,7 @@ public:
 	REBOOL add(REObject * object);
 	
 	/// Adds objects from another array.
-<<<<<<< HEAD:include/recore/REArrayObject.h
 	REBOOL add(const REArrayObject & anotherArray);
-=======
-	REBOOL add(const REObjectsArray & anotherArray);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsArray.h
 	
 	/// Adds objects from another array.
 	REBOOL add(const REArray<REObject *> & anotherArray);
@@ -122,11 +118,7 @@ public:
 	/// Removes objects from array that containes in another array. 
 	/// Returns true if object founded and removed or false if not found exists.
 	/// After removing objects call Release().
-<<<<<<< HEAD:include/recore/REArrayObject.h
 	REBOOL remove(const REArrayObject & anotherArray);
-=======
-	REBOOL remove(const REObjectsArray & anotherArray);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsArray.h
 	
 	/// Removes objects from array that containes in another array. 
 	/// Returns true if object founded and removed or false if not found exists.
@@ -153,19 +145,11 @@ public:
 	
 	/// Setts object objects from 'anotherArray'.
 	/// Prev objects is Release()'ed and new objects if Retain()'ed.
-<<<<<<< HEAD:include/recore/REArrayObject.h
 	REArrayObject & set(const REArrayObject & anotherArray);
 	
 	/// Setts object objects from 'anotherArray'.
 	/// Prev objects is Release()'ed and new objects if Retain()'ed.
 	REArrayObject & set(const REArray<REObject *> & anotherArray);
-=======
-	REObjectsArray & set(const REObjectsArray & anotherArray);
-	
-	/// Setts object objects from 'anotherArray'.
-	/// Prev objects is Release()'ed and new objects if Retain()'ed.
-	REObjectsArray & set(const REArray<REObject *> & anotherArray);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsArray.h
 	
 	/// Returns object at index or NULL if 'index' index not exists.
 	REObject* & operator[](const REUInt32 & index) { return _arr[index]; }
@@ -179,7 +163,6 @@ public:
 	REArrayObject & operator=(const REArray<REObject *> & anotherArray);
 	
 	/// Creates and return new empty array.
-<<<<<<< HEAD:include/recore/REArrayObject.h
 	static REArrayObject * create();
 	
 	/// Creates and return new array object with 'newCapacity' capacity or NULL on error.
@@ -193,21 +176,6 @@ public:
 	/// Creates and return new array object with object from 'anotherArray' another array or NULL on error.
 	/// After using this array call Release().
 	static REArrayObject * createWithArray(const REArray<REObject *> & anotherArray);
-=======
-	static REObjectsArray * create();
-	
-	/// Creates and return new array object with 'newCapacity' capacity or NULL on error.
-	/// After using this array call Release().
-	static REObjectsArray * createWithCapacity(const REUInt32 newCapacity);
-	
-	/// Creates and return new array object with object from 'anotherArray' another array or NULL on error.
-	/// After using this array call Release().
-	static REObjectsArray * createWithObjectsArray(const REObjectsArray * anotherArray);	
-	
-	/// Creates and return new array object with object from 'anotherArray' another array or NULL on error.
-	/// After using this array call Release().
-	static REObjectsArray * createWithArray(const REArray<REObject *> & anotherArray);
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639:include/recore/REObjectsArray.h
 };
 
 #endif /* __REARRAYOBJECT_H__ */ 

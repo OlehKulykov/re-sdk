@@ -58,11 +58,7 @@ protected:
 	
 	void renderSubViews(const REFloat32 x, const REFloat32 y)
 	{
-<<<<<<< HEAD
 		REArrayObject * subViews = this->getSubViewsArray();
-=======
-		REObjectsArray * subViews = this->getSubViewsArray();
->>>>>>> 5cb88de87e4cabcd359f1f70380107622060d639
 		if (subViews) 
 		{
 			for (REUInt32 i = 0; i < subViews->count(); i++) 
