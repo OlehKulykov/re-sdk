@@ -21,7 +21,7 @@
 
 #include <Foundation/Foundation.h>
 
-void RELocale::TryDetectLocale()
+void RELocale::tryDetectLocale()
 {
 	NSArray * arr = [NSLocale preferredLanguages];
 	if (arr)
@@ -31,7 +31,7 @@ void RELocale::TryDetectLocale()
 			NSString * currentLanguage = [[arr objectAtIndex:0] lowercaseString];
 			if (currentLanguage)
 			{
-				this->SetCurrentLocaleFromString([currentLanguage UTF8String]);
+                this->setCurrentLocaleFromString([currentLanguage UTF8String]);
 			}
 		}
 	}
