@@ -224,7 +224,7 @@ REBOOL REZipReader::isEmpty() const
 
 REBOOL REZipReader::openArchiveFile()
 {
-	zlib_filefunc_def * callBacks = (zlib_filefunc_def *)REMem::Malloc(sizeof(zlib_filefunc_def));
+	zlib_filefunc_def * callBacks = (zlib_filefunc_def *)malloc(sizeof(zlib_filefunc_def));
 	if (callBacks)
 	{
 		callBacks->opaque = _source;
@@ -244,7 +244,7 @@ REBOOL REZipReader::openArchiveFile()
 			return true;
 		}
 		
-		REMem::Free(callBacks);
+		free(callBacks);
 	}
 
 	return false;
@@ -353,7 +353,7 @@ REZipReader::~REZipReader()
 	if (_callBacks)
 	{
 		zlib_filefunc_def * callBacks = (zlib_filefunc_def *)_callBacks;
-		REMem::Free(callBacks);
+		free(callBacks);
 	}
 
 	if (_source) 

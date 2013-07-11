@@ -72,6 +72,11 @@ REDB::REDB()
 	
 }
 
+REDB::~REDB()
+{
+
+}
+
 REPtr<REDB> REDB::createSQLiteWithFilePath(const REString & dbFilePath)
 {
 	return REPtr<REDB>();

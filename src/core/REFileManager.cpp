@@ -344,7 +344,7 @@ REBOOL REFileManager::createDirectoryAtPath(const char * path, REBOOL isCreateIn
 		REBuffer buf(len + 1);
 		if (buf.getSize() == (len + 1)) 
 		{
-			REMem::Memcpy(buf.getBuffer(), path, len);
+			memcpy(buf.getBuffer(), path, len);
 			char * p = (char *)buf.getBuffer();
 			p[len] = 0;
 			while ((*p == '/') || (*p == '\\')) { p++; } // skip first '/'

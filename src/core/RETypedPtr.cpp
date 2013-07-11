@@ -130,31 +130,37 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 		switch (_type) 
 		{
 			case REPtrTypeString:
-				return RETypedPtrPrivate::compareStrings((REString *)_object, (REString *)anotherPtr._object);
+				return RETypedPtrPrivate::compareStrings(REPtrCast<REString, void>(_object), 
+														 REPtrCast<REString, void>(anotherPtr._object));
 				break;
 				
 			case REPtrTypeNumber:
-				return RETypedPtrPrivate::compareNumbers((RENumber *)_object, (RENumber *)anotherPtr._object);
+				return RETypedPtrPrivate::compareNumbers(REPtrCast<RENumber, void>(_object), 
+														 REPtrCast<RENumber, void>(anotherPtr._object));
 				break;
 				
 			case REPtrTypeNull:
-				return ((RENULL *)_object)->isEqualToNULL(*((RENULL *)anotherPtr._object));
+				return (REPtrCast<RENULL, void>(_object))->isEqualToNULL(*(REPtrCast<RENULL, void>(anotherPtr._object)));
 				break;
 				
 			case REPtrTypeBuffer:
-				return RETypedPtrPrivate::compareBuffers((REBuffer *)_object, (REBuffer *)anotherPtr._object);
+				return RETypedPtrPrivate::compareBuffers(REPtrCast<REBuffer, void>(_object), 
+														 REPtrCast<REBuffer, void>(anotherPtr._object));
 				break;
 				
 			case REPtrTypeArray:
-				return RETypedPtrPrivate::compareArrays((RETypedArray *)_object, (RETypedArray *)anotherPtr._object);
+				return RETypedPtrPrivate::compareArrays(REPtrCast<RETypedArray, void>(_object), 
+														REPtrCast<RETypedArray, void>(anotherPtr._object));
 				break;
 				
 			case REPtrTypeDictionary:	
-				return RETypedPtrPrivate::compareDictionaries((REDictionary *)_object, (REDictionary *)anotherPtr._object);
+				return RETypedPtrPrivate::compareDictionaries(REPtrCast<REDictionary, void>(_object), 
+															  REPtrCast<REDictionary, void>(anotherPtr._object));
 				break;
 			
 			case REPtrTypeDate:
-				return RETypedPtrPrivate::compareDates((REDate *)_object, (REDate *)anotherPtr._object);
+				return RETypedPtrPrivate::compareDates(REPtrCast<REDate, void>(_object), 
+													   REPtrCast<REDate, void>(anotherPtr._object));
 				break;
 				
 			default:
@@ -177,12 +183,12 @@ bool RETypedPtr::operator!=(const RETypedPtr & anotherPtr) const
 
 REBOOL RETypedPtr::isEmpty() const 
 {
-	return (_object == (void *)0);
+	return (_object == NULL);
 }
 
 REBOOL RETypedPtr::isNotEmpty() const 
 {
-	return (_object != (void *)0); 
+	return (_object != NULL); 
 }
 
 void RETypedPtr::retain()
@@ -203,12 +209,12 @@ void RETypedPtr::release()
 			this->deleteObject();
 			
 			free(_referenceCount);
-			_referenceCount = (REInt32 *)0;
+			_referenceCount = NULL;
 		}
 	}
 	
-	_object = (void *)0;
-	_referenceCount = (REInt32 *)0;
+	_object = NULL;
+	_referenceCount = NULL;
 	_type = REPtrTypeNone;
 }
 
@@ -217,7 +223,7 @@ void RETypedPtr::deleteObject()
 	if (_object)
 	{
 		RETypedPtrPrivate::deleteObject(_object, _type);
-		_object = (void *)0;
+		_object = NULL;
 	}
 }
 
@@ -240,42 +246,42 @@ RETypedPtr & RETypedPtr::operator=(const RETypedPtr & anotherPtr)
 
 REString * RETypedPtr::getString() const
 {
-	return (_type == REPtrTypeString) ? (REString *)_object : (REString *)0;
+	return (_type == REPtrTypeString) ? REPtrCast<REString, void>(_object) : NULL;
 }
 
 RENumber * RETypedPtr::getNumber() const
 {
-	return (_type == REPtrTypeNumber) ? (RENumber *)_object : (RENumber *)0;
+	return (_type == REPtrTypeNumber) ? REPtrCast<RENumber, void>(_object) : NULL;
 }
 
 RETypedArray * RETypedPtr::getArray() const
 {
-	return (_type == REPtrTypeArray) ? (RETypedArray *)_object : (RETypedArray *)0;
+	return (_type == REPtrTypeArray) ? REPtrCast<RETypedArray, void>(_object) : NULL;
 }
 
 RENULL * RETypedPtr::getNULL() const
 {
-	return (_type == REPtrTypeNull) ? (RENULL *)_object : (RENULL *)0;
+	return (_type == REPtrTypeNull) ? REPtrCast<RENULL, void>(_object) : NULL;
 }
 
 REBuffer * RETypedPtr::getBuffer() const
 {
-	return (_type == REPtrTypeBuffer) ? (REBuffer *)_object : (REBuffer *)0;
+	return (_type == REPtrTypeBuffer) ? REPtrCast<REBuffer, void>(_object) : NULL;
 }
 
 REDictionary * RETypedPtr::getDictionary() const
 {
-	return (_type == REPtrTypeDictionary) ? (REDictionary *)_object : (REDictionary *)0;
+	return (_type == REPtrTypeDictionary) ? REPtrCast<REDictionary, void>(_object) : NULL;
 }
 
 void * RETypedPtr::getVoidPointer() const
 {
-	return (_type == REPtrTypeVoidPointer) ? _object : 0;
+	return (_type == REPtrTypeVoidPointer) ? _object : NULL;
 }
 
 REDate * RETypedPtr::getDate() const
 {
-	return (_type == REPtrTypeDate) ? (REDate *)_object : (REDate *)0;
+	return (_type == REPtrTypeDate) ? REPtrCast<REDate, void>(_object) : NULL;
 }
 
 const REPtrType RETypedPtr::getType() const
@@ -284,8 +290,8 @@ const REPtrType RETypedPtr::getType() const
 }
 
 RETypedPtr::RETypedPtr(const RETypedPtr & anotherPtr) :
-	_object((void *)0),
-	_referenceCount((REInt32 *)0),
+	_object(NULL),
+	_referenceCount(NULL),
 	_type(REPtrTypeNone)
 {
 	if (this != &anotherPtr)
@@ -302,7 +308,7 @@ RETypedPtr::RETypedPtr(const RETypedPtr & anotherPtr) :
 
 RETypedPtr::RETypedPtr(void * object, const REPtrType type) :
 	_object(object),
-	_referenceCount((REInt32 *)0),
+	_referenceCount(NULL),
 	_type(type)
 {
 	if (_object)
@@ -315,14 +321,14 @@ RETypedPtr::RETypedPtr(void * object, const REPtrType type) :
 		}
 		else
 		{
-			_object = (void *)0;
+			_object = NULL;
 		}
 	}
 }
 
 RETypedPtr::RETypedPtr() :
-	_object((void *)0),
-	_referenceCount((REInt32 *)0),
+	_object(NULL),
+	_referenceCount(NULL),
 	_type(REPtrTypeNone)
 {
 	
@@ -335,12 +341,12 @@ RETypedPtr::~RETypedPtr()
 
 REBOOL RETypedPtr::isNotEmpty(const RETypedPtr * ptr)
 {
-	return ptr ? (ptr->_object != (const void *)0) : false;
+	return ptr ? (ptr->_object != NULL) : false;
 }
 
 REBOOL RETypedPtr::isNotEmpty(const RETypedPtr * ptr, const REPtrType type)
 {
-	return ptr ? ((ptr->_object != (const void *)0) && (ptr->_type == type)) : false;
+	return ptr ? ((ptr->_object != NULL) && (ptr->_type == type)) : false;
 }
 
 

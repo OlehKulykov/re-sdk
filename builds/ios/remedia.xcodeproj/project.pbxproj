@@ -22,7 +22,6 @@
 		3D31C504150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C503150F52BB00F35A5D /* REOGGTheoraPlayerPrivate.cpp */; };
 		3D59EB0815F3798400EA0032 /* vorbis.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D59EB0715F3798300EA0032 /* vorbis.h */; };
 		3D59EB0B15F3798F00EA0032 /* theora.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D59EB0A15F3798E00EA0032 /* theora.h */; };
-		3D889139176D29FB0086873B /* REConfigHardcoded.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D889138176D29FB0086873B /* REConfigHardcoded.h */; };
 		3D9438911518D78100655597 /* vorbis_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DDE8847150D695200345F5D /* vorbis_config.h */; };
 		3D9438921518D78100655597 /* vorbis_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE8848150D695200345F5D /* vorbis_wrap1.c */; };
 		3D9438931518D78100655597 /* vorbis_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE8849150D695200345F5D /* vorbis_wrap2.c */; };
@@ -89,7 +88,6 @@
 		3D70AA5C151754D400A91F94 /* tremor_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap3.c; path = ../../src/addlibs/tremor_wrap3.c; sourceTree = SOURCE_ROOT; };
 		3D70AA5D151754D400A91F94 /* tremor_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap4.c; path = ../../src/addlibs/tremor_wrap4.c; sourceTree = SOURCE_ROOT; };
 		3D70AA5E151754D400A91F94 /* tremor_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tremor_wrap5.c; path = ../../src/addlibs/tremor_wrap5.c; sourceTree = SOURCE_ROOT; };
-		3D889138176D29FB0086873B /* REConfigHardcoded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REConfigHardcoded.h; sourceTree = SOURCE_ROOT; };
 		3DBA58AB150E377A00017E22 /* REVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVideoView.h; path = ../../include/remedia/REVideoView.h; sourceTree = SOURCE_ROOT; };
 		3DBA58AE150E37ED00017E22 /* REVideoView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REVideoView.cpp; path = ../../src/media/REVideoView.cpp; sourceTree = SOURCE_ROOT; };
 		3DC0A0CF15332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioPlayerPrivate_iphone.h; path = ../../include/remedia/private/REAudioPlayerPrivate_iphone.h; sourceTree = SOURCE_ROOT; };
@@ -185,7 +183,6 @@
 				3D31C4FF150F52AD00F35A5D /* private */,
 				3DDE8840150D693600345F5D /* addlibs */,
 				3D2E5B0A150A4A2C00F17250 /* remedia.h */,
-				3D889138176D29FB0086873B /* REConfigHardcoded.h */,
 				3DBA58AB150E377A00017E22 /* REVideoView.h */,
 				3DBA58AE150E37ED00017E22 /* REVideoView.cpp */,
 				3D2E5B0C150A4A6800F17250 /* IREMediaPlayable.h */,
@@ -319,7 +316,6 @@
 				3DC0A0D015332B8B00A3E88E /* REAudioPlayerPrivate_iphone.h in Headers */,
 				3D59EB0815F3798400EA0032 /* vorbis.h in Headers */,
 				3D59EB0B15F3798F00EA0032 /* theora.h in Headers */,
-				3D889139176D29FB0086873B /* REConfigHardcoded.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +442,7 @@
 					../../src/addlibs/libogg/include,
 					../../src/addlibs/libvorbis/include,
 					../../src/addlibs/libtheora/include,
+					../ios/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
@@ -477,6 +474,7 @@
 					../../src/addlibs/libogg/include,
 					../../src/addlibs/libvorbis/include,
 					../../src/addlibs/libtheora/include,
+					../ios/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
@@ -504,6 +502,7 @@
 					../../src/addlibs/libvorbis/include,
 					../../src/addlibs/libtheora/include_111111,
 					../../src/addlibs/libtheora120alpha1/include,
+					../ios/,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,6 +528,7 @@
 					../../src/addlibs/libvorbis/include,
 					../../src/addlibs/libtheora/include_111111,
 					../../src/addlibs/libtheora120alpha1/include,
+					../ios/,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

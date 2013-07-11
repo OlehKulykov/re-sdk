@@ -17,26 +17,25 @@
 
 #include "../../include/recore/RELZMACompression.h"
 
-#ifndef __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
 
-#if defined(__RE_USING_ADITIONAL_LZMA_LIBRARY__)
-#include "../addlibs/lzma.h"
+#if !defined(__RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__)
 
-#elif defined(__RE_TRY_USE_SYSTEM_LZMA_LIBRARY__)
+#if defined(HAVE_LZMA_LZMA_H) || defined(HAVE_LZMA_H) || defined(HAVE_LZMALIB_H)
 
-#if defined(__RE_HAVE_SYSTEM_LZMA_LZMA_H__)
+#if defined(HAVE_LZMA_LZMA_H)
 #include <lzma/lzma.h>
-#elif defined(__RE_HAVE_SYSTEM_LZMA_H__)
-#include <lzma.h>
-#elif defined(__RE_HAVE_SYSTEM_LZMALIB_H__)
-#include <LzmaLib.h>
-#else
-#define __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
 #endif
 
+#if defined(HAVE_LZMA_H)
+#include <lzma.h>
+#endif
 
-#else
-#define __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
+#if defined(HAVE_LZMALIB_H)
+#include <LzmaLib.h>
+#endif
+
+#else 
+#include "../addlibs/lzma.h"
 #endif
 
 #endif

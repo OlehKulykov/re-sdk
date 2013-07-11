@@ -21,7 +21,7 @@
 #include "RECommonHeader.h"
 #include "RERect.h"
  
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -45,7 +45,7 @@ public:
 			/// offset from right side.
             REFloat32 right;
 		};
-#if defined(__ARM_NEON__)		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 		
 		/// arm neon vector with top, left, bottom and right values.
 		float32x4_t armNeonVector;
 #endif	
@@ -65,7 +65,7 @@ public:
 	/// Assing operator.
 	REEdgeInsets & operator=(const REEdgeInsets & insets)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = insets.armNeonVector;
 #else
         top = insets.top;
@@ -78,7 +78,7 @@ public:
 	
 	/// Construct insets from another insets object.
 	REEdgeInsets(const REEdgeInsets & insets) :
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector(insets.armNeonVector)
 #else
 		top(insets.top), 
@@ -100,7 +100,7 @@ public:
 		
 	}
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	/// Construct insets object from arm neon vector.
 	REEdgeInsets(const float32x4_t & anotherArmNeonVector) :
 		armNeonVector(anotherArmNeonVector) { }

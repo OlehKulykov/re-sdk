@@ -34,7 +34,7 @@ protected:
 	REUInt32 _capacity;
 	T * newMemory(const REUInt32 capacity)
 	{
-		return (T*)REMem::MallocAlignZeros(sizeof(T) * capacity, sizeof(T));
+		return (T*)REMem::mallocAlignZeros(sizeof(T) * capacity, sizeof(T));
 	}
 	
 	REBOOL resize(const REUInt32 newCapacity)
@@ -48,8 +48,8 @@ protected:
 			_capacity = newCapacity;
 			if (prevArray)
 			{
-				REMem::Memcpy(_arr, prevArray, (MIN(prevCapacity, newCapacity)) * sizeof(T));
-				REMem::Free(prevArray);
+				memcpy(_arr, prevArray, (MIN(prevCapacity, newCapacity)) * sizeof(T));
+				free(prevArray);
 			}
 			return true;
 		}
@@ -209,7 +209,7 @@ public:
 		if ( index >= _count )
 		{
 			static T err;
-			REMem::Memset(&err, 0, sizeof(T));
+			memset(&err, 0, sizeof(T));
 			return err;
 		}
 		return _arr[index];
@@ -221,7 +221,7 @@ public:
 		if ( index >= _count )
 		{
 			static T err;
-			REMem::Memset(&err, 0, sizeof(T));
+			memset(&err, 0, sizeof(T));
 			return err;
 		}
 		return _arr[index];
@@ -233,7 +233,7 @@ public:
 		if ( _count == 0 )
 		{
 			static T err;
-			REMem::Memset(&err, 0, sizeof(T));
+			memset(&err, 0, sizeof(T));
 			return err;
 		}
 		return this->at(_count - 1);
@@ -270,7 +270,7 @@ public:
 			return false; 
 		}
 		_count--;
-		REMem::Memcpy(&_arr[index], &_arr[index + 1], (_count - index) * sizeof(T));
+		memcpy(&_arr[index], &_arr[index + 1], (_count - index) * sizeof(T));
 		return true;
 	}
 
@@ -307,9 +307,9 @@ public:
 
 			if (tmp)
 			{
-				REMem::Memcpy(tmp, &_arr[firstIndex], sizeof(T));
-				REMem::Memcpy(&_arr[firstIndex], &_arr[secondIndex], sizeof(T));
-				REMem::Memcpy(&_arr[secondIndex], tmp, sizeof(T));
+				memcpy(tmp, &_arr[firstIndex], sizeof(T));
+				memcpy(&_arr[firstIndex], &_arr[secondIndex], sizeof(T));
+				memcpy(&_arr[secondIndex], tmp, sizeof(T));
 				if (newMem) { free(tmp); }
 				return true;
 			}
@@ -469,7 +469,7 @@ public:
 	{
 		if (_arr) 
 		{ 
-			REMem::Free(_arr); 
+			free(_arr); 
 			_arr = 0; 
 			_count = 0; 
 			_capacity = 0; 
@@ -485,7 +485,7 @@ public:
 		_arr = this->newMemory(_capacity);
 		if (_arr) 
 		{ 
-			if (_count > 0) { REMem::Memcpy(_arr, anotherArray._arr, _count * sizeof(T)); } 
+			if (_count > 0) { memcpy(_arr, anotherArray._arr, _count * sizeof(T)); } 
 		}
 		else 
 		{ 
@@ -511,7 +511,7 @@ public:
 		_arr = this->newMemory(_capacity);
 		if (_arr) 
 		{
-			if (_count > 0) { REMem::Memcpy(_arr, anotherArray._arr, _count * sizeof(T)); }
+			if (_count > 0) { memcpy(_arr, anotherArray._arr, _count * sizeof(T)); }
 		}
 		else
 		{ 
@@ -523,7 +523,7 @@ public:
 	{ 
 		if (_arr)
 		{
-			REMem::Free(_arr);
+			free(_arr);
 		} 
 	}
 	

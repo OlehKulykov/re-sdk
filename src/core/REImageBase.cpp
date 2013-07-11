@@ -96,7 +96,7 @@ REImageBase::REImageBase(const REUByte * pixelsData,
 			const REUInt32 dataSize = (width * height * bytesPPixel);
 			if (_buffer.resize(dataSize, false)) 
 			{
-				REMem::Memcpy(_buffer.getBuffer(), pixelsData, dataSize);
+				memcpy(_buffer.getBuffer(), pixelsData, dataSize);
 				_width = (REUInt16)width;
 				_height = (REUInt16)height;
 				_format = (REUByte)pixelsFormat;

@@ -18,17 +18,16 @@
 #include "../../include/recore/private/RESQLiteDB.h"
 #include "../../include/recore/private/RESQLiteDBResultSet.h"
 
-#ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__
+
+
+#if !defined(__RE_CORE_NO_SQLITE_DATABASE_SUPPORT__)
 
 #include "../../include/recore/REThread.h"
 
-#ifdef __RE_USING_ADITIONAL_SQLITE_LIBRARY__
-#include "../addlibs/sqlite.h"
-#endif
-
-
-#ifdef __RE_USING_SYSTEM_SQLITE_LIBRARY__
+#if defined(HAVE_SQLITE3_H)
 #include <sqlite3.h>
+#else
+#include "../addlibs/sqlite.h"
 #endif
 
 #endif

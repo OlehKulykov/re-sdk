@@ -29,6 +29,10 @@
 class __RE_PUBLIC_CLASS_API__ RECore
 {
 public:
+	/// Check types defined correctly.
+	/// Return positive value of everything correct, othervice zero
+	static int isCorrectTypes();
+	
 	/// Returns c string with build information
 	static const char * buildInfo();
 	

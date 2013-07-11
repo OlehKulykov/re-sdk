@@ -104,7 +104,8 @@ REObject::REObject() :
 	_reObjectIdentifier(0),
 	_reObjectRetainCount(1)
 {
-	_reObjectIdentifier = (REUIdentifier)this;
+	const REUIdentifier * p = REPtrCast<REUIdentifier, void>(this);
+	_reObjectIdentifier = *p;
 }
 
 REObject::~REObject() 

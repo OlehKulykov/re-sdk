@@ -20,7 +20,7 @@
 
 #include "RECommonHeader.h"
 
-#ifdef __RE_RECORE_NO_FLOAT16_SUPPORT__
+#if defined(__RE_RECORE_NO_FLOAT16_SUPPORT__)
 
 /// If builded without Float16 support whan Float16 will be Float32
 typedef REFloat32 REFloat16;

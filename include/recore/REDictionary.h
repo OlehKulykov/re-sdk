@@ -35,15 +35,31 @@
 
 class REMutableString;
 
+
+
 /// Class for storing objects using by key value.
 class __RE_PUBLIC_CLASS_API__ REDictionary
 {
 public:
-	typedef struct _pair
-	{
-		RETypedPtr key;
+	class Pair 
+	{	
+	public:
 		RETypedPtr value;
-	} Pair;
+		RETypedPtr key;
+		REDictionary::Pair & operator=(const REDictionary::Pair & ap)
+		{
+			value = ap.value;
+			key = ap.key;
+			return (*this);
+		}
+		void release()
+		{
+			value.release();
+			key.release();
+		}
+		Pair(const REDictionary::Pair & ap) : value(ap.value), key(ap.key) { }
+		Pair(const RETypedPtr & newValue, const RETypedPtr & newKey) : value(newValue), key(newKey) { }
+	};
 	
 protected:
 	REArray<REDictionary::Pair> _pairs;

@@ -32,6 +32,7 @@
 #endif
 #endif
 
+
 /// Class of Sqlite data base.
 class RESQLiteDB : public REDB
 {

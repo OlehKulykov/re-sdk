@@ -95,8 +95,8 @@ void REMD5Generator::final(REMD5Context * ctx, REUByte digest[16])
 	
 	if (_isBigEndianSystem)
 	{
-		((REUInt32 *)ctx->inBuff)[14] = LongSwap(val0);
-		((REUInt32 *)ctx->inBuff)[15] = LongSwap(val1);
+        ((REUInt32 *)ctx->inBuff)[14] = longSwap(val0);
+        ((REUInt32 *)ctx->inBuff)[15] = longSwap(val1);
 	}
 	else
 	{
@@ -105,7 +105,7 @@ void REMD5Generator::final(REMD5Context * ctx, REUByte digest[16])
 	}
 	
 	this->transform( ctx->state, (REUInt32 *)ctx->inBuff );
-	REMem::Memcpy( digest, ctx->state, 16 );
+	memcpy( digest, ctx->state, 16 );
 	memset(ctx, 0, sizeof( REMD5Context ) );
 }
 
@@ -125,24 +125,24 @@ void REMD5Generator::update(REMD5Context * ctx, REUByte const * buf, REUInt32 le
 		t = 64 - t;
 		if ( len < t ) 
 		{
-			REMem::Memcpy(p, buf, len);
+			memcpy(p, buf, len);
 			return;
 		}
-		REMem::Memcpy(p, buf, t);
-		this->Transform( ctx->state, (REUInt32 *)ctx->inBuff );
+		memcpy(p, buf, t);
+        this->transform( ctx->state, (REUInt32 *)ctx->inBuff );
 		buf += t;
 		len -= t;
 	}
 	
 	while( len >= 64 ) 
 	{
-		REMem::Memcpy(ctx->inBuff, buf, 64);
+		memcpy(ctx->inBuff, buf, 64);
 		this->transform(ctx->state, (REUInt32 *) ctx->inBuff );
 		buf += 64;
 		len -= 64;
 	}
 	
-	REMem::Memcpy(ctx->inBuff, buf, len );
+	memcpy(ctx->inBuff, buf, len );
 }
 
 void REMD5Generator::init(REMD5Context * ctx)

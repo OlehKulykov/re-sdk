@@ -42,18 +42,18 @@ private:
 		{
 			delete _object;
 		}
-		_object = (PointerType*)0;
+		_object = NULL;
 	}
 	
 public:
 	REBOOL isEmpty() const 
 	{
-		return (_object == (PointerType*)0);
+		return (_object == NULL);
 	}
 	
 	REBOOL isNotEmpty() const 
 	{
-		return (_object != (PointerType*)0); 
+		return (_object != NULL); 
 	}
 	
 	REBOOL isSingleOwner() const
@@ -76,12 +76,12 @@ public:
 				this->deleteObject();
 				
 				free(_referenceCount);
-				_referenceCount = (REInt32 *)0;
+				_referenceCount = NULL;
 			}
 		}
 		
-		_object = (PointerType *)0;
-		_referenceCount = (REInt32 *)0;
+		_object = NULL;
+		_referenceCount = NULL;
 	}
 	
 	REPtr<PointerType> & operator=(const REPtr<PointerType> & anotherPtr)
@@ -120,15 +120,15 @@ public:
 	}
 	
 	REPtr() : 
-		_object((PointerType *)0),
-		_referenceCount((REInt32 *)0) 
+		_object(NULL),
+		_referenceCount(NULL) 
 	{
 		
 	}
 	
 	REPtr(PointerType* object) : 
 		_object(object),
-		_referenceCount((REInt32 *)0) 
+		_referenceCount(NULL) 
 	{
 		if (_object)
 		{
@@ -140,14 +140,14 @@ public:
 			}
 			else
 			{
-				_object = (PointerType *)0;
+				_object = NULL;
 			}
 		}
 	}
 	
 	REPtr(const REPtr<PointerType> & anotherPtr) :
-		_object((PointerType *)0),
-		_referenceCount((REInt32 *)0) 
+		_object(NULL),
+		_referenceCount(NULL) 
 	{
 		if (this != &anotherPtr)
 		{

@@ -24,32 +24,30 @@
 #include "RECoreIncludes.h"
 
 
-#ifndef __RETYPES_DEFINED___
+typedef uint8_t REUByte; 
+typedef uint16_t REUInt16; 
+typedef uint32_t REUInt32; 
+typedef uint64_t REUInt64; 
+typedef int8_t REByte; 
+typedef int16_t REInt16; 
+typedef int32_t REInt32; 
+typedef int64_t REInt64; 
+typedef uintptr_t REUIdentifier; 
+typedef bool REBOOL; 
 
-typedef unsigned char REUByte;
-typedef unsigned short REUInt16;
-typedef unsigned int REUInt32;
-
-typedef signed char REByte;
-typedef signed short REInt16;
-typedef signed int REInt32;
-
-typedef float REFloat32;
-typedef double REFloat64;
-typedef double RETimeInterval;
-
-typedef bool REBOOL;
-
-typedef unsigned long long int REUInt64;
-typedef signed long long int REInt64;
-
-#if defined(__RE_64BIT_PLATFORM__) 
-typedef REUInt64 REUIdentifier;
-#elif defined(__RE_32BIT_PLATFORM__) 
-typedef REUInt32 REUIdentifier;
+#if defined(SIZEOF_FLOAT_T)
+typedef float_t REFloat32; 
+#else
+typedef float REFloat32; 
 #endif
 
+#if defined(SIZEOF_DOUBLE_T)
+typedef double_t REFloat64; 
+#else
+typedef double REFloat64; 
 #endif
+
+typedef REFloat64 RETimeInterval; 
 
 
 

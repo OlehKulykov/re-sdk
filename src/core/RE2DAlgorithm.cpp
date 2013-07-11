@@ -110,6 +110,44 @@ REBOOL RE2DAlgorithm::isPointInPolygonInt32(const REInt32 pointX,
 	return false;
 }
 
+/// Check equality of two 32 bit floats
+REBOOL RE2DAlgorithm::isEqualFloat32(const REFloat32 firstValue, const REFloat32 secondValue)
+{
+	return (fabsf(firstValue - secondValue) < FLT_EPSILON);	
+}
+
+/// Check equality of two 64 bit floats
+REBOOL RE2DAlgorithm::isEqualFloat64(const REFloat64 firstValue, const REFloat64 secondValue)
+{
+	return (fabs(firstValue - secondValue) < DBL_EPSILON);
+}
+
+/// Rounds 32 bit float value to number of significant digits: 3.14159(2) => 3.14000
+REFloat32 RE2DAlgorithm::roundNumSignificantDigitsFloat32(const REFloat32 float32Value, const REInt32 numberOfDigits)
+{
+	const REFloat32 p = powf(10.0f, numberOfDigits);	
+	return floorf(float32Value * p + 0.5f) / p;
+}
+
+/// Rounds 64 bit float value to number of significant digits: 3.14159(2) => 3.14000
+REFloat64 RE2DAlgorithm::roundNumSignificantDigitsFloat64(const REFloat64 float64Value, const REInt32 numberOfDigits)
+{
+	const REFloat64 p = pow(10.0, numberOfDigits);
+	return floor(float64Value * p + 0.5) / p;
+}
+
+/// Return length of line that presented with two points.
+/// ['x1', 'y1'] - start line point and ['x2', 'y2'] - end line point.
+REFloat32 RE2DAlgorithm::getLineLengthFloat32(const REFloat32 x1, 
+											  const REFloat32 y1, 
+											  const REFloat32 x2, 
+											  const REFloat32 y2)
+{
+	const REFloat32 mulX = x1 - x2;
+	const REFloat32 mulY = y1 - y2;
+	return sqrtf(((mulX * mulX) + (mulY * mulY)));
+}
+
 /// Return length of line that presented with two points.
 /// 'firstPoint' - start line point and 'secondPoint' - end line point.
 REFloat32 RE2DAlgorithm::getLineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint)

@@ -51,45 +51,24 @@ public:
 										const REInt32 * polygonPointsY);
 	
 	/// Check equality of two 32 bit floats
-	static REBOOL isEqualFloat32(const REFloat32 firstValue, const REFloat32 secondValue)
-	{
-		if (fabsf(firstValue - secondValue) < FLT_EPSILON) { return true; }
-		return false;
-	}
+	static REBOOL isEqualFloat32(const REFloat32 firstValue, const REFloat32 secondValue);
 	
 	/// Check equality of two 64 bit floats
-	static REBOOL isEqualFloat64(const REFloat64 firstValue, const REFloat64 secondValue)
-	{
-		if (fabs(firstValue - secondValue) < DBL_EPSILON) { return true; }
-		return false;
-	}
+	static REBOOL isEqualFloat64(const REFloat64 firstValue, const REFloat64 secondValue);
 	
 	/// Rounds 32 bit float value to number of significant digits: 3.14159(2) => 3.14000
-	static REFloat32 roundNumSignificantDigitsFloat32(const REFloat32 float32Value, const REInt32 numberOfDigits)
-	{
-		const REFloat32 p = powf(10.0f, numberOfDigits);
-		return (REFloat32)floorf(float32Value * p + 0.5f) / p;
-	}
+	static REFloat32 roundNumSignificantDigitsFloat32(const REFloat32 float32Value, const REInt32 numberOfDigits);
 	
 	/// Rounds 64 bit float value to number of significant digits: 3.14159(2) => 3.14000
-	static REFloat64 roundNumSignificantDigitsFloat64(const REFloat64 float64Value, const REInt32 numberOfDigits)
-	{
-		const REFloat64 p = pow(10.0, numberOfDigits);
-		return (REFloat64)floor(float64Value * p + 0.5) / p;
-	}
+	static REFloat64 roundNumSignificantDigitsFloat64(const REFloat64 float64Value, const REInt32 numberOfDigits);
 	
 	/// Return length of line that presented with two points.
 	/// ['x1', 'y1'] - start line point and ['x2', 'y2'] - end line point.
 	static REFloat32 getLineLengthFloat32(const REFloat32 x1, 
 										  const REFloat32 y1, 
 										  const REFloat32 x2, 
-										  const REFloat32 y2)
-	{
-		const REFloat64 mulX = x1 - x2;
-		const REFloat64 mulY = y1 - y2;
-		return (REFloat32)sqrt(((mulX * mulX) + (mulY * mulY)));
-	}
-
+										  const REFloat32 y2);
+	
 	/// Return length of line that presented with two points.
 	/// 'firstPoint' - start line point and 'secondPoint' - end line point.
 	static REFloat32 getLineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint);
@@ -99,9 +78,9 @@ public:
 	/// Second line presented as 'p21' - start line point and 'p22' - end line point.
 	/// If lines is not crossed(lines is same or lines is paralleled) than returns point[FLT_MAX, FLT_MAX]
 	static REPoint2 getLinesCrossPoint(const REPoint2 & p11, 
-										const REPoint2 & p12, 
-										const REPoint2 & p21, 
-										const REPoint2 & p22);
+									   const REPoint2 & p12, 
+									   const REPoint2 & p21, 
+									   const REPoint2 & p22);
 };
 
 

@@ -22,11 +22,6 @@
 #include "REBuffer.h"
 #include "RETypedPtr.h"
 
-/*
- 
- __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
- 
- */
 
 /// Class using for data compression/decompression using zlib library.
 /// Compression and decompression avaiable with undefined flag __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__

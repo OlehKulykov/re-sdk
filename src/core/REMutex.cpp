@@ -18,13 +18,9 @@
 #include "../../include/recore/REMutex.h"
 #include "../../include/recore/REMem.h"
 
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
-#include <pthread.h>
-#endif
-
 REBOOL REMutex::init(const REMutexType type)
 {
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	if (_pthreadMutexPtr) { return true; }
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	if (_mutexHANDLE) { return true; }
@@ -32,8 +28,8 @@ REBOOL REMutex::init(const REMutexType type)
 	
 	REBOOL isInit = false;
 	
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
-	pthread_mutex_t * m = (pthread_mutex_t *)REMem::Malloc(sizeof(pthread_mutex_t));
+#if defined(HAVE_PTHREAD_H)  
+	pthread_mutex_t * m = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (m) 
 	{
 		pthread_mutexattr_t attr;
@@ -68,7 +64,7 @@ REBOOL REMutex::init(const REMutexType type)
 		}
 		else
 		{
-			REMem::Free(m);
+			free(m);
 		}
 	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
@@ -86,11 +82,10 @@ REBOOL REMutex::init(const REMutexType type)
 
 REBOOL REMutex::lock()
 {
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	if (_pthreadMutexPtr) 
 	{
-		pthread_mutex_t * m = (pthread_mutex_t *)_pthreadMutexPtr;
-		if (pthread_mutex_lock(m) == 0)
+		if (pthread_mutex_lock(_pthreadMutexPtr) == 0)
 		{
 			_successfulLocks++;
 			return true;
@@ -113,11 +108,10 @@ REBOOL REMutex::lock()
 
 REBOOL REMutex::unlock()
 {
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	if (_pthreadMutexPtr) 
 	{
-		pthread_mutex_t * m = (pthread_mutex_t *)_pthreadMutexPtr;
-		if (pthread_mutex_unlock(m) == 0)
+		if (pthread_mutex_unlock(_pthreadMutexPtr) == 0)
 		{
 			_successfulLocks--;
 			return true;
@@ -144,7 +138,7 @@ REBOOL REMutex::isLocked() const
 
 REBOOL REMutex::isInitialized() const
 {
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	return (_pthreadMutexPtr != NULL);
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	return (_mutexHANDLE != (HANDLE)0);
@@ -154,24 +148,24 @@ REBOOL REMutex::isInitialized() const
 }
 
 REMutex::REMutex()
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
-: 	_pthreadMutexPtr(NULL)
+#if defined(HAVE_PTHREAD_H)  
+    :_pthreadMutexPtr(NULL),_successfulLocks(0)
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
-:	_mutexHANDLE((HANDLE)0)
+    :_mutexHANDLE((HANDLE)0),_successfulLocks(0)
+#else
+    :_successfulLocks(0)
 #endif
-,_successfulLocks(0)
 {
 	
 }
 
 REMutex::~REMutex()
 {
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	if (_pthreadMutexPtr) 
 	{
-		pthread_mutex_t * m = (pthread_mutex_t *)_pthreadMutexPtr;
-		pthread_mutex_destroy(m);
-		REMem::Free(m);
+		pthread_mutex_destroy(_pthreadMutexPtr);
+		free(_pthreadMutexPtr);
 	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	if (_mutexHANDLE) 

@@ -64,13 +64,18 @@ public:
 
 #define IS_LEAP_YEAR(y) ((((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) ? 1 : 0)
 
+const char * REDate::defaultFormatString()
+{
+	return "%Y-%m-%dT%H:%M:%ss-%z";
+}
+
 REString REDate::toString() const
 {
 	if (_t.isNotEmpty())
 	{
 		//2012-01-10T12:48:12-07:00
 		char buffer[64] = { 0 };
-		const size_t writed = strftime(buffer, 64, "%Y-%m-%dT%H:%M:%ss-%z", &_t->timestruct);
+		const size_t writed = strftime(buffer, 64, REDate::defaultFormatString(), &_t->timestruct);
 		if (writed > 0)
 		{
 			return REString(buffer, (REUInt32)writed);

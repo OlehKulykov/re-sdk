@@ -22,7 +22,7 @@
 #include "REPoint3.h"
 #include "REMath.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -43,13 +43,13 @@ public:
 			/// Z coordinate.
 			REFloat32 z;
 			
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 			/// unused variable for NEON vector 4 align
 			REFloat32 _unusedZeroValueVariableForArmNeonVector;
 #endif			
 		};
 		
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t armNeonVector;
 		
 		/// array of 'x', 'y', 'z'
@@ -66,7 +66,7 @@ public:
 	 Результатом векторного произведения двух векторов будет вектор перпендикулярный этим векторам.		*/
 	static REVector3 crossProduct(const REVector3 & firstVector, const REVector3 & secondVector)
 	{
-#if defined(__ARM_NEON__)   
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t lyzx = { firstVector.y, firstVector.z, firstVector.x, 0.0f };
 		float32x4_t lzxy = { firstVector.z, firstVector.x, firstVector.y, 0.0f };
 		float32x4_t ryzx = { secondVector.y, secondVector.z, secondVector.x, 0.0f };
@@ -90,7 +90,7 @@ public:
     static REFloat32 dotProduct(const REVector3 & firstVector, const REVector3 & secondVector)
 	{
 		// NEON is slower than c++ in this case
-#if 0//defined(__ARM_NEON__)   
+#if 0//defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&firstVector.armNeonVector,
 								  *(float32x4_t *)&secondVector.armNeonVector);
 		float32x2_t v2 = vpadd_f32(vget_low_f32(v), vget_high_f32(v));
@@ -110,7 +110,7 @@ public:
 	 Получение нового вектора с противоположным направлением		*/
 	REVector3 getInverseVector() const
 	{
-#if defined(__ARM_NEON__)   		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		return REVector3(vnegq_f32(*(float32x4_t *)&armNeonVector));
 #else		
 		return REVector3(-x, -y, -z);
@@ -121,7 +121,7 @@ public:
 	 Изменения направление вектора на противоположное		*/
 	REVector3 & inverse()
 	{
-#if defined(__ARM_NEON__)   		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vnegq_f32(*(float32x4_t *)&armNeonVector);
 #else		
 		x = -x;
@@ -143,7 +143,7 @@ public:
 	 Длина вектора (или модуль)			*/
 	const REFloat32 getMagnitude() const
 	{
-#if defined(__ARM_NEON__)   		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
 								  *(float32x4_t *)&armNeonVector);
 		float32x2_t v2 = vpadd_f32(vget_low_f32(v), vget_high_f32(v));
@@ -165,7 +165,7 @@ public:
 	 Квадрат длины вектора (или модуля)			*/
 	const REFloat32 getSquareMagnitude() const
 	{
-#if defined(__ARM_NEON__)   		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
 								  *(float32x4_t *)&armNeonVector);
 		float32x2_t v2 = vpadd_f32(vget_low_f32(v), vget_high_f32(v));
@@ -187,7 +187,7 @@ public:
 	/// "this vector" + another vector
 	REVector3 & add(const REVector3 & anotherVector3D)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vaddq_f32(*(float32x4_t *)&armNeonVector,
 								  *(float32x4_t *)&anotherVector3D.armNeonVector);
 #else		
@@ -203,7 +203,7 @@ public:
 	}
 	REVector3 & addScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vaddq_f32(*(float32x4_t *)&armNeonVector,
 								  vdupq_n_f32((float32_t)scalar));
 #else		
@@ -221,7 +221,7 @@ public:
 	/// "this vector" - another vector
 	REVector3 & subtract(const REVector3 & anotherVector3D)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vsubq_f32(*(float32x4_t *)&armNeonVector,
 								  *(float32x4_t *)&anotherVector3D.armNeonVector);
 #else
@@ -238,7 +238,7 @@ public:
 	/// "this vector" - float value (scalar)
 	REVector3 & subtractScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vsubq_f32(*(float32x4_t *)&armNeonVector,
 								  vdupq_n_f32((float32_t)scalar));
 #else		
@@ -256,7 +256,7 @@ public:
 	/// "this vector" * another vector
 	REVector3 & multiply(const REVector3 & anotherVector3D)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vmulq_f32(*(float32x4_t *)&armNeonVector,
 								  *(float32x4_t *)&anotherVector3D.armNeonVector);
 #else
@@ -273,7 +273,7 @@ public:
 	/// "this vector" * float value (scalar)
 	REVector3 & multiplyScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vmulq_f32(*(float32x4_t *)&armNeonVector,
 								  vdupq_n_f32((float32_t)scalar));
 #else
@@ -399,7 +399,7 @@ public:
 	
 	REVector3 & operator=(const REVector3 & anotherVector3D)
 	{
-#if defined(__ARM_NEON__) 	
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherVector3D.armNeonVector;
 #else		
 		x = anotherVector3D.x;
@@ -477,24 +477,24 @@ public:
 	}
 	
 	REVector3() : x(0.0f), y(0.0f), z(0.0f)
-#if defined(__ARM_NEON__) 	
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	, _unusedZeroValueVariableForArmNeonVector(0.0f)
 #endif	
 	{ }
 	
 	REVector3(const REFloat32 newX, const REFloat32 newY, const REFloat32 newZ) : x(newX), y(newY), z(newZ)
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	, _unusedZeroValueVariableForArmNeonVector(0.0f)
 #endif	
 	{ }
 	
 	REVector3(const REVector3 & anotherVector3D) : x(anotherVector3D.x), y(anotherVector3D.y), z(anotherVector3D.z) 
-#if defined(__ARM_NEON__) 	
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	, _unusedZeroValueVariableForArmNeonVector(0.0f)
 #endif	
 	{ }
 	
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REVector3(const float32x4_t & a) : armNeonVector(a) { _unusedZeroValueVariableForArmNeonVector = 0.0f; }
 #endif	
 	

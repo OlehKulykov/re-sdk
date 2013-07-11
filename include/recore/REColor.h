@@ -21,7 +21,7 @@
 #include "RECommonHeader.h"
 #include "REMem.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -53,7 +53,7 @@ public:
 		/// Array of RGBA color components. Each component in range [0.0f, 1.0f].
 		REFloat32 rgba[4];
 		
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t armNeonColor;
 #endif
 	};
@@ -73,10 +73,10 @@ public:
 	/// Setting this color from 'anotherColor' color value.
 	REColor & operator=(const REColor & anotherColor)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonColor = anotherColor.armNeonColor;
 #else
-		REMem::Memcpy(rgba, anotherColor.rgba, sizeof(REFloat32) * 4); 
+		memcpy(rgba, anotherColor.rgba, sizeof(REFloat32) * 4); 
 #endif		
 		return (*this);
 	}
@@ -98,11 +98,11 @@ public:
 	
 	/// Constructs color from 'anotherColor' color value.
 	REColor(const REColor & anotherColor) 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	: armNeonColor(anotherColor.armNeonColor) { }
 #else		
 	{ 
-		REMem::Memcpy(rgba, anotherColor.rgba, sizeof(REFloat32) * 4); 
+		memcpy(rgba, anotherColor.rgba, sizeof(REFloat32) * 4); 
 	}
 #endif	
 	
@@ -110,7 +110,7 @@ public:
 	REColor();
 	
 	/// Construct color object from arm neon vector
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REColor(const float32x4_t & c) : armNeonColor(c) { }
 #endif
 	

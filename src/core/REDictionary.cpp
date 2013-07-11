@@ -162,18 +162,18 @@ public:
 
 void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks)
 {
-	jsonCallbacks->newMem = REDictionaryJSONCallbacks::newMem;
-	jsonCallbacks->freeMem = REDictionaryJSONCallbacks::freeMem;	
-	jsonCallbacks->createNull = REDictionaryJSONCallbacks::createNull;
-	jsonCallbacks->createNumberWithBool = REDictionaryJSONCallbacks::createNumberWithBool;
-	jsonCallbacks->createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberWithLongLong;
-	jsonCallbacks->createNumberWithDouble = REDictionaryJSONCallbacks::createNumberWithDouble;
-	jsonCallbacks->createStringWithUTF8 = REDictionaryJSONCallbacks::createStringWithUTF8;
-	jsonCallbacks->createArray = REDictionaryJSONCallbacks::createArray;
-	jsonCallbacks->createDictionary = REDictionaryJSONCallbacks::createDictionary;
-	jsonCallbacks->addToArray = REDictionaryJSONCallbacks::addToArray;
-	jsonCallbacks->addToDictionary = REDictionaryJSONCallbacks::addToDictionary;
-	jsonCallbacks->deleteObject = REDictionaryJSONCallbacks::deleteObject;
+    jsonCallbacks->_newMem = REDictionaryJSONCallbacks::newMem;
+    jsonCallbacks->_freeMem = REDictionaryJSONCallbacks::freeMem;
+    jsonCallbacks->_createNull = REDictionaryJSONCallbacks::createNull;
+    jsonCallbacks->_createNumberWithBool = REDictionaryJSONCallbacks::createNumberWithBool;
+    jsonCallbacks->_createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberWithLongLong;
+    jsonCallbacks->_createNumberWithDouble = REDictionaryJSONCallbacks::createNumberWithDouble;
+    jsonCallbacks->_createStringWithUTF8 = REDictionaryJSONCallbacks::createStringWithUTF8;
+    jsonCallbacks->_createArray = REDictionaryJSONCallbacks::createArray;
+    jsonCallbacks->_createDictionary = REDictionaryJSONCallbacks::createDictionary;
+    jsonCallbacks->_addToArray = REDictionaryJSONCallbacks::addToArray;
+    jsonCallbacks->_addToDictionary = REDictionaryJSONCallbacks::addToDictionary;
+    jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObject;
 }
 
 REBOOL REDictionary::readJSONData(const REUByte * jsonData, 
@@ -193,9 +193,7 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 		{
 			for (REUInt32 i = 0; i < dict->_pairs.count(); i++) 
 			{
-				REDictionary::Pair newPair;
-				newPair.key = dict->_pairs[i].key;
-				newPair.value = dict->_pairs[i].value;
+				REDictionary::Pair newPair(dict->_pairs[i]);
 				if (!_pairs.add(newPair))
 				{
 					this->clearPairs();
@@ -222,7 +220,7 @@ REMutableString REDictionary::getJSONString() const
 {
 	if (_pairs.isEmpty())
 	{
-		return REMutableString("{}", 3);
+		return REMutableString("{ }", 3);
 	}
 	
 	REDictionaryJSONGeneratorPrivate g;
@@ -292,23 +290,19 @@ REBOOL REDictionary::setValue(const RETypedPtr & newValue, const RETypedPtr & ke
 			{
 				// set new value for existed key
 				pair->value = newValue;
-				pair->value.release();
 				return true;
 			}
 			else if (index != RENotFound)
 			{
 				// new value is empty - remove pair
-				pair->value.release();
-				pair->key.release();
+				pair->release();
 				return _pairs.removeAt(index);
 			}
 		}
 		else if (newValue.isNotEmpty())
 		{
 			// add new value as pair
-			REDictionary::Pair newPair;
-			newPair.key = keyValue;
-			newPair.value = newValue;
+			REDictionary::Pair newPair(newValue, keyValue);
 			return _pairs.add(newPair);
 		}
 	}
@@ -319,8 +313,7 @@ REBOOL REDictionary::setValue(const RETypedPtr & newValue, const char * key)
 {
 	if (key) 
 	{
-		RETypedPtr pkey(new REString(key), REPtrTypeString);
-		return this->setValue(newValue, pkey);
+		return this->setValue(newValue, RETypedPtr(new REString(key), REPtrTypeString));
 	}
 	return false;
 }
@@ -353,8 +346,7 @@ REBOOL REDictionary::removeValue(const char * key)
 			REDictionary::Pair * pair = this->pairForKey(pkey, &index);
 			if (pair && (index != RENotFound))
 			{
-				pair->value.release();
-				pair->key.release();
+				pair->release();
 				return _pairs.removeAt(index);
 			}
 		}
@@ -386,8 +378,7 @@ void REDictionary::clearPairs()
 {
 	for (REUInt32 i = 0; i < _pairs.count(); i++) 
 	{
-		_pairs[i].key.release();
-		_pairs[i].value.release();
+		_pairs[i].release();
 	}
 	_pairs.clear();
 }

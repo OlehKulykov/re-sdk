@@ -286,8 +286,9 @@ REBOOL REBase64::base64StringToBuffer(const REString & base64String, REBuffer * 
 	buff->resize(needlen, true);
 	
 	if (inlen != 0)
+	{
 		return false;
-	
+	}
 	return true;
 }
 

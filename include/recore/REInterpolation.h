@@ -172,13 +172,21 @@ public:
 	/// Returns sinusoidal ease in interpolation value of argument.
 	static const REFloat32 sinusoidalEaseIn(const REFloat32 p)
 	{
+#if defined(HAVE_FUNCTION_COSF)		
+		return (1.0f - cosf(MATH_PI_DIV_2 * p));
+#else
 		return (REFloat32)(1.0 - cos(MATH_PI_DIV_2 * p));
+#endif		
 	}
 	
 	/// Returns sinusoidal ease out interpolation value of argument.
 	static const REFloat32 sinusoidalEaseOut(const REFloat32 p)
 	{
+#if defined(HAVE_FUNCTION_SINF)		
+		return sinf(MATH_PI_DIV_2 * p);
+#else
 		return (REFloat32)sin(MATH_PI_DIV_2 * p);
+#endif		
 	}
 	
 	/// Returns sinusoidal ease in out interpolation value of argument.
@@ -204,13 +212,22 @@ public:
 	/// Returns exponential ease in interpolation value of argument.
 	static const REFloat32 exponentialEaseIn(const REFloat32 p)
 	{	 
+#if defined(HAVE_FUNCTION_POWF)		
 		return (powf(2.0f, 10.0f * (p - 1.0f)) - 0.001f);
+#else
+		return (REFloat32)(pow(2.0, 10.0 * (p - 1.0)) - 0.001);
+#endif		
+		
 	}
 	
 	/// Returns exponential ease out interpolation value of argument.
 	static const REFloat32 exponentialEaseOut(const REFloat32 p)
 	{
+#if defined(HAVE_FUNCTION_POWF)		
 		return (1.001f * (1.0f - powf(2.0f, -10.0f * p)));
+#else
+		return (REFloat32)(1.001 * (1.0 - pow(2.0, -10.0 * p)));
+#endif		
 	}
 	
 	/// Returns exponential ease in out interpolation value of argument.
@@ -236,14 +253,22 @@ public:
 	/// Returns circular ease in interpolation value of argument.
 	static const REFloat32 circularEaseIn(const REFloat32 p)
 	{
+#if defined(HAVE_FUNCTION_SQRTF)		
 		return -(sqrtf(1.0f - (p * p)) - 1.0f);
+#else
+		return (REFloat32)(-(sqrt(1.0 - (p * p)) - 1.0));
+#endif		
 	}
 	
 	/// Returns circular ease out interpolation value of argument.
 	static const REFloat32 circularEaseOut(const REFloat32 p)
 	{
 		const REFloat32 np = p - 1.0f;
+#if defined(HAVE_FUNCTION_SQRTF)		
 		return sqrtf(1.0f - (np * np));
+#else
+		return (REFloat32)sqrt(1.0 - (np * np));
+#endif		
 	}
 	
 	/// Returns circular ease in out interpolation value of argument.
@@ -269,13 +294,33 @@ public:
 	/// Returns elastic ease in interpolation value of argument.
 	static const REFloat32 elasticEaseIn(const REFloat32 p)
 	{
-		return (-1.0f * powf(2.0f, 10.0f * (p - 1.0f)) * sinf(((p - 1.0f) - 0.075f) * MATH_2_MUL_PI / 0.3f));
+#if defined(HAVE_FUNCTION_POWF) 
+		const REFloat32 p1 = powf(2.0f, 10.0f * (p - 1.0f));
+#else
+		const REFloat64 p1 = pow(2.0, 10.0 * (p - 1.0));
+#endif		
+#if defined(HAVE_FUNCTION_SINF)
+		const REFloat32 s1 = sinf(((p - 1.0f) - 0.075f) * MATH_2_MUL_PI / 0.3f);
+#else
+		const REFloat64 s1 = sin(((p - 1.0) - 0.075) * MATH_2_MUL_PI / 0.3);
+#endif
+		return (-1.0f * p1 * s1);
 	}
 	
 	/// Returns elastic ease out interpolation value of argument.
 	static const REFloat32 elasticEaseOut(const REFloat32 p)
 	{
-		return powf(2.0f, -10.0f * p) * sinf((p - 0.075f) * MATH_2_MUL_PI / 0.3f) + 1.0f;
+#if defined(HAVE_FUNCTION_POWF) 
+		const REFloat32 p1 = powf(2.0f, -10.0f * p);
+#else		
+		const REFloat64 p1 = pow(2.0, -10.0 * p);
+#endif		
+#if defined(HAVE_FUNCTION_SINF)
+		const REFloat32 s1 = sinf((p - 0.075f) * MATH_2_MUL_PI / 0.3f);
+#else
+		const REFloat64 s1 = sin((p - 0.075) * MATH_2_MUL_PI / 0.3);
+#endif		
+		return (p1 * s1 + 1.0f);
 	}
 	
 	/// Returns elastic ease in out interpolation value of argument.

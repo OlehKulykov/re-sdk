@@ -23,7 +23,7 @@
 #include "REClassMethod.h"
 #include "REAutoReleasePool.h"
 
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)
 #include <pthread.h>
 #endif
 
@@ -53,7 +53,7 @@ REThreadState;
 class __RE_PUBLIC_CLASS_API__ REThread : public REObject
 {
 private:
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H) 
 	pthread_t _reThreadThread;
 #elif defined(__RE_USING_WINDOWS_THREADS__)	
 	HANDLE _reThreadThread;
@@ -67,7 +67,7 @@ private:
 	void removeState(const REThreadState & state);
 	REBOOL isHasState(const REThreadState & state) const;
 	
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
+#if defined(HAVE_PTHREAD_H)  
 	static void * threadFunction(void * th);
 #elif defined(__RE_USING_WINDOWS_THREADS__)
 	static DWORD WINAPI threadProc(LPVOID lpParameter);

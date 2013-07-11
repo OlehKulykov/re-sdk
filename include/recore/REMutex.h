@@ -43,6 +43,12 @@ typedef enum _reMutexType
 /// Enums type of mutexes.
 REMutexType;
 
+
+#if defined(HAVE_PTHREAD_H)
+#include <pthread.h>
+#endif
+
+
 #ifndef __RE_TRY_USE_PTHREADS__
 #ifdef __RE_OS_WINDOWS__
 #ifndef __RE_USING_WINDOWS_THREADS__
@@ -56,8 +62,8 @@ REMutexType;
 class __RE_PUBLIC_CLASS_API__ REMutex
 {
 private:
-#if defined(__RE_TRY_USE_PTHREADS__) && defined(__RE_HAVE_SYSTEM_PTHREAD_H__) 
-	void * _pthreadMutexPtr;
+#if defined(HAVE_PTHREAD_H)  
+	pthread_mutex_t * _pthreadMutexPtr;
 #elif defined(__RE_USING_WINDOWS_THREADS__)	
 	HANDLE _mutexHANDLE;
 #endif

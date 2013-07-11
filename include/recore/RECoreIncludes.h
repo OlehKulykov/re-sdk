@@ -23,19 +23,23 @@
 #include "RECorePlatformSelector.h"
 
 
+/* C Library */
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <limits.h>
+#include <math.h>
+#include <float.h>
+#include <string.h>
+#include <time.h>
+#include <wchar.h>
+#include <stdbool.h>
+
 
 
 #ifdef __RE_OS_WINDOWS__ 
 
 #include <windows.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
 
 /*
 #ifdef __RE_USING_OPENGL__ 
@@ -62,15 +66,6 @@
 
 
 #ifdef __RE_OS_IPHONE__ 
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
 
 #include <sys/types.h>
 #include <sys/errno.h>
@@ -107,15 +102,6 @@
 
 #ifdef __RE_OS_MACOSX__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
-
 #include <sys/types.h>
 #include <sys/errno.h>
 
@@ -148,15 +134,7 @@
 
 #ifdef __RE_OS_LINUX__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
 #include <unistd.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
 
 #include <sys/types.h>
 #include <sys/errno.h>
@@ -181,15 +159,7 @@
 
 #ifdef __RE_OS_ANDROID__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
 #include <setjmp.h>
-#include <string.h>
 #include <ctype.h>
 #include <cerrno>
 #include <cstddef>
@@ -220,15 +190,7 @@
 
 #ifdef __RE_OS_BADA__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include <wchar.h>
-#include <limits.h>
-#include <float.h>
 #include <setjmp.h>
-#include <string.h>
 #include <ctype.h>
 #include <cerrno>
 #include <cstddef>

@@ -20,7 +20,7 @@
 
 #include "RECommonHeader.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -38,7 +38,7 @@ public:
 			/// Length of range.
 			REUInt32 length;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// Arm neon range values vector.
 		float32x2_t armNeonRange;
 #endif			
@@ -87,7 +87,7 @@ public:
 	/// Basic asignment operator.
 	RERange & operator=(const RERange & anotherRange) 
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonRange = anotherRange.armNeonRange;
 #else
 		location = anotherRange.location;
@@ -96,7 +96,7 @@ public:
 		return (*this); 
 	}
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	/// Constructs range with arm neon range values vector.
 	RERange(const float32x2_t & anotherRangeArmNeonRange) : 
 		armNeonRange(anotherRangeArmNeonRange)

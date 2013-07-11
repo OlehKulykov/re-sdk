@@ -143,7 +143,7 @@ RETimePrivate::RETimePrivate() :
 #if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
 	_absoluteAppStartTime = mach_absolute_time();
 	_absoluteLastCallTime = _absoluteAppStartTime;
-	mach_timebase_info_data_t info;
+	mach_timebase_info_data_t info = { 0 };
     mach_timebase_info(&info);
     _nanoSecond = (double)(((long double)info.numer) * 1e-9)  / ((long double)info.denom);
 #elif defined(__RE_OS_WINDOWS__) 

@@ -23,7 +23,7 @@
 #include "REMath.h"
 #include "REMem.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -40,7 +40,7 @@ public:
 			REFloat32 w;
 		};
 		
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t armNeonQuaternion;
 #endif
 		
@@ -50,7 +50,7 @@ public:
 	/// length
 	const REFloat32 getMagnitude() const
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&armNeonQuaternion);
 		float32x2_t v2 = vpadd_f32(vget_low_f32(v), vget_high_f32(v));
 		v2 = vpadd_f32(v2, v2);
@@ -63,7 +63,7 @@ public:
 	REQuaternion & normalize()
 	{
 		const REFloat32 scale = 1.0f / this->getMagnitude();
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, vdupq_n_f32((float32_t)scale));
 #else
 		q[0] *= scale;
@@ -76,7 +76,7 @@ public:
 	
 	REQuaternion getConjugateQuaternion() const
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t *q = (float32x4_t *)&armNeonQuaternion;
 		uint32_t signBit = 0x80000000;
 		uint32_t zeroBit = 0x0;
@@ -90,7 +90,7 @@ public:
 	
 	REQuaternion getInverseQuaternion() const
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t * q = (float32x4_t *)&armNeonQuaternion;
 		float32x4_t v = vmulq_f32(*q, *q);
 		float32x2_t v2 = vpadd_f32(vget_low_f32(v), vget_high_f32(v));
@@ -114,10 +114,10 @@ public:
 		REQuaternion multiplied(*this);
 		multiplied.multiply(rotatedQuaternion);
 		multiplied.multiply(this->getInverseQuaternion());
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = multiplied.armNeonQuaternion;
 #else
-		REMem::Memcpy(q, multiplied.q, sizeof(REFloat32) * 4);
+		memcpy(q, multiplied.q, sizeof(REFloat32) * 4);
 #endif
 		return (*this);
 	}
@@ -136,7 +136,7 @@ public:
 	
 	REQuaternion & subtract(const REQuaternion & aq)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = vsubq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&aq.armNeonQuaternion);
 #else
 		q[0] -= aq.q[0];
@@ -149,7 +149,7 @@ public:
 	
 	REQuaternion & add(const REQuaternion & aq)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = vaddq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&aq.armNeonQuaternion);
 #else
 		q[0] += aq.q[0];
@@ -162,23 +162,23 @@ public:
 	
 	REQuaternion & operator=(const REQuaternion & aq)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = aq.armNeonQuaternion;
 #else
-		REMem::Memcpy(q, aq.q, sizeof(REFloat32) * 4);
+		memcpy(q, aq.q, sizeof(REFloat32) * 4);
 #endif
 		return (*this);
 	}
 	
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REQuaternion(const float32x4_t & aq) : armNeonQuaternion(aq) {  }
 #endif
 
 	REQuaternion(const REQuaternion & aq)
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	: armNeonQuaternion(aq.armNeonQuaternion) { }
 #else
-	{ REMem::Memcpy(q, aq.q, sizeof(REFloat32) * 4); }
+	{ memcpy(q, aq.q, sizeof(REFloat32) * 4); }
 #endif
 	
 	REQuaternion(const REFloat32 inx, const REFloat32 iny, const REFloat32 inz, const REFloat32 inw) : 

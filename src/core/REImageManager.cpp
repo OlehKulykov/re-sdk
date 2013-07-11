@@ -241,7 +241,7 @@ REBufferObject * REImageManagerPrivate::CreateWebPFilePresentation(const REUByte
 	
 	if (outBuff) 
 	{
-		REMem::Free(outBuff);
+		free(outBuff);
 	}
 	
 	return file;
@@ -433,7 +433,7 @@ void REImageManagerPrivate::PNGReadCallBack(png_structp png_ptr, png_bytep data,
 {
 	REImageManagerPrivate::PNGReadWriteStruct * readStruct = (REImageManagerPrivate::PNGReadWriteStruct *)png_get_io_ptr(png_ptr);//  png_ptr->io_ptr;
 	REUByte * ubData = (REUByte *)readStruct->data;
-	REMem::Memcpy(data, &ubData[readStruct->dataOffset], length);
+	memcpy(data, &ubData[readStruct->dataOffset], length);
 	readStruct->dataOffset += (REUInt32)length;
 }
 
@@ -455,7 +455,7 @@ void REImageManagerPrivate::PNGWriteDataCallBack(png_structp png_ptr, png_bytep 
 	{
 		REUByte * bufferData = (REUByte *)buff->getBuffer();
 		bufferData += writeStruct->dataOffset;
-		REMem::Memcpy(bufferData, data, length);
+		memcpy(bufferData, data, length);
 		writeStruct->dataOffset += length;
 	}
 }
@@ -472,7 +472,7 @@ REImageBase * REImageManagerPrivate::LoadPNG(const REUByte * fileData, const REU
 	readStruct.dataOffset = 0;
 	
 	png_byte sig[8];
-	REMem::Memcpy(sig, (const png_byte*)fileData, 8);
+	memcpy(sig, (const png_byte*)fileData, 8);
 	
 	// Check for valid magic number
 	/*

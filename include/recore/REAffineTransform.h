@@ -23,7 +23,7 @@
 #include "REMem.h"
 #include "IREAffineTransformed.h"
 
-#if defined (__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -86,7 +86,7 @@ public:
         arr1[3] = (t2.c * b) + (t2.d * d);
         arr1[4] = (t2.tx * a) + (t2.ty * c) + tx;
         arr1[5] = (t2.tx * b) + (t2.ty * d) + ty;
-		REMem::Memcpy(arr, arr1, 6 * sizeof(REFloat32));
+		memcpy(arr, arr1, 6 * sizeof(REFloat32));
 		return (*this);
 	}
 	
@@ -106,7 +106,7 @@ public:
         arr1[3] = (trc * b) + (trd * d);
         arr1[4] = (trtx * a) + (trty * c) + tx;
         arr1[5] = (trtx * b) + (trty * d) + ty;
-		REMem::Memcpy(arr, arr1, 6 * sizeof(REFloat32));
+		memcpy(arr, arr1, 6 * sizeof(REFloat32));
 		return (*this);
 	}
 	
@@ -151,7 +151,7 @@ public:
 	/// Assign operator
 	REAffineTransform & operator=(const REAffineTransform & anotherTransform)
 	{
-		REMem::Memcpy(arr, anotherTransform.arr, 6 * sizeof(REFloat32));
+		memcpy(arr, anotherTransform.arr, 6 * sizeof(REFloat32));
 		return (*this);
 	}
 	
@@ -178,31 +178,10 @@ public:
 	/// Returns translation 'y' value.
 	const REFloat32 getTranslationY() const { return ty; }
 	
-	/*
-	REAffineTransformParamsStruct GetTransformParams() const
-	{
-		REAffineTransformParamsStruct s;
-		s.translateX = this->GetTranslationX();
-		s.translateY = this->GetTranslationY();
-		s.scaleX = this->GetScaleX();
-		s.scaleY = this->GetScaleY();
-		s.rotateAngle = this->GetRotationRadAngle();
-		return s;
-	}
-	
-	REAffineTransform & SetTransformParams(const REAffineTransformParamsStruct & params)
-	{
-		this->ToIdentity();
-		this->Translate(params.translateX, params.translateY);
-		this->Scale(params.scaleX, params.scaleY);
-		return this->Rotate(params.rotateAngle);
-	}
-	*/
-	
 	/// Contructs transform from existed transform.
 	REAffineTransform(const REAffineTransform & tr)
 	{
-		REMem::Memcpy(arr, tr.arr, 6 * sizeof(REFloat32));	
+		memcpy(arr, tr.arr, 6 * sizeof(REFloat32));	
 	}
 	
 	/// Contructs transform from existed transform values.

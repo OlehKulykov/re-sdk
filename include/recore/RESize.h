@@ -20,7 +20,7 @@
 
 #include "RECommonHeader.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -37,7 +37,7 @@ typedef struct _reSizeStruct
 			/// Height value.
 			REFloat32 height;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// used for arm optimizations.
 		float32x2_t armNeonVector;
 #endif	
@@ -63,7 +63,7 @@ public:
 			/// Height value.
 			REFloat32 height;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// used for arm optimizations.
 		float32x2_t armNeonVector;
 #endif
@@ -80,7 +80,7 @@ public:
 	/// Basic assignment from size struct.
 	RESize & operator=(const RESizeStruct & anotherSize)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherSize.armNeonVector;
 #else
 		width = anotherSize.width;
@@ -92,7 +92,7 @@ public:
 	/// Basic assignment from another size.
 	RESize & operator=(const RESize & anotherSize)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherSize.armNeonVector;
 #else
 		width = anotherSize.width;
@@ -101,7 +101,7 @@ public:
 		return (*this);
 	}
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	/// Constructs size with values from arm neon vector.
 	RESize(const float32x2_t & armNVec) : armNeonVector(armNVec) { }
 #endif

@@ -23,7 +23,7 @@
 #include "REVector3.h"
 #include "REMem.h"
 
-#if defined(__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -41,7 +41,7 @@ public:
 			REFloat32 m20, m21, m22, m23;
 			REFloat32 m30, m31, m32, m33;
 		};
-#if defined(__ARM_NEON__)			
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4x4_t armNeonMatrix;
 #endif	
 		REFloat32 square[4][4];
@@ -52,7 +52,7 @@ public:
 	
 	REMatrix4 & multiply(const REMatrix4 & am)
 	{
-#if defined(__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
 		float32x4x4_t iMatrixRight = *(float32x4x4_t *)&am.armNeonMatrix;
 		
@@ -105,7 +105,7 @@ public:
 	
 	REMatrix4 & add(const REMatrix4 & am)
 	{
-#if defined(__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
 		float32x4x4_t iMatrixRight = *(float32x4x4_t *)&am.armNeonMatrix;
 		
@@ -136,7 +136,7 @@ public:
 	
 	REMatrix4 & subtract(const REMatrix4 & am)
 	{
-#if defined(__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4x4_t iMatrixLeft = *(float32x4x4_t *)&armNeonMatrix;
 		float32x4x4_t iMatrixRight = *(float32x4x4_t *)&am.armNeonMatrix;
 		
@@ -176,7 +176,7 @@ public:
 	
 	REMatrix4 & scale(const REFloat32 sx, const REFloat32 sy, const REFloat32 sz)
 	{
-#if defined(__ARM_NEON__)
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4x4_t iMatrix = *(float32x4x4_t *)&armNeonMatrix;
 		
 		armNeonMatrix.val[0] = vmulq_n_f32(iMatrix.val[0], (float32_t)sx);
@@ -216,32 +216,32 @@ public:
 	
 	REMatrix4 & operator=(const REMatrix4 & anotherMatrix3D)
 	{
-#if defined(__ARM_NEON__)	
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonMatrix = anotherMatrix3D.armNeonMatrix;
 #else		
-		REMem::Memcpy(line, anotherMatrix3D.line, sizeof(REFloat32) * 16);
+		memcpy(line, anotherMatrix3D.line, sizeof(REFloat32) * 16);
 #endif		
 		return (*this);
 	}
 	
 	REMatrix4 & toIdentity()
 	{
-		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
+		memset(line, 0, sizeof(REFloat32) * 16);
 		m00 = m11 = m22 = m33 = 1.0f;
 		return (*this);
 	}
 	
-#if defined(__ARM_NEON__)	
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REMatrix4(const float32x4x4_t & am) : armNeonMatrix(am) { }
 #endif
 	
-#if defined(__ARM_NEON__)	
+#if defined (__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REMatrix4(const REMatrix4 & am) : armNeonMatrix(am.armNeonMatrix) { }
 #else
-	REMatrix4(const REMatrix4 & am) { REMem::Memcpy(line, am.line, sizeof(REFloat32) * 16); }
+	REMatrix4(const REMatrix4 & am) { memcpy(line, am.line, sizeof(REFloat32) * 16); }
 #endif	
 	
-	REMatrix4() { REMem::Memset(line, 0, sizeof(REFloat32) * 16); }
+	REMatrix4() { memset(line, 0, sizeof(REFloat32) * 16); }
 	~REMatrix4() { }
 	
 	REMatrix4 & toPerspective(const REFloat32 fovyRadians, 
@@ -249,7 +249,7 @@ public:
 							   const REFloat32 nearZ, 
 							   const REFloat32 farZ)
 	{
-		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
+		memset(line, 0, sizeof(REFloat32) * 16);
 		const REFloat32 cotan = 1.0f / tanf(fovyRadians / 2.0f);
 		m00 = cotan / aspect;
 		m11 = cotan;
@@ -284,7 +284,7 @@ public:
 		const REFloat32 tab = top + bottom;
 		const REFloat32 fan = farZ + nearZ;
 		const REFloat32 fsn = farZ - nearZ;
-		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
+		memset(line, 0, sizeof(REFloat32) * 16);
 		m00 = 2.0f * nearZ / rsl;
 		m11 = 2.0f * nearZ / tsb;
 		m20 = ral / rsl;
@@ -314,7 +314,7 @@ public:
 						 const REFloat32 nearZ, 
 						 const REFloat32 farZ)
 	{
-		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
+		memset(line, 0, sizeof(REFloat32) * 16);
 		const REFloat32 ral = right + left;
 		const REFloat32 rsl = right - left;
 		const REFloat32 tab = top + bottom;
@@ -353,7 +353,7 @@ public:
 						  const REFloat32 upY, 
 						  const REFloat32 upZ)
 	{
-		REMem::Memset(line, 0, sizeof(REFloat32) * 16);
+		memset(line, 0, sizeof(REFloat32) * 16);
 		REVector3 ev(eyeX, eyeY, eyeZ);
 		REVector3 cv(centerX, centerY, centerZ);
 		REVector3 uv(upX, upY, upZ);

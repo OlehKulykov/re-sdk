@@ -22,7 +22,7 @@
 #include "REPoint2.h"
 #include "REMath.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -40,7 +40,7 @@ public:
 			/// Y coordinate.
 			REFloat32 y;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// used for arm optimizations
 		float32x2_t armNeonVector;
 #endif		
@@ -68,7 +68,7 @@ public:
 	
     static REFloat32 dotProduct(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x2_t v = vmul_f32(*(float32x2_t *)&firstVector.armNeonVector, *(float32x2_t *)&secondVector.armNeonVector);
 		v = vpadd_f32(v, v);
 		return vget_lane_f32(v, 0);
@@ -109,7 +109,7 @@ public:
 	/// Получение нового вектора с противоположным направлением.
 	REVector2 getInverseVector() const
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		return REVector2(vneg_f32(*(float32x2_t *)&armNeonVector));
 #else
 		return REVector2(-x, -y);
@@ -121,7 +121,7 @@ public:
 	/// Изменения направление вектора на противоположное
 	REVector2 & inverse()
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vneg_f32(*(float32x2_t *)&armNeonVector);
 #else
 		x = -x;
@@ -135,7 +135,7 @@ public:
 	/// Преобразование заданного вектора в вектор в том же направлении, но с единичной длиной.
 	REVector2 & normalize()
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		const float32_t invMag = (1.0f / this->getMagnitude());
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector, vdup_n_f32(invMag));
 #else
@@ -151,7 +151,7 @@ public:
 	/// Длина вектора (или модуль)
 	const REFloat32 getMagnitude() const
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x2_t v = vmul_f32(*(float32x2_t *)&armNeonVector, *(float32x2_t *)&armNeonVector);
 		v = vpadd_f32(v, v);
 		return sqrtf(vget_lane_f32(v, 0)); 
@@ -183,7 +183,7 @@ public:
 	/// "this vector" + another vector
 	REVector2 & add(const REVector2 & anotherVector2D)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vadd_f32(*(float32x2_t *)&armNeonVector,
 								 *(float32x2_t *)&anotherVector2D.armNeonVector);
 #else
@@ -196,7 +196,7 @@ public:
 	/// "this vector" - another vector
 	REVector2 & subtract(const REVector2 & anotherVector2D)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vsub_f32(*(float32x2_t *)&armNeonVector,
 								 *(float32x2_t *)&anotherVector2D.armNeonVector);
 #else
@@ -209,7 +209,7 @@ public:
 	/// "this vector" * another vector
 	REVector2 & multiply(const REVector2 & anotherVector2D)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector,
 								 *(float32x2_t *)&anotherVector2D.armNeonVector);
 #else
@@ -228,7 +228,7 @@ public:
 		}
 		else
 		{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 			float32x2_t *vLeft = (float32x2_t *)&armNeonVector;
 			float32x2_t *vRight = (float32x2_t *)&anotherVector2D.armNeonVector;
 			float32x2_t estimate = vrecpe_f32(*vRight);    
@@ -246,7 +246,7 @@ public:
 	/// "this vector" + float value (scalar)
 	REVector2 & addScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__) 
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vadd_f32(*(float32x2_t *)&armNeonVector,
 								 vdup_n_f32((float32_t)scalar));
 #else 
@@ -259,7 +259,7 @@ public:
 	/// "this vector" - float value (scalar)
 	REVector2 & subtractScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vsub_f32(*(float32x2_t *)&armNeonVector,
 								 vdup_n_f32((float32_t)scalar));
 #else    
@@ -272,7 +272,7 @@ public:
 	/// "this vector" * float value (scalar)
 	REVector2 & multiplyScalar(const REFloat32 scalar)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector,
 								 vdup_n_f32((float32_t)scalar));
 #else
@@ -291,7 +291,7 @@ public:
 		}
 		else
 		{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 			float32x2_t values = vdup_n_f32((float32_t)scalar);
 			float32x2_t estimate = vrecpe_f32(values);    
 			estimate = vmul_f32(vrecps_f32(values, estimate), estimate);
@@ -412,7 +412,7 @@ public:
 	
 	REVector2 & operator=(const REVector2 & anotherVector2D)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherVector2D.armNeonVector;
 #else 
 		x = anotherVector2D.x;
@@ -425,7 +425,7 @@ public:
 	/// Can used for creating direction vector from one object coords to another object coords.
 	REVector2 & setFromCoordinates(const REPoint2 & fromPoint, const REPoint2 & toPoint)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = vsub_f32(*(float32x2_t *)&toPoint.armNeonPoint,
 								 *(float32x2_t *)&fromPoint.armNeonPoint);
 #else
@@ -442,7 +442,7 @@ public:
 								   const REFloat32 toPointX,
 								   const REFloat32 toPointY)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		REPoint2 to(toPointX, toPointY);
 		REPoint2 from(fromPointX, fromPointY);
 		armNeonVector = vsub_f32(*(float32x2_t *)&to.armNeonPoint,
@@ -461,13 +461,13 @@ public:
 		return (*this);
 	}
 	
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	REVector2(const float32x2_t & a) : armNeonVector(a) { }
 #endif	
 	REVector2() : x(0.0f), y(0.0f) { }
 	REVector2(const REFloat32 newX, const REFloat32 newY) : x(newX), y(newY) { }
 	REVector2(const REVector2 & anotherVector2D) : 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	armNeonVector(anotherVector2D.armNeonVector) { }
 #else 
 	x(anotherVector2D.x), y(anotherVector2D.y) { }

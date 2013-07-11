@@ -372,10 +372,10 @@ void RETTFFontLoader::writeGlyphToImage(RETTFFontChar * ttfChar)
 		{
 			REUByte * dst = _imgTex.image->getImageData();
 			dst += (((y+_lastY)*imgWidth) + _lastX);
-			REMem::Memcpy(dst, bitmap_buffer + (y*ttfChar->bitmapPitch), charWidth);
+			memcpy(dst, bitmap_buffer + (y*ttfChar->bitmapPitch), charWidth);
 		}
 	}
-	REMem::Free(ttfChar->bitmap);
+	free(ttfChar->bitmap);
 	ttfChar->bitmap = NULL;
 	_lastX += (charWidth + CHARS_HORIZONTAL_SPACE);
 	_processedSquare += (((REUInt32)ttfChar->bitmapWidth + CHARS_HORIZONTAL_SPACE) * 
@@ -428,10 +428,10 @@ void RETTFFontLoader::readGlyphs()
 				loadedChar->height = (REFloat32)slot->bitmap.rows;
 				
 				const REUInt32 bitmapDataSize = (slot->bitmap.width * slot->bitmap.rows);
-				loadedChar->bitmap = REMem::Malloc(bitmapDataSize);
+				loadedChar->bitmap = malloc(bitmapDataSize);
 				if (loadedChar->bitmap) 
 				{
-					REMem::Memcpy(loadedChar->bitmap, slot->bitmap.buffer, bitmapDataSize);
+					memcpy(loadedChar->bitmap, slot->bitmap.buffer, bitmapDataSize);
 					loadedChar->bitmapWidth = (REUByte)slot->bitmap.width;
 					loadedChar->bitmapHeight = (REUByte)slot->bitmap.rows;
 					loadedChar->bitmapPitch = (REUByte)slot->bitmap.pitch;
@@ -492,7 +492,7 @@ REBOOL RETTFFontLoader::isCanLoad() const
 void * RETTFFontLoader::createLib()
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	FT_Library * library = (FT_Library *)REMem::Malloc(sizeof(FT_Library));
+	FT_Library * library = (FT_Library *)malloc(sizeof(FT_Library));
 	if (library) 
 	{
 		memset(library, 0, sizeof(FT_Library));
@@ -500,7 +500,7 @@ void * RETTFFontLoader::createLib()
 		{
 			return library;
 		}
-		REMem::Free(library);
+		free(library);
 	}
 #endif
 	return NULL;
@@ -509,7 +509,7 @@ void * RETTFFontLoader::createLib()
 void * RETTFFontLoader::createFace(const REBuffer & ttfFileBuffer)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	FT_Face * face = (FT_Face *)REMem::Malloc(sizeof(FT_Face));
+	FT_Face * face = (FT_Face *)malloc(sizeof(FT_Face));
 	if (face) 
 	{
 		memset(face, 0, sizeof(FT_Face));
@@ -537,7 +537,7 @@ void * RETTFFontLoader::createFace(const REBuffer & ttfFileBuffer)
 			*/
 			return face;
 		}
-		REMem::Free(face);
+		free(face);
 	}
 #endif
 	return NULL;
@@ -672,14 +672,14 @@ RETTFFontLoader::~RETTFFontLoader()
 	{
 		FT_Face * face = (FT_Face *)_face;
 		FT_Done_Face(*face);
-		REMem::Free(_face);
+		free(_face);
 	}
 	
 	if (_library) 
 	{
 		FT_Library * lib = (FT_Library *)_library;
 		FT_Done_FreeType(*lib);
-		REMem::Free(_library);
+		free(_library);
 	}
 
 	if (_imgTex.image) 

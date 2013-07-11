@@ -18,20 +18,15 @@
 #include "../../include/recore/REZLIBCompression.h"
 #include "../../include/recore/REMem.h"
 
-#ifndef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
+#if !defined(__RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__)
 
-#if defined(__RE_USING_ADITIONAL_ZLIB_LIBRARY__)
-#include "../addlibs/zlib.h"
-
-#elif defined(__RE_TRY_USE_SYSTEM_ZLIB_LIBRARY__) && defined(__RE_HAVE_SYSTEM_ZLIB_H__)
+#if defined(HAVE_ZLIB_H)
 #include <zlib.h>
-
 #else
-#define __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__
+#include "../addlibs/zlib.h"
 #endif
 
 #endif
-
 
 
 RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat32 compressionLevel)
@@ -50,7 +45,7 @@ RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat3
 	}
 	
 	z_stream strm;
-	REMem::Memset(&strm, 0, sizeof(z_stream));
+	memset(&strm, 0, sizeof(z_stream));
 	strm.next_in = (Bytef *)inBuffer.getBuffer();
 	strm.avail_in = inBuffer.getSize();
 	
@@ -143,7 +138,7 @@ RETypedPtr REZLIBCompression::decompress(const REBuffer & inBuffer)
 	}
 	
     z_stream strm;
-	REMem::Memset(&strm, 0, sizeof(z_stream));
+	memset(&strm, 0, sizeof(z_stream));
     strm.avail_in = inBuffer.getSize();
 	strm.next_in = (Bytef*)inBuffer.getBuffer();
     int ret = inflateInit(&strm);

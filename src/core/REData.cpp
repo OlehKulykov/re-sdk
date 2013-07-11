@@ -39,7 +39,7 @@ REUInt32 REData::fileRead(void * bufferForReading, const REUInt32 dataSizeToRead
 				sizeToRead = avaiableSize;
 			}
 			
-			REMem::Memcpy(bufferForReading, &buff[_fileOffset], sizeToRead);
+			memcpy(bufferForReading, &buff[_fileOffset], sizeToRead);
 			_fileOffset += sizeToRead;
 			return sizeToRead;
 		}

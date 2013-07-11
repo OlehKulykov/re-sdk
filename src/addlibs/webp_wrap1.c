@@ -22,7 +22,7 @@
 #include "webp/src/dsp/cpu.c"
 #include "webp/src/dsp/dec.c"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include "webp/src/dsp/dec_neon.c"
 #endif
 

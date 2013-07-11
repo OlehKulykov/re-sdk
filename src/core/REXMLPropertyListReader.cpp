@@ -18,21 +18,13 @@
 #include "../../include/recore/REXMLPropertyListReader.h"
 #include "../../include/recore/REDictionaryObject.h"
 
-#if defined(__RE_USING_ADITIONAL_TINYXML_LIBRARY__)
 #include "../addlibs/tinyxml.h"
 
 using namespace tinyxml2;
 
-#elif defined(__RE_USING_SYSTEM_TINYXML_LIBRARY__)
-#include <tinyxml.h>
-#else
-#define __RE_NO_XML_PARSER_PRIVATE__
-#endif
-
 
 void REXMLPropertyListReader::ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__
 	for (REUInt32 i = 0; i < pairs->count(); i++) 
 	{
 		REDictionaryObject::KeyObjectStruct * p = &((*pairs)[i]);
@@ -45,12 +37,10 @@ void REXMLPropertyListReader::ClearPairs(REArray<REDictionaryObject::KeyObjectSt
 			p->objValue->release();
 		}
 	}
-#endif
 }
 
 REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__
 	XMLElement * elem = (XMLElement *)elementObject;
 	const char * eVal = elem->Value();
 	if (eVal) 
@@ -181,13 +171,11 @@ REObject * REXMLPropertyListReader::NewObjectFromElement(void * elementObject)
 				break;
 		}
 	}
-#endif
 	return NULL;
 }
 
 REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	REStringObject * keyString = NULL;
 	XMLElement * dictElement = (XMLElement *)dictionaryElement;
 	for(XMLElement * elem = dictElement->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement() )
@@ -232,13 +220,11 @@ REBOOL REXMLPropertyListReader::ParseDictionaryElement(REArray<REDictionaryObjec
 	{
 		keyString->release();
 	}
-#endif
 	return true;
 }
 
 REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	XMLElement * element = (XMLElement *)propListElement;
 	
 	for (XMLElement * dictElem = element->FirstChildElement(); dictElem != NULL; dictElem = dictElem->NextSiblingElement()) 
@@ -252,13 +238,11 @@ REBOOL REXMLPropertyListReader::ReadPropertyListElement(REArray<REDictionaryObje
 			}
 		}
 	}
-#endif
 	return false;
 }
 
 REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__	
 	if ((listString == NULL) || (pairs == NULL) ) { return false; }
 	
 	REXMLPropertyListReader::ClearPairs(pairs);
@@ -280,17 +264,12 @@ REBOOL REXMLPropertyListReader::ReadFromString(const char * listString, REArray<
 			return REXMLPropertyListReader::ReadPropertyListElement(pairs, root);
 		}
 	}
-#endif
 	return false;
 }
 
 REBOOL REXMLPropertyListReader::ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
-#ifndef __RE_NO_XML_PARSER_PRIVATE__
 	return this->ReadFromString(listString.getChars(), pairs);
-#else
-	return false;
-#endif
 }
 
 REXMLPropertyListReader::REXMLPropertyListReader()

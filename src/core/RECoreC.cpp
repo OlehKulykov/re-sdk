@@ -20,12 +20,6 @@
 #include "../../include/recore/REFloat16.h"
 #include "../../include/recore/RELog.h"
 
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__))
-#import <mach/mach.h>
-#import <mach/mach_host.h>
-#endif
-
-
 class RECorePrivate
 {
 	
@@ -45,6 +39,77 @@ REBOOL RECorePrivate::isPreferencesPathInitialized = false;
 JNIEnv * RECorePrivate::androidJNIEnvironment = (JNIEnv *)0;
 jclass RECorePrivate::androidApplicationActivityJNIClass = (jclass)0;
 #endif
+
+int RECore::isCorrectTypes()
+{
+	if (sizeof(REByte) != sizeof(REUByte)) 
+	{
+		RELog::log("ERROR: sizes of REByte and REUByte is different.");
+		return 0;
+	}
+
+	if (sizeof(REUByte) != 1) 
+	{
+		RELog::log("ERROR: size of REUByte is not 1.");
+		return 0;
+	}
+	
+	if (sizeof(REInt16) != sizeof(REUInt16)) 
+	{
+		RELog::log("ERROR: sizes of REInt16 and REUInt16 is different.");
+		return 0;
+	}
+	
+	if (sizeof(REUInt16) != 2)
+	{
+		RELog::log("ERROR: size of REUByte is not 2.");
+		return 0;
+	}
+	
+	if (sizeof(REInt32) != sizeof(REUInt32)) 
+	{
+		RELog::log("ERROR: sizes of REInt32 and REUInt32 is different.");
+		return 0;
+	}
+	
+	if (sizeof(REUInt32) != 4)
+	{
+		RELog::log("ERROR: size of REUInt32 is not 4.");
+		return 0;
+	}
+	
+	if (sizeof(REInt64) != sizeof(REUInt64))
+	{
+		RELog::log("ERROR: sizes of REInt64 and REUInt64 is different.");
+		return 0;
+	}
+	
+	if (sizeof(REUInt64) != 8) 
+	{
+		RELog::log("ERROR: size of REUInt64 is not 8.");
+		return 0;
+	}
+	
+	if (sizeof(REFloat32) != 4)
+	{
+		RELog::log("ERROR: size of REFloat32 is not 4.");
+		return 0;
+	}
+	
+	if (sizeof(REFloat64) != 8)
+	{
+		RELog::log("ERROR: size of REFloat64 is not 8.");
+		return 0;
+	}
+	
+	if (sizeof(void*) != sizeof(REUIdentifier)) 
+	{
+		RELog::log("ERROR: sizes of pointer type and REUIdentifier is different.");
+		return 0;
+	}
+	
+	return 1;
+}
 
 const char * RECore::buildInfo()
 {

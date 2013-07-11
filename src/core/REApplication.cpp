@@ -17,7 +17,7 @@
 
 #include "../../include/recore/REApplication.h"
 #include "../../include/recore/REThread.h"
-#include "../../include/recore/RECPUFeatures.h"
+#include "../../include/recore/RECoreC.h"
 #include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 
@@ -114,6 +114,12 @@ REBOOL REApplication::reapplicationInit()
 	REThread::isMainThread();
 	
 	this->clearErrorDescription();
+	
+	if (RECore::isCorrectTypes() == 0)
+	{
+		this->addToErrorDescription(REString("RECore types is incorrect. Check type defines."));
+		return false;
+	}
 	
 	if (_appAutoReleasePool)
 	{

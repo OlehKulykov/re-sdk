@@ -25,7 +25,7 @@
 class RERect;
 typedef struct _reRectStruct RERectStruct;
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -63,7 +63,7 @@ public:
 			/// Bottom right Y coordinate.
 			REFloat32 bottomRightY;
 		};
-#if defined(__ARM_NEON__)	
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 	
 		struct
 		{
 			/// arm neon top coordinates vector.
@@ -86,7 +86,7 @@ public:
 	/// Translates tetragon by X, Y values.
 	RETetragon & translate(const REFloat32 x, const REFloat32 y)
 	{
-//#if defined(__ARM_NEON__)
+//#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 //	TODO: __ARM_NEON__ optimization.
 //#else
 		topLeftX += x;
@@ -135,13 +135,13 @@ public:
 	/// Constructs tetragon from another tetragon.
 	RETetragon(const RETetragon & tetr)
 	{
-		REMem::Memcpy(arr, tetr.arr, 8 * sizeof(REFloat32));
+		memcpy(arr, tetr.arr, 8 * sizeof(REFloat32));
 	}
 	
 	/// Constructs tetragon with zero value coordinates.
 	RETetragon() 
 	{
-		REMem::Memset(arr, 0, 8 * sizeof(REFloat32)); 
+		memset(arr, 0, 8 * sizeof(REFloat32)); 
 	}
 	
 	/// Destructor.

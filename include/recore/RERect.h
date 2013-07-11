@@ -24,7 +24,7 @@
 #include "REMath.h"
 #include "REMem.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -47,7 +47,7 @@ typedef struct _reRectStruct
 			/// Rectangle height.
 			REFloat32 height;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// arm neon vector with x, y, width and height.
 		float32x4_t armNeonVector;
 #endif
@@ -78,7 +78,7 @@ public:
 			/// Rectangle height.
 			REFloat32 height;
 		};
-#if defined(__ARM_NEON__)		
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 		
 		/// arm neon vector with x, y, width and height.
 		float32x4_t armNeonVector;
 #endif	
@@ -265,7 +265,7 @@ public:
 	/// Clear rectangle. Sets all values to zeros.
 	RERect & clear()
 	{
-		REMem::Memset(xywh, 0, sizeof(REFloat32) * 4);
+		memset(xywh, 0, sizeof(REFloat32) * 4);
 		return (*this);
 	}
 	
@@ -373,10 +373,10 @@ public:
 	/// Basic assignment operator.
 	RERect & operator=(const RERect & anotherRect) 
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherRect.armNeonVector;
 #else
-		REMem::Memcpy(xywh, anotherRect.xywh, sizeof(REFloat32) * 4);
+		memcpy(xywh, anotherRect.xywh, sizeof(REFloat32) * 4);
 #endif
 		return (*this);
 	}
@@ -384,15 +384,15 @@ public:
 	/// Basic assignment operator.
 	RERect & operator=(const RERectStruct & anotherRect) 
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonVector = anotherRect.armNeonVector;
 #else
-		REMem::Memcpy(xywh, anotherRect.xywh, sizeof(REFloat32) * 4);
+		memcpy(xywh, anotherRect.xywh, sizeof(REFloat32) * 4);
 #endif
 		return (*this);
 	}
 	
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	/// Constructs rectangle with arm neon vector.
 	RERect(const float32x4_t & armNVec) : armNeonVector(armNVec) { }
 #endif

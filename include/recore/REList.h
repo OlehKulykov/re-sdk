@@ -67,7 +67,7 @@ public:
 				if (prev) prev->next = curr->next;
 				else _head = curr->next;
 				_count--;
-				REMem::Free(curr);
+				free(curr);
 				return true;
 			}
 			prev = curr;
@@ -96,7 +96,7 @@ public:
 				if (prev) prev->next = curr->next;
 				else _head = curr->next;
 				_count--;
-				REMem::Free(curr);
+				free(curr);
 				return true;
 			}
 			prev = curr;
@@ -109,7 +109,7 @@ public:
 	/// Return 'true' if object added, otherwise return 'false'.
 	REBOOL add(const T & value)
 	{
-		ListElementStruct * newStruct = (ListElementStruct *)REMem::Malloc(sizeof(ListElementStruct));
+		ListElementStruct * newStruct = (ListElementStruct *)malloc(sizeof(ListElementStruct));
 		if (newStruct) 
 		{
 			if (_head && _count) 
@@ -133,7 +133,7 @@ public:
 	/// Return 'true' if added as first, otherwise return 'false'.
 	REBOOL addFirst(const T & value)
 	{
-		ListElementStruct * newStruct = (ListElementStruct *)REMem::Malloc(sizeof(ListElementStruct));
+		ListElementStruct * newStruct = (ListElementStruct *)malloc(sizeof(ListElementStruct));
 		if (newStruct) 
 		{
 			newStruct->value = value;
@@ -152,7 +152,7 @@ public:
 		ListElementStruct * elem = this->getElementStructAt(index);
 		if (elem) return elem->value;
 		static T empty;
-		REMem::Memset(&empty, 0, sizeof(T));
+		memset(&empty, 0, sizeof(T));
 		return empty;
 	}
 	
@@ -174,7 +174,7 @@ public:
 			if (elem) return elem->value;
 		}
 		static T empty;
-		REMem::Memset(&empty, 0, sizeof(T));
+		memset(&empty, 0, sizeof(T));
 		return empty;
 	}
 	
@@ -184,13 +184,13 @@ public:
 		if (_head) 
 		{
 			ListElementStruct * next = _head->next;
-			REMem::Free(_head);
+			free(_head);
 			_head = NULL;
 			while (next) 
 			{
 				ListElementStruct * prev = next;
 				next = next->next;
-				REMem::Free(prev);
+				free(prev);
 			}
 		}
 	}

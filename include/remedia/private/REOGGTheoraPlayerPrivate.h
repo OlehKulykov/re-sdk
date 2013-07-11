@@ -55,7 +55,7 @@
 
 #include <math.h>
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #ifdef __RE_OS_IPHONE__
 #include <Accelerate/Accelerate.h>
@@ -151,7 +151,7 @@ public:
 	
 	
 private:
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #endif	
 };
 

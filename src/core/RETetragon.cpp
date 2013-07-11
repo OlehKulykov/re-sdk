@@ -76,11 +76,11 @@ void RETetragon::set(const RERect & rect)
 
 void RETetragon::set(const RETetragon & tetr)
 {
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 	armNeonTop = tetr.armNeonTop;
 	armNeonBottom = tetr.armNeonBottom;
 #else
-	REMem::Memcpy(arr, tetr.arr, 8 * sizeof(REFloat32));
+	memcpy(arr, tetr.arr, 8 * sizeof(REFloat32));
 #endif
 }
 

@@ -22,12 +22,6 @@
 #include "REBuffer.h"
 #include "RETypedPtr.h"
 
-/*
- 
- __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
- 
- */
-
 
 /// Class using for data compression/decompression using lzma library.
 /// Compression and decompression avaiable with undefined flag __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__

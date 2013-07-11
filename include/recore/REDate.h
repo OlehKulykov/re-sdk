@@ -32,6 +32,7 @@ private:
 	void makeDateInternalCopy();
 	
 public:
+	/// Using defaultFormatString
 	REString toString() const;
 	
 	REBOOL isEqualToDate(const REDate & anotherDate) const;
@@ -95,6 +96,8 @@ public:
 	
 	/// Checks is year leap.
 	static REBOOL isLeapYear(const REUInt32 year);
+	
+	static const char * defaultFormatString();
 };
 
 #endif /* __REDATE_H__ */

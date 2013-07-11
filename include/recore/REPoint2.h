@@ -20,7 +20,7 @@
 
 #include "RECommonHeader.h"
 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
 
@@ -34,7 +34,7 @@ typedef struct _REPoint2Struct
 			REFloat32 y; 
 		};
 		
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x2_t armNeonPoint;
 #endif	
 		
@@ -56,7 +56,7 @@ public:
 			/// Y coordinate.
 			REFloat32 y;
 		};
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		/// used for arm optimizations
 		float32x2_t armNeonPoint;
 #endif		
@@ -67,7 +67,7 @@ public:
 	/// Copy operator. This point will be same as anotherPoint struct.
 	REPoint2 & operator=(const REPoint2Struct & anotherPoint)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonPoint = anotherPoint.armNeonPoint;
 #else		
 		x = anotherPoint.x;
@@ -79,7 +79,7 @@ public:
 	/// Copy operator. This point will be same as anotherPoint.
 	REPoint2 & operator=(const REPoint2 & anotherPoint)
 	{
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonPoint = anotherPoint.armNeonPoint;
 #else		
 		x = anotherPoint.x;
@@ -93,7 +93,7 @@ public:
 
 	/// Constructs 2D Point same as anotherPoint struct.
 	REPoint2(const REPoint2Struct & anotherPoint) : 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonPoint(anotherPoint.armNeonPoint) { }
 #else	
 		x(anotherPoint.x), y(anotherPoint.y) { }
@@ -101,7 +101,7 @@ public:
 	
 	/// Constructs 2D Point same as anotherPoint.
 	REPoint2(const REPoint2 & anotherPoint) : 
-#if defined(__ARM_NEON__)
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonPoint(anotherPoint.armNeonPoint) { }
 #else	
 		x(anotherPoint.x), y(anotherPoint.y) { }
