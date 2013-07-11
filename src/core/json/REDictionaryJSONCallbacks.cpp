@@ -20,6 +20,12 @@
 #include "../../../include/recore/RETypedArray.h"
 #include "../../../include/recore/REDictionary.h"
 
+#include "../../../include/recore/RENULLObject.h"
+#include "../../../include/recore/RENumberObject.h"
+#include "../../../include/recore/REStringObject.h"
+#include "../../../include/recore/REArrayObject.h"
+#include "../../../include/recore/REDictionaryObject.h"
+
 REDictionaryJSONCallbacks::~REDictionaryJSONCallbacks()
 {
 	for (REUInt32 i = 0; i < pointers.count(); i++) 
@@ -54,7 +60,7 @@ void* REDictionaryJSONCallbacks::createNull(void * userData)
 		RE_SAFE_DELETE(p);
 		delete n;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createNumberWithBool(const int isTrue, void * userData)
@@ -72,7 +78,7 @@ void* REDictionaryJSONCallbacks::createNumberWithBool(const int isTrue, void * u
 		RE_SAFE_DELETE(p);
 		delete n;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createNumberWithLongLong(const long long value, void * userData)
@@ -90,7 +96,7 @@ void* REDictionaryJSONCallbacks::createNumberWithLongLong(const long long value,
 		RE_SAFE_DELETE(p);
 		delete n;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createNumberWithDouble(const double value, void * userData)
@@ -108,7 +114,7 @@ void* REDictionaryJSONCallbacks::createNumberWithDouble(const double value, void
 		RE_SAFE_DELETE(p);
 		delete n;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createStringWithUTF8(const char* utf8str, const int inLen, void * userData)
@@ -125,7 +131,7 @@ void* REDictionaryJSONCallbacks::createStringWithUTF8(const char* utf8str, const
 		RE_SAFE_DELETE(p);
 		delete s;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createArray(void * userData)
@@ -142,7 +148,7 @@ void* REDictionaryJSONCallbacks::createArray(void * userData)
 		RE_SAFE_DELETE(p);
 		delete a;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void* REDictionaryJSONCallbacks::createDictionary(void * userData)
@@ -159,7 +165,7 @@ void* REDictionaryJSONCallbacks::createDictionary(void * userData)
 		RE_SAFE_DELETE(p);
 		delete d;
 	}
-	return (void*)0;
+	return NULL;
 }
 
 void REDictionaryJSONCallbacks::deleteObject(void* object)
@@ -181,4 +187,164 @@ void REDictionaryJSONCallbacks::addToDictionary(void* dict, void* key, void* val
 	RETypedPtr * v = REPtrCast<RETypedPtr, void>(value);
 	d->getDictionary()->setValue(*v, *k);
 }
+
+
+
+
+
+void* REDictionaryJSONCallbacks::createNullREObject(void * userData)
+{
+	RENULLObject * n = RENULLObject::NULLObject();
+	if (n)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, RENULLObject>(n), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		n->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createNumberREObjectWithBool(const int isTrue, void * userData)
+{
+	RENumberObject * n = RENumberObject::createWithBool(isTrue ? true : false);
+	if (n)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, RENumberObject>(n), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		n->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createNumberREObjectWithLongLong(const long long value, void * userData)
+{
+	RENumberObject * n = RENumberObject::createWithInt64((REInt64)value);
+	if (n)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, RENumberObject>(n), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		n->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createNumberREObjectWithDouble(const double value, void * userData)
+{
+	RENumberObject * n = RENumberObject::createWithFloat64((REFloat64)value);
+	if (n)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, RENumberObject>(n), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		n->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createStringREObjectWithUTF8(const char* utf8str, const int inLen, void * userData)
+{
+	REStringObject * s = REStringObject::createWithCharsAndLen(utf8str, inLen);
+	if (s)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, REStringObject>(s), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		s->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createArrayREObject(void * userData)
+{
+	REArrayObject * a = REArrayObject::create();
+	if (a)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, REArrayObject>(a), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		a->release();
+	}
+	return NULL;
+}
+
+void* REDictionaryJSONCallbacks::createDictionaryREObject(void * userData)
+{
+	REDictionaryObject * d = REDictionaryObject::create();
+	if (d)
+	{
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, REDictionaryObject>(d), REPtrTypeVoidPointer);
+		if (RETypedPtr::isNotEmpty(p))
+		{
+			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
+			return REPtrCast<void, RETypedPtr>(p);
+		}
+		RE_SAFE_DELETE(p);
+		d->release();
+	}
+	return NULL;
+}
+
+void REDictionaryJSONCallbacks::deleteObjectREObject(void* object)
+{
+	RETypedPtr * p = REPtrCast<RETypedPtr, void>(object);
+	REObject * obj = REPtrCast<REObject, void>(p->getVoidPointer());
+	obj->release();
+}
+
+void REDictionaryJSONCallbacks::addToArrayREObject(void* array, void* object)
+{
+	RETypedPtr * ap = REPtrCast<RETypedPtr, void>(array);
+	REArrayObject * a = REPtrCast<REArrayObject, void>(ap->getVoidPointer());
+	
+	RETypedPtr * op = REPtrCast<RETypedPtr, void>(array);
+	REObject * o = REPtrCast<REObject, void>(op->getVoidPointer());
+	
+	a->add(o);
+}
+
+void REDictionaryJSONCallbacks::addToDictionaryREObject(void* dict, void* key, void* value)
+{
+	RETypedPtr * dp = REPtrCast<RETypedPtr, void>(dict);
+	REDictionaryObject * d = REPtrCast<REDictionaryObject, void>(dp->getVoidPointer());
+	
+	RETypedPtr * kp = REPtrCast<RETypedPtr, void>(key);
+	REObject * k = REPtrCast<REObject, void>(kp->getVoidPointer());
+	
+	RETypedPtr * vp = REPtrCast<RETypedPtr, void>(value);
+	REObject * v = REPtrCast<REObject, void>(vp->getVoidPointer());
+	
+	d->setObject(v, k);
+}
+
+
+
+
+
 

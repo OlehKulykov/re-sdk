@@ -20,6 +20,16 @@
 #include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 
+void * REObject::getVoidPointer()
+{
+	return _reObjectVoidPointer;
+}
+
+const void * REObject::getVoidPointer() const
+{
+	return _reObjectVoidPointer;
+}
+
 const REUIdentifier REObject::getObjectIdentifier() const
 {
 	return _reObjectIdentifier;
@@ -104,8 +114,7 @@ REObject::REObject() :
 	_reObjectIdentifier(0),
 	_reObjectRetainCount(1)
 {
-	const REUIdentifier * p = REPtrCast<REUIdentifier, void>(this);
-	_reObjectIdentifier = *p;
+	_reObjectVoidPointer = REPtrCast<void, void>(this);
 }
 
 REObject::~REObject() 

@@ -518,6 +518,9 @@ typedef @FLOAT128_TYPE@ REFloat128;
 #cmakedefine HAVE_FUNCTION_SSCANF_S @HAVE_FUNCTION_SSCANF_S@ 
 
 
+/* clock_gettime */
+#cmakedefine HAVE_FUNCTION_CLOCK_GETTIME @HAVE_FUNCTION_CLOCK_GETTIME@ 
+
 
 
 /* OS type */

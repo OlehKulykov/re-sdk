@@ -17,28 +17,31 @@
 
 #include "../../include/recore/RETime.h"
 
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
-#include <mach/mach_time.h>
-#elif defined(__RE_OS_WINDOWS__) 
 
-#elif defined(__RE_OS_LINUX__) || defined(__RE_OS_ANDROID__)
+#if defined(HAVE_MACH_MACH_TIME_H)
+#include <mach/mach_time.h>
+#endif
+
+#if defined(HAVE_SYS_TIME_H)
 #include <sys/time.h>
-#include <time.h>
 #endif
 
 class RETimePrivate 
 {
 private:
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
+#if defined(HAVE_MACH_MACH_TIME_H)
+	
 	uint64_t _absoluteAppStartTime;
 	uint64_t _absoluteLastCallTime;
 	double _nanoSecond;
+	
 #elif defined(__RE_OS_WINDOWS__) 
+	
 	INT64 _performanceCounterFrequency;
 	double _performanceCounterTimeScale;
-#elif (defined(__RE_OS_LINUX__) || defined(__RE_OS_ANDROID__))
-	//long _startSeconds;
+	
 #endif	
+	
 	RETimeInterval _lastPauseTime;
 	RETimeInterval _unusedTime;
 	REUInt32 _isPaused;
@@ -58,15 +61,20 @@ RETimePrivate RETimePrivate::_time;
 
 RETimeInterval RETimePrivate::get() 
 {
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
+#if defined(HAVE_MACH_MACH_TIME_H)
+	
 	const double seconds = (_nanoSecond * (mach_absolute_time() - _absoluteAppStartTime));
 	return (RETimeInterval)seconds;
+	
 #elif defined(__RE_OS_WINDOWS__) 
+	
 	INT64 counterTime = 0;
 	QueryPerformanceCounter(reinterpret_cast<LARGE_INTEGER*>(&counterTime));
 	const double returnTime = ((double)counterTime) * _performanceCounterTimeScale;
 	return (RETimeInterval)returnTime;
-#elif defined(__RE_OS_LINUX__) || defined(__RE_OS_ANDROID__)
+	
+#elif defined(HAVE_FUNCTION_CLOCK_GETTIME)
+	
 	struct timespec now;
 	if (clock_gettime(CLOCK_MONOTONIC, &now) == 0)
 	{
@@ -76,9 +84,13 @@ RETimeInterval RETimePrivate::get()
 	{
 		return (RETimeInterval)((double)clock() / (double)CLOCKS_PER_SEC);
 	}
+	
 #else
+	
 	return (RETimeInterval)((double)clock() / (double)CLOCKS_PER_SEC);
+	
 #endif
+	
 }
 
 void RETimePrivate::updatePauseTime()
@@ -126,38 +138,37 @@ REBOOL RETimePrivate::isPaused() const
 }
 
 RETimePrivate::RETimePrivate() :
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
+#if defined(HAVE_MACH_MACH_TIME_H) 
+
 	_absoluteAppStartTime(0),
 	_absoluteLastCallTime(0),
 	_nanoSecond((double)0),
+
 #elif defined(__RE_OS_WINDOWS__) 
+
 	_performanceCounterFrequency(0),
 	_performanceCounterTimeScale((double)0),
-#elif (defined(__RE_OS_LINUX__) || defined(__RE_OS_ANDROID__))
-	//_startSeconds(0),
+
 #endif	
+
 	_lastPauseTime(0.0),
 	_unusedTime(0.0),
 	_isPaused(0)
 {
-#if (defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__)) 
+#if defined(HAVE_MACH_MACH_TIME_H) 
+	
 	_absoluteAppStartTime = mach_absolute_time();
 	_absoluteLastCallTime = _absoluteAppStartTime;
 	mach_timebase_info_data_t info = { 0 };
     mach_timebase_info(&info);
     _nanoSecond = (double)(((long double)info.numer) * 1e-9)  / ((long double)info.denom);
+	
 #elif defined(__RE_OS_WINDOWS__) 
+	
 	QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&_performanceCounterFrequency));
 	_performanceCounterTimeScale = ((long double)1.0) / ((long double)_performanceCounterFrequency);
-#elif defined(__RE_OS_LINUX__) || defined(__RE_OS_ANDROID__)
-	/*
-	struct timeval now;
-	if (gettimeofday(&now, NULL) == 0) 
-	{
-		_startSeconds = now.tv_sec;
-	}
-	*/
-#endif
+	
+#endif	
 	
 	_unusedTime = this->get();
 }

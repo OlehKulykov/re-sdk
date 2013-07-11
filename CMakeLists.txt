@@ -369,6 +369,8 @@ check_function_exists(_wfopen HAVE_FUNCTION__WFOPEN)
 check_function_exists(_wfopen_s HAVE_FUNCTION__WFOPEN_S)
 check_function_exists(fopen_s HAVE_FUNCTION_FOPEN_S)
 check_function_exists(sscanf_s HAVE_FUNCTION_SSCANF_S)
+check_function_exists(clock_gettime HAVE_FUNCTION_CLOCK_GETTIME)
+
 
 
 ## Check for specific apple platforms

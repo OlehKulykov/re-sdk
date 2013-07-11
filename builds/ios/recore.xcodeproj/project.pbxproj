@@ -712,9 +712,9 @@
 				3D1F433013E29A4F001E480D /* RENumber.h */,
 				3D1F432713E29A4F001E480D /* REFile.h */,
 				3D1F432613E29A4F001E480D /* REDate.h */,
-				3D1F433113E29A4F001E480D /* REObject.h */,
 				3D1F43B213E29B6D001E480D /* REThread.h */,
 				3D0E62B1145586070030C4FD /* REMutex.h */,
+				3D1F433113E29A4F001E480D /* REObject.h */,
 			);
 			name = recore;
 			path = ../../../include/recore;
@@ -734,9 +734,9 @@
 		3D1F436D13E29AAB001E480D /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3D1F437F13E29AAB001E480D /* REObject.cpp */,
 				3D0E62B4145586180030C4FD /* REMutex.cpp */,
 				3D1F438513E29AAB001E480D /* REThread.cpp */,
-				3D1F437F13E29AAB001E480D /* REObject.cpp */,
 				3D1F437613E29AAB001E480D /* REDate.cpp */,
 				3D1F437413E29AAB001E480D /* REColor.cpp */,
 				3D1F437713E29AAB001E480D /* REFile.cpp */,

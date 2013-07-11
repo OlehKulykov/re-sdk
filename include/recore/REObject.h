@@ -25,7 +25,11 @@
 class __RE_PUBLIC_CLASS_API__ REObject
 {
 private:
-	REUIdentifier _reObjectIdentifier;
+	union
+	{
+		REUIdentifier _reObjectIdentifier;
+		void * _reObjectVoidPointer;
+	};
 	REUInt32 _reObjectRetainCount;
 
 protected:
@@ -38,6 +42,10 @@ protected:
 	/// Destructor.
 	virtual ~REObject();
 public:
+	void * getVoidPointer();
+	
+	const void * getVoidPointer() const;
+	
 	/// Return type: REUIdentifier that is "unsigned int (32/64 bit, dependes of compiled platform)"
 	/// Return value is integer representation of "this" pointer when REObject creating.
 	const REUIdentifier getObjectIdentifier() const;
@@ -82,6 +90,16 @@ public:
 	/// Default implementation do nothing, but if you override this method
 	/// don't forged call this method of base object.
 	virtual void onReleased() { }
+	
+	template <class T> T * castedTo()
+	{
+		return REPtrCast<T, void>(_reObjectVoidPointer);
+	}
+	
+	template <class T> const T * castedTo() const
+	{
+		return REPtrCast<T, void>(_reObjectVoidPointer);
+	}
 };
 
 
