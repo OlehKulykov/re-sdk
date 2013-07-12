@@ -29,6 +29,7 @@ public:
 	static REBOOL compareArrays(RETypedArray * obj1, RETypedArray * obj2);	
 	static REBOOL compareDictionaries(REDictionary * obj1, REDictionary * obj2);	
 	static REBOOL compareDates(REDate * obj1, REDate * obj2);
+	static REBOOL compareREObjects(REObject * obj1, REObject * obj2);
 	static void deleteObject(void * obj1, const REPtrType type);
 };
 
@@ -73,6 +74,11 @@ REBOOL RETypedPtrPrivate::compareDates(REDate * obj1, REDate * obj2)
 	return obj1->isEqualToDate(*obj2);
 }
 
+REBOOL RETypedPtrPrivate::compareREObjects(REObject * obj1, REObject * obj2)
+{
+	return obj1->isEqual(obj2);
+}
+
 void RETypedPtrPrivate::deleteObject(void * obj1, const REPtrType type)
 {
 	switch (type) 
@@ -103,6 +109,13 @@ void RETypedPtrPrivate::deleteObject(void * obj1, const REPtrType type)
 			
 		case REPtrTypeDate:
 			delete REPtrCast<REDate, void>(obj1);
+			break;
+			
+		case REPtrTypeREObject:
+		{
+			REObject * reobj = REPtrCast<REObject, void>(obj1);
+			reobj->release();
+		}
 			break;
 			
 		default:
@@ -163,6 +176,11 @@ REBOOL RETypedPtr::isEqualToTypedPointer(const RETypedPtr & anotherPtr) const
 													   REPtrCast<REDate, void>(anotherPtr._object));
 				break;
 				
+			case REPtrTypeREObject:
+				return RETypedPtrPrivate::compareREObjects(REPtrCast<REObject, void>(_object), 
+														   REPtrCast<REObject, void>(anotherPtr._object));
+				break;
+				
 			default:
 				break;
 		}
@@ -179,6 +197,11 @@ bool RETypedPtr::operator==(const RETypedPtr & anotherPtr) const
 bool RETypedPtr::operator!=(const RETypedPtr & anotherPtr) const
 {
 	return (!this->isEqualToTypedPointer(anotherPtr));
+}
+
+REInt32 RETypedPtr::getReferenceCount() const
+{
+	return _referenceCount ? (*_referenceCount) : 0;
 }
 
 REBOOL RETypedPtr::isEmpty() const 
@@ -282,6 +305,11 @@ void * RETypedPtr::getVoidPointer() const
 REDate * RETypedPtr::getDate() const
 {
 	return (_type == REPtrTypeDate) ? REPtrCast<REDate, void>(_object) : NULL;
+}
+
+REObject * RETypedPtr::getREObject() const
+{
+	return (_type == REPtrTypeREObject) ? REPtrCast<REObject, void>(_object) : NULL;
 }
 
 const REPtrType RETypedPtr::getType() const

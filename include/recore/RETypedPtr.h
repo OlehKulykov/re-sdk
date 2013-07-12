@@ -26,6 +26,7 @@
 #include "RENULL.h"
 #include "REBuffer.h"
 #include "REDate.h"
+#include "REInt24.h"
 
 typedef enum _rePtrType
 {
@@ -38,11 +39,13 @@ typedef enum _rePtrType
 	REPtrTypeBuffer = 5,
 	REPtrTypeDictionary = 6,
 	REPtrTypeVoidPointer = 7,
-	REPtrTypeDate = 8
+	REPtrTypeDate = 8,
+	REPtrTypeREObject = 9
 } REPtrType;
 
 class REDictionary;
 class RETypedArray;
+class REObject;
 
 class __RE_PUBLIC_CLASS_API__ RETypedPtr
 {
@@ -56,6 +59,7 @@ protected:
 	void deleteObject();
 	
 public:
+	REInt32 getReferenceCount() const;
 	REBOOL isEmpty() const;
 	REBOOL isNotEmpty() const;
 	void release();
@@ -74,7 +78,7 @@ public:
 	REDictionary * getDictionary() const;
 	void * getVoidPointer() const;
 	REDate * getDate() const;
-	
+	REObject * getREObject() const;
 	const REPtrType getType() const;
 	
 	RETypedPtr(const RETypedPtr & anotherPtr);

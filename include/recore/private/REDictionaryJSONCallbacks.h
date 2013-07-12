@@ -31,7 +31,8 @@ public:
 	~REDictionaryJSONCallbacks();
 	
 	static void* newMem(const int size);	
-	static void freeMem(void*m);	
+	static void freeMem(void*m);
+	
 	static void* createNull(void * userData);	
 	static void* createNumberWithBool(const int isTrue, void * userData);	
 	static void* createNumberWithLongLong(const long long value, void * userData);	

@@ -236,6 +236,9 @@
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
+		3D9A7740178FE31E00A7AC9F /* REDictionaryObjectN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */; };
+		3D9A7742178FE32400A7AC9F /* REDictionaryObjectN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */; };
+		3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A774C178FFE2300A7AC9F /* REInt24.h */; };
 		3D9C86351758DC87009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
 		3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
 		3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
@@ -518,6 +521,9 @@
 		3D889132176CFD810086873B /* librecore copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librecore copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
+		3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObjectN.h; path = ../../include/recore/REDictionaryObjectN.h; sourceTree = SOURCE_ROOT; };
+		3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObjectN.cpp; path = ../../src/core/REDictionaryObjectN.cpp; sourceTree = SOURCE_ROOT; };
+		3D9A774C178FFE2300A7AC9F /* REInt24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInt24.h; path = ../../include/recore/REInt24.h; sourceTree = SOURCE_ROOT; };
 		3D9C86341758DC87009B516A /* REPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPtr.h; path = ../../include/recore/REPtr.h; sourceTree = SOURCE_ROOT; };
 		3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
 		3DB07B38144CAFF400FF99AB /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
@@ -648,6 +654,7 @@
 				3D48489D14D6F3D0000C07C0 /* REMem.h */,
 				3D16878F176DE84C00BFF707 /* Ptr */,
 				3DF1DEAA14BF0FA400263F9A /* REFloat16.h */,
+				3D9A774C178FFE2300A7AC9F /* REInt24.h */,
 				3DFD093014BDB81B0063730E /* REList.h */,
 				3DE386FA14B45D5E00366267 /* REProperty.h */,
 				3D785CD615C66ABF006A12F9 /* REObjectProperty.h */,
@@ -994,6 +1001,8 @@
 		3DB07B3C144CB04C00FF99AB /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */,
+				3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */,
 				3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */,
 				3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */,
 				3DBEF95F1770444900503066 /* REDictionary.h */,
@@ -1186,6 +1195,8 @@
 				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
 				3DFD335817831EAE0057D47A /* RENULL.h in Headers */,
 				3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */,
+				3D9A7740178FE31E00A7AC9F /* REDictionaryObjectN.h in Headers */,
+				3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,6 +1459,7 @@
 				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
 				3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */,
 				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
+				3D9A7742178FE32400A7AC9F /* REDictionaryObjectN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -158,6 +158,7 @@ class REDictionaryPrivate
 {
 public:
 	static void setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks);
+	static void setupJSONReaderCallbacksForREObjects(OKJSONParserCallbacks * jsonCallbacks);
 };
 
 void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks)
@@ -176,12 +177,37 @@ void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonC
     jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObject;
 }
 
+void REDictionaryPrivate::setupJSONReaderCallbacksForREObjects(OKJSONParserCallbacks * jsonCallbacks)
+{
+	jsonCallbacks->_newMem = REDictionaryJSONCallbacks::newMem;
+    jsonCallbacks->_freeMem = REDictionaryJSONCallbacks::freeMem;
+    jsonCallbacks->_createNull = REDictionaryJSONCallbacks::createNullREObject;
+    jsonCallbacks->_createNumberWithBool = REDictionaryJSONCallbacks::createNumberREObjectWithBool;
+    jsonCallbacks->_createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberREObjectWithLongLong;
+    jsonCallbacks->_createNumberWithDouble = REDictionaryJSONCallbacks::createNumberREObjectWithDouble;
+    jsonCallbacks->_createStringWithUTF8 = REDictionaryJSONCallbacks::createStringREObjectWithUTF8;
+    jsonCallbacks->_createArray = REDictionaryJSONCallbacks::createArrayREObject;
+    jsonCallbacks->_createDictionary = REDictionaryJSONCallbacks::createDictionaryREObject;
+    jsonCallbacks->_addToArray = REDictionaryJSONCallbacks::addToArrayREObject;
+    jsonCallbacks->_addToDictionary = REDictionaryJSONCallbacks::addToDictionaryREObject;
+    jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObjectREObject;
+}
+
 REBOOL REDictionary::readJSONData(const REUByte * jsonData, 
-								  const REUInt32 jsonDataSize)
+								  const REUInt32 jsonDataSize, 
+								  const REPtrType type)
 {
 	REDictionaryJSONCallbacks dictCallbacks;
 	OKJSONParserCallbacks jsonCallbacks;
-	REDictionaryPrivate::setupJSONReaderCallbacks(&jsonCallbacks);
+	if (type == REPtrTypeREObject)
+	{
+		REDictionaryPrivate::setupJSONReaderCallbacksForREObjects(&jsonCallbacks);
+	}
+	else
+	{
+		REDictionaryPrivate::setupJSONReaderCallbacks(&jsonCallbacks);
+	}
+	
 	jsonCallbacks.userData = &dictCallbacks;
 	
 	PARSED_OBJECT parsedObject = OKJSONParserParse((const uint8_t *)jsonData, (uint32_t)jsonDataSize, &jsonCallbacks);
@@ -211,7 +237,7 @@ REBOOL REDictionary::initializeFromJSONData(const REUByte * jsonData, const REUI
 	this->clearPairs();
 	if (jsonData && jsonDataSize)
 	{
-		return this->readJSONData(jsonData, jsonDataSize);
+		return this->readJSONData(jsonData, jsonDataSize, REPtrTypeNone);
 	}
 	return false;
 }
@@ -232,7 +258,7 @@ REDictionary::Pair * REDictionary::pairForKey(const RETypedPtr & key, REUInt32 *
 {
 	for (REUInt32 i = 0; i < _pairs.count(); i++) 
 	{
-		if ( _pairs[i].key.isEqualToTypedPointer(key) )
+		if (_pairs[i].key.isEqualToTypedPointer(key))
 		{
 			if (resultIndex)
 			{

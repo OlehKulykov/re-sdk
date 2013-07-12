@@ -59,6 +59,11 @@ public:
 		}
 		Pair(const REDictionary::Pair & ap) : value(ap.value), key(ap.key) { }
 		Pair(const RETypedPtr & newValue, const RETypedPtr & newKey) : value(newValue), key(newKey) { }
+		~Pair()
+		{
+			value.release();
+			key.release();
+		}
 	};
 	
 protected:
@@ -66,8 +71,7 @@ protected:
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.
 	REDictionary::Pair * pairForKey(const RETypedPtr & key, REUInt32 * resultIndex = NULL) const;
 	void clearPairs();
-	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
-	
+	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize, const REPtrType type);
 public:
 	const REArray<REDictionary::Pair> & getPairs() const;
 	
