@@ -556,7 +556,7 @@
 
 /* functionality */
 /* Disables zlib compression/decompression for REZLIBCompression. */
-#define __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__ 1 
+//#define __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__ 1 
 
 
 /* Disables lzma compression/decompression for RELZMACompression. */

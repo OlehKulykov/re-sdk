@@ -26,7 +26,7 @@ const REUInt32 REVideoView::getClassIdentifier() const
 
 const REUInt32 REVideoView::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REMD5Generator::generateFromString("REVideoView");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REVideoView");
 	return clasIdentif;
 }
 

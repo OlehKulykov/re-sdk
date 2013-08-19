@@ -66,6 +66,8 @@ public:
 		}
 	};
 	
+private:	
+	REBOOL copyPairs(REArray<REDictionary::Pair> & pairs);
 protected:
 	REArray<REDictionary::Pair> _pairs;
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.

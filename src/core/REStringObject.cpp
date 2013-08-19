@@ -31,14 +31,14 @@ const REUInt32 REStringObject::getClassIdentifier() const
 
 const REUInt32 REStringObject::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REMD5Generator::generateFromString("REStringObject");
+	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REStringObject");
 	return clasIdentif;
 }
 
 REBOOL REStringObject::isImplementsClass(const REUInt32 classIdentifier) const
 {
 	return ((REStringObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
-			(REMD5Generator::generateFromString("REString") == classIdentifier));
+			(REObject::generateClassIdentifierFromClassName("REString") == classIdentifier));
 }
 
 REBOOL REStringObject::isEqual(REObject * anotherObject)
@@ -49,8 +49,8 @@ REBOOL REStringObject::isEqual(REObject * anotherObject)
 	{
 		if (anotherObject->getClassIdentifier() == REStringObject::classIdentifier()) 
 		{
-			REStringObject * anotherString = (REStringObject*)anotherObject;
-			return REMutableString::isEqual((*anotherString));
+			REStringObject * anotherString = REPtrCast<REStringObject, REObject>(anotherObject);
+			return REMutableString::isEqual(anotherString->getChars(), anotherString->getLength());
 		}
 	}
 	return false;

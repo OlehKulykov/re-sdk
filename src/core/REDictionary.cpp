@@ -18,10 +18,12 @@
 #include "../../include/recore/REDictionary.h"
 #include "../../include/recore/REMutableString.h"
 #include "../../include/recore/REBase64.h"
+#include "../../include/recore/REDictionaryObject.h"
 
 #include "json/OKJSONParser.h"
 
 #include "../../include/recore/private/REDictionaryJSONCallbacks.h"
+
 
 class REDictionaryJSONGeneratorPrivate 
 {	
@@ -193,6 +195,19 @@ void REDictionaryPrivate::setupJSONReaderCallbacksForREObjects(OKJSONParserCallb
     jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObjectREObject;
 }
 
+REBOOL REDictionary::copyPairs(REArray<REDictionary::Pair> & pairs)
+{
+	for (REUInt32 i = 0; i < pairs.count(); i++) 
+	{
+		REDictionary::Pair newPair(pairs[i]);
+		if (!_pairs.add(newPair))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 REBOOL REDictionary::readJSONData(const REUByte * jsonData, 
 								  const REUInt32 jsonDataSize, 
 								  const REPtrType type)
@@ -214,20 +229,28 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 	if (parsedObject)
 	{
 		RETypedPtr parsedPointer = *((RETypedPtr*)parsedObject);
-		REDictionary * dict = parsedPointer.getDictionary();
-		if (dict)
+		REBOOL r = false;
+		if (type == REPtrTypeREObject)
 		{
-			for (REUInt32 i = 0; i < dict->_pairs.count(); i++) 
+			REObject * o = parsedPointer.getREObject();
+			if (o) 
 			{
-				REDictionary::Pair newPair(dict->_pairs[i]);
-				if (!_pairs.add(newPair))
+				//if (o->isImplementsClass(REDictionaryObject::classIdentifier()))
 				{
-					this->clearPairs();
-					return false;
+					REDictionaryObject * dict = o->casted<REDictionaryObject>();// REPtrCast<REDictionaryObject, REObject>(o);
+					r = this->copyPairs(dict->_pairs);
 				}
 			}
-			return true;
 		}
+		else
+		{
+			REDictionary * dict = parsedPointer.getDictionary();
+			if (dict)
+			{
+				r = this->copyPairs(dict->_pairs);
+			}
+		}
+		return r;
 	}
 	return false;
 }

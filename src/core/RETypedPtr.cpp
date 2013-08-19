@@ -114,6 +114,7 @@ void RETypedPtrPrivate::deleteObject(void * obj1, const REPtrType type)
 		case REPtrTypeREObject:
 		{
 			REObject * reobj = REPtrCast<REObject, void>(obj1);
+			__RE_ASSERT__(reobj == obj1)
 			reobj->release();
 		}
 			break;

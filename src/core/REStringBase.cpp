@@ -16,13 +16,18 @@
 
 
 #include "../../include/recore/REStringBase.h"
-
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
 void * REStringBase::getStringBuffer() const
 {
 	const REBuffer * b = _p;
-	return b ? b->getBuffer() : (void *)0;
+	return b ? b->getBuffer() : NULL;
+}
+
+REUInt32 REStringBase::getStringBufferSize() const
+{
+	const REBuffer * b = _p;
+	return b ? b->getSize() : 0;
 }
 
 REBOOL REStringBase::isEmpty() const

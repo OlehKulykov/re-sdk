@@ -28,6 +28,8 @@ private:
 	static int charsToWide(const char * charsString, int charsStringLengthOrNegative, wchar_t * wideString);
 	
 	static int wideToChars(const wchar_t * wideString, int wideStringLength, char * charsString);
+	
+	static REBuffer * newBufferWithSize(const REUInt32 newSize);
 public:
 	static REPtr<REBuffer> newBuffForUTF8String(const char * utf8String, const REUInt32 utf8StringLength = RENotFound);
 	
@@ -86,6 +88,8 @@ public:
 	static REPtr<REBuffer> getPathExtension(const REPtr<REBuffer> & utf8Buffer);
 	
 	static REPtr<REBuffer> getRemovedLastPathComponent(const REPtr<REBuffer> & utf8Buffer);
+	
+	static REBOOL isBuffersEqual(const REPtr<REBuffer> & b1, const REPtr<REBuffer> & b2);
 };
 
 #endif /* __RESTRINGUTILSPRIVATE_H__  */

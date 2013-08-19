@@ -53,7 +53,8 @@ const REUInt32 REObject::classIdentifier()
 
 const REUInt32 REObject::generateClassIdentifierFromClassName(const char * className)
 {
-	return REMD5Generator::generateFromString(className);
+	return RECRC32Generator::generateFromString(className);
+	//return REMD5Generator::generateFromString(className);
 }
 
 REBOOL REObject::isEqual(REObject * anotherObject)

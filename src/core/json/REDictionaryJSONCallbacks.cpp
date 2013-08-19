@@ -24,7 +24,7 @@
 #include "../../../include/recore/RENumberObject.h"
 #include "../../../include/recore/REStringObject.h"
 #include "../../../include/recore/REArrayObject.h"
-#include "../../../include/recore/REDictionaryObjectN.h"
+#include "../../../include/recore/REDictionaryObject.h"
 
 REDictionaryJSONCallbacks::~REDictionaryJSONCallbacks()
 {
@@ -296,10 +296,10 @@ void* REDictionaryJSONCallbacks::createArrayREObject(void * userData)
 
 void* REDictionaryJSONCallbacks::createDictionaryREObject(void * userData)
 {
-	REDictionaryObjectN * d = REDictionaryObjectN::create();
+	REDictionaryObject * d = REDictionaryObject::create();
 	if (d)
 	{
-		RETypedPtr * p = new RETypedPtr(REPtrCast<void, REDictionaryObjectN>(d), REPtrTypeREObject);
+		RETypedPtr * p = new RETypedPtr(REPtrCast<void, REDictionaryObject>(d), REPtrTypeREObject);
 		if (RETypedPtr::isNotEmpty(p))
 		{
 			((REDictionaryJSONCallbacks *)userData)->pointers.add(p);
@@ -332,7 +332,7 @@ void REDictionaryJSONCallbacks::addToArrayREObject(void* array, void* object)
 void REDictionaryJSONCallbacks::addToDictionaryREObject(void* dict, void* key, void* value)
 {
 	RETypedPtr * dp = REPtrCast<RETypedPtr, void>(dict);
-	REDictionaryObjectN * d = REPtrCast<REDictionaryObjectN, REObject>(dp->getREObject());
+	REDictionaryObject * d = REPtrCast<REDictionaryObject, REObject>(dp->getREObject());
 	
 	RETypedPtr * kp = REPtrCast<RETypedPtr, void>(key);
 	REObject * k = kp->getREObject();
@@ -340,7 +340,7 @@ void REDictionaryJSONCallbacks::addToDictionaryREObject(void* dict, void* key, v
 	RETypedPtr * vp = REPtrCast<RETypedPtr, void>(value);
 	REObject * v = vp->getREObject();
 	
-	d->setValue(v, k);
+	d->setObject(v, k);
 }
 
 

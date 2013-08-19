@@ -17,23 +17,33 @@
 
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
+REBuffer * REStringUtilsPrivate::newBufferWithSize(const REUInt32 newSize)
+{
+	REBuffer * b = new REBuffer(newSize);
+	if (b) 
+	{
+		if (b->getSize() == newSize) 
+		{
+			return b;
+		}
+		delete b;
+	}
+	return NULL;
+}
+
 REPtr<REBuffer> REStringUtilsPrivate::newBuffForUTF8String(const char * utf8String, 
 														   const REUInt32 utf8StringLength)
 {
 	const REUInt32 len = REStringUtilsPrivate::actualUTF8StringLength(utf8String, utf8StringLength);
 	if (len)
 	{
-		REBuffer * newBuff = new REBuffer();
+		REBuffer * newBuff = REStringUtilsPrivate::newBufferWithSize(len + 1);
 		if (newBuff)
 		{
-			if (newBuff->resize(len + 1, false))
-			{
-				char * buff = (char *)newBuff->getBuffer();
-				memcpy(buff, utf8String, len);
-				buff[len] = 0;
-				return REPtr<REBuffer>(newBuff);
-			}
-			delete newBuff;
+			char * buff = (char *)newBuff->getBuffer();
+			memcpy(buff, utf8String, len);
+			buff[len] = 0;
+			return REPtr<REBuffer>(newBuff);
 		}
 	}
 	return REPtr<REBuffer>();
@@ -45,17 +55,13 @@ REPtr<REBuffer> REStringUtilsPrivate::newBuffForWideString(const wchar_t * wideS
 	const REUInt32 len = REStringUtilsPrivate::actualWideStringLength(wideString, wideStringLength);
 	if (len)
 	{
-		REBuffer * newBuff = new REBuffer();
+		REBuffer * newBuff = REStringUtilsPrivate::newBufferWithSize((len + 1) * sizeof(wchar_t));
 		if (newBuff)
 		{
-			if (newBuff->resize((len + 1) * sizeof(wchar_t), false))
-			{
-				wchar_t * buff = (wchar_t *)newBuff->getBuffer();
-				memcpy(buff, wideString, (len * sizeof(wchar_t)));
-				buff[len] = 0;
-				return REPtr<REBuffer>(newBuff);
-			}
-			delete newBuff;
+			wchar_t * buff = (wchar_t *)newBuff->getBuffer();
+			memcpy(buff, wideString, (len * sizeof(wchar_t)));
+			buff[len] = 0;
+			return REPtr<REBuffer>(newBuff);
 		}
 	}
 	return REPtr<REBuffer>();
@@ -68,21 +74,17 @@ REPtr<REBuffer> REStringUtilsPrivate::getWideFromUTF8(const char * utf8String,
 	const REUInt32 len = REStringUtilsPrivate::actualUTF8StringLength(utf8String, utf8StringLength);
 	if (len)
 	{
-		REBuffer * newBuff = new REBuffer();
+		REBuffer * newBuff = REStringUtilsPrivate::newBufferWithSize((len + 1) * sizeof(wchar_t));
 		if (newBuff)
 		{
-			if (newBuff->resize((len + 1) * sizeof(wchar_t), false))
+			wchar_t * wideString = (wchar_t *)newBuff->getBuffer();
+			const int resLen = REStringUtilsPrivate::charsToWide(utf8String, (int)len, wideString);
+			if (newBuff->resize((resLen + 1) * sizeof(wchar_t), true))
 			{
-				wchar_t * wideString = (wchar_t *)newBuff->getBuffer();
-				const int resLen = REStringUtilsPrivate::charsToWide(utf8String, (int)len, wideString);
-				if (newBuff->resize((resLen + 1) * sizeof(wchar_t), true))
-				{
-					wideString = (wchar_t *)newBuff->getBuffer();
-					wideString[resLen] = 0;
-					return REPtr<REBuffer>(newBuff);
-				}
+				wideString = (wchar_t *)newBuff->getBuffer();
+				wideString[resLen] = 0;
+				return REPtr<REBuffer>(newBuff);
 			}
-			delete newBuff;
 		}
 	}
 	return REPtr<REBuffer>();
@@ -94,21 +96,18 @@ REPtr<REBuffer> REStringUtilsPrivate::getUTF8FromWide(const wchar_t * wideString
 	const REUInt32 len = REStringUtilsPrivate::actualWideStringLength(wideString, wideStringLength);
 	if (len)
 	{
-		REBuffer * newBuffer = new REBuffer();
+		REBuffer * newBuffer = REStringUtilsPrivate::newBufferWithSize((len + 1) * sizeof(wchar_t));
 		if (newBuffer)
 		{
-			if (newBuffer->resize((len + 1) * sizeof(wchar_t), false)) 
+			char * charString = (char *)newBuffer->getBuffer();
+			const int resLen = REStringUtilsPrivate::wideToChars(wideString,
+																 (int)len,
+																 charString);
+			if (newBuffer->resize(resLen + 1, true))
 			{
-				char * charString = (char *)newBuffer->getBuffer();
-				const int resLen = REStringUtilsPrivate::wideToChars(wideString,
-																	 (int)len,
-																	 charString);
-				if (newBuffer->resize(resLen + 1, true))
-				{
-					charString = (char *)newBuffer->getBuffer();
-					charString[resLen] = 0;
-					return REPtr<REBuffer>(newBuffer);
-				}
+				charString = (char *)newBuffer->getBuffer();
+				charString[resLen] = 0;
+				return REPtr<REBuffer>(newBuffer);
 			}
 			delete newBuffer;
 		}
@@ -145,15 +144,11 @@ REPtr<REBuffer> REStringUtilsPrivate::makeCopy(const REPtr<REBuffer> & sourceBuf
 		const REUInt32 size = sourceBuffer->getSize();
 		if (size > 0)
 		{
-			REBuffer * newBuff = new REBuffer();
+			REBuffer * newBuff = REStringUtilsPrivate::newBufferWithSize(size);
 			if (newBuff)
 			{
-				if (newBuff->resize(size, false))
-				{
-					memcpy(newBuff->getBuffer(), sourceBuffer->getBuffer(), size);
-					return REPtr<REBuffer>(newBuff);
-				}
-				delete newBuff;
+				memcpy(newBuff->getBuffer(), sourceBuffer->getBuffer(), size);
+				return REPtr<REBuffer>(newBuff);
 			}
 		}
 	}
@@ -624,7 +619,14 @@ REPtr<REBuffer> REStringUtilsPrivate::getPathExtension(const REPtr<REBuffer> & u
 	return REPtr<REBuffer>();
 }
 
-
+REBOOL REStringUtilsPrivate::isBuffersEqual(const REPtr<REBuffer> & b1, const REPtr<REBuffer> & b2)
+{
+	if (b1.isNotEmpty() && b2.isNotEmpty()) 
+	{		
+		return b1->isEqualToBuffer(*b2);
+	}
+	return false;
+}
 
 
 

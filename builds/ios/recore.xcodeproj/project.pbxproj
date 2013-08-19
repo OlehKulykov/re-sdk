@@ -236,9 +236,11 @@
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
-		3D9A7740178FE31E00A7AC9F /* REDictionaryObjectN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */; };
-		3D9A7742178FE32400A7AC9F /* REDictionaryObjectN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */; };
+		3D9A7740178FE31E00A7AC9F /* REDictionaryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */; };
+		3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */; };
 		3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A774C178FFE2300A7AC9F /* REInt24.h */; };
+		3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A775A179035D900A7AC9F /* RECRC32Generator.h */; };
+		3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */; };
 		3D9C86351758DC87009B516A /* REPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9C86341758DC87009B516A /* REPtr.h */; };
 		3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */; };
 		3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B38144CAFF400FF99AB /* REApplication.h */; };
@@ -255,8 +257,6 @@
 		3DB07B54144CB04C00FF99AB /* REStringObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B46144CB04C00FF99AB /* REStringObject.cpp */; };
 		3DB07B55144CB04C00FF99AB /* REXMLPropertyListWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */; };
 		3DB07B56144CB04C00FF99AB /* REXMLPropertyListWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */; };
-		3DB07B57144CB04C00FF99AB /* REDictionaryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */; };
-		3DB07B58144CB04C00FF99AB /* REDictionaryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */; };
 		3DB07B78144CB0EF00FF99AB /* RENULLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B74144CB0EF00FF99AB /* RENULLObject.h */; };
 		3DB07B79144CB0EF00FF99AB /* RENULLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */; };
 		3DB07B7A144CB0EF00FF99AB /* REArrayObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB07B76144CB0EF00FF99AB /* REArrayObject.h */; };
@@ -521,9 +521,11 @@
 		3D889132176CFD810086873B /* librecore copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librecore copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
-		3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObjectN.h; path = ../../include/recore/REDictionaryObjectN.h; sourceTree = SOURCE_ROOT; };
-		3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObjectN.cpp; path = ../../src/core/REDictionaryObjectN.cpp; sourceTree = SOURCE_ROOT; };
+		3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObject.h; path = ../../include/recore/REDictionaryObject.h; sourceTree = SOURCE_ROOT; };
+		3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObject.cpp; path = ../../src/core/REDictionaryObject.cpp; sourceTree = SOURCE_ROOT; };
 		3D9A774C178FFE2300A7AC9F /* REInt24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInt24.h; path = ../../include/recore/REInt24.h; sourceTree = SOURCE_ROOT; };
+		3D9A775A179035D900A7AC9F /* RECRC32Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECRC32Generator.h; path = ../../include/recore/RECRC32Generator.h; sourceTree = SOURCE_ROOT; };
+		3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECRC32Generator.cpp; path = ../../src/core/RECRC32Generator.cpp; sourceTree = SOURCE_ROOT; };
 		3D9C86341758DC87009B516A /* REPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPtr.h; path = ../../include/recore/REPtr.h; sourceTree = SOURCE_ROOT; };
 		3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REEdgeInsets.h; path = ../../include/recore/REEdgeInsets.h; sourceTree = SOURCE_ROOT; };
 		3DB07B38144CAFF400FF99AB /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
@@ -540,8 +542,6 @@
 		3DB07B46144CB04C00FF99AB /* REStringObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringObject.cpp; path = ../../src/core/REStringObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListWriter.h; path = ../../include/recore/REXMLPropertyListWriter.h; sourceTree = SOURCE_ROOT; };
 		3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REXMLPropertyListWriter.cpp; path = ../../src/core/REXMLPropertyListWriter.cpp; sourceTree = SOURCE_ROOT; };
-		3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObject.h; path = ../../include/recore/REDictionaryObject.h; sourceTree = SOURCE_ROOT; };
-		3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObject.cpp; path = ../../src/core/REDictionaryObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB07B74144CB0EF00FF99AB /* RENULLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENULLObject.h; path = ../../include/recore/RENULLObject.h; sourceTree = SOURCE_ROOT; };
 		3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENULLObject.cpp; path = ../../src/core/RENULLObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DB07B76144CB0EF00FF99AB /* REArrayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REArrayObject.h; path = ../../include/recore/REArrayObject.h; sourceTree = SOURCE_ROOT; };
@@ -612,6 +612,7 @@
 				3DBEF98517708E9B00503066 /* RETypedArray.cpp */,
 			);
 			name = Ptr;
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3D1788DC13E2987E00520FC2 = {
@@ -645,32 +646,6 @@
 		3D1788EC13E2987E00520FC2 /* recore */ = {
 			isa = PBXGroup;
 			children = (
-				3D6693C5176F0D4200AAE726 /* DB */,
-				3D5B57C31765BF44000B4527 /* JSON */,
-				3DF8753415F1525100363B51 /* AutoReleasePool */,
-				3DD0469B15EEA04200642E45 /* MainLoop */,
-				3D079FD415C8182E004FAA9E /* RELog.h */,
-				3D079FD715C81870004FAA9E /* RELog.cpp */,
-				3D48489D14D6F3D0000C07C0 /* REMem.h */,
-				3D16878F176DE84C00BFF707 /* Ptr */,
-				3DF1DEAA14BF0FA400263F9A /* REFloat16.h */,
-				3D9A774C178FFE2300A7AC9F /* REInt24.h */,
-				3DFD093014BDB81B0063730E /* REList.h */,
-				3DE386FA14B45D5E00366267 /* REProperty.h */,
-				3D785CD615C66ABF006A12F9 /* REObjectProperty.h */,
-				3D6BF781148D1B150082B649 /* Compression */,
-				3D5FB90F146C12980039FBE9 /* REInterpolation.h */,
-				3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */,
-				3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */,
-				3D3F6850145029C8002409DD /* Matrix Vector */,
-				3DFD335717831EAE0057D47A /* RENULL.h */,
-				3DFD335917831ECD0057D47A /* RENULL.cpp */,
-				3DB07B74144CB0EF00FF99AB /* RENULLObject.h */,
-				3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */,
-				3DB07B76144CB0EF00FF99AB /* REArrayObject.h */,
-				3DB07B77144CB0EF00FF99AB /* REArrayObject.cpp */,
-				3DB07B3C144CB04C00FF99AB /* Dictionary */,
-				3DB07B36144CAFE600FF99AB /* Application */,
 				3D9818B51427748800793F3C /* image */,
 				3D1F43BA13E29E98001E480D /* addlibs */,
 				3D1F430D13E29A2E001E480D /* recore.h */,
@@ -683,7 +658,6 @@
 		3D1F430F13E29A4F001E480D /* recore */ = {
 			isa = PBXGroup;
 			children = (
-				3D7A01731771B78E00E7316E /* string */,
 				3D1F431313E29A4F001E480D /* private */,
 				3D1F431113E29A4F001E480D /* IREFileReadable.h */,
 				3D1F431913E29A4F001E480D /* REAngle.h */,
@@ -718,10 +692,10 @@
 				3D1F432513E29A4F001E480D /* REData.h */,
 				3D1F433013E29A4F001E480D /* RENumber.h */,
 				3D1F432713E29A4F001E480D /* REFile.h */,
-				3D1F432613E29A4F001E480D /* REDate.h */,
 				3D1F43B213E29B6D001E480D /* REThread.h */,
 				3D0E62B1145586070030C4FD /* REMutex.h */,
-				3D1F433113E29A4F001E480D /* REObject.h */,
+				3D9A775A179035D900A7AC9F /* RECRC32Generator.h */,
+				3D1F432613E29A4F001E480D /* REDate.h */,
 			);
 			name = recore;
 			path = ../../../include/recore;
@@ -741,10 +715,10 @@
 		3D1F436D13E29AAB001E480D /* core */ = {
 			isa = PBXGroup;
 			children = (
-				3D1F437F13E29AAB001E480D /* REObject.cpp */,
+				3D1F437613E29AAB001E480D /* REDate.cpp */,
+				3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */,
 				3D0E62B4145586180030C4FD /* REMutex.cpp */,
 				3D1F438513E29AAB001E480D /* REThread.cpp */,
-				3D1F437613E29AAB001E480D /* REDate.cpp */,
 				3D1F437413E29AAB001E480D /* REColor.cpp */,
 				3D1F437713E29AAB001E480D /* REFile.cpp */,
 				3D1F437E13E29AAB001E480D /* RENumber.cpp */,
@@ -913,6 +887,7 @@
 				3D0805DF14E3F04900C88C37 /* REVector3.h */,
 			);
 			name = "Matrix Vector";
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3D5B57C31765BF44000B4527 /* JSON */ = {
@@ -922,6 +897,7 @@
 				3DFD334A1783033C0057D47A /* OKJSONParser.c */,
 			);
 			name = JSON;
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3D6693C5176F0D4200AAE726 /* DB */ = {
@@ -937,6 +913,57 @@
 				3DB8EAF214DABD23008CBBD6 /* RESQLiteDBResultSet.cpp */,
 			);
 			name = DB;
+			path = recore;
+			sourceTree = "<group>";
+		};
+		3D68D3FB179E62F1001DE868 /* Plain */ = {
+			isa = PBXGroup;
+			children = (
+				3DB07B3C144CB04C00FF99AB /* Dictionary */,
+				3D7A01731771B78E00E7316E /* string */,
+				3DFD335717831EAE0057D47A /* RENULL.h */,
+				3DFD335917831ECD0057D47A /* RENULL.cpp */,
+				3D3F6850145029C8002409DD /* Matrix Vector */,
+				3D5FB90F146C12980039FBE9 /* REInterpolation.h */,
+				3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */,
+				3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */,
+				3D6BF781148D1B150082B649 /* Compression */,
+				3D079FD415C8182E004FAA9E /* RELog.h */,
+				3D079FD715C81870004FAA9E /* RELog.cpp */,
+				3D48489D14D6F3D0000C07C0 /* REMem.h */,
+				3DF1DEAA14BF0FA400263F9A /* REFloat16.h */,
+				3D9A774C178FFE2300A7AC9F /* REInt24.h */,
+				3DFD093014BDB81B0063730E /* REList.h */,
+				3DE386FA14B45D5E00366267 /* REProperty.h */,
+				3D785CD615C66ABF006A12F9 /* REObjectProperty.h */,
+				3D16878F176DE84C00BFF707 /* Ptr */,
+				3D5B57C31765BF44000B4527 /* JSON */,
+				3D6693C5176F0D4200AAE726 /* DB */,
+			);
+			name = Plain;
+			sourceTree = "<group>";
+		};
+		3D68D3FC179E62F7001DE868 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				3D1F433113E29A4F001E480D /* REObject.h */,
+				3D1F437F13E29AAB001E480D /* REObject.cpp */,
+				3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */,
+				3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */,
+				3DB07B41144CB04C00FF99AB /* REBufferObject.h */,
+				3DB07B42144CB04C00FF99AB /* REBufferObject.cpp */,
+				3DB07B43144CB04C00FF99AB /* RENumberObject.h */,
+				3DB07B44144CB04C00FF99AB /* RENumberObject.cpp */,
+				3DB07B45144CB04C00FF99AB /* REStringObject.h */,
+				3DB07B46144CB04C00FF99AB /* REStringObject.cpp */,
+				3DB07B74144CB0EF00FF99AB /* RENULLObject.h */,
+				3DB07B75144CB0EF00FF99AB /* RENULLObject.cpp */,
+				3DB07B76144CB0EF00FF99AB /* REArrayObject.h */,
+				3DB07B77144CB0EF00FF99AB /* REArrayObject.cpp */,
+				3DD0469B15EEA04200642E45 /* MainLoop */,
+				3DF8753415F1525100363B51 /* AutoReleasePool */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		3D6BF781148D1B150082B649 /* Compression */ = {
@@ -948,6 +975,7 @@
 				3D4DEEDE14A8716000AECAD8 /* RELZMACompression.cpp */,
 			);
 			name = Compression;
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3D7A01731771B78E00E7316E /* string */ = {
@@ -965,11 +993,15 @@
 				3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */,
 			);
 			name = string;
+			path = ../../../include/recore;
 			sourceTree = "<group>";
 		};
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
 			isa = PBXGroup;
 			children = (
+				3DB07B36144CAFE600FF99AB /* Application */,
+				3D68D3FC179E62F7001DE868 /* Objects */,
+				3D68D3FB179E62F1001DE868 /* Plain */,
 				3DB8EADA14DAB7DC008CBBD6 /* REConfigSelector.h */,
 				3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */,
 			);
@@ -996,13 +1028,12 @@
 				3DB07B39144CAFF400FF99AB /* REApplication.cpp */,
 			);
 			name = Application;
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3DB07B3C144CB04C00FF99AB /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				3D9A773F178FE31E00A7AC9F /* REDictionaryObjectN.h */,
-				3D9A7741178FE32400A7AC9F /* REDictionaryObjectN.cpp */,
 				3D4E08FD178460640023C08A /* REDictionaryJSONCallbacks.h */,
 				3D4E08FB1784605C0023C08A /* REDictionaryJSONCallbacks.cpp */,
 				3DBEF95F1770444900503066 /* REDictionary.h */,
@@ -1011,19 +1042,11 @@
 				3DB07B3E144CB04C00FF99AB /* REXMLPropertyListReader.cpp */,
 				3DB07B3F144CB04C00FF99AB /* REBase64.h */,
 				3DB07B40144CB04C00FF99AB /* REBase64.cpp */,
-				3DB07B41144CB04C00FF99AB /* REBufferObject.h */,
-				3DB07B42144CB04C00FF99AB /* REBufferObject.cpp */,
-				3DB07B43144CB04C00FF99AB /* RENumberObject.h */,
-				3DB07B44144CB04C00FF99AB /* RENumberObject.cpp */,
-				3DB07B45144CB04C00FF99AB /* REStringObject.h */,
-				3DB07B46144CB04C00FF99AB /* REStringObject.cpp */,
 				3DB07B47144CB04C00FF99AB /* REXMLPropertyListWriter.h */,
 				3DB07B48144CB04C00FF99AB /* REXMLPropertyListWriter.cpp */,
-				3DB07B49144CB04C00FF99AB /* REDictionaryObject.h */,
-				3DB07B4A144CB04C00FF99AB /* REDictionaryObject.cpp */,
 			);
 			name = Dictionary;
-			path = ../tests/test_ios;
+			path = tests/test_ios;
 			sourceTree = "<group>";
 		};
 		3DB2351F13E2A42900DA97C3 /* Other Frameworks */ = {
@@ -1044,6 +1067,7 @@
 				3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */,
 			);
 			name = MainLoop;
+			path = recore;
 			sourceTree = "<group>";
 		};
 		3DF0492814D693C100306830 /* yuv2rgb */ = {
@@ -1073,6 +1097,7 @@
 				3DF8753515F152C400363B51 /* REAutoReleasePoolPrivate.cpp */,
 			);
 			name = AutoReleasePool;
+			path = recore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1150,7 +1175,6 @@
 				3DB07B51144CB04C00FF99AB /* RENumberObject.h in Headers */,
 				3DB07B53144CB04C00FF99AB /* REStringObject.h in Headers */,
 				3DB07B55144CB04C00FF99AB /* REXMLPropertyListWriter.h in Headers */,
-				3DB07B57144CB04C00FF99AB /* REDictionaryObject.h in Headers */,
 				3DB07B78144CB0EF00FF99AB /* RENULLObject.h in Headers */,
 				3DB07B7A144CB0EF00FF99AB /* REArrayObject.h in Headers */,
 				3D3F6853145029D2002409DD /* REMatrix4.h in Headers */,
@@ -1195,8 +1219,9 @@
 				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
 				3DFD335817831EAE0057D47A /* RENULL.h in Headers */,
 				3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */,
-				3D9A7740178FE31E00A7AC9F /* REDictionaryObjectN.h in Headers */,
+				3D9A7740178FE31E00A7AC9F /* REDictionaryObject.h in Headers */,
 				3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */,
+				3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,7 +1440,6 @@
 				3DB07B52144CB04C00FF99AB /* RENumberObject.cpp in Sources */,
 				3DB07B54144CB04C00FF99AB /* REStringObject.cpp in Sources */,
 				3DB07B56144CB04C00FF99AB /* REXMLPropertyListWriter.cpp in Sources */,
-				3DB07B58144CB04C00FF99AB /* REDictionaryObject.cpp in Sources */,
 				3DB07B79144CB0EF00FF99AB /* RENULLObject.cpp in Sources */,
 				3DB07B7B144CB0EF00FF99AB /* REArrayObject.cpp in Sources */,
 				3D78030114504B840059C648 /* REAffineTransform.cpp in Sources */,
@@ -1459,7 +1483,8 @@
 				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
 				3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */,
 				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
-				3D9A7742178FE32400A7AC9F /* REDictionaryObjectN.cpp in Sources */,
+				3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */,
+				3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

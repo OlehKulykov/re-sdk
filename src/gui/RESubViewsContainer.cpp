@@ -67,7 +67,7 @@ REView * RESubViewsContainer::findSubViewWithClassName(const char * className)
 	_updateMutex.lock();
 	if (_subViewsArray && className) 
 	{
-		const REUInt32 classNameIdentifier = REMD5Generator::generateFromString(className);
+		const REUInt32 classNameIdentifier = REObject::generateClassIdentifierFromClassName(className);
 		for (REUInt32 i = 0; i < _subViewsArray->count(); i++) 
 		{
 			REView * v = (REView *)(*_subViewsArray)[i];

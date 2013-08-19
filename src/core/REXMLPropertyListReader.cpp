@@ -22,7 +22,7 @@
 
 using namespace tinyxml2;
 
-
+/*
 void REXMLPropertyListReader::ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs)
 {
 	for (REUInt32 i = 0; i < pairs->count(); i++) 
@@ -281,6 +281,6 @@ REXMLPropertyListReader::~REXMLPropertyListReader()
 {
 	
 }
-
+*/
 
 

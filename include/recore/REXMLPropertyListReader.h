@@ -31,23 +31,23 @@
 /// Class using for XML property lists. http://en.wikipedia.org/wiki/Property_list#Mac_OS_X
 class __RE_PUBLIC_CLASS_API__ REXMLPropertyListReader
 {
-private:
-	static void ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs);
-	static REObject * NewObjectFromElement(void * elementObject);
-	static REBOOL ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement);
-	static REBOOL ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement);
-public:
-	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
-	REBOOL ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
-	
-	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
-	REBOOL ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
-	
-	/// Default constructor.
-	REXMLPropertyListReader();
-	
-	/// Destructor.
-	~REXMLPropertyListReader();
+//private:
+//	static void ClearPairs(REArray<REDictionaryObject::KeyObjectStruct> * pairs);
+//	static REObject * NewObjectFromElement(void * elementObject);
+//	static REBOOL ParseDictionaryElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * dictionaryElement);
+//	static REBOOL ReadPropertyListElement(REArray<REDictionaryObject::KeyObjectStruct> * pairs, void * propListElement);
+//public:
+//	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
+//	REBOOL ReadFromString(const char * listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
+//	
+//	/// Reads from UTF8 string 'listString' and store created objects to 'pairs' array
+//	REBOOL ReadFromString(const REString & listString, REArray<REDictionaryObject::KeyObjectStruct> * pairs);
+//	
+//	/// Default constructor.
+//	REXMLPropertyListReader();
+//	
+//	/// Destructor.
+//	~REXMLPropertyListReader();
 };
 
 

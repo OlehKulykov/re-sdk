@@ -20,6 +20,7 @@
 
 #include "RECommonHeader.h"
 #include "REMD5Generator.h"
+#include "RECRC32Generator.h"
 
 /// Base class for objects.
 class __RE_PUBLIC_CLASS_API__ REObject
@@ -62,7 +63,7 @@ public:
 	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Returns integer identifier of class. Each new class that REObject must have it's own method that is
-	/// md5 value of name class. Using REMD5Generator::generateFromString(const char * s);
+	/// crc32 value of name class. Using RECRC32Generator::generateFromString(const char * s);
 	static const REUInt32 classIdentifier();
 	
 	/// Generates integer identifier of class using it's name.
@@ -85,21 +86,23 @@ public:
 	/// Returns retain counter of object.
 	const REUInt32 getRetainCount() const { return _reObjectRetainCount; }
 
+	template <class T>
+	T * casted()
+	{
+		union
+		{
+			void * v;
+			T * o;
+		} tu;
+		tu.v = _reObjectVoidPointer;
+		return tu.o;
+	}
+	
 	/// Called when object released and added to auto release pool.
 	/// Good place to release any used objects, stop any internal animations etc.
 	/// Default implementation do nothing, but if you override this method
 	/// don't forged call this method of base object.
 	virtual void onReleased() { }
-	
-	template <class T> T * castedTo()
-	{
-		return REPtrCast<T, void>(_reObjectVoidPointer);
-	}
-	
-	template <class T> const T * castedTo() const
-	{
-		return REPtrCast<T, void>(_reObjectVoidPointer);
-	}
 };
 
 

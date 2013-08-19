@@ -152,34 +152,40 @@ REBOOL REString::isDigit() const
 
 REBOOL REString::isEqual(const REWideString & anotherString) const
 {
-	//TODO: ...
-	return false;
+	REString utf8String(anotherString);
+	return REStringUtilsPrivate::isBuffersEqual(_p, utf8String._p);
 }
 
 REBOOL REString::isEqual(const REString & anotherString) const
 {
-	//TODO: ...
-	return false;
+	return REStringUtilsPrivate::isBuffersEqual(_p, anotherString._p);
 }
 
 REBOOL REString::isEqual(const REMutableString & anotherString) const
 {
-	//TODO: ...
-	return false;
+	return REStringUtilsPrivate::isBuffersEqual(_p, anotherString._p);
 }
 
 REBOOL REString::isEqual(const char * utf8String, 
 						  const REUInt32 utf8StringLength) const
 {
-	//TODO: ...
+	const REUInt32 len = REStringUtilsPrivate::actualUTF8StringLength(utf8String, utf8StringLength);
+	if (len == this->getLength()) 
+	{
+		if (len > 0) 
+		{
+			return (memcmp(this->getChars(), utf8String, len) == 0);
+		}
+		return true;
+	}
 	return false;
 }
 
 REBOOL REString::isEqual(const wchar_t * wideString, 
 						  const REUInt32 wideStringLength) const
 {
-	//TODO: ...
-	return false;
+	REPtr<REBuffer> p = REStringUtilsPrivate::getUTF8FromWide(wideString, wideStringLength);
+	return REStringUtilsPrivate::isBuffersEqual(_p, p);
 }
 
 REString REString::getPathExtension() const

@@ -34,6 +34,7 @@ protected:
 	REPtr<REBuffer> _p;
 	
 	void * getStringBuffer() const;
+	REUInt32 getStringBufferSize() const;
 public:
 	
 	REBOOL isEmpty() const;
