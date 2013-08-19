@@ -193,6 +193,11 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #endif
 
+/// Absolute value.
+#ifndef ABS
+#define ABS(A) ((A)<0?(-(A)):(A))
+#endif
+
 #if defined (__ARM_NEON__)
 #include <arm_neon.h>
 #endif
