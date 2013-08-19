@@ -127,6 +127,9 @@ public:
 	/// Sleps current thread for time in micro seconds.
 	static void uSleep(const REUInt32 microseconds);
 	
+	/// Sleps current thread for time in micro seconds.
+	static void uSleepInSeconds(const RETimeInterval seconds);
+	
 	/// Invokes class method in separate thread.
 	/// Sending object will be ratained on start and released on the end of work.
 	static void detachNewThreadWithMethod(REClassMethod * method, REObject * methodObjectOrNULL);

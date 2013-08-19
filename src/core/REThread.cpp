@@ -377,6 +377,12 @@ void REThread::uSleep(const REUInt32 microseconds)
 #endif
 }
 
+/// Sleps current thread for time in micro seconds.
+void REThread::uSleepInSeconds(const RETimeInterval seconds)
+{
+	REThread::uSleep(RETime::convertSecondsToMicroseconds(seconds));
+}
+
 REBOOL REThread::isMainThread()
 {
 #if defined(HAVE_PTHREAD_H)  
