@@ -17,6 +17,7 @@
 
 #include "../../include/recore/REDate.h"
 #include "../../include/recore/REString.h"
+#include "../../include/recore/REMath.h"
 
 class REDateInternal 
 {
@@ -63,6 +64,43 @@ public:
 };
 
 #define IS_LEAP_YEAR(y) ((((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) ? 1 : 0)
+
+const RETimeInterval REDate::difference(const REDate & anotherDate) const
+{
+	struct tm t1 = _t->timestruct;
+	struct tm t2 = anotherDate._t->timestruct;
+	
+	const time_t tt1 = mktime(&t1);
+	const time_t tt2 = mktime(&t2);
+	
+	// !!!! 2 - 1 - normal first less next
+	const double dif = difftime(tt2, tt1);
+	return (RETimeInterval)dif;
+}
+
+const RETimeInterval REDate::minimumDifference(const REDate & anotherDate) const
+{
+	struct tm t1 = _t->timestruct;
+	struct tm t2 = anotherDate._t->timestruct;
+	
+	const time_t tt1 = mktime(&t1);
+	time_t tt2 = mktime(&t2);
+	
+	// !!!! 2 - 1 - normal first less next
+	const double dif1 = difftime(tt2, tt1);
+	
+	t2.tm_mday++;
+	tt2 = mktime(&t2);
+	
+	const double dif2 = difftime(tt2, tt1);
+	
+	if ( (ABS(dif1)) < (ABS(dif2)) ) 
+	{
+		return (RETimeInterval)dif1;
+	}
+	
+	return (RETimeInterval)dif2;
+}
 
 const char * REDate::defaultFormatString()
 {

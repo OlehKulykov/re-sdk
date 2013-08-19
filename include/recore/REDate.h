@@ -32,6 +32,10 @@ private:
 	void makeDateInternalCopy();
 	
 public:
+	const RETimeInterval difference(const REDate & anotherDate) const;
+	
+	const RETimeInterval minimumDifference(const REDate & anotherDate) const;
+	
 	/// Using defaultFormatString
 	REString toString() const;
 	
