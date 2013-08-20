@@ -76,7 +76,7 @@ public:
 	REZipEntry * getEntry(const REString & entryPath) const;
 	
 	/// Return count of zip entries
-	const REUInt32 getEntriesCount() const;
+	const REUInt32 entriesCount() const;
 	
 	/// Check is archive have no entries e.g. is empty of file not found
 	REBOOL isEmpty() const;

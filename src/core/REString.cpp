@@ -41,8 +41,8 @@ REString & REString::operator=(const wchar_t * wideString)
 
 REString & REString::operator=(const REWideString & anotherString)
 {
-	this->setFromWideString(anotherString.getWideChars(), 
-							anotherString.getLength(), 
+	this->setFromWideString(anotherString.wideChars(), 
+							anotherString.length(), 
 							REStringTypeUTF8);
 	return (*this);
 }
@@ -59,30 +59,30 @@ REString & REString::operator=(const REMutableString & anotherString)
 	return (*this);
 }
 
-REMutableString REString::getMutableString() const
+REMutableString REString::mutableString() const
 {
 	return REMutableString( REStringUtilsPrivate::makeCopy(_p) );
 }
 
-REWideString REString::getWideString() const
+REWideString REString::wideString() const
 {
 	return REWideString( REStringUtilsPrivate::getWideFromUTF8(_p) );
 }
 
-const char * REString::getChars() const
+const char * REString::UTF8String() const
 {
 	const REBuffer * b = _p;
-	return b ? (const char *)b->getBuffer() : NULL;
+	return b ? (const char *)b->buffer() : NULL;
 }
 
-const REUInt32 REString::getLength() const
+const REUInt32 REString::length() const
 {
 	return REStringUtilsPrivate::stringLengthFromUTF8Buffer(_p);
 }
 
 REBOOL REString::isContainsNonASCII() const
 {
-	const char * ch = (const char *)this->getChars();
+	const char * ch = (const char *)this->UTF8String();
 	if (ch)
 	{
 		while (*ch) 
@@ -102,7 +102,7 @@ REBOOL REString::isContaines(const char * utf8String) const
 {
 	if (utf8String)
 	{
-		const char * thisUTF8String = this->getChars();
+		const char * thisUTF8String = this->UTF8String();
 		if (thisUTF8String)
 		{
 			return (strstr(thisUTF8String, utf8String) != 0);
@@ -121,7 +121,7 @@ REBOOL REString::isContaines(const wchar_t * wideString) const
 		const REUInt32 len = REStringUtilsPrivate::stringLengthFromUTF8Buffer(utf8Buff);
 		if (len)
 		{
-			return this->isContaines((const char *)utf8Buff->getBuffer());
+			return this->isContaines((const char *)utf8Buff->buffer());
 		}
 	}
 	return false;
@@ -129,7 +129,7 @@ REBOOL REString::isContaines(const wchar_t * wideString) const
 
 REBOOL REString::isDigit() const
 {
-	const char * ch = this->getChars();
+	const char * ch = this->UTF8String();
 	if (ch)
 	{
 		REUInt32 processed = 0;
@@ -170,11 +170,11 @@ REBOOL REString::isEqual(const char * utf8String,
 						  const REUInt32 utf8StringLength) const
 {
 	const REUInt32 len = REStringUtilsPrivate::actualUTF8StringLength(utf8String, utf8StringLength);
-	if (len == this->getLength()) 
+	if (len == this->length()) 
 	{
 		if (len > 0) 
 		{
-			return (memcmp(this->getChars(), utf8String, len) == 0);
+			return (memcmp(this->UTF8String(), utf8String, len) == 0);
 		}
 		return true;
 	}
@@ -188,7 +188,7 @@ REBOOL REString::isEqual(const wchar_t * wideString,
 	return REStringUtilsPrivate::isBuffersEqual(_p, p);
 }
 
-REString REString::getPathExtension() const
+REString REString::pathExtension() const
 {
 	return REString( REStringUtilsPrivate::getPathExtension(_p) );
 }
@@ -204,6 +204,24 @@ REString::REString(const wchar_t * wideString, const REUInt32 wideStringLength) 
 	
 }
 
+REString::REString(const wchar_t * wideString, const RERange & range) : REStringBase()
+{
+	if (wideString && range.isValid()) 
+	{
+		const wchar_t * s = wideString + range.location;
+		this->setFromWideString(s, range.length, REStringTypeWide);
+	}
+}
+
+REString::REString(const char * utf8String, const RERange & range) : REStringBase()
+{
+	if (utf8String && range.isValid())
+	{
+		const char * s = utf8String + range.location;
+		this->setFromUTF8String(s, range.length, REStringTypeUTF8);
+	}
+}
+
 REString::REString(const char * utf8String, const REUInt32 utf8StringLength) :
 	REStringBase(utf8String, utf8StringLength, REStringTypeUTF8)
 {
@@ -211,10 +229,11 @@ REString::REString(const char * utf8String, const REUInt32 utf8StringLength) :
 }
 
 REString::REString(const REWideString & anotherString) : 
-	REStringBase(anotherString.getWideChars(), anotherString.getLength(), REStringTypeUTF8)
+	REStringBase(anotherString.wideChars(), anotherString.length(), REStringTypeUTF8)
 {
 	
 }
+
 
 REString::REString(const REString & anotherString) : 
 	REStringBase(anotherString._p)
@@ -223,7 +242,7 @@ REString::REString(const REString & anotherString) :
 }
 
 REString::REString(const REMutableString & anotherString) :
-	REStringBase(anotherString.getChars(), anotherString.getLength(), REStringTypeUTF8)
+	REStringBase(anotherString.UTF8String(), anotherString.length(), REStringTypeUTF8)
 {
 	
 }

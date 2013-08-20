@@ -78,10 +78,10 @@ public:
 	};
 	
 	/// Returns center point of tetragon.
-	REPoint2 getCenter() const;
+	REPoint2 center() const;
 	
 	/// Returns bounding rectangle.
-	RERect getBoundRect() const;
+	RERect boundRect() const;
 	
 	/// Translates tetragon by X, Y values.
 	RETetragon & translate(const REFloat32 x, const REFloat32 y)

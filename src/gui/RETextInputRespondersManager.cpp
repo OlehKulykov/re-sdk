@@ -39,7 +39,7 @@ void RETextInputRespondersManager::setFirstState(RETextInputRespondersManager::R
 		{
 			if (_callBacks.StartUTF8TextInputCallBack)
 			{
-				if (_callBacks.StartUTF8TextInputCallBack(resp->object->getTextInputResponderText().getChars()))
+				if (_callBacks.StartUTF8TextInputCallBack(resp->object->getTextInputResponderText().UTF8String()))
 				{
 					resp->object->onTextInputResponderTextInputStarted();
 				}
@@ -47,7 +47,7 @@ void RETextInputRespondersManager::setFirstState(RETextInputRespondersManager::R
 			else if (_callBacks.StartWideTextInputCallBack)
 			{
 				REWideString p(resp->object->getTextInputResponderText());
-				if (_callBacks.StartWideTextInputCallBack(p.getWideChars()))
+				if (_callBacks.StartWideTextInputCallBack(p.wideChars()))
 				{
 					resp->object->onTextInputResponderTextInputStarted();
 				}
@@ -88,7 +88,7 @@ REUInt32 RETextInputRespondersManager::acceptNewUTF8Text(const char * newText)
 	REUInt32 r = 0;
 	
 	REWideString newTextP(newText);
-	r = this->acceptNewWideText(newTextP.getWideChars());
+	r = this->acceptNewWideText(newTextP.wideChars());
 	
 	_mutex.unlock();
 	return r;

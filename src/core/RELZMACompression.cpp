@@ -44,7 +44,7 @@
 /// Compress data from buffer 'inBuffer' to buffer 'compressedBuffer' with 'compressionLevel' in range [0.0f, 1.0f].
 RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat32 compressionLevel)
 {
-	if (inBuffer.getSize() == 0)
+	if (inBuffer.size() == 0)
 	{
 		return RETypedPtr();
 	}
@@ -118,7 +118,7 @@ RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat3
 /// Decompress data from buffer 'inBuffer' to buffer 'compressedBuffer'.
 RETypedPtr RELZMACompression::decompress(const REBuffer & inBuffer)
 {
-	if (inBuffer.getSize() == 0)
+	if (inBuffer.size() == 0)
 	{
 		return RETypedPtr();
 	}

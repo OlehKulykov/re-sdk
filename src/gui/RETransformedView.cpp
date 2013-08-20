@@ -27,14 +27,14 @@ const REAffineTransform & RETransformedView::GetTransform() const
 void RETransformedView::setTransform(const REAffineTransform & newTransform)
 {
 	_transform = newTransform;
-	RETetragon newTetr(_transform.getTransformedTetragon(_transformedFrame));
+	RETetragon newTetr(_transform.transformedTetragon(_transformedFrame));
 	this->setTransformedFrame(newTetr);
 }
 
 void RETransformedView::setTransformAnimated(const REAffineTransform & newTransform)
 {
 	_transform = newTransform;
-	RETetragon newTetr(_transform.getTransformedTetragon(_transformedFrame));
+	RETetragon newTetr(_transform.transformedTetragon(_transformedFrame));
 	if (REAnimation::isSetuping()) 
 	{
 		this->setTransformedFrameAnimated(newTetr);

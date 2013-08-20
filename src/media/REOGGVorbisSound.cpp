@@ -322,11 +322,11 @@ void REOGGVorbisSound::decodeAndPlay()
 #ifdef __RE_USING_OPENAL__		
 		alSourceUnqueueBuffers(_source, 1, &_buffer);
 #endif		
-		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->getBuffer(), _decodeBuffer->getSize(), _channels);
+		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->buffer(), _decodeBuffer->size(), _channels);
 		if (_bytesWritten > 0)
 		{
 #ifdef __RE_USING_OPENAL__			
-			alBufferData(_buffer, (ALenum)_format, _decodeBuffer->getBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
+			alBufferData(_buffer, (ALenum)_format, _decodeBuffer->buffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
 			alSourceQueueBuffers(_source, 1, &_buffer);
 #endif	
 		}
@@ -419,11 +419,11 @@ void REOGGVorbisSound::fillBuffersWithDecodedAudioData()
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
 	for (int i = 0; i < OGG_BUFFERS_COUNT; i++)
 	{
-		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->getBuffer(), _decodeBuffer->getSize(), _channels);
+		_bytesWritten = this->decodeOggVorbis(ogStream, (char*)_decodeBuffer->buffer(), _decodeBuffer->size(), _channels);
 		if (_bytesWritten)
 		{
 #ifdef __RE_USING_OPENAL__			
-			alBufferData(_buffers[i], (ALenum)_format, _decodeBuffer->getBuffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
+			alBufferData(_buffers[i], (ALenum)_format, _decodeBuffer->buffer(), (ALsizei)_bytesWritten, (ALsizei)_frequency);
 			alSourceQueueBuffers(_source, 1, &_buffers[i]);
 #endif			
 		}
@@ -453,8 +453,8 @@ REBOOL REOGGVorbisSound::initWithData(const REData & soundFileData)
 	vorbisCallbacks.seek_func = REOGGVorbisSoundPrivate::VorbisSeek;
 	vorbisCallbacks.tell_func = REOGGVorbisSoundPrivate::VorbisTell;
 	
-	_oggMemoryFile.oggData = _oggMemoryFile.oggFileData->getBytes();
-	_oggMemoryFile.dataSize = _oggMemoryFile.oggFileData->getSize();
+	_oggMemoryFile.oggData = _oggMemoryFile.oggFileData->bytes();
+	_oggMemoryFile.dataSize = _oggMemoryFile.oggFileData->size();
 		
 	OggVorbis_File * ogStream = (OggVorbis_File *)_oggMemoryFile.oggStream;
 	if (ov_open_callbacks(&_oggMemoryFile, ogStream, NULL, 0, vorbisCallbacks) == 0)
@@ -583,9 +583,9 @@ REOGGVorbisSound::~REOGGVorbisSound()
 
 REBOOL REOGGVorbisSound::isValidData(const REData & data)
 {
-	if ( data.getSize() > 4 )
+	if ( data.size() > 4 )
 	{
-		const char * dataString = (const char *)data.getBytes();
+		const char * dataString = (const char *)data.bytes();
 		return ( strncmp(dataString, "OggS", 4) == 0 );
 	}
 	return false;

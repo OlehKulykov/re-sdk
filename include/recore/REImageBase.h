@@ -58,34 +58,34 @@ public:
 	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Check is image NULL
-	REBOOL isNull() const { return (_format == 0); }
+	REBOOL isNull() const;
 	
 	/// Returns pointer to image data(pixels).
-	REUByte * getImageData() const { return (REUByte *)_buffer.getBuffer(); }
+	REUByte * imageData() const;
 	
 	/// Returns pointer to image data(pixels) with 'x', 'y' coordinates from top left corner.
-	REUByte * getImageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const;
+	REUByte * imageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const;
 	
 	/// Returns size in bytes of image data(pixels).
-	const REUInt32 getImageDataSize() const { return _buffer.getSize(); }
+	const REUInt32 imageDataSize() const;
 	
 	/// Returns width of image in range [0, INT16_MAX].
-	const REUInt32 getWidth() const { return (REUInt32)_width; }
+	const REUInt32 width() const;
 	
 	/// Returns height of image in range [0, INT16_MAX].
-	const REUInt32 getHeight() const { return (REUInt32)_height; }
+	const REUInt32 height() const;
 	
 	/// Returns format of image.
-	const REImagePixelFormat getFormat() const { return ((REImagePixelFormat)_format); }
+	const REImagePixelFormat format() const;
 	
 	/// Returns number of bits per each pixel.
-	const REUInt32 getBitsPerPixel() const { return REImageBase::bitsPerPixel((REImagePixelFormat)_format); }
+	const REUInt32 bitsPerPixel() const;
 	
 	/// Returns number of bytes per each pixel.
-	const REUInt32 getBytesPerPixel() const { return REImageBase::bytesPerPixel((REImagePixelFormat)_format); }
+	const REUInt32 bytesPerPixel() const;
 	
 	// Returns number of channels per each pixel.
-	const REUInt32 getChannelsCount() const { return REImageBase::channelsCount((REImagePixelFormat)_format); }
+	const REUInt32 channelsCount() const;
 	
 	/// Returns number of channels per each pixel using image format.
 	static REUInt32 channelsCount(const REImagePixelFormat format);

@@ -83,7 +83,7 @@ public:
 	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Returns working thread priority. Value in range: [0.0f, 1.0f]
-	REFloat32 getPriority() const;
+	REFloat32 priority() const;
 	
 	/// Setting working thread priority. Value must be in range: [0.0f, 1.0f]
 	REBOOL setPriority(const REFloat32 newPriority);
@@ -110,7 +110,7 @@ public:
 	static REBOOL isMainThread();
 	
 	/// Return main thread priority. Range [0.0f, 1.0f]
-	static REFloat32 getMainThreadPriority();
+	static REFloat32 mainThreadPriority();
 	
 	/// Setting main thread priority. Range [0.0f, 1.0f] 
 	static REBOOL setMainThreadPriority(const REFloat32 newPriority);
@@ -119,10 +119,10 @@ public:
 	static REBOOL isMultiThreaded();
 	
 	/// Returns identifier of main thread.
-	static REUIdentifier getMainThreadIdentifier();
+	static REUIdentifier mainThreadIdentifier();
 	
 	/// Returns identifier of current thread. Mean thread from which was called this method.
-	static REUIdentifier getCurrentThreadIdentifier();
+	static REUIdentifier currentThreadIdentifier();
 	
 	/// Sleps current thread for time in micro seconds.
 	static void uSleep(const REUInt32 microseconds);

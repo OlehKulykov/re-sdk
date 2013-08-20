@@ -67,9 +67,9 @@ REBOOL REFontObject::fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 													   REArray<RETTFFontChar*> * fontChars)
 {
 	REWideString p(text);
-	charsArray->setCapacity(p.getLength() + 1);
+	charsArray->setCapacity(p.length() + 1);
 	const REUInt32 startRight = fontChars->count() - 1;
-	const wchar_t * wideText = p.getWideChars();
+	const wchar_t * wideText = p.wideChars();
 	wchar_t needChar;
 	while ((needChar = *wideText++))
 	{
@@ -101,7 +101,7 @@ REBOOL REFontObject::fillArrayWithCharsForTextFromFont(REArray<RETTFFontChar*> *
 REBOOL REFontObject::fillArrayWithCharsForText(REArray<RETTFFontChar*> * charsArray,
 											   const REString & text)
 {
-	if (charsArray && text.getLength())
+	if (charsArray && text.length())
 	{
 		REArray<RETTFFontChar*> * fontChars = this->getChars();
 		if (REArray<RETTFFontChar *>::isNotEmpty(fontChars))

@@ -24,7 +24,7 @@
 
 REImage & REImage::operator=(const REImage & anotherImage)
 {
-	this->Clear();
+	this->clear();
 	
 	if (_base && anotherImage._base) 
 	{
@@ -35,12 +35,12 @@ REImage & REImage::operator=(const REImage & anotherImage)
 	return (*this);
 }
 
-REBOOL REImage::IsNull() const
+REBOOL REImage::isNull() const
 {
 	return _base ? _base->isNull() : true;
 }
 
-void REImage::Clear()
+void REImage::clear()
 {
 	if (_base) 
 	{
@@ -49,55 +49,55 @@ void REImage::Clear()
 	}
 }
 
-REUByte * REImage::GetImageData() const 
+REUByte * REImage::imageData() const 
 { 
-	return _base ? _base->getImageData() : NULL;
+	return _base ? _base->imageData() : NULL;
 }
 
-const REImagePixelFormat REImage::GetPixelFormat() const 
+const REImagePixelFormat REImage::pixelFormat() const 
 { 
-	return _base ? _base->getFormat() : REImagePixelFormatNONE;
+	return _base ? _base->format() : REImagePixelFormatNONE;
 }
 
-const REUInt32 REImage::GetBitsPerPixel() const 
+const REUInt32 REImage::bitsPerPixel() const 
 { 
-	return _base ? _base->getBitsPerPixel() : 0;
+	return _base ? _base->bitsPerPixel() : 0;
 }
 
-const REUInt32 REImage::GetWidth() const 
+const REUInt32 REImage::width() const 
 { 
-	return _base ? _base->getWidth() : 0;
+	return _base ? _base->width() : 0;
 }
 
-const REUInt32 REImage::GetHeight() const 
+const REUInt32 REImage::height() const 
 {
-	return _base ? _base->getHeight() : 0;
+	return _base ? _base->height() : 0;
 }
 
-const REUInt32 REImage::GetChannelsCount() const 
+const REUInt32 REImage::channelsCount() const 
 {
-	return _base ? _base->getChannelsCount() : 0;
+	return _base ? _base->channelsCount() : 0;
 }
 
-REBOOL REImage::InitFromFileDataBuffer(const REUByte * dataBuffer, const REUInt32 dataSize)
+REBOOL REImage::initFromFileDataBuffer(const REUByte * dataBuffer, const REUInt32 dataSize)
 {
-	this->Clear();
+	this->clear();
 
 	REImageManager manager;
-	_base = manager.CreateFromFileData(dataBuffer, dataSize);
+	_base = manager.createFromFileData(dataBuffer, dataSize);
 	
 	return (_base != NULL);
 }
 
-REBOOL REImage::InitFromFileData(const REData & data)
+REBOOL REImage::initFromFileData(const REData & data)
 {
-	return this->InitFromFileDataBuffer(data.getBytes(), data.getSize());
+	return this->initFromFileDataBuffer(data.bytes(), data.size());
 }
 
 /// __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
-REBOOL REImage::InitFromURLString(const REString & urlString)
+REBOOL REImage::initFromURLString(const REString & urlString)
 {
-	this->Clear();
+	this->clear();
 	
 #ifdef __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
 	REURL url(urlString);
@@ -128,23 +128,23 @@ REBOOL REImage::InitFromURLString(const REString & urlString)
 	return false;
 }
 
-REBOOL REImage::ScaleToSize(const REUInt32 newWidth, const REUInt32 newHeight)
+REBOOL REImage::scaleToSize(const REUInt32 newWidth, const REUInt32 newHeight)
 {
 	if ( _base == NULL ) { return false; }
 
-	if ((_base->getWidth() == newWidth) && (_base->getHeight() == newHeight) ) { return true; }
+	if ((_base->width() == newWidth) && (_base->height() == newHeight) ) { return true; }
 
-	REImageBase * newBase = new REImageBase(_base->getFormat(), newWidth, newHeight);
+	REImageBase * newBase = new REImageBase(_base->format(), newWidth, newHeight);
 	if (newBase == NULL) { return false; }
 	if (newBase->isNull()) { return false; }
 	
-	const REBOOL isScaled = REImage::ScaleImageData(_base->getImageData(),
-													_base->getWidth(), 
-													_base->getHeight(), 
-													_base->getChannelsCount(), 
-													newBase->getImageData(), 
-													newBase->getWidth(), 
-													newBase->getHeight());
+	const REBOOL isScaled = REImage::scaleImageData(_base->imageData(),
+													_base->width(), 
+													_base->height(), 
+													_base->channelsCount(), 
+													newBase->imageData(), 
+													newBase->width(), 
+													newBase->height());
 	if (isScaled)
 	{
 		_base->release();
@@ -158,11 +158,11 @@ REBOOL REImage::ScaleToSize(const REUInt32 newWidth, const REUInt32 newHeight)
 	return isScaled;
 }
 
-REBOOL REImage::ScaleToSize(const RESize & newSize)
+REBOOL REImage::scaleToSize(const RESize & newSize)
 {
 	REUInt32 w = (REUInt32)newSize.width;
 	REUInt32 h = (REUInt32)newSize.height;
-	return this->ScaleToSize(w, h);
+	return this->scaleToSize(w, h);
 }
 
 REImage::REImage() : 
@@ -230,10 +230,10 @@ REImage::REImage(const REImagePixelFormat pixelsFormat, const REUInt32 width, co
 
 REImage::~REImage()
 {
-	this->Clear();
+	this->clear();
 }
 
-REBOOL REImage::ScaleImageData(const REUByte * srcData,
+REBOOL REImage::scaleImageData(const REUByte * srcData,
 							   const REUInt32 srcWidth, 
 							   const REUInt32 srcHeight, 
 							   const REUInt32 srcColorComponents, 
@@ -293,12 +293,12 @@ REBOOL REImage::ScaleImageData(const REUByte * srcData,
 }
 
 
-REImage * REImage::CreateWithBase(REImageBase * base)
+REImage * REImage::createWithBase(REImageBase * base)
 {
 	REImage * newImage = new REImage(base);
 	if (newImage) 
 	{
-		if (newImage->IsNull()) 
+		if (newImage->isNull()) 
 		{
 			delete newImage;
 		}
@@ -310,12 +310,12 @@ REImage * REImage::CreateWithBase(REImageBase * base)
 	return NULL;
 }
 
-REImage * REImage::CreateWithImage(const REImage & anotherImage)
+REImage * REImage::createWithImage(const REImage & anotherImage)
 {
 	REImage * newImage = new REImage(anotherImage);
 	if (newImage) 
 	{
-		if (newImage->IsNull()) 
+		if (newImage->isNull()) 
 		{
 			delete newImage;
 		}
@@ -327,7 +327,7 @@ REImage * REImage::CreateWithImage(const REImage & anotherImage)
 	return NULL;
 }
 
-REImage * REImage::CreateWithPixelsData(const REUByte * pixelsData, 
+REImage * REImage::createWithPixelsData(const REUByte * pixelsData, 
 										const REUInt32 pixelsDataSize, 
 										const REImagePixelFormat pixelsFormat, 
 										const REUInt32 width,
@@ -336,7 +336,7 @@ REImage * REImage::CreateWithPixelsData(const REUByte * pixelsData,
 	REImage * newImage = new REImage(pixelsData, pixelsDataSize, pixelsFormat, width, height);
 	if (newImage) 
 	{
-		if (newImage->IsNull()) 
+		if (newImage->isNull()) 
 		{
 			delete newImage;
 		}
@@ -348,14 +348,14 @@ REImage * REImage::CreateWithPixelsData(const REUByte * pixelsData,
 	return NULL;
 }
 
-REImage * REImage::CreateBlankImage(const REImagePixelFormat pixelsFormat, 
+REImage * REImage::createBlankImage(const REImagePixelFormat pixelsFormat, 
 									const REUInt32 width, 
 									const REUInt32 height)
 {
 	REImage * newImage = new REImage(pixelsFormat, width, height);
 	if (newImage) 
 	{
-		if (newImage->IsNull()) 
+		if (newImage->isNull()) 
 		{
 			delete newImage;
 		}
@@ -367,7 +367,7 @@ REImage * REImage::CreateBlankImage(const REImagePixelFormat pixelsFormat,
 	return NULL;
 }
 
-REImage * REImage::CreateWithFilePath(const REString & filePath)
+REImage * REImage::createWithFilePath(const REString & filePath)
 {
 	REData data;
 	if (data.initFromPath(filePath)) 
@@ -375,7 +375,7 @@ REImage * REImage::CreateWithFilePath(const REString & filePath)
 		REImage * newImage = new REImage();
 		if (newImage) 
 		{
-			if (newImage->InitFromFileData(data)) 
+			if (newImage->initFromFileData(data)) 
 			{
 				return newImage;
 			}

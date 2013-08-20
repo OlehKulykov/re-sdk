@@ -45,7 +45,7 @@ void RERenderDevice::RenderClippedRect(const RERect & bounds,
 									   const RETetragon & textureFrame, 
 									   IRETexture * texture)
 {
-	RERect interFrame( rect.getIntersection(bounds) );
+	RERect interFrame( rect.intersectionRect(bounds) );
 	if (interFrame.height > 0.0f) 
 	{
 		const REFloat32 oldTW = textureFrame.bottomRightX - textureFrame.topLeftX;

@@ -41,7 +41,7 @@ public:
 	virtual REBOOL isEndOfFile();
 	
 	/// Returns size of file.
-	const REUInt32 getFileSize() const;
+	const REUInt32 fileSize() const;
 	
 	/// Construct file object with file path and open mode.
 	REFile(const REString & filePath, const char * openMode);

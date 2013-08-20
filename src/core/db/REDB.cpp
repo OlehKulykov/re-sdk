@@ -17,7 +17,7 @@
 
 #include "../../../include/recore/REDB.h"
 
-REString REDB::getDatabaseFullPath() const
+REString REDB::databaseFullPath() const
 {
 	return REString();
 }
@@ -37,7 +37,7 @@ REBOOL REDB::close()
 	return false;
 }
 
-REInt64 REDB::getLastInsertedRowId() const
+REInt64 REDB::lastInsertedRowId() const
 {
 	return -1;
 }

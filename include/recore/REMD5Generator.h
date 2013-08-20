@@ -66,10 +66,10 @@ private:
 #endif	
 public:
 	/// Returns md5 integer value from data with length.
-	const REUInt32 getFromData(const void * data, const REUInt32 dataLength);
+	const REUInt32 fromData(const void * data, const REUInt32 dataLength);
 	
 	/// Returns md5 string value from data with length.
-	const REString getStringFromData(const void * data, const REUInt32 dataLength);
+	const REString stringFromData(const void * data, const REUInt32 dataLength);
 	
 	/// Returns md5 integer value from string.
 	static const REUInt32 generateFromString(const char * s);

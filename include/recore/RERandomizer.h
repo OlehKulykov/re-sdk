@@ -26,16 +26,16 @@ class __RE_PUBLIC_CLASS_API__ RERandomizer
 {
 public:
 	/// Return random signed integer number in range [0, 32767]
-	REInt32 getInt() const;
+	REInt32 intValue() const;
 	
 	/// Return random signed integer number in range ['lowRange', 'upRange']
-	REInt32 getIntInRange(const REInt32 lowRange, const REInt32 upRange) const;
+	REInt32 intValueInRange(const REInt32 lowRange, const REInt32 upRange) const;
 	
 	/// Return random 32-bit float number in range [0.0f, 0.9(9)f]
-	REFloat32 getFloat() const;
+	REFloat32 floatValue() const;
 	
 	/// Return random 32-bit float number in range ['lowRange', 'upRange']
-	REFloat32 getFloatInRange(const REFloat32 lowRange, const REFloat32 upRange) const;
+	REFloat32 floatValueInRange(const REFloat32 lowRange, const REFloat32 upRange) const;
 
 	RERandomizer();
 	~RERandomizer();

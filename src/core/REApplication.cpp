@@ -46,7 +46,7 @@ const REString & REApplication::getErrorDescriptionString() const
 
 void REApplication::addToErrorDescription(const REString & errorString)
 {
-	const char * errStr = errorString.getChars();
+	const char * errStr = errorString.UTF8String();
 	if (errStr && (!errorString.isEmpty())) 
 	{
 		if (_errorDescriptionString.isEmpty()) 

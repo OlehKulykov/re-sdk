@@ -200,7 +200,7 @@ bool RETypedPtr::operator!=(const RETypedPtr & anotherPtr) const
 	return (!this->isEqualToTypedPointer(anotherPtr));
 }
 
-REInt32 RETypedPtr::getReferenceCount() const
+REInt32 RETypedPtr::referenceCount() const
 {
 	return _referenceCount ? (*_referenceCount) : 0;
 }

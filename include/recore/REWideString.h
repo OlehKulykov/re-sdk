@@ -27,11 +27,11 @@ class REMutableString;
 class __RE_PUBLIC_CLASS_API__ REWideString : public REStringBase
 {
 public:
-	REString getString() const;
-	REMutableString getMutableString() const;
+	REString string() const;
+	REMutableString mutableString() const;
 	
-	const wchar_t * getWideChars() const;
-	const REUInt32 getLength() const;
+	const wchar_t * wideChars() const;
+	const REUInt32 length() const;
 	
 	REWideString & operator=(const char * utf8String);
 	REWideString & operator=(const wchar_t * wideString);
@@ -40,8 +40,8 @@ public:
 	REWideString & operator=(const REString & anotherString);
 	REWideString & operator=(const REMutableString & anotherString);
 	
-	operator const wchar_t* () { return this->getWideChars(); }
-	operator const wchar_t* () const { return this->getWideChars(); }
+	operator const wchar_t* () { return this->wideChars(); }
+	operator const wchar_t* () const { return this->wideChars(); }
 	
 	REWideString();
 	REWideString(const char * utf8String, const REUInt32 utf8StringLength = RENotFound);
@@ -58,12 +58,12 @@ public:
 	
 	CFStringRef getCFString() const
 	{
-		const REUInt32 len = this->getLength();
+		const REUInt32 len = this->length();
 		if (len)
 		{
 			return CFStringCreateWithBytes(kCFAllocatorDefault,
-										   (const UInt8 *)_p->getBuffer(),
-										   (CFIndex)(_p->getSize() - sizeof(wchar_t)),
+										   (const UInt8 *)_p->buffer(),
+										   (CFIndex)(_p->size() - sizeof(wchar_t)),
 										   (CFByteOrderGetCurrent() == CFByteOrderLittleEndian) ? kCFStringEncodingUTF32LE : kCFStringEncodingUTF32BE,
 										   false);
 		}
@@ -82,10 +82,10 @@ public:
 				{
 					if (newBuffer->resize((len + 1) * sizeof(REUInt32), false))
 					{
-						char * buff = (char *)newBuffer->getBuffer();
+						char * buff = (char *)newBuffer->buffer();
 						if (CFStringGetCString(cfString,
 											   (char *)buff,
-											   (CFIndex)newBuffer->getSize(),
+											   (CFIndex)newBuffer->size(),
 											   kCFStringEncodingUTF8))
 						{
 							const size_t resBuffSize = strlen(buff);

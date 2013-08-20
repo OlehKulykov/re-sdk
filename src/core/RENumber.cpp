@@ -51,16 +51,16 @@ REString RENumberPrivate::toString(const RENumber & number)
 	{
 		if (number.isSigned())
 		{
-			writed = sprintf(cStr, "%lld", (long long int)number.getInt64Value());
+			writed = sprintf(cStr, "%lld", (long long int)number.int64Value());
 		}
 		else if (number.isUnsigned())
 		{
-			writed = sprintf(cStr, "%llu", (long long unsigned int)number.getUInt64Value());
+			writed = sprintf(cStr, "%llu", (long long unsigned int)number.uint64Value());
 		}
 	}
 	else if (number.isReal())
 	{
-		writed = sprintf(cStr, "%10.9Lf", (long double)number.getFloat64Value());
+		writed = sprintf(cStr, "%10.9Lf", (long double)number.float64Value());
 	}
 	
 	if (writed > 0)
@@ -152,7 +152,7 @@ REBOOL RENumber::isSigned() const
 	return false;
 }
 
-REBOOL RENumber::getBoolValue() const
+REBOOL RENumber::boolValue() const
 {
 	if (this->isInteger()) 
 	{
@@ -161,7 +161,7 @@ REBOOL RENumber::getBoolValue() const
 	return (REBOOL)((REUInt64)_float64Value);
 }
 
-REByte RENumber::getByteValue() const
+REByte RENumber::byteValue() const
 {
 	if (this->isInteger()) 
 	{
@@ -170,7 +170,7 @@ REByte RENumber::getByteValue() const
 	return (REByte)((REInt64)_float64Value);
 }
 
-REUByte RENumber::getUByteValue() const
+REUByte RENumber::ubyteValue() const
 {
 	if (this->isInteger()) 
 	{
@@ -179,7 +179,7 @@ REUByte RENumber::getUByteValue() const
 	return (REUByte)((REUInt64)_float64Value);
 }
 
-REInt16 RENumber::getInt16Value() const
+REInt16 RENumber::int16Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -188,7 +188,7 @@ REInt16 RENumber::getInt16Value() const
 	return (REInt16)((REInt64)_float64Value);
 }
 
-REUInt16 RENumber::getUInt16Value() const
+REUInt16 RENumber::uint16Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -197,7 +197,7 @@ REUInt16 RENumber::getUInt16Value() const
 	return (REUInt16)((REUInt64)_float64Value);
 }
 
-REInt32 RENumber::getInt32Value() const
+REInt32 RENumber::int32Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -206,7 +206,7 @@ REInt32 RENumber::getInt32Value() const
 	return (REInt32)((REInt64)_float64Value);
 }
 
-REUInt32 RENumber::getUInt32Value() const
+REUInt32 RENumber::uint32Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -215,7 +215,7 @@ REUInt32 RENumber::getUInt32Value() const
 	return (REUInt32)((REUInt64)_float64Value);
 }
 
-REInt64 RENumber::getInt64Value() const
+REInt64 RENumber::int64Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -224,7 +224,7 @@ REInt64 RENumber::getInt64Value() const
 	return (REInt64)((REInt64)_float64Value);
 }
 
-REUInt64 RENumber::getUInt64Value() const
+REUInt64 RENumber::uint64Value() const
 {
 	if (this->isInteger()) 
 	{
@@ -233,7 +233,7 @@ REUInt64 RENumber::getUInt64Value() const
 	return (REUInt64)((REUInt64)_float64Value);
 }
 
-void * RENumber::getPointerValue() const
+void * RENumber::pointerValue() const
 {
 	if (this->isInteger()) 
 	{
@@ -242,7 +242,7 @@ void * RENumber::getPointerValue() const
 	return (void*)((REUInt64)_float64Value);
 }
 
-REFloat32 RENumber::getFloat32Value() const
+REFloat32 RENumber::float32Value() const
 {
 	if (this->isReal()) 
 	{
@@ -251,7 +251,7 @@ REFloat32 RENumber::getFloat32Value() const
 	return (REFloat32)(_int64Value);
 }
 
-REFloat64 RENumber::getFloat64Value() const
+REFloat64 RENumber::float64Value() const
 {
 	if (this->isReal()) 
 	{
@@ -260,7 +260,7 @@ REFloat64 RENumber::getFloat64Value() const
 	return (REFloat64)(_int64Value);
 }
 
-RETimeInterval RENumber::getTimeIntervalValue() const
+RETimeInterval RENumber::timeIntervalValue() const
 {
 	if (this->isReal()) 
 	{
@@ -524,7 +524,7 @@ REBOOL RENumber::applyValueFromString(RENumber * number, const char * strValue)
 
 REBOOL RENumber::setValueFromString(const REString & strValue)
 {
-	return RENumber::applyValueFromString(this, strValue.getChars());
+	return RENumber::applyValueFromString(this, strValue.UTF8String());
 }
 
 REBOOL RENumber::setValueFromString(const char * strValue)
@@ -539,21 +539,21 @@ void RENumber::applyNumberValueToString(const RENumber & number, REString * stri
 	{
 		if (number.isSigned())
 		{
-			sprintf(cStr, "%lld", (long long int)number.getInt64Value());
+			sprintf(cStr, "%lld", (long long int)number.int64Value());
 		}
 		else if (number.isUnsigned())
 		{
-			sprintf(cStr, "%llu", (long long unsigned int)number.getUInt64Value());
+			sprintf(cStr, "%llu", (long long unsigned int)number.uint64Value());
 		}
 	}
 	else if (number.isReal())
 	{
-		sprintf(cStr, "%10.9Lf", (long double)number.getFloat64Value());
+		sprintf(cStr, "%10.9Lf", (long double)number.float64Value());
 	}
 	*string = cStr;
 }
 
-REString RENumber::getStringValue() const
+REString RENumber::stringValue() const
 {
 	REString resultString;
 	RENumber::applyNumberValueToString(*this, &resultString);
@@ -566,19 +566,19 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 	{
 		if (number.isSigned())
 		{
-			const REInt64 thisValue = number.getInt64Value();
+			const REInt64 thisValue = number.int64Value();
 			if (anotherNumber.isInteger())
 			{
 				if (anotherNumber.isSigned())
 				{
-					const REInt64 anValue = anotherNumber.getInt64Value();
+					const REInt64 anValue = anotherNumber.int64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
 				else if (anotherNumber.isUnsigned())
 				{
-					const REUInt64 anValue = anotherNumber.getUInt64Value();
+					const REUInt64 anValue = anotherNumber.uint64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
@@ -586,7 +586,7 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 			}
 			else if (anotherNumber.isReal())
 			{
-				const REFloat64 anValue = anotherNumber.getFloat64Value();
+				const REFloat64 anValue = anotherNumber.float64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
@@ -594,19 +594,19 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 		}
 		else if (number.isUnsigned())
 		{
-			const REUInt64 thisValue = number.getUInt64Value();
+			const REUInt64 thisValue = number.uint64Value();
 			if (anotherNumber.isInteger())
 			{
 				if (anotherNumber.isSigned())
 				{
-					const REInt64 anValue = anotherNumber.getInt64Value();
+					const REInt64 anValue = anotherNumber.int64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
 				}
 				else if (anotherNumber.isUnsigned())
 				{
-					const REUInt64 anValue = anotherNumber.getUInt64Value();
+					const REUInt64 anValue = anotherNumber.uint64Value();
 					if (thisValue == anValue) { return 0; }
 					else if (thisValue > anValue) { return 1; }
 					else return -1;
@@ -614,7 +614,7 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 			}
 			else if (anotherNumber.isReal())
 			{
-				const REFloat64 anValue = anotherNumber.getFloat64Value();
+				const REFloat64 anValue = anotherNumber.float64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
@@ -623,19 +623,19 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 	}
 	else if (number.isReal())
 	{
-		const REFloat64 thisValue = number.getFloat64Value();
+		const REFloat64 thisValue = number.float64Value();
 		if (anotherNumber.isInteger())
 		{
 			if (anotherNumber.isSigned())
 			{
-				const REInt64 anValue = anotherNumber.getInt64Value();
+				const REInt64 anValue = anotherNumber.int64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
 			}
 			else if (anotherNumber.isUnsigned())
 			{
-				const REUInt64 anValue = anotherNumber.getUInt64Value();
+				const REUInt64 anValue = anotherNumber.uint64Value();
 				if (thisValue == anValue) { return 0; }
 				else if (thisValue > anValue) { return 1; }
 				else return -1;
@@ -643,7 +643,7 @@ int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNu
 		}
 		else if (anotherNumber.isReal())
 		{
-			const REFloat64 anValue = anotherNumber.getFloat64Value();
+			const REFloat64 anValue = anotherNumber.float64Value();
 			if (thisValue == anValue) { return 0; }
 			else if (thisValue > anValue) { return 1; }
 			else return -1;

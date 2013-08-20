@@ -70,7 +70,7 @@ REBOOL REFileManager::isReadableFileAtPath(const REString & path) const
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->isReadableFileAtPath(path.getChars());
+	return this->isReadableFileAtPath(path.UTF8String());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -125,7 +125,7 @@ REBOOL REFileManager::isWritableFileAtPath(const REString & path) const
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->isWritableFileAtPath(path.getChars());
+	return this->isWritableFileAtPath(path.UTF8String());
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -161,8 +161,8 @@ REBOOL REFileManager::createFileAtPath(const char * path, REData * withFileData)
 			{
 				if ( !withFileData->isEmpty() )
 				{
-					dwBytesToWrite = withFileData->getSize();
-					dwBytesWritten = fwrite(withFileData->getBytes(), 1, dwBytesToWrite, f);
+					dwBytesToWrite = withFileData->size();
+					dwBytesWritten = fwrite(withFileData->bytes(), 1, dwBytesToWrite, f);
 				}
 			}
 			fclose(f);
@@ -180,7 +180,7 @@ REBOOL REFileManager::createFileAtPath(const REString & path, REData * withFileD
 	}
 
 #ifndef __RE_OS_WINDOWS__	
-	return this->createFileAtPath(path.getChars(), withFileData);
+	return this->createFileAtPath(path.UTF8String(), withFileData);
 #endif /* NOT WIN */
 	
 #ifdef __RE_OS_WINDOWS__
@@ -254,7 +254,7 @@ REBOOL REFileManager::isFileExistsAtPath(const REString & path, REBOOL * isDirec
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->isFileExistsAtPath(path.getChars(), isDirectory);
+	return this->isFileExistsAtPath(path.UTF8String(), isDirectory);
 #endif /* NOT WIN */	
 	
 #ifdef __RE_OS_WINDOWS__
@@ -342,10 +342,10 @@ REBOOL REFileManager::createDirectoryAtPath(const char * path, REBOOL isCreateIn
 		const REUInt32 len = strlen(path);
 		if (len == 0) { return false; }
 		REBuffer buf(len + 1);
-		if (buf.getSize() == (len + 1)) 
+		if (buf.size() == (len + 1)) 
 		{
-			memcpy(buf.getBuffer(), path, len);
-			char * p = (char *)buf.getBuffer();
+			memcpy(buf.buffer(), path, len);
+			char * p = (char *)buf.buffer();
 			p[len] = 0;
 			while ((*p == '/') || (*p == '\\')) { p++; } // skip first '/'
 			while (*p) 
@@ -353,7 +353,7 @@ REBOOL REFileManager::createDirectoryAtPath(const char * path, REBOOL isCreateIn
 				if ((*p == '/') || (*p == '\\')) 
 				{
 					*p = 0;
-					if ( !this->createDir((const char *)buf.getBuffer()) )
+					if ( !this->createDir((const char *)buf.buffer()) )
 					{
 						return false;
 					}
@@ -361,7 +361,7 @@ REBOOL REFileManager::createDirectoryAtPath(const char * path, REBOOL isCreateIn
 				}
 				p++;
 			}
-			return this->createDir((const char *)buf.getBuffer());
+			return this->createDir((const char *)buf.buffer());
 		}
 	}
 	else
@@ -380,7 +380,7 @@ REBOOL REFileManager::createDirectoryAtPath(const REString & path, REBOOL isCrea
 	}
 	
 #ifndef __RE_OS_WINDOWS__	
-	return this->createDirectoryAtPath(path.getChars(), isCreateIntermediates);
+	return this->createDirectoryAtPath(path.UTF8String(), isCreateIntermediates);
 #endif /* NOT WIN */	
 
 #ifdef __RE_OS_WINDOWS__

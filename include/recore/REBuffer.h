@@ -34,10 +34,10 @@ public:
 	REBOOL isEqualToBuffer(const REBuffer & anotherBuffer) const;
 	
 	/// Returns void pointer to memory buffer or NULL.
-	void * getBuffer() const;
+	void * buffer() const;
 	
 	/// Returns size of memory byffer.
-	const REUInt32 getSize() const;
+	const REUInt32 size() const;
 	
 	/// Resizes memory buffer with new size with copying prev data.
 	/// Returns true if memory was resized to 'newSize', or false if new memory not created.

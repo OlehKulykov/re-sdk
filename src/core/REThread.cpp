@@ -231,7 +231,7 @@ REBOOL REThread::isWorking() const
 	return false; 
 }
 
-REFloat32 REThread::getPriority() const
+REFloat32 REThread::priority() const
 {
 #if defined(HAVE_PTHREAD_H)  
 	if ( _reThreadThread ) 
@@ -328,7 +328,7 @@ REBOOL REThread::isMultiThreaded()
 	return REThreadPrivate::isMultiThreaded;
 }
 
-REUIdentifier REThread::getMainThreadIdentifier()
+REUIdentifier REThread::mainThreadIdentifier()
 {
 	REUIdentifier thID = 0;
 #if defined(HAVE_PTHREAD_H)  
@@ -347,7 +347,7 @@ REUIdentifier REThread::getMainThreadIdentifier()
 	return thID;
 }
 
-REUIdentifier REThread::getCurrentThreadIdentifier()
+REUIdentifier REThread::currentThreadIdentifier()
 {
 	REUIdentifier thID = 0;
 #if defined(HAVE_PTHREAD_H)  
@@ -410,7 +410,7 @@ REBOOL REThread::isMainThread()
 	return true;
 }
 
-REFloat32 REThread::getMainThreadPriority()
+REFloat32 REThread::mainThreadPriority()
 {
 #if defined(HAVE_PTHREAD_H)  
 	if (REThread::isMainThread()) 

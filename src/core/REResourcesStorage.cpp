@@ -65,14 +65,14 @@ public:
 		if (_rootPath)
 		{
 			REMutableString p(*_rootPath);
-			p.appendPathComponent(resourcePath.getChars());
+			p.appendPathComponent(resourcePath.UTF8String());
 			REFile f(p, "rb");
-			const REUInt32 fileSize = f.getFileSize();
+			const REUInt32 fileSize = f.fileSize();
 			if (fileSize) 
 			{
 				if (toBuffer->resize(fileSize, false)) 
 				{
-					if (f.fileRead(toBuffer->getBuffer(), fileSize))
+					if (f.fileRead(toBuffer->buffer(), fileSize))
 					{
 						return true;
 					}
@@ -87,7 +87,7 @@ public:
 		if (_rootPath)
 		{
 			REMutableString p(*_rootPath);
-			p.appendPathComponent(resourcePath.getChars());
+			p.appendPathComponent(resourcePath.UTF8String());
 			REFileManager m;
 			REBOOL isDir = false;
 			if (m.isFileExistsAtPath(p, &isDir))
@@ -195,7 +195,7 @@ REBOOL REResourcesStoragePrivate::addResourcesPath(const REString & resourcesPat
 			REZipArchiveResource * zip = new REZipArchiveResource(resourcesPath);
 			if (zip)
 			{
-				if (zip->getEntriesCount() > 0) 
+				if (zip->entriesCount() > 0) 
 				{
 					if (_resources.add(zip))
 					{
@@ -252,12 +252,12 @@ REResourcesStorage::~REResourcesStorage()
 
 REBOOL REResourcesStorage::readToBuffer(const REString & resourcePath, REBuffer * toBuffer)
 {
-	if (resourcePath.getLength() && toBuffer)
+	if (resourcePath.UTF8String() && toBuffer)
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf)
 		{
-			const char * p = resourcePath.getChars();
+			const char * p = resourcePath.UTF8String();
 			if (REResourcesStoragePrivate::staticCallBacks.ReadToBuf(p, toBuffer))
 			{
 				return true;
@@ -271,12 +271,12 @@ REBOOL REResourcesStorage::readToBuffer(const REString & resourcePath, REBuffer 
 
 REBOOL REResourcesStorage::isExists(const REString & resourcePath)
 {
-	if (resourcePath.getLength())
+	if (resourcePath.length())
 	{
 #ifdef __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__	
 		if (REResourcesStoragePrivate::staticCallBacks.IsExists)
 		{
-			const char * p = resourcePath.getChars();
+			const char * p = resourcePath.UTF8String();
 			if (REResourcesStoragePrivate::staticCallBacks.IsExists(p))
 			{
 				return true;

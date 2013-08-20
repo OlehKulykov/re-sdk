@@ -42,28 +42,28 @@ public:
 	REBOOL isEqualToDate(const REDate & anotherDate) const;
 	
 	/// Getter for year.
-	const REUInt32 getYear() const;
+	const REUInt32 year() const;
 	
 	/// Getter for month.
-	const REUInt32 getMonth() const;
+	const REUInt32 month() const;
 	
 	/// Getter for day.
-	const REUInt32 getDay() const;
+	const REUInt32 day() const;
 	
 	/// Getter for hour.
-	const REUInt32 getHour() const;
+	const REUInt32 hour() const;
 	
 	/// Getter for minutes.
-	const REUInt32 getMinutes() const;
+	const REUInt32 minutes() const;
 	
 	/// Getter for seconds.
-	const RETimeInterval getSeconds() const;
+	const RETimeInterval seconds() const;
 	
 	/// Getter for milliseconds.
-	const REUInt32 getMilliseconds() const;
+	const REUInt32 milliseconds() const;
 	
 	/// Getter for microseconds.
-	const REUInt32 getMicroseconds() const;
+	const REUInt32 microseconds() const;
 	
 	/// Setting date year.
 	void setYear(const REUInt32 year);

@@ -59,7 +59,7 @@ public:
 	{
 		if (stringBuffer.isNotEmpty())
 		{
-			return stringBuffer->getBuffer() ? true : false;
+			return stringBuffer->buffer() ? true : false;
 		}
 		return false;
 	}

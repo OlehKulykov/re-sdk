@@ -61,16 +61,16 @@ public:
 	};
 	
 	/// Return transformed point from 'x', 'y' values of source point.
-	REPoint2 getTransformedPoint(const REFloat32 x, const REFloat32 y) const;
+	REPoint2 transformedPoint(const REFloat32 x, const REFloat32 y) const;
 	
 	/// Return transformed point from 'point' source point.
-	REPoint2 getTransformedPoint(const REPoint2 & point) const;
+	REPoint2 transformedPoint(const REPoint2 & point) const;
 	
 	/// Transforms 'point'.
 	REBOOL transformPoint(REPoint2 * point) const;
 	
 	/// Return transformed tetragon from 'tetr' source tetragon.
-	RETetragon getTransformedTetragon(const RETetragon & tetr) const;
+	RETetragon transformedTetragon(const RETetragon & tetr) const;
 	
 	/// Transforms tetragon 'tetr'.
 	REBOOL transformTetragon(RETetragon * tetr) const;
@@ -164,19 +164,19 @@ public:
 	}
 	
 	/// Returns rotation value in radians.
-	const REFloat32 getRotationRadAngle() const { return atan2f(b, a); }
+	const REFloat32 rotationRadAngle() const { return atan2f(b, a); }
 	
 	/// Returns scale 'x' value.
-	const REFloat32 getScaleX() const { return sqrtf(a*a + c*c); }
+	const REFloat32 scaleX() const { return sqrtf(a*a + c*c); }
 	
 	/// Returns scale 'y' value.
-	const REFloat32 getScaleY() const { return sqrtf(b*b + d*d); }
+	const REFloat32 scaleY() const { return sqrtf(b*b + d*d); }
 	
 	/// Returns translation 'x' value.
-	const REFloat32 getTranslationX() const { return tx; }
+	const REFloat32 translationX() const { return tx; }
 	
 	/// Returns translation 'y' value.
-	const REFloat32 getTranslationY() const { return ty; }
+	const REFloat32 translationY() const { return ty; }
 	
 	/// Contructs transform from existed transform.
 	REAffineTransform(const REAffineTransform & tr)

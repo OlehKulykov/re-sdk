@@ -61,7 +61,7 @@ public:
 		return REVector2();
 	}
 	
-	REVector2 getCrossProduct() const
+	REVector2 crossProduct() const
 	{
 		return REVector2();
 	}
@@ -77,14 +77,14 @@ public:
 #endif
 	}
 	
-	REFloat32 getDotProduct(const REVector2 & secondVector) const
+	REFloat32 dotProduct(const REVector2 & secondVector) const
 	{
 		return REVector2::dotProduct((*this), secondVector);
 	}
 	
 	/// Angle between two vectors.
 	/// value between 0 and π (in radians) which is 0° and 180°.
-	static REFloat32 getAngleUnsigned(const REVector2 & firstVector, const REVector2 & secondVector)
+	static REFloat32 angleUnsigned(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 		REVector2 v1(firstVector);
 		v1.normalize();
@@ -95,7 +95,7 @@ public:
 
 	/// Angle between two vectors.
 	/// angle of secondVector relative to firstVector.
-	static REFloat32 getAngleSigned(const REVector2 & firstVector, const REVector2 & secondVector)
+	static REFloat32 angleSigned(const REVector2 & firstVector, const REVector2 & secondVector)
 	{
 		REVector2 v1(firstVector);
 		v1.normalize();
@@ -107,7 +107,7 @@ public:
 	/// Getting a new vector in the opposite direction.
 	///
 	/// Получение нового вектора с противоположным направлением.
-	REVector2 getInverseVector() const
+	REVector2 inversedVector() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		return REVector2(vneg_f32(*(float32x2_t *)&armNeonVector));
@@ -139,7 +139,7 @@ public:
 		const float32_t invMag = (1.0f / this->getMagnitude());
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector, vdup_n_f32(invMag));
 #else
-		const float invMag = ( 1.0f / this->getMagnitude() );
+		const float invMag = ( 1.0f / this->magnitude() );
 		x *= invMag;
 		y *= invMag;
 #endif		
@@ -149,7 +149,7 @@ public:
 	/// The length of the vector (or module)
 	///
 	/// Длина вектора (или модуль)
-	const REFloat32 getMagnitude() const
+	const REFloat32 magnitude() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x2_t v = vmul_f32(*(float32x2_t *)&armNeonVector, *(float32x2_t *)&armNeonVector);
@@ -163,22 +163,10 @@ public:
 	/// Square of the length of the vector (or module)
 	///
 	/// Квадрат длины вектора (или модуля)
-	const REFloat32 getSquareMagnitude() const
+	const REFloat32 squareMagnitude() const
 	{
 		return ( (x * x) + (y * y) );
 	}
-	
-	/// Return 'x' coordinate
-	const REFloat32 getX() const { return x; }
-	
-	/// Return 'y' coordinate
-	const REFloat32 getY() const { return y; }
-	
-	/// Seting 'x' coordinate
-	void setX(const REFloat32 newX) { x = newX; }
-	
-	/// Seting 'y' coordinate
-	void setY(const REFloat32 newY) { y = newY; }
 	
 	/// "this vector" + another vector
 	REVector2 & add(const REVector2 & anotherVector2D)

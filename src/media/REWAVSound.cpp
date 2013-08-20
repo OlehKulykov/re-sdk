@@ -90,7 +90,7 @@ REBOOL REWAVSound::initWithData(const REData & soundFileData)
 	}
 	
 #ifdef __RE_USING_OPENAL__	
-	return REWAVSound::loadPcmWavData(soundFileData.getBytes(), &_buffer, &_source);
+	return REWAVSound::loadPcmWavData(soundFileData.bytes(), &_buffer, &_source);
 #endif
 	
 	return false;
@@ -230,9 +230,9 @@ REWAVSound::~REWAVSound()
 
 REBOOL REWAVSound::isValidData(const REData & data)
 {
-	if ( data.getSize() > 12 )
+	if ( data.size() > 12 )
 	{
-		const char * dataString = (const char *)data.getBytes();
+		const char * dataString = (const char *)data.bytes();
 		REBOOL isValidData = ( (strncmp(dataString, "RIFF", 4) == 0) && (strncmp(&dataString[8], "WAVE", 4) == 0) );
 		return isValidData;
 	}

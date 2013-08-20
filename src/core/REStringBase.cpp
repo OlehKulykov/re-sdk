@@ -18,16 +18,16 @@
 #include "../../include/recore/REStringBase.h"
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
-void * REStringBase::getStringBuffer() const
+void * REStringBase::stringBuffer() const
 {
 	const REBuffer * b = _p;
-	return b ? b->getBuffer() : NULL;
+	return b ? b->buffer() : NULL;
 }
 
-REUInt32 REStringBase::getStringBufferSize() const
+REUInt32 REStringBase::stringBufferSize() const
 {
 	const REBuffer * b = _p;
-	return b ? b->getSize() : 0;
+	return b ? b->size() : 0;
 }
 
 REBOOL REStringBase::isEmpty() const
@@ -87,7 +87,7 @@ void REStringBase::setFromWideString(const wchar_t * wideString,
 REStringBase::REStringBase()
 {
 	
-}
+} 
 
 REStringBase::REStringBase(const char * utf8String, 
 						   const REUInt32 utf8StringLength,

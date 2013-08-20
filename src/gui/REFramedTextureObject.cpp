@@ -251,7 +251,7 @@ REBOOL REFramedTextureObject::InitFramedTextureFromPath(const REString & path)
 		return false;	
 	}
 	
-	if (!this->InitFrames((const char *)xmlData.getBytes()))
+	if (!this->InitFrames((const char *)xmlData.bytes()))
 	{
 		return false;
 	}

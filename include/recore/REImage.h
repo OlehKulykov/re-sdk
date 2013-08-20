@@ -35,36 +35,36 @@ public:
 	REImage & operator=(const REImage & anotherImage);
 	
 	/// Clears image object.
-	void Clear();
+	void clear();
 	
 	/// Check image is empty.
-	REBOOL IsNull() const;
+	REBOOL isNull() const;
 	
 	/// Returns image data(pixels).
-	REUByte * GetImageData() const;
+	REUByte * imageData() const;
 	
 	/// Returns format of image.
-	const REImagePixelFormat GetPixelFormat() const;
+	const REImagePixelFormat pixelFormat() const;
 	
 	/// Returns number of bits per pixel.
-	const REUInt32 GetBitsPerPixel() const;
+	const REUInt32 bitsPerPixel() const;
 	
 	/// Returns image width.
-	const REUInt32 GetWidth() const;
+	const REUInt32 width() const;
 	
 	/// Returns image height.
-	const REUInt32 GetHeight() const;
+	const REUInt32 height() const;
 	
 	/// Returns number of channels per pixel.
-	const REUInt32 GetChannelsCount() const;
+	const REUInt32 channelsCount() const;
 
 	/// Initialize image from file buffer using data buffer and it's size.
 	/// Depends of build options can be init PNG, JPG, JPG2000, WEBP images.
-	REBOOL InitFromFileDataBuffer(const REUByte * dataBuffer, const REUInt32 dataSize);
+	REBOOL initFromFileDataBuffer(const REUByte * dataBuffer, const REUInt32 dataSize);
 	
 	/// Initialize image from file data using data.
 	/// Depends of build options can be init PNG, JPG, JPG2000, WEBP images.
-	REBOOL InitFromFileData(const REData & data);
+	REBOOL initFromFileData(const REData & data);
 	
 	
 	/// This functionality avaiable only with RENetwork and
@@ -72,13 +72,13 @@ public:
 	/// Initializing image object from URL String.
 	/// Example: http://example.com/image.png for downloading from web.
 	/// Example: file:///Volumes/Data/image.png for reading from from file. See file url scemes.
-	REBOOL InitFromURLString(const REString & urlString);
+	REBOOL initFromURLString(const REString & urlString);
 	
 	/// Scales image to new width and new height.
-	REBOOL ScaleToSize(const REUInt32 newWidth, const REUInt32 newHeight);
+	REBOOL scaleToSize(const REUInt32 newWidth, const REUInt32 newHeight);
 	
 	/// Scales image to new size.
-	REBOOL ScaleToSize(const RESize & newSize);
+	REBOOL scaleToSize(const RESize & newSize);
 
 	/// Default constructor.
 	REImage();
@@ -105,7 +105,7 @@ public:
 	virtual ~REImage(void);
 	
 	/// Scales image data(pixels).
-	static REBOOL ScaleImageData(const REUByte * srcData,
+	static REBOOL scaleImageData(const REUByte * srcData,
 								 const REUInt32 srcWidth, 
 								 const REUInt32 srcHeight, 
 								 const REUInt32 srcColorComponents, 
@@ -115,15 +115,15 @@ public:
 	
 	/// Creates and return new image object with image base object or NULL on error.
 	/// After using this image delete it.
-	static REImage * CreateWithBase(REImageBase * base);
+	static REImage * createWithBase(REImageBase * base);
 	
 	/// Creates and return new image object with another image object or NULL on error.
 	/// After using this image delete it.
-	static REImage * CreateWithImage(const REImage & anotherImage);
+	static REImage * createWithImage(const REImage & anotherImage);
 	
 	/// Creates and return new image object with image data(pixels), data size, format, width and height or NULL on error.
 	/// After using this image delete it.
-	static REImage * CreateWithPixelsData(const REUByte * pixelsData, 
+	static REImage * createWithPixelsData(const REUByte * pixelsData, 
 										  const REUInt32 pixelsDataSize, 
 										  const REImagePixelFormat pixelsFormat, 
 										  const REUInt32 width,
@@ -131,13 +131,13 @@ public:
 	
 	/// Creates and return new image object with image format, width and height or NULL on error.
 	/// After using this image delete it.
-	static REImage * CreateBlankImage(const REImagePixelFormat pixelsFormat, 
+	static REImage * createBlankImage(const REImagePixelFormat pixelsFormat, 
 									  const REUInt32 width, 
 									  const REUInt32 height);
 	
 	/// Creates and return new image object by reading from file path or NULL on error.
 	/// After using this image delete it.
-	static REImage * CreateWithFilePath(const REString & filePath);
+	static REImage * createWithFilePath(const REString & filePath);
 };
 
 #endif /* __REIMAGE_H__ */

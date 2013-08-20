@@ -156,8 +156,8 @@ REBOOL REAudioPlayerPrivate_iphone::initWithData(const REData & soundFileData)
 	_soundFileData = soundFileData;
 	
 #ifdef __OBJC__
-	NSData * fileData = [NSData dataWithBytesNoCopy:(void *)_soundFileData.getBytes()
-											 length:(NSUInteger)_soundFileData.getSize()
+	NSData * fileData = [NSData dataWithBytesNoCopy:(void *)_soundFileData.bytes()
+											 length:(NSUInteger)_soundFileData.size()
 									   freeWhenDone:NO];
 	if (fileData)
 	{
@@ -191,7 +191,7 @@ REBOOL REAudioPlayerPrivate_iphone::initFromFilePath(const REString & filePath)
 		_p = NULL;
 	}
 	
-	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.getChars()];
+	NSString * fileOBJString = [NSString stringWithUTF8String:filePath.UTF8String()];
 	if (fileOBJString) 
 	{
 		NSFileManager * manager = [[NSFileManager alloc] init];

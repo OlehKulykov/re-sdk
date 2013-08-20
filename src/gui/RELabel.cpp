@@ -111,7 +111,7 @@ RERect RELabel::getTextFrame() const
 	
 	if (_frame.height != 0.0f)
 	{
-		r.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
+		r.height *= (_textInsets.adjustedRect(_frame).height / _frame.height);
 	}
 	
 	return r;
@@ -125,7 +125,7 @@ void RELabel::renderAtWithShadow(const REFloat32 x, const REFloat32 y)
 		RESize ratio(_font->getCharsScaleRatio());
 		if (_frame.height != 0.0f) 
 		{
-			ratio.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
+			ratio.height *= (_textInsets.adjustedRect(_frame).height / _frame.height);
 		}
 		REFloat32 penX = x;
 		const REFloat32 bottomY = y + _font->getHeight() - _textInsets.bottom - _textInsets.top;
@@ -157,7 +157,7 @@ void RELabel::renderAtWithOutShadow(const REFloat32 x, const REFloat32 y)
 		RESize ratio(_font->getCharsScaleRatio());
 		if (_frame.height != 0.0f) 
 		{
-			ratio.height *= (_textInsets.getAdjustedRect(_frame).height / _frame.height);
+			ratio.height *= (_textInsets.adjustedRect(_frame).height / _frame.height);
 		}
 		REFloat32 penX = x;
 		const REFloat32 bottomY = y + _font->getHeight() - _textInsets.bottom - _textInsets.top;
@@ -213,7 +213,7 @@ void RELabel::render()
 			}
 		}
 		
-		RERect frame(_textInsets.getAdjustedRect(_frame));
+		RERect frame(_textInsets.adjustedRect(_frame));
 		switch (this->getTextAlignment()) 
 		{
 			case RETextAlignmentLeft:
@@ -254,7 +254,7 @@ void RELabel::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 			}
 		}
 		
-		RERect frame(_textInsets.getAdjustedRect(_frame));
+		RERect frame(_textInsets.adjustedRect(_frame));
 		const REFloat32 renderXInset = frame.x + offsetX;
 		const REFloat32 renderYInset = frame.y + offsetY;
 		switch (this->getTextAlignment()) 
@@ -305,7 +305,7 @@ void RELabel::setCharsSpaceRatio(const REFloat32 newRatio)
 
 REBOOL RELabel::isCanReloadChars() const
 {
-	if (_font && _text.getLength()) 
+	if (_font && _text.length()) 
 	{
 		REArray<RETTFFontChar *> * charsArray = _font->getChars();
 		if (charsArray) 
@@ -495,7 +495,7 @@ void RELabel::layoutChars()
 	{
 		RELabelRETextLineBreakGeneratorPrivate generator;
 		_charsSize = generator.TextSize(&_chars, _font, _charsSpaceRatio);
-		RERect frame(_textInsets.getAdjustedRect(_frame));
+		RERect frame(_textInsets.adjustedRect(_frame));
 		if (_charsSize.width > frame.width) 
 		{
 			REArray<RETTFFontChar *> dotsChars;

@@ -33,8 +33,8 @@ class __RE_PUBLIC_CLASS_API__ REStringBase
 protected:
 	REPtr<REBuffer> _p;
 	
-	void * getStringBuffer() const;
-	REUInt32 getStringBufferSize() const;
+	void * stringBuffer() const;
+	REUInt32 stringBufferSize() const;
 public:
 	
 	REBOOL isEmpty() const;

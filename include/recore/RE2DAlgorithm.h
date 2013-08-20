@@ -64,20 +64,20 @@ public:
 	
 	/// Return length of line that presented with two points.
 	/// ['x1', 'y1'] - start line point and ['x2', 'y2'] - end line point.
-	static REFloat32 getLineLengthFloat32(const REFloat32 x1, 
+	static REFloat32 lineLengthFloat32(const REFloat32 x1, 
 										  const REFloat32 y1, 
 										  const REFloat32 x2, 
 										  const REFloat32 y2);
 	
 	/// Return length of line that presented with two points.
 	/// 'firstPoint' - start line point and 'secondPoint' - end line point.
-	static REFloat32 getLineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint);
+	static REFloat32 lineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint);
 	
 	/// Returns point of crossing two lines.
 	/// First line presented as 'p11' - start line point and 'p12' - end line point.
 	/// Second line presented as 'p21' - start line point and 'p22' - end line point.
 	/// If lines is not crossed(lines is same or lines is paralleled) than returns point[FLT_MAX, FLT_MAX]
-	static REPoint2 getLinesCrossPoint(const REPoint2 & p11, 
+	static REPoint2 linesCrossPoint(const REPoint2 & p11, 
 									   const REPoint2 & p12, 
 									   const REPoint2 & p21, 
 									   const REPoint2 & p22);

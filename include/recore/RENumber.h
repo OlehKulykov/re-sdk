@@ -105,46 +105,46 @@ public:
 	REBOOL isReal() const;
 	
 	/// Returns boolena value.
-	REBOOL getBoolValue() const;
+	REBOOL boolValue() const;
 	
 	/// Returns signed byte value.
-	REByte getByteValue() const;
+	REByte byteValue() const;
 	
 	/// Returns unsigned byte value.
-	REUByte getUByteValue() const;
+	REUByte ubyteValue() const;
 	
 	/// Returns signed integer 16 bit value.
-	REInt16 getInt16Value() const;
+	REInt16 int16Value() const;
 	
 	/// Returns unsigned integer 16 bit value.
-	REUInt16 getUInt16Value() const;
+	REUInt16 uint16Value() const;
 	
 	/// Returns signed integer 32 bit value.
-	REInt32 getInt32Value() const;
+	REInt32 int32Value() const;
 	
 	/// Returns unsigned integer 16 bit value.
-	REUInt32 getUInt32Value() const;
+	REUInt32 uint32Value() const;
 	
 	/// Returns signed integer 64 bit value.
-	REInt64 getInt64Value() const;
+	REInt64 int64Value() const;
 	
 	/// Returns unsigned integer 64 bit value.
-	REUInt64 getUInt64Value() const;
+	REUInt64 uint64Value() const;
 	
 	/// Returns pointer value.
-	void * getPointerValue() const;
+	void * pointerValue() const;
 	
 	/// Returns float 32 bit value.
-	REFloat32 getFloat32Value() const;
+	REFloat32 float32Value() const;
 	
 	/// Returns float 64 bit value.
-	REFloat64 getFloat64Value() const;
+	REFloat64 float64Value() const;
 	
 	/// Returns time interval value.
-	RETimeInterval getTimeIntervalValue() const;
+	RETimeInterval timeIntervalValue() const;
 	
 	/// Returns string presentation of value.
-	REString getStringValue() const;
+	REString stringValue() const;
 	
 	/// Setting value from string.
 	REBOOL setValueFromString(const REString & strValue);

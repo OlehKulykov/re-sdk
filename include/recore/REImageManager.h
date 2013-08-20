@@ -52,21 +52,21 @@ class __RE_PUBLIC_CLASS_API__ REImageManager
 {
 public:
 	/// Creates base image object from image file data.
-	REImageBase * CreateFromFileData(const REData & fileData);
+	REImageBase * createFromFileData(const REData & fileData);
 	
 	/// Creates base image object from image file data with data size.
-	REImageBase * CreateFromFileData(const REUByte * fileData, const REUInt32 dataSize);
+	REImageBase * createFromFileData(const REUByte * fileData, const REUInt32 dataSize);
 	
 	/// Detects image file data type from it's data with size.
-	REImageType GetTypeFromFileData(const REUByte * fileData, const REUInt32 dataSize);
+	REImageType typeFromFileData(const REUByte * fileData, const REUInt32 dataSize);
 	
 	/// Detects image file data type from it's data.
-	REImageType GetTypeFromFileData(const REData & fileData);
+	REImageType typeFromFileData(const REData & fileData);
 	
 	/// Creates and return new buffer object with PNG file presentation from image data(pixels), width, height and pixel format.
 	/// After using this buffer object call Release().
 	/// This functionality requires undefined flag __RE_RECORE_NO_PNG_IMAGE_SUPPORT__
-	REBufferObject * CreatePNGFilePresentation(const REUByte * pixelsData,
+	REBufferObject * createPNGFilePresentation(const REUByte * pixelsData,
 											   const REUInt32 width,
 											   const REUInt32 height,
 											   const REImagePixelFormat pixelFormat);
@@ -74,7 +74,7 @@ public:
 	/// Creates and return new buffer object with WEBP file presentation from image data(pixels), width, height and pixel format.
 	/// After using this buffer object call Release().
 	/// This functionality requires undefined flag __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
-	REBufferObject * CreateWebPFilePresentation(const REUByte * pixelsData,
+	REBufferObject * createWebPFilePresentation(const REUByte * pixelsData,
 												const REUInt32 width,
 												const REUInt32 height,
 												const REImagePixelFormat pixelFormat,

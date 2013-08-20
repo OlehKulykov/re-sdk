@@ -103,13 +103,13 @@ public:
 	}
 	
 	/// Returns center point of rectangle.
-	REPoint2 getCenter() const
+	REPoint2 center() const
 	{
 		return REPoint2((x + (width / 2)), (y + (height / 2)));
 	}
 	
 	/// Returns top center point of rectangle.
-	REPoint2 getTopCenter() const
+	REPoint2 topCenter() const
 	{
 		return REPoint2((x + (width / 2)), y);
 	}
@@ -131,7 +131,7 @@ public:
 	}
 	
 	/// Returns bottom center point of rectangle.
-	REPoint2 setBottomCenter() const
+	REPoint2 bottomCenter() const
 	{
 		return REPoint2(x + (width / 2), y + height);
 	}
@@ -153,7 +153,7 @@ public:
 	}
 	
 	/// Returns left center point of rectangle.
-	REPoint2 setLeftCenter() const
+	REPoint2 leftCenter() const
 	{
 		return REPoint2(x, y + (height / 2));
 	}
@@ -175,7 +175,7 @@ public:
 	}
 	
 	/// Returns right center point of rectangle.
-	REPoint2 getRightCenter() const
+	REPoint2 rightCenter() const
 	{
 		return REPoint2(x + width, y + (height / 2));
 	}
@@ -197,7 +197,7 @@ public:
 	}
 	
 	/// Returns top right point.
-	REPoint2 getTopRight() const
+	REPoint2 topRight() const
 	{
 		return REPoint2(x + width, y);
 	}
@@ -219,7 +219,7 @@ public:
 	}
 	
 	/// Returns bottom right point of rectangle.
-	REPoint2 getBottomRight() const
+	REPoint2 bottomRight() const
 	{
 		return REPoint2(x + width, y + height);
 	}
@@ -241,7 +241,7 @@ public:
 	}
 	
 	/// Returns bottom left point.
-	REPoint2 getBottomLeft() const
+	REPoint2 bottomLeft() const
 	{
 		return REPoint2(x, y + height);
 	}
@@ -286,7 +286,7 @@ public:
 	}
 	
 	/// Returns size of rectangle.
-	RESize getSize() const
+	RESize size() const
 	{
 		return RESize(width, height);
 	}
@@ -332,7 +332,7 @@ public:
 	}
 	
 	/// Returns intersected rectangle with another rectangle.
-	RERect getIntersection(const RERect & b) const
+	RERect intersectionRect(const RERect & b) const
 	{
 		const REFloat32 bottomX = (x + width);
 		const REFloat32 bottomY = (y + height);
@@ -354,7 +354,7 @@ public:
 	}
 	
 	/// Returns union rectangle with another rectangle.
-	RERect getUnion(const RERect & b) const
+	RERect unionRect(const RERect & b) const
 	{
 		const REFloat32 newX = MIN(x, b.x);
 		const REFloat32 newY = MIN(y, b.y);

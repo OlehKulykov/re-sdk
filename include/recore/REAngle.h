@@ -36,10 +36,10 @@ public:
 	}
 	
 	/// Returns float value of angle in degrees.
-	const REFloat32 getDegree() const { return degreeAngle; }
+	const REFloat32 degree() const { return degreeAngle; }
 	
 	/// Returns float value of angle in radians.
-	const REFloat32 getRadian() const { return DEG_TO_RAD(degreeAngle); }
+	const REFloat32 radian() const { return DEG_TO_RAD(degreeAngle); }
 
 	/// Set value in degrees.
 	REDegreeAngle & setDegree(const REFloat32 degAngle) 

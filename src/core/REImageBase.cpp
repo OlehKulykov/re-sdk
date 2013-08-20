@@ -35,12 +35,57 @@ REBOOL REImageBase::isImplementsClass(const REUInt32 classIdentifier) const
 	return ((REImageBase::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
 }
 
-REUByte * REImageBase::getImageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const
+REBOOL REImageBase::isNull() const 
+{
+	return (_format == 0); 
+}
+
+REUByte * REImageBase::imageData() const
+{
+	return (REUByte *)_buffer.buffer(); 
+}
+
+const REUInt32 REImageBase::imageDataSize() const
+{
+	return _buffer.size(); 
+}
+
+const REUInt32 REImageBase::width() const
+{ 
+	return (REUInt32)_width; 
+}
+
+const REUInt32 REImageBase::height() const
+{ 
+	return (REUInt32)_height;
+}
+
+const REImagePixelFormat REImageBase::format() const
+{ 
+	return ((REImagePixelFormat)_format);
+}
+
+const REUInt32 REImageBase::bitsPerPixel() const
+{ 
+	return REImageBase::bitsPerPixel((REImagePixelFormat)_format); 
+}
+
+const REUInt32 REImageBase::bytesPerPixel() const
+{
+	return REImageBase::bytesPerPixel((REImagePixelFormat)_format); 
+}
+
+const REUInt32 REImageBase::channelsCount() const
+{ 
+	return REImageBase::channelsCount((REImagePixelFormat)_format);
+}
+
+REUByte * REImageBase::imageDataTopLeftOffset(const REUInt32 x, const REUInt32 y) const
 {
 	if (_format && _width <= x && _height <= y) 
 	{
-		const REUInt32 bytesPP = this->getBytesPerPixel();
-		REUByte * dataPtr = this->getImageData();
+		const REUInt32 bytesPP = this->bytesPerPixel();
+		REUByte * dataPtr = this->imageData();
 		dataPtr += ((_width * bytesPP) * y);
 		dataPtr += (bytesPP * x);
 		return dataPtr;
@@ -96,7 +141,7 @@ REImageBase::REImageBase(const REUByte * pixelsData,
 			const REUInt32 dataSize = (width * height * bytesPPixel);
 			if (_buffer.resize(dataSize, false)) 
 			{
-				memcpy(_buffer.getBuffer(), pixelsData, dataSize);
+				memcpy(_buffer.buffer(), pixelsData, dataSize);
 				_width = (REUInt16)width;
 				_height = (REUInt16)height;
 				_format = (REUByte)pixelsFormat;

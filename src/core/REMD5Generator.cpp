@@ -281,7 +281,7 @@ void REMD5Generator::transform(REUInt32 state[4], REUInt32 inBuff[16])
 }
 #endif
 
-const REUInt32 REMD5Generator::getFromData(const void * data, const REUInt32 dataLength)
+const REUInt32 REMD5Generator::fromData(const void * data, const REUInt32 dataLength)
 {
 	if (data && dataLength) 
 	{
@@ -307,7 +307,7 @@ const REUInt32 REMD5Generator::getFromData(const void * data, const REUInt32 dat
 	return 0;
 }
 
-const REString REMD5Generator::getStringFromData(const void * data, const REUInt32 dataLength)
+const REString REMD5Generator::stringFromData(const void * data, const REUInt32 dataLength)
 {
 	if (data && dataLength) 
 	{
@@ -364,7 +364,7 @@ const REUInt32 REMD5Generator::generateFromString(const char * s)
 	if (s) 
 	{
 		REMD5Generator g;
-		return g.getFromData(s, (REUInt32)strlen(s));
+		return g.fromData(s, (REUInt32)strlen(s));
 	}
 	return 0;
 }

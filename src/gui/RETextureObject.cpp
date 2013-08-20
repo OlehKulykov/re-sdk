@@ -149,7 +149,7 @@ REBOOL RETextureObject::UpdateFromImageFilePath(const REString & imageFilePath, 
 		if (fileData.initFromPath(imageFilePath)) 
 		{ 
 			REImage image;
-			if (image.InitFromFileData(fileData)) 
+			if (image.initFromFileData(fileData)) 
 			{
 				fileData.clear();
                 return this->UpdateFromImage(image, filterType);
@@ -163,22 +163,22 @@ REBOOL RETextureObject::UpdateFromImage(const REImage & image, const RETextureFi
 {
 	if (_texture) 
 	{
-		const REUInt32 inW = image.GetWidth();
-		const REUInt32 inH = image.GetHeight();
+		const REUInt32 inW = image.width();
+		const REUInt32 inH = image.height();
 		if (inW && inH) 
 		{
 			const REUInt32 w = RETextureObject::GetNearestPowerOfTwo(inW);
 			const REUInt32 h = RETextureObject::GetNearestPowerOfTwo(inH);
 			if ((inW == w) && (inH == h)) 
 			{
-				return this->Update(image.GetImageData(), image.GetPixelFormat(), w, h);
+				return this->Update(image.imageData(), image.pixelFormat(), w, h);
 			}
 			else
 			{
 				REImage img(image);
-				if (img.ScaleToSize(w, h))
+				if (img.scaleToSize(w, h))
 				{
-					return this->Update(img.GetImageData(), img.GetPixelFormat(), w, h);
+					return this->Update(img.imageData(), img.pixelFormat(), w, h);
 				}
 			}
 		}

@@ -33,12 +33,12 @@ REBOOL REBuffer::isEqualToBuffer(const REBuffer & anotherBuffer) const
 	return false;
 }
 
-void * REBuffer::getBuffer() const
+void * REBuffer::buffer() const
 {
 	return _buff;
 }
 
-const REUInt32 REBuffer::getSize() const
+const REUInt32 REBuffer::size() const
 {
 	return _size;
 }
@@ -127,12 +127,12 @@ REBOOL REBuffer::append(const void * buff, const REUInt32 buffSize)
 
 REBOOL REBuffer::append(const REBuffer & anotherBuff)
 {
-	return this->append(anotherBuff.getBuffer(), anotherBuff.getSize());
+	return this->append(anotherBuff.buffer(), anotherBuff.size());
 }
 
 REBuffer & REBuffer::operator+=(const REBuffer & anotherBuff)
 {
-	this->append(anotherBuff.getBuffer(), anotherBuff.getSize());
+	this->append(anotherBuff.buffer(), anotherBuff.size());
 	return (*this);
 }
 

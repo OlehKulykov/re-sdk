@@ -47,14 +47,14 @@ public:
 	void setTime(const RETimeInterval time);
 	
 	/// Returns time interval.
-	const RETimeInterval getTime() const;
+	const RETimeInterval time() const;
 	
 	/// Sets loops count.
 	/// "0" - No loop(default);  "> 0" - loopsCount; "< 0" - looped.
 	void setLoopsCount(const REInt32 loopsCount);
 	
 	/// Returns count of loops.
-	const REInt32 getLoopsCount() const;
+	const REInt32 loopsCount() const;
 	
 	/// Check is timer active.
 	REBOOL isActive() const;

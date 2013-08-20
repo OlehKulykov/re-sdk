@@ -43,9 +43,9 @@ REBOOL REBufferObject::isEqual(REObject * anotherObject)
 		if (anotherObject->getClassIdentifier() == REBufferObject::classIdentifier()) 
 		{
 			REBufferObject * buff = (REBufferObject*)anotherObject;
-			if ( buff->getSize() == this->getSize() ) 
+			if ( buff->size() == this->size() ) 
 			{
-				return (memcmp(buff->getBuffer(), this->getBuffer(), this->getSize()) == 0);
+				return (memcmp(buff->buffer(), this->buffer(), this->size()) == 0);
 			}
 		}
 	}
@@ -83,7 +83,7 @@ REBufferObject * REBufferObject::createWithSize(const REUInt32 buffSize)
 	REBufferObject * newBuff = new REBufferObject(buffSize);
 	if (newBuff) 
 	{
-		if (newBuff->getSize() == buffSize) 
+		if (newBuff->size() == buffSize) 
 		{
 			return newBuff;
 		}
@@ -96,12 +96,12 @@ REBufferObject * REBufferObject::createWithStringObject(REStringObject * str)
 {
 	if (str) 
 	{
-		if (str->getLength()) 
+		if (str->length()) 
 		{
 			REBufferObject * newBuff = new REBufferObject();
 			if (newBuff) 
 			{
-				if (newBuff->set(str->getChars(), str->getLength()))
+				if (newBuff->set(str->UTF8String(), str->length()))
 				{
 					return newBuff;
 				}
@@ -120,7 +120,7 @@ REBufferObject * REBufferObject::createWithString(const REString & str)
 		REBufferObject * newBuff = new REBufferObject();
 		if (newBuff) 
 		{
-			if (newBuff->set(str.getChars(), str.getLength()))
+			if (newBuff->set(str.UTF8String(), str.length()))
 			{
 				return newBuff;
 			}

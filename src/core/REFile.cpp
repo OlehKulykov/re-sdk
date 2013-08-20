@@ -137,7 +137,7 @@ REBOOL REFile::isEndOfFile()
 	return (_fileSize == this->fileTell());
 }
 
-const REUInt32 REFile::getFileSize() const
+const REUInt32 REFile::fileSize() const
 {
 	return _fileSize;
 }
@@ -180,7 +180,7 @@ FILE * REFile::fileOpen(const REString & filePath, const char * openMode)
 	if (openMode) { mode = openMode; }
 	else { mode = "rb"; }
 	
-	FILE * f = fopen(filePath.getChars(), mode);
+	FILE * f = fopen(filePath.UTF8String(), mode);
 	return f;
 #endif	
 	

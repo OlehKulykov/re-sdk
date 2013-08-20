@@ -67,10 +67,10 @@ public:
 	{
 		if (texture && image) 
 		{
-			texture->Update(image->getImageData(), 
-							image->getFormat(), 
-							image->getWidth(), 
-							image->getHeight());
+			texture->Update(image->imageData(), 
+							image->format(), 
+							image->width(), 
+							image->height());
 		}
 	}
 	RETTFFontLoaderUpdateTextureMainThreadTaskPrivate() : REObject(),
@@ -248,8 +248,8 @@ void RETTFFontLoader::createNewImage()
 			{
 				_imgTex.image = newBase;
 				_imgTex.texture = newTexture;
-				const REUInt32 dataSize = newBase->getImageDataSize();
-				memset(newBase->getImageData(), 0, dataSize);
+				const REUInt32 dataSize = newBase->imageDataSize();
+				memset(newBase->imageData(), 0, dataSize);
 				return;
 			}
 			
@@ -267,11 +267,11 @@ void RETTFFontLoader::createNewImage()
 REBOOL RETTFFontLoader::isCanWrite(REImageBase * img,const REUInt32 pX,const REUInt32 pY,const REUInt32 cW, const REUInt32 cH)
 {
 #ifndef __RE_NO_FREETYPE_LIBRARY_PRIVATE__
-	if ( (pX + cW) > (img->getWidth() - 1) ) 
+	if ( (pX + cW) > (img->width() - 1) ) 
 	{
 		return false;
 	}
-	if ( (pY + cH) > (img->getHeight() - 1) ) 
+	if ( (pY + cH) > (img->height() - 1) ) 
 	{
 		return false;
 	}
@@ -334,9 +334,9 @@ void RETTFFontLoader::writeGlyphToImage(RETTFFontChar * ttfChar)
 	this->prepareForWriteChar(charWidth, charHeight);
 	if (_imgTex.image == NULL) { return; }
 	
-	const REUInt32 imgWidth = _imgTex.image->getWidth();
+	const REUInt32 imgWidth = _imgTex.image->width();
 	const REFloat32 floatImageWidth = (REFloat32)imgWidth;
-	const REFloat32 floatImageHeight = (REFloat32)_imgTex.image->getHeight();
+	const REFloat32 floatImageHeight = (REFloat32)_imgTex.image->height();
 	ttfChar->textureFrame.bottomLeftX = ttfChar->textureFrame.topLeftX = ((REFloat32)_lastX) / floatImageWidth;
 	ttfChar->textureFrame.topRightY = ttfChar->textureFrame.topLeftY = ((REFloat32)_lastY) / floatImageHeight;
 	ttfChar->textureFrame.topRightX = ttfChar->textureFrame.bottomRightX = ((REFloat32)(charWidth + _lastX)) / floatImageWidth;
@@ -354,7 +354,7 @@ void RETTFFontLoader::writeGlyphToImage(RETTFFontChar * ttfChar)
 		const REUByte * bitmap_buffer = (REUByte *)ttfChar->bitmap;
 		for (REUInt32 y = 0; y < charHeight; y++)
 		{
-			REUByte * dst = _imgTex.image->getImageData();
+			REUByte * dst = _imgTex.image->imageData();
 			dst += ((dstWriteY*imgWidth) + _lastX);
 			for (REUInt32 x = 0; x < charWidth; x++)
 			{
@@ -370,7 +370,7 @@ void RETTFFontLoader::writeGlyphToImage(RETTFFontChar * ttfChar)
 		const REUByte * bitmap_buffer = (REUByte *)ttfChar->bitmap;
 		for (REUInt32 y = 0; y < charHeight; y++)
 		{
-			REUByte * dst = _imgTex.image->getImageData();
+			REUByte * dst = _imgTex.image->imageData();
 			dst += (((y+_lastY)*imgWidth) + _lastX);
 			memcpy(dst, bitmap_buffer + (y*ttfChar->bitmapPitch), charWidth);
 		}
@@ -515,8 +515,8 @@ void * RETTFFontLoader::createFace(const REBuffer & ttfFileBuffer)
 		memset(face, 0, sizeof(FT_Face));
 		FT_Library * library = (FT_Library *)_library;
 		if ( FT_New_Memory_Face(*library, 
-								(const FT_Byte*)ttfFileBuffer.getBuffer(), 
-								(FT_Long)ttfFileBuffer.getSize(), 
+								(const FT_Byte*)ttfFileBuffer.buffer(), 
+								(FT_Long)ttfFileBuffer.size(), 
 								0, 
 								face ) == 0)
 		{
@@ -648,7 +648,7 @@ RETTFFontLoader::RETTFFontLoader(const REBuffer & ttfFileBuffer, const REFloat32
 	_imgTex.image = NULL;
 	_imgTex.texture = NULL;
 	
-	if ((ttfFileBuffer.getSize() > 0) && (_fontHeight > 0.0f))
+	if ((ttfFileBuffer.size() > 0) && (_fontHeight > 0.0f))
 	{
 		_fontHeightPX = RETTFFontLoader::getFontHeightInPixels(_fontHeight);
 		

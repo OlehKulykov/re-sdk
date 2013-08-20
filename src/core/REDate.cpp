@@ -21,7 +21,7 @@
 
 class REDateInternal 
 {
-private:
+private: 
 	void setTimeZone(const char * tz)
 	{
 		RE_SAFE_FREE(timestruct.tm_zone);
@@ -128,37 +128,37 @@ REBOOL REDate::isEqualToDate(const REDate & anotherDate) const
 	return false;
 }
 
-const RETimeInterval REDate::getSeconds() const 
+const RETimeInterval REDate::seconds() const 
 {
 	return _t.isNotEmpty() ? _t->timestruct.tm_sec : 0; 
 }
 
-const REUInt32 REDate::getYear() const 
+const REUInt32 REDate::year() const 
 {
 	return _t.isNotEmpty() ? (1900 + _t->timestruct.tm_year) : 0;
 }
 
-const REUInt32 REDate::getMonth() const 
+const REUInt32 REDate::month() const 
 {
 	return _t.isNotEmpty() ? _t->timestruct.tm_mon : 0;
 }
 
-const REUInt32 REDate::getDay() const
+const REUInt32 REDate::day() const
 {
 	return _t.isNotEmpty() ? _t->timestruct.tm_mday : 0;
 }
 
-const REUInt32 REDate::getHour() const 
+const REUInt32 REDate::hour() const 
 {
 	return _t.isNotEmpty() ? _t->timestruct.tm_hour : 0;
 }
 
-const REUInt32 REDate::getMinutes() const
+const REUInt32 REDate::minutes() const
 { 
 	return _t.isNotEmpty() ? _t->timestruct.tm_min : 0;
 }
 
-const REUInt32 REDate::getMilliseconds() const
+const REUInt32 REDate::milliseconds() const
 {
 	double intPart; 
 	const RETimeInterval seconds = _t.isNotEmpty() ? _t->timestruct.tm_sec : 0;
@@ -167,7 +167,7 @@ const REUInt32 REDate::getMilliseconds() const
 	// 1 second = 1 000 milliseconds
 }
 
-const REUInt32 REDate::getMicroseconds() const
+const REUInt32 REDate::microseconds() const
 {
 	double intPart; 
 	const RETimeInterval seconds = _t.isNotEmpty() ? _t->timestruct.tm_sec : 0;

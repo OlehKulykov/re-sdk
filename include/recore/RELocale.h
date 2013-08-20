@@ -53,10 +53,10 @@ private:
 	~RELocale();
 public:
 	/// Returns current locale type.
-	RELocaleType getCurrentLocaleType();
+	RELocaleType currentLocaleType();
 	
 	/// Returns current locale string.
-	const char * getCurrentLocaleString();
+	const char * currentLocaleString();
 	
 	/// Assigning current locale type.
 	void setCurrentLocaleType(RELocaleType newLocaleType);
@@ -65,13 +65,13 @@ public:
 	REBOOL isDefined();
 	
 	/// Returns notification name string when current locale changed.
-	static const char * getNotificationStringForCurrentLocaleChanged();
+	static const char * notificationStringForCurrentLocaleChanged();
 	
 	/// Returns locale string from it's type.
-	static const char * getLocaleStringFromType(const RELocaleType type);
+	static const char * localeStringFromType(const RELocaleType type);
 	
 	/// Returns default locale class.
-	static RELocale * getDefaultLocale();
+	static RELocale * defaultLocale();
 	
 	/// Releases default locale class.
 	static void releaseDefaultLocale();

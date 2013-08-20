@@ -83,10 +83,10 @@ public:
 	REBOOL initFromURLString(const REString & urlString);
 	
 	/// Returns pointer to data memory buffer.
-	const REUByte * getBytes() const;
+	const REUByte * bytes() const;
 	
 	/// Returns hash of data.
-	REUInt32 getHash() const;
+	REUInt32 hash() const;
 	
 	/// Checks is data empty.
 	REBOOL isEmpty() const;

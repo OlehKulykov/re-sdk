@@ -125,8 +125,8 @@ public:
 		void * data;
 		REUInt32 dataOffset;
 	} PNGReadWriteStruct;
-	static REImageBase * LoadPNG(const REUByte * fileData, const REUInt32 dataSize);
-	static REBufferObject * CreatePNGFilePresentation(const REUByte * pixelsData,
+	static REImageBase * loadPNG(const REUByte * fileData, const REUInt32 dataSize);
+	static REBufferObject * createPNGFilePresentation(const REUByte * pixelsData,
 													  const REUInt32 width,
 													  const REUInt32 height,
 													  const REImagePixelFormat pixelFormat);
@@ -690,14 +690,14 @@ REBufferObject * REImageManagerPrivate::CreatePNGFilePresentation(const REUByte 
 #endif
 
 
-REImageBase * REImageManager::CreateFromFileData(const REData & fileData)
+REImageBase * REImageManager::createFromFileData(const REData & fileData)
 {
-	return this->CreateFromFileData(fileData.getBytes(), fileData.getSize());
+	return this->createFromFileData(fileData.bytes(), fileData.size());
 }
 
-REImageBase * REImageManager::CreateFromFileData(const REUByte * fileData, const REUInt32 dataSize)
+REImageBase * REImageManager::createFromFileData(const REUByte * fileData, const REUInt32 dataSize)
 {
-	const REImageType imgType = this->GetTypeFromFileData(fileData, dataSize);
+	const REImageType imgType = this->typeFromFileData(fileData, dataSize);
 	switch (imgType) 
 	{
 		case REImageTypePNG:
@@ -741,7 +741,7 @@ REImageBase * REImageManager::CreateFromFileData(const REUByte * fileData, const
 	return NULL;
 }
 
-REImageType REImageManager::GetTypeFromFileData(const REUByte * fileData, const REUInt32 dataSize)
+REImageType REImageManager::typeFromFileData(const REUByte * fileData, const REUInt32 dataSize)
 {
 	if ((fileData == NULL) || (dataSize < 10))
 	{
@@ -785,32 +785,32 @@ REImageType REImageManager::GetTypeFromFileData(const REUByte * fileData, const 
 	return REImageTypeNONE;
 }
 
-REImageType REImageManager::GetTypeFromFileData(const REData & fileData)
+REImageType REImageManager::typeFromFileData(const REData & fileData)
 {
-	return this->GetTypeFromFileData(fileData.getBytes(), fileData.getHash());
+	return this->typeFromFileData(fileData.bytes(), fileData.hash());
 }
 
-REBufferObject * REImageManager::CreatePNGFilePresentation(const REUByte * pixelsData,
+REBufferObject * REImageManager::createPNGFilePresentation(const REUByte * pixelsData,
 														   const REUInt32 width,
 														   const REUInt32 height,
 														   const REImagePixelFormat pixelFormat)
 {
 #ifndef __RE_RECORE_NO_PNG_IMAGE_SUPPORT__
-	return REImageManagerPrivate::CreatePNGFilePresentation(pixelsData, width, height, pixelFormat);
+	return REImageManagerPrivate::createPNGFilePresentation(pixelsData, width, height, pixelFormat);
 #else
 	RELog::log("\"CreatePNGFilePresentation\" functionality requires undefined flag __RE_RECORE_NO_PNG_IMAGE_SUPPORT__");
 	return NULL;
 #endif
 }
 
-REBufferObject * REImageManager::CreateWebPFilePresentation(const REUByte * pixelsData,
+REBufferObject * REImageManager::createWebPFilePresentation(const REUByte * pixelsData,
 															const REUInt32 width,
 															const REUInt32 height,
 															const REImagePixelFormat pixelFormat,
 															const REFloat32 quality)
 {
 #ifndef __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__  
-	return REImageManagerPrivate::CreateWebPFilePresentation(pixelsData, width, height, pixelFormat, quality);
+	return REImageManagerPrivate::createWebPFilePresentation(pixelsData, width, height, pixelFormat, quality);
 #else
 	RELog::log("\"CreateWebPFilePresentation\" functionality requires undefined flag __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__");
 	return NULL;

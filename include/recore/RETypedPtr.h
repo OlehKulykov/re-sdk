@@ -59,7 +59,7 @@ protected:
 	void deleteObject();
 	
 public:
-	REInt32 getReferenceCount() const;
+	REInt32 referenceCount() const;
 	REBOOL isEmpty() const;
 	REBOOL isNotEmpty() const;
 	void release();

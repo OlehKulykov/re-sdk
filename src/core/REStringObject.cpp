@@ -50,7 +50,7 @@ REBOOL REStringObject::isEqual(REObject * anotherObject)
 		if (anotherObject->getClassIdentifier() == REStringObject::classIdentifier()) 
 		{
 			REStringObject * anotherString = REPtrCast<REStringObject, REObject>(anotherObject);
-			return REMutableString::isEqual(anotherString->getChars(), anotherString->getLength());
+			return REMutableString::isEqual(anotherString->UTF8String(), anotherString->length());
 		}
 	}
 	return false;
@@ -76,7 +76,7 @@ REStringObject::REStringObject(const REString & anotherString) : REMutableString
 	
 }
 
-REStringObject::REStringObject(const REStringObject & anotherString) : REMutableString(anotherString.getChars(), anotherString.getLength()), REObject()
+REStringObject::REStringObject(const REStringObject & anotherString) : REMutableString(anotherString.UTF8String(), anotherString.length()), REObject()
 {
 	
 }

@@ -26,13 +26,13 @@ REBOOL REBase64::bufferToBase64String(const REBuffer & buff, REString * base64St
 		static const char b64str[64] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 			'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m',
 			'n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/'};
-		const char * in = (const char *)buff.getBuffer();
-		size_t inlen = buff.getSize();
+		const char * in = (const char *)buff.buffer();
+		size_t inlen = buff.size();
 		
 		size_t outlen = ((((inlen) + 2) / 3) * 4) + 4;
 		REBuffer outBuffer((REUInt32)outlen);
 		
-		char * out = (char *)outBuffer.getBuffer();
+		char * out = (char *)outBuffer.buffer();
 		
 		while (inlen && outlen)
 		{
@@ -55,7 +55,7 @@ REBOOL REBase64::bufferToBase64String(const REBuffer & buff, REString * base64St
 		
 		if (outlen) *out = '\0';
 		
-		*base64String = (const char *)outBuffer.getBuffer();
+		*base64String = (const char *)outBuffer.buffer();
 		
 		return true;
 	}
@@ -207,15 +207,15 @@ static const signed char b64[0x100] = {
 REBOOL REBase64::base64StringToBuffer(const REString & base64String, REBuffer * buff)
 {
 	if (buff == NULL) { return false; }
-	size_t inlen = base64String.getLength();
+	size_t inlen = base64String.length();
 	if (inlen == 0) { return false; }
 	
-	const char * in = base64String.getChars();
+	const char * in = base64String.UTF8String();
 	size_t needlen = 3 * (inlen / 4) + 2;
 	
 	if ( !buff->resize((REUInt32)needlen, false) ) { return false; }
 
-	char * out = (char*)buff->getBuffer();
+	char * out = (char*)buff->buffer();
 	size_t outleft = needlen;
 	
 	while (inlen >= 2)

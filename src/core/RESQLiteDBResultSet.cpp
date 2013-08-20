@@ -33,7 +33,7 @@
 #endif
 
 
-REUInt32 RESQLiteDBResultSet::getColumnIndexFromName(const REString & columnName) const
+REUInt32 RESQLiteDBResultSet::columnIndexFromName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	if (_st)
@@ -51,7 +51,7 @@ REUInt32 RESQLiteDBResultSet::getColumnIndexFromName(const REString & columnName
 	return RENotFound;
 }
 
-REBOOL RESQLiteDBResultSet::getBoolForColumnName(const REString & columnName) const
+REBOOL RESQLiteDBResultSet::boolForColumnName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	return ( this->getIntForColumnName(columnName) != 0 );
@@ -60,7 +60,7 @@ REBOOL RESQLiteDBResultSet::getBoolForColumnName(const REString & columnName) co
 #endif
 }
 
-REBOOL RESQLiteDBResultSet::getBoolForColumnIndex(const REUInt32 index) const
+REBOOL RESQLiteDBResultSet::boolForColumnIndex(const REUInt32 index) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	return ( this->getIntForColumnIndex(index) != 0 );
@@ -69,7 +69,7 @@ REBOOL RESQLiteDBResultSet::getBoolForColumnIndex(const REUInt32 index) const
 #endif	
 }
 
-REInt32 RESQLiteDBResultSet::getIntForColumnName(const REString & columnName) const
+REInt32 RESQLiteDBResultSet::intForColumnName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	REUInt32 index = this->getColumnIndexFromName(columnName);
@@ -79,7 +79,7 @@ REInt32 RESQLiteDBResultSet::getIntForColumnName(const REString & columnName) co
 #endif	
 }
 
-REInt32 RESQLiteDBResultSet::getIntForColumnIndex(const REUInt32 index) const
+REInt32 RESQLiteDBResultSet::intForColumnIndex(const REUInt32 index) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	if ( _st ) 
@@ -93,7 +93,7 @@ REInt32 RESQLiteDBResultSet::getIntForColumnIndex(const REUInt32 index) const
 	return 0;
 }
 
-REFloat64 RESQLiteDBResultSet::getFloatForColumnName(const REString & columnName) const
+REFloat64 RESQLiteDBResultSet::floatForColumnName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	REUInt32 index = this->getColumnIndexFromName(columnName);
@@ -103,7 +103,7 @@ REFloat64 RESQLiteDBResultSet::getFloatForColumnName(const REString & columnName
 #endif	
 }
 
-REFloat64 RESQLiteDBResultSet::getFloatForColumnIndex(const REUInt32 index) const
+REFloat64 RESQLiteDBResultSet::floatForColumnIndex(const REUInt32 index) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	if ( _st ) 
@@ -118,7 +118,7 @@ REFloat64 RESQLiteDBResultSet::getFloatForColumnIndex(const REUInt32 index) cons
 }
 
 
-REInt64 RESQLiteDBResultSet::getLongIntForColumnName(const REString & columnName) const
+REInt64 RESQLiteDBResultSet::longIntForColumnName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	REUInt32 index = this->getColumnIndexFromName(columnName);
@@ -128,7 +128,7 @@ REInt64 RESQLiteDBResultSet::getLongIntForColumnName(const REString & columnName
 #endif	
 }
 
-REInt64 RESQLiteDBResultSet::getLongIntForColumnIndex(const REUInt32 index) const
+REInt64 RESQLiteDBResultSet::longIntForColumnIndex(const REUInt32 index) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	if ( _st ) 
@@ -143,7 +143,7 @@ REInt64 RESQLiteDBResultSet::getLongIntForColumnIndex(const REUInt32 index) cons
 }
 
 
-REString RESQLiteDBResultSet::getStringForColumnName(const REString & columnName) const
+REString RESQLiteDBResultSet::stringForColumnName(const REString & columnName) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	REUInt32 index = this->getColumnIndexFromName(columnName);
@@ -153,7 +153,7 @@ REString RESQLiteDBResultSet::getStringForColumnName(const REString & columnName
 #endif	
 }
 
-REString RESQLiteDBResultSet::getStringForColumnIndex(const REUInt32 index) const
+REString RESQLiteDBResultSet::stringForColumnIndex(const REUInt32 index) const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__	
 	if ( _st ) 

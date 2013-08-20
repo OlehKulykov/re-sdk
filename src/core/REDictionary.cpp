@@ -43,7 +43,7 @@ public:
 
 void REDictionaryJSONGeneratorPrivate::addBuffer(const REBuffer & buffer)
 {
-	if (buffer.getSize() > 0)
+	if (buffer.size() > 0)
 	{
 		REString b64Str;
 		REBase64 b64;
@@ -51,7 +51,7 @@ void REDictionaryJSONGeneratorPrivate::addBuffer(const REBuffer & buffer)
 		{
 			if (b64Str.isNotEmpty())
 			{
-				json.append(b64Str.getChars(), b64Str.getLength());
+				json.append(b64Str.UTF8String(), b64Str.length());
 				return;
 			}
 		}
@@ -114,7 +114,7 @@ void REDictionaryJSONGeneratorPrivate::addNumber(const RENumber & num)
 {
 	if (num.getType() == RENumberTypeBool)
 	{
-		if (num.getBoolValue()) { json.append("true", 4); }
+		if (num.boolValue()) { json.append("true", 4); }
 		else { json.append("false", 5); }
 	}
 	else 
@@ -127,7 +127,7 @@ void REDictionaryJSONGeneratorPrivate::addNumber(const RENumber & num)
 
 void REDictionaryJSONGeneratorPrivate::addString(const REString & str)
 {
-	const char * v = str.getChars();
+	const char * v = str.UTF8String();
 	json.appendFormat("\"%s\"", v ? v : "");
 }
 
@@ -265,7 +265,7 @@ REBOOL REDictionary::initializeFromJSONData(const REUByte * jsonData, const REUI
 	return false;
 }
 
-REMutableString REDictionary::getJSONString() const
+REMutableString REDictionary::JSONString() const
 {
 	if (_pairs.isEmpty())
 	{
@@ -403,7 +403,7 @@ REBOOL REDictionary::removeValue(const char * key)
 	return false;
 }
 
-RETypedArray REDictionary::getAllKeys() const
+RETypedArray REDictionary::allKeys() const
 {
 	RETypedArray arr(_pairs.count() + 1);
 	for (REUInt32 i = 0; i < _pairs.count(); i++)
@@ -413,7 +413,7 @@ RETypedArray REDictionary::getAllKeys() const
 	return arr;
 }
 
-RETypedArray REDictionary::getAllValues() const
+RETypedArray REDictionary::allValues() const
 {
 	RETypedArray arr(_pairs.count() + 1);
 	for (REUInt32 i = 0; i < _pairs.count(); i++)

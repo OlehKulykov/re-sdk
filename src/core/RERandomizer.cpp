@@ -26,25 +26,25 @@
 #endif
 
 /* 0 to 32767 */
-REInt32 RERandomizer::getInt() const
+REInt32 RERandomizer::intValue() const
 {
 	return rand();
 }
 
 /* lowRange to upRange */
-REInt32 RERandomizer::getIntInRange(const REInt32 lowRange, const REInt32 upRange) const
+REInt32 RERandomizer::intValueInRange(const REInt32 lowRange, const REInt32 upRange) const
 {
 	return ((rand() % upRange) + lowRange);
 }
 
 /* 0.0f to 0.9(9)f */
-REFloat32 RERandomizer::getFloat() const
+REFloat32 RERandomizer::floatValue() const
 {
 	return (REFloat32)((REFloat64)rand() / (REFloat64)(RAND_MAX + 1.0));
 }
 
 /* lowRange to upRange */	
-REFloat32 RERandomizer::getFloatInRange(const REFloat32 lowRange, const REFloat32 upRange) const
+REFloat32 RERandomizer::floatValueInRange(const REFloat32 lowRange, const REFloat32 upRange) const
 {
 	return (REFloat32)((((REFloat64)rand() / (REFloat64)(RAND_MAX + 1.0)) * (upRange - lowRange)) + lowRange);
 }

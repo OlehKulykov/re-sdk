@@ -20,14 +20,14 @@
 #include "../../include/recore/REMath.h"
 #include "../../include/recore/REMem.h"
 
-REPoint2 RETetragon::getCenter() const
+REPoint2 RETetragon::center() const
 {
 	const REFloat32 x = topLeftX + ((bottomRightX - topLeftX) / 2.0f);	
 	const REFloat32 y = topLeftY + ((bottomRightY - topLeftY) / 2.0f);	
 	return REPoint2(x, y);
 }
 
-RERect RETetragon::getBoundRect() const
+RERect RETetragon::boundRect() const
 {
 	const REFloat32 x = REMath::min<REFloat32>(topLeftX, topRightX, bottomLeftX, bottomRightX);
 	const REFloat32 y = REMath::min<REFloat32>(topLeftY, topRightY, bottomLeftY, bottomRightY);

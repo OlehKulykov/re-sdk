@@ -144,7 +144,7 @@ void REOGGTheoraPlayerPrivate::writeVideo()
 		th_ycbcr_buffer yuv;
 		th_decode_ycbcr_out(_theoraDecoderContext, yuv);
 		
-		_colorConversionFunction((REUByte *)_frameRGBBuffer.getBuffer(), 
+		_colorConversionFunction((REUByte *)_frameRGBBuffer.buffer(), 
 								 yuv[0].data, 
 								 yuv[1].data, 
 								 yuv[2].data, 
@@ -156,7 +156,7 @@ void REOGGTheoraPlayerPrivate::writeVideo()
 								 _colorConversionTable,
 								 0);
 
-		_texture->Update((REUByte *)_frameRGBBuffer.getBuffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
+		_texture->Update((REUByte *)_frameRGBBuffer.buffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
 		
 	}
 }

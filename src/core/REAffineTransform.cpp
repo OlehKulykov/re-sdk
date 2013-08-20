@@ -21,14 +21,14 @@
 #include "../../include/recore/RELog.h"
 
 
-REPoint2 REAffineTransform::getTransformedPoint(const REFloat32 x, const REFloat32 y) const
+REPoint2 REAffineTransform::transformedPoint(const REFloat32 x, const REFloat32 y) const
 {
 	const REFloat32 newX = (a * x) + (c * y) + tx;
 	const REFloat32 newY = (b * x) + (d * y) + ty;
 	return REPoint2(newX, newY);
 }
 
-REPoint2 REAffineTransform::getTransformedPoint(const REPoint2 & point) const
+REPoint2 REAffineTransform::transformedPoint(const REPoint2 & point) const
 {
 	const REFloat32 newX = (a * point.x) + (c * point.y) + tx;
 	const REFloat32 newY = (b * point.x) + (d * point.y) + ty;
@@ -48,7 +48,7 @@ REBOOL REAffineTransform::transformPoint(REPoint2 * point) const
 	return false;
 }
 
-RETetragon REAffineTransform::getTransformedTetragon(const RETetragon & tetr) const
+RETetragon REAffineTransform::transformedTetragon(const RETetragon & tetr) const
 {
 	RETetragon newTextr;
 	for (REUInt32 i = 0; i < 8; i += 2) 

@@ -39,7 +39,7 @@ public:
 	 @detailed Getting opened database path.
 	 @return String with path or empty string.
 	 */
-	virtual REString getDatabaseFullPath() const;
+	virtual REString databaseFullPath() const;
 	
 	/**
 	 @brief Open database connection.
@@ -63,7 +63,7 @@ public:
 	 @brief Getter for last inserted row identifier.
 	 @return 64 bit signed integer of last inserted row identifier.
 	 */
-	virtual REInt64 getLastInsertedRowId() const;
+	virtual REInt64 lastInsertedRowId() const;
 	
 	/**
 	 @brief Executes SQL query.

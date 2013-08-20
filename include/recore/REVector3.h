@@ -79,7 +79,7 @@ public:
 #endif		
 	}
 	
-	REVector3 getCrossProduct(const REVector3 & anotherVector3D) const
+	REVector3 crossProduct(const REVector3 & anotherVector3D) const
 	{
 		return REVector3::crossProduct((*this), anotherVector3D);
 	}
@@ -101,14 +101,14 @@ public:
 #endif		
 	}
 	
-	const REFloat32 getDotProduct(const REVector3 & anotherVector3D) const
+	const REFloat32 dotProduct(const REVector3 & anotherVector3D) const
 	{
 		return REVector3::dotProduct((*this), anotherVector3D);
 	}
 	
 	/*
 	 Получение нового вектора с противоположным направлением		*/
-	REVector3 getInverseVector() const
+	REVector3 inversedVector() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		return REVector3(vnegq_f32(*(float32x4_t *)&armNeonVector));
@@ -136,12 +136,12 @@ public:
 	 но с единичной длиной.			*/
 	REVector3 & normalize()
 	{
-		return this->multiplyScalar((1.0f / this->getMagnitude()));
+		return this->multiplyScalar((1.0f / this->magnitude()));
 	}
 	
 	/*
 	 Длина вектора (или модуль)			*/
-	const REFloat32 getMagnitude() const
+	const REFloat32 magnitude() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -156,14 +156,14 @@ public:
 	
 	/*
 	 Установить новую длину вектора (или модуль)			*/
-	REVector3 & setMagnitude(const REFloat32 newMagnitude)
+	REVector3 & magnitude(const REFloat32 newMagnitude)
 	{
 		return this->normalize().multiplyScalar(newMagnitude);
 	}
 	
 	/*
 	 Квадрат длины вектора (или модуля)			*/
-	const REFloat32 getSquareMagnitude() const
+	const REFloat32 squareMagnitude() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonVector,
@@ -175,14 +175,6 @@ public:
 		return ( (x * x) + (y * y) + (z * z) );
 #endif		
 	}
-	
-	const REFloat32 getX() const { return x; }
-	const REFloat32 getY() const { return y; }
-	const REFloat32 getZ() const { return z; }
-	
-	void setX(const REFloat32 newX) { x = newX; }
-	void setY(const REFloat32 newY) { y = newY; }
-	void setZ(const REFloat32 newZ) { z = newZ; }
 	
 	/// "this vector" + another vector
 	REVector3 & add(const REVector3 & anotherVector3D)

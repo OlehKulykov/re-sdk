@@ -91,13 +91,13 @@ public:
 	
 	const REUInt32 pairsCount() const;
 	
-	RETypedArray getAllKeys() const;
+	RETypedArray allKeys() const;
 	
-	RETypedArray getAllValues() const;
+	RETypedArray allValues() const;
 	
 	virtual REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
 	
-	virtual REMutableString getJSONString() const;
+	virtual REMutableString JSONString() const;
 	
 	REDictionary();
 	virtual ~REDictionary();

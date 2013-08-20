@@ -31,7 +31,7 @@
 
 RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat32 compressionLevel)
 {
-	if (inBuffer.getSize() == 0)
+	if (inBuffer.size() == 0)
 	{
 		return RETypedPtr();
 	}
@@ -46,8 +46,8 @@ RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat3
 	
 	z_stream strm;
 	memset(&strm, 0, sizeof(z_stream));
-	strm.next_in = (Bytef *)inBuffer.getBuffer();
-	strm.avail_in = inBuffer.getSize();
+	strm.next_in = (Bytef *)inBuffer.buffer();
+	strm.avail_in = inBuffer.size();
 	
 	const uInt BUFSIZE = 32 * 1024;
 	Bytef tempBuffer[BUFSIZE];
@@ -124,7 +124,7 @@ RETypedPtr REZLIBCompression::compress(const REBuffer & inBuffer, const REFloat3
 
 RETypedPtr REZLIBCompression::decompress(const REBuffer & inBuffer)
 {
-	if (inBuffer.getSize() == 0)
+	if (inBuffer.size() == 0)
 	{
 		return RETypedPtr();
 	}
@@ -139,8 +139,8 @@ RETypedPtr REZLIBCompression::decompress(const REBuffer & inBuffer)
 	
     z_stream strm;
 	memset(&strm, 0, sizeof(z_stream));
-    strm.avail_in = inBuffer.getSize();
-	strm.next_in = (Bytef*)inBuffer.getBuffer();
+    strm.avail_in = inBuffer.size();
+	strm.next_in = (Bytef*)inBuffer.buffer();
     int ret = inflateInit(&strm);
     if (ret != Z_OK)
 	{

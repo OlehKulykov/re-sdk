@@ -366,7 +366,7 @@ void REParticleView::setFrame(const RERect & newViewFrame)
 		emitter->SetScale( emiterScaleFactor );
 	}
 #endif
-	this->setCenter(_frame.getCenter());
+	this->setCenter(_frame.center());
 }
 
 #ifndef __RE_NO_PYRO_PARTICLES_PRIVATE__
@@ -517,7 +517,7 @@ void REParticleView::setCenter(const REPoint2 & center)
 
 REPoint2 REParticleView::getCenter() const
 {
-	return _frame.getCenter();
+	return _frame.center();
 }
 
 /* REMainLoopUpdatable */

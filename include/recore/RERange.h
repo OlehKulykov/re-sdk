@@ -46,24 +46,24 @@ public:
 		REUInt32 range[2];
 	};
 	
-	/// Check is range exists.
+	/// Check is range valid.
 	/// Range exists if location not equal to RENotFound and
 	/// length not equal to zero.
-	REBOOL isExists() const 
+	REBOOL isValid() const 
 	{
 		return ( (location != RENotFound) && (length != 0) ); 
 	}
 	
-	/// Check is range exists.
+	/// Check is range not valid.
 	/// Range not exists if location is equal to RENotFound and
 	/// length is equal to zero.
-	REBOOL isNotExists() const
+	REBOOL isNotValid() const
 	{
 		return ( (location == RENotFound) && (length == 0) ); 
 	}
 	
 	/// Sets range to not existent.
-	RERange & toNonExistent()
+	RERange & toInvalid()
 	{
 		location = RENotFound;
 		length = 0;

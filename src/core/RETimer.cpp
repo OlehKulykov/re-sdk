@@ -112,7 +112,7 @@ void RETimer::setTime(const RETimeInterval time)
 	_time = time;
 }
 
-const RETimeInterval RETimer::getTime() const
+const RETimeInterval RETimer::time() const
 {
 	return _time;
 }
@@ -122,7 +122,7 @@ void RETimer::setLoopsCount(const REInt32 loopsCount)
 	_loopsCount = loopsCount;
 }
 
-const REInt32 RETimer::getLoopsCount() const
+const REInt32 RETimer::loopsCount() const
 {
 	return _loopsCount;
 }

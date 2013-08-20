@@ -179,12 +179,12 @@ REBOOL RESQLiteDB::rollBackTransaction()
     return false;
 }
 
-REString RESQLiteDB::getDatabaseFullPath() const
+REString RESQLiteDB::databaseFullPath() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	return _databasePath;
 #else
-	return REDB::getDatabaseFullPath();
+	return REDB::databaseFullPath();
 #endif
 }
 
@@ -193,7 +193,7 @@ REBOOL RESQLiteDB::close()
 	return this->closeSQLiteDB();
 }
 
-REInt64 RESQLiteDB::getLastInsertedRowId() const
+REInt64 RESQLiteDB::lastInsertedRowId() const
 {
 #ifndef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__		
 	if ( _db ) 

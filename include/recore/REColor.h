@@ -60,7 +60,7 @@ public:
 
 #ifdef __RE_USING_DIRECTX9__
 	/// Returns DirectX color value.
-	const D3DCOLOR getD3DColor() const 
+	const D3DCOLOR D3DColor() const 
 	{
 		const int r = (int)(red * 255);
 		const int g = (int)(green * 255);

@@ -48,7 +48,7 @@ public:
 	};
 	
 	/// length
-	const REFloat32 getMagnitude() const
+	const REFloat32 magnitude() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t v = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, *(float32x4_t *)&armNeonQuaternion);
@@ -62,7 +62,7 @@ public:
 	
 	REQuaternion & normalize()
 	{
-		const REFloat32 scale = 1.0f / this->getMagnitude();
+		const REFloat32 scale = 1.0f / this->magnitude();
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = vmulq_f32(*(float32x4_t *)&armNeonQuaternion, vdupq_n_f32((float32_t)scale));
 #else
@@ -74,7 +74,7 @@ public:
 		return (*this);
 	}
 	
-	REQuaternion getConjugateQuaternion() const
+	REQuaternion conjugatedQuaternion() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t *q = (float32x4_t *)&armNeonQuaternion;
@@ -88,7 +88,7 @@ public:
 #endif
 	}
 	
-	REQuaternion getInverseQuaternion() const
+	REQuaternion inversedQuaternion() const
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		float32x4_t * q = (float32x4_t *)&armNeonQuaternion;
@@ -113,7 +113,7 @@ public:
 		REQuaternion rotatedQuaternion(vector.x, vector.y, vector.z, 0.0f);
 		REQuaternion multiplied(*this);
 		multiplied.multiply(rotatedQuaternion);
-		multiplied.multiply(this->getInverseQuaternion());
+		multiplied.multiply(this->inversedQuaternion());
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 		armNeonQuaternion = multiplied.armNeonQuaternion;
 #else

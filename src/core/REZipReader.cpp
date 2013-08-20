@@ -207,7 +207,7 @@ void REZipReader::initEntries()
 	}
 }
 
-const REUInt32 REZipReader::getEntriesCount() const
+const REUInt32 REZipReader::entriesCount() const
 {
 	if (_entries)
 	{
@@ -219,7 +219,7 @@ const REUInt32 REZipReader::getEntriesCount() const
 
 REBOOL REZipReader::isEmpty() const
 {
-	return (this->getEntriesCount() == 0);
+	return (this->entriesCount() == 0);
 }
 
 REBOOL REZipReader::openArchiveFile()
@@ -258,7 +258,7 @@ REBOOL REZipReader::openPath(const REString & zipFilePath)
 		REFile * zipFile = new REFile(zipFilePath);
 		if (zipFile)
 		{
-			if (zipFile->getFileSize())
+			if (zipFile->fileSize())
 			{
 				_source = zipFile;
 				if (this->openArchiveFile()) 
@@ -293,7 +293,7 @@ REBOOL REZipReader::openData(const REData & zipFileData)
 	REData * zipData = new REData(zipFileData);
 	if (zipData) 
 	{
-		if (zipData->getSize()) 
+		if (zipData->size()) 
 		{
 			_source = zipData;
 			if (this->openArchiveFile()) 
@@ -413,7 +413,7 @@ REBOOL REEditableZipEntry::read(REBuffer * buff) const
 		REBOOL isReaded = false;
 		if (buff->resize(_size, false))
 		{
-			const REUInt32 readedSize = (REUInt32)unzReadCurrentFile(_unZipFile, buff->getBuffer(), buff->getSize());
+			const REUInt32 readedSize = (REUInt32)unzReadCurrentFile(_unZipFile, buff->buffer(), buff->size());
 			isReaded = (readedSize == _size);
 		}
 		unzCloseCurrentFile(_unZipFile);

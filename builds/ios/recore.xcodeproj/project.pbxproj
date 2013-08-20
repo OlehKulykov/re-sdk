@@ -203,6 +203,8 @@
 		3D1F447413E29F3A001E480D /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F441A13E29F3A001E480D /* zlib.h */; };
 		3D3F6853145029D2002409DD /* REMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D3F6852145029D2002409DD /* REMatrix4.h */; };
 		3D3F689114503B47002409DD /* REAffineTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D3F689014503B47002409DD /* REAffineTransform.h */; };
+		3D40A0B217C26629009A74A6 /* REURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D40A0B117C26629009A74A6 /* REURL.cpp */; };
+		3D40A0B417C26636009A74A6 /* REURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D40A0B317C26636009A74A6 /* REURL.h */; };
 		3D48489E14D6F3D0000C07C0 /* REMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D48489D14D6F3D0000C07C0 /* REMem.h */; };
 		3D4DEEDB14A8715600AECAD8 /* RELZMACompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4DEED914A8715600AECAD8 /* RELZMACompression.h */; };
 		3D4DEEDC14A8715600AECAD8 /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */; };
@@ -487,6 +489,8 @@
 		3D1F441A13E29F3A001E480D /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		3D3F6852145029D2002409DD /* REMatrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMatrix4.h; path = ../../include/recore/REMatrix4.h; sourceTree = SOURCE_ROOT; };
 		3D3F689014503B47002409DD /* REAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAffineTransform.h; path = ../../include/recore/REAffineTransform.h; sourceTree = SOURCE_ROOT; };
+		3D40A0B117C26629009A74A6 /* REURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURL.cpp; path = ../../src/core/REURL.cpp; sourceTree = SOURCE_ROOT; };
+		3D40A0B317C26636009A74A6 /* REURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURL.h; path = ../../include/recore/REURL.h; sourceTree = SOURCE_ROOT; };
 		3D48489D14D6F3D0000C07C0 /* REMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMem.h; path = ../../include/recore/REMem.h; sourceTree = SOURCE_ROOT; };
 		3D4DEED914A8715600AECAD8 /* RELZMACompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELZMACompression.h; path = ../../include/recore/RELZMACompression.h; sourceTree = SOURCE_ROOT; };
 		3D4DEEDA14A8715600AECAD8 /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
@@ -890,6 +894,15 @@
 			path = recore;
 			sourceTree = "<group>";
 		};
+		3D40A0B017C26618009A74A6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3D40A0B317C26636009A74A6 /* REURL.h */,
+				3D40A0B117C26629009A74A6 /* REURL.cpp */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		3D5B57C31765BF44000B4527 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -999,6 +1012,7 @@
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
 			isa = PBXGroup;
 			children = (
+				3D40A0B017C26618009A74A6 /* Network */,
 				3DB07B36144CAFE600FF99AB /* Application */,
 				3D68D3FC179E62F7001DE868 /* Objects */,
 				3D68D3FB179E62F1001DE868 /* Plain */,
@@ -1222,6 +1236,7 @@
 				3D9A7740178FE31E00A7AC9F /* REDictionaryObject.h in Headers */,
 				3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */,
 				3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */,
+				3D40A0B417C26636009A74A6 /* REURL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1485,6 +1500,7 @@
 				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
 				3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */,
 				3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */,
+				3D40A0B217C26629009A74A6 /* REURL.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

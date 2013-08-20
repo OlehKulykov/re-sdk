@@ -54,7 +54,7 @@ public:
 	};
 	
 	/// Returns adjusted rectangle.
-	RERect getAdjustedRect(const RERect & rect) const
+	RERect adjustedRect(const RERect & rect) const
 	{
 		return RERect(rect.x + left,
 					  rect.y + top,

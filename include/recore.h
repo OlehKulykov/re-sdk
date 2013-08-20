@@ -90,6 +90,7 @@
 #include "recore/REThread.h"
 #include "recore/RETime.h"
 #include "recore/RETimer.h"
+#include "recore/REURL.h"
 #include "recore/REUserCallBacks.h"
 #include "recore/REYUVtoRGB.h"
 #include "recore/REZipReader.h"

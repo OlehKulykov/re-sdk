@@ -251,7 +251,7 @@ void REViewController::LoadByNameThreadMethod(REObject * dataFilePathStringObjec
 	REData xmlData;
 	if (xmlData.initFromPath(*strObj)) 
 	{
-		REString xmlString((const char*)xmlData.getBytes());
+		REString xmlString((const char*)xmlData.bytes());
 		REViewController::LoadVCFromXMLString(this, xmlString, true);
 	}
 }
@@ -262,7 +262,7 @@ REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackgr
 	REStringObject * strObj = REStringObject::createWithChars("data/vc/");
 	if (strObj) 
 	{
-		strObj->appendFormat("%s/vc.xml", name.getChars());
+		strObj->appendFormat("%s/vc.xml", name.UTF8String());
 		if (isLoadInBackground) 
 		{
 			REThread::detachNewThreadWithMethod(NEW_CLASS_METHOD(REViewController, this, LoadByNameThreadMethod), strObj);
@@ -273,7 +273,7 @@ REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackgr
 			REData xmlData;
 			if (xmlData.initFromPath(*strObj)) 
 			{
-				REString xmlString((const char*)xmlData.getBytes());
+				REString xmlString((const char*)xmlData.bytes());
 				REViewController::LoadVCFromXMLString(this, xmlString, false);
 				loadResult = true;
 			}

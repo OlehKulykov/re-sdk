@@ -22,6 +22,7 @@
 #include "REPtr.h"
 #include "REBuffer.h"
 #include "REStringBase.h"
+#include "RERange.h"
 
 class REMutableString;
 class REWideString;
@@ -29,11 +30,11 @@ class REWideString;
 class __RE_PUBLIC_CLASS_API__ REString : public REStringBase
 {
 public:
-	REMutableString getMutableString() const;
-	REWideString getWideString() const;
+	REMutableString mutableString() const;
+	REWideString wideString() const;
 	
-	const char * getChars() const;
-	const REUInt32 getLength() const;
+	const char * UTF8String() const;
+	const REUInt32 length() const;
 	
 	REBOOL isContainsNonASCII() const;
 	
@@ -56,15 +57,17 @@ public:
 	REString & operator=(const REString & anotherString);
 	REString & operator=(const REMutableString & anotherString);
 	
-	operator const char* () { return this->getChars(); }
-	operator const char* () const { return this->getChars(); }
+	operator const char* () { return this->UTF8String(); }
+	operator const char* () const { return this->UTF8String(); }
 	
 	/// Returns path extension.
-	REString getPathExtension() const;
+	REString pathExtension() const;
 	
 	REString();
 	REString(const char * utf8String, const REUInt32 utf8StringLength = RENotFound);
 	REString(const wchar_t * wideString, const REUInt32 wideStringLength = RENotFound);
+	REString(const char * utf8String, const RERange & range);
+	REString(const wchar_t * wideString, const RERange & range);
 	REString(const REWideString & anotherString);
 	REString(const REString & anotherString);
 	REString(const REMutableString & anotherString);
@@ -80,7 +83,7 @@ public:
 		if (this->isNotEmpty())
 		{
 			return CFStringCreateWithCString(kCFAllocatorDefault, 
-											 this->getChars(), 
+											 this->UTF8String(), 
 											 kCFStringEncodingUTF8);
 		}
 		return (CFStringRef)0;
@@ -99,10 +102,10 @@ public:
 				{
 					if (newBuffer->resize((len + 1) * sizeof(REUInt32), false))
 					{
-						char * buff = (char *)newBuffer->getBuffer();
+						char * buff = (char *)newBuffer->buffer();
 						if (CFStringGetCString(cfString,
 											   (char *)buff,
-											   (CFIndex)newBuffer->getSize(),
+											   (CFIndex)newBuffer->size(),
 											   kCFStringEncodingUTF8))
 						{
 							const size_t resBuffSize = strlen(buff);
@@ -110,7 +113,7 @@ public:
 							{
 								if (newBuffer->resize(resBuffSize + 1, true))
 								{
-									buff = (char *)newBuffer->getBuffer();
+									buff = (char *)newBuffer->buffer();
 									buff[resBuffSize] = 0;
 									_p = REPtr<REBuffer>(newBuffer);
 									isOk = true;

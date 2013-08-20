@@ -138,7 +138,7 @@ REFloat64 RE2DAlgorithm::roundNumSignificantDigitsFloat64(const REFloat64 float6
 
 /// Return length of line that presented with two points.
 /// ['x1', 'y1'] - start line point and ['x2', 'y2'] - end line point.
-REFloat32 RE2DAlgorithm::getLineLengthFloat32(const REFloat32 x1, 
+REFloat32 RE2DAlgorithm::lineLengthFloat32(const REFloat32 x1, 
 											  const REFloat32 y1, 
 											  const REFloat32 x2, 
 											  const REFloat32 y2)
@@ -150,12 +150,12 @@ REFloat32 RE2DAlgorithm::getLineLengthFloat32(const REFloat32 x1,
 
 /// Return length of line that presented with two points.
 /// 'firstPoint' - start line point and 'secondPoint' - end line point.
-REFloat32 RE2DAlgorithm::getLineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint)
+REFloat32 RE2DAlgorithm::lineLengthFloat32(const REPoint2 & firstPoint, const REPoint2 & secondPoint)
 {
-	return RE2DAlgorithm::getLineLengthFloat32(firstPoint.x, firstPoint.y, secondPoint.x, secondPoint.y);
+	return RE2DAlgorithm::lineLengthFloat32(firstPoint.x, firstPoint.y, secondPoint.x, secondPoint.y);
 }
 
-REPoint2 RE2DAlgorithm::getLinesCrossPoint(const REPoint2 & p11, 
+REPoint2 RE2DAlgorithm::linesCrossPoint(const REPoint2 & p11, 
 										   const REPoint2 & p12, 
 										   const REPoint2 & p21, 
 										   const REPoint2 & p22)

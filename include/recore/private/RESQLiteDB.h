@@ -50,7 +50,7 @@ private:
 	
 public:
 	/// Returns path to database.
-	virtual REString getDatabaseFullPath() const;
+	virtual REString databaseFullPath() const;
 	
 	/// Opens data base.
 	virtual REBOOL open();
@@ -62,7 +62,7 @@ public:
 	virtual REBOOL close();
 	
 	/// Returns last inserted row id.
-	virtual REInt64 getLastInsertedRowId() const;
+	virtual REInt64 lastInsertedRowId() const;
 	
 	/// Executes sql query string.
 	virtual REPtr<REDBResultSet> executeQuery(const REString & queryString);

@@ -58,37 +58,37 @@ public:
 	
 	/// Returns column index by it's name.
 	/// Returns RENotFound if not found.
-	REUInt32 getColumnIndexFromName(const REString & columnName) const;
+	REUInt32 columnIndexFromName(const REString & columnName) const;
 	
 	/// Returns Boolean value for column name.
-	REBOOL getBoolForColumnName(const REString & columnName) const;
+	REBOOL boolForColumnName(const REString & columnName) const;
 	
 	/// Returns Boolean value for column index.
-	REBOOL getBoolForColumnIndex(const REUInt32 index) const;
+	REBOOL boolForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Integer value for column name.
-	REInt32 getIntForColumnName(const REString & columnName) const;
+	REInt32 intForColumnName(const REString & columnName) const;
 	
 	/// Returns Integer value for column index.
-	REInt32 getIntForColumnIndex(const REUInt32 index) const;
+	REInt32 intForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Float value for column name.
-	REFloat64 getFloatForColumnName(const REString & columnName) const;
+	REFloat64 floatForColumnName(const REString & columnName) const;
 	
 	/// Returns Integer value for column index.
-	REFloat64 getFloatForColumnIndex(const REUInt32 index) const;
+	REFloat64 floatForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns Long Integer value for column name.
-	REInt64 getLongIntForColumnName(const REString & columnName) const;
+	REInt64 longIntForColumnName(const REString & columnName) const;
 	
 	/// Returns Long Integer value for column index.
-	REInt64 getLongIntForColumnIndex(const REUInt32 index) const;
+	REInt64 longIntForColumnIndex(const REUInt32 index) const;
 	
 	/// Returns String value for column name.
-	REString getStringForColumnName(const REString & columnName) const;
+	REString stringForColumnName(const REString & columnName) const;
 	
 	/// Returns String value for column index.
-	REString getStringForColumnIndex(const REUInt32 index) const;
+	REString stringForColumnIndex(const REUInt32 index) const;
     
 	/// Assign operator using another result set.
 	RESQLiteDBResultSet & operator=(const RESQLiteDBResultSet & anotherSet);

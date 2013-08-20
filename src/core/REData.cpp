@@ -29,11 +29,11 @@ REUInt32 REData::fileRead(void * bufferForReading, const REUInt32 dataSizeToRead
 {
 	if (bufferForReading && dataSizeToRead )
 	{
-		REUByte * buff = (REUByte *)this->getBuffer();
+		REUByte * buff = (REUByte *)this->buffer();
 		if (buff) 
 		{
 			REUInt32 sizeToRead = dataSizeToRead;
-			REUInt32 avaiableSize = this->getSize() - _fileOffset;
+			REUInt32 avaiableSize = this->size() - _fileOffset;
 			if (avaiableSize < sizeToRead)
 			{
 				sizeToRead = avaiableSize;
@@ -62,14 +62,14 @@ REInt32 REData::fileSeek(const REUInt32 fileOffset, int origin)
 	}
 	else if (origin == SEEK_END)
 	{
-		if (this->getSize() < fileOffset)
+		if (this->size() < fileOffset)
 		{
 			return 2; // out of bounds
 		}
-		resultOffset = (this->getSize() - fileOffset);
+		resultOffset = (this->size() - fileOffset);
 	}
 
-	if (resultOffset > this->getSize()) // common for SEEK_CUR && SEEK_SET
+	if (resultOffset > this->size()) // common for SEEK_CUR && SEEK_SET
 	{
 		return 3; // out of bounds
 	}
@@ -105,32 +105,32 @@ REInt32 REData::fileClose()
 
 REBOOL REData::isEndOfFile()
 {
-	return (this->getSize() == _fileOffset);
+	return (this->size() == _fileOffset);
 }
 
 REData & REData::operator=(const REData & anotherData)
 {
 	this->clear();
 	
-	this->set(anotherData.getBuffer(), anotherData.getSize());
+	this->set(anotherData.buffer(), anotherData.size());
 		
 	return (*this);
 }
 
-const REUByte * REData::getBytes() const
+const REUByte * REData::bytes() const
 {
-	return (const REUByte *)this->getBuffer();
+	return (const REUByte *)this->buffer();
 }
 
-REUInt32 REData::getHash() const
+REUInt32 REData::hash() const
 {
 	REMD5Generator g;
-	return g.getFromData(this->getBuffer(), this->getSize());
+	return g.fromData(this->buffer(), this->size());
 }
 
 REBOOL REData::isEmpty() const 
 {
-	return (this->getSize() == 0);
+	return (this->size() == 0);
 }
 
 REData::REData(const REBuffer & buffer) : REBuffer(buffer),
@@ -187,8 +187,8 @@ REBOOL REData::initializeFromFilePath(const char * filePath, const REUInt32 file
 	
 	if (this->resize((REUInt32)fileSize, false))
 	{
-		size_t readedSize = fread(this->getBuffer(), 1, this->getSize(), fileHandle);
-		if (readedSize == this->getSize())
+		size_t readedSize = fread(this->buffer(), 1, this->size(), fileHandle);
+		if (readedSize == this->size())
 		{
 			fclose(fileHandle);
 			return true;
@@ -229,8 +229,8 @@ REBOOL REData::initFromPath( const REString & filePath )
 		return false;
 	}
 	
-	const char * s = filePath.getChars();
-	const REUInt32 l = filePath.getLength();
+	const char * s = filePath.UTF8String();
+	const REUInt32 l = filePath.length();
 	return this->initFromPath(s, l);
 }
 

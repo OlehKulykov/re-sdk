@@ -21,27 +21,27 @@
 
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
-REString REWideString::getString() const
+REString REWideString::string() const
 {
-	return REString( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
-															this->getLength()) );
+	return REString( REStringUtilsPrivate::getUTF8FromWide(this->wideChars(), 
+														   this->length()) );
 }
 
-REMutableString REWideString::getMutableString() const
+REMutableString REWideString::mutableString() const
 {
-	return REMutableString( REStringUtilsPrivate::getUTF8FromWide(this->getWideChars(), 
-																   this->getLength()) );
+	return REMutableString( REStringUtilsPrivate::getUTF8FromWide(this->wideChars(), 
+																   this->length()) );
 }
 
-const REUInt32 REWideString::getLength() const
+const REUInt32 REWideString::length() const
 {
 	return REStringUtilsPrivate::stringLengthFromWideBuffer(_p);
 }
 
-const wchar_t * REWideString::getWideChars() const
+const wchar_t * REWideString::wideChars() const
 {
 	const REBuffer * b = _p;
-	return b ? (const wchar_t *)b->getBuffer() : NULL;
+	return b ? (const wchar_t *)b->buffer() : NULL;
 }
 
 REWideString & REWideString::operator=(const char * utf8String)
@@ -65,13 +65,13 @@ REWideString & REWideString::operator=(const REWideString & anotherString)
 
 REWideString & REWideString::operator=(const REString & anotherString)
 {
-	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.getChars(), anotherString.getLength());
+	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.UTF8String(), anotherString.length());
 	return (*this);
 }
 
 REWideString & REWideString::operator=(const REMutableString & anotherString)
 {
-	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.getChars(), anotherString.getLength());
+	_p = REStringUtilsPrivate::getWideFromUTF8(anotherString.UTF8String(), anotherString.length());
 	return (*this);
 }
 
@@ -101,13 +101,13 @@ REWideString::REWideString(const REWideString & anotherString) :
 }
 
 REWideString::REWideString(const REString & anotherString) : 
-	REStringBase(anotherString.getChars(), anotherString.getLength(), REStringTypeWide)
+	REStringBase(anotherString.UTF8String(), anotherString.length(), REStringTypeWide)
 {
 	
 }
 
 REWideString::REWideString(const REMutableString & anotherString) : 
-	REStringBase(anotherString.getChars(), anotherString.getLength(), REStringTypeWide)
+	REStringBase(anotherString.UTF8String(), anotherString.length(), REStringTypeWide)
 {
 	
 }
