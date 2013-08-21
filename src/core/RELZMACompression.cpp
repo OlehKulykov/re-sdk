@@ -57,7 +57,7 @@ RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat3
 		return RETypedPtr();
 	}
 	
-	REUInt32 outSize = (((size_t)inBuffer.getSize() / 20) * 21) + (1 << 16);
+	REUInt32 outSize = (((size_t)inBuffer.size() / 20) * 21) + (1 << 16);
 	if (outSize == 0)
     {
 		return RETypedPtr();
@@ -84,14 +84,14 @@ RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat3
 	}
 	
 	
-	unsigned char * sizePtr = (unsigned char *)compressedBuffer->getBuffer();
+	unsigned char * sizePtr = (unsigned char *)compressedBuffer->buffer();
 	unsigned char * props = sizePtr + sizeof(REUInt32);
 	unsigned char * dest = props + LZMA_PROPS_SIZE;
 	size_t outPropsSize = LZMA_PROPS_SIZE;
 	const int comprResult = LzmaCompress(dest, 
 										 &destLen, 
-										 (const unsigned char *)inBuffer.getBuffer(), 
-										 (size_t)inBuffer.getSize(), 
+										 (const unsigned char *)inBuffer.buffer(), 
+										 (size_t)inBuffer.size(), 
 										 props, 
 										 &outPropsSize,
 										 level, // compr
@@ -104,7 +104,7 @@ RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat3
 	if (comprResult == SZ_OK)
     {
 		REUInt32 * int32Ptr = (REUInt32 *)sizePtr;
-		*int32Ptr = (REUInt32)inBuffer.getSize();
+		*int32Ptr = (REUInt32)inBuffer.size();
 		if (compressedBuffer->resize((REUInt32)destLen + LZMA_PROPS_SIZE + sizeof(REUInt32), true))
 		{
 			return ptr;
@@ -130,12 +130,12 @@ RETypedPtr RELZMACompression::decompress(const REBuffer & inBuffer)
 	{
 		return RETypedPtr();
 	}
-	if (inBuffer.getSize() <= (sizeof(REUInt32) + LZMA_PROPS_SIZE)) 
+	if (inBuffer.size() <= (sizeof(REUInt32) + LZMA_PROPS_SIZE)) 
 	{
 		return RETypedPtr();
 	}
 	
-	unsigned char * sizePtr = (unsigned char *)inBuffer.getBuffer();
+	unsigned char * sizePtr = (unsigned char *)inBuffer.buffer();
 	unsigned char * props = sizePtr + sizeof(REUInt32);
 	unsigned char * inBuff = props + LZMA_PROPS_SIZE;
 
@@ -145,9 +145,9 @@ RETypedPtr RELZMACompression::decompress(const REBuffer & inBuffer)
 		return RETypedPtr();
 	}
 	
- 	size_t dstLen = unCompressedBuffer->getSize();
-	size_t srcLen = inBuffer.getSize() - LZMA_PROPS_SIZE - sizeof(REUInt32);
-	int res = LzmaUncompress((unsigned char *)unCompressedBuffer->getBuffer(), 
+ 	size_t dstLen = unCompressedBuffer->size();
+	size_t srcLen = inBuffer.size() - LZMA_PROPS_SIZE - sizeof(REUInt32);
+	int res = LzmaUncompress((unsigned char *)unCompressedBuffer->buffer(), 
 							 &dstLen, 
 							 inBuff, 
 							 &srcLen, 
@@ -155,7 +155,7 @@ RETypedPtr RELZMACompression::decompress(const REBuffer & inBuffer)
 							 LZMA_PROPS_SIZE);
 	if (res == SZ_OK) 
 	{
-		if ((REUInt32)dstLen == unCompressedBuffer->getSize()) 
+		if ((REUInt32)dstLen == unCompressedBuffer->size()) 
 		{
 			return ptr;
 		}

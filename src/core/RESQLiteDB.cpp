@@ -127,7 +127,7 @@ REBOOL RESQLiteDB::executeUpdate(const REString & queryString)
 		}
 		*/
 		sqlite3_stmt * pStmt = NULL;
-		const char * utf8QueryString = queryString.getChars();
+		const char * utf8QueryString = queryString.UTF8String();
 		int rc = sqlite3_prepare_v2((sqlite3 *)_db, utf8QueryString, -1, &pStmt, 0);
 		if (rc != SQLITE_OK) 
 		{
@@ -216,7 +216,7 @@ REBOOL RESQLiteDB::open()
 	}
 	
 	sqlite3 * sqDB = NULL;
-	if(sqlite3_open(_databasePath.getChars(), &sqDB) == SQLITE_OK) 
+	if(sqlite3_open(_databasePath.UTF8String(), &sqDB) == SQLITE_OK) 
 	{
 		_db = sqDB;
 		return true;
@@ -247,7 +247,7 @@ REPtr<REDBResultSet> RESQLiteDB::executeQuery(const REString & queryString)
 		}
 		*/
 		sqlite3_stmt * pStmt = NULL;
-		const int rc = sqlite3_prepare_v2((sqlite3 *)_db, queryString.getChars(), -1, &pStmt, 0);
+		const int rc = sqlite3_prepare_v2((sqlite3 *)_db, queryString.UTF8String(), -1, &pStmt, 0);
 		if (rc == SQLITE_OK) 
 		{
 			const int queryCount = sqlite3_bind_parameter_count(pStmt);

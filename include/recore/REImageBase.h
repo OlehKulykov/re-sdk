@@ -44,7 +44,7 @@ typedef enum _reImagePixelFormat
 REImagePixelFormat;
 
 /// Class using for storing image data(pixels) and info.
-class __RE_PUBLIC_CLASS_API__ REImageBase : public REObject
+class __RE_PUBLIC_CLASS_API__ REImageBase /* : public REObject */
 {
 private:
 	REBuffer _buffer;
@@ -52,10 +52,10 @@ private:
 	REUInt16 _height;
 	REUByte _format;
 public:
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+//	/* REObject */
+//	virtual const REUInt32 getClassIdentifier() const;
+//	static const REUInt32 classIdentifier();
+//	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	
 	/// Check is image NULL
 	REBOOL isNull() const;

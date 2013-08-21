@@ -23,13 +23,14 @@
 #include "REImageManager.h"
 #include "RESize.h"
 #include "REImageBase.h"
+#include "REPtr.h"
 
 /// Class of image.
 class __RE_PUBLIC_CLASS_API__ REImage
 {
 private:
-	REImageBase * _base;
-	
+	//REImageBase * _base;
+	REPtr<REImageBase> _base;
 public:
 	/// Copy opertor.
 	REImage & operator=(const REImage & anotherImage);

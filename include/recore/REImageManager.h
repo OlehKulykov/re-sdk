@@ -22,6 +22,8 @@
 #include "RECommonHeader.h"
 #include "REData.h"
 #include "REImageBase.h"
+#include "REPtr.h"
+#include "REBuffer.h"
 
 /// Type of image file data.
 typedef enum _reImageType
@@ -52,10 +54,10 @@ class __RE_PUBLIC_CLASS_API__ REImageManager
 {
 public:
 	/// Creates base image object from image file data.
-	REImageBase * createFromFileData(const REData & fileData);
+	REPtr<REImageBase> createFromFileData(const REData & fileData);
 	
 	/// Creates base image object from image file data with data size.
-	REImageBase * createFromFileData(const REUByte * fileData, const REUInt32 dataSize);
+	REPtr<REImageBase> createFromFileData(const REUByte * fileData, const REUInt32 dataSize);
 	
 	/// Detects image file data type from it's data with size.
 	REImageType typeFromFileData(const REUByte * fileData, const REUInt32 dataSize);
@@ -66,19 +68,19 @@ public:
 	/// Creates and return new buffer object with PNG file presentation from image data(pixels), width, height and pixel format.
 	/// After using this buffer object call Release().
 	/// This functionality requires undefined flag __RE_RECORE_NO_PNG_IMAGE_SUPPORT__
-	REBufferObject * createPNGFilePresentation(const REUByte * pixelsData,
-											   const REUInt32 width,
-											   const REUInt32 height,
-											   const REImagePixelFormat pixelFormat);
+	REPtr<REBuffer> createPNGFilePresentation(const REUByte * pixelsData,
+											  const REUInt32 width,
+											  const REUInt32 height,
+											  const REImagePixelFormat pixelFormat);
 	
 	/// Creates and return new buffer object with WEBP file presentation from image data(pixels), width, height and pixel format.
 	/// After using this buffer object call Release().
 	/// This functionality requires undefined flag __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
-	REBufferObject * createWebPFilePresentation(const REUByte * pixelsData,
-												const REUInt32 width,
-												const REUInt32 height,
-												const REImagePixelFormat pixelFormat,
-												const REFloat32 quality);
+	REPtr<REBuffer> createWebPFilePresentation(const REUByte * pixelsData,
+											   const REUInt32 width,
+											   const REUInt32 height,
+											   const REImagePixelFormat pixelFormat,
+											   const REFloat32 quality);
 	
 	/// Default constructor.
 	REImageManager();

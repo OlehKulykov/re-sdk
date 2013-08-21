@@ -18,22 +18,22 @@
 #include "../../include/recore/REImageBase.h"
 #include "../../include/recore/REMem.h"
 
-/* REObject */
-const REUInt32 REImageBase::getClassIdentifier() const
-{
-	return REImageBase::classIdentifier();
-}
-
-const REUInt32 REImageBase::classIdentifier()
-{
-	static const REUInt32 c = REObject::generateClassIdentifierFromClassName("REImageBase");
-	return c;
-}
-
-REBOOL REImageBase::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REImageBase::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
-}
+///* REObject */
+//const REUInt32 REImageBase::getClassIdentifier() const
+//{
+//	return REImageBase::classIdentifier();
+//}
+//
+//const REUInt32 REImageBase::classIdentifier()
+//{
+//	static const REUInt32 c = REObject::generateClassIdentifierFromClassName("REImageBase");
+//	return c;
+//}
+//
+//REBOOL REImageBase::isImplementsClass(const REUInt32 classIdentifier) const
+//{
+//	return ((REImageBase::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
+//}
 
 REBOOL REImageBase::isNull() const 
 {
@@ -95,7 +95,7 @@ REUByte * REImageBase::imageDataTopLeftOffset(const REUInt32 x, const REUInt32 y
 
 REImageBase::REImageBase(const REImagePixelFormat pixelsFormat, 
 						 const REUInt32 width, 
-						 const REUInt32 height) : REObject(),
+						 const REUInt32 height) : /*REObject(),*/
 	_width(0),
 	_height(0),
 	_format(0)
@@ -123,7 +123,7 @@ REImageBase::REImageBase(const REImagePixelFormat pixelsFormat,
 REImageBase::REImageBase(const REUByte * pixelsData, 
 						 const REImagePixelFormat pixelsFormat, 
 						 const REUInt32 width, 
-						 const REUInt32 height) : REObject(),
+						 const REUInt32 height) : /*REObject(),*/
 	_width(0),
 	_height(0),
 	_format(0)
@@ -150,7 +150,7 @@ REImageBase::REImageBase(const REUByte * pixelsData,
 	}
 }
 
-REImageBase::REImageBase() : REObject(),
+REImageBase::REImageBase() : /*REObject(),*/
 	_width(0),
 	_height(0),
 	_format(0)
