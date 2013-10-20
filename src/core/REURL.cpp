@@ -1,5 +1,5 @@
 /*
- *   Copyright 2012 Kulikov Oleg
+ *   Copyright 2012 - 2013 Kulykov Oleh
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -17,58 +17,124 @@
 
 #include "../../include/recore/REURL.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/REString.h"
 #include "../../include/recore/REWideString.h"
-#include "../../include/recore/REInt24.h"
+#include "../../include/recore/RERange.h"
+
 
 // http://en.wikipedia.org/wiki/URI_scheme
 
-#define REURL_SET_COMPS_VAL(v) (REUInt32)(v)
-#define REURL_COMPS_VAL_TYPE REUInt32
+class REURLInternalString : public REString
+{	
+public:
+	void fixSeparators()
+	{
+		if (this->isNotEmpty()) 
+		{
+			char * d = (char *)this->stringBuffer();
+			while (*d) 
+			{
+				if (*d == '\\') { *d++ = '/'; }
+				else 
+				{
+					//*d++ = (char)tolower((int)*d); 
+					d++;
+				}
+			}
+		}
+	}
+};
 
-typedef struct _reURLCompsRngsStrtPrivate
+class REURLInternal 
 {
-	REURL_COMPS_VAL_TYPE schemeNameLocation;
-	REURL_COMPS_VAL_TYPE schemeNameLength;
+private:
+	void parseUserNameAndPassword(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseQuery(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseFragment(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseFileNameAndExtension(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseUserInfo(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseHostName(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parsePort(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseAuthority(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parsePath(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseHierarchicalPart(const char * stringValue, const REUInt32 location, const REUInt32 lenght);
+	void parseSchemeName(const char * stringValue, const REUInt32 location, const REUInt32 lenght);	
+public:
+	REBOOL parse();
+	REURLInternalString string;
 	
-	REURL_COMPS_VAL_TYPE userInfoLocation;
-	REURL_COMPS_VAL_TYPE userInfoLength;
+	REUInt32 queryLocation;
+	REUInt32 queryLength;
 	
-	REURL_COMPS_VAL_TYPE hostNameLocation;
-	REURL_COMPS_VAL_TYPE hostNameLength;
+	REUInt16 schemeNameLocation;
+	REUInt16 schemeNameLength;
 	
-	REURL_COMPS_VAL_TYPE portLocation;
-	REURL_COMPS_VAL_TYPE portLength;
+	REUInt16 userInfoLocation;
+	REUInt16 userInfoLength;
 	
-	REURL_COMPS_VAL_TYPE queryLocation;
-	REURL_COMPS_VAL_TYPE queryLength;
+	REUInt16 hostNameLocation;
+	REUInt16 hostNameLength;
 	
-	REURL_COMPS_VAL_TYPE fragmentLocation;
-	REURL_COMPS_VAL_TYPE fragmentLength;
+	REUInt16 portLocation;
+	REUInt16 portLength;
 	
-	REURL_COMPS_VAL_TYPE authorityLocation;
-	REURL_COMPS_VAL_TYPE authorityLength;
+	REUInt16 fragmentLocation;
+	REUInt16 fragmentLength;
 	
-	REURL_COMPS_VAL_TYPE pathLocation;
-	REURL_COMPS_VAL_TYPE pathLength;
+	REUInt16 authorityLocation;
+	REUInt16 authorityLength;
 	
-	REURL_COMPS_VAL_TYPE hierarchicalPartLocation;
-	REURL_COMPS_VAL_TYPE hierarchicalPartLength;
+	REUInt16 pathLocation;
+	REUInt16 pathLength;
 	
-	REURL_COMPS_VAL_TYPE fileNameLocation;
-	REURL_COMPS_VAL_TYPE fileNameLength;
+	REUInt16 hierarchicalPartLocation;
+	REUInt16 hierarchicalPartLength;
 	
-	REURL_COMPS_VAL_TYPE extensionLocation;
-	REURL_COMPS_VAL_TYPE extensionLength;
+	REUInt16 fileNameLocation;
+	REUInt16 fileNameLength;
 	
-	REURL_COMPS_VAL_TYPE userNameLocation;
-	REURL_COMPS_VAL_TYPE userNameLength;
+	REUInt16 extensionLocation;
+	REUInt16 extensionLength;
 	
-	REURL_COMPS_VAL_TYPE passwordLocation;
-	REURL_COMPS_VAL_TYPE passwordLength;
+	REUInt16 userNameLocation;
+	REUInt16 userNameLength;
 	
-} REURLCompsRngsStrtPrivate; 
+	REUInt16 passwordLocation;
+	REUInt16 passwordLength;
+	
+	REURLInternal() :
+		queryLocation(0),
+		queryLength(0),
+		schemeNameLocation(0),
+		schemeNameLength(0),
+		userInfoLocation(0),
+		userInfoLength(0),
+		hostNameLocation(0),
+		hostNameLength(0),
+		portLocation(0),
+		portLength(0),
+		fragmentLocation(0),
+		fragmentLength(0),
+		authorityLocation(0),
+		authorityLength(0),
+		pathLocation(0),
+		pathLength(0),
+		hierarchicalPartLocation(0),
+		hierarchicalPartLength(0),
+		fileNameLocation(0),
+		fileNameLength(0),
+		extensionLocation(0),
+		extensionLength(0),
+		userNameLocation(0),
+		userNameLength(0),
+		passwordLocation(0),
+		passwordLength(0)
+	{
+		
+	}
+};
 
-void REURL::parseUserNameAndPassword(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseUserNameAndPassword(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	const char * d = stringValue;
 	d += location;
@@ -84,8 +150,8 @@ void REURL::parseUserNameAndPassword(void * info, const char * stringValue, cons
 		}
 		if (*d == ':') 
 		{
-			((REURLCompsRngsStrtPrivate *)info)->userNameLocation = REURL_SET_COMPS_VAL(range.location);
-			((REURLCompsRngsStrtPrivate *)info)->userNameLength = REURL_SET_COMPS_VAL(range.length);
+			userNameLocation = range.location;
+			userNameLength = range.length;
 			range.set(RENotFound, 0);
 			isUser = true;
 		}
@@ -103,18 +169,18 @@ void REURL::parseUserNameAndPassword(void * info, const char * stringValue, cons
 	{
 		if (isUser) 
 		{
-			((REURLCompsRngsStrtPrivate *)info)->passwordLocation = REURL_SET_COMPS_VAL(range.location);
-			((REURLCompsRngsStrtPrivate *)info)->passwordLength = REURL_SET_COMPS_VAL(range.length);
+			passwordLocation = range.location;
+			passwordLength = range.length;
 		}
 		else
 		{
-			((REURLCompsRngsStrtPrivate *)info)->userNameLocation = REURL_SET_COMPS_VAL(range.location);
-			((REURLCompsRngsStrtPrivate *)info)->userNameLength = REURL_SET_COMPS_VAL(range.length);
+			userNameLocation = range.location;
+			userNameLength = range.length;
 		}
 	}
 }
 
-void REURL::parseQuery(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseQuery(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	if (lenght) 
 	{
@@ -133,8 +199,8 @@ void REURL::parseQuery(void * info, const char * stringValue, const REUInt32 loc
 			{
 				if (range.length) 
 				{
-					((REURLCompsRngsStrtPrivate *)info)->queryLocation = REURL_SET_COMPS_VAL(range.location);
-					((REURLCompsRngsStrtPrivate *)info)->queryLength = REURL_SET_COMPS_VAL(range.length);
+					queryLocation = range.location;
+					queryLength = range.length;
 				}
 				return;
 			}
@@ -150,7 +216,7 @@ void REURL::parseQuery(void * info, const char * stringValue, const REUInt32 loc
 	}
 }
 
-void REURL::parseFragment(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseFragment(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	if (lenght) 
 	{
@@ -165,8 +231,8 @@ void REURL::parseFragment(void * info, const char * stringValue, const REUInt32 
 			{
 				if (range.length) 
 				{
-					((REURLCompsRngsStrtPrivate *)info)->fragmentLocation = REURL_SET_COMPS_VAL(range.location);
-					((REURLCompsRngsStrtPrivate *)info)->fragmentLength = REURL_SET_COMPS_VAL(range.length);
+					fragmentLocation = range.location;
+					fragmentLength = range.length;
 				}
 				return;
 			}
@@ -182,7 +248,7 @@ void REURL::parseFragment(void * info, const char * stringValue, const REUInt32 
 	}
 }
 
-void REURL::parseFileNameAndExtension(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseFileNameAndExtension(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	if (lenght) 
 	{ 
@@ -195,8 +261,8 @@ void REURL::parseFileNameAndExtension(void * info, const char * stringValue, con
 			if (*d == '/') { range.set(RENotFound, 0); }
 			else if (*d == '.')
 			{
-				((REURLCompsRngsStrtPrivate *)info)->fileNameLocation = REURL_SET_COMPS_VAL(range.location);
-				((REURLCompsRngsStrtPrivate *)info)->fileNameLength = REURL_SET_COMPS_VAL(range.length);
+				fileNameLocation = range.location;
+				fileNameLength = range.length;
 				range.set(RENotFound, 0);
 				isFileNameDone = true;
 			}
@@ -209,19 +275,19 @@ void REURL::parseFileNameAndExtension(void * info, const char * stringValue, con
 		{
 			if (isFileNameDone) 
 			{
-				((REURLCompsRngsStrtPrivate *)info)->extensionLocation = REURL_SET_COMPS_VAL(range.location);
-				((REURLCompsRngsStrtPrivate *)info)->extensionLength = REURL_SET_COMPS_VAL(range.length);
+				extensionLocation = range.location;
+				extensionLength = range.length;
 			}
 			else
 			{
-				((REURLCompsRngsStrtPrivate *)info)->fileNameLocation = REURL_SET_COMPS_VAL(range.location);
-				((REURLCompsRngsStrtPrivate *)info)->fileNameLength = REURL_SET_COMPS_VAL(range.length);
+				fileNameLocation = range.location;
+				fileNameLength = range.length;
 			}
 		}
 	}
 }
 
-void REURL::parseUserInfo(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseUserInfo(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	REUInt32 leftLen = lenght;
 	REUInt32 len = 0;
@@ -241,12 +307,12 @@ void REURL::parseUserInfo(void * info, const char * stringValue, const REUInt32 
 	}
 	if (lastAtRange.length) 
 	{
-		((REURLCompsRngsStrtPrivate *)info)->userInfoLocation = REURL_SET_COMPS_VAL(lastAtRange.location);
-		((REURLCompsRngsStrtPrivate *)info)->userInfoLength = REURL_SET_COMPS_VAL(lastAtRange.length);
+		userInfoLocation = lastAtRange.location;
+		userInfoLength = lastAtRange.length;
 	}
 }
 
-void REURL::parseHostName(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseHostName(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	const char * d = (stringValue + location);
 	RERange range(RENotFound, 0);
@@ -259,12 +325,12 @@ void REURL::parseHostName(void * info, const char * stringValue, const REUInt32 
 	}
 	if (range.length && (range.location != RENotFound))
 	{
-		((REURLCompsRngsStrtPrivate *)info)->hostNameLocation = REURL_SET_COMPS_VAL(range.location);
-		((REURLCompsRngsStrtPrivate *)info)->hostNameLength = REURL_SET_COMPS_VAL(range.length);
+		hostNameLocation = range.location;
+		hostNameLength = range.length;
 	}
 }
 
-void REURL::parsePort(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parsePort(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	if (lenght) 
 	{
@@ -283,8 +349,8 @@ void REURL::parsePort(void * info, const char * stringValue, const REUInt32 loca
 			}
 			else if (len && (*d == ':'))
 			{
-				((REURLCompsRngsStrtPrivate *)info)->portLocation = REURL_SET_COMPS_VAL(needLoc);
-				((REURLCompsRngsStrtPrivate *)info)->portLength = REURL_SET_COMPS_VAL(len);
+				portLocation = needLoc;
+				portLength = len;
 				return;
 			}
 			d--;
@@ -294,7 +360,7 @@ void REURL::parsePort(void * info, const char * stringValue, const REUInt32 loca
 	}
 }
 
-void REURL::parseAuthority(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseAuthority(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	REUInt32 leftLen = lenght;
 	REUInt32 len = 0;
@@ -312,12 +378,12 @@ void REURL::parseAuthority(void * info, const char * stringValue, const REUInt32
 	}
 	if (len) 
 	{
-		((REURLCompsRngsStrtPrivate *)info)->authorityLocation = REURL_SET_COMPS_VAL(location);
-		((REURLCompsRngsStrtPrivate *)info)->authorityLength = REURL_SET_COMPS_VAL(len);
+		authorityLocation = location;
+		authorityLength = len;
 	}
 }
 
-void REURL::parsePath(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parsePath(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	REUInt32 leftLen = lenght;
 	REUInt32 dLoc = location;
@@ -339,8 +405,8 @@ void REURL::parsePath(void * info, const char * stringValue, const REUInt32 loca
 			}
 			if (len) 
 			{
-				((REURLCompsRngsStrtPrivate *)info)->pathLocation = REURL_SET_COMPS_VAL(dLoc);
-				((REURLCompsRngsStrtPrivate *)info)->pathLength = REURL_SET_COMPS_VAL(len);
+				pathLocation = dLoc;
+				pathLength = len;
 			}
 			return;
 		}
@@ -350,7 +416,7 @@ void REURL::parsePath(void * info, const char * stringValue, const REUInt32 loca
 	}
 }
 
-void REURL::parseHierarchicalPart(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseHierarchicalPart(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	RERange startRange(location, lenght);
 	const char * d = stringValue + location;
@@ -375,8 +441,8 @@ void REURL::parseHierarchicalPart(void * info, const char * stringValue, const R
 			case '?':
 				if (range.length && (range.location != RENotFound))
 				{
-					((REURLCompsRngsStrtPrivate *)info)->hierarchicalPartLocation = REURL_SET_COMPS_VAL(range.location);
-					((REURLCompsRngsStrtPrivate *)info)->hierarchicalPartLength = REURL_SET_COMPS_VAL(range.length);
+					hierarchicalPartLocation = range.location;
+					hierarchicalPartLength = range.length;
 				}
 				return;
 				break;
@@ -387,12 +453,12 @@ void REURL::parseHierarchicalPart(void * info, const char * stringValue, const R
 	
 	if (range.length && (range.location != RENotFound))
 	{
-		((REURLCompsRngsStrtPrivate *)info)->hierarchicalPartLocation = REURL_SET_COMPS_VAL(range.location);
-		((REURLCompsRngsStrtPrivate *)info)->hierarchicalPartLength = REURL_SET_COMPS_VAL(range.length);
+		hierarchicalPartLocation = range.location;
+		hierarchicalPartLength = range.length;
 	}
 }
 
-void REURL::parseSchemeName(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght)
+void REURLInternal::parseSchemeName(const char * stringValue, const REUInt32 location, const REUInt32 lenght)
 {
 	const char * d = stringValue + location;
 	RERange range(RENotFound, 0);
@@ -412,8 +478,8 @@ void REURL::parseSchemeName(void * info, const char * stringValue, const REUInt3
 			case ':':
 				if (range.length && (range.location != RENotFound))
 				{
-					((REURLCompsRngsStrtPrivate *)info)->schemeNameLocation = REURL_SET_COMPS_VAL(range.location);
-					((REURLCompsRngsStrtPrivate *)info)->schemeNameLength = REURL_SET_COMPS_VAL(range.length);
+					schemeNameLocation = range.location;
+					schemeNameLength = range.length;
 				}
 				return;
 				break;
@@ -423,52 +489,53 @@ void REURL::parseSchemeName(void * info, const char * stringValue, const REUInt3
 	}
 }
 
-REBOOL REURL::parse(void * info, const char * stringValue, const REUInt32 lenght)
+REBOOL REURLInternal::parse()
 {
-	if (info && stringValue && lenght) 
+	if (string.isNotEmpty()) 
 	{
-		REURL::parseSchemeName(info, stringValue, 0, lenght);
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate *)info;
-		REURL::parseHierarchicalPart(info, 
-									 stringValue, 
-									 urlStruct->schemeNameLocation + urlStruct->schemeNameLength, 
-									 lenght - (urlStruct->schemeNameLocation + urlStruct->schemeNameLength));
-		if (urlStruct->hierarchicalPartLength) 
+		const char * stringValue = string.UTF8String();
+		const REUInt32 lenght = string.length();
+		
+		this->parseSchemeName(stringValue, 0, lenght);
+		this->parseHierarchicalPart(stringValue, 
+									 schemeNameLocation + schemeNameLength, 
+									 lenght - (schemeNameLocation + schemeNameLength));
+		if (hierarchicalPartLength) 
 		{
-			REURL::parseAuthority(info, stringValue, urlStruct->hierarchicalPartLocation, urlStruct->hierarchicalPartLength);
-			if (urlStruct->authorityLength) 
+			this->parseAuthority(stringValue, hierarchicalPartLocation, hierarchicalPartLength);
+			if (authorityLength) 
 			{
-				REURL::parseUserInfo(info, stringValue, urlStruct->authorityLocation, urlStruct->authorityLength);
-				if (urlStruct->userInfoLength) 
+				this->parseUserInfo(stringValue, authorityLocation, authorityLength);
+				if (userInfoLength) 
 				{
-					REURL::parseUserNameAndPassword(info, stringValue, urlStruct->userInfoLocation, urlStruct->userInfoLength);
+					this->parseUserNameAndPassword(stringValue, userInfoLocation, userInfoLength);
 				}
-				RERange hostRange(urlStruct->authorityLocation, urlStruct->authorityLength);
-				if (urlStruct->userNameLength)
+				RERange hostRange(authorityLocation, authorityLength);
+				if (userNameLength)
 				{
-					hostRange.location += urlStruct->userNameLength + 1; // skip separator
-					hostRange.length -= urlStruct->userNameLength + 1; // skip separator
+					hostRange.location += userNameLength + 1; // skip separator
+					hostRange.length -= userNameLength + 1; // skip separator
 				}
-				if (urlStruct->passwordLength)
+				if (passwordLength)
 				{
-					hostRange.location += urlStruct->passwordLength + 1; // skip separator
-					hostRange.length -= urlStruct->passwordLength + 1; // skip separator
+					hostRange.location += passwordLength + 1; // skip separator
+					hostRange.length -= passwordLength + 1; // skip separator
 				}
-				REURL::parseHostName(info, stringValue, hostRange.location, hostRange.length);
-				REURL::parsePort(info, stringValue, urlStruct->authorityLocation, urlStruct->authorityLength);
+				this->parseHostName(stringValue, hostRange.location, hostRange.length);
+				this->parsePort(stringValue, authorityLocation, authorityLength);
 			}
-			REURL::parsePath(info, stringValue, urlStruct->hierarchicalPartLocation, urlStruct->hierarchicalPartLength);
-			if (urlStruct->pathLength) 
+			this->parsePath(stringValue, hierarchicalPartLocation, hierarchicalPartLength);
+			if (pathLength) 
 			{
-				REURL::parseFileNameAndExtension(info, stringValue, urlStruct->pathLocation, urlStruct->pathLength);
+				this->parseFileNameAndExtension(stringValue, pathLocation, pathLength);
 			}
 		}
 		
-		if (lenght > (urlStruct->hierarchicalPartLocation + urlStruct->hierarchicalPartLength + 1))
+		if (lenght > (hierarchicalPartLocation + hierarchicalPartLength + 1))
 		{
 			// can parse fragment and query
-			REURL::parseFragment(info, stringValue, 0, lenght);
-			REURL::parseQuery(info, stringValue, 0, lenght);
+			this->parseFragment(stringValue, 0, lenght);
+			this->parseQuery(stringValue, 0, lenght);
 		}
 		
 		return true;
@@ -478,62 +545,42 @@ REBOOL REURL::parse(void * info, const char * stringValue, const REUInt32 lenght
 
 void REURL::parse()
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		memset(_ranges, 0, sizeof(REURLCompsRngsStrtPrivate));
-	}
-	else
-	{
-		void * newRanges = malloc(sizeof(REURLCompsRngsStrtPrivate));
-		if (newRanges) 
+		if (!_i->parse())
 		{
-			memset(newRanges, 0, sizeof(REURLCompsRngsStrtPrivate));
-			_ranges = newRanges;
-		}
-	}
-	
-	if (_ranges) 
-	{
-		if (!REURL::parse(_ranges, this->UTF8String(), this->length())) 
-		{
-			memset(_ranges, 0, sizeof(REURLCompsRngsStrtPrivate));
+			_i.release();
 		}
 	}
 }
 
 const char * REURL::UTF8String() const
 {
-	return (const char *)_buffer.buffer();
+	return _i.isNotEmpty() ? _i->string.UTF8String() : NULL;
 }
 
 const REUInt32 REURL::length() const
 {
-	const REUInt32 len = _buffer.size();
-	return ((len > 0) ? (len - 1) : 0);
+	return _i.isNotEmpty() ? _i->string.length() : 0;
 }
 
 void REURL::setWithLen(const char * stringValue, const REUInt32 lenght)
 {
-	_buffer.clear();
+	_i.release();
 	if (stringValue && lenght) 
 	{
-		if (_buffer.resize(lenght + 1, false))
+		REPtr<REURLInternal> newI(new REURLInternal());
+		if (newI.isNotEmpty())
 		{
-			char * b = (char *)_buffer.buffer();
-			memcpy(b, stringValue, lenght);
-			b[lenght] = 0;
+			newI->string.setFromUTF8String(stringValue, lenght);
+			_i = newI;
 		}
 	}
 }
 
 void REURL::setURLString(const char * stringValue, const REUInt32 length)
 {
-	_buffer.clear();
-	if (_ranges) 
-	{
-		free(_ranges);
-		_ranges = NULL;
-	}
+	_i.release();
 	
 	if (stringValue) 
 	{
@@ -567,18 +614,9 @@ void REURL::setURLString(const char * stringValue, const REUInt32 length)
 				if (len) 
 				{
 					this->setWithLen(s, len);
-					if (_buffer.buffer()) 
+					if (_i.isNotEmpty())
 					{
-						char * d = (char *)_buffer.buffer();
-						while (*d) 
-						{
-							if (*d == '\\') { *d++ = '/'; }
-							else 
-							{
-								//*d++ = (char)tolower((int)*d); 
-								d++;
-							}
-						}
+						_i->string.fixSeparators();
 					}
 				}
 			}
@@ -590,56 +628,50 @@ void REURL::setURLString(const char * stringValue, const REUInt32 length)
 
 REString REURL::schemeName() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->schemeNameLength) 
+		if (_i->schemeNameLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->schemeNameLocation, urlStruct->schemeNameLength));
+			return REString(this->UTF8String(), RERange(_i->schemeNameLocation, _i->schemeNameLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::userInfo() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->userInfoLength) 
+		if (_i->userInfoLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->userInfoLocation, urlStruct->userInfoLength));
+			return REString(this->UTF8String(), RERange(_i->userInfoLocation, _i->userInfoLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::hostName() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->hostNameLength) 
+		if (_i->hostNameLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->hostNameLocation, urlStruct->hostNameLength));
+			return REString(this->UTF8String(), RERange(_i->hostNameLocation, _i->hostNameLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 RENumber REURL::port() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->portLength) 
+		if (_i->portLength) 
 		{
-			REString s(this->UTF8String(), RERange(urlStruct->portLocation, urlStruct->portLength));
+			REString s(this->UTF8String(), RERange(_i->portLocation, _i->portLength));
 			if (!s.isEmpty()) 
 			{
-				RENumber n;
-				n.setValueFromString(s);
-				return n;
+				return RENumber::fromString(s);
 			}
 		}
 	}
@@ -648,141 +680,131 @@ RENumber REURL::port() const
 
 REString REURL::query() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->queryLength) 
+		if (_i->queryLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->queryLocation, urlStruct->queryLength));
+			return REString(this->UTF8String(), RERange(_i->queryLocation, _i->queryLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::fragment() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->fragmentLength) 
+		if (_i->fragmentLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->fragmentLocation, urlStruct->fragmentLength));
+			return REString(this->UTF8String(), RERange(_i->fragmentLocation, _i->fragmentLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::authority() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->authorityLength) 
+		if (_i->authorityLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->authorityLocation, urlStruct->authorityLength));
+			return REString(this->UTF8String(), RERange(_i->authorityLocation, _i->authorityLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::path() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->pathLength) 
+		if (_i->pathLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->pathLocation, urlStruct->pathLength));
+			return REString(this->UTF8String(), RERange(_i->pathLocation, _i->pathLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::hierarchicalPart() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->hierarchicalPartLength) 
+		if (_i->hierarchicalPartLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->hierarchicalPartLocation, urlStruct->hierarchicalPartLength));
+			return REString(this->UTF8String(), RERange(_i->hierarchicalPartLocation, _i->hierarchicalPartLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::fileName() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->fileNameLength) 
+		if (_i->fileNameLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->fileNameLocation, urlStruct->fileNameLength));
+			return REString(this->UTF8String(), RERange(_i->fileNameLocation, _i->fileNameLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::extension() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->extensionLength) 
+		if (_i->extensionLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->extensionLocation, urlStruct->extensionLength));
+			return REString(this->UTF8String(), RERange(_i->extensionLocation, _i->extensionLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::fileNameWithExtension() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->fileNameLength) 
+		if (_i->fileNameLength) 
 		{
-			if (urlStruct->extensionLocation && urlStruct->extensionLength) 
+			if (_i->extensionLocation && _i->extensionLength) 
 			{
-				REUInt32 len = urlStruct->fileNameLength + urlStruct->extensionLength;
-				len += urlStruct->extensionLocation - (urlStruct->fileNameLocation + urlStruct->fileNameLength);
-				return REString(this->UTF8String(), RERange(urlStruct->fileNameLocation, len));
+				REUInt32 len = _i->fileNameLength + _i->extensionLength;
+				len += _i->extensionLocation - (_i->fileNameLocation + _i->fileNameLength);
+				return REString(this->UTF8String(), RERange(_i->fileNameLocation, len));
 			}
 			else
 			{
-				return REString(this->UTF8String(), RERange(urlStruct->fileNameLocation, urlStruct->fileNameLength));
+				return REString(this->UTF8String(), RERange(_i->fileNameLocation, _i->fileNameLength));
 			}
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::userName() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->userNameLength) 
+		if (_i->userNameLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->userNameLocation, urlStruct->userNameLength));
+			return REString(this->UTF8String(), RERange(_i->userNameLocation, _i->userNameLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REString REURL::password() const
 {
-	if (_ranges) 
+	if (_i.isNotEmpty()) 
 	{
-		REURLCompsRngsStrtPrivate * urlStruct = (REURLCompsRngsStrtPrivate*)_ranges;
-		if (urlStruct->passwordLength) 
+		if (_i->passwordLength) 
 		{
-			return REString(this->UTF8String(), RERange(urlStruct->passwordLocation, urlStruct->passwordLength));
+			return REString(this->UTF8String(), RERange(_i->passwordLocation, _i->passwordLength));
 		}
 	}
-	return REString("");
+	return REString();
 }
 
 REBOOL REURL::isFileURL() const
@@ -794,36 +816,9 @@ REBOOL REURL::isFileURL() const
 	return false;
 }
 
-void REURL::setURL(const REURL & url)
-{
-	_buffer.clear();
-	if (url.length() && url._ranges) 
-	{
-		if (_ranges) 
-		{
-			memset(_ranges, 0, sizeof(REURLCompsRngsStrtPrivate));
-		}
-		else
-		{
-			void * newRanges = malloc(sizeof(REURLCompsRngsStrtPrivate));
-			if (newRanges) 
-			{
-				memset(newRanges, 0, sizeof(REURLCompsRngsStrtPrivate));
-				_ranges = newRanges;
-			}
-		}
-		
-		if (_ranges) 
-		{
-			_buffer.set(url._buffer.buffer(), url._buffer.size());
-			memcpy(_ranges, url._ranges, sizeof(REURLCompsRngsStrtPrivate));
-		}
-	}
-}
-
 REURL & REURL::operator=(const REURL & urlValue)
 {
-	this->setURL(urlValue);
+	_i = urlValue._i;
 	return (*this);
 }
 
@@ -846,38 +841,35 @@ REURL & REURL::operator=(const char * stringValue)
 	return (*this);
 }
 
-REURL::REURL(const REURL & urlValue) : _ranges(NULL)
+REURL::REURL(const REURL & urlValue)
 {
-	this->setURL(urlValue);
+	_i = urlValue._i;
 }
 
-REURL::REURL(const REString & stringValue) : _ranges(NULL)
+REURL::REURL(const REString & stringValue)
 {
 	this->setURLString(stringValue.UTF8String(), stringValue.length());
 }
 
-REURL::REURL(const wchar_t * wideString, const REUInt32 wideStringLength) : _ranges(NULL)
+REURL::REURL(const wchar_t * wideString, const REUInt32 wideStringLength)
 {
 	REString s(REWideString(wideString, wideStringLength).string());
 	this->setURLString(s.UTF8String(), s.length());
 }
 
-REURL::REURL(const char * utf8String, const REUInt32 utf8StringLength) : _ranges(NULL)
+REURL::REURL(const char * utf8String, const REUInt32 utf8StringLength)
 {
 	this->setURLString(utf8String, utf8StringLength);
 }
 
-REURL::REURL() : _ranges(NULL)
+REURL::REURL()
 {
 	
 }
 
 REURL::~REURL()
 {
-	if (_ranges) 
-	{
-		free(_ranges);
-	}
+	
 }
 
 

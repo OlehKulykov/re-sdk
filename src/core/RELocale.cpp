@@ -23,10 +23,10 @@
 class RELocalePrivate 
 {	
 public:
-	static const char ** AvaiableLocalesStrings();
+	static const char ** avaiableLocalesStrings();
 };
 
-const char ** RELocalePrivate::AvaiableLocalesStrings()
+const char ** RELocalePrivate::avaiableLocalesStrings()
 {
 	static const char * arr[12] = 
 	{ 
@@ -56,7 +56,7 @@ RELocaleType RELocale::setCurrentLocaleFromString(const char * locString)
 		REMutableString loc(locString);
 		loc.replace("-", "_");
 		locString = loc.UTF8String();
-		const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
+		const char ** arr = RELocalePrivate::avaiableLocalesStrings();
 		
 		size_t compareLenght = 0;
 		if (loc.length() >= 5)
@@ -86,14 +86,14 @@ RELocaleType RELocale::setCurrentLocaleFromString(const char * locString)
 }
 
 #ifdef __RE_OS_WINDOWS__
-void RELocale::TryDetectLocale()
+void RELocale::tryDetectLocale()
 {
 
 }
 #endif
 
 #ifdef __RE_OS_LINUX__
-void RELocale::TryDetectLocale()
+void RELocale::tryDetectLocale()
 {
 
 }
@@ -107,7 +107,7 @@ RELocaleType RELocale::currentLocaleType()
 const char * RELocale::currentLocaleString()
 {
 	unsigned int localeIndex = (unsigned int)_currentLocaleType;
-	const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
+	const char ** arr = RELocalePrivate::avaiableLocalesStrings();
 	return arr[localeIndex];
 }
 
@@ -145,7 +145,7 @@ const char * RELocale::notificationStringForCurrentLocaleChanged()
 const char * RELocale::localeStringFromType(const RELocaleType type)
 {
 	unsigned int localeIndex = (unsigned int)type;
-	const char ** arr = RELocalePrivate::AvaiableLocalesStrings();
+	const char ** arr = RELocalePrivate::avaiableLocalesStrings();
 	return arr[localeIndex];
 }
 

@@ -55,13 +55,13 @@ REBOOL REAnimationController::stopAllAnimationForView(REObject * view, const REA
 
 void REAnimationController::animationFinishedSuccessfully(REAnimationInfo * animationInfo)
 {
-	const REUIdentifier animationID = animationInfo->getObjectIdentifier();
+	const REUIdentifier animationID = animationInfo->objectIdentifier();
 	for (REUInt32 i = 0; i < _working.count(); i++) 
 	{
 		REEditableAnimationInfo * info = _working.at(i);
 		if (info)
 		{
-			if (animationID == info->getObjectIdentifier()) 
+			if (animationID == info->objectIdentifier()) 
 			{
 				if (!_working.removeAt(i)) { _working.setAt(i, NULL); }
 				info->decrementCounterAndReleaseAllViews();
@@ -100,7 +100,7 @@ REUIdentifier REAnimationController::startSetupNewAnimation(void * data)
 	{
 		if (_setuping.add(newInfo))
 		{
-			return newInfo->getObjectIdentifier();
+			return newInfo->objectIdentifier();
 		}
 		else
 		{

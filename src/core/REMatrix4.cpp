@@ -20,6 +20,9 @@
 #include "../../include/recore/REQuaternion.h"
 #include "../../include/recore/REMath.h"
 #include "../../include/recore/RELog.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/private/REStringUtilsPrivate.h"
+
 
 REMatrix4 REMatrix4::createFromQuaternion(const REQuaternion & aq)
 {
@@ -74,5 +77,36 @@ void REMatrix4::log() const
 }
 #endif	
 
+REMatrix4 REMatrix4::fromString(const char * string)
+{
+	if (string) 
+	{
+		REMatrix4 m;
+		if (REStringUtilsPrivate::readArrayF32(string, m.line, 16, ';') == 16) 
+		{
+			return m;
+		}
+	}
+	return REMatrix4();
+}
 
+REMatrix4 REMatrix4::fromString(const REString & string)
+{
+	if (string.length() > 0) 
+	{
+		REMatrix4 m;
+		if (REStringUtilsPrivate::readArrayF32(string.UTF8String(), m.line, 16, ';') == 16) 
+		{
+			return m;
+		}
+	}
+	return REMatrix4();
+}
+
+REString REMatrix4::toString(const REMatrix4 & matrix)
+{
+	char buff[256];
+	const REUInt32 len = REStringUtilsPrivate::writeArrayF32(matrix.line, buff, 16, ';');
+	return REString(buff, len);
+}
 

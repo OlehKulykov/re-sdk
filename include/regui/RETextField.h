@@ -56,9 +56,6 @@ public:
 	/// Called from main thread with current time in seconds.
 	virtual void update(const RETimeInterval currentTime);
 	
-	/// Must return unique identifier of object. Usialy returns 'REObject::GetObjectIdentifier()'.
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
-	
 	/* REObject */
 	virtual const REUInt32 getClassIdentifier() const;
 	static const REUInt32 classIdentifier();
@@ -70,7 +67,7 @@ public:
 	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/* IRETextInputResponder */
-	virtual const REUIdentifier getTextInputResponderObjectIdentifier() const { return this->getObjectIdentifier(); }
+	virtual const REUIdentifier getTextInputResponderObjectIdentifier() const { return this->objectIdentifier(); }
 	virtual void onTextInputResponderTextInputStarted();
 	virtual void onTextInputResponderTextInputEnded();
 	virtual void onTextInputResponderTextChanged(const REString & newTextString);

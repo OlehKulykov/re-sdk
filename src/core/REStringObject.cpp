@@ -17,12 +17,14 @@
 
 #include "../../include/recore/REStringObject.h"
 
-#if defined(__RE_OS_BADA__) || defined(__RE_OS_LINUX__)
-#include <stdio.h>
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_STDARG_H)
 #include <stdarg.h>
-#include <ctype.h>
-#include <wctype.h>
-#endif /* __RE_OS_BADA__ */
+#endif
+
 
 const REUInt32 REStringObject::getClassIdentifier() const
 {
@@ -141,8 +143,15 @@ REStringObject * REStringObject::createWithFormatChars(const char * format, ...)
 		{
 			va_list args;
 			va_start(args, format);
-			char strBuff[512];
-			int writed = vsprintf(strBuff, format, args);
+			char strBuff[1024];
+			
+#if defined(HAVE_FUNCTION_VSNPRINTF)		
+			const int writed = vsnprintf(strBuff, 1024, format, args);
+#elif defined(HAVE_FUNCTION_VSPRINTF_S)		
+			const int writed = vsprintf_s(strBuff, format, args);
+#else		
+			const int writed = vsprintf(strBuff, format, args);
+#endif		
 			if (writed > 0)
 			{
 				newStr->append(strBuff, (REUInt32)writed);

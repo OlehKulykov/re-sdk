@@ -51,8 +51,6 @@ public:
 		}
 	}
 	
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
-	
 	REBOOL startWithDelay(const RETimeInterval delayTime)
 	{
 		if (delayTime > 0.0)
@@ -69,8 +67,7 @@ public:
 		return true;
 	}
 	
-	REDetachableThreadPrivate(REClassMethod * classMethod, REObject * methodObject) : 
-		REThread(),
+	REDetachableThreadPrivate(REClassMethod * classMethod, REObject * methodObject) : REThread(), REMainLoopUpdatable(),
 		_reThreadClassMethod(classMethod),
 		_reThreadClassMethodObject(methodObject),
 		_reThreadStartTime(0.0)

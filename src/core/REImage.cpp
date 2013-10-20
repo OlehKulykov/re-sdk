@@ -18,6 +18,10 @@
 #include "../../include/recore/REImage.h"
 #include "../../include/recore/REData.h"
 
+#if defined(HAVE_RECORE_SDK_CONFIG_H)
+#include "recore_sdk_config.h"
+#endif
+
 #ifdef __RE_RECORE_CAN_INITIALIZE_FROM_URL_STRING__
 #include "../../include/renetwork.h"
 #endif

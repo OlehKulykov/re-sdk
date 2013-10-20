@@ -102,7 +102,7 @@ const RETimeInterval REDate::minimumDifference(const REDate & anotherDate) const
 	return (RETimeInterval)dif2;
 }
 
-const char * REDate::defaultFormatString()
+const char * REDate::formatString()
 {
 	return "%Y-%m-%dT%H:%M:%ss-%z";
 }
@@ -113,7 +113,7 @@ REString REDate::toString() const
 	{
 		//2012-01-10T12:48:12-07:00
 		char buffer[64] = { 0 };
-		const size_t writed = strftime(buffer, 64, REDate::defaultFormatString(), &_t->timestruct);
+		const size_t writed = strftime(buffer, 64, REDate::formatString(), &_t->timestruct);
 		if (writed > 0)
 		{
 			return REString(buffer, (REUInt32)writed);
@@ -270,11 +270,6 @@ REDate::~REDate()
 
 REUInt32 REDate::getDaysPerMonth(const REUInt32 month, const REUInt32 year)
 {
-	if ( (IS_LEAP_YEAR(year)) && (month == 2))
-	{
-		return 29;
-	}
-
 	switch (month)
 	{
 		case 1:
@@ -293,7 +288,7 @@ REUInt32 REDate::getDaysPerMonth(const REUInt32 month, const REUInt32 year)
 			return 30;
 			break;
 		case 2:
-			return 28;
+			return (IS_LEAP_YEAR(year)) ? 29 : 28;
 			break;
 		default:
 			break;

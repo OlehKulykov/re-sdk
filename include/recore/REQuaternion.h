@@ -27,6 +27,8 @@
 #include <arm_neon.h>
 #endif
 
+class REString;
+
 class __RE_PUBLIC_CLASS_API__ REQuaternion
 {
 public:
@@ -185,6 +187,12 @@ public:
 		x(inx), y(iny), z(inz), w(inw) { }
 	REQuaternion() { memset(q, 0, sizeof(REFloat32) * 4); }
 	~REQuaternion() { }
+	
+	static REQuaternion fromString(const char * string);
+	
+	static REQuaternion fromString(const REString & string);
+	
+	static REString toString(const REQuaternion & quaternion);
 };
 
 

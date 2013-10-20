@@ -131,7 +131,6 @@ private:
 	static void convertSamples(const int samples, float ** pcm, void * buf, const int channels);
 public:
 	virtual void update(const RETimeInterval currentTime);
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
 	virtual REBOOL play();
 	virtual REBOOL isPlaying() const;

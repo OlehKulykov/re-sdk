@@ -43,18 +43,6 @@ public:
 	static void deleteObject(void* object);
 	static void addToArray(void* array, void* object);
 	static void addToDictionary(void* dict, void* key, void* value);
-	
-	
-	static void* createNullREObject(void * userData);	
-	static void* createNumberREObjectWithBool(const int isTrue, void * userData);	
-	static void* createNumberREObjectWithLongLong(const long long value, void * userData);	
-	static void* createNumberREObjectWithDouble(const double value, void * userData);	
-	static void* createStringREObjectWithUTF8(const char* utf8str, const int inLen, void * userData);	
-	static void* createArrayREObject(void * userData);	
-	static void* createDictionaryREObject(void * userData);	
-	static void deleteObjectREObject(void* object);
-	static void addToArrayREObject(void* array, void* object);
-	static void addToDictionaryREObject(void* dict, void* key, void* value);
 };
 
 #endif

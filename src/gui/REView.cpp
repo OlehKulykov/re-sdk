@@ -25,9 +25,7 @@
 #define RE_VIEW_XML_VISIBILITY_KEY_STRING "visible"
 #define RE_VIEW_XML_VISIBILITY_FORMAT_STRING "%i"
 #define RE_VIEW_XML_FRAME_KEY_STRING "framef"
-#define RE_VIEW_XML_FRAME_FORMAT_STRING "%f;%f;%f;%f"
 #define RE_VIEW_XML_COLOR_KEY_STRING "colorrgbaf"
-#define RE_VIEW_XML_COLOR_FORMAT_STRING "%f;%f;%f;%f"
 #define RE_VIEW_XML_RESPONDS_USER_ACTION_KEY_STRING "responduseraction"
 #define RE_VIEW_XML_RESPONDS_USER_ACTION_FORMAT_STRING "%i"
 #define RE_VIEW_XML_INTERCEPTS_USER_ACTION_KEY_STRING "interceptuseraction"
@@ -57,21 +55,13 @@ REBOOL REView::acceptViewStringParameter(REView * view, const char * key, const 
     }
     else if (strcmp(key, RE_VIEW_XML_FRAME_KEY_STRING) == 0)
     {
-        RERect f;
-        if (sscanf(value, RE_VIEW_XML_FRAME_FORMAT_STRING, &f.x, &f.y, &f.width, &f.height) == 4)
-        {
-            view->setFrame(f);
-            return true;
-        }
+        view->setFrame(RERect::fromString(value));
+        return true;
     }
     else if (strcmp(key, RE_VIEW_XML_COLOR_KEY_STRING) == 0)
     {
-        REColor c;
-        if (sscanf(value, RE_VIEW_XML_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
-        {
-            view->setColor(c);
-            return true;
-        }
+        view->setColor(REColor::fromString(value));
+		return true;
     }
     else if (strcmp(key, RE_VIEW_XML_RESPONDS_USER_ACTION_KEY_STRING) == 0)
     {
@@ -434,9 +424,7 @@ const char * REView::getXMLTagFormatString() { return RE_VIEW_XML_TAG_FORMAT_STR
 const char * REView::getXMLVisibilityKeyString() { return RE_VIEW_XML_VISIBILITY_KEY_STRING; }
 const char * REView::getXMLVisibilityFormatString() { return RE_VIEW_XML_VISIBILITY_FORMAT_STRING; }
 const char * REView::getXMLFrameKeyString() { return RE_VIEW_XML_FRAME_KEY_STRING; }
-const char * REView::getXMLFrameFormatString() { return RE_VIEW_XML_FRAME_FORMAT_STRING; }
 const char * REView::getXMLColorKeyString() { return RE_VIEW_XML_COLOR_KEY_STRING; }
-const char * REView::getXMLColorFormatString() { return RE_VIEW_XML_COLOR_FORMAT_STRING; }
 const char * REView::getXMLRespondsUserActionKeyString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_KEY_STRING; }
 const char * REView::getXMLRespondsUserActionFormatString() { return RE_VIEW_XML_RESPONDS_USER_ACTION_FORMAT_STRING; }
 const char * REView::getXMLInterceptsUserActionKeyString() { return RE_VIEW_XML_INTERCEPTS_USER_ACTION_KEY_STRING; }

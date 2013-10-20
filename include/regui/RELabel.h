@@ -193,27 +193,15 @@ public:
 	
 	/// Returns XML key string for text color.
     static const char * getXMLTextColorKeyString();
-	
-	/// Returns XML format string for text color.
-    static const char * getXMLTextColorFormatString();
-	
+		
 	/// Returns XML key string for text insets.
     static const char * getXMLTextInsetsKeyString();
-	
-	/// Returns XML format string for text insets.
-    static const char * getXMLTextInsetsFormatString();
 	
 	/// Returns XML key string for characters space ratio.
     static const char * getXMLCharsSpaceRatioKeyString();
 	
 	/// Returns XML format string for characters space ratio.
     static const char * getXMLCharsSpaceRatioFormatString();
-	
-	/// Returns XML key string for shadow color.
-    static const char * getXMLShadowColorKeyString();
-	
-	/// Returns XML format string for shadow color.
-    static const char * getXMLShadowColorFormatString();
 	
 	/// Returns XML key string for shadow offset.
     static const char * getXMLShadowOffsetKeyString();

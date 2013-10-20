@@ -1,5 +1,5 @@
 /*
- *   Copyright 2012 Kulikov Oleg
+ *   Copyright 2012 - 2013 Kulykov Oleh
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -21,40 +21,25 @@
 
 #include "RECommonHeader.h"
 #include "REString.h"
-#include "RERange.h"
-#include "REBuffer.h"
 #include "RENumber.h"
+#include "REPtr.h"
 
 /// http://en.wikipedia.org/wiki/URI_scheme
 
+class REURLInternal;
+
 class __RE_PUBLIC_CLASS_API__ REURL
 {
-private:	
-	static void parseUserNameAndPassword(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseQuery(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseFragment(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseFileNameAndExtension(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseUserInfo(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseHostName(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parsePort(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseAuthority(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parsePath(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseHierarchicalPart(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);
-	static void parseSchemeName(void * info, const char * stringValue, const REUInt32 location, const REUInt32 lenght);	
-	
-protected:
-	REBuffer _buffer;
-	void * _ranges;
-	
-	void setURL(const REURL & url);
+private:
 	void setURLString(const char * stringValue, const REUInt32 length = RENotFound);
 	void setWithLen(const char * stringValue, const REUInt32 lenght);
 	void parse();
 	
-	static REBOOL parse(void * info, const char * stringValue, const REUInt32 lenght);
+protected:
+	REPtr<REURLInternal> _i;
 	
 public:
-	REString schemeName() const;	
+	REString schemeName() const;
 	REString userInfo() const;
 	REString hostName() const;
 	RENumber port() const;

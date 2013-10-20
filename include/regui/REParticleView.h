@@ -62,7 +62,6 @@ public:
 	
 	/* REMainLoopUpdatable */
 	virtual void update(const RETimeInterval currentTime);
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
 	
     /* REGUIObject */
     /// Acepting string parameter and value string presentation from XML document.

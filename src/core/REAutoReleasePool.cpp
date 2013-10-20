@@ -18,30 +18,9 @@
 #include "../../include/recore/REAutoReleasePool.h"
 #include "../../include/recore/REThread.h"
 
-__RE_PUBLIC_CLASS_API__ REAutoReleasePool * REAutoReleasePool::_defaultPool = NULL;
-
 #define REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY (32)
 
-/* REObject */
-const REUInt32 REAutoReleasePool::getClassIdentifier() const
-{
-	return REAutoReleasePool::classIdentifier();
-}
-
-const REUInt32 REAutoReleasePool::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REAutoReleasePool");
-	return clasIdentif;
-}
-
-REBOOL REAutoReleasePool::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REAutoReleasePool::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REObject::isImplementsClass(classIdentifier));
-}
-
-void REAutoReleasePool::update(const RETimeInterval currentTime)
+void REAutoReleasePool::update()
 {
 	if (_isBusy)
 	{
@@ -59,14 +38,14 @@ void REAutoReleasePool::update(const RETimeInterval currentTime)
 		_index++;
 		if (autoReleasableObject) 
 		{
-			if (autoReleasableObject->getRetainCount()) 
+			if (autoReleasableObject->retainCount()) 
 			{
 				isAllDeleted = false;
 			}
 			else
 			{
 				_pool.setAt(i, NULL);
-                REObject::deleteObject(autoReleasableObject);
+                REObjectRemover::deleteObject(autoReleasableObject);
 			}
 		}
 	}
@@ -85,20 +64,15 @@ void REAutoReleasePool::update(const RETimeInterval currentTime)
 	_updateMutex.unlock();
 }
 
-const REUIdentifier REAutoReleasePool::getMainLoopUpdatableIdentifier() const
-{
-	return this->getObjectIdentifier();
-}
-
 REBOOL REAutoReleasePool::addObject(REObject * autoReleasableObject)
 {
-	REBOOL addResult = false;
 	_updateMutex.lock();
 	_isBusy++;
+	REBOOL addResult = false;
 	
 	if (autoReleasableObject)
 	{
-		const REUIdentifier oid = autoReleasableObject->getObjectIdentifier();
+		const REUIdentifier oid = autoReleasableObject->objectIdentifier();
 		REUInt32 indexOfNull = RENotFound;
 		const REUInt32 count = _pool.count();
 		for (REUInt32 i = _index; i < count; i++) 
@@ -106,7 +80,7 @@ REBOOL REAutoReleasePool::addObject(REObject * autoReleasableObject)
 			REObject * obj = _pool.at(i);
 			if (obj) 
 			{
-				if (oid == obj->getObjectIdentifier()) 
+				if (oid == obj->objectIdentifier()) 
 				{
 					_isBusy--;
 					_updateMutex.unlock();
@@ -134,14 +108,9 @@ REBOOL REAutoReleasePool::addObject(REObject * autoReleasableObject)
 	return addResult;
 }
 
-void REAutoReleasePool::onReleased()
-{
-	this->update(0.0);
-}
-
-REAutoReleasePool::REAutoReleasePool() : REObject(),
-_index(0),
-_isBusy(0)
+REAutoReleasePool::REAutoReleasePool() :
+	_index(0),
+	_isBusy(0)
 {
 	_updateMutex.init(REMutexTypeRecursive);
 	
@@ -152,22 +121,7 @@ _isBusy(0)
 
 REAutoReleasePool::~REAutoReleasePool()
 {
-	this->update(0.0);
+	this->update();
 }
-
-REAutoReleasePool * REAutoReleasePool::getDefaultPool()
-{
-	if (_defaultPool == NULL)
-	{
-		_defaultPool = new REAutoReleasePool();
-	}
-	return _defaultPool;
-}
-
-void REAutoReleasePool::releaseDefaultPool()
-{
-	RE_SAFE_DELETE(_defaultPool);
-}
-
 
 

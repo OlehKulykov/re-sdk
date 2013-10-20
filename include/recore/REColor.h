@@ -21,6 +21,8 @@
 #include "RECommonHeader.h"
 #include "REMem.h"
 
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -116,6 +118,12 @@ public:
 	
 	/// Destructor.
 	~REColor();
+	
+	static REColor fromString(const char * string);
+	
+	static REColor fromString(const REString & string);
+	
+	static REString toString(const REColor & color);
 };
 
 #endif /* __RECOLOR_H__ */

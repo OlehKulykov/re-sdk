@@ -101,7 +101,7 @@ public:
 	/// Checks is year leap.
 	static REBOOL isLeapYear(const REUInt32 year);
 	
-	static const char * defaultFormatString();
+	static const char * formatString();
 };
 
 #endif /* __REDATE_H__ */

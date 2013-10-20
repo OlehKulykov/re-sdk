@@ -39,10 +39,7 @@ typedef enum _reImageType
 	
 	/// JPEG image.
 	REImageTypeJPEG = 3,
-	
-	/// JPG200 image.
-	REImageTypeJPEG2000 = 4,
-	
+
 	/// WEBP image.
 	REImageTypeWEBP = 5
 } 
@@ -76,6 +73,7 @@ public:
 	/// Creates and return new buffer object with WEBP file presentation from image data(pixels), width, height and pixel format.
 	/// After using this buffer object call Release().
 	/// This functionality requires undefined flag __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
+	/// Use quality in range [0.0f; 100.0f], for lossless encoding provide quality bigger than 100.0f.
 	REPtr<REBuffer> createWebPFilePresentation(const REUByte * pixelsData,
 											   const REUInt32 width,
 											   const REUInt32 height,

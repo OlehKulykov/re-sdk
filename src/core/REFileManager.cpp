@@ -16,50 +16,74 @@
 
 
 #include "../../include/recore/REFileManager.h"
+#include "../../include/recore/REWideString.h"
 #include "../../include/recore/REFile.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/RELog.h"
 
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_SYS_STAT_H)
 #include <sys/stat.h>
-#include <fcntl.h>
+#endif
 
-#ifndef __RE_OS_WINDOWS__
+#if defined(HAVE_FCNTL_H)
+#include <fcntl.h>
+#endif
+
+#if defined(HAVE_UNISTD_H)
 #include <unistd.h>
 #endif
 
-
-#if ( defined(__RE_OS_MACOSX__) || defined(__RE_OS_IPHONE__) )
-#include <CoreFoundation/CoreFoundation.h>
-#endif
-
-#ifdef __RE_OS_WINDOWS__
-#include <direct.h>
-#include <stdlib.h>
-#include <stdio.h>
+#if defined(HAVE_ERRNO_H)
 #include <errno.h>
 #endif
+
+#if defined(HAVE_SYS_ERRNO_H)
+#include <sys/errno.h>
+#endif
+
+#if defined(HAVE_IO_H)
+#include <io.h>
+#endif
+
+#if defined(HAVE_WCHAR_H)
+#include <wchar.h>
+#endif
+
+#if defined(HAVE_DIRECT_H) 
+#include <direct.h>
+#endif
+
 
 REBOOL REFileManager::isReadableFileAtPath(const char * path) const
 {
 	if (path) 
 	{
-#ifndef __RE_OS_WINDOWS__
+#if defined(HAVE_FUNCTION_ACCESS)
 		if (access(path, R_OK) == 0)
 		{
 			return true;
 		}
-#endif /* NOT WIN */
-
-#ifdef __RE_OS_WINDOWS__
+#elif defined(HAVE_FUNCTION__ACCESS)
+		if (_access(path, R_OK) == 0)
+		{
+			return true;
+		}
+#elif defined(__RE_OS_WINDOWS__)
 		const DWORD dwAttrs = GetFileAttributesA(path);
 		if (dwAttrs == INVALID_FILE_ATTRIBUTES) 
 		{
 			return false;
 		}
 		return true; 
-#endif /* WIN */
+#else
+#error "Unimplemented REFileManager::isReadableFileAtPath"
+#endif	
 	}
 	return false;
-
 }
 
 REBOOL REFileManager::isReadableFileAtPath(const REString & path) const
@@ -68,50 +92,45 @@ REBOOL REFileManager::isReadableFileAtPath(const REString & path) const
 	{
 		return false;
 	}
-
-#ifndef __RE_OS_WINDOWS__	
-	return this->isReadableFileAtPath(path.UTF8String());
-#endif /* NOT WIN */
 	
-#ifdef __RE_OS_WINDOWS__
-	REStringPresentation p(path.UTF8String());
-	const wchar_t * widePath = p.WideString();
-	if (p.GetWideLength() && widePath) 
+#if defined(HAVE_FUNCTION__WACCESS)	
+	REWideString wideString(path);
+	if (_waccess(wideString.wideChars(), R_OK) == 0)
 	{
-		const DWORD dwAttrs = GetFileAttributesW(widePath);
-		if (dwAttrs == INVALID_FILE_ATTRIBUTES) 
-		{
-			return false;
-		}
 		return true;
 	}
-	return false;
-#endif /* WIN */
+#else
+	return this->isReadableFileAtPath(path.UTF8String());
+#endif	
 }
 
 REBOOL REFileManager::isWritableFileAtPath(const char * path) const
 {
 	if (path) 
 	{
-#ifndef __RE_OS_WINDOWS__
+#if defined(HAVE_FUNCTION_ACCESS)		
 		if (access(path, W_OK) == 0)
 		{
 			return true;
 		}
-#endif /* NOT WIN */
-
-#ifdef __RE_OS_WINDOWS__
+#elif defined(HAVE_FUNCTION__ACCESS)
+		if (_access(path, W_OK) == 0)
+		{
+			return true;
+		}
+#elif defined(__RE_OS_WINDOWS__)		
 		const DWORD dwAttrs = GetFileAttributesA(path);
 		if (dwAttrs == INVALID_FILE_ATTRIBUTES) 
 		{
 			return false;
 		}
-
 		if (!(dwAttrs & FILE_ATTRIBUTE_READONLY)) 
 		{ 
 			return true; 
 		} 
-#endif /* WIN */
+#else
+#error "Unimplemented REFileManager::isWritableFileAtPath"
+#endif		
 	}
 	return false;
 
@@ -124,28 +143,29 @@ REBOOL REFileManager::isWritableFileAtPath(const REString & path) const
 		return false;
 	}
 
-#ifndef __RE_OS_WINDOWS__	
-	return this->isWritableFileAtPath(path.UTF8String());
-#endif /* NOT WIN */
-	
-#ifdef __RE_OS_WINDOWS__
-	REStringPresentation p(path.UTF8String());
-	const wchar_t * widePath = p.WideString();
-	if (p.GetWideLength() && widePath) 
+#if defined(HAVE_FUNCTION__WACCESS)	
+	REWideString wideString(path);
+	if (_waccess(wideString.wideChars(), W_OK) == 0)
 	{
-		const DWORD dwAttrs = GetFileAttributesW(widePath);
-		if (dwAttrs == INVALID_FILE_ATTRIBUTES) 
-		{
-			return false;
-		}
-		
-		if (!(dwAttrs & FILE_ATTRIBUTE_READONLY)) 
-		{ 
-			return true; 
-		} 
+		return true;
 	}
 	return false;
-#endif /* WIN */
+#elif defined(__RE_OS_WINDOWS__)
+	REWideString wideString(path);
+	const DWORD dwAttrs = GetFileAttributesW(wideString.wideChars());
+	if (dwAttrs == INVALID_FILE_ATTRIBUTES) 
+	{
+		return false;
+	}
+	if (!(dwAttrs & FILE_ATTRIBUTE_READONLY)) 
+	{ 
+		return true; 
+	} 
+	return false;
+#else
+	return this->isWritableFileAtPath(path.UTF8String());
+#endif	
+	
 }
 
 REBOOL REFileManager::createFileAtPath(const char * path, REData * withFileData) const
@@ -215,21 +235,21 @@ REBOOL REFileManager::isFileExistsAtPath(const char * path, REBOOL * isDirectory
         return false;
     }
 
-#ifdef __RE_OS_WINDOWS__
-    struct _stat statbuf;
+#if defined(HAVE_STRUCT__STAT)	&& defined(HAVE_FUNCTION__STAT)
+	struct _stat statbuf;
     if (_stat(path, &statbuf) != 0)
     {
         return false;
     }
-#endif /* WIN */
-
-#ifndef __RE_OS_WINDOWS__
+#elif defined(HAVE_STRUCT_STAT) && defined(HAVE_FUNCTION_STAT)
 	struct stat statbuf;
 	if (stat(path, &statbuf) != 0)
 	{
 		return false;
 	}
-#endif /* NOT WIN */ 
+#else	
+#error "Unimplemented REFileManager::isFileExistsAtPath"
+#endif
 	
     if (isDirectory)
     {
@@ -289,20 +309,20 @@ REBOOL REFileManager::isFileExistsAtPath(const REString & path, REBOOL * isDirec
 
 REBOOL REFileManager::createDir(const char * path)
 {
-#ifndef __RE_OS_WINDOWS__	
+#if defined(HAVE_FUNCTION_MKDIR)
 	if (mkdir(path, 777) == 0) //created
 	{
 		return true;
 	}
-#endif /* NOT WIN */
-	
-#ifdef __RE_OS_WINDOWS__	
+#elif defined(HAVE_FUNCTION__MKDIR)
 	if (_mkdir(path) == 0) //created
 	{
 		return true;
 	}
-#endif /* WIN */
-	
+#else
+#error "Unimplemented REFileManager::createDir"
+#endif
+		
 	const int mkResult = errno;
 	if (mkResult == EEXIST) //allready exists - return true
 	{

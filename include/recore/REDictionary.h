@@ -35,45 +35,32 @@
 
 class REMutableString;
 
-
-
 /// Class for storing objects using by key value.
 class __RE_PUBLIC_CLASS_API__ REDictionary
 {
 public:
-	class Pair 
+	class __RE_PUBLIC_CLASS_API__ Pair 
 	{	
 	public:
 		RETypedPtr value;
 		RETypedPtr key;
-		REDictionary::Pair & operator=(const REDictionary::Pair & ap)
-		{
-			value = ap.value;
-			key = ap.key;
-			return (*this);
-		}
-		void release()
-		{
-			value.release();
-			key.release();
-		}
-		Pair(const REDictionary::Pair & ap) : value(ap.value), key(ap.key) { }
-		Pair(const RETypedPtr & newValue, const RETypedPtr & newKey) : value(newValue), key(newKey) { }
-		~Pair()
-		{
-			value.release();
-			key.release();
-		}
+		REDictionary::Pair & operator=(const REDictionary::Pair & ap);
+		void release();
+		Pair(const REDictionary::Pair & ap);
+		Pair(const RETypedPtr & newValue, const RETypedPtr & newKey);
+		~Pair();
 	};
 	
 private:	
 	REBOOL copyPairs(REArray<REDictionary::Pair> & pairs);
+	
 protected:
 	REArray<REDictionary::Pair> _pairs;
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.
 	REDictionary::Pair * pairForKey(const RETypedPtr & key, REUInt32 * resultIndex = NULL) const;
 	void clearPairs();
 	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize, const REPtrType type);
+
 public:
 	const REArray<REDictionary::Pair> & getPairs() const;
 	

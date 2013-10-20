@@ -119,7 +119,7 @@ void REDictionaryJSONGeneratorPrivate::addNumber(const RENumber & num)
 	}
 	else 
 	{
-		REString numStr = num.toString();
+		REString numStr(RENumber::toString(num));
 		if (numStr.isNotEmpty()) json.append(numStr);
 		else json.append("0", 1);
 	}
@@ -160,7 +160,6 @@ class REDictionaryPrivate
 {
 public:
 	static void setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks);
-	static void setupJSONReaderCallbacksForREObjects(OKJSONParserCallbacks * jsonCallbacks);
 };
 
 void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonCallbacks)
@@ -179,21 +178,39 @@ void REDictionaryPrivate::setupJSONReaderCallbacks(OKJSONParserCallbacks * jsonC
     jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObject;
 }
 
-void REDictionaryPrivate::setupJSONReaderCallbacksForREObjects(OKJSONParserCallbacks * jsonCallbacks)
+
+
+REDictionary::Pair & REDictionary::Pair::operator=(const REDictionary::Pair & ap)
 {
-	jsonCallbacks->_newMem = REDictionaryJSONCallbacks::newMem;
-    jsonCallbacks->_freeMem = REDictionaryJSONCallbacks::freeMem;
-    jsonCallbacks->_createNull = REDictionaryJSONCallbacks::createNullREObject;
-    jsonCallbacks->_createNumberWithBool = REDictionaryJSONCallbacks::createNumberREObjectWithBool;
-    jsonCallbacks->_createNumberWithLongLong = REDictionaryJSONCallbacks::createNumberREObjectWithLongLong;
-    jsonCallbacks->_createNumberWithDouble = REDictionaryJSONCallbacks::createNumberREObjectWithDouble;
-    jsonCallbacks->_createStringWithUTF8 = REDictionaryJSONCallbacks::createStringREObjectWithUTF8;
-    jsonCallbacks->_createArray = REDictionaryJSONCallbacks::createArrayREObject;
-    jsonCallbacks->_createDictionary = REDictionaryJSONCallbacks::createDictionaryREObject;
-    jsonCallbacks->_addToArray = REDictionaryJSONCallbacks::addToArrayREObject;
-    jsonCallbacks->_addToDictionary = REDictionaryJSONCallbacks::addToDictionaryREObject;
-    jsonCallbacks->_deleteObject = REDictionaryJSONCallbacks::deleteObjectREObject;
+	value = ap.value;
+	key = ap.key;
+	return (*this);
 }
+
+void REDictionary::Pair::release()
+{
+	value.release();
+	key.release();
+}
+
+REDictionary::Pair::Pair(const REDictionary::Pair & ap) : value(ap.value), key(ap.key) 
+{
+	
+}
+
+REDictionary::Pair::Pair(const RETypedPtr & newValue, const RETypedPtr & newKey) : 
+	value(newValue), 
+	key(newKey) 
+{
+	
+}
+
+REDictionary::Pair::~Pair()
+{
+	value.release();
+	key.release();
+}
+
 
 REBOOL REDictionary::copyPairs(REArray<REDictionary::Pair> & pairs)
 {
@@ -214,14 +231,7 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 {
 	REDictionaryJSONCallbacks dictCallbacks;
 	OKJSONParserCallbacks jsonCallbacks;
-	if (type == REPtrTypeREObject)
-	{
-		REDictionaryPrivate::setupJSONReaderCallbacksForREObjects(&jsonCallbacks);
-	}
-	else
-	{
-		REDictionaryPrivate::setupJSONReaderCallbacks(&jsonCallbacks);
-	}
+	REDictionaryPrivate::setupJSONReaderCallbacks(&jsonCallbacks);
 	
 	jsonCallbacks.userData = &dictCallbacks;
 	
@@ -230,25 +240,10 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 	{
 		RETypedPtr parsedPointer = *((RETypedPtr*)parsedObject);
 		REBOOL r = false;
-		if (type == REPtrTypeREObject)
+		REDictionary * dict = parsedPointer.getDictionary();
+		if (dict)
 		{
-			REObject * o = parsedPointer.getREObject();
-			if (o) 
-			{
-				//if (o->isImplementsClass(REDictionaryObject::classIdentifier()))
-				{
-					REDictionaryObject * dict = o->casted<REDictionaryObject>();// REPtrCast<REDictionaryObject, REObject>(o);
-					r = this->copyPairs(dict->_pairs);
-				}
-			}
-		}
-		else
-		{
-			REDictionary * dict = parsedPointer.getDictionary();
-			if (dict)
-			{
-				r = this->copyPairs(dict->_pairs);
-			}
+			r = this->copyPairs(dict->_pairs);
 		}
 		return r;
 	}

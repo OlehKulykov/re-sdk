@@ -18,10 +18,15 @@
 #include "../../include/recore/REMutableString.h"
 #include "../../include/recore/REWideString.h"
 #include "../../include/recore/REStringBase.h"
-
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_STDARG_H)
 #include <stdarg.h>
+#endif
 
 REMutableString & REMutableString::operator=(const char * utf8String)
 {
@@ -170,11 +175,17 @@ REMutableString & REMutableString::appendFormat(const char * format, ...)
 	{
 		va_list args;
 		va_start(args, format);
-		char strBuff[512];
+		char strBuff[1024];
+		
+#if defined(HAVE_FUNCTION_VSNPRINTF)		
+		const int writed = vsnprintf(strBuff, 1024, format, args);
+#elif defined(HAVE_FUNCTION_VSPRINTF_S)		
+		const int writed = vsprintf_s(strBuff, format, args);
+#else		
 		const int writed = vsprintf(strBuff, format, args);
+#endif		
 		if (writed > 0)
 		{
-			strBuff[writed] = 0;
 			this->append((const char *)strBuff, (REUInt32)writed);
 		}
 		va_end(args);
@@ -244,6 +255,23 @@ REMutableString & REMutableString::replace(const char * utf8String,
 		const REUInt32 firstLen = REStringUtilsPrivate::UTF8StringLength(utf8String);
 		const REUInt32 secondLen = REStringUtilsPrivate::UTF8StringLength(withUTF8StringOrNULL);
 		this->replaceWithLen(utf8String, withUTF8StringOrNULL, firstLen, secondLen);
+	}
+	return (*this);
+}
+
+REMutableString & REMutableString::replace(const char needChar, const char targetChar)
+{
+	if (this->isNotEmpty()) 
+	{
+		char * mainString = (char *)_p->buffer();
+		while (*mainString) 
+		{
+			if (*mainString == needChar) 
+			{
+				*mainString = targetChar;
+			}
+			mainString++;
+		}
 	}
 	return (*this);
 }

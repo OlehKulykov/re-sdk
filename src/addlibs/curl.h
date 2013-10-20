@@ -11,7 +11,7 @@
 
 #include "curl/include/curl/curl.h"
 
-#endif /* __RE_USING_ADITIONAL_CURL_LIBRARY__ */
+#endif 
 
 
 #endif

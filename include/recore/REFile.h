@@ -52,7 +52,10 @@ public:
 	/// Destructor.
 	virtual ~REFile();
 	
-	/// Opens file with path and opne mode.
+	/// Opens file with path and open mode.
+	static FILE * fileOpen(const char * filePath, const char * openMode);
+	
+	/// Opens file with path and open mode.
 	static FILE * fileOpen(const REString & filePath, const char * openMode);
 };
 

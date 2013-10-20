@@ -19,13 +19,13 @@
 
 REAnimationFloatParams * REEditableAnimationInfo::findParamForObjectInParams(REObject * view, REArray<REAnimationFloatParams *> * params)
 {
-	const REUIdentifier oid = view->getObjectIdentifier();
+	const REUIdentifier oid = view->objectIdentifier();
 	for (REUInt32 i = 0; i < params->count(); i++)
 	{
 		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->getObjectIdentifier())
+			if (oid == p->object->objectIdentifier())
 			{
 				return p;
 			}
@@ -43,13 +43,13 @@ REFloat32 REEditableAnimationInfo::getProgressForObjectAnimationInParams(REObjec
 																		 REArray<REAnimationFloatParams *> * params)
 {
 	const REFloat32 progress = animation->getProgress();
-	const REUIdentifier oid = animatedObject->getObjectIdentifier();
+	const REUIdentifier oid = animatedObject->objectIdentifier();
 	for (REUInt32 i = 0; i < params->count(); i++)
 	{
 		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->getObjectIdentifier())
+			if (oid == p->object->objectIdentifier())
 			{
 				return progress;
 			}
@@ -78,13 +78,13 @@ REBOOL REEditableAnimationInfo::stopAllAnimationForObjectWithStopType(REObject *
 																	  REArray<REAnimationFloatParams *> * params)
 {
 	REBOOL isFoundedAndStoped = false;
-	const REUIdentifier oid = animatedObject->getObjectIdentifier();
+	const REUIdentifier oid = animatedObject->objectIdentifier();
 	for (REUInt32 i = 0; i < params->count(); i++)
 	{
 		REAnimationFloatParams * p = params->at(i);
 		if (p)
 		{
-			if (oid == p->object->getObjectIdentifier())
+			if (oid == p->object->objectIdentifier())
 			{
 				if (params->removeAt(i))
 				{

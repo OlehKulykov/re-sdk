@@ -16,8 +16,18 @@
 
 
 #include "../../include/recore/RELog.h"
-#include <stdio.h>
-#include <wchar.h>
+
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_STDARG_H)
+#include <stdarg.h>
+#endif
 
 void RELog::log(const char * logString, ...)
 {
@@ -30,6 +40,7 @@ void RELog::log(const char * logString, ...)
 	}
 }
 
+#if !defined(__RE_OS_IPHONE__) && !defined(__RE_OS_MACOSX__)
 void RELog::logA(const char * logString, va_list arguments)
 {
 	if (logString)
@@ -38,4 +49,6 @@ void RELog::logA(const char * logString, va_list arguments)
 		vprintf(logString, arguments);
 	}
 }
+#endif
+
 

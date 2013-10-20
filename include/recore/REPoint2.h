@@ -24,6 +24,8 @@
 #include <arm_neon.h>
 #endif
 
+class REString;
+
 typedef struct _REPoint2Struct
 {
 	union 
@@ -139,6 +141,11 @@ public:
 	
 #endif
 	
+	static REPoint2 fromString(const char * string);
+	
+	static REPoint2 fromString(const REString & string);
+	
+	static REString toString(const REPoint2 & point);
 };
 
 

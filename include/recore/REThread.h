@@ -22,65 +22,30 @@
 #include "REObject.h"
 #include "REClassMethod.h"
 #include "REAutoReleasePool.h"
-
-#if defined(HAVE_PTHREAD_H)
-#include <pthread.h>
-#endif
-
-#ifndef __RE_TRY_USE_PTHREADS__
-#ifdef __RE_OS_WINDOWS__
-#ifndef __RE_USING_WINDOWS_THREADS__
-#define __RE_USING_WINDOWS_THREADS__
-#endif
-#include <Windows.h>
-#endif
-#endif
-
-typedef enum _reThreadState
-{
-	REThreadStateNone = 0,
-	REThreadStateCreated = 1,
-	REThreadStateDidEnterThreadFunc = (1 << 1),
-	REThreadStateWillExitThreadFunc = (1 << 2),
-	REThreadStateWillStartThreadBody = (1 << 3),
-	REThreadStateDidEndThreadBody = (1 << 4)
-}
-REThreadState;
+#include "REPtr.h"
 
 // http://locklessinc.com/articles/pthreads_on_windows/
+
+class REThreadInternal;
 
 /// Thread class for aditional work
 class __RE_PUBLIC_CLASS_API__ REThread : public REObject
 {
 private:
-#if defined(HAVE_PTHREAD_H) 
-	pthread_t _reThreadThread;
-#elif defined(__RE_USING_WINDOWS_THREADS__)	
-	HANDLE _reThreadThread;
-#endif
+	REThreadInternal * _t;
+//	REPtr<REThreadInternal> _t;
+	REBOOL _isTaskFinished;
+	REBOOL _isAutoreleaseWhenDone;
 	
-	REUInt16 _reThreadStates;
-	REBOOL _reThreadIsAutoreleaseWhenDone;
-
-	void _threadBody();
-	void addState(const REThreadState & state);
-	void removeState(const REThreadState & state);
-	REBOOL isHasState(const REThreadState & state) const;
-	
-#if defined(HAVE_PTHREAD_H)  
-	static void * threadFunction(void * th);
-#elif defined(__RE_USING_WINDOWS_THREADS__)
-	static DWORD WINAPI threadProc(LPVOID lpParameter);
-#endif	
+//	const REPtr<REThreadInternal> & internal() const;
+//	void releaseInternal();
+	static void invokeThreadBody(REThread * thread);
 	
 protected:	
 	virtual void threadBody() = 0;
 	
 public:
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	REBOOL isTaskFinished() const;
 	
 	/// Returns working thread priority. Value in range: [0.0f, 1.0f]
 	REFloat32 priority() const;
@@ -89,31 +54,22 @@ public:
 	REBOOL setPriority(const REFloat32 newPriority);
 	
 	/// Return flag is thread placed to autorelease pool when it's work done.
-	REBOOL isAutoReleaseWhenDone() const { return _reThreadIsAutoreleaseWhenDone; }
+	REBOOL isAutoReleaseWhenDone() const;
 	
 	/// Mark thread that it must be placed to autorelease pool when it's work done.
-	void setAutoReleaseWhenDone(REBOOL isAutorelease) { _reThreadIsAutoreleaseWhenDone = isAutorelease; }
+	void setAutoReleaseWhenDone(const REBOOL isAutorelease);
 	
 	/// Start thread's work
 	REBOOL start();
 	
-	/// Stop thread
-	REBOOL stop();
-	
-	/// Check thread working or not.
-	REBOOL isWorking() const;
+	/// Cancels thread
+	REBOOL cancel();
 	
 	REThread();
 	virtual ~REThread();
 	
 	/// Checking is executing in main thread.
 	static REBOOL isMainThread();
-	
-	/// Return main thread priority. Range [0.0f, 1.0f]
-	static REFloat32 mainThreadPriority();
-	
-	/// Setting main thread priority. Range [0.0f, 1.0f] 
-	static REBOOL setMainThreadPriority(const REFloat32 newPriority);
 	
 	/// If at least one aditional thread is created.
 	static REBOOL isMultiThreaded();
@@ -136,7 +92,7 @@ public:
 	
 	/// After delay in seconds invokes class method in separate thread.
 	/// Sending object will be ratained on start and released on the end of work.
-	static void detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, RETimeInterval delayTime);
+	static void detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, const RETimeInterval delayTime);
 	
 	/// Invokes class method in main thread.
 	/// Sending object will be ratained on start and released on the end of work.

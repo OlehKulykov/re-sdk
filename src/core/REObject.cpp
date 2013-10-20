@@ -19,18 +19,9 @@
 #include "../../include/recore/REAutoReleasePool.h"
 #include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
+#include "../../include/recore/REApplication.h"
 
-void * REObject::getVoidPointer()
-{
-	return _reObjectVoidPointer;
-}
-
-const void * REObject::getVoidPointer() const
-{
-	return _reObjectVoidPointer;
-}
-
-const REUIdentifier REObject::getObjectIdentifier() const
+const REUIdentifier REObject::objectIdentifier() const
 {
 	return _reObjectIdentifier;
 }
@@ -61,7 +52,7 @@ REBOOL REObject::isEqual(REObject * anotherObject)
 {
 	if (anotherObject) 
 	{
-		return (this->getObjectIdentifier() == anotherObject->getObjectIdentifier());
+		return (_reObjectIdentifier == anotherObject->_reObjectIdentifier);
 	}
 	return false;
 }
@@ -74,32 +65,18 @@ REObject & REObject::retain()
 
 void REObject::release() 
 {
+	REApplication * currApp = REApplication::currentApplication();
+	if (!currApp) 
+	{
+		RELog::log("Need create application");
+	}
+	
 	if (_reObjectRetainCount)
 	{
 		_reObjectRetainCount--;
 		if (_reObjectRetainCount == 0) 
 		{
-			/*
-			REAutoReleasePoolPrivate * pool = REAutoReleasePoolPrivate::GetCurrentThreadPool();
-			if (pool)
-			{
-				if (pool->AddObject(this))
-				{
-					this->OnReleased();
-				}
-				else
-				{
-					this->OnReleased();
-					REObject::Delete(this);
-				}
-			}
-			else
-			{
-				this->OnReleased();
-				REObject::Delete(this);
-			}
-			*/
-			if (REAutoReleasePool::getDefaultPool()->addObject(this))
+			if (currApp->autoReleaseObject(this))
 			{
 				this->onReleased();
 			}
@@ -111,11 +88,22 @@ void REObject::release()
 	}
 }
 
+const REUInt32 REObject::retainCount() const
+{
+	return _reObjectRetainCount;
+}
+
 REObject::REObject() :
 	_reObjectIdentifier(0),
 	_reObjectRetainCount(1)
 {
-	_reObjectVoidPointer = REPtrCast<void, void>(this);
+	union
+	{
+		REUIdentifier objID;
+		REObject * obj;
+	} u1;
+	u1.obj = this;
+	_reObjectIdentifier = u1.objID;
 }
 
 REObject::~REObject() 

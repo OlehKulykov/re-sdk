@@ -16,47 +16,44 @@
 
 
 #include "../../include/recore/REColor.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/private/REStringUtilsPrivate.h"
 
-//#ifdef __RE_OS_BADA__
-#include <stdio.h>
-#include <stdarg.h>
-#include <ctype.h>
-#include <wctype.h>
-//#endif /* __RE_OS_BADA__ */
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
 
 
 class REColorPrivate
 {
 	
 public:
-	static void SetColorFromHEXString(REColor * color, const char * hexString);
+	static void setColorFromHEXString(REColor * color, const char * hexString);
 };
 
-void REColorPrivate::SetColorFromHEXString(REColor * color, const char * hexString)
+void REColorPrivate::setColorFromHEXString(REColor * color, const char * hexString)
 {
-	if ( strlen(hexString) >= 7 )
+	if (strlen(hexString) >= 7)
 	{
 		char buff[8] = { 0 };
-		for ( int i = 0; i < 7; i++ )
+		for (int i = 0; i < 7; i++)
 		{
 			buff[i] = tolower(hexString[i]);
 		}
 		REUInt32 redByte = 0;
 		REUInt32 greenByte = 0;
 		REUInt32 blueByte = 0;
-#if defined(__RE_OS_WINDOWS__) && defined(_MSC_VER)
-		int readed = sscanf_s(buff, "#%2x%2x%2x", &redByte, &greenByte, &blueByte);
+		
+#if defined(HAVE_FUNCTION_SSCANF_S)		
+		const int readed = sscanf_s(buff, "#%2x%2x%2x", &redByte, &greenByte, &blueByte);
 #else
-		int readed = sscanf(buff, "#%2x%2x%2x", &redByte, &greenByte, &blueByte);
-#endif
+		const int readed = sscanf(buff, "#%2x%2x%2x", &redByte, &greenByte, &blueByte);
+#endif		
 		if (readed == 3)
 		{
-			if (redByte > 255) { redByte = 255; }
-			if (greenByte > 255) { greenByte = 255; }
-			if (blueByte > 255) { blueByte = 255; }
-			color->red = (REFloat32)redByte / 255.0f;
-			color->green = (REFloat32)greenByte / 255.0f;
-			color->blue = (REFloat32)blueByte / 255.0f;
+			color->red = (redByte < 255) ? ((REFloat32)redByte) / 255.0f : 1.0f;
+			color->green = (greenByte < 255) ? ((REFloat32)greenByte) / 255.0f : 1.0f;
+			color->blue = (blueByte < 255) ? ((REFloat32)blueByte) / 255.0f : 1.0f;
 			color->alpha = 1.0f;
 		}
 	}
@@ -83,7 +80,7 @@ void REColor::setHEX(const char * hexString)
 {
 	if (hexString)
 	{
-		REColorPrivate::SetColorFromHEXString(this, hexString);
+		REColorPrivate::setColorFromHEXString(this, hexString);
 	}
 }
 
@@ -118,3 +115,39 @@ REColor::~REColor()
 {
 
 }
+
+REColor REColor::fromString(const char * string)
+{
+	if (string) 
+	{
+		REColor c;
+		if (REStringUtilsPrivate::readArrayF32(string, c.rgba, 4, ';') == 4) 
+		{
+			return c;
+		}
+	}
+	return REColor();
+}
+
+REColor REColor::fromString(const REString & string)
+{
+	if (string.length() > 0) 
+	{
+		REColor c;
+		if (REStringUtilsPrivate::readArrayF32(string.UTF8String(), c.rgba, 4, ';') == 4) 
+		{
+			return c;
+		}
+	}
+	return REColor();
+}
+
+REString REColor::toString(const REColor & color)
+{
+	char buff[64];
+	const REUInt32 len = REStringUtilsPrivate::writeArrayF32(color.rgba, buff, 4, ';');
+	return REString(buff, len);
+}
+
+
+

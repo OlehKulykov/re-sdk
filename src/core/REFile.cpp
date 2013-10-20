@@ -16,7 +16,43 @@
 
 
 #include "../../include/recore/REFile.h"
+#include "../../include/recore/REWideString.h"
 
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_SYS_STAT_H)
+#include <sys/stat.h>
+#endif
+
+#if defined(HAVE_FCNTL_H)
+#include <fcntl.h>
+#endif
+
+#if defined(HAVE_UNISTD_H)
+#include <unistd.h>
+#endif
+
+#if defined(HAVE_ERRNO_H)
+#include <errno.h>
+#endif
+
+#if defined(HAVE_SYS_ERRNO_H)
+#include <sys/errno.h>
+#endif
+
+#if defined(HAVE_IO_H)
+#include <io.h>
+#endif
+
+#if defined(HAVE_WCHAR_H)
+#include <wchar.h>
+#endif
+
+#if defined(HAVE_DIRECT_H) 
+#include <direct.h>
+#endif
 
 class REFilePrivate
 {
@@ -169,64 +205,50 @@ REFile::~REFile()
 	}
 }
 
+FILE * REFile::fileOpen(const char * filePath, const char * openMode)
+{
+	if (filePath) 
+	{
+		openMode = (openMode) ? openMode : "rb";
+#if defined(HAVE_FUNCTION_FOPEN_S)
+		FILE * f = NULL;
+		if (fopen_s(&f, filePath, mode) == 0) 
+		{
+			return f; 
+		}
+#else
+		FILE * f = fopen(filePath, openMode);
+		return f;
+#endif		
+	}
+	return NULL;
+}
 
 FILE * REFile::fileOpen(const REString & filePath, const char * openMode)
 {
-	if ( filePath.isEmpty() ) { return NULL; }
+	if (filePath.isEmpty()) 
+	{
+		return NULL; 
+	}
 	
-#ifndef __RE_OS_WINDOWS__
-	// NOT WIN
-	const char * mode = NULL;
-	if (openMode) { mode = openMode; }
-	else { mode = "rb"; }
-	
-	FILE * f = fopen(filePath.UTF8String(), mode);
+#if defined(HAVE_FUNCTION__WFOPEN_S)	
+	REWideString mode;
+	if (openMode) { mode = openMode; } else { mode = L"rb"; }
+	REWideString wideString(filePath);
+	FILE * f = NULL;
+	if (_wfopen_s(&f, wideString.wideChars(), mode.wideChars()) == 0)
+	{
+		return f; 
+	}
+#elif defined(HAVE_FUNCTION__WFOPEN)
+	REWideString mode;
+	if (openMode) { mode = openMode; } else { mode = L"rb"; }
+	REWideString wideString(filePath);
+	FILE * f = _wfopen(wideString.wideChars(), mode.wideChars());
 	return f;
+#else
+	return REFile::fileOpen((const char *)filePath.UTF8String(), openMode);
 #endif	
-	
-#ifdef __RE_OS_WINDOWS__
-	// WIN
-	if ( filePath.IsNonASCIICharsPresent() ) 
-	{
-		REStringPresentation p(filePath.UTF8String());
-		FILE * f = NULL;
-		if (openMode) 
-		{
-			REStringPresentation modePresent(openMode);
-#ifdef _MSC_VER
-            if (_wfopen_s(&f, p.WideString(), modePresent.WideString()) == 0) { return f; }
-#else
-            f = _wfopen( p.WideString(), modePresent.WideString());
-            return f;
-#endif
-
-		}
-        else
-        {
-#ifdef _MSC_VER
-            if (_wfopen_s(&f, p.WideString(), L"rb") == 0) { return f; }
-#else
-            f = _wfopen(p.WideString(), L"rb");
-            return f;
-#endif
-        }
-	}
-	else
-	{
-		FILE * f = NULL;
-		const char * mode = NULL;
-		if (openMode) { mode = openMode; }
-		else { mode = "rb"; }
-#ifdef _MSC_VER
-		if (fopen_s(&f, filePath.UTF8String(), mode) == 0) { return f; }
-#else
-        f = fopen(filePath.UTF8String(), mode);
-        return f;
-#endif
-	}
-#endif 	
-	
-	return NULL;
 }
 
 

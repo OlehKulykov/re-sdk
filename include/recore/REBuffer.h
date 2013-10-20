@@ -25,9 +25,12 @@ class REString;
 /// Class of memory buffer.
 class __RE_PUBLIC_CLASS_API__ REBuffer
 {
-private:
+protected:
 	void * _buff;
 	REUInt32 _size;
+	
+	virtual void * mallocNewMemory(const REUInt32 size);
+	virtual void freeMemory(void * mem);
 	
 public:
 	/// Checks is buffer equal with another buffer.

@@ -1,0 +1,67 @@
+/*
+ *   Copyright 2012 - 2013 Kulykov Oleh
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+
+
+#include "../../include/recore/REBufferNoCopy.h"
+
+void REBufferNoCopy::defaultFreeBuffCallback(void * mem)
+{
+	free(mem);
+}
+
+void REBufferNoCopy::freeMemory(void * mem)
+{
+	if (_isNeedToFreeOriginalBuff) 
+	{
+		_freeOriginalBuff(mem);
+		_isNeedToFreeOriginalBuff = false;
+	}
+	else
+	{
+		REBuffer::freeMemory(mem);
+	}	
+}
+
+REBufferNoCopy::REBufferNoCopy(void * originalBuff, const REUInt32 buffSize, REBufferNoCopyFreeBuff freeOriginalBuff) : REBuffer(),
+	_freeOriginalBuff(freeOriginalBuff),
+	_isNeedToFreeOriginalBuff(false)
+{
+	if (_freeOriginalBuff) 
+	{
+		if (originalBuff && buffSize) 
+		{
+			_buff = originalBuff;
+			_size = buffSize;
+			_isNeedToFreeOriginalBuff = true;
+		}
+	}
+	else
+	{
+		this->set(originalBuff, buffSize);
+	}
+}
+
+REBufferNoCopy::~REBufferNoCopy()
+{
+	if (_isNeedToFreeOriginalBuff) 
+	{
+		_freeOriginalBuff(_buff);
+	}
+	else
+	{
+		this->clear();
+	}
+}

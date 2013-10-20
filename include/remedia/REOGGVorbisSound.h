@@ -79,7 +79,6 @@ protected:
 public:
 	/* REMainLoopUpdatable */
 	virtual void update(const RETimeInterval currentTime);
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const;
 	
 	REBOOL initWithData(const REData & soundFileData);
 	virtual REBOOL play();

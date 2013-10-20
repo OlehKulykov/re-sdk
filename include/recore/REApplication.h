@@ -24,39 +24,27 @@
 #include "REObject.h"
 #include "REString.h"
 #include "REMutableString.h"
+#include "REMainLoopUpdatable.h"
+
+class REApplicationInternal;
 
 /// Class of recore basic application
-class __RE_PUBLIC_CLASS_API__ REApplication : public REObject
+class __RE_PUBLIC_CLASS_API__ REApplication
 {
 private:
-	REAutoReleasePool * _appAutoReleasePool;
-	REMutableString _errorDescriptionString;
+	REApplicationInternal * _a;
 	
 	REBOOL reapplicationInit();
 	
-protected:
-	void addToErrorDescription(const REString & errorString);
-	void clearErrorDescription();
-	REApplication();
-	virtual ~REApplication();
 public:
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void onReleased();
-	
-	/// Returns string with application error description string.
-	const REString & getErrorDescriptionString() const;
-	
 	/// Returns name of application.
-	virtual REString getName() const;
+	virtual REString name() const;
 	
 	/// Returns float value of application version
-	virtual REFloat32 getVersion() const;
+	virtual REFloat32 version() const;
 	
 	/// Returns application description.
-	virtual REString getDescription() const;
+	virtual REString description() const;
 	
 	/// Initializes application.
 	virtual REBOOL initialize();
@@ -78,6 +66,17 @@ public:
 	/// Updates application logic. Call this method from thread in witch application was created.
 	/// Need for updating application time, main loop objects and default auto release pool.
 	void update();
+	
+	REBOOL autoReleaseObject(REObject * object);
+	
+	REUIdentifier addToMainLoop(REMainLoopUpdatable * object);
+	
+	REUIdentifier removeFromMainLoop(REMainLoopUpdatable * object);
+	
+	REApplication();
+	virtual ~REApplication();
+	
+	static REApplication * currentApplication();
 };
 
 

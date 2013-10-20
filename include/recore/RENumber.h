@@ -83,12 +83,7 @@ protected:
 	};
 	RENumberType _type;
 	
-	static REBOOL applyValueFromString(RENumber * number, const char * strValue);
-	static void applyNumberValueToString(const RENumber & number, REString * string);
-	
 public:
-	REString toString() const;
-	
 	/// Returns type of number.
 	RENumberType getType() const;
 	
@@ -142,15 +137,6 @@ public:
 	
 	/// Returns time interval value.
 	RETimeInterval timeIntervalValue() const;
-	
-	/// Returns string presentation of value.
-	REString stringValue() const;
-	
-	/// Setting value from string.
-	REBOOL setValueFromString(const REString & strValue);
-	
-	/// Setting value from string.
-	REBOOL setValueFromString(const char * strValue);
 	
 	/// Setting boolean value.
 	void setBoolValue(REBOOL newValue);
@@ -248,6 +234,12 @@ public:
 	
 	/// Destructor.
 	virtual ~RENumber();
+	
+	static RENumber fromString(const char * string);
+	
+	static RENumber fromString(const REString & string);
+	
+	static REString toString(const RENumber & number);
 };
 
 

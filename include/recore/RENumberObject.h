@@ -24,6 +24,8 @@
 
 class __RE_PUBLIC_CLASS_API__ RENumberObject : public RENumber, public REObject
 {
+private:
+	RENumberObject(const char * string);
 protected:
 	RENumberObject();
 	virtual ~RENumberObject();

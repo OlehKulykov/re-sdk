@@ -16,6 +16,41 @@
 
 
 #include "../../include/recore/RERect.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/private/REStringUtilsPrivate.h"
 
+
+RERect RERect::fromString(const char * string)
+{
+	if (string) 
+	{
+		RERect r;
+		if (REStringUtilsPrivate::readArrayF32(string, r.xywh, 4, ';') == 4) 
+		{
+			return r;
+		}
+	}
+	return RERect();
+}
+
+RERect RERect::fromString(const REString & string)
+{
+	if (string.length() > 0) 
+	{
+		RERect r;
+		if (REStringUtilsPrivate::readArrayF32(string.UTF8String(), r.xywh, 4, ';') == 4) 
+		{
+			return r;
+		}
+	}
+	return RERect();
+}
+
+REString RERect::toString(const RERect & rect)
+{
+	char buff[64];
+	const REUInt32 len = REStringUtilsPrivate::writeArrayF32(rect.xywh, buff, 4, ';');
+	return REString(buff, len);	
+}
 
 

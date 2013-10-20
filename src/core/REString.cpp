@@ -18,8 +18,15 @@
 #include "../../include/recore/REString.h"
 #include "../../include/recore/REWideString.h"
 #include "../../include/recore/REMutableString.h"
-
 #include "../../include/recore/private/REStringUtilsPrivate.h"
+
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_STDARG_H)
+#include <stdarg.h>
+#endif
 
 REString & REString::operator=(const char * utf8String)
 {
@@ -257,3 +264,31 @@ REString::~REString()
 {
 	
 }
+
+REString REString::createWithFormat(const char * format, ...)
+{
+	if (format)
+	{
+		va_list args;
+		va_start(args, format);
+		char strBuff[1024];
+		
+#if defined(HAVE_FUNCTION_VSNPRINTF)		
+		const int writed = vsnprintf(strBuff, 1024, format, args);
+#elif defined(HAVE_FUNCTION_VSPRINTF_S)		
+		const int writed = vsprintf_s(strBuff, format, args);
+#else		
+		const int writed = vsprintf(strBuff, format, args);
+#endif		
+		va_end(args);
+		if (writed > 0)
+		{
+			strBuff[writed] = 0;
+			return REString(strBuff, (REUInt32)writed);
+		}
+	}
+	return REString();
+}
+
+
+

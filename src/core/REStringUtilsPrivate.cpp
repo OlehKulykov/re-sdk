@@ -17,6 +17,10 @@
 
 #include "../../include/recore/private/REStringUtilsPrivate.h"
 
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
 REBuffer * REStringUtilsPrivate::newBufferWithSize(const REUInt32 newSize)
 {
 	REBuffer * b = new REBuffer(newSize);
@@ -628,10 +632,92 @@ REBOOL REStringUtilsPrivate::isBuffersEqual(const REPtr<REBuffer> & b1, const RE
 	return false;
 }
 
+REUInt32 REStringUtilsPrivate::writeArrayF32(const REFloat32 * arr, char * buff, const REUInt32 count, const char sep)
+{
+	REUInt32 w = 0;
+	for (REUInt32 i = 0; i < count; i++) 
+	{
+		if (i) 
+		{
+			*buff++ = sep;
+			w++;
+		}
+#if defined(HAVE_FUNCTION_SPRINTF_S)	
+		const int writed = sprintf_s(buff, "%f", *arr++);
+#else
+		const int writed = sprintf(buff, "%f", *arr++);
+#endif		
+		if (writed > 0) 
+		{ 
+			int wr = writed;
+			int remove = 0;
+			REBOOL isDot = false, isDig = false;
+			char * bbb = buff + writed;
+			while (wr-- > 0) 
+			{
+				switch (*bbb--) 
+				{
+					case '.':
+						isDot = true;
+						if (!isDig) remove++;
+						break;
+					case '0':
+						if (!isDig && !isDot) remove++;
+						break;
+					case 0:
+						break;
+					default:
+						isDig = true;
+						break;
+				}
+			}
+			if (isDot) 
+			{
+				const int wr_rem = writed - remove;
+				buff += wr_rem; 
+				w += wr_rem; 
+			}
+			else
+			{
+				buff += writed; 
+				w += writed;
+			}			
+		}
+		else 
+		{
+			return 0;
+		}
+	}
+	return w;
+}
 
-
-
-
+REUInt32 REStringUtilsPrivate::readArrayF32(const char * buff, REFloat32 * arr, const REUInt32 count, const char sep)
+{
+	REUInt32 w = 0;
+	for (REUInt32 i = 0; i < count; i++) 
+	{
+		if (i) 
+		{
+			buff = strchr(buff, sep);
+			if (buff) buff++;
+			else return w;
+		}
+#if defined(HAVE_FUNCTION_SSCANF_S)
+		const int readed = sscanf_s(buff, "%f", arr++);
+#else		
+		const int readed = sscanf(buff, "%f", arr++);
+#endif		
+		if (readed == 1)
+		{
+			w++;
+		}
+		else
+		{
+			return 0;
+		}
+	}	
+	return w;
+}
 
 
 

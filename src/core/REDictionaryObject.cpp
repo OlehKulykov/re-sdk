@@ -48,7 +48,7 @@ REBOOL REDictionaryObject::isEqual(REObject * anotherObject)
 	{
 		if (anotherObject->isImplementsClass(REDictionaryObject::classIdentifier())) 
 		{
-			REDictionaryObject * dict = anotherObject->casted<REDictionaryObject>();
+			REDictionaryObject * dict = REPtrCast<REDictionaryObject, REObject>(anotherObject);
 			dict = NULL;
 		}
 	}
@@ -57,31 +57,16 @@ REBOOL REDictionaryObject::isEqual(REObject * anotherObject)
 
 REBOOL REDictionaryObject::setObject(REObject * newValue, REObject * key)
 {
-	return this->setValue(RETypedPtr(REPtrCast<void, REObject>(newValue) ,REPtrTypeREObject), 
-						  RETypedPtr(REPtrCast<void, REObject>(key) ,REPtrTypeREObject));
+	return false;
 }
 
 REObject * REDictionaryObject::objectForKey(REObject * key)
 {
-	if (key)
-	{
-		RETypedPtr pkey(REPtrCast<void, REObject>(key) ,REPtrTypeREObject);
-		REDictionary::Pair * pair = this->pairForKey(pkey);
-		if (pair)
-		{
-			return pair->value.getREObject();
-		}
-	}
 	return NULL;
 }
 
 REBOOL REDictionaryObject::initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize)
 {
-	this->clearPairs();
-	if (jsonData && jsonDataSize)
-	{
-		return this->readJSONData(jsonData, jsonDataSize, REPtrTypeREObject);
-	}
 	return false;
 }
 

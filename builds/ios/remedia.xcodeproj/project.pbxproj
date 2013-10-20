@@ -345,7 +345,7 @@
 		3D2E5AE3150A498E00F17250 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 3D2E5AE6150A498E00F17250 /* Build configuration list for PBXProject "remedia" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -419,7 +419,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -445,6 +444,7 @@
 					../ios/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = iphoneos;
 			};
@@ -454,7 +454,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -494,6 +493,7 @@
 					USE_MEMORY_H,
 					DEBUG,
 					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
 				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -520,6 +520,7 @@
 					THEORA_DISABLE_ENCODE,
 					USE_MEMORY_H,
 					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
 				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;

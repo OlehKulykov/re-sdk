@@ -29,6 +29,7 @@
 
 class REPoint2;
 class RETetragon;
+class REString;
 
 /// Affine transform object
 class __RE_PUBLIC_CLASS_API__ REAffineTransform
@@ -248,6 +249,11 @@ public:
 	
 #endif
 	
+	static REAffineTransform fromString(const char * string);
+	
+	static REAffineTransform fromString(const REString & string);
+	
+	static REString toString(const REAffineTransform & transform);
 };
 
 

@@ -21,10 +21,9 @@
 #include "../../include/regui/RETextureObject.h"
 #include "../../include/regui/REParticleView.h"
 #include "../../include/recore/REThread.h"
-
+#include "../../include/recore/REMutableString.h"
 
 #define RE_VIEW_CONTROLLER_XML_SIZE_KEY_STRING "sizef"
-#define RE_VIEW_CONTROLLER_XML_SIZE_FORMAT_STRING "%f;%f"
 
 
 class REViewControllerCreateTextureMainThreadTaskPrivateBase : public REObject
@@ -186,12 +185,8 @@ REBOOL REViewController::acceptStringParameter(const char * key, const char * va
 	{
 		if (value) 
 		{
-			RESize s;
-			if (sscanf(value, RE_VIEW_CONTROLLER_XML_SIZE_FORMAT_STRING, &s.width, &s.height) == 2) 
-			{
-				_frame.setSize(s);
-				return true;
-			}
+			_frame.setSize(RESize::fromString(value));
+			return true;
 		}
 	}
 	
@@ -258,27 +253,28 @@ void REViewController::LoadByNameThreadMethod(REObject * dataFilePathStringObjec
 
 REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackground)
 {	
+	REString path = REString::createWithFormat("data/vc/%s/vc.xml", name.UTF8String());
 	REBOOL loadResult = false;
-	REStringObject * strObj = REStringObject::createWithChars("data/vc/");
-	if (strObj) 
+	if (path.length() > 0) 
 	{
-		strObj->appendFormat("%s/vc.xml", name.UTF8String());
 		if (isLoadInBackground) 
 		{
+			REStringObject * strObj = REStringObject::createWithString(path);
 			REThread::detachNewThreadWithMethod(NEW_CLASS_METHOD(REViewController, this, LoadByNameThreadMethod), strObj);
 			loadResult = true;
+			strObj->release();
 		}
 		else
 		{
 			REData xmlData;
-			if (xmlData.initFromPath(*strObj)) 
+			if (xmlData.initFromPath(path)) 
 			{
-				REString xmlString((const char*)xmlData.bytes());
+				REString xmlString((const char *)xmlData.bytes(), xmlData.size());
+				xmlData.clear();
 				REViewController::LoadVCFromXMLString(this, xmlString, false);
 				loadResult = true;
 			}
 		}
-		strObj->release();
 	}	
 	return loadResult;
 }
@@ -387,10 +383,5 @@ REViewController * REViewController::create()
 const char * REViewController::getXMLSizeKeyString()
 {
 	return RE_VIEW_CONTROLLER_XML_SIZE_KEY_STRING;
-}
-
-const char * REViewController::getXMLSizeFormatString()
-{
-	return RE_VIEW_CONTROLLER_XML_SIZE_FORMAT_STRING;
 }
 

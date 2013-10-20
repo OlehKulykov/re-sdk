@@ -28,6 +28,7 @@
 #endif
 
 class REQuaternion;
+class REString;
 
 class __RE_PUBLIC_CLASS_API__ REMatrix4
 {
@@ -428,6 +429,11 @@ public:
 	void log() const;
 #endif	
 	
+	static REMatrix4 fromString(const char * string);
+	
+	static REMatrix4 fromString(const REString & string);
+	
+	static REString toString(const REMatrix4 & matrix);
 };
 
 #endif /* __REMATRIX4_H__ */

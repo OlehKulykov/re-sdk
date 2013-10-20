@@ -139,11 +139,6 @@ void REOGGVorbisSound::update(const RETimeInterval currentTime)
 #endif
 }
 
-const REUIdentifier REOGGVorbisSound::getMainLoopUpdatableIdentifier() const
-{
-	return this->getObjectIdentifier();
-}
-
 REBOOL REOGGVorbisSound::play()
 {
 #ifndef __RE_NO_OGG_VORBIS_SOUND_PRIVATE__

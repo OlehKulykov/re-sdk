@@ -49,6 +49,11 @@ REBOOL RENumberObject::isEqual(REObject * anotherObject)
 	return false;
 }
 
+RENumberObject::RENumberObject(const char * string) : RENumber(string) , REObject()
+{
+	
+}
+
 RENumberObject::RENumberObject() : RENumber(), REObject()
 {
 	
@@ -215,16 +220,7 @@ RENumberObject * RENumberObject::createWithStringPresentation(const char * strin
 {
 	if (stringPresentation) 
 	{
-		RENumberObject * newNumber = new RENumberObject();
-		if (newNumber) 
-		{
-			if (newNumber->setValueFromString(stringPresentation)) 
-			{
-				return newNumber;
-			}
-			
-			delete newNumber;
-		}
+		return (new RENumberObject(stringPresentation));
 	}
 	return NULL;
 }

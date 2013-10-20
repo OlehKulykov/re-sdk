@@ -20,6 +20,7 @@
 
 #include "RECommonHeader.h"
 #include "REString.h"
+
 #include <stdarg.h>
 
 /// Class using for logining text messages.

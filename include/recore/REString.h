@@ -76,6 +76,8 @@ public:
 	
 	virtual ~REString();
 	
+	static REString createWithFormat(const char * format, ...);
+	
 #if defined(CFSTR) 
 	
 	CFStringRef getCFString() const

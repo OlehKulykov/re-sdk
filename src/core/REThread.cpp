@@ -16,16 +16,32 @@
 
 
 #include "../../include/recore/REThread.h"
+#include "../../include/recore/REMutex.h"
 #include "../../include/recore/private/REDetachableThreadPrivate.h"
 #include "../../include/recore/private/REMainThreadClassMethodPrivate.h"
 #include "../../include/recore/private/REMainThreadClassMethodWaitedPrivate.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 #include "../../include/recore/REMath.h"
+#include "../../include/recore/REList.h"
 
+#ifdef DEBUG
+#include "../../include/recore/RELog.h"
+#endif
+
+
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
 
 #if defined(HAVE_PTHREAD_H)
 #include <pthread.h>
+#elif defined(__RE_OS_WINDOWS__)
+/* Use Windows threading */
+#ifndef __RE_USING_WINDOWS_THREADS__
+#define __RE_USING_WINDOWS_THREADS__
 #endif
+#include <Windows.h>
+#endif /* __RE_OS_WINDOWS__ */
 
 #if defined(HAVE_SYS_TIME_H)
 #include <sys/time.h>
@@ -35,314 +51,393 @@
 #include <unistd.h>
 #endif
 
-#ifndef __RE_TRY_USE_PTHREADS__
-#ifdef __RE_OS_WINDOWS__
-#ifndef __RE_USING_WINDOWS_THREADS__
-#define __RE_USING_WINDOWS_THREADS__
-#endif
-#include <Windows.h>
-#endif
+#if defined(HAVE_DISPATCH_DISPATCH_H)
+#include <dispatch/dispatch.h>
 #endif
 
-class REThreadPrivate 
+typedef void(*REThreadInvokeThreadBodyFunction)(REThread *);
+
+class REThreadInternal 
 {
+private:
+	REBOOL _isTaskFinished;
 public:
-#if defined(HAVE_PTHREAD_H)   
+	REBOOL isTaskFinished() const { return _isTaskFinished; }
+#if defined(HAVE_PTHREAD_H) 
+	pthread_t _reThreadThread;
+#elif defined(__RE_USING_WINDOWS_THREADS__)	
+	HANDLE _reThreadThread;
+#endif
+	REThread * parent;
+	REThreadInvokeThreadBodyFunction invokeFunction;
+	
+	void threadBody()
+	{		
+		REThread * p = parent;
+		REThreadInvokeThreadBodyFunction f = invokeFunction;
+		if (p && f) 
+		{
+			f(p); 
+		}
+		_isTaskFinished = true;
+	}
+	
+	REThreadInternal(REThread * p) :
+	_isTaskFinished(false),
+#if defined(HAVE_PTHREAD_H) 
+	_reThreadThread((pthread_t)0),
+#elif defined(__RE_USING_WINDOWS_THREADS__)	
+	_reThreadThread((HANDLE)0),
+#endif
+	parent(p),
+	invokeFunction(NULL)
+	{
+		if (!_internalsMutex.isInitialized()) 
+		{
+			_internalsMutex.init(REMutexTypeRecursive);
+		}
+	}
+	
+	~REThreadInternal()
+	{
+		this->cancel();
+	}
+	
+	REBOOL start()
+	{
+#if defined(HAVE_PTHREAD_H)  
+		if (_reThreadThread) { return false; }
+		
+		size_t stackSize = 0;
+		
+#if defined(HAVE_FUNCTION_GETRLIMIT)		
+		struct rlimit limit = { 0 };
+		const int rc = getrlimit(RLIMIT_STACK, &limit);
+		if (rc == 0) 
+		{
+			if (limit.rlim_cur != 0) { stackSize = (size_t)limit.rlim_cur; }
+		}
+#endif		
+		
+		pthread_attr_t threadAttr = { 0 };
+		pthread_attr_init(&threadAttr);
+		
+#if defined( HAVE_FUNCTION_PTHREAD_ATTR_SETSCOPE) 
+		pthread_attr_setscope(&threadAttr, PTHREAD_SCOPE_SYSTEM);
+#endif		
+		
+		pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_JOINABLE);
+		if (stackSize > 0) 
+		{
+#if defined(HAVE_FUNCTION_PTHREAD_ATTR_SETSTACKSIZE)			
+			pthread_attr_setstacksize(&threadAttr, stackSize);
+#endif			
+		}
+		
+		REBOOL isCreated = false;
+		pthread_t newThread = (pthread_t)0;
+		if (pthread_create(&newThread, &threadAttr, REThreadInternal::threadFunction, REPtrCast<void, REThreadInternal>(this)) == 0) 
+		{
+			isCreated = true;
+			REThreadInternal::isMultiThreaded = true;
+			_reThreadThread = newThread;
+		}
+		
+		pthread_attr_destroy(&threadAttr);
+		return isCreated;
+		
+#elif defined(__RE_USING_WINDOWS_THREADS__) 
+		HANDLE hThread = CreateThread(NULL, 0, REThreadInternal::threadProc, REPtrCast<LPVOID, REThreadInternal>(this), 0, NULL);
+		if (hThread)
+		{
+			REThreadInternal::isMultiThreaded = true;
+			_reThreadThread = hThread;
+			this->addState(REThreadStateCreated);
+			return true;
+		}
+#endif	
+		
+		return false;
+	}
+		
+	REBOOL cancel()
+	{
+#if defined(HAVE_PTHREAD_H)  
+		if (_reThreadThread) 
+		{
+			REBOOL res = false;
+			pthread_t th = _reThreadThread;
+			if (pthread_cancel(th) == 0) 
+			{
+				void * r = NULL;
+				if (pthread_join(th, &r) == 0) 
+				{
+					res = (r == PTHREAD_CANCELED);
+				}
+			}
+			_reThreadThread = (pthread_t)0;
+			return res;
+		}
+#elif defined (__RE_USING_WINDOWS_THREADS__) 
+		if (_reThreadThread) 
+		{
+			bool isAlive = false;
+			DWORD dwExitCode = 0;
+			if (GetExitCodeThread(_reThreadThread, &dwExitCode))
+			{
+				// if return code is STILL_ACTIVE,
+				// then thread is live.
+				isAlive = (dwExitCode == STILL_ACTIVE);
+			}
+			if (isAlive)
+			{
+				TerminateThread(_reThreadThread, 0);
+			}
+			CloseHandle(_reThreadThread);
+			_reThreadThread = (HANDLE)0;
+			_reThreadStates = 0;
+			return true;
+		}
+#endif		
+		return true;
+	}
+	
+	REFloat32 priority() const
+	{
+#if defined(HAVE_PTHREAD_H)  
+		if (_reThreadThread) 
+		{
+			const int maxPrior = sched_get_priority_max(SCHED_RR);
+			if (maxPrior > 0) 
+			{
+				struct sched_param p = { 0 };
+				int policy = SCHED_RR;
+				pthread_t thisThread = _reThreadThread;
+				if ( pthread_getschedparam(thisThread, &policy, &p) == 0 )
+				{
+					return ((REFloat32)p.sched_priority / (REFloat32)maxPrior);
+				}
+			}
+		}
+#elif defined(__RE_USING_WINDOWS_THREADS__) 
+		if (_reThreadThread) 
+		{
+			const int prior = GetThreadPriority(_reThreadThread);
+			const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
+			const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
+			return ( (REFloat32)(prior - minPriority) / (REFloat32)range );
+		}
+#endif	
+		return 0.0f;
+	}
+	
+	REBOOL setPriority(const REFloat32 newPriority)
+	{
+		if ((newPriority <= 0.0f) || (newPriority > 1.0f)) return false;
+#if defined(HAVE_PTHREAD_H)  
+		if (_reThreadThread) 
+		{
+			const int maxPrior = sched_get_priority_max(SCHED_RR);
+			if (maxPrior > 0) 
+			{
+				struct sched_param p = { 0 };
+				p.sched_priority = (int)(newPriority * maxPrior);
+				pthread_t thisThread = _reThreadThread;
+				return ( pthread_setschedparam(thisThread, SCHED_RR, &p) == 0 );
+			}
+		}
+#elif defined(__RE_USING_WINDOWS_THREADS__) 
+		if (_reThreadThread) 
+		{
+			const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
+			const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
+			const int prior = (int)(minPriority + (newPriority * (REFloat32)range));
+			if (SetThreadPriority(_reThreadThread, prior))
+			{
+				return true;
+			}
+		}
+#endif			
+		return false;
+	}
+
+	
+#if defined(HAVE_PTHREAD_H)  
 	static pthread_t mainPThread;
+	static void * threadFunction(void * th);
 #elif defined(__RE_USING_WINDOWS_THREADS__)
 	static DWORD mainThreadID;
+	static DWORD WINAPI threadProc(LPVOID lpParameter);
 #endif	
 	static REBOOL isMultiThreaded;
+	static void onDone(REThreadInternal * t);
+	
+private:
+	static REList<REThreadInternal *> _internalsList;
+	static REMutex _internalsMutex;
 };
 
+REList<REThreadInternal *> REThreadInternal::_internalsList;
+REMutex REThreadInternal::_internalsMutex;
+
+void REThreadInternal::onDone(REThreadInternal * t)
+{
+	_internalsMutex.lock();
+	REList<REThreadInternal *>::Iterator iter = _internalsList.iterator();
+	while (iter.next()) 
+	{
+		REThreadInternal * ti = iter.value();
+		if (ti->isTaskFinished()) 
+		{
+			if (_internalsList.removeNode(iter.node())) 
+			{
+				ti->cancel();
+				delete ti;
+			}
+		}
+	}
+	_internalsList.add(t);
+	_internalsMutex.unlock();
+}
+
 #if defined(HAVE_PTHREAD_H)  
-pthread_t REThreadPrivate::mainPThread = 0;
+pthread_t REThreadInternal::mainPThread = (pthread_t)0;
+void * REThreadInternal::threadFunction(void * th)
+{
+	if (th)
+	{
+		REThreadInternal * reThread = REPtrCast<REThreadInternal, void>(th);
+		reThread->threadBody();
+	}
+	return th;
+}
 #elif defined(__RE_USING_WINDOWS_THREADS__)
-DWORD REThreadPrivate::mainThreadID = (DWORD)0;
+DWORD REThreadInternal::mainThreadID = (DWORD)0;
+DWORD REThreadInternal::threadProc(LPVOID lpParameter)
+{
+	if (lpParameter)
+	{
+		REThreadInternal * reThread = REPtrCast<REThreadInternal, LPVOID>(lpParameter);
+		reThread->threadBody();
+	}
+	return 0;
+}
 #endif	
-REBOOL REThreadPrivate::isMultiThreaded = false;
+REBOOL REThreadInternal::isMultiThreaded = false;
 
-
-const REUInt32 REThread::getClassIdentifier() const
-{
-	return REThread::classIdentifier();
-}
-
-const REUInt32 REThread::classIdentifier()
-{
-	static const REUInt32 classIdentif = REObject::generateClassIdentifierFromClassName("REThread");
-	return classIdentif;
-}
-
-REBOOL REThread::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REThread::classIdentifier() == classIdentifier) ||
-			REObject::isImplementsClass(classIdentifier));
-}
-
-void REThread::_threadBody()
-{
-	this->addState(REThreadStateWillStartThreadBody);
-
-	this->threadBody();
-	
-	this->removeState(REThreadStateWillStartThreadBody);
-	this->addState(REThreadStateDidEndThreadBody);
-}
-
-void REThread::addState(const REThreadState & state)
-{
-	const REUInt16 st = _reThreadStates | (REUInt16)state;
-	_reThreadStates = st;
-}
-
-void REThread::removeState(const REThreadState & state)
-{
-	const REUInt16 st = _reThreadStates ^ (REUInt16)state;
-	_reThreadStates = st;
-}
-
-REBOOL REThread::isHasState(const REThreadState & state) const
-{
-	const REUInt16 st = _reThreadStates;
-	return (st & ((REUInt16)state)) ? true : false;
-}
 
 REBOOL REThread::start()
 {
-#if defined(HAVE_PTHREAD_H)  
-	
-	if (_reThreadThread) 
-	{
-		return false;
-	}
-	
-	pthread_t th = 0;
-	struct rlimit limit = { 0 };
-	size_t stack_size = 0;
-	int rc = getrlimit(RLIMIT_STACK, &limit);
-	if (rc == 0) 
-	{
-		if (limit.rlim_cur != 0) 
-		{
-			stack_size = (size_t)limit.rlim_cur;
-		}
-	}
-	
-	pthread_attr_t thread_attr;
-	pthread_attr_init(&thread_attr);
-	pthread_attr_setscope(&thread_attr, PTHREAD_SCOPE_SYSTEM);
-	pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_JOINABLE);
-	if (stack_size > 0) 
-	{
-		pthread_attr_setstacksize(&thread_attr, stack_size);
-	}
-	
-	REBOOL isCreated = false;
-	if ( pthread_create(&th, &thread_attr, REThread::threadFunction, REPtrCast<void, void>(this)) == 0 ) 
-	{
-		isCreated = true;
-		REThreadPrivate::isMultiThreaded = true;
-        _reThreadThread = th;
-	}
-	
-	pthread_attr_destroy(&thread_attr);
-	
-	return isCreated;
-	
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	
-	HANDLE hThread = CreateThread(NULL, 0, REThread::threadProc, (LPVOID)this, 0, NULL);
-	if (hThread)
-	{
-		REThreadPrivate::isMultiThreaded = true;
-		_reThreadThread = hThread;
-		this->addState(REThreadStateCreated);
-		return true;
-	}
-	return false;
-	
-#else
+	return (_t) ? _t->start() : false;
+}
 
-	this->_threadBody();
-	if ( this->isAutoReleaseWhenDone() ) 
+REBOOL REThread::cancel()
+{
+	if (_t) 
 	{
-		this->release();
+		const REBOOL r = _t->cancel();
+		delete _t;
+		_t = NULL;
+		return r;
 	}
 	return true;
-	
-#endif	
 }
 
-REBOOL REThread::stop()
+REBOOL REThread::isTaskFinished() const
 {
-#if defined(HAVE_PTHREAD_H)  
-	if (_reThreadThread) 
-	{
-		REBOOL res = false;
-		pthread_t th = _reThreadThread;
-		if (pthread_cancel(th) == 0) 
-		{
-			void * r = NULL;
-			if (pthread_join(th, &r) == 0) 
-			{
-				res = (r == PTHREAD_CANCELED);
-			}
-		}
-
-		_reThreadThread = NULL;
-		_reThreadStates = 0;
-		return res;
-	}
-	
-#elif defined (__RE_USING_WINDOWS_THREADS__) 
-	
-	if (_reThreadThread) 
-	{
-		bool isAlive = false;
-		DWORD dwExitCode = 0;
-		if (GetExitCodeThread(_reThreadThread, &dwExitCode))
-		{
-			// if return code is STILL_ACTIVE,
-			// then thread is live.
-			isAlive = (dwExitCode == STILL_ACTIVE);
-		}
-		if (isAlive)
-		{
-			TerminateThread(_reThreadThread, 0);
-		}
-		CloseHandle(_reThreadThread);
-		_reThreadThread = (HANDLE)0;
-		_reThreadStates = 0;
-		return true;
-	}
-	
-#endif
-	
-	return false;
-}
-
-REBOOL REThread::isWorking() const 
-{
-	if (this->isHasState(REThreadStateCreated) && this->isHasState(REThreadStateDidEnterThreadFunc))
-	{
-		return true;
-	}
-	return false; 
+	return _isTaskFinished;
 }
 
 REFloat32 REThread::priority() const
 {
-#if defined(HAVE_PTHREAD_H)  
-	if ( _reThreadThread ) 
-	{
-		const int maxPrior = sched_get_priority_max(SCHED_RR);
-		if (maxPrior > 0) 
-		{
-			struct sched_param p = { 0 };
-			
-			int policy = SCHED_RR;
-			pthread_t thisThread = _reThreadThread;
-			if ( pthread_getschedparam(thisThread, &policy, &p) == 0 )
-			{
-				return ((REFloat32)p.sched_priority / (REFloat32)maxPrior);
-			}
-		}
-	}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	if (_reThreadThread) 
-	{
-		const int prior = GetThreadPriority(_reThreadThread);
-		const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
-		const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
-		return ( (REFloat32)(prior - minPriority) / (REFloat32)range );
-	}
-#endif	
-	
-	return 0.0f;
+	return (_t) ? _t->priority() : 0.0f;
 }
 
 REBOOL REThread::setPriority(const REFloat32 newPriority)
 {
-	if ( (newPriority <= 0.0f) || (newPriority > 1.0f) ) 
-	{
-		return false;
-	}
-#if defined(HAVE_PTHREAD_H)  
-	if (_reThreadThread) 
-	{
-		const int maxPrior = sched_get_priority_max(SCHED_RR);
-		if ( maxPrior > 0 ) 
-		{
-			struct sched_param p = { 0 };
-			p.sched_priority = (int)(newPriority * maxPrior);
-			pthread_t thisThread = _reThreadThread;
-			return ( pthread_setschedparam(thisThread, SCHED_RR, &p) == 0 );
-		}
-	}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	if (_reThreadThread) 
-	{
-		const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
-		const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
-		const int prior = (int)(minPriority + (newPriority * (REFloat32)range));
-		if (SetThreadPriority(_reThreadThread, prior))
-		{
-			return true;
-		}
-	}
-#endif	
-	
-	return false;
+	return (_t) ? _t->setPriority(newPriority) : false;
 }
 
-REThread::REThread() : 
-#if defined(HAVE_PTHREAD_H)  
-_reThreadThread((pthread_t)0),
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-_reThreadThread((HANDLE)0),
-#endif	
-_reThreadStates(0),
-_reThreadIsAutoreleaseWhenDone(false)
+/// Return flag is thread placed to autorelease pool when it's work done.
+REBOOL REThread::isAutoReleaseWhenDone() const 
 {
-#if defined(HAVE_PTHREAD_H)  
-	if (REThreadPrivate::mainPThread == (pthread_t)0) 
+	return _isAutoreleaseWhenDone;
+}
+
+/// Mark thread that it must be placed to autorelease pool when it's work done.
+void REThread::setAutoReleaseWhenDone(const REBOOL isAutorelease)
+{
+	_isAutoreleaseWhenDone = isAutorelease;
+}
+
+void REThread::invokeThreadBody(REThread * thread)
+{
+	if (thread)
 	{
-		REThreadPrivate::mainPThread = pthread_self();
+		REThreadInternal * ti = thread->_t;
+		thread->_t = NULL;
+		
+		ti->parent = NULL;
+		ti->invokeFunction = NULL;
+		
+		thread->threadBody();
+		thread->_isTaskFinished = true;
+		if (thread->_isAutoreleaseWhenDone) 
+		{
+			delete thread;	
+		}
+		REThreadInternal::onDone(ti);
+	}
+}
+
+REThread::REThread() : REObject(),
+	_isTaskFinished(false),
+	_isAutoreleaseWhenDone(false)
+{
+	_t = new REThreadInternal(this);
+	if (_t) 
+	{
+		_t->invokeFunction = &REThread::invokeThreadBody;
+	}
+	
+#if defined(HAVE_PTHREAD_H)  
+	if (REThreadInternal::mainPThread == (pthread_t)0) 
+	{
+		REThreadInternal::mainPThread = pthread_self();
 	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
-	if (REThreadPrivate::mainThreadID == 0)
+	if (REThreadInternal::mainThreadID == (HANDLE)0)
 	{
-		REThreadPrivate::mainThreadID = GetCurrentThreadId();
+		REThreadInternal::mainThreadID = GetCurrentThreadId();
 	}
 #endif	
 }
 
 REThread::~REThread()
 {
-	this->stop();
+	this->cancel();
 }
 
 REBOOL REThread::isMultiThreaded()
 {
-	return REThreadPrivate::isMultiThreaded;
+	return REThreadInternal::isMultiThreaded;
 }
 
 REUIdentifier REThread::mainThreadIdentifier()
 {
 	REUIdentifier thID = 0;
 #if defined(HAVE_PTHREAD_H)  
-	if (REThreadPrivate::mainPThread == (pthread_t)0)
+	if (REThreadInternal::mainPThread == (pthread_t)0)
 	{
-		REThreadPrivate::mainPThread = pthread_self();
+		REThreadInternal::mainPThread = pthread_self();
 	}
-	thID = ((REUIdentifier)REThreadPrivate::mainPThread);
+	thID = ((REUIdentifier)REThreadInternal::mainPThread);
 #elif defined(__RE_USING_WINDOWS_THREADS__)
-	if (REThreadPrivate::mainThreadID == 0)
+	if (REThreadInternal::mainThreadID == 0)
 	{
-		REThreadPrivate::mainThreadID = GetCurrentThreadId();
+		REThreadInternal::mainThreadID = GetCurrentThreadId();
 	}
-	thID = ((REUIdentifier)REThreadPrivate::mainPThread);
+	thID = ((REUIdentifier)REThreadInternal::mainPThread);
 #endif
 	return thID;
 }
@@ -361,13 +456,13 @@ REUIdentifier REThread::currentThreadIdentifier()
 void REThread::uSleep(const REUInt32 microseconds)
 {
 #if defined(__RE_OS_WINDOWS__) 
-	__int64 time1 = 0, time2 = 0, sysFreq = 0;
+	LARGE_INTEGER time1 = 0, time2 = 0, sysFreq = 0;
 
-	QueryPerformanceCounter((LARGE_INTEGER *)&time1);
-	QueryPerformanceFrequency((LARGE_INTEGER *)&sysFreq);
+	QueryPerformanceCounter(&time1);
+	QueryPerformanceFrequency(&sysFreq);
 	do 
 	{
-		QueryPerformanceCounter((LARGE_INTEGER *)&time2);
+		QueryPerformanceCounter(&time2);
 	} 
 	while((time2 - time1) < microseconds);
 #endif
@@ -387,229 +482,126 @@ REBOOL REThread::isMainThread()
 {
 #if defined(HAVE_PTHREAD_H)  
 	pthread_t curThread = pthread_self();
-	if (REThreadPrivate::mainPThread) 
+	if (REThreadInternal::mainPThread) 
 	{
-		return (pthread_equal(curThread, REThreadPrivate::mainPThread) != 0);
+		return (pthread_equal(curThread, REThreadInternal::mainPThread) != 0);
 	}
 	else
 	{
-		REThreadPrivate::mainPThread = curThread;
+		REThreadInternal::mainPThread = curThread;
 	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	const DWORD curTHID = GetCurrentThreadId();
-	if (REThreadPrivate::mainThreadID)
+	if (REThreadInternal::mainThreadID)
 	{
-		return (REThreadPrivate::mainThreadID == curTHID);
+		return (REThreadInternal::mainThreadID == curTHID);
 	}
 	else
 	{
-		REThreadPrivate::mainThreadID = curTHID;
+		REThreadInternal::mainThreadID = curTHID;
 	}
 #endif	
-	
 	return true;
 }
-
-REFloat32 REThread::mainThreadPriority()
-{
-#if defined(HAVE_PTHREAD_H)  
-	if (REThread::isMainThread()) 
-	{
-		const int maxPrior = sched_get_priority_max(SCHED_RR);
-		if (maxPrior > 0) 
-		{
-			struct sched_param p = { 0 };
-			int policy = SCHED_RR;
-			pthread_t thisThread = REThreadPrivate::mainPThread;
-			if ( pthread_getschedparam(thisThread, &policy, &p) == 0 )
-			{
-				return ((REFloat32)p.sched_priority / (REFloat32)maxPrior);
-			}
-		}
-	}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	/*
-	if (REThread::IsMainThread()) 
-	{
-		if (_reThreadMainThreadHANDLE) 
-		{
-			const int prior = GetThreadPriority(_reThreadMainThreadHANDLE);
-			const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
-			const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
-			return ( (REFloat32)(prior - minPriority) / (REFloat32)range );
-		}
-	}
-	*/
-#endif	
-	
-	return -1.0f;
-}
-
-REBOOL REThread::setMainThreadPriority(const REFloat32 newPriority)
-{
-	if ( (newPriority <= 0.0f) || (newPriority > 1.0f) ) 
-	{
-		return false;
-	}
-#if defined(HAVE_PTHREAD_H)  
-	if ( REThread::isMainThread() ) 
-	{
-		const int maxPrior = sched_get_priority_max(SCHED_RR);
-		if ( maxPrior > 0 ) 
-		{
-			struct sched_param p = { 0 };
-			p.sched_priority = (int)(newPriority * maxPrior);
-			pthread_t thisThread = REThreadPrivate::mainPThread;
-			return ( pthread_setschedparam(thisThread, SCHED_RR, &p) == 0 );
-		}
-	}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	/*
-	if ( REThread::IsMainThread() ) 
-	{
-		if (_reThreadMainThreadHANDLE) 
-		{
-			const int minPriority = MIN(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL);
-			const int range = MAX(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL) - minPriority;
-			const int prior = (int)(minPriority + (newPriority * (REFloat32)range));
-			if (SetThreadPriority(_reThreadMainThreadHANDLE, prior))
-			{
-				return true;
-			}
-		}
-	}
-	*/
-#endif
-	
-	return false;
-}
-
-#if defined(HAVE_PTHREAD_H)  
-void * REThread::threadFunction(void * th) 
-{ 
-	if (th)
-	{
-		REThread * reThread = REPtrCast<REThread, void>(th);
-		reThread->addState(REThreadStateDidEnterThreadFunc);
-		reThread->_threadBody();
-		if (reThread->isAutoReleaseWhenDone())
-		{
-			reThread->release();
-		}
-		reThread->removeState(REThreadStateDidEnterThreadFunc);
-		reThread->addState(REThreadStateWillExitThreadFunc);
-		//REAutoReleasePoolPrivate::ThreadFinished(REThread::GetCurrentThreadIdentifier());
-	}
-	return th;
-}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-DWORD REThread::threadProc(LPVOID lpParameter)
-{
-	if (lpParameter)
-	{
-		REThread * reThread = (REThread *)lpParameter;
-		reThread->addState(REThreadStateDidEnterThreadFunc);
-		reThread->_threadBody();
-		if (reThread->isAutoReleaseWhenDone())
-		{
-			reThread->release();
-		}
-		reThread->removeState(REThreadStateDidEnterThreadFunc);
-		reThread->addState(REThreadStateWillExitThreadFunc);
-		//REAutoReleasePoolPrivate::ThreadFinished(REThread::GetCurrentThreadIdentifier());
-	}
-	return 0;
-}
-#endif	
 
 void REThread::detachNewThreadWithMethod(REClassMethod * method, REObject * methodObjectOrNULL)
 {
 	if (method)
 	{
+#if defined(HAVE_FUNCTION_DISPATCH_ASYNC) && defined(HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE) 
+		if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+			method->invokeWithObject(methodObjectOrNULL);
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
+			delete method;
+		});
+#else		
 		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(method, methodObjectOrNULL);
 		if (newThread)
 		{
 			newThread->setAutoReleaseWhenDone(true);
 			newThread->start();
 		}
+#endif		
 	}
 }
 
-void REThread::detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, RETimeInterval delayTime)
+void REThread::detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObject * methodObjectOrNULL, const RETimeInterval delayTime)
 {
 	if (method) 
 	{
+#if defined(HAVE_FUNCTION_DISPATCH_AFTER) && defined(HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE)
+		if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC));
+		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+			method->invokeWithObject(methodObjectOrNULL);
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
+			delete method;
+		});
+#else		
 		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(method, methodObjectOrNULL);
 		if (newThread)
 		{
 			newThread->setAutoReleaseWhenDone(true);
 			newThread->startWithDelay(delayTime);
 		}
+#endif		
 	}
 }
 
 void REThread::performMethodOnMainThread(REClassMethod * method, REObject * methodObjectOrNULL)
 {
-	if ( method ) 
+	if (method) 
 	{
-		REBOOL isNeedDeleteInMethod = true;
-
-		if ( REThread::isMainThread() ) 
+		if (REThread::isMainThread()) 
 		{
-			if (methodObjectOrNULL) 
-			{
-				methodObjectOrNULL->retain();
-			}
 			method->invokeWithObject(methodObjectOrNULL);
-			if (methodObjectOrNULL) 
-			{
-				methodObjectOrNULL->release();
-			}
+			delete method;
 		}
 		else 
 		{
+#if defined(HAVE_FUNCTION_DISPATCH_ASYNC)
+			if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
+			dispatch_async(dispatch_get_main_queue(), ^(void){
+				method->invokeWithObject(methodObjectOrNULL);
+				delete method;
+			});
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
+#else
 			REMainThreadClassMethodPrivate * methodWrapper = new REMainThreadClassMethodPrivate(method, methodObjectOrNULL);
-			if ( methodWrapper ) 
-			{
-				isNeedDeleteInMethod = false;
-			}
-		}
-		
-		if ( isNeedDeleteInMethod ) 
-		{
-			delete method;
+			if (!methodWrapper) { delete method; }
+#endif			
 		}
 	}
 }
 
 void REThread::performMethodOnMainThreadAndWaitUntilDone(REClassMethod * method, REObject * methodObjectOrNULL)
 {
-	if ( method ) 
+	if (method) 
 	{	
-		if ( REThread::isMainThread() ) 
+		if (REThread::isMainThread()) 
 		{
-			if (methodObjectOrNULL) 
-			{
-				methodObjectOrNULL->retain();
-			}
 			method->invokeWithObject(methodObjectOrNULL);
-			if (methodObjectOrNULL) 
-			{
-				methodObjectOrNULL->release();
-			}
 			delete method;
 		}
 		else 
 		{
+#if defined(HAVE_FUNCTION_DISPATCH_SYNC)	
+			dispatch_sync(dispatch_get_main_queue(), ^(void){
+				method->invokeWithObject(methodObjectOrNULL);
+			});
+			delete method;
+#else			
 			REMainThreadClassMethodWaitedPrivate * methodWrapper = new REMainThreadClassMethodWaitedPrivate(method, methodObjectOrNULL);
-			if ( methodWrapper ) 
+			if (methodWrapper) 
 			{
-				while ( methodWrapper->isWaiting() ) 
+				while (methodWrapper->isWaiting()) 
 				{
 					REThread::uSleep(10);
 				}
 				delete methodWrapper;
 			}
+#endif			
 		}
 	}
 }

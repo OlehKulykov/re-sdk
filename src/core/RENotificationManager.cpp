@@ -91,12 +91,12 @@ REBOOL RENotificationManagerPrivate::AddObserverForNotificationName(REObject * o
 REBOOL RENotificationManagerPrivate::RemoveObserver(REObject * observerObject)
 {
 	_updateMutex.lock();
-	const REUIdentifier objID = observerObject->getObjectIdentifier();
+	const REUIdentifier objID = observerObject->objectIdentifier();
 	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.getIterator();
 	while (i.next())
 	{
 		RENotificationManagerObserverPrivate * o = i.object();
-		if (objID == o->observer->getObjectIdentifier())
+		if (objID == o->observer->objectIdentifier())
 		{
 			const REUInt32 index = i.index();
 			if (!i.removeObject()) { _observers.setAt(index, NULL); }
@@ -110,12 +110,12 @@ REBOOL RENotificationManagerPrivate::RemoveObserver(REObject * observerObject)
 REBOOL RENotificationManagerPrivate::RemoveObserverForNotificationName(REObject * observerObject, const REString & notificationName)
 {
 	_updateMutex.lock();
-	const REUIdentifier objID = observerObject->getObjectIdentifier();
+	const REUIdentifier objID = observerObject->objectIdentifier();
 	REArray<RENotificationManagerObserverPrivate *>::Iterator i = _observers.getIterator();
 	while (i.next())
 	{
 		RENotificationManagerObserverPrivate * o = i.object();
-		if (objID == o->observer->getObjectIdentifier())
+		if (objID == o->observer->objectIdentifier())
 		{
 			if (o->name.isEqual(notificationName))
 			{

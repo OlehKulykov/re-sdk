@@ -20,12 +20,34 @@
 
 #include "../RECommonHeader.h"
 #include "../REObject.h"
-#include "../REMainLoopUpdatable.h"
-#include "../REArray.h"
+#include "../REList.h"
 #include "../REThread.h"
 #include "../REMutex.h"
 
-
+class REAutoReleasePoolPrivate 
+{
+private:
+	REList<REObject *> _list;
+	typedef REList<REObject *> ListType;
+	class REObjectRemover : public REObject
+	{
+	public:
+		static void deleteObject(REObject * object)
+		{
+			REObject::deleteObject(object);
+		}
+	};
+public:
+	REBOOL isEmpty() const;
+	
+	REBOOL addObject(REObject * autoReleasableObject);
+	
+	void update();
+	
+	REAutoReleasePoolPrivate();
+	
+	~REAutoReleasePoolPrivate();
+};
 
 #endif /* __REAUTORELEASEPOOLPRIVATE_H__ */
 

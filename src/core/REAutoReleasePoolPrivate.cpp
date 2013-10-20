@@ -16,10 +16,39 @@
 
 
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
-#include "../../include/recore/RELog.h"
 
+REBOOL REAutoReleasePoolPrivate::addObject(REObject * autoReleasableObject)
+{
+	if (autoReleasableObject)
+	{
+		return _list.add(autoReleasableObject);
+	}
+	return false;
+}
 
-#define REAUTORELEASEPOOL_DEFAULT_POOL_CAPACITY (32)
+REBOOL REAutoReleasePoolPrivate::isEmpty() const
+{
+	return _list.isEmpty();
+}
 
+void REAutoReleasePoolPrivate::update()
+{
+	ListType::Iterator iter = _list.iterator();
+	while (iter.next()) 
+	{
+		REObject * o = iter.value();
+		REObjectRemover::deleteObject(o);
+		_list.removeNode(iter.node());
+	}
+}
 
+REAutoReleasePoolPrivate::REAutoReleasePoolPrivate()
+{
+	
+}
+
+REAutoReleasePoolPrivate::~REAutoReleasePoolPrivate()
+{
+	this->update();
+}
 

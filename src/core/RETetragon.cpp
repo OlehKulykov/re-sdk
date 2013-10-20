@@ -19,6 +19,8 @@
 #include "../../include/recore/RERect.h"
 #include "../../include/recore/REMath.h"
 #include "../../include/recore/REMem.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/private/REStringUtilsPrivate.h"
 
 REPoint2 RETetragon::center() const
 {
@@ -84,6 +86,37 @@ void RETetragon::set(const RETetragon & tetr)
 #endif
 }
 
+RETetragon RETetragon::fromString(const char * string)
+{
+	if (string) 
+	{
+		RETetragon t;
+		if (REStringUtilsPrivate::readArrayF32(string, t.arr, 8) == 8) 
+		{
+			return t;
+		}
+	}
+	return RETetragon();
+}
 
+RETetragon RETetragon::fromString(const REString & string)
+{
+	if (string.length() > 0) 
+	{
+		RETetragon t;
+		if (REStringUtilsPrivate::readArrayF32(string.UTF8String(), t.arr, 8) == 8) 
+		{
+			return t;
+		}
+	}
+	return RETetragon();
+}
+
+REString RETetragon::toString(const RETetragon & tetragon)
+{
+	char buff[128];
+	const REUInt32 len = REStringUtilsPrivate::writeArrayF32(tetragon.arr, buff, 8, ';');
+	return REString(buff, len);
+}
 
 

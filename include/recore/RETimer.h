@@ -66,8 +66,7 @@ public:
 	void stop();
 	
 	/* REMainLoopUpdatable */
-	virtual void Update(const RETimeInterval currentTime);
-	virtual const REUIdentifier GetMainLoopUpdatableIdentifier() const;
+	virtual void update(const RETimeInterval currentTime);
 
 	/// Counstructs timer.
 	RETimer();

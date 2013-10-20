@@ -160,7 +160,7 @@ REBOOL REData::initializeFromFilePath(const char * filePath, const REUInt32 file
 {
 	this->clear();
 	
-	FILE * fileHandle = REFile::fileOpen(REString(filePath), "rb");
+	FILE * fileHandle = REFile::fileOpen(filePath, "rb");
 	if ( fileHandle == NULL ) 
 	{
 		return false;
@@ -187,7 +187,7 @@ REBOOL REData::initializeFromFilePath(const char * filePath, const REUInt32 file
 	
 	if (this->resize((REUInt32)fileSize, false))
 	{
-		size_t readedSize = fread(this->buffer(), 1, this->size(), fileHandle);
+		const size_t readedSize = fread(this->buffer(), 1, this->size(), fileHandle);
 		if (readedSize == this->size())
 		{
 			fclose(fileHandle);

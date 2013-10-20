@@ -24,6 +24,16 @@
 #include "../../include/recore/REData.h"
 #endif
 
+void * REBuffer::mallocNewMemory(const REUInt32 size)
+{
+	return malloc((size_t)size);
+}
+
+void REBuffer::freeMemory(void * mem)
+{
+	free(mem);
+}
+
 REBOOL REBuffer::isEqualToBuffer(const REBuffer & anotherBuffer) const
 {
 	if (_size == anotherBuffer._size)
@@ -50,7 +60,7 @@ REBOOL REBuffer::resize(const REUInt32 newSize, REBOOL isCopyPrevData)
 		return true; 
 	}
 	
-	void * newBuff = malloc((size_t)newSize);
+	void * newBuff = this->mallocNewMemory(newSize);
 	if (newBuff) 
 	{
 		if (_buff) 
@@ -64,7 +74,7 @@ REBOOL REBuffer::resize(const REUInt32 newSize, REBOOL isCopyPrevData)
 				}
 			}
 			
-			free(_buff);
+			this->freeMemory(_buff);
 		}
 		
 		_buff = newBuff;
@@ -80,7 +90,7 @@ void REBuffer::clear()
 {
 	if (_buff) 
 	{
-		free(_buff);
+		this->freeMemory(_buff);
 		_buff = NULL;
 		_size = 0;
 	}
@@ -92,7 +102,7 @@ REBOOL REBuffer::set(const void * buff, const REUInt32 buffSize)
 	
 	if (buff && buffSize) 
 	{
-		void * newBuff = malloc((size_t)buffSize);
+		void * newBuff = this->mallocNewMemory(buffSize);
 		if (newBuff) 
 		{
 			memcpy(newBuff, buff, (size_t)buffSize);
@@ -110,12 +120,12 @@ REBOOL REBuffer::append(const void * buff, const REUInt32 buffSize)
 	if (_size && _buff)
 	{
 		const REUInt32 newSize = _size + buffSize;
-		char * newBuff = (char *)malloc((size_t)newSize);
+		char * newBuff = (char *)this->mallocNewMemory(newSize);
 		if (newBuff) 
 		{
 			memcpy(newBuff, _buff, (size_t)_size);
 			memcpy(&newBuff[_size], buff, (size_t)buffSize);
-			free(_buff);
+			this->freeMemory(_buff);
 			_buff = newBuff;
 			_size = newSize;
 			return true;
@@ -162,7 +172,7 @@ REBuffer::REBuffer(const REUInt32 buffSize) :
 {
 	if (buffSize) 
 	{
-		void * newBuff = malloc((size_t)buffSize);
+		void * newBuff = this->mallocNewMemory(buffSize);
 		if (newBuff) 
 		{
 			_buff = newBuff;
@@ -182,7 +192,7 @@ REBuffer::~REBuffer()
 {
 	if (_buff) 
 	{
-		free(_buff);
+		this->freeMemory(_buff);
 	}
 }
 

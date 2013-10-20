@@ -7,6 +7,11 @@
 
 #ifdef __RE_USING_ADITIONAL_CURL_LIBRARY__
 
+#include "curl/lib/pipeline.c"
+#include "curl/lib/conncache.c"
+#include "curl/lib/bundles.c"
+#include "curl/lib/dotdot.c"
+#include "curl/lib/curl_sasl.c"
 
 #include "curl/lib/asyn-ares.c"
 #include "curl/lib/file.c"
@@ -54,7 +59,7 @@
 #include "curl/lib/http_digest.c"
 #include "curl/lib/md4.c"
 #include "curl/lib/md5.c"
-#include "curl/lib/curl_rand.c"
+//#include "curl/lib/curl_rand.c"
 #include "curl/lib/http_negotiate.c"
 #include "curl/lib/inet_pton.c"
 #include "curl/lib/strtoofft.c"

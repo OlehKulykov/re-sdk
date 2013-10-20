@@ -22,31 +22,43 @@
 #include "../REThread.h"
 #include "../REMutex.h"
 #include "../REMainLoopUpdatable.h"
-
+#include "../REList.h"
 
 class REMainLoopsObjectsStoragePrivate
 {
 private:
-	REArray<REMainLoopUpdatable *> _objects;
-	REMutex _updateMutex;
-	
-	REBOOL add(REMainLoopUpdatable * object);
-	REBOOL remove(REMainLoopUpdatable * object);
+	class MLObject
+	{
+	public:	
+		REMainLoopUpdatable * object;
+		REUIdentifier identifier;
+		MLObject & operator=(const MLObject & o)
+		{
+			object = o.object;
+			identifier = o.identifier;
+			return (*this);
+		}
+		MLObject(const MLObject & o) :
+			object(o.object),
+			identifier(o.identifier)
+		{ }
+		MLObject(REMainLoopUpdatable * o = NULL, const REUIdentifier i = 0) : 
+			object(o), 
+			identifier(i)
+		{ }
+	};
+	typedef REList<REMainLoopsObjectsStoragePrivate::MLObject> ListType;
+	static ListType::ValueCompareResult compareObjectByID(const MLObject * nodeValue, void * customValue)
+	{
+		return (nodeValue->identifier == *((REUIdentifier*)customValue)) ? ListType::Same : ListType::Ascending;
+	}
+	REList<MLObject> _list;
+public:
+	REUIdentifier add(REMainLoopUpdatable * object);
+	REUIdentifier remove(REMainLoopUpdatable * object);
 	void update(const RETimeInterval time);
-	REBOOL isEmptyAndIDLE() const;
-	
-	static REUInt32 index(REArray<REMainLoopUpdatable *> * arr, const REUIdentifier objectId);
-	
 	REMainLoopsObjectsStoragePrivate();
 	~REMainLoopsObjectsStoragePrivate();
-	
-	static REMainLoopsObjectsStoragePrivate * getStorage();
-	static void releaseStorage();
-	static REMainLoopsObjectsStoragePrivate * _storage;
-public:
-	static REBOOL addObject(REMainLoopUpdatable * object);
-	static REBOOL removeObject(REMainLoopUpdatable * object);
-	static void updateStorage(const RETimeInterval time);
 };
 
 

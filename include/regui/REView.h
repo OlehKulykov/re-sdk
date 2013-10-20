@@ -199,15 +199,9 @@ public:
 	
 	/// Returns XML key string for frame.
 	static const char * getXMLFrameKeyString();
-	
-	/// Returns XML format string for frame.
-	static const char * getXMLFrameFormatString();
-	
+		
 	/// Returns XML key string for color.
 	static const char * getXMLColorKeyString();
-	
-	/// Returns XML format string for color.
-	static const char * getXMLColorFormatString();
 	
 	/// Returns XML key string for flag responds user action.
 	static const char * getXMLRespondsUserActionKeyString();

@@ -18,104 +18,90 @@
 #include "../../include/recore/REMutex.h"
 #include "../../include/recore/REMem.h"
 
-REBOOL REMutex::init(const REMutexType type)
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_PTHREAD_H)
+#include <pthread.h>
+#elif defined(__RE_OS_WINDOWS__)
+/* Use Windows threading */
+#ifndef __RE_USING_WINDOWS_THREADS__
+#define __RE_USING_WINDOWS_THREADS__
+#endif
+#include <Windows.h>
+#endif /* __RE_OS_WINDOWS__ */
+
+class REMutexInternal 
 {
+private:
 #if defined(HAVE_PTHREAD_H)  
-	if (_pthreadMutexPtr) { return true; }
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	if (_mutexHANDLE) { return true; }
-#endif	
-	
-	REBOOL isInit = false;
-	
+	pthread_mutex_t _pthreadMutex;
+#elif defined(__RE_USING_WINDOWS_THREADS__)	
+	HANDLE _mutexHANDLE;
+#endif
+	REUInt32 _successfulLocks;
+public:
+	REBOOL init(const REMutexType type);
+	REBOOL lock();
+	REBOOL unlock();
+	REBOOL isLocked() const;
+	REMutexInternal();
+	~REMutexInternal();
+};
+
+REBOOL REMutexInternal::init(const REMutexType type)
+{	
 #if defined(HAVE_PTHREAD_H)  
-	pthread_mutex_t * m = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	if (m) 
+	
+	pthread_mutexattr_t attr = { 0 };
+	if (pthread_mutexattr_init(&attr) == 0) 
 	{
-		pthread_mutexattr_t attr;
-		if (pthread_mutexattr_init(&attr) == 0) 
+		int setTypeResult = -1;
+		switch (type) 
 		{
-			int setTypeResult = -1;
-			switch (type) 
+			case REMutexTypeNormal:
+				setTypeResult = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_NORMAL);
+				break;
+			case REMutexTypeRecursive:
+				setTypeResult = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+				break;	
+			default:
+				break;
+		}
+		REBOOL isInit = false;
+		if (setTypeResult == 0) 
+		{
+			if (pthread_mutex_init(&_pthreadMutex, &attr) == 0)
 			{
-				case REMutexTypeNormal:
-					setTypeResult = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_NORMAL);
-					break;
-				case REMutexTypeRecursive:
-					setTypeResult = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-					break;	
-				default:
-					break;
+				isInit = true;
 			}
-			if (setTypeResult == 0) 
-			{
-				if (pthread_mutex_init(m, &attr) == 0)
-				{
-					isInit = true;
-					_successfulLocks = 0;
-				}
-			}
-			pthread_mutexattr_destroy(&attr);
 		}
-		
-		if (isInit)
-		{
-			_pthreadMutexPtr = m;
-		}
-		else
-		{
-			free(m);
-		}
+		pthread_mutexattr_destroy(&attr);
+		return isInit;
 	}
+	
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
+	
 	HANDLE h = CreateMutex(NULL, FALSE, NULL);
 	if (h) 
 	{
 		_mutexHANDLE = h;
-		isInit = true;
-		_successfulLocks = 0;
+		return true;
 	}
-#endif	
 	
-	return isInit;
-}
-
-REBOOL REMutex::lock()
-{
-#if defined(HAVE_PTHREAD_H)  
-	if (_pthreadMutexPtr) 
-	{
-		if (pthread_mutex_lock(_pthreadMutexPtr) == 0)
-		{
-			_successfulLocks++;
-			return true;
-		}
-	}
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-	if (_mutexHANDLE)
-	{
-		const DWORD r = WaitForSingleObject(_mutexHANDLE, INFINITE);
-		if (r != WAIT_FAILED)
-		{
-			_successfulLocks++;
-			return true;
-		}
-	}
 #endif	
 	
 	return false;
 }
 
-REBOOL REMutex::unlock()
+REBOOL REMutexInternal::unlock()
 {
 #if defined(HAVE_PTHREAD_H)  
-	if (_pthreadMutexPtr) 
+	if (pthread_mutex_unlock(&_pthreadMutex) == 0)
 	{
-		if (pthread_mutex_unlock(_pthreadMutexPtr) == 0)
-		{
-			_successfulLocks--;
-			return true;
-		}
+		_successfulLocks--;
+		return true;
 	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	if (_mutexHANDLE)
@@ -127,51 +113,111 @@ REBOOL REMutex::unlock()
 		}
 	}
 #endif		
-	
 	return false;
 }
 
-REBOOL REMutex::isLocked() const
-{
-	return (_successfulLocks != 0);
-}
-
-REBOOL REMutex::isInitialized() const
+REBOOL REMutexInternal::lock()
 {
 #if defined(HAVE_PTHREAD_H)  
-	return (_pthreadMutexPtr != NULL);
+	if (pthread_mutex_lock(&_pthreadMutex) == 0)
+	{
+		_successfulLocks++;
+		return true;
+	}
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
-	return (_mutexHANDLE != (HANDLE)0);
-#else
+	if (_mutexHANDLE)
+	{
+		const DWORD r = WaitForSingleObject(_mutexHANDLE, INFINITE);
+		if (r != WAIT_FAILED)
+		{
+			_successfulLocks++;
+			return true;
+		}
+	}
+#endif
 	return false;
-#endif	
 }
 
-REMutex::REMutex()
+REBOOL REMutexInternal::isLocked() const
+{
+	return (_successfulLocks > 0);
+}
+
+REMutexInternal::REMutexInternal() :
 #if defined(HAVE_PTHREAD_H)  
-    :_pthreadMutexPtr(NULL),_successfulLocks(0)
-#elif defined(__RE_USING_WINDOWS_THREADS__) 
-    :_mutexHANDLE((HANDLE)0),_successfulLocks(0)
+	_successfulLocks(0)
+#elif defined(__RE_USING_WINDOWS_THREADS__)	
+	_mutexHANDLE(NULL), _successfulLocks(0)
 #else
-    :_successfulLocks(0)
+	_successfulLocks(0)
 #endif
 {
-	
+	memset(&_pthreadMutex, 0, sizeof(pthread_mutex_t));
 }
 
-REMutex::~REMutex()
+REMutexInternal::~REMutexInternal()
 {
 #if defined(HAVE_PTHREAD_H)  
-	if (_pthreadMutexPtr) 
-	{
-		pthread_mutex_destroy(_pthreadMutexPtr);
-		free(_pthreadMutexPtr);
-	}
+	pthread_mutex_destroy(&_pthreadMutex);
 #elif defined(__RE_USING_WINDOWS_THREADS__) 
 	if (_mutexHANDLE) 
 	{
 		CloseHandle(_mutexHANDLE);
 	}
 #endif	
+}
+
+
+REBOOL REMutex::init(const REMutexType type)
+{
+	if (_m) 
+	{
+		return true;
+	}
+	
+	REMutexInternal * m = new REMutexInternal();
+	if (m) 
+	{
+		if (m->init(type));
+		{
+			_m = m;
+			return true;
+		}
+		delete m;
+	}
+	return false;
+}
+
+REBOOL REMutex::lock()
+{
+	return (_m) ? _m->lock() : false;
+}
+
+REBOOL REMutex::unlock()
+{
+	return (_m) ? _m->unlock() : false;
+}
+
+REBOOL REMutex::isLocked() const
+{
+	return (_m) ? _m->isLocked() : false;
+}
+
+REBOOL REMutex::isInitialized() const
+{
+	return (_m) ? true : false;
+}
+
+REMutex::REMutex() : _m(NULL)
+{
+	
+}
+
+REMutex::~REMutex()
+{
+	if (_m) 
+	{
+		delete _m;
+	}
 }
 

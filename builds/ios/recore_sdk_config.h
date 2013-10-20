@@ -132,7 +132,7 @@
 
 
 /* bzlib.h */
-//#define HAVE_BZLIB_H 1
+#define HAVE_BZLIB_H 1
 
 
 /* png.h */
@@ -172,7 +172,7 @@
 
 
 /* libpq-fe.h */
-//#define HAVE_LIBPQ_FE_H 1
+#define HAVE_LIBPQ_FE_H 1
 
 
 /* postgresql/libpq-fe.h */
@@ -224,7 +224,7 @@
 
 
 /* curl/curl.h */
-//#define HAVE_CURL_CURL_H 1
+#define HAVE_CURL_CURL_H 1
 
 
 /* ogg/ogg.h */
@@ -249,23 +249,23 @@
 
 
 /* OpenGL/OpenGL.h */
-//#define HAVE_OPENGL_OPENGL_H 1
+#define HAVE_OPENGL_OPENGL_H 1
 
 
 /* OpenGL/gl.h */
-//#define HAVE_OPENGL_GL_H 1
+#define HAVE_OPENGL_GL_H 1
 
 
 /* OpenGL/glu.h */ 
-//#define HAVE_OPENGL_GLU_H 1
+#define HAVE_OPENGL_GLU_H 1
 
 
 /* OpenGLES/ES1/gl.h */
-#define HAVE_OPENGLES_ES1_GL_H 1
+/* #undef HAVE_OPENGLES_ES1_GL_H */
 
 
 /* OpenGLES/ES1/glext.h */
-#define HAVE_OPENGLES_ES1_GLEXT_H 1
+/* #undef HAVE_OPENGLES_ES1_GLEXT_H */
 
 
 /* OpenGLES/ES2/gl.h */
@@ -307,45 +307,13 @@
 /* #undef HAVE_GLMACRO_H */
 
 
+/* dispatch/dispatch.h */
+#define HAVE_DISPATCH_DISPATCH_H 1
+
+
 /* includes */
-#if defined(HAVE_STDLIB_H)
-#include <stdlib.h>
-#endif
-
-#if defined(HAVE_INTTYPES_H)
-#include <inttypes.h>
-#endif
-
 #if defined(HAVE_SYS_TYPES_H)
 #include <sys/types.h>
-#endif
-
-#if defined(HAVE_STDDEF_H)
-#include <stddef.h>
-#endif
-
-#if defined(HAVE_STDBOOL_H)
-#include <stdbool.h>
-#endif
-
-#if defined(HAVE_STDINT_H)
-#include <stdint.h>
-#endif
-
-#if defined(HAVE_LIMITS_H)
-#include <limits.h>
-#endif
-
-#if defined(HAVE_FLOAT_H)
-#include <float.h>
-#endif
-
-#if defined(HAVE_MATH_H)
-#include <math.h>
-#endif
-
-#if defined(HAVE_WCHAR_H)
-#include <wchar.h>
 #endif
 
 #if defined(HAVE_MALLOC_H)
@@ -353,88 +321,80 @@
 #endif
 
 
-///* sizes */
-///* int8_t */
-//#define SIZEOF_INT8_T 1
-//
-///* uint8_t */
-//#define SIZEOF_UINT8_T 1
-//
-///* u_int8_t */
-//#define SIZEOF_U_INT8_T 1
-//
-///* int16_t */
-//#define SIZEOF_INT16_T 2
-//
-///* uint16_t */
-//#define SIZEOF_UINT16_T 2
-//
-///* u_int16_t */
-//#define SIZEOF_U_INT16_T 2
-//
-///* int32_t */
-//#define SIZEOF_INT32_T 4
-//
-///* uint32_t /*
-//#define SIZEOF_UINT32_T 4
-//
-///* u_int32_t */
-//#define SIZEOF_U_INT32_T 4
-//
-///* int64_t */
-//#define SIZEOF_INT64_T 8
-//
-///* uint64_t */
-//#define SIZEOF_UINT64_T 8
-//
-///* u_int64_t */
-//#define SIZEOF_U_INT64_T 8
-//
-///* uintptr_t */
-//#define SIZEOF_UINTPTR_T 8
-//
-///* char */
-//#define SIZEOF_CHAR 1
-//
-///* short */
-//#define SIZEOF_SHORT 2
-//
-///* int */
-//#define SIZEOF_INT 4
-//
-///* long int */
-//#define SIZEOF_LONG_INT 8
-//
-///* long long int */
-//#define SIZEOF_LONG_LONG_INT 8
-//
-///* float_t */
-//#define SIZEOF_FLOAT_T 4
-//
-///* double_t */
-//#define SIZEOF_DOUBLE_T 8 
+/* sizes */
+/* int8_t */
+#define SIZEOF_INT8_T 1
 
-/* long double_t */
-/* #undef SIZEOF_LONG_DOUBLE_T */
+/* uint8_t */
+#define SIZEOF_UINT8_T 1
+
+/* int16_t */
+#define SIZEOF_INT16_T 2
+
+/* uint16_t */
+#define SIZEOF_UINT16_T 2
+
+/* int32_t */
+#define SIZEOF_INT32_T 4
+
+/* uint32_t */
+#define SIZEOF_UINT32_T 4
+
+/* int64_t */
+#define SIZEOF_INT64_T 8
+
+/* uint64_t */
+#define SIZEOF_UINT64_T 8
+
+/* uintptr_t */
+#define SIZEOF_UINTPTR_T 8
+
+/* char */
+#define SIZEOF_CHAR 1
+
+/* long int */
+#define SIZEOF_LONG_INT 8
+
+/* long long int */
+#define SIZEOF_LONG_LONG_INT 8
 
 /* float */
-//#define SIZEOF_FLOAT 4
+#define SIZEOF_FLOAT 4
 
 /* double */
-//#define SIZEOF_DOUBLE 8 
+#define SIZEOF_DOUBLE 8 
 
 /* long double */
-//#define SIZEOF_LONG_DOUBLE 16 
+#define SIZEOF_LONG_DOUBLE 16 
 
 /* bool */
 #define SIZEOF_BOOL 1 
 
 
 /* float128 */
-//#define HAVE_FLOAT128 1 
-//#if defined(HAVE_FLOAT128)
-//typedef long double REFloat128; 
+#define HAVE_FLOAT128 1 
+#if defined(HAVE_FLOAT128)
+typedef long double REFloat128; 
+#define REFLOAT128_DEFINED 1
+#endif
+
+
+/* int128, uint128 */
+//#define HAVE_INTEGERS128 1 
+//#if defined(HAVE_INTEGERS128) 
+//typedef __int128_t REInt128;
+//typedef __uint128_t REUInt128;
 //#endif
+
+
+
+/* structures */
+/* struct stat */
+#define HAVE_STRUCT_STAT 1 
+
+
+/* struct _stat */
+/* #undef HAVE_STRUCT__STAT */
 
 
 
@@ -538,13 +498,49 @@
 #define HAVE_FUNCTION_SQRT 1 
 
 
+/* _wfopen */
+/* #undef HAVE_FUNCTION__WFOPEN */
+
+
+/* _wfopen_s */
+/* #undef HAVE_FUNCTION__WFOPEN_S */
+
+
+/* fopen_s */
+/* #undef HAVE_FUNCTION_FOPEN_S */
+
+
+/* sscanf_s */
+/* #undef HAVE_FUNCTION_SSCANF_S */
+
+
+/* clock_gettime */
+/* #undef HAVE_FUNCTION_CLOCK_GETTIME */
+
+
+/* dispatch_sync */
+#define HAVE_FUNCTION_DISPATCH_SYNC 1
+
+
+/* dispatch_async */
+#define HAVE_FUNCTION_DISPATCH_ASYNC 1
+
+
+/* dispatch_get_global_queue */
+#define HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE 1
+
+
+/* dispatch_after */
+#define HAVE_FUNCTION_DISPATCH_AFTER 1
+
+
 
 /* OS type */
 /* #undef __RE_OS_WINDOWS__ */
 
 #define __RE_OS_IPHONE__ 1
 
-//#define __RE_OS_MACOSX__ 1 
+/* #undef __RE_OS_MACOSX__ */
 
 /* #undef __RE_OS_LINUX__ */
 
@@ -556,51 +552,47 @@
 
 /* functionality */
 /* Disables zlib compression/decompression for REZLIBCompression. */
-//#define __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_ZLIB_COMPRESSION_SUPPORT__ */
 
 
 /* Disables lzma compression/decompression for RELZMACompression. */
-#define __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__ */
 
 
 /* Disables reading(decoding)/writing(encode) PNG image format. */
-#define __RE_RECORE_NO_PNG_IMAGE_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_PNG_IMAGE_SUPPORT__ */
 
 
 /* Disables reading(decoding) JPEG image format. */
-#define __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ 1 
-
-
-/* Disables reading(decoding) JPEG2000 image format. */
-#define __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ */
 
 
 /* Disables reading(decoding)/writing(encode) WEBP image format. */
-#define __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__ */
 
 
 /* Disables REFloat16 as 16 bit float, in this case type REFloat16 will be defined as REFloat32 (32 bit float) for compability. */
-#define __RE_RECORE_NO_FLOAT16_SUPPORT__ 1 
+/* #undef __RE_RECORE_NO_FLOAT16_SUPPORT__ */
 
 
 /* Disables yuv to rgb/a color conversion. Class REYUVtoRGB will do nothing. */
-#define __RE_CORE_NO_YUV_TO_RGB_CONVERSION__ 1 
+/* #undef __RE_CORE_NO_YUV_TO_RGB_CONVERSION__ */
 
 
 /* Disables reading/writing to SQLite database. */
-#define __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__ 1 
+/* #undef __RE_CORE_NO_SQLITE_DATABASE_SUPPORT__ */
 
 
 /* Disables reading/writing to PostgreSQL database. */
-#define __RE_CORE_NO_POSTGRESQL_DATABASE_SUPPORT__ 1 
+/* #undef __RE_CORE_NO_POSTGRESQL_DATABASE_SUPPORT__ */
 
 
 /* Removes from REString functionality witch converts special symbols to it's html presentation and back. */ 
-#define __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ 1 
+/* #undef __RE_RECORE_NO_STRING_DECODE_ENCODE_SPECIAL_HTML_CHARACTERS__ */
 
 
 /* Disables objects initialzation from url */
-#define __RE_RECORE_NO_LOAD_FROM_URL__ 1 
+/* #undef __RE_RECORE_NO_LOAD_FROM_URL__ */
 
 
 #endif /* __RECORE_SDK_CONFIG_H__ */

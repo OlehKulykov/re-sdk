@@ -22,6 +22,8 @@
 #include "REPoint3.h"
 #include "REMath.h"
 
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -491,6 +493,12 @@ public:
 #endif	
 	
 	~REVector3() { }
+	
+	static REVector3 fromString(const char * string);
+	
+	static REVector3 fromString(const REString & string);
+	
+	static REString toString(const REVector3 & vector3);
 };
 
 

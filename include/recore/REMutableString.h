@@ -57,6 +57,9 @@ public:
 	/// Replaces UTF8 string with another UTF8 string.
 	REMutableString & replace(const char * utf8String, const char * withUTF8StringOrNULL = NULL);
 	
+	/// Replaces needed char with another char.
+	REMutableString & replace(const char needChar, const char targetChar);
+	
 	/// Replaces wide chars string with another wide chars string.
 	REMutableString & replace(const wchar_t * wideString, const wchar_t * withWideStringOrNULL = NULL);
 	

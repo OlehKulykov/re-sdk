@@ -16,18 +16,79 @@
 
 
 #include "../../include/recore/REMainLoopUpdatable.h"
-#include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
+#include "../../include/recore/REApplication.h"
+#include "../../include/recore/RELog.h"
 
-
-/// Adds object to main loop
-REBOOL REMainLoopUpdatable::addToMainLoop()
+REBOOL REMainLoopUpdatable::isInMainLoop() const
 {
-	return REMainLoopsObjectsStoragePrivate::addObject(this);
+	return (_mainLoopUpdatableIdentifier != 0);
 }
 
-/// Removes object from main loop
+const REUIdentifier REMainLoopUpdatable::mainLoopUpdatableIdentifier() const
+{
+	return _mainLoopUpdatableIdentifier;
+}
+
+REMainLoopUpdatable::REMainLoopUpdatable() : 
+	_mainLoopUpdatableIdentifier(0)
+{
+	
+}
+
+REMainLoopUpdatable::~REMainLoopUpdatable()
+{
+	if (_mainLoopUpdatableIdentifier) 
+	{
+		REApplication * currApp = REApplication::currentApplication();
+		if (currApp) 
+		{
+			currApp->removeFromMainLoop(this);
+		}
+		else
+		{
+			RELog::log("Need create application");
+		}
+	}
+}
+
+REBOOL REMainLoopUpdatable::addToMainLoop()
+{
+	if (_mainLoopUpdatableIdentifier)
+	{
+		return true;
+	}
+	REApplication * currApp = REApplication::currentApplication();
+	if (currApp) 
+	{
+		_mainLoopUpdatableIdentifier = currApp->removeFromMainLoop(this);
+	}
+	else
+	{
+		RELog::log("Need create application");
+	}
+	return (_mainLoopUpdatableIdentifier != 0);
+}
+
 REBOOL REMainLoopUpdatable::removeFromMainLoop()
 {
-	return REMainLoopsObjectsStoragePrivate::removeObject(this);
+	if (_mainLoopUpdatableIdentifier)
+	{
+		REApplication * currApp = REApplication::currentApplication();
+		if (currApp) 
+		{
+			const REUIdentifier removedID = currApp->removeFromMainLoop(this);
+			if (removedID == _mainLoopUpdatableIdentifier) 
+			{
+				_mainLoopUpdatableIdentifier = 0;
+				return true;
+			}
+		}
+		else
+		{
+			RELog::log("Need create application");
+		}
+		return false;
+	}
+	return true;
 }
 

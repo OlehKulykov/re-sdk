@@ -22,6 +22,8 @@
 #include "REPoint2.h"
 #include "REMath.h"
 
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -136,7 +138,7 @@ public:
 	REVector2 & normalize()
 	{
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
-		const float32_t invMag = (1.0f / this->getMagnitude());
+		const float32_t invMag = (1.0f / this->magnitude());
 		armNeonVector = vmul_f32(*(float32x2_t *)&armNeonVector, vdup_n_f32(invMag));
 #else
 		const float invMag = ( 1.0f / this->magnitude() );
@@ -461,6 +463,12 @@ public:
 	x(anotherVector2D.x), y(anotherVector2D.y) { }
 #endif	
 	~REVector2() { }
+	
+	static REVector2 fromString(const char * string);
+	
+	static REVector2 fromString(const REString & string);
+	
+	static REString toString(const REVector2 & vector2);
 };
 
 

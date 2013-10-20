@@ -22,7 +22,6 @@
 #include "../REThread.h"
 #include "../REMainLoopUpdatable.h"
 
-
 class REMainThreadClassMethodPrivate : public REObject, public REMainLoopUpdatable
 {
 protected:
@@ -35,12 +34,10 @@ public:
 	{	
 		_mainThreadMethodForInvoke->invokeWithObject(_mainThreadMethodObject);
 		this->removeFromMainLoop();
-		REAutoReleasePool::getDefaultPool()->addObject(this);
+		this->release();
 	}
 	
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
-	
-	REMainThreadClassMethodPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(),
+	REMainThreadClassMethodPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(), REMainLoopUpdatable(),
 		_mainThreadMethodForInvoke(methodForInvoke),
 		_mainThreadMethodObject(methodObject)
 	{ 
@@ -55,7 +52,7 @@ public:
 		}
 		else 
 		{
-			REAutoReleasePool::getDefaultPool()->addObject(this);
+			this->release();
 		}
 	}
 	

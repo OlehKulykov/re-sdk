@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2011, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2013, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -19,9 +19,7 @@
  * KIND, either express or implied.
  *
  ***************************************************************************/
-#include "setup.h"
-
-#include <curl/curl.h>
+#include "tool_setup.h"
 
 #define ENABLE_CURLX_PRINTF
 /* use our own printf() functions */
@@ -29,6 +27,7 @@
 
 #include "tool_cfgable.h"
 #include "tool_cb_prg.h"
+#include "tool_util.h"
 
 #include "memdebug.h" /* keep this as LAST include */
 
@@ -51,17 +50,20 @@ int tool_progress_cb(void *clientp,
   double percent;
   int barwidth;
   int num;
-  int i;
-
+  struct timeval now = tvnow();
   struct ProgressData *bar = (struct ProgressData *)clientp;
+  curl_off_t total;
+  curl_off_t point;
+
+  if(bar->calls && (tvdiff(now, bar->prevtime) < 200L))
+    /* after first call, limit progress-bar updating to 5 Hz */
+    return 0;
 
   /* expected transfer size */
-  curl_off_t total = (curl_off_t)dltotal + (curl_off_t)ultotal +
-    bar->initial_size;
+  total = (curl_off_t)dltotal + (curl_off_t)ultotal + bar->initial_size;
 
   /* we've come this far */
-  curl_off_t point = (curl_off_t)dlnow + (curl_off_t)ulnow +
-    bar->initial_size;
+  point = (curl_off_t)dlnow + (curl_off_t)ulnow + bar->initial_size;
 
   if(point > total)
     /* we have got more than the expected total! */
@@ -78,21 +80,21 @@ int tool_progress_cb(void *clientp,
       prevblock++;
     }
   }
-  else {
+  else if(point != bar->prev) {
     frac = (double)point / (double)total;
     percent = frac * 100.0f;
     barwidth = bar->width - 7;
     num = (int) (((double)barwidth) * frac);
     if(num > MAX_BARLENGTH)
       num = MAX_BARLENGTH;
-    for(i = 0; i < num; i++)
-      line[i] = '#';
-    line[i] = '\0';
+    memset(line, '#', num);
+    line[num] = '\0';
     snprintf(format, sizeof(format), "\r%%-%ds %%5.1f%%%%", barwidth);
     fprintf(bar->out, format, line, percent);
   }
   fflush(bar->out);
   bar->prev = point;
+  bar->prevtime = now;
 
   return 0;
 }

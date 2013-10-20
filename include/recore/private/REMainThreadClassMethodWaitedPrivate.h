@@ -38,11 +38,12 @@ public:
 		_isWaiting = false;
 	}
 	
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const { return this->getObjectIdentifier(); }
+	const REBOOL isWaiting() const 
+	{
+		return _isWaiting; 
+	}
 	
-	const REBOOL isWaiting() const { return _isWaiting; }
-	
-	REMainThreadClassMethodWaitedPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(),
+	REMainThreadClassMethodWaitedPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(), REMainLoopUpdatable(),
 		_mainThreadMethodForInvoke(methodForInvoke),
 		_mainThreadMethodObject(methodObject),
 		_isWaiting(true)

@@ -27,12 +27,16 @@
 /// For removing object from main loop call removeFromMainLoop();
 class __RE_PUBLIC_CLASS_API__ REMainLoopUpdatable
 {
+private:
+	REUIdentifier _mainLoopUpdatableIdentifier;
+	
 public:
 	/// Called from main thread with current time in seconds.
 	virtual void update(const RETimeInterval currentTime) = 0;
 	
-	/// Must return unique identifier of object. Usialy returns 'REObject::GetObjectIdentifier()'.
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const = 0;
+	const REUIdentifier mainLoopUpdatableIdentifier() const;
+	
+	REBOOL isInMainLoop() const;
 	
 	/// Adds object to main loop.
 	REBOOL addToMainLoop();
@@ -40,8 +44,10 @@ public:
 	/// Removes object from main loop.
 	REBOOL removeFromMainLoop();
 	
+	REMainLoopUpdatable();
+	
 	/// Destructor.
-	virtual ~REMainLoopUpdatable() { }
+	virtual ~REMainLoopUpdatable();
 };
 
 

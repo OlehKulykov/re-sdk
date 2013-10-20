@@ -165,14 +165,7 @@ const char * RECore::buildInfo()
 #else
 	"yes\n"
 #endif
-	
-	"- Reading(decoding) JPEG2000 image format: "
-#ifdef __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__
-	"no\n"
-#else
-	"yes\n"
-#endif	
-	
+		
 	"- Reading(decoding)/writing(encode) WEBP image format: "
 #ifdef __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
 	"no\n"

@@ -20,6 +20,8 @@
 
 #include "RECommonHeader.h"
 
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -148,6 +150,11 @@ public:
 	
 #endif
 	
+	static RESize fromString(const char * string);
+	
+	static RESize fromString(const REString & string);
+	
+	static REString toString(const RESize & size);
 };
 
 #endif /* __RESIZE_H__ */

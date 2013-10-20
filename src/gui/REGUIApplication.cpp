@@ -91,15 +91,14 @@ const REUInt32 REGUIApplication::getClassIdentifier() const
 
 const REUInt32 REGUIApplication::classIdentifier()
 {
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIApplication");
+	const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIApplication");
 	return clasIdentif;
 }
 
 REBOOL REGUIApplication::isImplementsClass(const REUInt32 classIdentifier) const
 {
 	return ((REGUIApplication::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("IRERenderable") == classIdentifier) ||
-			REApplication::isImplementsClass(classIdentifier));
+			(REObject::generateClassIdentifierFromClassName("IRERenderable") == classIdentifier));
 }
 
 void REGUIApplication::render()
@@ -322,7 +321,6 @@ REBOOL REGUIApplication::initGUIApplication(REViewController * rootViewControlle
 		return true;
 	}
 	
-	this->addToErrorDescription(REString("Can't initialize application default RERenderDevice."));
 	return false;
 }
 
@@ -397,8 +395,6 @@ REGUIApplication::REGUIApplication() : REApplication(),
 void REGUIApplication::onReleased()
 {
 	RE_SAFE_RELEASE(_rootViewController);
-	
-	REApplication::onReleased();
 }
 
 REGUIApplication::~REGUIApplication()

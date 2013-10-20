@@ -20,7 +20,9 @@
 
 #include "RECommonHeader.h"
 #include "RERect.h"
- 
+
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -111,6 +113,12 @@ public:
 	
 	/// Destructor.
 	~REEdgeInsets() { }
+	
+	static REEdgeInsets fromString(const char * string);
+	
+	static REEdgeInsets fromString(const REString & string);
+	
+	static REString toString(const REEdgeInsets & edgeInsets);
 };
 
 #endif /* __REEDGEINSETS_H__ */

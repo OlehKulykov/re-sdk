@@ -22,7 +22,7 @@
 
 // Core.
 /// Version string
-#define __RE_CORE_VERSION_STRING__ "0.1.0"
+#define __RE_CORE_VERSION_STRING__ "0.2.0"
 
 /// Using static callbacks for reading and checking existance of application resources
 #define __RE_USING_STATIC_CALLBACKS_FOR_RESOURCES_STORAGE__
@@ -125,7 +125,7 @@
 
 /// Using curl library from addlibs folder.
 /// Will include as "addlibs/curl.h". All curl wrapers must be compiled.
-//#define __RE_USING_ADITIONAL_CURL_LIBRARY__
+#define __RE_USING_ADITIONAL_CURL_LIBRARY__
 
 /// Using system provided curl library. Will include as <curl/curl.h>
 //#define __RE_USING_SYSTEM_CURL_LIBRARY__

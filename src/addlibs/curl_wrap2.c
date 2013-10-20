@@ -7,11 +7,12 @@
 
 #ifdef __RE_USING_ADITIONAL_CURL_LIBRARY__
 
+
 #include "curl/lib/version.c"
 
 
 
-#endif /* __RE_USING_ADITIONAL_CURL_LIBRARY__ */
+#endif 
 
 
 

@@ -35,44 +35,127 @@
 */
 
 #include "../../include/recore/RENumber.h"
+
+
+#if defined(HAVE_RECORE_SDK_CONFIG_H) 
+#include "recore_sdk_config.h"
+#endif
+
+#if defined(HAVE_FLOAT_H)
 #include <float.h>
+#endif
 
 class RENumberPrivate 
 {	
 public:
-	static REString toString(const RENumber & number);
+	static int writeToString(const RENumber & number, char * cStr);
+	static REBOOL readFromString(RENumber * number, const char * strValue);
 };
 
-REString RENumberPrivate::toString(const RENumber & number)
+REBOOL RENumberPrivate::readFromString(RENumber * number, const char * strValue)
 {
-	char cStr[64] = { 0 };
-	int writed = -1;
+	if (strValue)
+	{
+		const char * testStr = strValue;
+		REBOOL isSigned = false;
+		REBOOL isReal = false;
+		while (*testStr)
+		{
+			switch (*testStr)
+			{
+				case '-':
+					isSigned = true;
+					break;
+				case '.':
+				case ',':
+					isReal = true;
+					break;
+				default:
+					break;
+			}
+			testStr++;
+		}
+		
+		if (isReal)
+		{
+			//float
+			long double resNum = 0;
+#if defined(HAVE_FUNCTION_SSCANF_S)			
+			const int readed = sscanf_s(strValue, "%Lf", &resNum);
+#else
+			const int readed = sscanf(strValue, "%Lf", &resNum);
+#endif			
+			if (readed == 1)
+			{
+				number->setFloat64Value((REFloat64)resNum);
+				return true;
+			}
+		}
+		else if (isSigned)
+		{
+			// int
+			long long int resNum = 0;
+#if defined(HAVE_FUNCTION_SSCANF_S)			
+			const int readed = sscanf_s(strValue, "%lld", &resNum);
+#else			
+			const int readed = sscanf(strValue, "%lld", &resNum);
+#endif
+			if (readed == 1)
+			{
+				number->setInt64Value((REInt64)resNum);
+				return true;
+			}
+		}
+		else
+		{
+			// uint
+			long long unsigned int resNum = 0;
+#if defined(HAVE_FUNCTION_SSCANF_S)		
+			const int readed = sscanf_s(strValue, "%llu", &resNum);
+#else			
+			const int readed = sscanf(strValue, "%llu", &resNum);
+#endif			
+			if (readed == 1)
+			{
+				number->setUInt64Value((REUInt64)resNum);
+				return true;
+			}
+		}
+		
+	}
+	return false;
+}
+
+int RENumberPrivate::writeToString(const RENumber & number, char * cStr)
+{
 	if (number.isInteger())
 	{
 		if (number.isSigned())
 		{
-			writed = sprintf(cStr, "%lld", (long long int)number.int64Value());
+#if defined(HAVE_FUNCTION_SPRINTF_S) 
+			return sprintf_s(cStr, "%lld", (long long int)number.int64Value());
+#else			
+			return sprintf(cStr, "%lld", (long long int)number.int64Value());
+#endif			
 		}
 		else if (number.isUnsigned())
 		{
-			writed = sprintf(cStr, "%llu", (long long unsigned int)number.uint64Value());
+#if defined(HAVE_FUNCTION_SPRINTF_S) 			
+			return sprintf_s(cStr, "%llu", (long long unsigned int)number.uint64Value());
+#else			
+			return sprintf(cStr, "%llu", (long long unsigned int)number.uint64Value());
+#endif			
 		}
 	}
 	else if (number.isReal())
 	{
-		writed = sprintf(cStr, "%10.9Lf", (long double)number.float64Value());
+#if defined(HAVE_FUNCTION_SPRINTF_S) 			
+		return sprintf_s(cStr, "%10.9Lf", (long double)number.float64Value());
+#else		
+		return sprintf(cStr, "%10.9Lf", (long double)number.float64Value());
+#endif		
 	}
-	
-	if (writed > 0)
-	{
-		return REString(cStr, (REUInt32)writed);
-	}
-	return REString();
-}
-
-REString RENumber::toString() const
-{
-	return RENumberPrivate::toString(*this);
+	return -1;
 }
 
 RENumberType RENumber::getType() const 
@@ -415,7 +498,7 @@ RENumber::RENumber() :
 RENumber::RENumber(const REString & stringValue) :
 	_type(RENumberTypeNone)
 {
-	if (!this->setValueFromString(stringValue))
+	if (!RENumberPrivate::readFromString(this, stringValue.UTF8String()))
 	{
 		this->clear();
 	}
@@ -424,7 +507,7 @@ RENumber::RENumber(const REString & stringValue) :
 RENumber::RENumber(const char * stringValue) :
 	_type(RENumberTypeNone)
 {
-	if (!this->setValueFromString(stringValue))
+	if (!RENumberPrivate::readFromString(this, stringValue))
 	{
 		this->clear();
 	}
@@ -463,101 +546,35 @@ RENumber::~RENumber()
 	
 }
 
-REBOOL RENumber::applyValueFromString(RENumber * number, const char * strValue)
+RENumber RENumber::fromString(const char * string)
 {
-	if (strValue)
+	RENumber n;
+	if (RENumberPrivate::readFromString(&n, string))
 	{
-		const char * testStr = strValue;
-		REBOOL isSigned = false;
-		REBOOL isReal = false;
-		while (*testStr)
-		{
-			switch (*testStr)
-			{
-				case '-':
-					isSigned = true;
-					break;
-				case '.':
-				case ',':
-					isReal = true;
-					break;
-				default:
-					break;
-			}
-			testStr++;
-		}
-		
-		if (isReal)
-		{
-			//float
-			long double resNum = 0;
-			if (sscanf(strValue, "%Lf", &resNum) == 1)
-			{
-				number->setFloat64Value((REFloat64)resNum);
-				return true;
-			}
-		}
-		else if (isSigned)
-		{
-			// int
-			long long int resNum = 0;
-			if (sscanf(strValue, "%lld", &resNum) == 1)
-			{
-				number->setInt64Value((REInt64)resNum);
-				return true;
-			}
-		}
-		else
-		{
-			// uint
-			long long unsigned int resNum = 0;
-			if (sscanf(strValue, "%llu", &resNum) == 1)
-			{
-				number->setUInt64Value((REUInt64)resNum);
-				return true;
-			}
-		}
-		
+		return n;
 	}
-	return false;
+	return RENumber();
 }
 
-REBOOL RENumber::setValueFromString(const REString & strValue)
+RENumber RENumber::fromString(const REString & string)
 {
-	return RENumber::applyValueFromString(this, strValue.UTF8String());
-}
-
-REBOOL RENumber::setValueFromString(const char * strValue)
-{
-	return RENumber::applyValueFromString(this, strValue);
-}
-
-void RENumber::applyNumberValueToString(const RENumber & number, REString * string)
-{
-	char cStr[129] = { 0 };
-	if (number.isInteger())
+	RENumber n;
+	if (RENumberPrivate::readFromString(&n, string.UTF8String()))
 	{
-		if (number.isSigned())
-		{
-			sprintf(cStr, "%lld", (long long int)number.int64Value());
-		}
-		else if (number.isUnsigned())
-		{
-			sprintf(cStr, "%llu", (long long unsigned int)number.uint64Value());
-		}
+		return n;
 	}
-	else if (number.isReal())
-	{
-		sprintf(cStr, "%10.9Lf", (long double)number.float64Value());
-	}
-	*string = cStr;
+	return RENumber();
 }
 
-REString RENumber::stringValue() const
+REString RENumber::toString(const RENumber & number)
 {
-	REString resultString;
-	RENumber::applyNumberValueToString(*this, &resultString);
-	return resultString;
+	char cStr[64] = { 0 };
+	const int writed = RENumberPrivate::writeToString(number, cStr);
+	if (writed > 0)
+	{
+		return REString(cStr, (REUInt32)writed);
+	}
+	return REString();
 }
 
 int RENumber::compareNumbers(const RENumber & number, const RENumber & anotherNumber)

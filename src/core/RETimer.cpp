@@ -37,7 +37,7 @@ REBOOL RETimer::isImplementsClass(const REUInt32 classIdentifier) const
 			REObject::isImplementsClass(classIdentifier));
 }
 
-void RETimer::Update(const RETimeInterval currentTime)
+void RETimer::update(const RETimeInterval currentTime)
 {
 	if (_isActive)
 	{
@@ -68,11 +68,6 @@ void RETimer::Update(const RETimeInterval currentTime)
 			}
 		}
 	}
-}
-
-const REUIdentifier RETimer::GetMainLoopUpdatableIdentifier() const
-{
-	return this->getObjectIdentifier();
 }
 
 void RETimer::setTrigerTargetMethod(REClassMethod * targetMethod) 
@@ -127,7 +122,7 @@ const REInt32 RETimer::loopsCount() const
 	return _loopsCount;
 }
 
-RETimer::RETimer() : REObject(),
+RETimer::RETimer() : REObject(), REMainLoopUpdatable(),
 	_targetMethod(NULL),
 	_startTime(0.0),
 	_time(0.0),

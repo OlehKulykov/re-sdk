@@ -818,7 +818,7 @@
 		3D0E329713E7CC5800F3D0A6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 3D0E329A13E7CC5800F3D0A6 /* Build configuration list for PBXProject "regui" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -889,12 +889,12 @@
 		3D0E32A813E7CC5800F3D0A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
@@ -908,6 +908,7 @@
 					../ios/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -915,11 +916,13 @@
 		3D0E32A913E7CC5800F3D0A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
+				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -939,7 +942,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/regui.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_THUMB_SUPPORT = NO;
@@ -953,7 +955,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/regui.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_THUMB_SUPPORT = NO;

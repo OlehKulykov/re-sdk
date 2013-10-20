@@ -24,6 +24,8 @@
 #include "REMath.h"
 #include "REMem.h"
 
+class REString;
+
 #if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
 #include <arm_neon.h>
 #endif
@@ -418,7 +420,6 @@ public:
 	
 	~RERect() { }
 	
-	
 	/// Objective-c additions
 #if (defined(CG_EXTERN) || defined(CG_INLINE)) && defined(CGFLOAT_TYPE)
 
@@ -452,6 +453,11 @@ public:
 	
 #endif	
 	
+	static RERect fromString(const char * string);
+	
+	static RERect fromString(const REString & string);
+	
+	static REString toString(const RERect & rect);
 };
 
 

@@ -20,6 +20,7 @@
 
 #include "RECommonHeader.h"
 
+class REString;
 
 class __RE_PUBLIC_CLASS_API__ REPoint3
 {
@@ -49,6 +50,11 @@ public:
 	REPoint3() : x(0.0f), y(0.0f), z(0.0f) { }
 	~REPoint3() { }
 
+	static REPoint3 fromString(const char * string);
+	
+	static REPoint3 fromString(const REString & string);
+	
+	static REString toString(const REPoint3 & point);
 };
 
 #endif /* __REPOINT3_H__ */

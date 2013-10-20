@@ -39,8 +39,7 @@ typedef enum _rePtrType
 	REPtrTypeBuffer = 5,
 	REPtrTypeDictionary = 6,
 	REPtrTypeVoidPointer = 7,
-	REPtrTypeDate = 8,
-	REPtrTypeREObject = 9
+	REPtrTypeDate = 8
 } REPtrType;
 
 class REDictionary;
@@ -78,7 +77,6 @@ public:
 	REDictionary * getDictionary() const;
 	void * getVoidPointer() const;
 	REDate * getDate() const;
-	REObject * getREObject() const;
 	const REPtrType getType() const;
 	
 	RETypedPtr(const RETypedPtr & anotherPtr);

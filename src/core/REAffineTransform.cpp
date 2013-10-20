@@ -19,6 +19,8 @@
 #include "../../include/recore/REPoint2.h"
 #include "../../include/recore/RETetragon.h"
 #include "../../include/recore/RELog.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/private/REStringUtilsPrivate.h"
 
 
 REPoint2 REAffineTransform::transformedPoint(const REFloat32 x, const REFloat32 y) const
@@ -83,4 +85,36 @@ void REAffineTransform::log() const
 }
 #endif	
 
+REAffineTransform REAffineTransform::fromString(const char * string)
+{
+	if (string) 
+	{
+		REAffineTransform t;
+		if (REStringUtilsPrivate::readArrayF32(string, t.arr, 6, ';') == 6) 
+		{
+			return t;
+		}
+	}
+	return REAffineTransform();
+}
+
+REAffineTransform REAffineTransform::fromString(const REString & string)
+{
+	if (string.length() > 0) 
+	{
+		REAffineTransform t;
+		if (REStringUtilsPrivate::readArrayF32(string.UTF8String(), t.arr, 6, ';') == 6) 
+		{
+			return t;
+		}
+	}
+	return REAffineTransform();
+}
+
+REString REAffineTransform::toString(const REAffineTransform & transform)
+{
+	char buff[128];
+	const REUInt32 len = REStringUtilsPrivate::writeArrayF32(transform.arr, buff, 6, ';');
+	return REString(buff, len);
+}
 

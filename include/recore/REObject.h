@@ -26,30 +26,28 @@
 class __RE_PUBLIC_CLASS_API__ REObject
 {
 private:
-	union
-	{
-		REUIdentifier _reObjectIdentifier;
-		void * _reObjectVoidPointer;
-	};
+	REUIdentifier _reObjectIdentifier;
 	REUInt32 _reObjectRetainCount;
 
 protected:
-	/// Deletes object 
-    static void deleteObject(REObject * object);
+	/// Called when object released and added to auto release pool.
+	/// Good place to release any used objects, stop any internal animations etc.
+	/// Default implementation do nothing, but if you override this method
+	/// don't forged call this method of base object.
+	virtual void onReleased() { }
 	
 	/// Constucts object with retain counter value 1 and assigning object identifier
 	REObject();
 	
 	/// Destructor.
 	virtual ~REObject();
-public:
-	void * getVoidPointer();
 	
-	const void * getVoidPointer() const;
-	
+	/// Deletes object 
+    static void deleteObject(REObject * object);
+public:	
 	/// Return type: REUIdentifier that is "unsigned int (32/64 bit, dependes of compiled platform)"
 	/// Return value is integer representation of "this" pointer when REObject creating.
-	const REUIdentifier getObjectIdentifier() const;
+	const REUIdentifier objectIdentifier() const;
 	
 	/// Returns integer identifier of class. Each new class that inherits REObject must implement this method.
 	/// Return value is md5 value of name class. Usialy return ::classIdentifier() value.
@@ -84,25 +82,7 @@ public:
 	void release();
 	
 	/// Returns retain counter of object.
-	const REUInt32 getRetainCount() const { return _reObjectRetainCount; }
-
-	template <class T>
-	T * casted()
-	{
-		union
-		{
-			void * v;
-			T * o;
-		} tu;
-		tu.v = _reObjectVoidPointer;
-		return tu.o;
-	}
-	
-	/// Called when object released and added to auto release pool.
-	/// Good place to release any used objects, stop any internal animations etc.
-	/// Default implementation do nothing, but if you override this method
-	/// don't forged call this method of base object.
-	virtual void onReleased() { }
+	const REUInt32 retainCount() const;
 };
 
 

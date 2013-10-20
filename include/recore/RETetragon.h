@@ -22,6 +22,7 @@
 #include "REPoint2.h"
 #include "REMem.h"
 
+class REString;
 class RERect;
 typedef struct _reRectStruct RERectStruct;
 
@@ -146,6 +147,12 @@ public:
 	
 	/// Destructor.
 	~RETetragon() { }
+	
+	static RETetragon fromString(const char * string);
+	
+	static RETetragon fromString(const REString & string);
+	
+	static REString toString(const RETetragon & tetragon);
 };
 
 #endif /* __RETETRAGON_H__ */

@@ -32,6 +32,10 @@
 #cmakedefine HAVE_STDINT_H @HAVE_STDINT_H@
 
 
+/* stdarg.h */
+#cmakedefine HAVE_STDARG_H @HAVE_STDARG_H@
+
+
 /* limits.h */
 #cmakedefine HAVE_LIMITS_H @HAVE_LIMITS_H@
 
@@ -118,6 +122,11 @@
 
 /* sys/errno.h */
 #cmakedefine HAVE_SYS_ERRNO_H @HAVE_SYS_ERRNO_H@
+
+
+/* io.h */
+#cmakedefine HAVE_IO_H @HAVE_IO_H@
+
 
 /* setjmp.h */
 #cmakedefine HAVE_SETJMP_H @HAVE_SETJMP_H@
@@ -307,6 +316,10 @@
 #cmakedefine HAVE_GLMACRO_H @HAVE_GLMACRO_H@
 
 
+/* dispatch/dispatch.h */
+#cmakedefine HAVE_DISPATCH_DISPATCH_H @HAVE_DISPATCH_DISPATCH_H@
+
+
 /* includes */
 #if defined(HAVE_SYS_TYPES_H)
 #include <sys/types.h>
@@ -324,26 +337,17 @@
 /* uint8_t */
 #cmakedefine SIZEOF_UINT8_T @SIZEOF_UINT8_T@
 
-/* u_int8_t */
-#cmakedefine SIZEOF_U_INT8_T @SIZEOF_U_INT8_T@
-
 /* int16_t */
 #cmakedefine SIZEOF_INT16_T @SIZEOF_INT16_T@
 
 /* uint16_t */
 #cmakedefine SIZEOF_UINT16_T @SIZEOF_UINT16_T@
 
-/* u_int16_t */
-#cmakedefine SIZEOF_U_INT16_T @SIZEOF_U_INT16_T@
-
 /* int32_t */
 #cmakedefine SIZEOF_INT32_T @SIZEOF_INT32_T@
 
-/* uint32_t /*
+/* uint32_t */
 #cmakedefine SIZEOF_UINT32_T @SIZEOF_UINT32_T@
-
-/* u_int32_t */
-#cmakedefine SIZEOF_U_INT32_T @SIZEOF_U_INT32_T@
 
 /* int64_t */
 #cmakedefine SIZEOF_INT64_T @SIZEOF_INT64_T@
@@ -351,35 +355,17 @@
 /* uint64_t */
 #cmakedefine SIZEOF_UINT64_T @SIZEOF_UINT64_T@
 
-/* u_int64_t */
-#cmakedefine SIZEOF_U_INT64_T @SIZEOF_U_INT64_T@
-
 /* uintptr_t */
 #cmakedefine SIZEOF_UINTPTR_T @SIZEOF_UINTPTR_T@
 
 /* char */
 #cmakedefine SIZEOF_CHAR @SIZEOF_CHAR@
 
-/* short */
-#cmakedefine SIZEOF_SHORT @SIZEOF_SHORT@
-
-/* int */
-#cmakedefine SIZEOF_INT @SIZEOF_INT@
-
 /* long int */
 #cmakedefine SIZEOF_LONG_INT @SIZEOF_LONG_INT@
 
 /* long long int */
 #cmakedefine SIZEOF_LONG_LONG_INT @SIZEOF_LONG_LONG_INT@
-
-/* float_t */
-#cmakedefine SIZEOF_FLOAT_T @SIZEOF_FLOAT_T@
-
-/* double_t */
-#cmakedefine SIZEOF_DOUBLE_T @SIZEOF_DOUBLE_T@ 
-
-/* long double_t */
-#cmakedefine SIZEOF_LONG_DOUBLE_T @SIZEOF_LONG_DOUBLE_T@
 
 /* float */
 #cmakedefine SIZEOF_FLOAT @SIZEOF_FLOAT@
@@ -396,9 +382,26 @@
 
 /* float128 */
 #cmakedefine HAVE_FLOAT128 @HAVE_FLOAT128@ 
-#if defined(HAVE_FLOAT128)
-typedef @FLOAT128_TYPE@ REFloat128; 
+#if defined(HAVE_FLOAT128) 
+#define REFloat128 @FLOAT128_TYPE@
 #endif
+
+
+/* int128, uint128 */
+#cmakedefine HAVE_INTEGERS128 @HAVE_INTEGERS128@ 
+#if defined(HAVE_INTEGERS128)
+#define REInt128 @INT128_TYPE@
+#define REUInt128 @UINT128_TYPE@
+#endif
+
+
+/* structures */
+/* struct stat */
+#cmakedefine HAVE_STRUCT_STAT @HAVE_STRUCT_STAT@ 
+
+
+/* struct _stat */
+#cmakedefine HAVE_STRUCT__STAT @HAVE_STRUCT__STAT@
 
 
 
@@ -434,8 +437,17 @@ typedef @FLOAT128_TYPE@ REFloat128;
 /* _wstat */
 #cmakedefine HAVE_FUNCTION__WSTAT @HAVE_FUNCTION__WSTAT@ 
 
+
 /* access */
 #cmakedefine HAVE_FUNCTION_ACCESS  @HAVE_FUNCTION_ACCESS@ 
+
+
+/* _access */
+#cmakedefine HAVE_FUNCTION__ACCESS  @HAVE_FUNCTION__ACCESS@ 
+
+
+/* _waccess */
+#cmakedefine HAVE_FUNCTION__WACCESS  @HAVE_FUNCTION__WACCESS@ 
 
 
 /* _mkdir */
@@ -518,8 +530,31 @@ typedef @FLOAT128_TYPE@ REFloat128;
 #cmakedefine HAVE_FUNCTION_SSCANF_S @HAVE_FUNCTION_SSCANF_S@ 
 
 
+/* sprintf_s */
+#cmakedefine HAVE_FUNCTION_SPRINTF_S @HAVE_FUNCTION_SPRINTF_S@ 
+
+
+/* vsprintf_s */
+#cmakedefine HAVE_FUNCTION_VSPRINTF_S @HAVE_FUNCTION_VSPRINTF_S@
+
 /* clock_gettime */
 #cmakedefine HAVE_FUNCTION_CLOCK_GETTIME @HAVE_FUNCTION_CLOCK_GETTIME@ 
+
+
+/* dispatch_sync */
+#cmakedefine HAVE_FUNCTION_DISPATCH_SYNC @HAVE_FUNCTION_DISPATCH_SYNC@
+
+
+/* dispatch_async */
+#cmakedefine HAVE_FUNCTION_DISPATCH_ASYNC @HAVE_FUNCTION_DISPATCH_ASYNC@
+
+
+/* dispatch_get_global_queue */
+#cmakedefine HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE @HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE@
+
+
+/* dispatch_after */
+#cmakedefine HAVE_FUNCTION_DISPATCH_AFTER @HAVE_FUNCTION_DISPATCH_AFTER@
 
 
 
@@ -553,10 +588,6 @@ typedef @FLOAT128_TYPE@ REFloat128;
 
 /* Disables reading(decoding) JPEG image format. */
 #cmakedefine __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ @__RE_RECORE_NO_JPEG_IMAGE_SUPPORT__@ 
-
-
-/* Disables reading(decoding) JPEG2000 image format. */
-#cmakedefine __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__ @__RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__@ 
 
 
 /* Disables reading(decoding)/writing(encode) WEBP image format. */

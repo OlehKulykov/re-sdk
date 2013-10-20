@@ -8,10 +8,6 @@
 //      may also include platform specific config header file
 // 
 
-#define __RE_USING_ADITIONAL_CURL_LIBRARY__
-#define __RE_OS_IPHONE__
-
-
 #include "../../include/reconfig/REConfigSelector.h"
 
 #ifdef __RE_USING_ADITIONAL_CURL_LIBRARY__
@@ -21,10 +17,12 @@
 #warning "add search user path to project: -I/addlibs/curl/include/"
 #endif
 
-
 #ifdef __RE_OS_IPHONE__
 /* lib/curl_config.h.  Generated from curl_config.h.in by configure.  */
 /* lib/curl_config.h.in.  Generated from configure.ac by autoheader.  */
+
+//#define BUILDING_LIBCURL
+//#define CURL_STATICLIB
 
 /* Location of default ca bundle */
 /* #undef CURL_CA_BUNDLE */
@@ -409,7 +407,7 @@
 #define HAVE_LIBGEN_H 1
 
 /* Define to 1 if you have the `idn' library (-lidn). */
-#define HAVE_LIBIDN 1
+//#define HAVE_LIBIDN 1
 
 /* Define to 1 if you have the `resolv' library (-lresolv). */
 /* #undef HAVE_LIBRESOLV */
@@ -451,7 +449,7 @@
 #define HAVE_LIMITS_H 1
 
 /* if your compiler supports LL */
-#define HAVE_LL 1
+//#define HAVE_LL 1
 
 /* Define to 1 if you have the <locale.h> header file. */
 #define HAVE_LOCALE_H 1
@@ -542,7 +540,7 @@
 #define HAVE_POSIX_STRERROR_R 1
 
 /* if you have <pthread.h> */
-/* #undef HAVE_PTHREAD_H */
+#define HAVE_PTHREAD_H 1
 
 /* Define to 1 if you have the <pwd.h> header file. */
 #define HAVE_PWD_H 1
@@ -813,7 +811,7 @@
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
  */
-#define LT_OBJDIR ".libs/"
+#define LT_OBJDIR " "
 
 /* Define to 1 if you need the lber.h header file even with ldap.h */
 /* #undef NEED_LBER_H */
@@ -840,28 +838,28 @@
 /* #undef NTLM_WB_FILE */
 
 /* cpu-machine-OS */
-#define OS "arm-apple-darwin9"
+#define OS " "
 
 /* Name of package */
-#define PACKAGE "curl"
+#define PACKAGE " "
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "a suitable curl mailing list: http://curl.haxx.se/mail/"
+#define PACKAGE_BUGREPORT " "
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "curl"
+#define PACKAGE_NAME " "
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "curl -"
+#define PACKAGE_STRING " "
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "curl"
+#define PACKAGE_TARNAME " "
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL ""
+#define PACKAGE_URL " "
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "-"
+#define PACKAGE_VERSION " "
 
 /* a suitable file to read random data from */
 /* #undef RANDOM_FILE */
@@ -921,10 +919,10 @@
 #define SIZEOF_INT 4
 
 /* The size of `long', as computed by sizeof. */
-#define SIZEOF_LONG 8
+//#define SIZEOF_LONG 8
 
 /* The size of `off_t', as computed by sizeof. */
-#define SIZEOF_OFF_T 8
+//#define SIZEOF_OFF_T 8
 
 /* The size of `short', as computed by sizeof. */
 #define SIZEOF_SHORT 2
@@ -933,10 +931,10 @@
 #define SIZEOF_SIZE_T 8
 
 /* The size of `time_t', as computed by sizeof. */
-#define SIZEOF_TIME_T 8
+//#define SIZEOF_TIME_T 8
 
 /* The size of `void*', as computed by sizeof. */
-#define SIZEOF_VOIDP 8
+//#define SIZEOF_VOIDP 8
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
@@ -1019,7 +1017,7 @@
 /* #undef USE_YASSLEMUL */
 
 /* Version number of package */
-#define VERSION "-"
+#define VERSION " "
 
 /* Define to 1 to provide own prototypes. */
 /* #undef WANT_IDN_PROTOTYPES */
@@ -1064,9 +1062,17 @@
 
 
 
+#endif /* __RE_OS_IPHONE__ */
 
-
-#endif /* __RE_OS_BADA__ */
+//#include "curl/include/curl/curl.h"
+//#include "curl/include/curl/curlbuild.h"
+//#include "curl/include/curl/curlrules.h"
+//#include "curl/include/curl/curlver.h"
+//#include "curl/include/curl/easy.h"
+//#include "curl/include/curl/mprintf.h"
+//#include "curl/include/curl/multi.h"
+//#include "curl/include/curl/stdcheaders.h"
+//#include "curl/include/curl/typecheck-gcc.h"
 
 
 #endif /* __RE_USING_ADITIONAL_CURL_LIBRARY__ */

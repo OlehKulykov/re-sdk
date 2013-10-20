@@ -18,12 +18,18 @@
 #include "../../include/recore/REImageManager.h"
 #include "../../include/recore/REMem.h"
 #include "../../include/recore/RELog.h"
+#include "../../include/recore/REBufferNoCopy.h"
 
-#ifndef __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ 
+#if defined(HAVE_RECORE_SDK_CONFIG_H)
+#include "recore_sdk_config.h"
+#endif
 
-#ifdef __RE_HAVE_SYSTEM_SETJMP_H__ 
+#if defined(HAVE_SETJMP_H) 
 #include <setjmp.h>
 #endif
+
+
+#ifndef __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ 
 
 #if defined(__RE_USING_ADITIONAL_JPEG_LIBRARY__)
 #include "../addlibs/jpeg.h"
@@ -40,31 +46,6 @@
 #endif
 
 #endif /* __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__  */
-
-
-#ifndef __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__
-
-#if defined(__RE_USING_ADITIONAL_OPENJPEG_LIBRARY__)
-#include "../addlibs/openjpeg.h"
-#elif defined(__RE_TRY_USE_SYSTEM_OPENJPEG_LIBRARY__)
-
-#if defined(__RE_HAVE_SYSTEM_OPENJPEG_H__)
-#include <openjpeg.h>
-#elif defined(__RE_HAVE_SYSTEM_OPENJPEG_OPENJPEG_H__)
-#include <openjpeg/openjpeg.h>
-#elif defined(__RE_HAVE_SYSTEM_OPENJPEG_2_0_OPENJPEG_H__)
-#include <openjpeg-2.0/openjpeg.h>
-#elif defined(__RE_HAVE_SYSTEM_OPENJPEG_1_5_OPENJPEG_H__)
-#include <openjpeg-1.5/openjpeg.h>
-#else
-#define __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__
-#endif
-
-#else
-#define __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__
-#endif
-
-#endif /* __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__ */
 
 
 #ifndef __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__
@@ -95,10 +76,6 @@
 
 
 #ifndef __RE_RECORE_NO_PNG_IMAGE_SUPPORT__
-
-#ifdef __RE_HAVE_SYSTEM_SETJMP_H__ 
-#include <setjmp.h>
-#endif
 
 #if defined(__RE_USING_ADITIONAL_PNG_LIBRARY__)
 #include "../addlibs/png.h"
@@ -141,11 +118,8 @@ public:
 	static REPtr<REImageBase> loadJPG(const REUByte * fileData, const REUInt32 dataSize);
 #endif 	
 	
-#ifndef __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__ 	
-	static REPtr<REImageBase> loadJPEG2000(const REUByte * fileData, const REUInt32 dataSize);
-#endif
-	
 #ifndef __RE_RECORE_NO_WEBP_IMAGE_SUPPORT__ 	
+	static void freeWebPEncodedBuffer(void * buff);
 	static REPtr<REImageBase> loadWebP(const REUByte * fileData, const REUInt32 dataSize);
 	static REPtr<REBuffer> createWebPFilePresentation(const REUByte * pixelsData,
 													  const REUInt32 width,
@@ -201,6 +175,11 @@ REPtr<REImageBase> REImageManagerPrivate::loadWebP(const REUByte * fileData, con
 	return REPtr<REImageBase>();
 }
 
+void REImageManagerPrivate::freeWebPEncodedBuffer(void * buff)
+{
+	free(buff);
+}
+
 REPtr<REBuffer> REImageManagerPrivate::createWebPFilePresentation(const REUByte * pixelsData,
 																  const REUInt32 width,
 																  const REUInt32 height,
@@ -209,37 +188,64 @@ REPtr<REBuffer> REImageManagerPrivate::createWebPFilePresentation(const REUByte 
 {
 	size_t outSize = 0;
 	uint8_t * outBuff = NULL;
-	switch (pixelFormat) 
+	if (quality > 100.f) 
 	{
-		case REImagePixelFormatR8G8B8:
-			outSize = WebPEncodeRGB((const uint8_t *)pixelsData,
-									(int)width, 
-									(int)height, 
-									(int)width * 3,
-									(float)quality, 
-									&outBuff);
-			break;
-			
-		case REImagePixelFormatR8G8B8A8:
-			outSize = WebPEncodeRGBA((const uint8_t *)pixelsData,
-									 (int)width, 
-									 (int)height, 
-									 (int)width * 4,
-									 (float)quality, 
-									 &outBuff);
-			break;
-			
-		default:
-			break;
+		switch (pixelFormat) 
+		{
+			case REImagePixelFormatR8G8B8:
+				outSize = WebPEncodeLosslessRGB((const uint8_t *)pixelsData,
+												(int)width, 
+												(int)height, 
+												(int)width * 3,
+												&outBuff);
+				break;
+				
+			case REImagePixelFormatR8G8B8A8:
+				outSize = WebPEncodeLosslessRGBA((const uint8_t *)pixelsData,
+												 (int)width, 
+												 (int)height, 
+												 (int)width * 4,
+												 &outBuff);
+				break;
+				
+			default:
+				break;
+		}
+	}
+	else
+	{
+		switch (pixelFormat) 
+		{
+			case REImagePixelFormatR8G8B8:
+				outSize = WebPEncodeRGB((const uint8_t *)pixelsData,
+										(int)width, 
+										(int)height, 
+										(int)width * 3,
+										(float)quality, 
+										&outBuff);
+				break;
+				
+			case REImagePixelFormatR8G8B8A8:
+				outSize = WebPEncodeRGBA((const uint8_t *)pixelsData,
+										 (int)width, 
+										 (int)height, 
+										 (int)width * 4,
+										 (float)quality, 
+										 &outBuff);
+				break;
+				
+			default:
+				break;
+		}
 	}
 	
 	REBuffer * file = NULL;
 	if ((outSize > 0) && outBuff) 
 	{
-		file = new REBuffer(outBuff, (REUInt32)outSize);
+		file = new REBufferNoCopy(outBuff, (REUInt32)outSize, REImageManagerPrivate::freeWebPEncodedBuffer);
 	}
 	
-	if (outBuff) 
+	if (!file && outBuff) 
 	{
 		free(outBuff);
 	}
@@ -249,123 +255,19 @@ REPtr<REBuffer> REImageManagerPrivate::createWebPFilePresentation(const REUByte 
 
 #endif
 
-#ifndef __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__ 	
-REPtr<REImageBase> REImageManagerPrivate::loadJPEG2000(const REUByte * fileData, const REUInt32 dataSize)
-{
-	opj_dparameters_t parameters;
-	opj_set_default_decoder_parameters(&parameters);
-	
-	opj_dinfo_t * dinfo = opj_create_decompress(CODEC_JP2);
-	
-	opj_set_event_mgr((opj_common_ptr)dinfo, NULL, NULL);
-	
-	opj_setup_decoder(dinfo, &parameters);
-	
-	opj_cio_t * cio = opj_cio_open((opj_common_ptr)dinfo, (unsigned char *)fileData, dataSize);
-	
-	opj_image_t * image = opj_decode(dinfo, cio);
-	if (!image)
-	{
-		opj_destroy_decompress(dinfo);
-		opj_cio_close(cio);
-		return REPtr<REImageBase>();
-	}
-	
-	opj_cio_close(cio);
-	
-	const REUInt32 width = (REUInt32)image->comps[0].w;
-	const REUInt32 height = (REUInt32)image->comps[0].h;
-	const REUInt32 channelsCount = (REUInt32)image->numcomps;
-	REImagePixelFormat pixelFormat = REImagePixelFormatNONE;
-	switch (channelsCount) 
-	{
-		case 3:
-			pixelFormat = REImagePixelFormatR8G8B8;
-			break;
-		case 4:
-			pixelFormat = REImagePixelFormatR8G8B8A8;
-			break;
-		default:
-			opj_destroy_decompress(dinfo);
-			opj_cio_close(cio);
-			return REPtr<REImageBase>();
-			break;
-	}
-	
-	REImageBase * newBase = new REImageBase(pixelFormat, width, height);
-	if (!newBase) 
-	{
-		opj_destroy_decompress(dinfo);
-		opj_cio_close(cio);
-		return REPtr<REImageBase>();
-	}
-	if (newBase->isNull() || (newBase->channelsCount() != channelsCount)) 
-	{
-		opj_destroy_decompress(dinfo);
-		opj_cio_close(cio);
-		delete newBase;
-		return REPtr<REImageBase>();
-	}
-	
-	REUByte * imageData = newBase->imageData();
-	if (image->numcomps == 3) 
-	{
-		REUByte * rgb = imageData;
-		for (REUInt32 y = 0; y < height; y++) 
-		{
-			const REUInt32 index = y * width;
-			int * r = &image->comps[0].data[index];
-			int * g = &image->comps[1].data[index];
-			int * b = &image->comps[2].data[index];
-			for (REUInt32 x = 0; x < width; x++)	
-			{
-				*rgb++ = (REUByte)*r++;
-				*rgb++ = (REUByte)*g++;
-				*rgb++ = (REUByte)*b++;
-			}
-		}
-	}
-	else if (image->numcomps == 4)
-	{
-		REUByte * rgba = imageData;
-		const REUInt32 alphaComponent = image->numcomps - 1;
-		for (REUInt32 y = 0; y < height; y++) 
-		{
-			const REUInt32 index = y * width;
-			int * r = &image->comps[0].data[index];
-			int * g = &image->comps[1].data[index];
-			int * b = &image->comps[2].data[index];
-			int * a = &image->comps[alphaComponent].data[index];
-			for (REUInt32 x = 0; x < width; x++)	
-			{
-				*rgba++ = (REUByte)*r++;
-				*rgba++ = (REUByte)*g++;
-				*rgba++ = (REUByte)*b++;
-				*rgba++ = (REUByte)*a++;
-			}
-		}
-	}
-	
-	opj_image_destroy(image);
-	opj_destroy_decompress(dinfo);
-	
-	return REPtr<REImageBase>(newBase);
-}
-#endif
-
 #ifndef __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__ 	
 REPtr<REImageBase> REImageManagerPrivate::loadJPG(const REUByte * fileData, const REUInt32 dataSize)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_error_mgr pub;
 	
-#ifdef __RE_HAVE_SYSTEM_SETJMP_H__ 	
+#if defined(HAVE_SETJMP_H) 
 	jmp_buf setjmp_buffer;
-#endif	
+#endif
 	
 	cinfo.err = jpeg_std_error(&pub);
 	
-#ifdef __RE_HAVE_SYSTEM_SETJMP_H__ 	
+#if defined(HAVE_SETJMP_H) 
 	if ( setjmp(setjmp_buffer) )
 	{
 		jpeg_destroy_decompress(&cinfo);
@@ -498,7 +400,7 @@ REPtr<REImageBase> REImageManagerPrivate::loadPNG(const REUByte * fileData, cons
 		return REPtr<REImageBase>();
 	}
 	
-#ifdef __RE_HAVE_SYSTEM_SETJMP_H__ 	
+#if defined(HAVE_SETJMP_H) 
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
@@ -674,9 +576,10 @@ REPtr<REBuffer> REImageManagerPrivate::createPNGFilePresentation(const REUByte *
 		png_bytep * row_pointers = new png_bytep[height];	
 		if (row_pointers) 
 		{	
+			const REUInt32 width__bytes_per_pixel = width * bytes_per_pixel;
 			for (REUInt32 k = 0; k < height; k++)
 			{
-				row_pointers[k] = pixData + (k * width * bytes_per_pixel);
+				row_pointers[k] = pixData + (k * width__bytes_per_pixel);
 			}
 			png_write_image(png_ptr, row_pointers);
 			
@@ -716,16 +619,11 @@ REPtr<REImageBase> REImageManager::createFromFileData(const REUByte * fileData, 
 			RELog::log("Loading JPEG image format requires undefined flag __RE_RECORE_NO_JPEG_IMAGE_SUPPORT__");
 #endif			
 			break;	
-			
-		case REImageTypeJPEG2000:
-#ifndef __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__			
-			return REImageManagerPrivate::loadJPEG2000(fileData, dataSize);
-#else
-			RELog::log("Loading JPEG2000 image format requires undefined flag __RE_RECORE_NO_JPEG2000_IMAGE_SUPPORT__");
-#endif			
-			break;	
-			
+						
 		case REImageTypeTGA:
+		{
+			RELog::log("No Targa image support");
+		}
 			break;
 			
 		case REImageTypeWEBP:
@@ -758,12 +656,6 @@ REImageType REImageManager::typeFromFileData(const REUByte * fileData, const REU
 	if (memcmp(&fileData[6], jpegSignature, 4) == 0)
 	{
 		return REImageTypeJPEG;
-	}
-	
-	REUInt32 * data = (REUInt32*)fileData;
-	if (data[1] == 0x2020506a)
-	{
-		return REImageTypeJPEG2000;
 	}
 	
         /*

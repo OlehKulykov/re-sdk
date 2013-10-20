@@ -46,13 +46,10 @@ public:
 
 #define RE_LABEL_XML_TEXT_KEY_STRING "text"
 #define RE_LABEL_XML_TEXT_COLOR_KEY_STRING "textcolorrgbaf"
-#define RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING "%f;%f;%f;%f"
 #define RE_LABEL_XML_TEXT_INSETS_KEY_STRING "textinsetsf"
-#define RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING "%f;%f;%f;%f"
 #define RE_LABEL_XML_CHARS_SPACE_RATIO_KEY_STRING "charsspaceratiof"
 #define RE_LABEL_XML_CHARS_SPACE_RATIO_FORMAT_STRING "%f"
 #define RE_LABEL_XML_SHADOW_COLOR_KEY_STRING "shadowcolorrgbaf"
-#define RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING "%f;%f;%f;%f"
 #define RE_LABEL_XML_SHADOW_OFFSET_KEY_STRING "shadowoffset"
 #define RE_LABEL_XML_SHADOW_OFFSET_FORMAT_STRING "%f;%f"
 #define RE_LABEL_XML_USING_SHADOW_KEY_STRING "useshadow"
@@ -614,30 +611,18 @@ REBOOL RELabel::acceptLabelStringParameter(RELabel * label, const char * key, co
     }
     else if (strcmp(key, RE_LABEL_XML_TEXT_COLOR_KEY_STRING) == 0)
     {
-        REColor c;
-        if (sscanf(value, RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
-        {
-            label->setTextColor(c);
-            return true;
-        }
+		label->setTextColor(REColor::fromString(value));
+		return true;
     }
     else if (strcmp(key, RE_LABEL_XML_TEXT_INSETS_KEY_STRING) == 0)
     {
-        REEdgeInsets i;
-        if (sscanf(value, RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING, &i.top, &i.left, &i.bottom, &i.right) == 4)
-        {
-            label->setTextInsets(i);
-            return true;
-        }
+		label->setTextInsets(REEdgeInsets::fromString(value));
+		return true;
     }
     else if (strcmp(key, RE_LABEL_XML_SHADOW_COLOR_KEY_STRING) == 0)
     {
-        REColor c;
-        if (sscanf(value, RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING, &c.red, &c.green, &c.blue, &c.alpha) == 4)
-        {
-            label->setShadowColor(c);
-            return true;
-        }
+		label->setShadowColor(REColor::fromString(value));
+		return true;
     }
     else if (strcmp(key, RE_LABEL_XML_SHADOW_OFFSET_KEY_STRING) == 0)
     {
@@ -832,13 +817,9 @@ RELabel * RELabel::create()
 
 const char * RELabel::getXMLTextKeyString() { return RE_LABEL_XML_TEXT_KEY_STRING; }
 const char * RELabel::getXMLTextColorKeyString() { return RE_LABEL_XML_TEXT_COLOR_KEY_STRING; }
-const char * RELabel::getXMLTextColorFormatString() { return RE_LABEL_XML_TEXT_COLOR_FORMAT_STRING; }
 const char * RELabel::getXMLTextInsetsKeyString() { return RE_LABEL_XML_TEXT_INSETS_KEY_STRING; }
-const char * RELabel::getXMLTextInsetsFormatString() { return RE_LABEL_XML_TEXT_INSETS_FORMAT_STRING; }
 const char * RELabel::getXMLCharsSpaceRatioKeyString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_KEY_STRING; }
 const char * RELabel::getXMLCharsSpaceRatioFormatString() { return RE_LABEL_XML_CHARS_SPACE_RATIO_FORMAT_STRING; }
-const char * RELabel::getXMLShadowColorKeyString() { return RE_LABEL_XML_SHADOW_COLOR_KEY_STRING; }
-const char * RELabel::getXMLShadowColorFormatString() { return RE_LABEL_XML_SHADOW_COLOR_FORMAT_STRING; }
 const char * RELabel::getXMLShadowOffsetKeyString() { return RE_LABEL_XML_SHADOW_OFFSET_KEY_STRING; }
 const char * RELabel::getXMLShadowOffsetFormatString() { return RE_LABEL_XML_SHADOW_OFFSET_FORMAT_STRING; }
 const char * RELabel::getXMLUsingShadowKeyString() { return RE_LABEL_XML_USING_SHADOW_KEY_STRING; }

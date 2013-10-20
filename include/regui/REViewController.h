@@ -93,9 +93,6 @@ public:
 	
 	/// Returns XML key string for size.
 	static const char * getXMLSizeKeyString();
-	
-	/// Returns XML format string for size.
-	static const char * getXMLSizeFormatString();
 };
 
 

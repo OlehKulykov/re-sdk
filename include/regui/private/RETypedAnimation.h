@@ -41,14 +41,10 @@ protected: \
 	\
 public: \
 	virtual void update(const RETimeInterval currentTime); \
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const \
-	{ \
-		return this->getObjectIdentifier(); \
-	} \
 	\
 	virtual const REUIdentifier getAnimationIdentifier() const \
 	{ \
-		return this->getObjectIdentifier(); \
+		return this->objectIdentifier(); \
 	} \
 	AnimationClassByType(REAnimationInfo * info, REArray<REAnimationFloatParams *> * params) : \
 		REObject(), REAnimationBase(info, params) { } \

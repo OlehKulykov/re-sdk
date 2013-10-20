@@ -75,7 +75,7 @@ REWideString & REWideString::operator=(const REMutableString & anotherString)
 	return (*this);
 }
 
-REWideString::REWideString()
+REWideString::REWideString() : REStringBase()
 {
 	
 }

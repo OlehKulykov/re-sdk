@@ -32,10 +32,13 @@
 		3D0E62B5145586180030C4FD /* REMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E62B4145586180030C4FD /* REMutex.cpp */; };
 		3D16878E176DE84500BFF707 /* RETypedPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D16878D176DE84500BFF707 /* RETypedPtr.h */; };
 		3D168791176DE86C00BFF707 /* RETypedPtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D168790176DE86C00BFF707 /* RETypedPtr.cpp */; };
-		3D16D4801446EDB9009B13AA /* RELocale_iphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */; };
 		3D1788EB13E2987E00520FC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1788EA13E2987E00520FC2 /* Foundation.framework */; };
 		3D183DB7146928760004F6F6 /* RE2DAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */; };
 		3D183DBA1469287E0004F6F6 /* RE2DAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */; };
+		3D1BBBAB180FCFF0006DDBD5 /* REBufferNoCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1BBBAA180FCFF0006DDBD5 /* REBufferNoCopy.h */; };
+		3D1BBBAD180FCFFD006DDBD5 /* REBufferNoCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BBBAC180FCFFD006DDBD5 /* REBufferNoCopy.cpp */; };
+		3D1BBBD01810142D006DDBD5 /* RESize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BBBCF1810142D006DDBD5 /* RESize.cpp */; };
+		3D1BBBD218101649006DDBD5 /* REEdgeInsets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BBBD118101649006DDBD5 /* REEdgeInsets.cpp */; };
 		3D1CC87314E90AA400A0D9C7 /* REMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CC87214E90AA400A0D9C7 /* REMath.cpp */; };
 		3D1F430E13E29A2E001E480D /* recore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F430D13E29A2E001E480D /* recore.h */; };
 		3D1F434113E29A4F001E480D /* IREFileReadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F431113E29A4F001E480D /* IREFileReadable.h */; };
@@ -78,8 +81,8 @@
 		3D1F436A13E29A4F001E480D /* REUserCallBacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433C13E29A4F001E480D /* REUserCallBacks.h */; };
 		3D1F436B13E29A4F001E480D /* REYUVtoRGB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433D13E29A4F001E480D /* REYUVtoRGB.h */; };
 		3D1F436C13E29A4F001E480D /* REZipReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F433E13E29A4F001E480D /* REZipReader.h */; };
-		3D1F439113E29AAB001E480D /* RE2DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436E13E29AAB001E480D /* RE2DVector.cpp */; };
-		3D1F439213E29AAB001E480D /* RE3DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436F13E29AAB001E480D /* RE3DVector.cpp */; };
+		3D1F439113E29AAB001E480D /* REVector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436E13E29AAB001E480D /* REVector2.cpp */; };
+		3D1F439213E29AAB001E480D /* REVector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F436F13E29AAB001E480D /* REVector3.cpp */; };
 		3D1F439313E29AAB001E480D /* REAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437013E29AAB001E480D /* REAngle.cpp */; };
 		3D1F439413E29AAB001E480D /* REAutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437113E29AAB001E480D /* REAutoReleasePool.cpp */; };
 		3D1F439613E29AAB001E480D /* REBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F437313E29AAB001E480D /* REBuffer.cpp */; };
@@ -173,11 +176,6 @@
 		3D1F445613E29F3A001E480D /* jpeg_wrap59.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FC13E29F3A001E480D /* jpeg_wrap59.c */; };
 		3D1F445713E29F3A001E480D /* jpeg_wrap60.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F43FD13E29F3A001E480D /* jpeg_wrap60.c */; };
 		3D1F445813E29F3A001E480D /* jpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F43FE13E29F3A001E480D /* jpeg.h */; };
-		3D1F445913E29F3A001E480D /* openjpeg_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F43FF13E29F3A001E480D /* openjpeg_config.h */; };
-		3D1F445A13E29F3A001E480D /* openjpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440013E29F3A001E480D /* openjpeg_wrap1.c */; };
-		3D1F445B13E29F3A001E480D /* openjpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440113E29F3A001E480D /* openjpeg_wrap2.c */; };
-		3D1F445C13E29F3A001E480D /* openjpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440213E29F3A001E480D /* openjpeg_wrap3.c */; };
-		3D1F445D13E29F3A001E480D /* openjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F440313E29F3A001E480D /* openjpeg.h */; };
 		3D1F445E13E29F3A001E480D /* png_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F440413E29F3A001E480D /* png_config.h */; };
 		3D1F445F13E29F3A001E480D /* png_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F440513E29F3A001E480D /* png_wrap1.c */; };
 		3D1F446013E29F3A001E480D /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F440613E29F3A001E480D /* png.h */; };
@@ -201,6 +199,22 @@
 		3D1F447213E29F3A001E480D /* zlib_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441813E29F3A001E480D /* zlib_wrap14.c */; };
 		3D1F447313E29F3A001E480D /* zlib_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F441913E29F3A001E480D /* zlib_wrap15.c */; };
 		3D1F447413E29F3A001E480D /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1F441A13E29F3A001E480D /* zlib.h */; };
+		3D28943B17C4F14900EBB312 /* curl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28943317C4F14900EBB312 /* curl.h */; };
+		3D28943C17C4F14900EBB312 /* curl_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28943417C4F14900EBB312 /* curl_config.h */; };
+		3D28943E17C4F14900EBB312 /* curl_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943617C4F14900EBB312 /* curl_wrap2.c */; };
+		3D28943F17C4F14900EBB312 /* curl_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943717C4F14900EBB312 /* curl_wrap3.c */; };
+		3D28944017C4F14900EBB312 /* curl_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943817C4F14900EBB312 /* curl_wrap4.c */; };
+		3D28944117C4F14900EBB312 /* curl_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943917C4F14900EBB312 /* curl_wrap5.c */; };
+		3D28944217C4F14900EBB312 /* curl_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943A17C4F14900EBB312 /* curl_wrap6.c */; };
+		3D28944717C4F35900EBB312 /* REURLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D28944617C4F35900EBB312 /* REURLRequest.cpp */; };
+		3D28944917C4F36500EBB312 /* REURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28944817C4F36500EBB312 /* REURLRequest.h */; };
+		3D28944E17C4F78200EBB312 /* REURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28944D17C4F78200EBB312 /* REURLConnection.h */; };
+		3D28945017C4F79200EBB312 /* IREURLConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28944F17C4F79200EBB312 /* IREURLConnectionDelegate.h */; };
+		3D28945217C4F7A600EBB312 /* REURLConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D28945117C4F7A600EBB312 /* REURLConnection.cpp */; };
+		3D28945417C4F85A00EBB312 /* REURLResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D28945317C4F85900EBB312 /* REURLResponse.cpp */; };
+		3D28945617C4F87400EBB312 /* REURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28945517C4F87400EBB312 /* REURLResponse.h */; };
+		3D28945E17C5014E00EBB312 /* REURLConnectionCURLPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28945D17C5014E00EBB312 /* REURLConnectionCURLPrivate.h */; };
+		3D28946317C50A9100EBB312 /* REMutableURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D28946217C50A9100EBB312 /* REMutableURLResponse.h */; };
 		3D3F6853145029D2002409DD /* REMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D3F6852145029D2002409DD /* REMatrix4.h */; };
 		3D3F689114503B47002409DD /* REAffineTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D3F689014503B47002409DD /* REAffineTransform.h */; };
 		3D40A0B217C26629009A74A6 /* REURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D40A0B117C26629009A74A6 /* REURL.cpp */; };
@@ -219,11 +233,16 @@
 		3D5FB910146C12980039FBE9 /* REInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D5FB90F146C12980039FBE9 /* REInterpolation.h */; };
 		3D628DED1557CCB300B1CCCC /* webp_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D628DEB1557CCB300B1CCCC /* webp_wrap3.c */; };
 		3D628DEE1557CCB300B1CCCC /* webp_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D628DEC1557CCB300B1CCCC /* webp_wrap4.c */; };
+		3D64CA35181455C000839513 /* REQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D64CA34181455C000839513 /* REQuaternion.cpp */; };
+		3D64CA3C1814582600839513 /* REPoint2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D64CA3B1814582600839513 /* REPoint2.cpp */; };
+		3D64CA3E1814582F00839513 /* REPoint3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D64CA3D1814582F00839513 /* REPoint3.cpp */; };
+		3D64CA46181469E600839513 /* RELogObjectiveC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D64CA45181469E600839513 /* RELogObjectiveC.h */; };
 		3D6DC5A113FD43520091A864 /* tinyxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6DC5A013FD43520091A864 /* tinyxml.h */; };
 		3D6DC5A413FD43630091A864 /* tinyxml_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6DC5A313FD43630091A864 /* tinyxml_config.h */; };
 		3D6DC5A613FD43820091A864 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */; };
 		3D78030114504B840059C648 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D78030014504B840059C648 /* REAffineTransform.cpp */; };
 		3D785CD715C66ABF006A12F9 /* REObjectProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D785CD615C66ABF006A12F9 /* REObjectProperty.h */; };
+		3D78968817C5F3EE0056670D /* curl_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D28943517C4F14900EBB312 /* curl_wrap1.c */; };
 		3D7A01751771B7EB00E7316E /* REMutableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01741771B7EB00E7316E /* REMutableString.h */; };
 		3D7A01771771B7F100E7316E /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01761771B7F100E7316E /* REString.h */; };
 		3D7A01791771B80800E7316E /* REWideString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A01781771B80800E7316E /* REWideString.h */; };
@@ -235,6 +254,8 @@
 		3D7A02511772031200E7316E /* REStringBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D7A02501772031200E7316E /* REStringBase.h */; };
 		3D7A02531772032200E7316E /* REStringBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A02521772032200E7316E /* REStringBase.cpp */; };
 		3D7BB1F714C5D31F00AFDBF7 /* REMatrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */; };
+		3D7F4E731813EE7300BF4EDD /* RECoreObjectiveCSourceCode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F4E721813EE7300BF4EDD /* RECoreObjectiveCSourceCode.mm */; };
+		3D7F4E761813EFFF00BF4EDD /* RELocaleObjectiveC.h in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F4E751813EFFF00BF4EDD /* RELocaleObjectiveC.h */; };
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
@@ -317,11 +338,14 @@
 		3D0E62B4145586180030C4FD /* REMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutex.cpp; path = ../../src/core/REMutex.cpp; sourceTree = SOURCE_ROOT; };
 		3D16878D176DE84500BFF707 /* RETypedPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypedPtr.h; path = ../../include/recore/RETypedPtr.h; sourceTree = SOURCE_ROOT; };
 		3D168790176DE86C00BFF707 /* RETypedPtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETypedPtr.cpp; path = ../../src/core/RETypedPtr.cpp; sourceTree = SOURCE_ROOT; };
-		3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RELocale_iphone.mm; path = ../../src/core/RELocale_iphone.mm; sourceTree = SOURCE_ROOT; };
 		3D1788E713E2987E00520FC2 /* librecore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librecore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1788EA13E2987E00520FC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D183DB6146928760004F6F6 /* RE2DAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RE2DAlgorithm.h; path = ../../include/recore/RE2DAlgorithm.h; sourceTree = SOURCE_ROOT; };
 		3D183DB91469287E0004F6F6 /* RE2DAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE2DAlgorithm.cpp; path = ../../src/core/RE2DAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
+		3D1BBBAA180FCFF0006DDBD5 /* REBufferNoCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBufferNoCopy.h; path = ../../include/recore/REBufferNoCopy.h; sourceTree = SOURCE_ROOT; };
+		3D1BBBAC180FCFFD006DDBD5 /* REBufferNoCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REBufferNoCopy.cpp; path = ../../src/core/REBufferNoCopy.cpp; sourceTree = SOURCE_ROOT; };
+		3D1BBBCF1810142D006DDBD5 /* RESize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESize.cpp; path = ../../src/core/RESize.cpp; sourceTree = SOURCE_ROOT; };
+		3D1BBBD118101649006DDBD5 /* REEdgeInsets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REEdgeInsets.cpp; sourceTree = "<group>"; };
 		3D1CC87214E90AA400A0D9C7 /* REMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMath.cpp; path = ../../src/core/REMath.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F430D13E29A2E001E480D /* recore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recore.h; path = ../../include/recore.h; sourceTree = SOURCE_ROOT; };
 		3D1F431113E29A4F001E480D /* IREFileReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREFileReadable.h; path = ../../include/recore/IREFileReadable.h; sourceTree = SOURCE_ROOT; };
@@ -364,8 +388,8 @@
 		3D1F433C13E29A4F001E480D /* REUserCallBacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REUserCallBacks.h; path = ../../include/recore/REUserCallBacks.h; sourceTree = SOURCE_ROOT; };
 		3D1F433D13E29A4F001E480D /* REYUVtoRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REYUVtoRGB.h; path = ../../include/recore/REYUVtoRGB.h; sourceTree = SOURCE_ROOT; };
 		3D1F433E13E29A4F001E480D /* REZipReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZipReader.h; path = ../../include/recore/REZipReader.h; sourceTree = SOURCE_ROOT; };
-		3D1F436E13E29AAB001E480D /* RE2DVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE2DVector.cpp; path = ../../src/core/RE2DVector.cpp; sourceTree = SOURCE_ROOT; };
-		3D1F436F13E29AAB001E480D /* RE3DVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE3DVector.cpp; path = ../../src/core/RE3DVector.cpp; sourceTree = SOURCE_ROOT; };
+		3D1F436E13E29AAB001E480D /* REVector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REVector2.cpp; path = ../../src/core/REVector2.cpp; sourceTree = SOURCE_ROOT; };
+		3D1F436F13E29AAB001E480D /* REVector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REVector3.cpp; path = ../../src/core/REVector3.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F437013E29AAB001E480D /* REAngle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAngle.cpp; path = ../../src/core/REAngle.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F437113E29AAB001E480D /* REAutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAutoReleasePool.cpp; path = ../../src/core/REAutoReleasePool.cpp; sourceTree = SOURCE_ROOT; };
 		3D1F437313E29AAB001E480D /* REBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REBuffer.cpp; path = ../../src/core/REBuffer.cpp; sourceTree = SOURCE_ROOT; };
@@ -459,11 +483,6 @@
 		3D1F43FC13E29F3A001E480D /* jpeg_wrap59.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jpeg_wrap59.c; sourceTree = "<group>"; };
 		3D1F43FD13E29F3A001E480D /* jpeg_wrap60.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jpeg_wrap60.c; sourceTree = "<group>"; };
 		3D1F43FE13E29F3A001E480D /* jpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeg.h; sourceTree = "<group>"; };
-		3D1F43FF13E29F3A001E480D /* openjpeg_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openjpeg_config.h; sourceTree = "<group>"; };
-		3D1F440013E29F3A001E480D /* openjpeg_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = openjpeg_wrap1.c; sourceTree = "<group>"; };
-		3D1F440113E29F3A001E480D /* openjpeg_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = openjpeg_wrap2.c; sourceTree = "<group>"; };
-		3D1F440213E29F3A001E480D /* openjpeg_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = openjpeg_wrap3.c; sourceTree = "<group>"; };
-		3D1F440313E29F3A001E480D /* openjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openjpeg.h; sourceTree = "<group>"; };
 		3D1F440413E29F3A001E480D /* png_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png_config.h; sourceTree = "<group>"; };
 		3D1F440513E29F3A001E480D /* png_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png_wrap1.c; sourceTree = "<group>"; };
 		3D1F440613E29F3A001E480D /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
@@ -487,6 +506,23 @@
 		3D1F441813E29F3A001E480D /* zlib_wrap14.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_wrap14.c; sourceTree = "<group>"; };
 		3D1F441913E29F3A001E480D /* zlib_wrap15.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zlib_wrap15.c; sourceTree = "<group>"; };
 		3D1F441A13E29F3A001E480D /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
+		3D28943317C4F14900EBB312 /* curl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curl.h; sourceTree = "<group>"; };
+		3D28943417C4F14900EBB312 /* curl_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = curl_config.h; sourceTree = "<group>"; };
+		3D28943517C4F14900EBB312 /* curl_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap1.c; sourceTree = "<group>"; };
+		3D28943617C4F14900EBB312 /* curl_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap2.c; sourceTree = "<group>"; };
+		3D28943717C4F14900EBB312 /* curl_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap3.c; sourceTree = "<group>"; };
+		3D28943817C4F14900EBB312 /* curl_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap4.c; sourceTree = "<group>"; };
+		3D28943917C4F14900EBB312 /* curl_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap5.c; sourceTree = "<group>"; };
+		3D28943A17C4F14900EBB312 /* curl_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = curl_wrap6.c; sourceTree = "<group>"; };
+		3D28944617C4F35900EBB312 /* REURLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLRequest.cpp; path = ../../src/core/REURLRequest.cpp; sourceTree = "<group>"; };
+		3D28944817C4F36500EBB312 /* REURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLRequest.h; path = ../../include/recore/REURLRequest.h; sourceTree = "<group>"; };
+		3D28944D17C4F78200EBB312 /* REURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLConnection.h; path = ../../include/recore/REURLConnection.h; sourceTree = "<group>"; };
+		3D28944F17C4F79200EBB312 /* IREURLConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREURLConnectionDelegate.h; path = ../../include/recore/IREURLConnectionDelegate.h; sourceTree = "<group>"; };
+		3D28945117C4F7A600EBB312 /* REURLConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLConnection.cpp; path = ../../src/core/REURLConnection.cpp; sourceTree = "<group>"; };
+		3D28945317C4F85900EBB312 /* REURLResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLResponse.cpp; path = ../../src/core/REURLResponse.cpp; sourceTree = "<group>"; };
+		3D28945517C4F87400EBB312 /* REURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLResponse.h; path = ../../include/recore/REURLResponse.h; sourceTree = "<group>"; };
+		3D28945D17C5014E00EBB312 /* REURLConnectionCURLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLConnectionCURLPrivate.h; path = ../../include/recore/private/REURLConnectionCURLPrivate.h; sourceTree = "<group>"; };
+		3D28946217C50A9100EBB312 /* REMutableURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutableURLResponse.h; path = ../../include/recore/private/REMutableURLResponse.h; sourceTree = "<group>"; };
 		3D3F6852145029D2002409DD /* REMatrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMatrix4.h; path = ../../include/recore/REMatrix4.h; sourceTree = SOURCE_ROOT; };
 		3D3F689014503B47002409DD /* REAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAffineTransform.h; path = ../../include/recore/REAffineTransform.h; sourceTree = SOURCE_ROOT; };
 		3D40A0B117C26629009A74A6 /* REURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURL.cpp; path = ../../src/core/REURL.cpp; sourceTree = SOURCE_ROOT; };
@@ -505,6 +541,10 @@
 		3D5FB90F146C12980039FBE9 /* REInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInterpolation.h; path = ../../include/recore/REInterpolation.h; sourceTree = SOURCE_ROOT; };
 		3D628DEB1557CCB300B1CCCC /* webp_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp_wrap3.c; sourceTree = "<group>"; };
 		3D628DEC1557CCB300B1CCCC /* webp_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp_wrap4.c; sourceTree = "<group>"; };
+		3D64CA34181455C000839513 /* REQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REQuaternion.cpp; path = ../../src/core/REQuaternion.cpp; sourceTree = SOURCE_ROOT; };
+		3D64CA3B1814582600839513 /* REPoint2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REPoint2.cpp; path = ../../src/core/REPoint2.cpp; sourceTree = SOURCE_ROOT; };
+		3D64CA3D1814582F00839513 /* REPoint3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REPoint3.cpp; path = ../../src/core/REPoint3.cpp; sourceTree = SOURCE_ROOT; };
+		3D64CA45181469E600839513 /* RELogObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELogObjectiveC.h; path = ../../src/core/objc/RELogObjectiveC.h; sourceTree = SOURCE_ROOT; };
 		3D6DC5A013FD43520091A864 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml.h; path = ../../src/addlibs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		3D6DC5A313FD43630091A864 /* tinyxml_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml_config.h; path = ../../src/addlibs/tinyxml_config.h; sourceTree = SOURCE_ROOT; };
 		3D6DC5A513FD43820091A864 /* tinyxml_wrap1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml_wrap1.cpp; path = ../../src/addlibs/tinyxml_wrap1.cpp; sourceTree = SOURCE_ROOT; };
@@ -521,6 +561,8 @@
 		3D7A02501772031200E7316E /* REStringBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringBase.h; path = ../../include/recore/REStringBase.h; sourceTree = SOURCE_ROOT; };
 		3D7A02521772032200E7316E /* REStringBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringBase.cpp; path = ../../src/core/REStringBase.cpp; sourceTree = SOURCE_ROOT; };
 		3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = REMatrix4.cpp; path = ../../src/core/REMatrix4.cpp; sourceTree = SOURCE_ROOT; };
+		3D7F4E721813EE7300BF4EDD /* RECoreObjectiveCSourceCode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RECoreObjectiveCSourceCode.mm; sourceTree = "<group>"; };
+		3D7F4E751813EFFF00BF4EDD /* RELocaleObjectiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELocaleObjectiveC.h; path = objc/RELocaleObjectiveC.h; sourceTree = "<group>"; };
 		3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigIPhone.h; path = ../../include/reconfig/REConfigIPhone.h; sourceTree = SOURCE_ROOT; };
 		3D889132176CFD810086873B /* librecore copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librecore copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
@@ -666,7 +708,6 @@
 				3D1F431113E29A4F001E480D /* IREFileReadable.h */,
 				3D1F431913E29A4F001E480D /* REAngle.h */,
 				3D1F431A13E29A4F001E480D /* REArray.h */,
-				3D1F431D13E29A4F001E480D /* REBuffer.h */,
 				3D1F431E13E29A4F001E480D /* REClassMethod.h */,
 				3D1F431F13E29A4F001E480D /* REColor.h */,
 				3D1F432013E29A4F001E480D /* RECommonHeader.h */,
@@ -674,7 +715,6 @@
 				3D1F432213E29A4F001E480D /* RECoreOSSelector.h */,
 				3D1F432313E29A4F001E480D /* RECorePlatformSelector.h */,
 				3D1F432413E29A4F001E480D /* RECoreSettings.h */,
-				3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */,
 				3D1F432D13E29A4F001E480D /* REMath.h */,
 				3D1F432E13E29A4F001E480D /* REMD5Generator.h */,
 				3D1F433213E29A4F001E480D /* RERandomizer.h */,
@@ -694,12 +734,15 @@
 				3D1F432F13E29A4F001E480D /* RENotificationManager.h */,
 				3D1F433813E29A4F001E480D /* RETetragon.h */,
 				3D1F432513E29A4F001E480D /* REData.h */,
-				3D1F433013E29A4F001E480D /* RENumber.h */,
 				3D1F432713E29A4F001E480D /* REFile.h */,
-				3D1F43B213E29B6D001E480D /* REThread.h */,
-				3D0E62B1145586070030C4FD /* REMutex.h */,
 				3D9A775A179035D900A7AC9F /* RECRC32Generator.h */,
 				3D1F432613E29A4F001E480D /* REDate.h */,
+				3D1F431D13E29A4F001E480D /* REBuffer.h */,
+				3D1BBBAA180FCFF0006DDBD5 /* REBufferNoCopy.h */,
+				3DA65FDD156D48AD0029B957 /* REEdgeInsets.h */,
+				3D0E62B1145586070030C4FD /* REMutex.h */,
+				3D1F433013E29A4F001E480D /* RENumber.h */,
+				3D1F43B213E29B6D001E480D /* REThread.h */,
 			);
 			name = recore;
 			path = ../../../include/recore;
@@ -719,13 +762,19 @@
 		3D1F436D13E29AAB001E480D /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3D1F438513E29AAB001E480D /* REThread.cpp */,
+				3D1F437E13E29AAB001E480D /* RENumber.cpp */,
+				3D7F4E721813EE7300BF4EDD /* RECoreObjectiveCSourceCode.mm */,
+				3D0E62B4145586180030C4FD /* REMutex.cpp */,
+				3D1BBBD118101649006DDBD5 /* REEdgeInsets.cpp */,
+				3D1BBBCF1810142D006DDBD5 /* RESize.cpp */,
+				3D1F438113E29AAB001E480D /* RERect.cpp */,
+				3D1BBBAC180FCFFD006DDBD5 /* REBufferNoCopy.cpp */,
+				3D1F437313E29AAB001E480D /* REBuffer.cpp */,
 				3D1F437613E29AAB001E480D /* REDate.cpp */,
 				3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */,
-				3D0E62B4145586180030C4FD /* REMutex.cpp */,
-				3D1F438513E29AAB001E480D /* REThread.cpp */,
 				3D1F437413E29AAB001E480D /* REColor.cpp */,
 				3D1F437713E29AAB001E480D /* REFile.cpp */,
-				3D1F437E13E29AAB001E480D /* RENumber.cpp */,
 				3D1F437513E29AAB001E480D /* REData.cpp */,
 				3D068761143DFA9C00AF92AF /* RETetragon.cpp */,
 				3D1F437D13E29AAB001E480D /* RENotificationManager.cpp */,
@@ -738,14 +787,12 @@
 				3D1F437C13E29AAB001E480D /* REMD5Generator.cpp */,
 				3D1CC87214E90AA400A0D9C7 /* REMath.cpp */,
 				3D1F437813E29AAB001E480D /* REFileManager.cpp */,
-				3D16D47F1446EDB9009B13AA /* RELocale_iphone.mm */,
 				3D1F438713E29AAB001E480D /* RETimer.cpp */,
-				3D1F436E13E29AAB001E480D /* RE2DVector.cpp */,
-				3D1F436F13E29AAB001E480D /* RE3DVector.cpp */,
+				3D1F436E13E29AAB001E480D /* REVector2.cpp */,
+				3D1F436F13E29AAB001E480D /* REVector3.cpp */,
 				3D1F437013E29AAB001E480D /* REAngle.cpp */,
-				3D1F437313E29AAB001E480D /* REBuffer.cpp */,
 				3D1F438013E29AAB001E480D /* RERandomizer.cpp */,
-				3D1F438113E29AAB001E480D /* RERect.cpp */,
+				3D7F4E741813EFF200BF4EDD /* objc */,
 				3DF0492814D693C100306830 /* yuv2rgb */,
 				3D1F438B13E29AAB001E480D /* unzip */,
 			);
@@ -769,6 +816,14 @@
 		3D1F43BA13E29E98001E480D /* addlibs */ = {
 			isa = PBXGroup;
 			children = (
+				3D28943317C4F14900EBB312 /* curl.h */,
+				3D28943417C4F14900EBB312 /* curl_config.h */,
+				3D28943517C4F14900EBB312 /* curl_wrap1.c */,
+				3D28943617C4F14900EBB312 /* curl_wrap2.c */,
+				3D28943717C4F14900EBB312 /* curl_wrap3.c */,
+				3D28943817C4F14900EBB312 /* curl_wrap4.c */,
+				3D28943917C4F14900EBB312 /* curl_wrap5.c */,
+				3D28943A17C4F14900EBB312 /* curl_wrap6.c */,
 				3DC9F08A14A4A759008B46F4 /* lzma.h */,
 				3DC9F08B14A4A759008B46F4 /* lzma_config.h */,
 				3DC9F08C14A4A759008B46F4 /* lzma_wrap1.c */,
@@ -843,11 +898,6 @@
 				3D1F43FC13E29F3A001E480D /* jpeg_wrap59.c */,
 				3D1F43FD13E29F3A001E480D /* jpeg_wrap60.c */,
 				3D1F43FE13E29F3A001E480D /* jpeg.h */,
-				3D1F43FF13E29F3A001E480D /* openjpeg_config.h */,
-				3D1F440013E29F3A001E480D /* openjpeg_wrap1.c */,
-				3D1F440113E29F3A001E480D /* openjpeg_wrap2.c */,
-				3D1F440213E29F3A001E480D /* openjpeg_wrap3.c */,
-				3D1F440313E29F3A001E480D /* openjpeg.h */,
 				3D1F440413E29F3A001E480D /* png_config.h */,
 				3D1F440513E29F3A001E480D /* png_wrap1.c */,
 				3D1F440613E29F3A001E480D /* png.h */,
@@ -885,8 +935,11 @@
 				3D3F6852145029D2002409DD /* REMatrix4.h */,
 				3D7BB1F614C5D31F00AFDBF7 /* REMatrix4.cpp */,
 				3D06AD0D14C851DA008D7787 /* REQuaternion.h */,
+				3D64CA34181455C000839513 /* REQuaternion.cpp */,
 				3D1F431513E29A4F001E480D /* REPoint2.h */,
+				3D64CA3B1814582600839513 /* REPoint2.cpp */,
 				3D1F431713E29A4F001E480D /* REPoint3.h */,
+				3D64CA3D1814582F00839513 /* REPoint3.cpp */,
 				3D1F431613E29A4F001E480D /* REVector2.h */,
 				3D0805DF14E3F04900C88C37 /* REVector3.h */,
 			);
@@ -899,6 +952,15 @@
 			children = (
 				3D40A0B317C26636009A74A6 /* REURL.h */,
 				3D40A0B117C26629009A74A6 /* REURL.cpp */,
+				3D28944817C4F36500EBB312 /* REURLRequest.h */,
+				3D28944617C4F35900EBB312 /* REURLRequest.cpp */,
+				3D28944F17C4F79200EBB312 /* IREURLConnectionDelegate.h */,
+				3D28945D17C5014E00EBB312 /* REURLConnectionCURLPrivate.h */,
+				3D28944D17C4F78200EBB312 /* REURLConnection.h */,
+				3D28945117C4F7A600EBB312 /* REURLConnection.cpp */,
+				3D28946217C50A9100EBB312 /* REMutableURLResponse.h */,
+				3D28945517C4F87400EBB312 /* REURLResponse.h */,
+				3D28945317C4F85900EBB312 /* REURLResponse.cpp */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1007,6 +1069,15 @@
 			);
 			name = string;
 			path = ../../../include/recore;
+			sourceTree = "<group>";
+		};
+		3D7F4E741813EFF200BF4EDD /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				3D64CA45181469E600839513 /* RELogObjectiveC.h */,
+				3D7F4E751813EFFF00BF4EDD /* RELocaleObjectiveC.h */,
+			);
+			name = objc;
 			sourceTree = "<group>";
 		};
 		3D827EEB14D7DBE700B539FF /* reconfig */ = {
@@ -1170,8 +1241,6 @@
 				3D1F43B713E29C6C001E480D /* REMainThreadClassMethodPrivate.h in Headers */,
 				3D1F441B13E29F3A001E480D /* jpeg_config.h in Headers */,
 				3D1F445813E29F3A001E480D /* jpeg.h in Headers */,
-				3D1F445913E29F3A001E480D /* openjpeg_config.h in Headers */,
-				3D1F445D13E29F3A001E480D /* openjpeg.h in Headers */,
 				3D1F445E13E29F3A001E480D /* png_config.h in Headers */,
 				3D1F446013E29F3A001E480D /* png.h in Headers */,
 				3D1F446113E29F3A001E480D /* sqlite_config.h in Headers */,
@@ -1185,6 +1254,7 @@
 				3DB07B3A144CAFF400FF99AB /* REApplication.h in Headers */,
 				3DB07B4B144CB04C00FF99AB /* REXMLPropertyListReader.h in Headers */,
 				3DB07B4D144CB04C00FF99AB /* REBase64.h in Headers */,
+				3D64CA46181469E600839513 /* RELogObjectiveC.h in Headers */,
 				3DB07B4F144CB04C00FF99AB /* REBufferObject.h in Headers */,
 				3DB07B51144CB04C00FF99AB /* RENumberObject.h in Headers */,
 				3DB07B53144CB04C00FF99AB /* REStringObject.h in Headers */,
@@ -1192,6 +1262,7 @@
 				3DB07B78144CB0EF00FF99AB /* RENULLObject.h in Headers */,
 				3DB07B7A144CB0EF00FF99AB /* REArrayObject.h in Headers */,
 				3D3F6853145029D2002409DD /* REMatrix4.h in Headers */,
+				3D1BBBAB180FCFF0006DDBD5 /* REBufferNoCopy.h in Headers */,
 				3D3F689114503B47002409DD /* REAffineTransform.h in Headers */,
 				3D0E62B2145586070030C4FD /* REMutex.h in Headers */,
 				3D183DB7146928760004F6F6 /* RE2DAlgorithm.h in Headers */,
@@ -1237,6 +1308,14 @@
 				3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */,
 				3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */,
 				3D40A0B417C26636009A74A6 /* REURL.h in Headers */,
+				3D28943B17C4F14900EBB312 /* curl.h in Headers */,
+				3D28943C17C4F14900EBB312 /* curl_config.h in Headers */,
+				3D28944917C4F36500EBB312 /* REURLRequest.h in Headers */,
+				3D28944E17C4F78200EBB312 /* REURLConnection.h in Headers */,
+				3D28945017C4F79200EBB312 /* IREURLConnectionDelegate.h in Headers */,
+				3D28945617C4F87400EBB312 /* REURLResponse.h in Headers */,
+				3D28945E17C5014E00EBB312 /* REURLConnectionCURLPrivate.h in Headers */,
+				3D28946317C50A9100EBB312 /* REMutableURLResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,7 +1343,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D88912F176CFD810086873B /* Build configuration list for PBXNativeTarget "CreateREConfigHardcoded" */;
 			buildPhases = (
-				3D889133176CFDBB0086873B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1281,7 +1359,7 @@
 		3D1788DE13E2987E00520FC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 3D1788E113E2987E00520FC2 /* Build configuration list for PBXProject "recore" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1303,19 +1381,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D889133176CFDBB0086873B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ./../conf.sh;
-		};
 		3DD65D1415F691FD00E34829 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1336,8 +1401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D1F439113E29AAB001E480D /* RE2DVector.cpp in Sources */,
-				3D1F439213E29AAB001E480D /* RE3DVector.cpp in Sources */,
+				3D1F439113E29AAB001E480D /* REVector2.cpp in Sources */,
+				3D1F439213E29AAB001E480D /* REVector3.cpp in Sources */,
 				3D1F439313E29AAB001E480D /* REAngle.cpp in Sources */,
 				3D1F439413E29AAB001E480D /* REAutoReleasePool.cpp in Sources */,
 				3D1F439613E29AAB001E480D /* REBuffer.cpp in Sources */,
@@ -1359,6 +1424,7 @@
 				3D1F43A813E29AAB001E480D /* REThread.cpp in Sources */,
 				3D1F43A913E29AAB001E480D /* RETime.cpp in Sources */,
 				3D1F43AA13E29AAB001E480D /* RETimer.cpp in Sources */,
+				3D64CA3C1814582600839513 /* REPoint2.cpp in Sources */,
 				3D1F43AB13E29AAB001E480D /* REUserCallBacks.cpp in Sources */,
 				3D1F43AC13E29AAB001E480D /* REZipReader.cpp in Sources */,
 				3D1F43AE13E29AAB001E480D /* ioapi.c in Sources */,
@@ -1366,6 +1432,7 @@
 				3D1F441C13E29F3A001E480D /* jpeg_wrap1.c in Sources */,
 				3D1F441D13E29F3A001E480D /* jpeg_wrap2.c in Sources */,
 				3D1F441E13E29F3A001E480D /* jpeg_wrap3.c in Sources */,
+				3D64CA3E1814582F00839513 /* REPoint3.cpp in Sources */,
 				3D1F441F13E29F3A001E480D /* jpeg_wrap4.c in Sources */,
 				3D1F442013E29F3A001E480D /* jpeg_wrap5.c in Sources */,
 				3D1F442113E29F3A001E480D /* jpeg_wrap6.c in Sources */,
@@ -1418,14 +1485,12 @@
 				3D1F445013E29F3A001E480D /* jpeg_wrap53.c in Sources */,
 				3D1F445113E29F3A001E480D /* jpeg_wrap54.c in Sources */,
 				3D1F445213E29F3A001E480D /* jpeg_wrap55.c in Sources */,
+				3D7F4E761813EFFF00BF4EDD /* RELocaleObjectiveC.h in Sources */,
 				3D1F445313E29F3A001E480D /* jpeg_wrap56.c in Sources */,
 				3D1F445413E29F3A001E480D /* jpeg_wrap57.c in Sources */,
 				3D1F445513E29F3A001E480D /* jpeg_wrap58.c in Sources */,
 				3D1F445613E29F3A001E480D /* jpeg_wrap59.c in Sources */,
 				3D1F445713E29F3A001E480D /* jpeg_wrap60.c in Sources */,
-				3D1F445A13E29F3A001E480D /* openjpeg_wrap1.c in Sources */,
-				3D1F445B13E29F3A001E480D /* openjpeg_wrap2.c in Sources */,
-				3D1F445C13E29F3A001E480D /* openjpeg_wrap3.c in Sources */,
 				3D1F445F13E29F3A001E480D /* png_wrap1.c in Sources */,
 				3D1F446213E29F3A001E480D /* sqlite_wrap1.c in Sources */,
 				3D1F446513E29F3A001E480D /* zlib_wrap1.c in Sources */,
@@ -1447,9 +1512,9 @@
 				3D09526714165071003082A8 /* RELocale.cpp in Sources */,
 				3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */,
 				3D068762143DFA9C00AF92AF /* RETetragon.cpp in Sources */,
-				3D16D4801446EDB9009B13AA /* RELocale_iphone.mm in Sources */,
 				3DB07B3B144CAFF400FF99AB /* REApplication.cpp in Sources */,
 				3DB07B4C144CB04C00FF99AB /* REXMLPropertyListReader.cpp in Sources */,
+				3D1BBBD218101649006DDBD5 /* REEdgeInsets.cpp in Sources */,
 				3DB07B4E144CB04C00FF99AB /* REBase64.cpp in Sources */,
 				3DB07B50144CB04C00FF99AB /* REBufferObject.cpp in Sources */,
 				3DB07B52144CB04C00FF99AB /* RENumberObject.cpp in Sources */,
@@ -1469,6 +1534,7 @@
 				3DF0493414D693D200306830 /* REYUV420toRGB565.cpp in Sources */,
 				3DF0493514D693D200306830 /* REYUV420toRGB888.cpp in Sources */,
 				3DF0493614D693D200306830 /* REYUV420toRGB8888.cpp in Sources */,
+				3D7F4E731813EE7300BF4EDD /* RECoreObjectiveCSourceCode.mm in Sources */,
 				3DF0493714D693D200306830 /* REYUV422toRGB565.cpp in Sources */,
 				3DF0493814D693D200306830 /* REYUV422toRGB888.cpp in Sources */,
 				3DF0493914D693D200306830 /* REYUV422toRGB8888.cpp in Sources */,
@@ -1492,6 +1558,7 @@
 				3DBEF98617708E9B00503066 /* RETypedArray.cpp in Sources */,
 				3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */,
 				3D7A017D1771B83800E7316E /* REString.cpp in Sources */,
+				3D1BBBD01810142D006DDBD5 /* RESize.cpp in Sources */,
 				3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */,
 				3D7A01901771D2D400E7316E /* REStringUtilsPrivate.cpp in Sources */,
 				3D7A02531772032200E7316E /* REStringBase.cpp in Sources */,
@@ -1501,6 +1568,17 @@
 				3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */,
 				3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */,
 				3D40A0B217C26629009A74A6 /* REURL.cpp in Sources */,
+				3D28943E17C4F14900EBB312 /* curl_wrap2.c in Sources */,
+				3D1BBBAD180FCFFD006DDBD5 /* REBufferNoCopy.cpp in Sources */,
+				3D28943F17C4F14900EBB312 /* curl_wrap3.c in Sources */,
+				3D28944017C4F14900EBB312 /* curl_wrap4.c in Sources */,
+				3D28944117C4F14900EBB312 /* curl_wrap5.c in Sources */,
+				3D28944217C4F14900EBB312 /* curl_wrap6.c in Sources */,
+				3D28944717C4F35900EBB312 /* REURLRequest.cpp in Sources */,
+				3D28945217C4F7A600EBB312 /* REURLConnection.cpp in Sources */,
+				3D28945417C4F85A00EBB312 /* REURLResponse.cpp in Sources */,
+				3D64CA35181455C000839513 /* REQuaternion.cpp in Sources */,
+				3D78968817C5F3EE0056670D /* curl_wrap1.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1510,7 +1588,6 @@
 		3D1788EF13E2987E00520FC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1523,7 +1600,9 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/curl/include/;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1531,7 +1610,6 @@
 		3D1788F013E2987E00520FC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -1541,6 +1619,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/curl/include/;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				SDKROOT = iphoneos;
 			};
@@ -1550,7 +1629,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1560,10 +1638,14 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
 				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ../ios/;
+				HEADER_SEARCH_PATHS = (
+					../ios/,
+					../../src/addlibs/curl/include/,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
@@ -1574,17 +1656,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 					"\"$(SRCROOT)/../../src/addlibs/webp/ios\"",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__RE_OS_IPHONE__,
+					"HAVE_RECORE_SDK_CONFIG_H=1",
+				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ../ios/;
+				HEADER_SEARCH_PATHS = (
+					../ios/,
+					../../src/addlibs/curl/include/,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386 armv6";
@@ -1595,7 +1682,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1618,7 +1704,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/recore.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

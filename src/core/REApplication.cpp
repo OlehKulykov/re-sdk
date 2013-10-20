@@ -20,69 +20,88 @@
 #include "../../include/recore/RECoreC.h"
 #include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
+#include "../../include/recore/RELog.h"
+#include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
 
-
-/* REObject */
-const REUInt32 REApplication::getClassIdentifier() const
+class REApplicationInternalAutoreleaseThread : public REThread
 {
-	return REApplication::classIdentifier();
-}
-
-const REUInt32 REApplication::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REApplication");
-	return clasIdentif;
-}
-
-REBOOL REApplication::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REApplication::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
-}
-
-const REString & REApplication::getErrorDescriptionString() const
-{
-	return _errorDescriptionString;
-}
-
-void REApplication::addToErrorDescription(const REString & errorString)
-{
-	const char * errStr = errorString.UTF8String();
-	if (errStr && (!errorString.isEmpty())) 
+private:
+	REAutoReleasePoolPrivate * _pool;
+protected:	
+	virtual void threadBody()
 	{
-		if (_errorDescriptionString.isEmpty()) 
-		{
-			_errorDescriptionString = errStr;
-		}
-		else
-		{
-			_errorDescriptionString.appendFormat("\n%s", errStr);
-		}
+		_pool->update();
+		delete _pool;
 	}
-}
+public:
+	REApplicationInternalAutoreleaseThread(REAutoReleasePoolPrivate * pool) : REThread(),
+		_pool(pool) 
+	{ 
+		this->setAutoReleaseWhenDone(true);
+	}
+};
 
-void REApplication::clearErrorDescription()
+class REApplicationInternal 
 {
-	_errorDescriptionString.clear();
-}
+public:
+	REAutoReleasePool * autoReleasePool;
+	REAutoReleasePoolPrivate * arp;
+	REMainLoopsObjectsStoragePrivate * mainLoop;
+	REThread * autoreleaseThread;
+	REMutex mainLoopUpdatableMutex;
+	REMutex autoreleaseMutex;
+	
+	REBOOL isOk() const
+	{
+		if (!autoReleasePool) return false;
+		if (!mainLoop) return false;
+		if (!mainLoopUpdatableMutex.isInitialized()) return false;
+		if (!autoreleaseMutex.isInitialized()) return false;
+		return true;
+	}
+	
+	REApplicationInternal() :
+		autoReleasePool(NULL),
+		arp(NULL),
+		mainLoop(NULL),
+		autoreleaseThread(NULL)
+	{
+		mainLoopUpdatableMutex.init(REMutexTypeRecursive);
+		autoreleaseMutex.init(REMutexTypeRecursive);
+		
+		autoReleasePool = new REAutoReleasePool();
+		mainLoop = new REMainLoopsObjectsStoragePrivate();
+	}
+	
+	~REApplicationInternal()
+	{
+		if (autoReleasePool) delete autoReleasePool;
+		if (mainLoop) delete mainLoop;
+	}
+	
+	static REApplication * currentApplication;
+};
 
-REString REApplication::getName() const
+REApplication * REApplicationInternal::currentApplication = NULL;
+
+REString REApplication::name() const
 {
 	return REString("REApplication");
 }
 
-REFloat32 REApplication::getVersion() const
+REFloat32 REApplication::version() const
 {
-	return 0.0f;
+	return 0.2f;
 }
 
-REString REApplication::getDescription() const
+REString REApplication::description() const
 {
 	return REString("This is base application");
 }
 
 REBOOL REApplication::isOK() const
 {
-	return true;
+	return (_a != NULL);
 }
 
 REBOOL REApplication::pause()
@@ -102,66 +121,123 @@ REBOOL REApplication::isPaused() const
 
 void REApplication::update()
 {
-	//REAutoReleasePoolPrivate::Update();
+	if (_a->arp) 
+	{
+		_a->autoreleaseMutex.lock();
+		REAutoReleasePoolPrivate * pool = _a->arp;
+		_a->arp = NULL;
+		if (pool) 
+		{
+			REApplicationInternalAutoreleaseThread * t = new REApplicationInternalAutoreleaseThread(pool);
+			if (t) { t->start(); }
+			else { delete pool; }
+		}
+		_a->autoreleaseMutex.unlock();
+	}
 	
-	_appAutoReleasePool->update(0);
-	
-	REMainLoopsObjectsStoragePrivate::updateStorage(RETime::time());
+	_a->mainLoopUpdatableMutex.lock();
+	_a->mainLoop->update(RETime::time());
+	_a->mainLoopUpdatableMutex.unlock();
 }
 
 REBOOL REApplication::reapplicationInit()
-{
+{	
+	if (_a)
+	{
+		return true;
+	}
+	
 	REThread::isMainThread();
-	
-	this->clearErrorDescription();
-	
+		
 	if (RECore::isCorrectTypes() == 0)
 	{
-		this->addToErrorDescription(REString("RECore types is incorrect. Check type defines."));
+		RELog::log("ERROR: RECore types is incorrect. Check type defines.");
+		return false;
+	}
+
+	_a = new REApplicationInternal();
+	if (!_a)
+	{
+		RELog::log("ERROR: REApplication can't initialize internal object.");
 		return false;
 	}
 	
-	if (_appAutoReleasePool)
+	if (!_a->isOk()) 
 	{
-		/// allready initialized.
-		return true;
+		delete _a;
+		_a = NULL;
+		RELog::log("ERROR: REApplication can't initialize internal logic.");
+		return false;
 	}
 	
-	REAutoReleasePool * pool = REAutoReleasePool::getDefaultPool();
-	if (pool) 
-	{
-		_appAutoReleasePool = pool;
-		return true;
-	}
-	else
-	{
-		this->addToErrorDescription(REString("Can't initialize application default REAutoReleasePool."));
-	}
-	return false;
+	return true;
 }
 
 REBOOL REApplication::initialize()
 {
-	return reapplicationInit();
+	if (_a) 
+	{
+		return true;
+	}
+	return this->reapplicationInit();
 }
 
-REApplication::REApplication() : REObject(),
-	_appAutoReleasePool(NULL)
+REBOOL REApplication::autoReleaseObject(REObject * object)
 {
-	this->reapplicationInit();
+	_a->autoreleaseMutex.lock();
+	if (!_a->arp) 
+	{
+		_a->arp = new REAutoReleasePoolPrivate(); 
+	}
+	const REBOOL r = (object && _a->arp) ? _a->arp->addObject(object) : false;
+	_a->autoreleaseMutex.unlock();
+	return r;
 }
 
-void REApplication::onReleased()
+REUIdentifier REApplication::addToMainLoop(REMainLoopUpdatable * object)
 {
-	this->update();
-	
-	REAutoReleasePool::releaseDefaultPool();
+	_a->mainLoopUpdatableMutex.lock();
+	const REUIdentifier identifier = object ? _a->mainLoop->add(object) : 0;
+	_a->mainLoopUpdatableMutex.unlock();
+	return identifier;
+}
+
+REUIdentifier REApplication::removeFromMainLoop(REMainLoopUpdatable * object)
+{
+	_a->mainLoopUpdatableMutex.lock();
+	const REUIdentifier identifier = object ? _a->mainLoop->remove(object) : 0;
+	_a->mainLoopUpdatableMutex.unlock();
+	return identifier;
+}
+
+REApplication::REApplication() :
+	_a(NULL)
+{	
+	if (this->reapplicationInit())
+	{
+		if (!REApplicationInternal::currentApplication) 
+		{
+			REApplicationInternal::currentApplication = this;
+		}
+	}
 }
 
 REApplication::~REApplication()
 {
+	if (REApplicationInternal::currentApplication == this) 
+	{
+		REApplicationInternal::currentApplication = NULL;
+	}
 	
+	if (_a) 
+	{
+		delete _a;
+	}
 }
 
+REApplication * REApplication::currentApplication()
+{
+	return REApplicationInternal::currentApplication;
+}
 
 

@@ -26,17 +26,7 @@
 #include "REMutex.h"
 
 
-#if (defined(__BUILDING_RECORE_DYNAMIC_LIBRARY__) || defined(__USING_RECORE_DYNAMIC_LIBRARY__)) 
-/// Warning message 4251: Class 'REArray<T>' needs to have dll-interface to be used by clients of class.
-/// Why disable 4251: Class 'REArray<T>' defined as private field and no clents can access it.
-/// To access must use public methods.
-#ifdef _MSC_VER
-#pragma warning(disable:4251)
-#endif
-#endif
-
-
-class __RE_PUBLIC_CLASS_API__ REAutoReleasePool : public REObject, public REMainLoopUpdatable
+class __RE_PUBLIC_CLASS_API__ REAutoReleasePool
 {
 private:
 	REArray<REObject *> _pool;
@@ -44,26 +34,22 @@ private:
 	REUInt32 _index;
 	REUInt32 _isBusy;
 	
-	static REAutoReleasePool * _defaultPool;
+	class REObjectRemover : public REObject
+	{
+	public:
+		static void deleteObject(REObject * object)
+		{
+			REObject::deleteObject(object);
+		}
+	};
 	
 public:
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	virtual void onReleased();
-	
 	REBOOL addObject(REObject * autoReleasableObject);
 
-	/* REMainLoopUpdatable */
-	virtual void update(const RETimeInterval currentTime);
-	virtual const REUIdentifier getMainLoopUpdatableIdentifier() const;
+	void update();
 	
 	REAutoReleasePool();
-	virtual ~REAutoReleasePool();
-	
-	static REAutoReleasePool * getDefaultPool();
-	static void releaseDefaultPool();
+	~REAutoReleasePool();
 };
 
 #endif /* __REAUTORELEASEPOOL_H__ */
