@@ -512,8 +512,8 @@ void REThread::detachNewThreadWithMethod(REClassMethod * method, REObject * meth
 		if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
 			method->invokeWithObject(methodObjectOrNULL);
-			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 			delete method;
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 		});
 #else		
 		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(method, methodObjectOrNULL);
@@ -532,11 +532,11 @@ void REThread::detachNewThreadWithMethodAfterDelay(REClassMethod * method, REObj
 	{
 #if defined(HAVE_FUNCTION_DISPATCH_AFTER) && defined(HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE)
 		if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC));
+		const dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC));
 		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
 			method->invokeWithObject(methodObjectOrNULL);
-			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 			delete method;
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 		});
 #else		
 		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(method, methodObjectOrNULL);
@@ -555,8 +555,10 @@ void REThread::performMethodOnMainThread(REClassMethod * method, REObject * meth
 	{
 		if (REThread::isMainThread()) 
 		{
+			if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
 			method->invokeWithObject(methodObjectOrNULL);
 			delete method;
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 		}
 		else 
 		{
@@ -565,8 +567,8 @@ void REThread::performMethodOnMainThread(REClassMethod * method, REObject * meth
 			dispatch_async(dispatch_get_main_queue(), ^(void){
 				method->invokeWithObject(methodObjectOrNULL);
 				delete method;
+				if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 			});
-			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
 #else
 			REMainThreadClassMethodPrivate * methodWrapper = new REMainThreadClassMethodPrivate(method, methodObjectOrNULL);
 			if (!methodWrapper) { delete method; }
@@ -581,18 +583,116 @@ void REThread::performMethodOnMainThreadAndWaitUntilDone(REClassMethod * method,
 	{	
 		if (REThread::isMainThread()) 
 		{
+			if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
 			method->invokeWithObject(methodObjectOrNULL);
 			delete method;
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
+		}
+		else 
+		{
+#if defined(HAVE_FUNCTION_DISPATCH_SYNC)	
+			if (methodObjectOrNULL) { methodObjectOrNULL->retain(); }
+			dispatch_sync(dispatch_get_main_queue(), ^(void){
+				method->invokeWithObject(methodObjectOrNULL);
+			});
+			delete method;
+			if (methodObjectOrNULL) { methodObjectOrNULL->release(); }
+#else			
+			REMainThreadClassMethodWaitedPrivate * methodWrapper = new REMainThreadClassMethodWaitedPrivate(method, methodObjectOrNULL);
+			if (methodWrapper) 
+			{
+				while (methodWrapper->isWaiting()) 
+				{
+					REThread::uSleep(10);
+				}
+				delete methodWrapper;
+			}
+#endif			
+		}
+	}
+}
+
+
+void REThread::detachNewThreadWithFunction(REThread::PerformFunction function, void * userData)
+{
+	if (function) 
+	{
+#if defined(HAVE_FUNCTION_DISPATCH_ASYNC) && defined(HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE) 
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+			function(userData);
+		});
+#else		
+		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(function, userData);
+		if (newThread)
+		{
+			newThread->setAutoReleaseWhenDone(true);
+			newThread->start();
+		}
+#endif		
+	}
+}
+
+
+void REThread::detachNewThreadWithFunctionAfterDelay(REThread::PerformFunction function, void * userData, const RETimeInterval delayTime)
+{
+	if (function) 
+	{
+#if defined(HAVE_FUNCTION_DISPATCH_AFTER) && defined(HAVE_FUNCTION_DISPATCH_GET_GLOBAL_QUEUE)
+		const dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC));
+		dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+			function(userData);
+		});
+#else		
+		REDetachableThreadPrivate * newThread = new REDetachableThreadPrivate(function, userData);
+		if (newThread)
+		{
+			newThread->setAutoReleaseWhenDone(true);
+			newThread->startWithDelay(delayTime);
+		}
+#endif	
+	}
+}
+
+
+void REThread::performFunctionOnMainThread(REThread::PerformFunction function, void * userData)
+{
+	if (function) 
+	{
+		if (REThread::isMainThread()) 
+		{
+			function(userData);
+		}
+		else 
+		{
+#if defined(HAVE_FUNCTION_DISPATCH_ASYNC)
+			dispatch_async(dispatch_get_main_queue(), ^(void){
+				function(userData);
+			});
+#else
+			REMainThreadClassMethodPrivate * methodWrapper = new REMainThreadClassMethodPrivate(function, userData);
+			if (methodWrapper) { return; }
+#endif			
+		}
+	}
+}
+
+
+void REThread::performFunctionOnMainThreadAndWaitUntilDone(REThread::PerformFunction function, void * userData)
+{
+	if (function) 
+	{
+		if (REThread::isMainThread()) 
+		{
+			function(userData);
 		}
 		else 
 		{
 #if defined(HAVE_FUNCTION_DISPATCH_SYNC)	
 			dispatch_sync(dispatch_get_main_queue(), ^(void){
-				method->invokeWithObject(methodObjectOrNULL);
+				function(userData);
 			});
-			delete method;
 #else			
-			REMainThreadClassMethodWaitedPrivate * methodWrapper = new REMainThreadClassMethodWaitedPrivate(method, methodObjectOrNULL);
+			REMainThreadClassMethodWaitedPrivate * methodWrapper = new REMainThreadClassMethodWaitedPrivate(function, userData);
 			if (methodWrapper) 
 			{
 				while (methodWrapper->isWaiting()) 

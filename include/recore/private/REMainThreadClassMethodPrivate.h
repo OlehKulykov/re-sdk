@@ -28,45 +28,48 @@ protected:
 	REClassMethod * _mainThreadMethodForInvoke;
 	REObject * _mainThreadMethodObject;
 	
+	void * _userData;
+	REThread::PerformFunction _function;
+	
 public:
 	/* REMainLoopUpdatable */ 
 	virtual void update(const RETimeInterval currentTime)
 	{	
-		_mainThreadMethodForInvoke->invokeWithObject(_mainThreadMethodObject);
+		if (_mainThreadMethodForInvoke) { _mainThreadMethodForInvoke->invokeWithObject(_mainThreadMethodObject); }
+		else if (_function) { _function(_userData); }
+		
 		this->removeFromMainLoop();
 		this->release();
 	}
 	
+	REMainThreadClassMethodPrivate(REThread::PerformFunction function, void * userData) : REObject(), REMainLoopUpdatable(),
+		_mainThreadMethodForInvoke(NULL),
+		_mainThreadMethodObject(NULL),
+		_userData(userData),
+		_function(function)
+	{ 	
+		this->addToMainLoop();
+	}
+	
 	REMainThreadClassMethodPrivate(REClassMethod * methodForInvoke, REObject * methodObject) : REObject(), REMainLoopUpdatable(),
 		_mainThreadMethodForInvoke(methodForInvoke),
-		_mainThreadMethodObject(methodObject)
+		_mainThreadMethodObject(methodObject),
+		_userData(NULL),
+		_function(NULL)
 	{ 
 		if (_mainThreadMethodObject) 
 		{
 			_mainThreadMethodObject->retain();
 		}
 		
-		if ( _mainThreadMethodForInvoke ) 
-		{
-			this->addToMainLoop();
-		}
-		else 
-		{
-			this->release();
-		}
+		this->addToMainLoop();
 	}
 	
 	virtual ~REMainThreadClassMethodPrivate() 
 	{
-		if (_mainThreadMethodObject) 
-		{
-			_mainThreadMethodObject->release();
-		}
+		RE_SAFE_RELEASE(_mainThreadMethodObject);
 		
-		if ( _mainThreadMethodForInvoke ) 
-		{
-			delete _mainThreadMethodForInvoke;
-		}
+		RE_SAFE_DELETE(_mainThreadMethodForInvoke);
 	}
 };
 

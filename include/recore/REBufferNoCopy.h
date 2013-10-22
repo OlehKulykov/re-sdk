@@ -20,13 +20,14 @@
 
 #include "REBuffer.h"
 
-typedef void(*REBufferNoCopyFreeBuff)(void * mem);
-
 /// Class of memory buffer.
 class __RE_PUBLIC_CLASS_API__ REBufferNoCopy : public REBuffer
 {
+public:
+	typedef void(*FreeOriginalBuff)(void * mem);
+	
 private:
-	REBufferNoCopyFreeBuff _freeOriginalBuff;
+	REBufferNoCopy::FreeOriginalBuff _freeOriginalBuff;
 	REBOOL _isNeedToFreeOriginalBuff;
 	
 	static void defaultFreeBuffCallback(void * mem);
@@ -35,7 +36,7 @@ protected:
 	virtual void freeMemory(void * mem);
 	
 public:
-	REBufferNoCopy(void * originalBuff, const REUInt32 buffSize, REBufferNoCopyFreeBuff freeOriginalBuff = REBufferNoCopy::defaultFreeBuffCallback);
+	REBufferNoCopy(const void * originalBuff, const REUInt32 buffSize, REBufferNoCopy::FreeOriginalBuff freeOriginalBuff = REBufferNoCopy::defaultFreeBuffCallback);
 	
 	virtual ~REBufferNoCopy();
 };

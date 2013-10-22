@@ -33,18 +33,17 @@ class __RE_PUBLIC_CLASS_API__ REThread : public REObject
 {
 private:
 	REThreadInternal * _t;
-//	REPtr<REThreadInternal> _t;
 	REBOOL _isTaskFinished;
 	REBOOL _isAutoreleaseWhenDone;
 	
-//	const REPtr<REThreadInternal> & internal() const;
-//	void releaseInternal();
 	static void invokeThreadBody(REThread * thread);
 	
-protected:	
+protected:
 	virtual void threadBody() = 0;
 	
 public:
+	typedef void(*PerformFunction)(void * userData);
+	
 	REBOOL isTaskFinished() const;
 	
 	/// Returns working thread priority. Value in range: [0.0f, 1.0f]
@@ -101,6 +100,22 @@ public:
 	/// Invokes class method in main thread and waiting while thread finished.
 	/// Sending object will be ratained on start and released on the end of work.
 	static void performMethodOnMainThreadAndWaitUntilDone(REClassMethod * method, REObject * methodObjectOrNULL);
+	
+	/// Invokes function in separate thread.
+	/// Sending user data pointer to function.
+	static void detachNewThreadWithFunction(REThread::PerformFunction function, void * userData);
+	
+	/// After delay in seconds invokes function in separate thread.
+	/// Sending user data pointer to function.
+	static void detachNewThreadWithFunctionAfterDelay(REThread::PerformFunction function, void * userData, const RETimeInterval delayTime);
+	
+	/// Invokes function in main thread.
+	/// Sending user data pointer to function.
+	static void performFunctionOnMainThread(REThread::PerformFunction function, void * userData);
+	
+	/// Invokes function in main thread and waiting while thread finished.
+	/// Sending user data pointer to function.
+	static void performFunctionOnMainThreadAndWaitUntilDone(REThread::PerformFunction function, void * userData);
 };
 
 

@@ -35,7 +35,7 @@ void REBufferNoCopy::freeMemory(void * mem)
 	}	
 }
 
-REBufferNoCopy::REBufferNoCopy(void * originalBuff, const REUInt32 buffSize, REBufferNoCopyFreeBuff freeOriginalBuff) : REBuffer(),
+REBufferNoCopy::REBufferNoCopy(const void * originalBuff, const REUInt32 buffSize, REBufferNoCopy::FreeOriginalBuff freeOriginalBuff) : REBuffer(),
 	_freeOriginalBuff(freeOriginalBuff),
 	_isNeedToFreeOriginalBuff(false)
 {
@@ -43,9 +43,13 @@ REBufferNoCopy::REBufferNoCopy(void * originalBuff, const REUInt32 buffSize, REB
 	{
 		if (originalBuff && buffSize) 
 		{
-			_buff = originalBuff;
-			_size = buffSize;
-			_isNeedToFreeOriginalBuff = true;
+			void * ob = const_cast<void *>(originalBuff);
+			if (originalBuff == ob) 
+			{
+				_buff = ob;
+				_size = buffSize;
+				_isNeedToFreeOriginalBuff = true;
+			}
 		}
 	}
 	else

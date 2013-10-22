@@ -28,15 +28,17 @@ class REDetachableThreadPrivate : public REThread, public REMainLoopUpdatable
 private:
 	REClassMethod * _reThreadClassMethod;
 	REObject * _reThreadClassMethodObject;
+	
+	void * _userData;
+	REThread::PerformFunction _function;
+		
 	RETimeInterval _reThreadStartTime;
 	
 protected:
 	virtual void threadBody()
 	{
-		if (_reThreadClassMethod)
-		{
-			_reThreadClassMethod->invokeWithObject(_reThreadClassMethodObject);
-		}
+		if (_reThreadClassMethod) { _reThreadClassMethod->invokeWithObject(_reThreadClassMethodObject); }
+		else if (_function) { _function(_userData); }
 	}
 	
 public:
@@ -67,9 +69,21 @@ public:
 		return true;
 	}
 	
+	REDetachableThreadPrivate(REThread::PerformFunction function, void * userData) : REThread(), REMainLoopUpdatable(),
+		_reThreadClassMethod(NULL),
+		_reThreadClassMethodObject(NULL),
+		_userData(userData),
+		_function(function),
+		_reThreadStartTime(0.0)
+	{
+		
+	}
+	
 	REDetachableThreadPrivate(REClassMethod * classMethod, REObject * methodObject) : REThread(), REMainLoopUpdatable(),
 		_reThreadClassMethod(classMethod),
 		_reThreadClassMethodObject(methodObject),
+		_userData(NULL),
+		_function(NULL),
 		_reThreadStartTime(0.0)
 	{
 		if (_reThreadClassMethodObject) 
@@ -80,14 +94,9 @@ public:
 	
 	virtual ~REDetachableThreadPrivate()
 	{
-		if (_reThreadClassMethod)
-		{
-			delete _reThreadClassMethod;
-		}
-		if (_reThreadClassMethodObject) 
-		{
-			_reThreadClassMethodObject->release();
-		}
+		RE_SAFE_DELETE(_reThreadClassMethod);
+		
+		RE_SAFE_RELEASE(_reThreadClassMethodObject);
 	}
 };
 
