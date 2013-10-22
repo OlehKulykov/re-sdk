@@ -244,6 +244,9 @@
 #cmakedefine HAVE_JNI_H @HAVE_JNI_H@ 
 
 
+/* android/log.h */
+#cmakedefine HAVE_ANDROID_LOG_H @HAVE_ANDROID_LOG_H@
+
 /* arm_neon.h */
 #cmakedefine HAVE_ARM_NEON_H @HAVE_ARM_NEON_H@ 
 
@@ -381,18 +384,13 @@
 
 
 /* float128 */
-#cmakedefine HAVE_FLOAT128 @HAVE_FLOAT128@ 
-#if defined(HAVE_FLOAT128) 
-#define REFloat128 @FLOAT128_TYPE@
-#endif
+#cmakedefine FLOAT128_TYPE @FLOAT128_TYPE@ 
 
 
 /* int128, uint128 */
-#cmakedefine HAVE_INTEGERS128 @HAVE_INTEGERS128@ 
-#if defined(HAVE_INTEGERS128)
-#define REInt128 @INT128_TYPE@
-#define REUInt128 @UINT128_TYPE@
-#endif
+#cmakedefine INT128_TYPE @INT128_TYPE@
+#cmakedefine UINT128_TYPE @UINT128_TYPE@
+
 
 
 /* structures */
@@ -555,6 +553,36 @@
 
 /* dispatch_after */
 #cmakedefine HAVE_FUNCTION_DISPATCH_AFTER @HAVE_FUNCTION_DISPATCH_AFTER@
+
+
+
+/* OpenGL functions */
+/* gluBuild2DMipmaps */
+#cmakedefine HAVE_FUNCTION_GLUBUILD2DMIPMAPS @HAVE_FUNCTION_GLUBUILD2DMIPMAPS@
+ 
+
+/* glTexImage2D */
+#cmakedefine HAVE_FUNCTION_GLTEXIMAGE2D @HAVE_FUNCTION_GLTEXIMAGE2D@
+
+
+/* glGenerateMipmapOES */
+#cmakedefine HAVE_FUNCTION_GLGENERATEMIPMAPOES @HAVE_FUNCTION_GLGENERATEMIPMAPOES@
+
+
+/* glOrtho */
+#cmakedefine HAVE_FUNCTION_GLORTHO @HAVE_FUNCTION_GLORTHO@
+
+
+/* glOrthof */
+#cmakedefine HAVE_FUNCTION_GLORTHOF @HAVE_FUNCTION_GLORTHOF@
+
+
+/* glColor3f */
+#cmakedefine HAVE_FUNCTION_GLCOLOR3F @HAVE_FUNCTION_GLCOLOR3F@
+
+
+/* gluPerspective */
+#cmakedefine HAVE_FUNCTION_GLUPERSPECTIVE @HAVE_FUNCTION_GLUPERSPECTIVE@
 
 
 

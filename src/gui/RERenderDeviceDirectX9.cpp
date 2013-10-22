@@ -77,12 +77,12 @@ void RERenderDeviceDirectX9::RenderRect(const RETetragon & tetragon,
 		vertices[3].u = textureFrame.bottomRightX;
 		vertices[3].v = textureFrame.bottomRightY;
 		
-		if (texture->IsBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
+		if (texture->isBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
 		else { this->DisableBlending(); }
 
-		this->SetTextureSamplerState0FilterType(texture->GetFilterType());
+		this->SetTextureSamplerState0FilterType(texture->filterType());
 		
-		texture->Bind();
+		texture->bind();
 	}
 	else
 	{
@@ -122,12 +122,12 @@ void RERenderDeviceDirectX9::RenderRect(const RERect & rect,
 
 	if (texture)
 	{
-		if (texture->IsBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
+		if (texture->isBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
 		else { this->DisableBlending(); }
 
-		this->SetTextureSamplerState0FilterType(texture->GetFilterType());
+		this->SetTextureSamplerState0FilterType(texture->filterType());
 		
-		texture->Bind();
+		texture->bind();
 	}
 	else
 	{
@@ -174,12 +174,12 @@ void RERenderDeviceDirectX9::RenderRect(const RERect & rect,
 		vertices[3].u = textureFrame.bottomRightX;
 		vertices[3].v = textureFrame.bottomRightY;
 
-		this->SetTextureSamplerState0FilterType(texture->GetFilterType());
+		this->SetTextureSamplerState0FilterType(texture->filterType());
 
-		if (texture->IsBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
+		if (texture->isBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
 		else { this->DisableBlending(); }
 
-		texture->Bind();
+		texture->bind();
 	}
 	else
 	{
@@ -853,7 +853,7 @@ RETextureBase * RERenderDeviceDirectX9::CreateNewTexture(const REUByte * pixelsD
 	{
 		t->SetHeight(normalHeight);
 		t->SetWidth(normalWidth);
-		t->SetFilterType(filterType);
+		t->setFilterType(filterType);
 		t->SetIsTransparent(isTransparent);
 	}
 	return t;

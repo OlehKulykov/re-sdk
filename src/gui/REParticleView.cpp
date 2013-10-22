@@ -223,25 +223,6 @@ void REParticleView::clear()
 #endif
 }
 
-/* REObject */
-const REUInt32 REParticleView::getClassIdentifier() const
-{
-	return REParticleView::classIdentifier();
-}
-
-const REUInt32 REParticleView::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REParticleView");
-	return clasIdentif;
-}
-
-REBOOL REParticleView::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REParticleView::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REView::isImplementsClass(classIdentifier));
-}
-
 /* IRERenderable */
 void REParticleView::render()
 {
@@ -290,7 +271,7 @@ void REParticleView::render()
 		}
 #endif
 		
-		this->renderSubViews(_frame.x, _frame.y);
+		this->renderSubviews(_frame.x, _frame.y);
 	}
 }
 
@@ -341,7 +322,7 @@ void REParticleView::renderWithOffset(const REFloat32 offsetX, const REFloat32 o
 		}
 #endif
 		
-		this->renderSubViews(_frame.x, _frame.y);
+		this->renderSubviews(_frame.x, _frame.y);
 	}
 }
 

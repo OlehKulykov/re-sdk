@@ -97,7 +97,7 @@ REBOOL RETextField::acceptStringParameter(const char * key, const char * value)
 void RETextField::userActionClickDidEnd(const REFloat32 startCoordX, const REFloat32 startCoordY, 
 										const REFloat32 currentCoordX, const REFloat32 currentCoordY)
 {
-	RERect frame(this->getScreenFrame());
+	RERect frame(this->screenFrame());
 	if (frame.isPointInRect(startCoordX, startCoordY) && frame.isPointInRect(currentCoordX, currentCoordY)) 
 	{
 		RETextInputRespondersManager * m = RETextInputRespondersManager::getDefaultManager();
@@ -125,7 +125,7 @@ void RETextField::update(const RETimeInterval currentTime)
 			if (REAnimation::setup(NULL))
 			{
 				REAnimation::setTime((_cursorBlinkTime / 8.0));				
-				if (_cursorView->getAlpha() < 0.1f) 
+				if (_cursorView->alpha() < 0.1f) 
 				{
 					_cursorView->setAlphaAnimated(1.0f);
 				}
@@ -148,7 +148,7 @@ void RETextField::render()
 		if (_cursorView->isVisible()) 
 		{
 			RERect textFrame(this->getTextFrame());
-			RERect frame(_cursorView->getFrame());
+			RERect frame(_cursorView->frame());
 			frame.x = textFrame.x + textFrame.width;
 			_cursorView->setFrame(frame);
 		}
@@ -165,7 +165,7 @@ void RETextField::renderWithOffset(const REFloat32 offsetX, const REFloat32 offs
 		if (_cursorView->isVisible()) 
 		{
 			RERect textFrame(this->getTextFrame());
-			RERect frame(_cursorView->getFrame());
+			RERect frame(_cursorView->frame());
 			frame.x = textFrame.x + textFrame.width;
 			
 			_cursorView->setFrame(frame);
@@ -309,25 +309,6 @@ REView * RETextField::getCursorView() const
 }
 
 /* REObject */
-const REUInt32 RETextField::getClassIdentifier() const
-{
-	return RETextField::classIdentifier();
-}
-
-const REUInt32 RETextField::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETextField");
-	return clasIdentif;
-}
-
-REBOOL RETextField::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RETextField::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("IRETextInputResponder") == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			RELabel::isImplementsClass(classIdentifier));
-}
-
 void RETextField::onReleased()
 {
 	this->removeFromMainLoop();
@@ -364,7 +345,7 @@ RETextField::RETextField() : RELabel(),
     REView * cursorView = REView::create();
 	if (cursorView) 
 	{
-		if (this->addSubView(cursorView)) 
+		if (this->addSubview(cursorView)) 
 		{
 			_cursorView = cursorView;
             _cursorView->setColor(REColor(0.0f, 0.0f, 0.0f, 1.0f));

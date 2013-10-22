@@ -47,11 +47,6 @@ public:
 	virtual void setFrame(const RERect & newViewFrame);
 	virtual void setFrameAnimated(const RERect & newViewFrame);
 	
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	
 	/* IRERenderable */
 	virtual void render();
 	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);

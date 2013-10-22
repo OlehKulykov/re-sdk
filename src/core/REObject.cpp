@@ -21,31 +21,14 @@
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
 #include "../../include/recore/REApplication.h"
 
+void REObject::onReleased() 
+{
+	
+}
+
 const REUIdentifier REObject::objectIdentifier() const
 {
 	return _reObjectIdentifier;
-}
-
-const REUInt32 REObject::getClassIdentifier() const
-{
-	return REObject::classIdentifier();	
-}
-
-REBOOL REObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return (REObject::classIdentifier() == classIdentifier);
-}
-
-const REUInt32 REObject::classIdentifier()
-{	
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REObject");
-	return clasIdentif;
-}
-
-const REUInt32 REObject::generateClassIdentifierFromClassName(const char * className)
-{
-	return RECRC32Generator::generateFromString(className);
-	//return REMD5Generator::generateFromString(className);
 }
 
 REBOOL REObject::isEqual(REObject * anotherObject)

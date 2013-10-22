@@ -46,6 +46,7 @@
 #include "regui/RETTFFontChar.h"
 #include "regui/RETTFFontLoader.h"
 #include "regui/RETextureObject.h"
+#include "regui/RETexture.h"
 #include "regui/REView.h"
 #include "regui/REAnimationInfo.h"
 #include "regui/REViewController.h"

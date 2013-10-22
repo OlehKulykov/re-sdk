@@ -8,6 +8,18 @@
 
 #include "MyGameApplication.h"
 
+void * ___newREView()
+{
+	RELabel * v = RELabel::create();
+	return REPtrCast<void, RELabel>(v);
+}
+
+void * ___newRETexure()
+{
+	REFramedTextureObject * t = REFramedTextureObject::Create();
+	return REPtrCast<void, REFramedTextureObject>(t);
+}
+
 REBOOL MyGameApplication::start()
 {	
 	if (!_isStarted)
@@ -16,7 +28,7 @@ REBOOL MyGameApplication::start()
 		
 		MyGameRootViewController * rootViewController = (MyGameRootViewController *)this->getRootViewController();
 		
-		rootViewController->LoadByName(REString("mainmenu"), false);
+		rootViewController->loadByName(REString("mainmenu"), false);
 	}
 	return _isStarted;
 }
@@ -24,6 +36,12 @@ REBOOL MyGameApplication::start()
 MyGameApplication::MyGameApplication(MyGameRootViewController * rootViewController) : REGUIApplication(),
 	_isStarted(false)
 {
+	REApplication::currentApplication()->registerNewClassForNameCallback(___newREView, "REView");
+	REView * v = REApplication::currentApplication()->createClassWithClassName<REView>("REView");
+	
+	REApplication::currentApplication()->registerNewClassForNameCallback(___newRETexure, "RETextureObject");
+	
+	
 	REGUIApplication::setRootViewController(rootViewController);
 }
 

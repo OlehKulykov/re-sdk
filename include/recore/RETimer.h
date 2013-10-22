@@ -35,11 +35,6 @@ private:
 	REBOOL _isActive;
 	
 public:
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	
 	/// Sets method wich will invoke in timer tick.
 	void setTrigerTargetMethod(REClassMethod * targetMethod);
 	

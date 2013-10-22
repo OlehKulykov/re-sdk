@@ -25,6 +25,9 @@
 #include "../recore/REColor.h"
 #include "../recore/REArrayObject.h"
 #include "../recore/REClassMethod.h"
+#include "../recore/REPtr.h"
+#include "../recore/RETypedPtr.h"
+#include "../recore/RESerializable.h"
 
 #include "REGUIObject.h"
 #include "IRERenderable.h"
@@ -38,7 +41,8 @@
 
 /// Class of rectangular view used for display.
 class __RE_PUBLIC_CLASS_API__ REView : public REGUIObject,
-public RESubViewsContainer, 
+public RESubviewsContainer, 
+public RESerializable,
 public IRERenderable,
 public IREUserActionResponder
 {
@@ -56,18 +60,23 @@ protected:
 	REView();
 	virtual ~REView();
 	
-	void renderSubViews(const REFloat32 x, const REFloat32 y)
+	void renderSubviews(const REFloat32 x, const REFloat32 y)
 	{
-		REArrayObject * subViews = this->getSubViewsArray();
-		if (subViews) 
+		REList<REView *>::Iterator iter(this->subviewsIterator());
+		while (iter.next()) 
 		{
-			for (REUInt32 i = 0; i < subViews->count(); i++) 
-			{
-				((REView*)(*subViews)[i])->renderWithOffset(x, y);
-			}
+			iter.value()->renderWithOffset(x, y);
 		}
 	}
-
+	
+	/// Serialize view subviews(if exists) to dictionary.
+	/// dictionary pointer should not be NULL.
+	virtual void serializeSubviewsToDictionary(REDictionary * dictionary) const;
+	
+	/// Deserialize subview from subview array.
+	/// subviews pointer should not be NULL.
+	virtual void deserializeSubviewsFromDictionary(RETypedArray * subviews);
+	
 private:
     static REBOOL acceptViewStringParameter(REView * view, const char * key, const char * value);
 public:
@@ -99,10 +108,12 @@ public:
 											 const REFloat32 endCoordX, const REFloat32 endCoordY) { }
 	
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
+	
+	/* RESerializable */
+	virtual RETypedPtr serializeToDictionary() const;
+	
+	virtual void deserializeWithDictionary(const RETypedPtr & dictionary);
 	
 	/* IRERenderable */
 	virtual void render();
@@ -117,7 +128,7 @@ public:
 	virtual void setFrameAnimated(const RERect & newViewFrame);
 	
 	/// Receiving rectangular frame of view
-	virtual const RERect & getFrame() const;
+	virtual const RERect & frame() const;
 	
 	/// Setting color of view.
 	virtual void setColor(const REColor & newViewColor);
@@ -128,7 +139,7 @@ public:
 	virtual void setColorAnimated(const REColor & newViewColor);
 	
 	/// Receiving color of view
-	virtual const REColor & getColor() const;
+	virtual const REColor & color() const;
 	
 	/// Setting view color alpha channel in range [0.0f, 1.0f].
 	/// If parameter 'isWithSubViews' is true than this alpha value will settes to all subview.
@@ -141,34 +152,34 @@ public:
 	virtual void setAlphaAnimated(const REFloat32 newAlpha, const REBOOL isWithSubViews = true);
 	
 	/// Receiving view color alpha channel value.
-	virtual const REFloat32 getAlpha() const;
+	virtual const REFloat32 alpha() const;
 	
 	/// Returns count of working view animations count.
-	const REUInt16 getAnimationsCount() const { return _animationsCount; }
+	const REUInt16 animationsCount() const;
 	
 	/// Checks is view params is animating.
-	REBOOL isAnimating() const { return (_animationsCount > 0); }
+	REBOOL isAnimating() const;
 	
 	/// Receiving view texture object.
-	virtual RETextureObject * getTexture();
+	virtual RETextureObject * texture();
 	
 	/// Setting view texture object or NULL. If texture is NULL view will render only with color.
 	virtual void setTexture(RETextureObject * newTexture);
 	
 	/// Receiving rectangular frame using screen coordinates.
-	virtual RERect getScreenFrame() const;
+	virtual RERect screenFrame() const;
 	
 	/// Setting visibility of view.
-    virtual void setVisible(const REBOOL isVisible ) { _isVisible = isVisible; }
+    virtual void setVisible(const REBOOL isVisible);
 	
 	/// Returns value that indicating view visibility.
-	REBOOL isVisible() const { return _isVisible; }
+	REBOOL isVisible() const;
 	
 	/// Setting tag value for view.
-    virtual void setTag(const REInt32 newTag) { _tag = newTag; }
+    virtual void setTag(const REInt32 newTag);
 	
 	/// Receiving tag value of view.
-	const REInt32 getTag() const { return _tag; }
+	const REInt32 tag() const;
 	
 	/// Removes this view from parant view.
 	/// Returns false on removing error or there is no parent view.
@@ -185,41 +196,7 @@ public:
 	/// Creates and returns new view object with applied frame
 	static REView * createWithFrame(const RERect & frame);
 	
-	/// Returns XML key string for tag.
-	static const char * getXMLTagKeyString();
-	
-	/// Returns XML format string for tag.
-	static const char * getXMLTagFormatString();
-	
-	/// Returns XML key string for visibility flag.
-	static const char * getXMLVisibilityKeyString();
-	
-	/// Returns XML format string for visibility flag.
-	static const char * getXMLVisibilityFormatString();
-	
-	/// Returns XML key string for frame.
-	static const char * getXMLFrameKeyString();
-		
-	/// Returns XML key string for color.
-	static const char * getXMLColorKeyString();
-	
-	/// Returns XML key string for flag responds user action.
-	static const char * getXMLRespondsUserActionKeyString();
-	
-	/// Returns XML format string for flag responds user action.
-	static const char * getXMLRespondsUserActionFormatString();
-	
-	/// Returns XML key string for flag intercepts user action.
-	static const char * getXMLInterceptsUserActionKeyString();
-	
-	/// Returns XML format string for flag intercepts user action.
-	static const char * getXMLInterceptsUserActionFormatString();
-	
-	/// Returns XML key string for new subview object.
-	static const char * getXMLSubViewObjectKeyString();
-	
-	/// Returns XML key string for texture object.
-	static const char * getXMLTextureObjectKeyString();
+	static REView * createWithDeserializableDictionary(const RETypedPtr & dictionary);
 };
 
 #endif /* __REVIEW_H__ */

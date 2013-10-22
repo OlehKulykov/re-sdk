@@ -17,6 +17,7 @@
 
 #include "../../include/regui/RETextureObject.h"
 #include "../../include/recore/REThread.h"
+#include "../../include/recore/REStaticString.h"
 #include "../../include/recore/RERect.h"
 #include "../../include/regui/RERenderDevice.h"
 #include "../../include/regui/REView.h"
@@ -33,25 +34,6 @@
 #define RE_TEXTURE_XML_FILTER_MIPMAP_STANDART_KEY_STRING "mipmapstandart"
 #define RE_TEXTURE_XML_FILTER_MIPMAP_TRILINEAR_KEY_STRING "mipmaptrilinear"
 
-
-/* REObject */
-const REUInt32 RETextureObject::getClassIdentifier() const
-{
-	return RETextureObject::classIdentifier();
-}
-
-const REUInt32 RETextureObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETextureObject");
-	return clasIdentif;
-}
-
-REBOOL RETextureObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RETextureObject::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("IRETexture") == classIdentifier) ||
-			REGUIObject::isImplementsClass(classIdentifier));
-}
 
 RERenderDeviceTextureObject * RETextureObject::CreateNewRenderDeviceTexture()
 {
@@ -78,7 +60,7 @@ void RETextureObject::onSetupingGUIObjectFinished(const REBOOL isAcceptedByParen
 {
 	if (_texture) 
 	{
-		if (_texture->IsNull()) 
+		if (_texture->isNull()) 
 		{
 			_texture->release();
 			_texture = NULL;
@@ -97,7 +79,7 @@ REBOOL RETextureObject::AcceptStringParameterForTexture(const char * key, const 
 		else if (strcmp(value, RE_TEXTURE_XML_FILTER_MIPMAP_TRILINEAR_KEY_STRING) == 0) { filter = RETextureFilterMipmapedTrilinear; }
 		if (filter != RETextureFilterNone)
 		{
-			texture->SetFilterType(filter);
+			texture->setFilterType(filter);
 			return true;
 		}
 		return false;
@@ -107,7 +89,7 @@ REBOOL RETextureObject::AcceptStringParameterForTexture(const char * key, const 
 		if (value)
 		{
 			REString imageFilePath(value);
-			return texture->UpdateFromImageFilePath(imageFilePath, texture->GetFilterType());
+			return texture->UpdateFromImageFilePath(imageFilePath, texture->filterType());
 		}
 	}
 	else if (strcmp(key, RE_TEXTURE_XML_FRAME_KEY_STRING) == 0)
@@ -171,14 +153,14 @@ REBOOL RETextureObject::UpdateFromImage(const REImage & image, const RETextureFi
 			const REUInt32 h = RETextureObject::GetNearestPowerOfTwo(inH);
 			if ((inW == w) && (inH == h)) 
 			{
-				return this->Update(image.imageData(), image.pixelFormat(), w, h);
+				return this->update(image.imageData(), image.pixelFormat(), w, h);
 			}
 			else
 			{
 				REImage img(image);
 				if (img.scaleToSize(w, h))
 				{
-					return this->Update(img.imageData(), img.pixelFormat(), w, h);
+					return this->update(img.imageData(), img.pixelFormat(), w, h);
 				}
 			}
 		}
@@ -194,7 +176,7 @@ REBOOL RETextureObject::InitFromImageFilePath(const REString & imageFilePath, co
 	_texture = RETextureObject::CreateNewRenderDeviceTexture();
 	if (_texture) 
 	{
-		_texture->SetFilterType(filterType);
+		_texture->setFilterType(filterType);
 		return this->UpdateFromImageFilePath(imageFilePath, filterType);
 	}	
 	
@@ -208,7 +190,7 @@ REBOOL RETextureObject::InitFromImage(const REImage & image, const RETextureFilt
 	_texture = RETextureObject::CreateNewRenderDeviceTexture();
 	if (_texture) 
 	{
-		_texture->SetFilterType(filterType);
+		_texture->setFilterType(filterType);
 		return this->UpdateFromImage(image, filterType);
 	}
 	
@@ -225,7 +207,7 @@ REBOOL RETextureObject::InitBlankTexture(const REImagePixelFormat pixelsFormat,
 	_texture = RETextureObject::CreateNewRenderDeviceTexture();
 	if (_texture) 
 	{
-		_texture->SetFilterType(filterType);
+		_texture->setFilterType(filterType);
 		return true;
 	}
 	
@@ -262,7 +244,7 @@ void RETextureObject::onReleased()
 	REGUIObject::onReleased();
 }
 
-RETextureObject::RETextureObject() : REGUIObject(),
+RETextureObject::RETextureObject() : REGUIObject(), RESerializable(),
 	_texture(NULL)
 {
 	_frame.set(RERect(0.0f, 0.0f, 1.0f, 1.0f));
@@ -273,49 +255,73 @@ RETextureObject::~RETextureObject()
 	
 }
 
+#define TYPED_STATIC_STRING(s) RETypedPtr(new REStaticString(s), REPtrTypeString) 
+
+RETypedPtr RETextureObject::serializeToDictionary() const
+{
+	RETypedPtr d(RESerializable::serializeToDictionary());
+	REDictionary * dict = d.dictionary();
+	if (dict) 
+	{
+		dict->setValue(TYPED_STATIC_STRING("RETextureObject"), RESerializable::classNameKey());
+		dict->setValue(RETypedPtr(new REString(RETetragon::toString(_frame)), REPtrTypeString), TYPED_STATIC_STRING("frame"));
+	}
+	return d;
+}
+
+void RETextureObject::deserializeWithDictionary(const RETypedPtr & dictionary)
+{
+	RETypedPtr d(dictionary);
+	REDictionary * dict = d.dictionary();
+	if (dict) 
+	{
+		
+	}
+}
+
 /* IRETexture */
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
-const GLuint RETextureObject::GetTexureIdentifier() const
+const GLuint RETextureObject::texureIdentifier() const
 {
-	if (_texture) { return _texture->GetTexureIdentifier(); }
+	if (_texture) { return _texture->texureIdentifier(); }
 	return 0;
 }
 #endif	
 
 #ifdef __RE_USING_DIRECTX9__ 
-IDirect3DDevice9 * RETextureObject::GetD3DDevice9() const
+IDirect3DDevice9 * RETextureObject::D3DDevice9() const
 {
-	if (_texture) { return _texture->GetD3DDevice9(); }
+	if (_texture) { return _texture->D3DDevice9(); }
 	return 0;
 }
 
-LPDIRECT3DTEXTURE9 RETextureObject::GetDirect3DTexture9() const
+LPDIRECT3DTEXTURE9 RETextureObject::direct3DTexture9() const
 {
-	if (_texture) { return _texture->GetDirect3DTexture9(); }
+	if (_texture) { return _texture->direct3DTexture9(); }
 	return 0;
 }
 #endif	
 
-REBOOL RETextureObject::IsNull() const
+REBOOL RETextureObject::isNull() const
 {
-	if (_texture) { return _texture->IsNull(); }
+	if (_texture) { return _texture->isNull(); }
 	return true;
 }
 
-REBOOL RETextureObject::IsMipmaped() const
+REBOOL RETextureObject::isMipmaped() const
 {
-	if (_texture) { return _texture->IsMipmaped(); }
+	if (_texture) { return _texture->isMipmaped(); }
 	return false;
 }
 
-REBOOL RETextureObject::Update(const REUByte * pixelsData, 
+REBOOL RETextureObject::update(const REUByte * pixelsData, 
 							   const REImagePixelFormat pixelsFormat,
 							   const REUInt32 width,
 							   const REUInt32 height)
 {
 	if (_texture) 
 	{
-		if (_texture->Update(pixelsData, pixelsFormat, width, height))
+		if (_texture->update(pixelsData, pixelsFormat, width, height))
 		{
 			return true;
 		}
@@ -323,14 +329,14 @@ REBOOL RETextureObject::Update(const REUByte * pixelsData,
 	return false;
 }
 
-void RETextureObject::SetFilterType(const RETextureFilterType filter)
+void RETextureObject::setFilterType(const RETextureFilterType filter)
 {
-	if (_texture) { _texture->SetFilterType(filter); }
+	if (_texture) { _texture->setFilterType(filter); }
 }
 
-const RETextureFilterType RETextureObject::GetFilterType() const
+const RETextureFilterType RETextureObject::filterType() const
 {
-	if (_texture) { return _texture->GetFilterType(); }
+	if (_texture) { return _texture->filterType(); }
 	return RETextureFilterNone;
 }
 
@@ -368,9 +374,9 @@ void RETextureObject::StopAnimation(const REAnimationStopType stopType, REBOOL i
 
 REUInt32 RETextureObject::GetNearestPowerOfTwo(const REUInt32 inValue)
 {
-	static const REUInt32 normalSizes[10] = { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
+	static const REUInt32 normalSizes[12] = { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2028, 4096 };
 	REUInt32 leftValue = 0;
-	for (REUInt32 i = 0; i < 10; i++)
+	for (REUInt32 i = 0; i < 12; i++)
 	{
 		const REUInt32 rightValue = normalSizes[i];
 		if ( inValue == rightValue )
@@ -393,7 +399,7 @@ REUInt32 RETextureObject::GetNearestPowerOfTwo(const REUInt32 inValue)
 		leftValue = rightValue;
 	}
 	
-	return 1024;
+	return 4096;
 }
 
 RETextureObject * RETextureObject::Create()

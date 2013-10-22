@@ -17,23 +17,6 @@
 
 #include "../../include/regui/REAnimationInfo.h"
 
-const REUInt32 REAnimationInfo::getClassIdentifier() const
-{
-	return REAnimationInfo::classIdentifier();
-}
-
-const REUInt32 REAnimationInfo::classIdentifier()
-{
-	static const REUInt32 classIdentif = REObject::generateClassIdentifierFromClassName("REAnimationInfo");
-	return classIdentif;
-}
-
-REBOOL REAnimationInfo::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REAnimationInfo::classIdentifier() == classIdentifier) ||
-			REObject::isImplementsClass(classIdentifier));
-}
-
 REClassMethod * REAnimationInfo::getStartMethod() const
 {
 	return _startMethod;

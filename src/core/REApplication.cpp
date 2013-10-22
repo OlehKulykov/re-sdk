@@ -18,10 +18,30 @@
 #include "../../include/recore/REApplication.h"
 #include "../../include/recore/REThread.h"
 #include "../../include/recore/RECoreC.h"
+#include "../../include/recore/RELog.h"
+#include "../../include/recore/RECRC32Generator.h"
 #include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
 #include "../../include/recore/private/REAutoReleasePoolPrivate.h"
-#include "../../include/recore/RELog.h"
 #include "../../include/recore/private/REMainLoopsObjectsStoragePrivate.h"
+
+
+class REApplicationInternalNewClassCallback
+{
+public:
+	REApplicationNewClassForNameCallback callback;
+	REUInt32 nameCRC32;
+	REApplicationInternalNewClassCallback & operator=(const REApplicationInternalNewClassCallback & c)
+	{
+		callback = c.callback;
+		nameCRC32 = c.nameCRC32;
+		return (*this); 
+	}
+	REApplicationInternalNewClassCallback(const REApplicationInternalNewClassCallback & c) :
+	callback(c.callback), nameCRC32(c.nameCRC32) { }
+	REApplicationInternalNewClassCallback(const REApplicationNewClassForNameCallback c, const REUInt32 ncrc32) :
+	 callback(c), nameCRC32(ncrc32) { }
+};
+
 
 class REApplicationInternalAutoreleaseThread : public REThread
 {
@@ -50,6 +70,7 @@ public:
 	REThread * autoreleaseThread;
 	REMutex mainLoopUpdatableMutex;
 	REMutex autoreleaseMutex;
+	REList<REApplicationInternalNewClassCallback> classCallbacks;
 	
 	REBOOL isOk() const
 	{
@@ -83,6 +104,39 @@ public:
 };
 
 REApplication * REApplicationInternal::currentApplication = NULL;
+
+
+
+REBOOL REApplication::registerNewClassForNameCallback(const REApplicationNewClassForNameCallback callback, const char * className)
+{
+	if (callback) 
+	{
+		const REUInt32 nCRC32 = RECRC32Generator::generateFromString(className);
+		if (nCRC32 > 0) 
+		{
+			REApplicationInternalNewClassCallback c(callback, nCRC32);
+			return _a->classCallbacks.add(c);
+		}
+	}
+	return false;
+}
+
+void * REApplication::createObjectWithClassName(const char * className)
+{
+	const REUInt32 nCRC32 = RECRC32Generator::generateFromString(className);
+	if (nCRC32 > 0) 
+	{
+		REList<REApplicationInternalNewClassCallback>::Iterator iter = _a->classCallbacks.iterator();
+		while (iter.next()) 
+		{
+			if (iter.value().nameCRC32 == nCRC32) 
+			{
+				return iter.value().callback();
+			}
+		}
+	}
+	return NULL;
+}
 
 REString REApplication::name() const
 {

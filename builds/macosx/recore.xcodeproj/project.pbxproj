@@ -1,0 +1,1624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D1231A915FA3CB200CFFD87 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DECC5D515592B1B00CEF963 /* Cocoa.framework */; };
+		3D1231B815FA3D2B00CFFD87 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73115592C9300CEF963 /* tinyxml_wrap1.cpp */; };
+		3D1231B915FA3D2B00CFFD87 /* RE2DAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69C15592BFF00CEF963 /* RE2DAlgorithm.cpp */; };
+		3D1231BA15FA3D2B00CFFD87 /* RE2DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69D15592BFF00CEF963 /* RE2DVector.cpp */; };
+		3D1231BB15FA3D2B00CFFD87 /* RE3DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69E15592BFF00CEF963 /* RE3DVector.cpp */; };
+		3D1231BC15FA3D2B00CFFD87 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69F15592BFF00CEF963 /* REAffineTransform.cpp */; };
+		3D1231BD15FA3D2B00CFFD87 /* REAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A015592BFF00CEF963 /* REAngle.cpp */; };
+		3D1231BE15FA3D2B00CFFD87 /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A115592BFF00CEF963 /* REApplication.cpp */; };
+		3D1231BF15FA3D2B00CFFD87 /* REAutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A215592C0000CEF963 /* REAutoReleasePool.cpp */; };
+		3D1231C015FA3D2B00CFFD87 /* REBase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A315592C0000CEF963 /* REBase64.cpp */; };
+		3D1231C115FA3D2B00CFFD87 /* REBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A515592C0000CEF963 /* REBuffer.cpp */; };
+		3D1231C215FA3D2B00CFFD87 /* REBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A615592C0000CEF963 /* REBufferObject.cpp */; };
+		3D1231C315FA3D2B00CFFD87 /* REColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A715592C0000CEF963 /* REColor.cpp */; };
+		3D1231C415FA3D2B00CFFD87 /* RECPUFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A815592C0000CEF963 /* RECPUFeatures.cpp */; };
+		3D1231C515FA3D2B00CFFD87 /* REData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A915592C0000CEF963 /* REData.cpp */; };
+		3D1231C615FA3D2B00CFFD87 /* REDate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AA15592C0000CEF963 /* REDate.cpp */; };
+		3D1231C715FA3D2B00CFFD87 /* REFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AB15592C0000CEF963 /* REFile.cpp */; };
+		3D1231C815FA3D2B00CFFD87 /* REFileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AC15592C0000CEF963 /* REFileManager.cpp */; };
+		3D1231C915FA3D2B00CFFD87 /* REImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AD15592C0000CEF963 /* REImage.cpp */; };
+		3D1231CA15FA3D2B00CFFD87 /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AE15592C0000CEF963 /* REImageBase.cpp */; };
+		3D1231CB15FA3D2B00CFFD87 /* REImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AF15592C0000CEF963 /* REImageManager.cpp */; };
+		3D1231CC15FA3D2B00CFFD87 /* RELocale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B015592C0000CEF963 /* RELocale.cpp */; };
+		3D1231CD15FA3D2B00CFFD87 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B215592C0000CEF963 /* RELZMACompression.cpp */; };
+		3D1231CE15FA3D2B00CFFD87 /* REMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B415592C0000CEF963 /* REMath.cpp */; };
+		3D1231CF15FA3D2B00CFFD87 /* REMatrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B515592C0000CEF963 /* REMatrix4.cpp */; };
+		3D1231D015FA3D2B00CFFD87 /* REMD5Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B615592C0000CEF963 /* REMD5Generator.cpp */; };
+		3D1231D115FA3D2B00CFFD87 /* REMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B715592C0000CEF963 /* REMutex.cpp */; };
+		3D1231D215FA3D2B00CFFD87 /* RENotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B815592C0000CEF963 /* RENotificationManager.cpp */; };
+		3D1231D315FA3D2B00CFFD87 /* RENULLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B915592C0000CEF963 /* RENULLObject.cpp */; };
+		3D1231D415FA3D2B00CFFD87 /* RENumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BA15592C0000CEF963 /* RENumber.cpp */; };
+		3D1231D515FA3D2B00CFFD87 /* RENumberObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BB15592C0000CEF963 /* RENumberObject.cpp */; };
+		3D1231D615FA3D2B00CFFD87 /* REObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BC15592C0000CEF963 /* REObject.cpp */; };
+		3D1231D715FA3D2B00CFFD87 /* REObjectsArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BD15592C0000CEF963 /* REObjectsArray.cpp */; };
+		3D1231D815FA3D2B00CFFD87 /* REObjectsDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BE15592C0000CEF963 /* REObjectsDictionary.cpp */; };
+		3D1231D915FA3D2B00CFFD87 /* RERandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BF15592C0000CEF963 /* RERandomizer.cpp */; };
+		3D1231DA15FA3D2B00CFFD87 /* RERect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C015592C0000CEF963 /* RERect.cpp */; };
+		3D1231DB15FA3D2B00CFFD87 /* REResourcesStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C115592C0000CEF963 /* REResourcesStorage.cpp */; };
+		3D1231DC15FA3D2B00CFFD87 /* RESQLiteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C215592C0000CEF963 /* RESQLiteDB.cpp */; };
+		3D1231DD15FA3D2B00CFFD87 /* RESQLiteDBResultSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C315592C0000CEF963 /* RESQLiteDBResultSet.cpp */; };
+		3D1231DE15FA3D2B00CFFD87 /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C415592C0000CEF963 /* REString.cpp */; };
+		3D1231DF15FA3D2B00CFFD87 /* REStringObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C515592C0000CEF963 /* REStringObject.cpp */; };
+		3D1231E015FA3D2B00CFFD87 /* RETetragon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C715592C0000CEF963 /* RETetragon.cpp */; };
+		3D1231E115FA3D2B00CFFD87 /* REThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C815592C0000CEF963 /* REThread.cpp */; };
+		3D1231E215FA3D2B00CFFD87 /* RETime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C915592C0000CEF963 /* RETime.cpp */; };
+		3D1231E315FA3D2B00CFFD87 /* RETimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CA15592C0000CEF963 /* RETimer.cpp */; };
+		3D1231E415FA3D2B00CFFD87 /* REUserCallBacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CB15592C0000CEF963 /* REUserCallBacks.cpp */; };
+		3D1231E515FA3D2B00CFFD87 /* REXMLPropertyListReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CC15592C0000CEF963 /* REXMLPropertyListReader.cpp */; };
+		3D1231E615FA3D2B00CFFD87 /* REXMLPropertyListWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CD15592C0000CEF963 /* REXMLPropertyListWriter.cpp */; };
+		3D1231E715FA3D2B00CFFD87 /* REZipReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CE15592C0000CEF963 /* REZipReader.cpp */; };
+		3D1231E815FA3D2B00CFFD87 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CF15592C0000CEF963 /* REZLIBCompression.cpp */; };
+		3D1231E915FA3D2B00CFFD87 /* REYUV420toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70E15592C1700CEF963 /* REYUV420toRGB565.cpp */; };
+		3D1231EA15FA3D2B00CFFD87 /* REYUV420toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70F15592C1700CEF963 /* REYUV420toRGB888.cpp */; };
+		3D1231EB15FA3D2B00CFFD87 /* REYUV420toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71015592C1700CEF963 /* REYUV420toRGB8888.cpp */; };
+		3D1231EC15FA3D2B00CFFD87 /* REYUV422toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71115592C1700CEF963 /* REYUV422toRGB565.cpp */; };
+		3D1231ED15FA3D2B00CFFD87 /* REYUV422toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71215592C1700CEF963 /* REYUV422toRGB888.cpp */; };
+		3D1231EE15FA3D2B00CFFD87 /* REYUV422toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71315592C1700CEF963 /* REYUV422toRGB8888.cpp */; };
+		3D1231EF15FA3D2B00CFFD87 /* REYUV444toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71415592C1700CEF963 /* REYUV444toRGB565.cpp */; };
+		3D1231F015FA3D2B00CFFD87 /* REYUV444toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71515592C1700CEF963 /* REYUV444toRGB888.cpp */; };
+		3D1231F115FA3D2B00CFFD87 /* REYUV444toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71615592C1700CEF963 /* REYUV444toRGB8888.cpp */; };
+		3D1231F215FA3D2B00CFFD87 /* REYUVtoRGB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71715592C1700CEF963 /* REYUVtoRGB.cpp */; };
+		3D1231F315FA3D3500CFFD87 /* lzma_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72815592C9300CEF963 /* lzma_wrap1.c */; };
+		3D1231F415FA3D3500CFFD87 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72B15592C9300CEF963 /* webp_wrap1.c */; };
+		3D1231F515FA3D3500CFFD87 /* webp_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72C15592C9300CEF963 /* webp_wrap2.c */; };
+		3D1231F615FA3D3500CFFD87 /* webp_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72D15592C9300CEF963 /* webp_wrap3.c */; };
+		3D1231F715FA3D3600CFFD87 /* webp_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72E15592C9300CEF963 /* webp_wrap4.c */; };
+		3D1231F815FA3D3600CFFD87 /* jpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73315592C9300CEF963 /* jpeg_wrap1.c */; };
+		3D1231F915FA3D3600CFFD87 /* jpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73415592C9300CEF963 /* jpeg_wrap2.c */; };
+		3D1231FA15FA3D3600CFFD87 /* jpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73515592C9300CEF963 /* jpeg_wrap3.c */; };
+		3D1231FB15FA3D3600CFFD87 /* jpeg_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73615592C9300CEF963 /* jpeg_wrap4.c */; };
+		3D1231FC15FA3D3600CFFD87 /* jpeg_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73715592C9300CEF963 /* jpeg_wrap5.c */; };
+		3D1231FD15FA3D3600CFFD87 /* jpeg_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73815592C9300CEF963 /* jpeg_wrap6.c */; };
+		3D1231FE15FA3D3600CFFD87 /* jpeg_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73915592C9300CEF963 /* jpeg_wrap7.c */; };
+		3D1231FF15FA3D3600CFFD87 /* jpeg_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73A15592C9300CEF963 /* jpeg_wrap8.c */; };
+		3D12320015FA3D3600CFFD87 /* jpeg_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73B15592C9300CEF963 /* jpeg_wrap9.c */; };
+		3D12320115FA3D3600CFFD87 /* jpeg_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73C15592C9300CEF963 /* jpeg_wrap10.c */; };
+		3D12320215FA3D3600CFFD87 /* jpeg_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73D15592C9300CEF963 /* jpeg_wrap11.c */; };
+		3D12320315FA3D3600CFFD87 /* jpeg_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73E15592C9300CEF963 /* jpeg_wrap12.c */; };
+		3D12320415FA3D3600CFFD87 /* jpeg_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73F15592C9300CEF963 /* jpeg_wrap13.c */; };
+		3D12320515FA3D3600CFFD87 /* jpeg_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74015592C9300CEF963 /* jpeg_wrap14.c */; };
+		3D12320615FA3D3600CFFD87 /* jpeg_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74115592C9300CEF963 /* jpeg_wrap15.c */; };
+		3D12320715FA3D3600CFFD87 /* jpeg_wrap16.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74215592C9300CEF963 /* jpeg_wrap16.c */; };
+		3D12320815FA3D3600CFFD87 /* jpeg_wrap17.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74315592C9300CEF963 /* jpeg_wrap17.c */; };
+		3D12320915FA3D3600CFFD87 /* jpeg_wrap18.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74415592C9300CEF963 /* jpeg_wrap18.c */; };
+		3D12320A15FA3D3600CFFD87 /* jpeg_wrap19.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74515592C9300CEF963 /* jpeg_wrap19.c */; };
+		3D12320B15FA3D3600CFFD87 /* jpeg_wrap20.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74615592C9300CEF963 /* jpeg_wrap20.c */; };
+		3D12320C15FA3D3600CFFD87 /* jpeg_wrap21.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74715592C9300CEF963 /* jpeg_wrap21.c */; };
+		3D12320D15FA3D3600CFFD87 /* jpeg_wrap22.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74815592C9300CEF963 /* jpeg_wrap22.c */; };
+		3D12320E15FA3D3600CFFD87 /* jpeg_wrap23.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74915592C9300CEF963 /* jpeg_wrap23.c */; };
+		3D12320F15FA3D3600CFFD87 /* jpeg_wrap24.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74A15592C9300CEF963 /* jpeg_wrap24.c */; };
+		3D12321015FA3D3600CFFD87 /* jpeg_wrap25.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74B15592C9300CEF963 /* jpeg_wrap25.c */; };
+		3D12321115FA3D3600CFFD87 /* jpeg_wrap26.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74C15592C9300CEF963 /* jpeg_wrap26.c */; };
+		3D12321215FA3D3600CFFD87 /* jpeg_wrap27.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74D15592C9300CEF963 /* jpeg_wrap27.c */; };
+		3D12321315FA3D3600CFFD87 /* jpeg_wrap28.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74E15592C9300CEF963 /* jpeg_wrap28.c */; };
+		3D12321415FA3D3600CFFD87 /* jpeg_wrap29.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74F15592C9300CEF963 /* jpeg_wrap29.c */; };
+		3D12321515FA3D3600CFFD87 /* jpeg_wrap30.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75015592C9300CEF963 /* jpeg_wrap30.c */; };
+		3D12321615FA3D3600CFFD87 /* jpeg_wrap31.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75115592C9300CEF963 /* jpeg_wrap31.c */; };
+		3D12321715FA3D3600CFFD87 /* jpeg_wrap32.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75215592C9300CEF963 /* jpeg_wrap32.c */; };
+		3D12321815FA3D3600CFFD87 /* jpeg_wrap33.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75315592C9300CEF963 /* jpeg_wrap33.c */; };
+		3D12321915FA3D3600CFFD87 /* jpeg_wrap34.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75415592C9300CEF963 /* jpeg_wrap34.c */; };
+		3D12321A15FA3D3600CFFD87 /* jpeg_wrap35.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75515592C9300CEF963 /* jpeg_wrap35.c */; };
+		3D12321B15FA3D3600CFFD87 /* jpeg_wrap36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75615592C9300CEF963 /* jpeg_wrap36.c */; };
+		3D12321C15FA3D3600CFFD87 /* jpeg_wrap37.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75715592C9300CEF963 /* jpeg_wrap37.c */; };
+		3D12321D15FA3D3600CFFD87 /* jpeg_wrap38.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75815592C9300CEF963 /* jpeg_wrap38.c */; };
+		3D12321E15FA3D3600CFFD87 /* jpeg_wrap39.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75915592C9300CEF963 /* jpeg_wrap39.c */; };
+		3D12321F15FA3D3600CFFD87 /* jpeg_wrap40.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75A15592C9300CEF963 /* jpeg_wrap40.c */; };
+		3D12322015FA3D3600CFFD87 /* jpeg_wrap41.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75B15592C9300CEF963 /* jpeg_wrap41.c */; };
+		3D12322115FA3D3600CFFD87 /* jpeg_wrap42.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75C15592C9300CEF963 /* jpeg_wrap42.c */; };
+		3D12322215FA3D3600CFFD87 /* jpeg_wrap43.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75D15592C9300CEF963 /* jpeg_wrap43.c */; };
+		3D12322315FA3D3600CFFD87 /* jpeg_wrap44.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75E15592C9300CEF963 /* jpeg_wrap44.c */; };
+		3D12322415FA3D3600CFFD87 /* jpeg_wrap45.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75F15592C9300CEF963 /* jpeg_wrap45.c */; };
+		3D12322515FA3D3600CFFD87 /* jpeg_wrap46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76015592C9300CEF963 /* jpeg_wrap46.c */; };
+		3D12322615FA3D3600CFFD87 /* jpeg_wrap47.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76115592C9300CEF963 /* jpeg_wrap47.c */; };
+		3D12322715FA3D3600CFFD87 /* jpeg_wrap48.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76215592C9300CEF963 /* jpeg_wrap48.c */; };
+		3D12322815FA3D3600CFFD87 /* jpeg_wrap49.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76315592C9300CEF963 /* jpeg_wrap49.c */; };
+		3D12322915FA3D3600CFFD87 /* jpeg_wrap50.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76415592C9300CEF963 /* jpeg_wrap50.c */; };
+		3D12322A15FA3D3600CFFD87 /* jpeg_wrap51.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76515592C9300CEF963 /* jpeg_wrap51.c */; };
+		3D12322B15FA3D3600CFFD87 /* jpeg_wrap52.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76615592C9300CEF963 /* jpeg_wrap52.c */; };
+		3D12322C15FA3D3600CFFD87 /* jpeg_wrap53.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76715592C9300CEF963 /* jpeg_wrap53.c */; };
+		3D12322D15FA3D3600CFFD87 /* jpeg_wrap54.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76815592C9300CEF963 /* jpeg_wrap54.c */; };
+		3D12322E15FA3D3600CFFD87 /* jpeg_wrap55.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76915592C9300CEF963 /* jpeg_wrap55.c */; };
+		3D12322F15FA3D3600CFFD87 /* jpeg_wrap56.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76A15592C9300CEF963 /* jpeg_wrap56.c */; };
+		3D12323015FA3D3600CFFD87 /* jpeg_wrap57.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76B15592C9300CEF963 /* jpeg_wrap57.c */; };
+		3D12323115FA3D3600CFFD87 /* jpeg_wrap58.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76C15592C9300CEF963 /* jpeg_wrap58.c */; };
+		3D12323215FA3D3600CFFD87 /* jpeg_wrap59.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76D15592C9300CEF963 /* jpeg_wrap59.c */; };
+		3D12323315FA3D3600CFFD87 /* jpeg_wrap60.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76E15592C9300CEF963 /* jpeg_wrap60.c */; };
+		3D12323415FA3D3600CFFD87 /* openjpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77115592C9300CEF963 /* openjpeg_wrap1.c */; };
+		3D12323515FA3D3600CFFD87 /* openjpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77215592C9300CEF963 /* openjpeg_wrap2.c */; };
+		3D12323615FA3D3600CFFD87 /* openjpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77315592C9300CEF963 /* openjpeg_wrap3.c */; };
+		3D12323715FA3D3600CFFD87 /* png_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77615592C9300CEF963 /* png_wrap1.c */; };
+		3D12323815FA3D3600CFFD87 /* sqlite_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77915592C9300CEF963 /* sqlite_wrap1.c */; };
+		3D12323915FA3D3600CFFD87 /* zlib_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77C15592C9300CEF963 /* zlib_wrap1.c */; };
+		3D12323A15FA3D3600CFFD87 /* zlib_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77D15592C9300CEF963 /* zlib_wrap2.c */; };
+		3D12323B15FA3D3600CFFD87 /* zlib_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77E15592C9300CEF963 /* zlib_wrap3.c */; };
+		3D12323C15FA3D3600CFFD87 /* zlib_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77F15592C9300CEF963 /* zlib_wrap4.c */; };
+		3D12323D15FA3D3600CFFD87 /* zlib_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78015592C9300CEF963 /* zlib_wrap5.c */; };
+		3D12323E15FA3D3600CFFD87 /* zlib_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78115592C9300CEF963 /* zlib_wrap6.c */; };
+		3D12323F15FA3D3600CFFD87 /* zlib_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78215592C9300CEF963 /* zlib_wrap7.c */; };
+		3D12324015FA3D3600CFFD87 /* zlib_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78315592C9300CEF963 /* zlib_wrap8.c */; };
+		3D12324115FA3D3600CFFD87 /* zlib_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78415592C9300CEF963 /* zlib_wrap9.c */; };
+		3D12324215FA3D3600CFFD87 /* zlib_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78515592C9300CEF963 /* zlib_wrap10.c */; };
+		3D12324315FA3D3600CFFD87 /* zlib_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78615592C9300CEF963 /* zlib_wrap11.c */; };
+		3D12324415FA3D3600CFFD87 /* zlib_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78715592C9300CEF963 /* zlib_wrap12.c */; };
+		3D12324515FA3D3600CFFD87 /* zlib_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78815592C9300CEF963 /* zlib_wrap13.c */; };
+		3D12324615FA3D3600CFFD87 /* zlib_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78915592C9300CEF963 /* zlib_wrap14.c */; };
+		3D12324715FA3D3600CFFD87 /* zlib_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78A15592C9300CEF963 /* zlib_wrap15.c */; };
+		3D12324815FA3D3600CFFD87 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70515592C0F00CEF963 /* ioapi.c */; };
+		3D12324915FA3D3600CFFD87 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70715592C0F00CEF963 /* unzip.c */; };
+		3D12324C15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12324A15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp */; };
+		3D12324D15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12324B15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp */; };
+		3D12324E15FA3F3400CFFD87 /* REMainLoopUpdatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12324B15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp */; };
+		3D12324F15FA3F3700CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12324A15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp */; };
+		3D12325115FA3F4C00CFFD87 /* RELog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12325015FA3F4C00CFFD87 /* RELog.cpp */; };
+		3D12325215FA3F5000CFFD87 /* RELog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D12325015FA3F4C00CFFD87 /* RELog.cpp */; };
+		3D12325415FA3F6200CFFD87 /* RELocale_macosx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D12325315FA3F6200CFFD87 /* RELocale_macosx.mm */; };
+		3D12325515FA3F6400CFFD87 /* RELocale_macosx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D12325315FA3F6200CFFD87 /* RELocale_macosx.mm */; };
+		3D12325715FA3F7F00CFFD87 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D12325615FA3F7F00CFFD87 /* libsqlite3.dylib */; };
+		3DECC5D615592B1B00CEF963 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DECC5D515592B1B00CEF963 /* Cocoa.framework */; };
+		3DECC5EB15592BA000CEF963 /* REConfigMacosx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC5EA15592BA000CEF963 /* REConfigMacosx.h */; };
+		3DECC60915592BCF00CEF963 /* REConfigSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60715592BCF00CEF963 /* REConfigSelector.h */; };
+		3DECC65315592BE000CEF963 /* IREAffineTransformed.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60A15592BDF00CEF963 /* IREAffineTransformed.h */; };
+		3DECC65415592BE000CEF963 /* IREFileReadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60B15592BDF00CEF963 /* IREFileReadable.h */; };
+		3DECC65615592BE000CEF963 /* RE2DAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60D15592BDF00CEF963 /* RE2DAlgorithm.h */; };
+		3DECC65715592BE000CEF963 /* REAffineTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60E15592BDF00CEF963 /* REAffineTransform.h */; };
+		3DECC65815592BE000CEF963 /* REAngle.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC60F15592BDF00CEF963 /* REAngle.h */; };
+		3DECC65915592BE000CEF963 /* REApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61015592BDF00CEF963 /* REApplication.h */; };
+		3DECC65A15592BE000CEF963 /* REArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61115592BDF00CEF963 /* REArray.h */; };
+		3DECC65B15592BE000CEF963 /* REAutoReleasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61215592BDF00CEF963 /* REAutoReleasePool.h */; };
+		3DECC65C15592BE000CEF963 /* REBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61315592BDF00CEF963 /* REBase64.h */; };
+		3DECC65E15592BE000CEF963 /* REBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61515592BDF00CEF963 /* REBuffer.h */; };
+		3DECC65F15592BE000CEF963 /* REBufferObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61615592BDF00CEF963 /* REBufferObject.h */; };
+		3DECC66015592BE000CEF963 /* REClassMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61715592BDF00CEF963 /* REClassMethod.h */; };
+		3DECC66115592BE000CEF963 /* REColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61815592BDF00CEF963 /* REColor.h */; };
+		3DECC66215592BE000CEF963 /* RECommonHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61915592BDF00CEF963 /* RECommonHeader.h */; };
+		3DECC66315592BE000CEF963 /* RECoreIncludes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61A15592BDF00CEF963 /* RECoreIncludes.h */; };
+		3DECC66415592BE000CEF963 /* RECoreOSSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61B15592BDF00CEF963 /* RECoreOSSelector.h */; };
+		3DECC66515592BE000CEF963 /* RECorePlatformSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61C15592BDF00CEF963 /* RECorePlatformSelector.h */; };
+		3DECC66615592BE000CEF963 /* RECoreSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61D15592BDF00CEF963 /* RECoreSettings.h */; };
+		3DECC66715592BE000CEF963 /* RECPUFeatures.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61E15592BDF00CEF963 /* RECPUFeatures.h */; };
+		3DECC66815592BE000CEF963 /* REData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC61F15592BE000CEF963 /* REData.h */; };
+		3DECC66915592BE000CEF963 /* REDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62015592BE000CEF963 /* REDate.h */; };
+		3DECC66A15592BE000CEF963 /* REFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62115592BE000CEF963 /* REFile.h */; };
+		3DECC66B15592BE000CEF963 /* REFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62215592BE000CEF963 /* REFileManager.h */; };
+		3DECC66C15592BE000CEF963 /* REFloat16.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62315592BE000CEF963 /* REFloat16.h */; };
+		3DECC66D15592BE000CEF963 /* REImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62415592BE000CEF963 /* REImage.h */; };
+		3DECC66E15592BE000CEF963 /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62515592BE000CEF963 /* REImageBase.h */; };
+		3DECC66F15592BE000CEF963 /* REImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62615592BE000CEF963 /* REImageManager.h */; };
+		3DECC67015592BE000CEF963 /* REInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62715592BE000CEF963 /* REInterpolation.h */; };
+		3DECC67115592BE000CEF963 /* REList.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62815592BE000CEF963 /* REList.h */; };
+		3DECC67215592BE000CEF963 /* RELocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62915592BE000CEF963 /* RELocale.h */; };
+		3DECC67315592BE000CEF963 /* RELZMACompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62A15592BE000CEF963 /* RELZMACompression.h */; };
+		3DECC67515592BE000CEF963 /* REMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62C15592BE000CEF963 /* REMath.h */; };
+		3DECC67615592BE000CEF963 /* REMatrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62D15592BE000CEF963 /* REMatrix4.h */; };
+		3DECC67715592BE000CEF963 /* REMD5Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62E15592BE000CEF963 /* REMD5Generator.h */; };
+		3DECC67815592BE000CEF963 /* REMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC62F15592BE000CEF963 /* REMem.h */; };
+		3DECC67915592BE000CEF963 /* REMutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63015592BE000CEF963 /* REMutex.h */; };
+		3DECC67A15592BE000CEF963 /* RENotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63115592BE000CEF963 /* RENotificationManager.h */; };
+		3DECC67B15592BE000CEF963 /* RENULLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63215592BE000CEF963 /* RENULLObject.h */; };
+		3DECC67C15592BE000CEF963 /* RENumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63315592BE000CEF963 /* RENumber.h */; };
+		3DECC67D15592BE000CEF963 /* RENumberObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63415592BE000CEF963 /* RENumberObject.h */; };
+		3DECC67E15592BE000CEF963 /* REObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63515592BE000CEF963 /* REObject.h */; };
+		3DECC67F15592BE000CEF963 /* REObjectsArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63615592BE000CEF963 /* REObjectsArray.h */; };
+		3DECC68015592BE000CEF963 /* REObjectsDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63715592BE000CEF963 /* REObjectsDictionary.h */; };
+		3DECC68115592BE000CEF963 /* REPoint2.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63815592BE000CEF963 /* REPoint2.h */; };
+		3DECC68215592BE000CEF963 /* REPoint3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63915592BE000CEF963 /* REPoint3.h */; };
+		3DECC68315592BE000CEF963 /* REProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63A15592BE000CEF963 /* REProperty.h */; };
+		3DECC68415592BE000CEF963 /* REQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63B15592BE000CEF963 /* REQuaternion.h */; };
+		3DECC68515592BE000CEF963 /* RERandomizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63C15592BE000CEF963 /* RERandomizer.h */; };
+		3DECC68615592BE000CEF963 /* RERange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63D15592BE000CEF963 /* RERange.h */; };
+		3DECC68715592BE000CEF963 /* RERect.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63E15592BE000CEF963 /* RERect.h */; };
+		3DECC68815592BE000CEF963 /* REResourcesStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC63F15592BE000CEF963 /* REResourcesStorage.h */; };
+		3DECC68915592BE000CEF963 /* RESize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64015592BE000CEF963 /* RESize.h */; };
+		3DECC68A15592BE000CEF963 /* RESQLiteDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64115592BE000CEF963 /* RESQLiteDB.h */; };
+		3DECC68B15592BE000CEF963 /* RESQLiteDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64215592BE000CEF963 /* RESQLiteDBResultSet.h */; };
+		3DECC68C15592BE000CEF963 /* REString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64315592BE000CEF963 /* REString.h */; };
+		3DECC68D15592BE000CEF963 /* REStringObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64415592BE000CEF963 /* REStringObject.h */; };
+		3DECC68F15592BE000CEF963 /* RETetragon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64615592BE000CEF963 /* RETetragon.h */; };
+		3DECC69015592BE000CEF963 /* REThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64715592BE000CEF963 /* REThread.h */; };
+		3DECC69115592BE000CEF963 /* RETime.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64815592BE000CEF963 /* RETime.h */; };
+		3DECC69215592BE000CEF963 /* RETimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64915592BE000CEF963 /* RETimer.h */; };
+		3DECC69315592BE000CEF963 /* RETypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64A15592BE000CEF963 /* RETypes.h */; };
+		3DECC69415592BE000CEF963 /* REUserCallBacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64B15592BE000CEF963 /* REUserCallBacks.h */; };
+		3DECC69515592BE000CEF963 /* REVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64C15592BE000CEF963 /* REVector2.h */; };
+		3DECC69615592BE000CEF963 /* REVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64D15592BE000CEF963 /* REVector3.h */; };
+		3DECC69715592BE000CEF963 /* REXMLPropertyListReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64E15592BE000CEF963 /* REXMLPropertyListReader.h */; };
+		3DECC69815592BE000CEF963 /* REXMLPropertyListWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC64F15592BE000CEF963 /* REXMLPropertyListWriter.h */; };
+		3DECC69915592BE000CEF963 /* REYUVtoRGB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC65015592BE000CEF963 /* REYUVtoRGB.h */; };
+		3DECC69A15592BE000CEF963 /* REZipReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC65115592BE000CEF963 /* REZipReader.h */; };
+		3DECC69B15592BE000CEF963 /* REZLIBCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC65215592BE000CEF963 /* REZLIBCompression.h */; };
+		3DECC6D015592C0000CEF963 /* RE2DAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69C15592BFF00CEF963 /* RE2DAlgorithm.cpp */; };
+		3DECC6D115592C0000CEF963 /* RE2DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69D15592BFF00CEF963 /* RE2DVector.cpp */; };
+		3DECC6D215592C0000CEF963 /* RE3DVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69E15592BFF00CEF963 /* RE3DVector.cpp */; };
+		3DECC6D315592C0000CEF963 /* REAffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC69F15592BFF00CEF963 /* REAffineTransform.cpp */; };
+		3DECC6D415592C0000CEF963 /* REAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A015592BFF00CEF963 /* REAngle.cpp */; };
+		3DECC6D515592C0000CEF963 /* REApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A115592BFF00CEF963 /* REApplication.cpp */; };
+		3DECC6D615592C0000CEF963 /* REAutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A215592C0000CEF963 /* REAutoReleasePool.cpp */; };
+		3DECC6D715592C0000CEF963 /* REBase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A315592C0000CEF963 /* REBase64.cpp */; };
+		3DECC6D915592C0000CEF963 /* REBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A515592C0000CEF963 /* REBuffer.cpp */; };
+		3DECC6DA15592C0000CEF963 /* REBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A615592C0000CEF963 /* REBufferObject.cpp */; };
+		3DECC6DB15592C0000CEF963 /* REColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A715592C0000CEF963 /* REColor.cpp */; };
+		3DECC6DC15592C0000CEF963 /* RECPUFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A815592C0000CEF963 /* RECPUFeatures.cpp */; };
+		3DECC6DD15592C0000CEF963 /* REData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6A915592C0000CEF963 /* REData.cpp */; };
+		3DECC6DE15592C0000CEF963 /* REDate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AA15592C0000CEF963 /* REDate.cpp */; };
+		3DECC6DF15592C0000CEF963 /* REFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AB15592C0000CEF963 /* REFile.cpp */; };
+		3DECC6E015592C0000CEF963 /* REFileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AC15592C0000CEF963 /* REFileManager.cpp */; };
+		3DECC6E115592C0000CEF963 /* REImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AD15592C0000CEF963 /* REImage.cpp */; };
+		3DECC6E215592C0000CEF963 /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AE15592C0000CEF963 /* REImageBase.cpp */; };
+		3DECC6E315592C0000CEF963 /* REImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6AF15592C0000CEF963 /* REImageManager.cpp */; };
+		3DECC6E415592C0000CEF963 /* RELocale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B015592C0000CEF963 /* RELocale.cpp */; };
+		3DECC6E515592C0000CEF963 /* RELocale_macosx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B115592C0000CEF963 /* RELocale_macosx.mm */; };
+		3DECC6E615592C0000CEF963 /* RELZMACompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B215592C0000CEF963 /* RELZMACompression.cpp */; };
+		3DECC6E815592C0000CEF963 /* REMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B415592C0000CEF963 /* REMath.cpp */; };
+		3DECC6E915592C0000CEF963 /* REMatrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B515592C0000CEF963 /* REMatrix4.cpp */; };
+		3DECC6EA15592C0000CEF963 /* REMD5Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B615592C0000CEF963 /* REMD5Generator.cpp */; };
+		3DECC6EB15592C0000CEF963 /* REMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B715592C0000CEF963 /* REMutex.cpp */; };
+		3DECC6EC15592C0000CEF963 /* RENotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B815592C0000CEF963 /* RENotificationManager.cpp */; };
+		3DECC6ED15592C0000CEF963 /* RENULLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6B915592C0000CEF963 /* RENULLObject.cpp */; };
+		3DECC6EE15592C0000CEF963 /* RENumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BA15592C0000CEF963 /* RENumber.cpp */; };
+		3DECC6EF15592C0000CEF963 /* RENumberObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BB15592C0000CEF963 /* RENumberObject.cpp */; };
+		3DECC6F015592C0000CEF963 /* REObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BC15592C0000CEF963 /* REObject.cpp */; };
+		3DECC6F115592C0000CEF963 /* REObjectsArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BD15592C0000CEF963 /* REObjectsArray.cpp */; };
+		3DECC6F215592C0000CEF963 /* REObjectsDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BE15592C0000CEF963 /* REObjectsDictionary.cpp */; };
+		3DECC6F315592C0000CEF963 /* RERandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6BF15592C0000CEF963 /* RERandomizer.cpp */; };
+		3DECC6F415592C0000CEF963 /* RERect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C015592C0000CEF963 /* RERect.cpp */; };
+		3DECC6F515592C0000CEF963 /* REResourcesStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C115592C0000CEF963 /* REResourcesStorage.cpp */; };
+		3DECC6F615592C0000CEF963 /* RESQLiteDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C215592C0000CEF963 /* RESQLiteDB.cpp */; };
+		3DECC6F715592C0000CEF963 /* RESQLiteDBResultSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C315592C0000CEF963 /* RESQLiteDBResultSet.cpp */; };
+		3DECC6F815592C0000CEF963 /* REString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C415592C0000CEF963 /* REString.cpp */; };
+		3DECC6F915592C0000CEF963 /* REStringObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C515592C0000CEF963 /* REStringObject.cpp */; };
+		3DECC6FB15592C0000CEF963 /* RETetragon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C715592C0000CEF963 /* RETetragon.cpp */; };
+		3DECC6FC15592C0000CEF963 /* REThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C815592C0000CEF963 /* REThread.cpp */; };
+		3DECC6FD15592C0000CEF963 /* RETime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6C915592C0000CEF963 /* RETime.cpp */; };
+		3DECC6FE15592C0000CEF963 /* RETimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CA15592C0000CEF963 /* RETimer.cpp */; };
+		3DECC6FF15592C0000CEF963 /* REUserCallBacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CB15592C0000CEF963 /* REUserCallBacks.cpp */; };
+		3DECC70015592C0000CEF963 /* REXMLPropertyListReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CC15592C0000CEF963 /* REXMLPropertyListReader.cpp */; };
+		3DECC70115592C0000CEF963 /* REXMLPropertyListWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CD15592C0000CEF963 /* REXMLPropertyListWriter.cpp */; };
+		3DECC70215592C0000CEF963 /* REZipReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CE15592C0000CEF963 /* REZipReader.cpp */; };
+		3DECC70315592C0000CEF963 /* REZLIBCompression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC6CF15592C0000CEF963 /* REZLIBCompression.cpp */; };
+		3DECC70915592C0F00CEF963 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC70415592C0F00CEF963 /* crypt.h */; };
+		3DECC70A15592C0F00CEF963 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70515592C0F00CEF963 /* ioapi.c */; };
+		3DECC70B15592C0F00CEF963 /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC70615592C0F00CEF963 /* ioapi.h */; };
+		3DECC70C15592C0F00CEF963 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70715592C0F00CEF963 /* unzip.c */; };
+		3DECC70D15592C0F00CEF963 /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC70815592C0F00CEF963 /* unzip.h */; };
+		3DECC71815592C1700CEF963 /* REYUV420toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70E15592C1700CEF963 /* REYUV420toRGB565.cpp */; };
+		3DECC71915592C1700CEF963 /* REYUV420toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC70F15592C1700CEF963 /* REYUV420toRGB888.cpp */; };
+		3DECC71A15592C1700CEF963 /* REYUV420toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71015592C1700CEF963 /* REYUV420toRGB8888.cpp */; };
+		3DECC71B15592C1700CEF963 /* REYUV422toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71115592C1700CEF963 /* REYUV422toRGB565.cpp */; };
+		3DECC71C15592C1700CEF963 /* REYUV422toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71215592C1700CEF963 /* REYUV422toRGB888.cpp */; };
+		3DECC71D15592C1700CEF963 /* REYUV422toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71315592C1700CEF963 /* REYUV422toRGB8888.cpp */; };
+		3DECC71E15592C1700CEF963 /* REYUV444toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71415592C1700CEF963 /* REYUV444toRGB565.cpp */; };
+		3DECC71F15592C1700CEF963 /* REYUV444toRGB888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71515592C1700CEF963 /* REYUV444toRGB888.cpp */; };
+		3DECC72015592C1700CEF963 /* REYUV444toRGB8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71615592C1700CEF963 /* REYUV444toRGB8888.cpp */; };
+		3DECC72115592C1700CEF963 /* REYUVtoRGB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC71715592C1700CEF963 /* REYUVtoRGB.cpp */; };
+		3DECC78C15592C9300CEF963 /* lzma.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC72615592C9300CEF963 /* lzma.h */; };
+		3DECC78D15592C9300CEF963 /* lzma_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC72715592C9300CEF963 /* lzma_config.h */; };
+		3DECC78E15592C9300CEF963 /* lzma_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72815592C9300CEF963 /* lzma_wrap1.c */; };
+		3DECC78F15592C9300CEF963 /* webp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC72915592C9300CEF963 /* webp.h */; };
+		3DECC79015592C9300CEF963 /* webp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC72A15592C9300CEF963 /* webp_config.h */; };
+		3DECC79115592C9300CEF963 /* webp_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72B15592C9300CEF963 /* webp_wrap1.c */; };
+		3DECC79215592C9300CEF963 /* webp_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72C15592C9300CEF963 /* webp_wrap2.c */; };
+		3DECC79315592C9300CEF963 /* webp_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72D15592C9300CEF963 /* webp_wrap3.c */; };
+		3DECC79415592C9300CEF963 /* webp_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC72E15592C9300CEF963 /* webp_wrap4.c */; };
+		3DECC79515592C9300CEF963 /* tinyxml_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC72F15592C9300CEF963 /* tinyxml_config.h */; };
+		3DECC79615592C9300CEF963 /* tinyxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC73015592C9300CEF963 /* tinyxml.h */; };
+		3DECC79715592C9300CEF963 /* tinyxml_wrap1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73115592C9300CEF963 /* tinyxml_wrap1.cpp */; };
+		3DECC79815592C9300CEF963 /* jpeg_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC73215592C9300CEF963 /* jpeg_config.h */; };
+		3DECC79915592C9300CEF963 /* jpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73315592C9300CEF963 /* jpeg_wrap1.c */; };
+		3DECC79A15592C9300CEF963 /* jpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73415592C9300CEF963 /* jpeg_wrap2.c */; };
+		3DECC79B15592C9300CEF963 /* jpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73515592C9300CEF963 /* jpeg_wrap3.c */; };
+		3DECC79C15592C9300CEF963 /* jpeg_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73615592C9300CEF963 /* jpeg_wrap4.c */; };
+		3DECC79D15592C9300CEF963 /* jpeg_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73715592C9300CEF963 /* jpeg_wrap5.c */; };
+		3DECC79E15592C9300CEF963 /* jpeg_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73815592C9300CEF963 /* jpeg_wrap6.c */; };
+		3DECC79F15592C9300CEF963 /* jpeg_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73915592C9300CEF963 /* jpeg_wrap7.c */; };
+		3DECC7A015592C9300CEF963 /* jpeg_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73A15592C9300CEF963 /* jpeg_wrap8.c */; };
+		3DECC7A115592C9300CEF963 /* jpeg_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73B15592C9300CEF963 /* jpeg_wrap9.c */; };
+		3DECC7A215592C9300CEF963 /* jpeg_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73C15592C9300CEF963 /* jpeg_wrap10.c */; };
+		3DECC7A315592C9300CEF963 /* jpeg_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73D15592C9300CEF963 /* jpeg_wrap11.c */; };
+		3DECC7A415592C9300CEF963 /* jpeg_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73E15592C9300CEF963 /* jpeg_wrap12.c */; };
+		3DECC7A515592C9300CEF963 /* jpeg_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC73F15592C9300CEF963 /* jpeg_wrap13.c */; };
+		3DECC7A615592C9300CEF963 /* jpeg_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74015592C9300CEF963 /* jpeg_wrap14.c */; };
+		3DECC7A715592C9300CEF963 /* jpeg_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74115592C9300CEF963 /* jpeg_wrap15.c */; };
+		3DECC7A815592C9300CEF963 /* jpeg_wrap16.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74215592C9300CEF963 /* jpeg_wrap16.c */; };
+		3DECC7A915592C9300CEF963 /* jpeg_wrap17.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74315592C9300CEF963 /* jpeg_wrap17.c */; };
+		3DECC7AA15592C9300CEF963 /* jpeg_wrap18.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74415592C9300CEF963 /* jpeg_wrap18.c */; };
+		3DECC7AB15592C9300CEF963 /* jpeg_wrap19.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74515592C9300CEF963 /* jpeg_wrap19.c */; };
+		3DECC7AC15592C9300CEF963 /* jpeg_wrap20.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74615592C9300CEF963 /* jpeg_wrap20.c */; };
+		3DECC7AD15592C9300CEF963 /* jpeg_wrap21.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74715592C9300CEF963 /* jpeg_wrap21.c */; };
+		3DECC7AE15592C9300CEF963 /* jpeg_wrap22.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74815592C9300CEF963 /* jpeg_wrap22.c */; };
+		3DECC7AF15592C9300CEF963 /* jpeg_wrap23.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74915592C9300CEF963 /* jpeg_wrap23.c */; };
+		3DECC7B015592C9300CEF963 /* jpeg_wrap24.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74A15592C9300CEF963 /* jpeg_wrap24.c */; };
+		3DECC7B115592C9300CEF963 /* jpeg_wrap25.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74B15592C9300CEF963 /* jpeg_wrap25.c */; };
+		3DECC7B215592C9300CEF963 /* jpeg_wrap26.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74C15592C9300CEF963 /* jpeg_wrap26.c */; };
+		3DECC7B315592C9300CEF963 /* jpeg_wrap27.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74D15592C9300CEF963 /* jpeg_wrap27.c */; };
+		3DECC7B415592C9300CEF963 /* jpeg_wrap28.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74E15592C9300CEF963 /* jpeg_wrap28.c */; };
+		3DECC7B515592C9300CEF963 /* jpeg_wrap29.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC74F15592C9300CEF963 /* jpeg_wrap29.c */; };
+		3DECC7B615592C9300CEF963 /* jpeg_wrap30.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75015592C9300CEF963 /* jpeg_wrap30.c */; };
+		3DECC7B715592C9300CEF963 /* jpeg_wrap31.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75115592C9300CEF963 /* jpeg_wrap31.c */; };
+		3DECC7B815592C9300CEF963 /* jpeg_wrap32.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75215592C9300CEF963 /* jpeg_wrap32.c */; };
+		3DECC7B915592C9300CEF963 /* jpeg_wrap33.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75315592C9300CEF963 /* jpeg_wrap33.c */; };
+		3DECC7BA15592C9300CEF963 /* jpeg_wrap34.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75415592C9300CEF963 /* jpeg_wrap34.c */; };
+		3DECC7BB15592C9300CEF963 /* jpeg_wrap35.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75515592C9300CEF963 /* jpeg_wrap35.c */; };
+		3DECC7BC15592C9300CEF963 /* jpeg_wrap36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75615592C9300CEF963 /* jpeg_wrap36.c */; };
+		3DECC7BD15592C9300CEF963 /* jpeg_wrap37.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75715592C9300CEF963 /* jpeg_wrap37.c */; };
+		3DECC7BE15592C9300CEF963 /* jpeg_wrap38.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75815592C9300CEF963 /* jpeg_wrap38.c */; };
+		3DECC7BF15592C9300CEF963 /* jpeg_wrap39.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75915592C9300CEF963 /* jpeg_wrap39.c */; };
+		3DECC7C015592C9300CEF963 /* jpeg_wrap40.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75A15592C9300CEF963 /* jpeg_wrap40.c */; };
+		3DECC7C115592C9300CEF963 /* jpeg_wrap41.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75B15592C9300CEF963 /* jpeg_wrap41.c */; };
+		3DECC7C215592C9300CEF963 /* jpeg_wrap42.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75C15592C9300CEF963 /* jpeg_wrap42.c */; };
+		3DECC7C315592C9300CEF963 /* jpeg_wrap43.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75D15592C9300CEF963 /* jpeg_wrap43.c */; };
+		3DECC7C415592C9300CEF963 /* jpeg_wrap44.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75E15592C9300CEF963 /* jpeg_wrap44.c */; };
+		3DECC7C515592C9300CEF963 /* jpeg_wrap45.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC75F15592C9300CEF963 /* jpeg_wrap45.c */; };
+		3DECC7C615592C9300CEF963 /* jpeg_wrap46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76015592C9300CEF963 /* jpeg_wrap46.c */; };
+		3DECC7C715592C9300CEF963 /* jpeg_wrap47.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76115592C9300CEF963 /* jpeg_wrap47.c */; };
+		3DECC7C815592C9300CEF963 /* jpeg_wrap48.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76215592C9300CEF963 /* jpeg_wrap48.c */; };
+		3DECC7C915592C9300CEF963 /* jpeg_wrap49.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76315592C9300CEF963 /* jpeg_wrap49.c */; };
+		3DECC7CA15592C9300CEF963 /* jpeg_wrap50.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76415592C9300CEF963 /* jpeg_wrap50.c */; };
+		3DECC7CB15592C9300CEF963 /* jpeg_wrap51.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76515592C9300CEF963 /* jpeg_wrap51.c */; };
+		3DECC7CC15592C9300CEF963 /* jpeg_wrap52.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76615592C9300CEF963 /* jpeg_wrap52.c */; };
+		3DECC7CD15592C9300CEF963 /* jpeg_wrap53.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76715592C9300CEF963 /* jpeg_wrap53.c */; };
+		3DECC7CE15592C9300CEF963 /* jpeg_wrap54.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76815592C9300CEF963 /* jpeg_wrap54.c */; };
+		3DECC7CF15592C9300CEF963 /* jpeg_wrap55.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76915592C9300CEF963 /* jpeg_wrap55.c */; };
+		3DECC7D015592C9300CEF963 /* jpeg_wrap56.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76A15592C9300CEF963 /* jpeg_wrap56.c */; };
+		3DECC7D115592C9300CEF963 /* jpeg_wrap57.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76B15592C9300CEF963 /* jpeg_wrap57.c */; };
+		3DECC7D215592C9300CEF963 /* jpeg_wrap58.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76C15592C9300CEF963 /* jpeg_wrap58.c */; };
+		3DECC7D315592C9300CEF963 /* jpeg_wrap59.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76D15592C9300CEF963 /* jpeg_wrap59.c */; };
+		3DECC7D415592C9300CEF963 /* jpeg_wrap60.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC76E15592C9300CEF963 /* jpeg_wrap60.c */; };
+		3DECC7D515592C9300CEF963 /* jpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC76F15592C9300CEF963 /* jpeg.h */; };
+		3DECC7D615592C9300CEF963 /* openjpeg_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77015592C9300CEF963 /* openjpeg_config.h */; };
+		3DECC7D715592C9300CEF963 /* openjpeg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77115592C9300CEF963 /* openjpeg_wrap1.c */; };
+		3DECC7D815592C9300CEF963 /* openjpeg_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77215592C9300CEF963 /* openjpeg_wrap2.c */; };
+		3DECC7D915592C9300CEF963 /* openjpeg_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77315592C9300CEF963 /* openjpeg_wrap3.c */; };
+		3DECC7DA15592C9300CEF963 /* openjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77415592C9300CEF963 /* openjpeg.h */; };
+		3DECC7DB15592C9300CEF963 /* png_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77515592C9300CEF963 /* png_config.h */; };
+		3DECC7DC15592C9300CEF963 /* png_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77615592C9300CEF963 /* png_wrap1.c */; };
+		3DECC7DD15592C9300CEF963 /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77715592C9300CEF963 /* png.h */; };
+		3DECC7DE15592C9300CEF963 /* sqlite_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77815592C9300CEF963 /* sqlite_config.h */; };
+		3DECC7DF15592C9300CEF963 /* sqlite_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77915592C9300CEF963 /* sqlite_wrap1.c */; };
+		3DECC7E015592C9300CEF963 /* sqlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77A15592C9300CEF963 /* sqlite.h */; };
+		3DECC7E115592C9300CEF963 /* zlib_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC77B15592C9300CEF963 /* zlib_config.h */; };
+		3DECC7E215592C9300CEF963 /* zlib_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77C15592C9300CEF963 /* zlib_wrap1.c */; };
+		3DECC7E315592C9300CEF963 /* zlib_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77D15592C9300CEF963 /* zlib_wrap2.c */; };
+		3DECC7E415592C9300CEF963 /* zlib_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77E15592C9300CEF963 /* zlib_wrap3.c */; };
+		3DECC7E515592C9300CEF963 /* zlib_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC77F15592C9300CEF963 /* zlib_wrap4.c */; };
+		3DECC7E615592C9300CEF963 /* zlib_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78015592C9300CEF963 /* zlib_wrap5.c */; };
+		3DECC7E715592C9300CEF963 /* zlib_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78115592C9300CEF963 /* zlib_wrap6.c */; };
+		3DECC7E815592C9300CEF963 /* zlib_wrap7.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78215592C9300CEF963 /* zlib_wrap7.c */; };
+		3DECC7E915592C9300CEF963 /* zlib_wrap8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78315592C9300CEF963 /* zlib_wrap8.c */; };
+		3DECC7EA15592C9300CEF963 /* zlib_wrap9.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78415592C9300CEF963 /* zlib_wrap9.c */; };
+		3DECC7EB15592C9300CEF963 /* zlib_wrap10.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78515592C9300CEF963 /* zlib_wrap10.c */; };
+		3DECC7EC15592C9300CEF963 /* zlib_wrap11.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78615592C9300CEF963 /* zlib_wrap11.c */; };
+		3DECC7ED15592C9300CEF963 /* zlib_wrap12.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78715592C9300CEF963 /* zlib_wrap12.c */; };
+		3DECC7EE15592C9300CEF963 /* zlib_wrap13.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78815592C9300CEF963 /* zlib_wrap13.c */; };
+		3DECC7EF15592C9300CEF963 /* zlib_wrap14.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78915592C9300CEF963 /* zlib_wrap14.c */; };
+		3DECC7F015592C9300CEF963 /* zlib_wrap15.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC78A15592C9300CEF963 /* zlib_wrap15.c */; };
+		3DECC7F115592C9300CEF963 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DECC78B15592C9300CEF963 /* zlib.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D1231A815FA3CB200CFFD87 /* RECore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RECore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D12324A15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopsObjectsStoragePrivate.cpp; path = ../../src/core/REMainLoopsObjectsStoragePrivate.cpp; sourceTree = SOURCE_ROOT; };
+		3D12324B15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopUpdatable.cpp; path = ../../src/core/REMainLoopUpdatable.cpp; sourceTree = SOURCE_ROOT; };
+		3D12325015FA3F4C00CFFD87 /* RELog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELog.cpp; path = ../../src/core/RELog.cpp; sourceTree = SOURCE_ROOT; };
+		3D12325315FA3F6200CFFD87 /* RELocale_macosx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RELocale_macosx.mm; path = ../../src/core/RELocale_macosx.mm; sourceTree = SOURCE_ROOT; };
+		3D12325615FA3F7F00CFFD87 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3DECC5D215592B1B00CEF963 /* librecore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librecore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DECC5D515592B1B00CEF963 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3DECC5D815592B1B00CEF963 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3DECC5D915592B1B00CEF963 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3DECC5DA15592B1B00CEF963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3DECC5EA15592BA000CEF963 /* REConfigMacosx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigMacosx.h; path = ../../include/reconfig/REConfigMacosx.h; sourceTree = SOURCE_ROOT; };
+		3DECC60715592BCF00CEF963 /* REConfigSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REConfigSelector.h; path = ../../include/reconfig/REConfigSelector.h; sourceTree = SOURCE_ROOT; };
+		3DECC60A15592BDF00CEF963 /* IREAffineTransformed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREAffineTransformed.h; path = ../../include/recore/IREAffineTransformed.h; sourceTree = SOURCE_ROOT; };
+		3DECC60B15592BDF00CEF963 /* IREFileReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREFileReadable.h; path = ../../include/recore/IREFileReadable.h; sourceTree = SOURCE_ROOT; };
+		3DECC60D15592BDF00CEF963 /* RE2DAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RE2DAlgorithm.h; path = ../../include/recore/RE2DAlgorithm.h; sourceTree = SOURCE_ROOT; };
+		3DECC60E15592BDF00CEF963 /* REAffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAffineTransform.h; path = ../../include/recore/REAffineTransform.h; sourceTree = SOURCE_ROOT; };
+		3DECC60F15592BDF00CEF963 /* REAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAngle.h; path = ../../include/recore/REAngle.h; sourceTree = SOURCE_ROOT; };
+		3DECC61015592BDF00CEF963 /* REApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REApplication.h; path = ../../include/recore/REApplication.h; sourceTree = SOURCE_ROOT; };
+		3DECC61115592BDF00CEF963 /* REArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REArray.h; path = ../../include/recore/REArray.h; sourceTree = SOURCE_ROOT; };
+		3DECC61215592BDF00CEF963 /* REAutoReleasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAutoReleasePool.h; path = ../../include/recore/REAutoReleasePool.h; sourceTree = SOURCE_ROOT; };
+		3DECC61315592BDF00CEF963 /* REBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBase64.h; path = ../../include/recore/REBase64.h; sourceTree = SOURCE_ROOT; };
+		3DECC61515592BDF00CEF963 /* REBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBuffer.h; path = ../../include/recore/REBuffer.h; sourceTree = SOURCE_ROOT; };
+		3DECC61615592BDF00CEF963 /* REBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REBufferObject.h; path = ../../include/recore/REBufferObject.h; sourceTree = SOURCE_ROOT; };
+		3DECC61715592BDF00CEF963 /* REClassMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REClassMethod.h; path = ../../include/recore/REClassMethod.h; sourceTree = SOURCE_ROOT; };
+		3DECC61815592BDF00CEF963 /* REColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REColor.h; path = ../../include/recore/REColor.h; sourceTree = SOURCE_ROOT; };
+		3DECC61915592BDF00CEF963 /* RECommonHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECommonHeader.h; path = ../../include/recore/RECommonHeader.h; sourceTree = SOURCE_ROOT; };
+		3DECC61A15592BDF00CEF963 /* RECoreIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreIncludes.h; path = ../../include/recore/RECoreIncludes.h; sourceTree = SOURCE_ROOT; };
+		3DECC61B15592BDF00CEF963 /* RECoreOSSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreOSSelector.h; path = ../../include/recore/RECoreOSSelector.h; sourceTree = SOURCE_ROOT; };
+		3DECC61C15592BDF00CEF963 /* RECorePlatformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECorePlatformSelector.h; path = ../../include/recore/RECorePlatformSelector.h; sourceTree = SOURCE_ROOT; };
+		3DECC61D15592BDF00CEF963 /* RECoreSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreSettings.h; path = ../../include/recore/RECoreSettings.h; sourceTree = SOURCE_ROOT; };
+		3DECC61E15592BDF00CEF963 /* RECPUFeatures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECPUFeatures.h; path = ../../include/recore/RECPUFeatures.h; sourceTree = SOURCE_ROOT; };
+		3DECC61F15592BE000CEF963 /* REData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REData.h; path = ../../include/recore/REData.h; sourceTree = SOURCE_ROOT; };
+		3DECC62015592BE000CEF963 /* REDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDate.h; path = ../../include/recore/REDate.h; sourceTree = SOURCE_ROOT; };
+		3DECC62115592BE000CEF963 /* REFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFile.h; path = ../../include/recore/REFile.h; sourceTree = SOURCE_ROOT; };
+		3DECC62215592BE000CEF963 /* REFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFileManager.h; path = ../../include/recore/REFileManager.h; sourceTree = SOURCE_ROOT; };
+		3DECC62315592BE000CEF963 /* REFloat16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFloat16.h; path = ../../include/recore/REFloat16.h; sourceTree = SOURCE_ROOT; };
+		3DECC62415592BE000CEF963 /* REImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImage.h; path = ../../include/recore/REImage.h; sourceTree = SOURCE_ROOT; };
+		3DECC62515592BE000CEF963 /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
+		3DECC62615592BE000CEF963 /* REImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageManager.h; path = ../../include/recore/REImageManager.h; sourceTree = SOURCE_ROOT; };
+		3DECC62715592BE000CEF963 /* REInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInterpolation.h; path = ../../include/recore/REInterpolation.h; sourceTree = SOURCE_ROOT; };
+		3DECC62815592BE000CEF963 /* REList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REList.h; path = ../../include/recore/REList.h; sourceTree = SOURCE_ROOT; };
+		3DECC62915592BE000CEF963 /* RELocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELocale.h; path = ../../include/recore/RELocale.h; sourceTree = SOURCE_ROOT; };
+		3DECC62A15592BE000CEF963 /* RELZMACompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELZMACompression.h; path = ../../include/recore/RELZMACompression.h; sourceTree = SOURCE_ROOT; };
+		3DECC62C15592BE000CEF963 /* REMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMath.h; path = ../../include/recore/REMath.h; sourceTree = SOURCE_ROOT; };
+		3DECC62D15592BE000CEF963 /* REMatrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMatrix4.h; path = ../../include/recore/REMatrix4.h; sourceTree = SOURCE_ROOT; };
+		3DECC62E15592BE000CEF963 /* REMD5Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMD5Generator.h; path = ../../include/recore/REMD5Generator.h; sourceTree = SOURCE_ROOT; };
+		3DECC62F15592BE000CEF963 /* REMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMem.h; path = ../../include/recore/REMem.h; sourceTree = SOURCE_ROOT; };
+		3DECC63015592BE000CEF963 /* REMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMutex.h; path = ../../include/recore/REMutex.h; sourceTree = SOURCE_ROOT; };
+		3DECC63115592BE000CEF963 /* RENotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENotificationManager.h; path = ../../include/recore/RENotificationManager.h; sourceTree = SOURCE_ROOT; };
+		3DECC63215592BE000CEF963 /* RENULLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENULLObject.h; path = ../../include/recore/RENULLObject.h; sourceTree = SOURCE_ROOT; };
+		3DECC63315592BE000CEF963 /* RENumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENumber.h; path = ../../include/recore/RENumber.h; sourceTree = SOURCE_ROOT; };
+		3DECC63415592BE000CEF963 /* RENumberObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RENumberObject.h; path = ../../include/recore/RENumberObject.h; sourceTree = SOURCE_ROOT; };
+		3DECC63515592BE000CEF963 /* REObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObject.h; path = ../../include/recore/REObject.h; sourceTree = SOURCE_ROOT; };
+		3DECC63615592BE000CEF963 /* REObjectsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsArray.h; path = ../../include/recore/REObjectsArray.h; sourceTree = SOURCE_ROOT; };
+		3DECC63715592BE000CEF963 /* REObjectsDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REObjectsDictionary.h; path = ../../include/recore/REObjectsDictionary.h; sourceTree = SOURCE_ROOT; };
+		3DECC63815592BE000CEF963 /* REPoint2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPoint2.h; path = ../../include/recore/REPoint2.h; sourceTree = SOURCE_ROOT; };
+		3DECC63915592BE000CEF963 /* REPoint3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REPoint3.h; path = ../../include/recore/REPoint3.h; sourceTree = SOURCE_ROOT; };
+		3DECC63A15592BE000CEF963 /* REProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REProperty.h; path = ../../include/recore/REProperty.h; sourceTree = SOURCE_ROOT; };
+		3DECC63B15592BE000CEF963 /* REQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REQuaternion.h; path = ../../include/recore/REQuaternion.h; sourceTree = SOURCE_ROOT; };
+		3DECC63C15592BE000CEF963 /* RERandomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERandomizer.h; path = ../../include/recore/RERandomizer.h; sourceTree = SOURCE_ROOT; };
+		3DECC63D15592BE000CEF963 /* RERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERange.h; path = ../../include/recore/RERange.h; sourceTree = SOURCE_ROOT; };
+		3DECC63E15592BE000CEF963 /* RERect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERect.h; path = ../../include/recore/RERect.h; sourceTree = SOURCE_ROOT; };
+		3DECC63F15592BE000CEF963 /* REResourcesStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REResourcesStorage.h; path = ../../include/recore/REResourcesStorage.h; sourceTree = SOURCE_ROOT; };
+		3DECC64015592BE000CEF963 /* RESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESize.h; path = ../../include/recore/RESize.h; sourceTree = SOURCE_ROOT; };
+		3DECC64115592BE000CEF963 /* RESQLiteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDB.h; path = ../../include/recore/RESQLiteDB.h; sourceTree = SOURCE_ROOT; };
+		3DECC64215592BE000CEF963 /* RESQLiteDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESQLiteDBResultSet.h; path = ../../include/recore/RESQLiteDBResultSet.h; sourceTree = SOURCE_ROOT; };
+		3DECC64315592BE000CEF963 /* REString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REString.h; path = ../../include/recore/REString.h; sourceTree = SOURCE_ROOT; };
+		3DECC64415592BE000CEF963 /* REStringObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStringObject.h; path = ../../include/recore/REStringObject.h; sourceTree = SOURCE_ROOT; };
+		3DECC64615592BE000CEF963 /* RETetragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETetragon.h; path = ../../include/recore/RETetragon.h; sourceTree = SOURCE_ROOT; };
+		3DECC64715592BE000CEF963 /* REThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REThread.h; path = ../../include/recore/REThread.h; sourceTree = SOURCE_ROOT; };
+		3DECC64815592BE000CEF963 /* RETime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETime.h; path = ../../include/recore/RETime.h; sourceTree = SOURCE_ROOT; };
+		3DECC64915592BE000CEF963 /* RETimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETimer.h; path = ../../include/recore/RETimer.h; sourceTree = SOURCE_ROOT; };
+		3DECC64A15592BE000CEF963 /* RETypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETypes.h; path = ../../include/recore/RETypes.h; sourceTree = SOURCE_ROOT; };
+		3DECC64B15592BE000CEF963 /* REUserCallBacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REUserCallBacks.h; path = ../../include/recore/REUserCallBacks.h; sourceTree = SOURCE_ROOT; };
+		3DECC64C15592BE000CEF963 /* REVector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVector2.h; path = ../../include/recore/REVector2.h; sourceTree = SOURCE_ROOT; };
+		3DECC64D15592BE000CEF963 /* REVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVector3.h; path = ../../include/recore/REVector3.h; sourceTree = SOURCE_ROOT; };
+		3DECC64E15592BE000CEF963 /* REXMLPropertyListReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListReader.h; path = ../../include/recore/REXMLPropertyListReader.h; sourceTree = SOURCE_ROOT; };
+		3DECC64F15592BE000CEF963 /* REXMLPropertyListWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REXMLPropertyListWriter.h; path = ../../include/recore/REXMLPropertyListWriter.h; sourceTree = SOURCE_ROOT; };
+		3DECC65015592BE000CEF963 /* REYUVtoRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REYUVtoRGB.h; path = ../../include/recore/REYUVtoRGB.h; sourceTree = SOURCE_ROOT; };
+		3DECC65115592BE000CEF963 /* REZipReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZipReader.h; path = ../../include/recore/REZipReader.h; sourceTree = SOURCE_ROOT; };
+		3DECC65215592BE000CEF963 /* REZLIBCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REZLIBCompression.h; path = ../../include/recore/REZLIBCompression.h; sourceTree = SOURCE_ROOT; };
+		3DECC69C15592BFF00CEF963 /* RE2DAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE2DAlgorithm.cpp; path = ../../src/core/RE2DAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC69D15592BFF00CEF963 /* RE2DVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE2DVector.cpp; path = ../../src/core/RE2DVector.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC69E15592BFF00CEF963 /* RE3DVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RE3DVector.cpp; path = ../../src/core/RE3DVector.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC69F15592BFF00CEF963 /* REAffineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAffineTransform.cpp; path = ../../src/core/REAffineTransform.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A015592BFF00CEF963 /* REAngle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAngle.cpp; path = ../../src/core/REAngle.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A115592BFF00CEF963 /* REApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REApplication.cpp; path = ../../src/core/REApplication.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A215592C0000CEF963 /* REAutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAutoReleasePool.cpp; path = ../../src/core/REAutoReleasePool.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A315592C0000CEF963 /* REBase64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REBase64.cpp; path = ../../src/core/REBase64.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A515592C0000CEF963 /* REBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REBuffer.cpp; path = ../../src/core/REBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A615592C0000CEF963 /* REBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REBufferObject.cpp; path = ../../src/core/REBufferObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A715592C0000CEF963 /* REColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REColor.cpp; path = ../../src/core/REColor.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A815592C0000CEF963 /* RECPUFeatures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECPUFeatures.cpp; path = ../../src/core/RECPUFeatures.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6A915592C0000CEF963 /* REData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REData.cpp; path = ../../src/core/REData.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AA15592C0000CEF963 /* REDate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDate.cpp; path = ../../src/core/REDate.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AB15592C0000CEF963 /* REFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFile.cpp; path = ../../src/core/REFile.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AC15592C0000CEF963 /* REFileManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFileManager.cpp; path = ../../src/core/REFileManager.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AD15592C0000CEF963 /* REImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImage.cpp; path = ../../src/core/REImage.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AE15592C0000CEF963 /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6AF15592C0000CEF963 /* REImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageManager.cpp; path = ../../src/core/REImageManager.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B015592C0000CEF963 /* RELocale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELocale.cpp; path = ../../src/core/RELocale.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B115592C0000CEF963 /* RELocale_macosx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RELocale_macosx.mm; path = ../../src/core/RELocale_macosx.mm; sourceTree = SOURCE_ROOT; };
+		3DECC6B215592C0000CEF963 /* RELZMACompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RELZMACompression.cpp; path = ../../src/core/RELZMACompression.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B415592C0000CEF963 /* REMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMath.cpp; path = ../../src/core/REMath.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B515592C0000CEF963 /* REMatrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMatrix4.cpp; path = ../../src/core/REMatrix4.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B615592C0000CEF963 /* REMD5Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMD5Generator.cpp; path = ../../src/core/REMD5Generator.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B715592C0000CEF963 /* REMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMutex.cpp; path = ../../src/core/REMutex.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B815592C0000CEF963 /* RENotificationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENotificationManager.cpp; path = ../../src/core/RENotificationManager.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6B915592C0000CEF963 /* RENULLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENULLObject.cpp; path = ../../src/core/RENULLObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BA15592C0000CEF963 /* RENumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENumber.cpp; path = ../../src/core/RENumber.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BB15592C0000CEF963 /* RENumberObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RENumberObject.cpp; path = ../../src/core/RENumberObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BC15592C0000CEF963 /* REObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REObject.cpp; path = ../../src/core/REObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BD15592C0000CEF963 /* REObjectsArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REObjectsArray.cpp; path = ../../src/core/REObjectsArray.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BE15592C0000CEF963 /* REObjectsDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REObjectsDictionary.cpp; path = ../../src/core/REObjectsDictionary.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6BF15592C0000CEF963 /* RERandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERandomizer.cpp; path = ../../src/core/RERandomizer.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C015592C0000CEF963 /* RERect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RERect.cpp; path = ../../src/core/RERect.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C115592C0000CEF963 /* REResourcesStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REResourcesStorage.cpp; path = ../../src/core/REResourcesStorage.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C215592C0000CEF963 /* RESQLiteDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDB.cpp; path = ../../src/core/RESQLiteDB.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C315592C0000CEF963 /* RESQLiteDBResultSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESQLiteDBResultSet.cpp; path = ../../src/core/RESQLiteDBResultSet.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C415592C0000CEF963 /* REString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REString.cpp; path = ../../src/core/REString.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C515592C0000CEF963 /* REStringObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStringObject.cpp; path = ../../src/core/REStringObject.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C715592C0000CEF963 /* RETetragon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETetragon.cpp; path = ../../src/core/RETetragon.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C815592C0000CEF963 /* REThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REThread.cpp; path = ../../src/core/REThread.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6C915592C0000CEF963 /* RETime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETime.cpp; path = ../../src/core/RETime.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CA15592C0000CEF963 /* RETimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETimer.cpp; path = ../../src/core/RETimer.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CB15592C0000CEF963 /* REUserCallBacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REUserCallBacks.cpp; path = ../../src/core/REUserCallBacks.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CC15592C0000CEF963 /* REXMLPropertyListReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REXMLPropertyListReader.cpp; path = ../../src/core/REXMLPropertyListReader.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CD15592C0000CEF963 /* REXMLPropertyListWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REXMLPropertyListWriter.cpp; path = ../../src/core/REXMLPropertyListWriter.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CE15592C0000CEF963 /* REZipReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZipReader.cpp; path = ../../src/core/REZipReader.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC6CF15592C0000CEF963 /* REZLIBCompression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REZLIBCompression.cpp; path = ../../src/core/REZLIBCompression.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC70415592C0F00CEF963 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = ../../src/core/unzip/crypt.h; sourceTree = SOURCE_ROOT; };
+		3DECC70515592C0F00CEF963 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = ../../src/core/unzip/ioapi.c; sourceTree = SOURCE_ROOT; };
+		3DECC70615592C0F00CEF963 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = ../../src/core/unzip/ioapi.h; sourceTree = SOURCE_ROOT; };
+		3DECC70715592C0F00CEF963 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = ../../src/core/unzip/unzip.c; sourceTree = SOURCE_ROOT; };
+		3DECC70815592C0F00CEF963 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = ../../src/core/unzip/unzip.h; sourceTree = SOURCE_ROOT; };
+		3DECC70E15592C1700CEF963 /* REYUV420toRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV420toRGB565.cpp; path = ../../src/core/yuv2rgb/REYUV420toRGB565.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC70F15592C1700CEF963 /* REYUV420toRGB888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV420toRGB888.cpp; path = ../../src/core/yuv2rgb/REYUV420toRGB888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71015592C1700CEF963 /* REYUV420toRGB8888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV420toRGB8888.cpp; path = ../../src/core/yuv2rgb/REYUV420toRGB8888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71115592C1700CEF963 /* REYUV422toRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV422toRGB565.cpp; path = ../../src/core/yuv2rgb/REYUV422toRGB565.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71215592C1700CEF963 /* REYUV422toRGB888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV422toRGB888.cpp; path = ../../src/core/yuv2rgb/REYUV422toRGB888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71315592C1700CEF963 /* REYUV422toRGB8888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV422toRGB8888.cpp; path = ../../src/core/yuv2rgb/REYUV422toRGB8888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71415592C1700CEF963 /* REYUV444toRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV444toRGB565.cpp; path = ../../src/core/yuv2rgb/REYUV444toRGB565.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71515592C1700CEF963 /* REYUV444toRGB888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV444toRGB888.cpp; path = ../../src/core/yuv2rgb/REYUV444toRGB888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71615592C1700CEF963 /* REYUV444toRGB8888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV444toRGB8888.cpp; path = ../../src/core/yuv2rgb/REYUV444toRGB8888.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC71715592C1700CEF963 /* REYUVtoRGB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUVtoRGB.cpp; path = ../../src/core/yuv2rgb/REYUVtoRGB.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC72615592C9300CEF963 /* lzma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzma.h; path = ../../src/addlibs/lzma.h; sourceTree = SOURCE_ROOT; };
+		3DECC72715592C9300CEF963 /* lzma_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzma_config.h; path = ../../src/addlibs/lzma_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC72815592C9300CEF963 /* lzma_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzma_wrap1.c; path = ../../src/addlibs/lzma_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC72915592C9300CEF963 /* webp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp.h; path = ../../src/addlibs/webp.h; sourceTree = SOURCE_ROOT; };
+		3DECC72A15592C9300CEF963 /* webp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webp_config.h; path = ../../src/addlibs/webp_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC72B15592C9300CEF963 /* webp_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap1.c; path = ../../src/addlibs/webp_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC72C15592C9300CEF963 /* webp_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap2.c; path = ../../src/addlibs/webp_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DECC72D15592C9300CEF963 /* webp_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap3.c; path = ../../src/addlibs/webp_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DECC72E15592C9300CEF963 /* webp_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = webp_wrap4.c; path = ../../src/addlibs/webp_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3DECC72F15592C9300CEF963 /* tinyxml_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml_config.h; path = ../../src/addlibs/tinyxml_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC73015592C9300CEF963 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml.h; path = ../../src/addlibs/tinyxml.h; sourceTree = SOURCE_ROOT; };
+		3DECC73115592C9300CEF963 /* tinyxml_wrap1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml_wrap1.cpp; path = ../../src/addlibs/tinyxml_wrap1.cpp; sourceTree = SOURCE_ROOT; };
+		3DECC73215592C9300CEF963 /* jpeg_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jpeg_config.h; path = ../../src/addlibs/jpeg_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC73315592C9300CEF963 /* jpeg_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap1.c; path = ../../src/addlibs/jpeg_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC73415592C9300CEF963 /* jpeg_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap2.c; path = ../../src/addlibs/jpeg_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DECC73515592C9300CEF963 /* jpeg_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap3.c; path = ../../src/addlibs/jpeg_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DECC73615592C9300CEF963 /* jpeg_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap4.c; path = ../../src/addlibs/jpeg_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3DECC73715592C9300CEF963 /* jpeg_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap5.c; path = ../../src/addlibs/jpeg_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3DECC73815592C9300CEF963 /* jpeg_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap6.c; path = ../../src/addlibs/jpeg_wrap6.c; sourceTree = SOURCE_ROOT; };
+		3DECC73915592C9300CEF963 /* jpeg_wrap7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap7.c; path = ../../src/addlibs/jpeg_wrap7.c; sourceTree = SOURCE_ROOT; };
+		3DECC73A15592C9300CEF963 /* jpeg_wrap8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap8.c; path = ../../src/addlibs/jpeg_wrap8.c; sourceTree = SOURCE_ROOT; };
+		3DECC73B15592C9300CEF963 /* jpeg_wrap9.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap9.c; path = ../../src/addlibs/jpeg_wrap9.c; sourceTree = SOURCE_ROOT; };
+		3DECC73C15592C9300CEF963 /* jpeg_wrap10.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap10.c; path = ../../src/addlibs/jpeg_wrap10.c; sourceTree = SOURCE_ROOT; };
+		3DECC73D15592C9300CEF963 /* jpeg_wrap11.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap11.c; path = ../../src/addlibs/jpeg_wrap11.c; sourceTree = SOURCE_ROOT; };
+		3DECC73E15592C9300CEF963 /* jpeg_wrap12.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap12.c; path = ../../src/addlibs/jpeg_wrap12.c; sourceTree = SOURCE_ROOT; };
+		3DECC73F15592C9300CEF963 /* jpeg_wrap13.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap13.c; path = ../../src/addlibs/jpeg_wrap13.c; sourceTree = SOURCE_ROOT; };
+		3DECC74015592C9300CEF963 /* jpeg_wrap14.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap14.c; path = ../../src/addlibs/jpeg_wrap14.c; sourceTree = SOURCE_ROOT; };
+		3DECC74115592C9300CEF963 /* jpeg_wrap15.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap15.c; path = ../../src/addlibs/jpeg_wrap15.c; sourceTree = SOURCE_ROOT; };
+		3DECC74215592C9300CEF963 /* jpeg_wrap16.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap16.c; path = ../../src/addlibs/jpeg_wrap16.c; sourceTree = SOURCE_ROOT; };
+		3DECC74315592C9300CEF963 /* jpeg_wrap17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap17.c; path = ../../src/addlibs/jpeg_wrap17.c; sourceTree = SOURCE_ROOT; };
+		3DECC74415592C9300CEF963 /* jpeg_wrap18.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap18.c; path = ../../src/addlibs/jpeg_wrap18.c; sourceTree = SOURCE_ROOT; };
+		3DECC74515592C9300CEF963 /* jpeg_wrap19.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap19.c; path = ../../src/addlibs/jpeg_wrap19.c; sourceTree = SOURCE_ROOT; };
+		3DECC74615592C9300CEF963 /* jpeg_wrap20.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap20.c; path = ../../src/addlibs/jpeg_wrap20.c; sourceTree = SOURCE_ROOT; };
+		3DECC74715592C9300CEF963 /* jpeg_wrap21.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap21.c; path = ../../src/addlibs/jpeg_wrap21.c; sourceTree = SOURCE_ROOT; };
+		3DECC74815592C9300CEF963 /* jpeg_wrap22.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap22.c; path = ../../src/addlibs/jpeg_wrap22.c; sourceTree = SOURCE_ROOT; };
+		3DECC74915592C9300CEF963 /* jpeg_wrap23.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap23.c; path = ../../src/addlibs/jpeg_wrap23.c; sourceTree = SOURCE_ROOT; };
+		3DECC74A15592C9300CEF963 /* jpeg_wrap24.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap24.c; path = ../../src/addlibs/jpeg_wrap24.c; sourceTree = SOURCE_ROOT; };
+		3DECC74B15592C9300CEF963 /* jpeg_wrap25.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap25.c; path = ../../src/addlibs/jpeg_wrap25.c; sourceTree = SOURCE_ROOT; };
+		3DECC74C15592C9300CEF963 /* jpeg_wrap26.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap26.c; path = ../../src/addlibs/jpeg_wrap26.c; sourceTree = SOURCE_ROOT; };
+		3DECC74D15592C9300CEF963 /* jpeg_wrap27.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap27.c; path = ../../src/addlibs/jpeg_wrap27.c; sourceTree = SOURCE_ROOT; };
+		3DECC74E15592C9300CEF963 /* jpeg_wrap28.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap28.c; path = ../../src/addlibs/jpeg_wrap28.c; sourceTree = SOURCE_ROOT; };
+		3DECC74F15592C9300CEF963 /* jpeg_wrap29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap29.c; path = ../../src/addlibs/jpeg_wrap29.c; sourceTree = SOURCE_ROOT; };
+		3DECC75015592C9300CEF963 /* jpeg_wrap30.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap30.c; path = ../../src/addlibs/jpeg_wrap30.c; sourceTree = SOURCE_ROOT; };
+		3DECC75115592C9300CEF963 /* jpeg_wrap31.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap31.c; path = ../../src/addlibs/jpeg_wrap31.c; sourceTree = SOURCE_ROOT; };
+		3DECC75215592C9300CEF963 /* jpeg_wrap32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap32.c; path = ../../src/addlibs/jpeg_wrap32.c; sourceTree = SOURCE_ROOT; };
+		3DECC75315592C9300CEF963 /* jpeg_wrap33.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap33.c; path = ../../src/addlibs/jpeg_wrap33.c; sourceTree = SOURCE_ROOT; };
+		3DECC75415592C9300CEF963 /* jpeg_wrap34.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap34.c; path = ../../src/addlibs/jpeg_wrap34.c; sourceTree = SOURCE_ROOT; };
+		3DECC75515592C9300CEF963 /* jpeg_wrap35.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap35.c; path = ../../src/addlibs/jpeg_wrap35.c; sourceTree = SOURCE_ROOT; };
+		3DECC75615592C9300CEF963 /* jpeg_wrap36.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap36.c; path = ../../src/addlibs/jpeg_wrap36.c; sourceTree = SOURCE_ROOT; };
+		3DECC75715592C9300CEF963 /* jpeg_wrap37.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap37.c; path = ../../src/addlibs/jpeg_wrap37.c; sourceTree = SOURCE_ROOT; };
+		3DECC75815592C9300CEF963 /* jpeg_wrap38.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap38.c; path = ../../src/addlibs/jpeg_wrap38.c; sourceTree = SOURCE_ROOT; };
+		3DECC75915592C9300CEF963 /* jpeg_wrap39.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap39.c; path = ../../src/addlibs/jpeg_wrap39.c; sourceTree = SOURCE_ROOT; };
+		3DECC75A15592C9300CEF963 /* jpeg_wrap40.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap40.c; path = ../../src/addlibs/jpeg_wrap40.c; sourceTree = SOURCE_ROOT; };
+		3DECC75B15592C9300CEF963 /* jpeg_wrap41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap41.c; path = ../../src/addlibs/jpeg_wrap41.c; sourceTree = SOURCE_ROOT; };
+		3DECC75C15592C9300CEF963 /* jpeg_wrap42.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap42.c; path = ../../src/addlibs/jpeg_wrap42.c; sourceTree = SOURCE_ROOT; };
+		3DECC75D15592C9300CEF963 /* jpeg_wrap43.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap43.c; path = ../../src/addlibs/jpeg_wrap43.c; sourceTree = SOURCE_ROOT; };
+		3DECC75E15592C9300CEF963 /* jpeg_wrap44.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap44.c; path = ../../src/addlibs/jpeg_wrap44.c; sourceTree = SOURCE_ROOT; };
+		3DECC75F15592C9300CEF963 /* jpeg_wrap45.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap45.c; path = ../../src/addlibs/jpeg_wrap45.c; sourceTree = SOURCE_ROOT; };
+		3DECC76015592C9300CEF963 /* jpeg_wrap46.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap46.c; path = ../../src/addlibs/jpeg_wrap46.c; sourceTree = SOURCE_ROOT; };
+		3DECC76115592C9300CEF963 /* jpeg_wrap47.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap47.c; path = ../../src/addlibs/jpeg_wrap47.c; sourceTree = SOURCE_ROOT; };
+		3DECC76215592C9300CEF963 /* jpeg_wrap48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap48.c; path = ../../src/addlibs/jpeg_wrap48.c; sourceTree = SOURCE_ROOT; };
+		3DECC76315592C9300CEF963 /* jpeg_wrap49.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap49.c; path = ../../src/addlibs/jpeg_wrap49.c; sourceTree = SOURCE_ROOT; };
+		3DECC76415592C9300CEF963 /* jpeg_wrap50.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap50.c; path = ../../src/addlibs/jpeg_wrap50.c; sourceTree = SOURCE_ROOT; };
+		3DECC76515592C9300CEF963 /* jpeg_wrap51.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap51.c; path = ../../src/addlibs/jpeg_wrap51.c; sourceTree = SOURCE_ROOT; };
+		3DECC76615592C9300CEF963 /* jpeg_wrap52.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap52.c; path = ../../src/addlibs/jpeg_wrap52.c; sourceTree = SOURCE_ROOT; };
+		3DECC76715592C9300CEF963 /* jpeg_wrap53.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap53.c; path = ../../src/addlibs/jpeg_wrap53.c; sourceTree = SOURCE_ROOT; };
+		3DECC76815592C9300CEF963 /* jpeg_wrap54.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap54.c; path = ../../src/addlibs/jpeg_wrap54.c; sourceTree = SOURCE_ROOT; };
+		3DECC76915592C9300CEF963 /* jpeg_wrap55.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap55.c; path = ../../src/addlibs/jpeg_wrap55.c; sourceTree = SOURCE_ROOT; };
+		3DECC76A15592C9300CEF963 /* jpeg_wrap56.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap56.c; path = ../../src/addlibs/jpeg_wrap56.c; sourceTree = SOURCE_ROOT; };
+		3DECC76B15592C9300CEF963 /* jpeg_wrap57.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap57.c; path = ../../src/addlibs/jpeg_wrap57.c; sourceTree = SOURCE_ROOT; };
+		3DECC76C15592C9300CEF963 /* jpeg_wrap58.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap58.c; path = ../../src/addlibs/jpeg_wrap58.c; sourceTree = SOURCE_ROOT; };
+		3DECC76D15592C9300CEF963 /* jpeg_wrap59.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap59.c; path = ../../src/addlibs/jpeg_wrap59.c; sourceTree = SOURCE_ROOT; };
+		3DECC76E15592C9300CEF963 /* jpeg_wrap60.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jpeg_wrap60.c; path = ../../src/addlibs/jpeg_wrap60.c; sourceTree = SOURCE_ROOT; };
+		3DECC76F15592C9300CEF963 /* jpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jpeg.h; path = ../../src/addlibs/jpeg.h; sourceTree = SOURCE_ROOT; };
+		3DECC77015592C9300CEF963 /* openjpeg_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openjpeg_config.h; path = ../../src/addlibs/openjpeg_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC77115592C9300CEF963 /* openjpeg_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = openjpeg_wrap1.c; path = ../../src/addlibs/openjpeg_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC77215592C9300CEF963 /* openjpeg_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = openjpeg_wrap2.c; path = ../../src/addlibs/openjpeg_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DECC77315592C9300CEF963 /* openjpeg_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = openjpeg_wrap3.c; path = ../../src/addlibs/openjpeg_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DECC77415592C9300CEF963 /* openjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = openjpeg.h; path = ../../src/addlibs/openjpeg.h; sourceTree = SOURCE_ROOT; };
+		3DECC77515592C9300CEF963 /* png_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = png_config.h; path = ../../src/addlibs/png_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC77615592C9300CEF963 /* png_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = png_wrap1.c; path = ../../src/addlibs/png_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC77715592C9300CEF963 /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = png.h; path = ../../src/addlibs/png.h; sourceTree = SOURCE_ROOT; };
+		3DECC77815592C9300CEF963 /* sqlite_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite_config.h; path = ../../src/addlibs/sqlite_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC77915592C9300CEF963 /* sqlite_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite_wrap1.c; path = ../../src/addlibs/sqlite_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC77A15592C9300CEF963 /* sqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite.h; path = ../../src/addlibs/sqlite.h; sourceTree = SOURCE_ROOT; };
+		3DECC77B15592C9300CEF963 /* zlib_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zlib_config.h; path = ../../src/addlibs/zlib_config.h; sourceTree = SOURCE_ROOT; };
+		3DECC77C15592C9300CEF963 /* zlib_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap1.c; path = ../../src/addlibs/zlib_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DECC77D15592C9300CEF963 /* zlib_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap2.c; path = ../../src/addlibs/zlib_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DECC77E15592C9300CEF963 /* zlib_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap3.c; path = ../../src/addlibs/zlib_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DECC77F15592C9300CEF963 /* zlib_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap4.c; path = ../../src/addlibs/zlib_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3DECC78015592C9300CEF963 /* zlib_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap5.c; path = ../../src/addlibs/zlib_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3DECC78115592C9300CEF963 /* zlib_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap6.c; path = ../../src/addlibs/zlib_wrap6.c; sourceTree = SOURCE_ROOT; };
+		3DECC78215592C9300CEF963 /* zlib_wrap7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap7.c; path = ../../src/addlibs/zlib_wrap7.c; sourceTree = SOURCE_ROOT; };
+		3DECC78315592C9300CEF963 /* zlib_wrap8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap8.c; path = ../../src/addlibs/zlib_wrap8.c; sourceTree = SOURCE_ROOT; };
+		3DECC78415592C9300CEF963 /* zlib_wrap9.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap9.c; path = ../../src/addlibs/zlib_wrap9.c; sourceTree = SOURCE_ROOT; };
+		3DECC78515592C9300CEF963 /* zlib_wrap10.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap10.c; path = ../../src/addlibs/zlib_wrap10.c; sourceTree = SOURCE_ROOT; };
+		3DECC78615592C9300CEF963 /* zlib_wrap11.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap11.c; path = ../../src/addlibs/zlib_wrap11.c; sourceTree = SOURCE_ROOT; };
+		3DECC78715592C9300CEF963 /* zlib_wrap12.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap12.c; path = ../../src/addlibs/zlib_wrap12.c; sourceTree = SOURCE_ROOT; };
+		3DECC78815592C9300CEF963 /* zlib_wrap13.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap13.c; path = ../../src/addlibs/zlib_wrap13.c; sourceTree = SOURCE_ROOT; };
+		3DECC78915592C9300CEF963 /* zlib_wrap14.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap14.c; path = ../../src/addlibs/zlib_wrap14.c; sourceTree = SOURCE_ROOT; };
+		3DECC78A15592C9300CEF963 /* zlib_wrap15.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zlib_wrap15.c; path = ../../src/addlibs/zlib_wrap15.c; sourceTree = SOURCE_ROOT; };
+		3DECC78B15592C9300CEF963 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = ../../src/addlibs/zlib.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D1231A415FA3CB200CFFD87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D12325715FA3F7F00CFFD87 /* libsqlite3.dylib in Frameworks */,
+				3D1231A915FA3CB200CFFD87 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DECC5CF15592B1B00CEF963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECC5D615592B1B00CEF963 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DECC5C715592B1B00CEF963 = {
+			isa = PBXGroup;
+			children = (
+				3D12325615FA3F7F00CFFD87 /* libsqlite3.dylib */,
+				3DECC5DB15592B1B00CEF963 /* recore */,
+				3DECC5D415592B1B00CEF963 /* Frameworks */,
+				3DECC5D315592B1B00CEF963 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DECC5D315592B1B00CEF963 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC5D215592B1B00CEF963 /* librecore.a */,
+				3D1231A815FA3CB200CFFD87 /* RECore.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DECC5D415592B1B00CEF963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC5D515592B1B00CEF963 /* Cocoa.framework */,
+				3DECC5D715592B1B00CEF963 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DECC5D715592B1B00CEF963 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC5D815592B1B00CEF963 /* AppKit.framework */,
+				3DECC5D915592B1B00CEF963 /* CoreData.framework */,
+				3DECC5DA15592B1B00CEF963 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3DECC5DB15592B1B00CEF963 /* recore */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC72215592C2700CEF963 /* addlibs */,
+				3DECC5EA15592BA000CEF963 /* REConfigMacosx.h */,
+				3DECC60715592BCF00CEF963 /* REConfigSelector.h */,
+				3DECC60A15592BDF00CEF963 /* IREAffineTransformed.h */,
+				3DECC60B15592BDF00CEF963 /* IREFileReadable.h */,
+				3DECC60D15592BDF00CEF963 /* RE2DAlgorithm.h */,
+				3DECC60E15592BDF00CEF963 /* REAffineTransform.h */,
+				3DECC60F15592BDF00CEF963 /* REAngle.h */,
+				3DECC61015592BDF00CEF963 /* REApplication.h */,
+				3DECC61115592BDF00CEF963 /* REArray.h */,
+				3DECC61215592BDF00CEF963 /* REAutoReleasePool.h */,
+				3DECC61315592BDF00CEF963 /* REBase64.h */,
+				3DECC61515592BDF00CEF963 /* REBuffer.h */,
+				3DECC61615592BDF00CEF963 /* REBufferObject.h */,
+				3DECC61715592BDF00CEF963 /* REClassMethod.h */,
+				3DECC61815592BDF00CEF963 /* REColor.h */,
+				3DECC61915592BDF00CEF963 /* RECommonHeader.h */,
+				3DECC61A15592BDF00CEF963 /* RECoreIncludes.h */,
+				3DECC61B15592BDF00CEF963 /* RECoreOSSelector.h */,
+				3DECC61C15592BDF00CEF963 /* RECorePlatformSelector.h */,
+				3DECC61D15592BDF00CEF963 /* RECoreSettings.h */,
+				3DECC61E15592BDF00CEF963 /* RECPUFeatures.h */,
+				3DECC61F15592BE000CEF963 /* REData.h */,
+				3DECC62015592BE000CEF963 /* REDate.h */,
+				3DECC62115592BE000CEF963 /* REFile.h */,
+				3DECC62215592BE000CEF963 /* REFileManager.h */,
+				3DECC62315592BE000CEF963 /* REFloat16.h */,
+				3DECC62415592BE000CEF963 /* REImage.h */,
+				3DECC62515592BE000CEF963 /* REImageBase.h */,
+				3DECC62615592BE000CEF963 /* REImageManager.h */,
+				3DECC62715592BE000CEF963 /* REInterpolation.h */,
+				3DECC62815592BE000CEF963 /* REList.h */,
+				3DECC62915592BE000CEF963 /* RELocale.h */,
+				3DECC62A15592BE000CEF963 /* RELZMACompression.h */,
+				3DECC62C15592BE000CEF963 /* REMath.h */,
+				3DECC62D15592BE000CEF963 /* REMatrix4.h */,
+				3DECC62E15592BE000CEF963 /* REMD5Generator.h */,
+				3DECC62F15592BE000CEF963 /* REMem.h */,
+				3DECC63015592BE000CEF963 /* REMutex.h */,
+				3DECC63115592BE000CEF963 /* RENotificationManager.h */,
+				3DECC63215592BE000CEF963 /* RENULLObject.h */,
+				3DECC63315592BE000CEF963 /* RENumber.h */,
+				3DECC63415592BE000CEF963 /* RENumberObject.h */,
+				3DECC63515592BE000CEF963 /* REObject.h */,
+				3DECC63615592BE000CEF963 /* REObjectsArray.h */,
+				3DECC63715592BE000CEF963 /* REObjectsDictionary.h */,
+				3DECC63815592BE000CEF963 /* REPoint2.h */,
+				3DECC63915592BE000CEF963 /* REPoint3.h */,
+				3DECC63A15592BE000CEF963 /* REProperty.h */,
+				3DECC63B15592BE000CEF963 /* REQuaternion.h */,
+				3DECC63C15592BE000CEF963 /* RERandomizer.h */,
+				3DECC63D15592BE000CEF963 /* RERange.h */,
+				3DECC63E15592BE000CEF963 /* RERect.h */,
+				3DECC63F15592BE000CEF963 /* REResourcesStorage.h */,
+				3DECC64015592BE000CEF963 /* RESize.h */,
+				3DECC64115592BE000CEF963 /* RESQLiteDB.h */,
+				3DECC64215592BE000CEF963 /* RESQLiteDBResultSet.h */,
+				3DECC64315592BE000CEF963 /* REString.h */,
+				3DECC64415592BE000CEF963 /* REStringObject.h */,
+				3DECC64615592BE000CEF963 /* RETetragon.h */,
+				3DECC64715592BE000CEF963 /* REThread.h */,
+				3DECC64815592BE000CEF963 /* RETime.h */,
+				3DECC64915592BE000CEF963 /* RETimer.h */,
+				3DECC64A15592BE000CEF963 /* RETypes.h */,
+				3DECC64B15592BE000CEF963 /* REUserCallBacks.h */,
+				3DECC64C15592BE000CEF963 /* REVector2.h */,
+				3DECC64D15592BE000CEF963 /* REVector3.h */,
+				3DECC64E15592BE000CEF963 /* REXMLPropertyListReader.h */,
+				3DECC64F15592BE000CEF963 /* REXMLPropertyListWriter.h */,
+				3DECC65015592BE000CEF963 /* REYUVtoRGB.h */,
+				3DECC65115592BE000CEF963 /* REZipReader.h */,
+				3DECC65215592BE000CEF963 /* REZLIBCompression.h */,
+				3D12325315FA3F6200CFFD87 /* RELocale_macosx.mm */,
+				3D12325015FA3F4C00CFFD87 /* RELog.cpp */,
+				3D12324A15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp */,
+				3D12324B15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp */,
+				3DECC69C15592BFF00CEF963 /* RE2DAlgorithm.cpp */,
+				3DECC69D15592BFF00CEF963 /* RE2DVector.cpp */,
+				3DECC69E15592BFF00CEF963 /* RE3DVector.cpp */,
+				3DECC69F15592BFF00CEF963 /* REAffineTransform.cpp */,
+				3DECC6A015592BFF00CEF963 /* REAngle.cpp */,
+				3DECC6A115592BFF00CEF963 /* REApplication.cpp */,
+				3DECC6A215592C0000CEF963 /* REAutoReleasePool.cpp */,
+				3DECC6A315592C0000CEF963 /* REBase64.cpp */,
+				3DECC6A515592C0000CEF963 /* REBuffer.cpp */,
+				3DECC6A615592C0000CEF963 /* REBufferObject.cpp */,
+				3DECC6A715592C0000CEF963 /* REColor.cpp */,
+				3DECC6A815592C0000CEF963 /* RECPUFeatures.cpp */,
+				3DECC6A915592C0000CEF963 /* REData.cpp */,
+				3DECC6AA15592C0000CEF963 /* REDate.cpp */,
+				3DECC6AB15592C0000CEF963 /* REFile.cpp */,
+				3DECC6AC15592C0000CEF963 /* REFileManager.cpp */,
+				3DECC6AD15592C0000CEF963 /* REImage.cpp */,
+				3DECC6AE15592C0000CEF963 /* REImageBase.cpp */,
+				3DECC6AF15592C0000CEF963 /* REImageManager.cpp */,
+				3DECC6B015592C0000CEF963 /* RELocale.cpp */,
+				3DECC6B115592C0000CEF963 /* RELocale_macosx.mm */,
+				3DECC6B215592C0000CEF963 /* RELZMACompression.cpp */,
+				3DECC6B415592C0000CEF963 /* REMath.cpp */,
+				3DECC6B515592C0000CEF963 /* REMatrix4.cpp */,
+				3DECC6B615592C0000CEF963 /* REMD5Generator.cpp */,
+				3DECC6B715592C0000CEF963 /* REMutex.cpp */,
+				3DECC6B815592C0000CEF963 /* RENotificationManager.cpp */,
+				3DECC6B915592C0000CEF963 /* RENULLObject.cpp */,
+				3DECC6BA15592C0000CEF963 /* RENumber.cpp */,
+				3DECC6BB15592C0000CEF963 /* RENumberObject.cpp */,
+				3DECC6BC15592C0000CEF963 /* REObject.cpp */,
+				3DECC6BD15592C0000CEF963 /* REObjectsArray.cpp */,
+				3DECC6BE15592C0000CEF963 /* REObjectsDictionary.cpp */,
+				3DECC6BF15592C0000CEF963 /* RERandomizer.cpp */,
+				3DECC6C015592C0000CEF963 /* RERect.cpp */,
+				3DECC6C115592C0000CEF963 /* REResourcesStorage.cpp */,
+				3DECC6C215592C0000CEF963 /* RESQLiteDB.cpp */,
+				3DECC6C315592C0000CEF963 /* RESQLiteDBResultSet.cpp */,
+				3DECC6C415592C0000CEF963 /* REString.cpp */,
+				3DECC6C515592C0000CEF963 /* REStringObject.cpp */,
+				3DECC6C715592C0000CEF963 /* RETetragon.cpp */,
+				3DECC6C815592C0000CEF963 /* REThread.cpp */,
+				3DECC6C915592C0000CEF963 /* RETime.cpp */,
+				3DECC6CA15592C0000CEF963 /* RETimer.cpp */,
+				3DECC6CB15592C0000CEF963 /* REUserCallBacks.cpp */,
+				3DECC6CC15592C0000CEF963 /* REXMLPropertyListReader.cpp */,
+				3DECC6CD15592C0000CEF963 /* REXMLPropertyListWriter.cpp */,
+				3DECC6CE15592C0000CEF963 /* REZipReader.cpp */,
+				3DECC6CF15592C0000CEF963 /* REZLIBCompression.cpp */,
+				3DECC70415592C0F00CEF963 /* crypt.h */,
+				3DECC70515592C0F00CEF963 /* ioapi.c */,
+				3DECC70615592C0F00CEF963 /* ioapi.h */,
+				3DECC70715592C0F00CEF963 /* unzip.c */,
+				3DECC70815592C0F00CEF963 /* unzip.h */,
+				3DECC70E15592C1700CEF963 /* REYUV420toRGB565.cpp */,
+				3DECC70F15592C1700CEF963 /* REYUV420toRGB888.cpp */,
+				3DECC71015592C1700CEF963 /* REYUV420toRGB8888.cpp */,
+				3DECC71115592C1700CEF963 /* REYUV422toRGB565.cpp */,
+				3DECC71215592C1700CEF963 /* REYUV422toRGB888.cpp */,
+				3DECC71315592C1700CEF963 /* REYUV422toRGB8888.cpp */,
+				3DECC71415592C1700CEF963 /* REYUV444toRGB565.cpp */,
+				3DECC71515592C1700CEF963 /* REYUV444toRGB888.cpp */,
+				3DECC71615592C1700CEF963 /* REYUV444toRGB8888.cpp */,
+				3DECC71715592C1700CEF963 /* REYUVtoRGB.cpp */,
+			);
+			path = recore;
+			sourceTree = "<group>";
+		};
+		3DECC72215592C2700CEF963 /* addlibs */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC72615592C9300CEF963 /* lzma.h */,
+				3DECC72715592C9300CEF963 /* lzma_config.h */,
+				3DECC72815592C9300CEF963 /* lzma_wrap1.c */,
+				3DECC72915592C9300CEF963 /* webp.h */,
+				3DECC72A15592C9300CEF963 /* webp_config.h */,
+				3DECC72B15592C9300CEF963 /* webp_wrap1.c */,
+				3DECC72C15592C9300CEF963 /* webp_wrap2.c */,
+				3DECC72D15592C9300CEF963 /* webp_wrap3.c */,
+				3DECC72E15592C9300CEF963 /* webp_wrap4.c */,
+				3DECC72F15592C9300CEF963 /* tinyxml_config.h */,
+				3DECC73015592C9300CEF963 /* tinyxml.h */,
+				3DECC73115592C9300CEF963 /* tinyxml_wrap1.cpp */,
+				3DECC73215592C9300CEF963 /* jpeg_config.h */,
+				3DECC73315592C9300CEF963 /* jpeg_wrap1.c */,
+				3DECC73415592C9300CEF963 /* jpeg_wrap2.c */,
+				3DECC73515592C9300CEF963 /* jpeg_wrap3.c */,
+				3DECC73615592C9300CEF963 /* jpeg_wrap4.c */,
+				3DECC73715592C9300CEF963 /* jpeg_wrap5.c */,
+				3DECC73815592C9300CEF963 /* jpeg_wrap6.c */,
+				3DECC73915592C9300CEF963 /* jpeg_wrap7.c */,
+				3DECC73A15592C9300CEF963 /* jpeg_wrap8.c */,
+				3DECC73B15592C9300CEF963 /* jpeg_wrap9.c */,
+				3DECC73C15592C9300CEF963 /* jpeg_wrap10.c */,
+				3DECC73D15592C9300CEF963 /* jpeg_wrap11.c */,
+				3DECC73E15592C9300CEF963 /* jpeg_wrap12.c */,
+				3DECC73F15592C9300CEF963 /* jpeg_wrap13.c */,
+				3DECC74015592C9300CEF963 /* jpeg_wrap14.c */,
+				3DECC74115592C9300CEF963 /* jpeg_wrap15.c */,
+				3DECC74215592C9300CEF963 /* jpeg_wrap16.c */,
+				3DECC74315592C9300CEF963 /* jpeg_wrap17.c */,
+				3DECC74415592C9300CEF963 /* jpeg_wrap18.c */,
+				3DECC74515592C9300CEF963 /* jpeg_wrap19.c */,
+				3DECC74615592C9300CEF963 /* jpeg_wrap20.c */,
+				3DECC74715592C9300CEF963 /* jpeg_wrap21.c */,
+				3DECC74815592C9300CEF963 /* jpeg_wrap22.c */,
+				3DECC74915592C9300CEF963 /* jpeg_wrap23.c */,
+				3DECC74A15592C9300CEF963 /* jpeg_wrap24.c */,
+				3DECC74B15592C9300CEF963 /* jpeg_wrap25.c */,
+				3DECC74C15592C9300CEF963 /* jpeg_wrap26.c */,
+				3DECC74D15592C9300CEF963 /* jpeg_wrap27.c */,
+				3DECC74E15592C9300CEF963 /* jpeg_wrap28.c */,
+				3DECC74F15592C9300CEF963 /* jpeg_wrap29.c */,
+				3DECC75015592C9300CEF963 /* jpeg_wrap30.c */,
+				3DECC75115592C9300CEF963 /* jpeg_wrap31.c */,
+				3DECC75215592C9300CEF963 /* jpeg_wrap32.c */,
+				3DECC75315592C9300CEF963 /* jpeg_wrap33.c */,
+				3DECC75415592C9300CEF963 /* jpeg_wrap34.c */,
+				3DECC75515592C9300CEF963 /* jpeg_wrap35.c */,
+				3DECC75615592C9300CEF963 /* jpeg_wrap36.c */,
+				3DECC75715592C9300CEF963 /* jpeg_wrap37.c */,
+				3DECC75815592C9300CEF963 /* jpeg_wrap38.c */,
+				3DECC75915592C9300CEF963 /* jpeg_wrap39.c */,
+				3DECC75A15592C9300CEF963 /* jpeg_wrap40.c */,
+				3DECC75B15592C9300CEF963 /* jpeg_wrap41.c */,
+				3DECC75C15592C9300CEF963 /* jpeg_wrap42.c */,
+				3DECC75D15592C9300CEF963 /* jpeg_wrap43.c */,
+				3DECC75E15592C9300CEF963 /* jpeg_wrap44.c */,
+				3DECC75F15592C9300CEF963 /* jpeg_wrap45.c */,
+				3DECC76015592C9300CEF963 /* jpeg_wrap46.c */,
+				3DECC76115592C9300CEF963 /* jpeg_wrap47.c */,
+				3DECC76215592C9300CEF963 /* jpeg_wrap48.c */,
+				3DECC76315592C9300CEF963 /* jpeg_wrap49.c */,
+				3DECC76415592C9300CEF963 /* jpeg_wrap50.c */,
+				3DECC76515592C9300CEF963 /* jpeg_wrap51.c */,
+				3DECC76615592C9300CEF963 /* jpeg_wrap52.c */,
+				3DECC76715592C9300CEF963 /* jpeg_wrap53.c */,
+				3DECC76815592C9300CEF963 /* jpeg_wrap54.c */,
+				3DECC76915592C9300CEF963 /* jpeg_wrap55.c */,
+				3DECC76A15592C9300CEF963 /* jpeg_wrap56.c */,
+				3DECC76B15592C9300CEF963 /* jpeg_wrap57.c */,
+				3DECC76C15592C9300CEF963 /* jpeg_wrap58.c */,
+				3DECC76D15592C9300CEF963 /* jpeg_wrap59.c */,
+				3DECC76E15592C9300CEF963 /* jpeg_wrap60.c */,
+				3DECC76F15592C9300CEF963 /* jpeg.h */,
+				3DECC77015592C9300CEF963 /* openjpeg_config.h */,
+				3DECC77115592C9300CEF963 /* openjpeg_wrap1.c */,
+				3DECC77215592C9300CEF963 /* openjpeg_wrap2.c */,
+				3DECC77315592C9300CEF963 /* openjpeg_wrap3.c */,
+				3DECC77415592C9300CEF963 /* openjpeg.h */,
+				3DECC77515592C9300CEF963 /* png_config.h */,
+				3DECC77615592C9300CEF963 /* png_wrap1.c */,
+				3DECC77715592C9300CEF963 /* png.h */,
+				3DECC77815592C9300CEF963 /* sqlite_config.h */,
+				3DECC77915592C9300CEF963 /* sqlite_wrap1.c */,
+				3DECC77A15592C9300CEF963 /* sqlite.h */,
+				3DECC77B15592C9300CEF963 /* zlib_config.h */,
+				3DECC77C15592C9300CEF963 /* zlib_wrap1.c */,
+				3DECC77D15592C9300CEF963 /* zlib_wrap2.c */,
+				3DECC77E15592C9300CEF963 /* zlib_wrap3.c */,
+				3DECC77F15592C9300CEF963 /* zlib_wrap4.c */,
+				3DECC78015592C9300CEF963 /* zlib_wrap5.c */,
+				3DECC78115592C9300CEF963 /* zlib_wrap6.c */,
+				3DECC78215592C9300CEF963 /* zlib_wrap7.c */,
+				3DECC78315592C9300CEF963 /* zlib_wrap8.c */,
+				3DECC78415592C9300CEF963 /* zlib_wrap9.c */,
+				3DECC78515592C9300CEF963 /* zlib_wrap10.c */,
+				3DECC78615592C9300CEF963 /* zlib_wrap11.c */,
+				3DECC78715592C9300CEF963 /* zlib_wrap12.c */,
+				3DECC78815592C9300CEF963 /* zlib_wrap13.c */,
+				3DECC78915592C9300CEF963 /* zlib_wrap14.c */,
+				3DECC78A15592C9300CEF963 /* zlib_wrap15.c */,
+				3DECC78B15592C9300CEF963 /* zlib.h */,
+			);
+			name = addlibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3D1231A515FA3CB200CFFD87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DECC5D015592B1B00CEF963 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECC5EB15592BA000CEF963 /* REConfigMacosx.h in Headers */,
+				3DECC60915592BCF00CEF963 /* REConfigSelector.h in Headers */,
+				3DECC65315592BE000CEF963 /* IREAffineTransformed.h in Headers */,
+				3DECC65415592BE000CEF963 /* IREFileReadable.h in Headers */,
+				3DECC65615592BE000CEF963 /* RE2DAlgorithm.h in Headers */,
+				3DECC65715592BE000CEF963 /* REAffineTransform.h in Headers */,
+				3DECC65815592BE000CEF963 /* REAngle.h in Headers */,
+				3DECC65915592BE000CEF963 /* REApplication.h in Headers */,
+				3DECC65A15592BE000CEF963 /* REArray.h in Headers */,
+				3DECC65B15592BE000CEF963 /* REAutoReleasePool.h in Headers */,
+				3DECC65C15592BE000CEF963 /* REBase64.h in Headers */,
+				3DECC65E15592BE000CEF963 /* REBuffer.h in Headers */,
+				3DECC65F15592BE000CEF963 /* REBufferObject.h in Headers */,
+				3DECC66015592BE000CEF963 /* REClassMethod.h in Headers */,
+				3DECC66115592BE000CEF963 /* REColor.h in Headers */,
+				3DECC66215592BE000CEF963 /* RECommonHeader.h in Headers */,
+				3DECC66315592BE000CEF963 /* RECoreIncludes.h in Headers */,
+				3DECC66415592BE000CEF963 /* RECoreOSSelector.h in Headers */,
+				3DECC66515592BE000CEF963 /* RECorePlatformSelector.h in Headers */,
+				3DECC66615592BE000CEF963 /* RECoreSettings.h in Headers */,
+				3DECC66715592BE000CEF963 /* RECPUFeatures.h in Headers */,
+				3DECC66815592BE000CEF963 /* REData.h in Headers */,
+				3DECC66915592BE000CEF963 /* REDate.h in Headers */,
+				3DECC66A15592BE000CEF963 /* REFile.h in Headers */,
+				3DECC66B15592BE000CEF963 /* REFileManager.h in Headers */,
+				3DECC66C15592BE000CEF963 /* REFloat16.h in Headers */,
+				3DECC66D15592BE000CEF963 /* REImage.h in Headers */,
+				3DECC66E15592BE000CEF963 /* REImageBase.h in Headers */,
+				3DECC66F15592BE000CEF963 /* REImageManager.h in Headers */,
+				3DECC67015592BE000CEF963 /* REInterpolation.h in Headers */,
+				3DECC67115592BE000CEF963 /* REList.h in Headers */,
+				3DECC67215592BE000CEF963 /* RELocale.h in Headers */,
+				3DECC67315592BE000CEF963 /* RELZMACompression.h in Headers */,
+				3DECC67515592BE000CEF963 /* REMath.h in Headers */,
+				3DECC67615592BE000CEF963 /* REMatrix4.h in Headers */,
+				3DECC67715592BE000CEF963 /* REMD5Generator.h in Headers */,
+				3DECC67815592BE000CEF963 /* REMem.h in Headers */,
+				3DECC67915592BE000CEF963 /* REMutex.h in Headers */,
+				3DECC67A15592BE000CEF963 /* RENotificationManager.h in Headers */,
+				3DECC67B15592BE000CEF963 /* RENULLObject.h in Headers */,
+				3DECC67C15592BE000CEF963 /* RENumber.h in Headers */,
+				3DECC67D15592BE000CEF963 /* RENumberObject.h in Headers */,
+				3DECC67E15592BE000CEF963 /* REObject.h in Headers */,
+				3DECC67F15592BE000CEF963 /* REObjectsArray.h in Headers */,
+				3DECC68015592BE000CEF963 /* REObjectsDictionary.h in Headers */,
+				3DECC68115592BE000CEF963 /* REPoint2.h in Headers */,
+				3DECC68215592BE000CEF963 /* REPoint3.h in Headers */,
+				3DECC68315592BE000CEF963 /* REProperty.h in Headers */,
+				3DECC68415592BE000CEF963 /* REQuaternion.h in Headers */,
+				3DECC68515592BE000CEF963 /* RERandomizer.h in Headers */,
+				3DECC68615592BE000CEF963 /* RERange.h in Headers */,
+				3DECC68715592BE000CEF963 /* RERect.h in Headers */,
+				3DECC68815592BE000CEF963 /* REResourcesStorage.h in Headers */,
+				3DECC68915592BE000CEF963 /* RESize.h in Headers */,
+				3DECC68A15592BE000CEF963 /* RESQLiteDB.h in Headers */,
+				3DECC68B15592BE000CEF963 /* RESQLiteDBResultSet.h in Headers */,
+				3DECC68C15592BE000CEF963 /* REString.h in Headers */,
+				3DECC68D15592BE000CEF963 /* REStringObject.h in Headers */,
+				3DECC68F15592BE000CEF963 /* RETetragon.h in Headers */,
+				3DECC69015592BE000CEF963 /* REThread.h in Headers */,
+				3DECC69115592BE000CEF963 /* RETime.h in Headers */,
+				3DECC69215592BE000CEF963 /* RETimer.h in Headers */,
+				3DECC69315592BE000CEF963 /* RETypes.h in Headers */,
+				3DECC69415592BE000CEF963 /* REUserCallBacks.h in Headers */,
+				3DECC69515592BE000CEF963 /* REVector2.h in Headers */,
+				3DECC69615592BE000CEF963 /* REVector3.h in Headers */,
+				3DECC69715592BE000CEF963 /* REXMLPropertyListReader.h in Headers */,
+				3DECC69815592BE000CEF963 /* REXMLPropertyListWriter.h in Headers */,
+				3DECC69915592BE000CEF963 /* REYUVtoRGB.h in Headers */,
+				3DECC69A15592BE000CEF963 /* REZipReader.h in Headers */,
+				3DECC69B15592BE000CEF963 /* REZLIBCompression.h in Headers */,
+				3DECC70915592C0F00CEF963 /* crypt.h in Headers */,
+				3DECC70B15592C0F00CEF963 /* ioapi.h in Headers */,
+				3DECC70D15592C0F00CEF963 /* unzip.h in Headers */,
+				3DECC78C15592C9300CEF963 /* lzma.h in Headers */,
+				3DECC78D15592C9300CEF963 /* lzma_config.h in Headers */,
+				3DECC78F15592C9300CEF963 /* webp.h in Headers */,
+				3DECC79015592C9300CEF963 /* webp_config.h in Headers */,
+				3DECC79515592C9300CEF963 /* tinyxml_config.h in Headers */,
+				3DECC79615592C9300CEF963 /* tinyxml.h in Headers */,
+				3DECC79815592C9300CEF963 /* jpeg_config.h in Headers */,
+				3DECC7D515592C9300CEF963 /* jpeg.h in Headers */,
+				3DECC7D615592C9300CEF963 /* openjpeg_config.h in Headers */,
+				3DECC7DA15592C9300CEF963 /* openjpeg.h in Headers */,
+				3DECC7DB15592C9300CEF963 /* png_config.h in Headers */,
+				3DECC7DD15592C9300CEF963 /* png.h in Headers */,
+				3DECC7DE15592C9300CEF963 /* sqlite_config.h in Headers */,
+				3DECC7E015592C9300CEF963 /* sqlite.h in Headers */,
+				3DECC7E115592C9300CEF963 /* zlib_config.h in Headers */,
+				3DECC7F115592C9300CEF963 /* zlib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D1231A715FA3CB200CFFD87 /* RECore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1231B615FA3CB200CFFD87 /* Build configuration list for PBXNativeTarget "RECore" */;
+			buildPhases = (
+				3D1231A315FA3CB200CFFD87 /* Sources */,
+				3D1231A415FA3CB200CFFD87 /* Frameworks */,
+				3D1231A515FA3CB200CFFD87 /* Headers */,
+				3D1231A615FA3CB200CFFD87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RECore;
+			productName = RECore;
+			productReference = 3D1231A815FA3CB200CFFD87 /* RECore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3DECC5D115592B1B00CEF963 /* recore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DECC5E315592B1B00CEF963 /* Build configuration list for PBXNativeTarget "recore" */;
+			buildPhases = (
+				3DECC5CE15592B1B00CEF963 /* Sources */,
+				3DECC5CF15592B1B00CEF963 /* Frameworks */,
+				3DECC5D015592B1B00CEF963 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = recore;
+			productName = recore;
+			productReference = 3DECC5D215592B1B00CEF963 /* librecore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DECC5C915592B1B00CEF963 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 3DECC5CC15592B1B00CEF963 /* Build configuration list for PBXProject "recore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3DECC5C715592B1B00CEF963;
+			productRefGroup = 3DECC5D315592B1B00CEF963 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DECC5D115592B1B00CEF963 /* recore */,
+				3D1231A715FA3CB200CFFD87 /* RECore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D1231A615FA3CB200CFFD87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D1231A315FA3CB200CFFD87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1231F315FA3D3500CFFD87 /* lzma_wrap1.c in Sources */,
+				3D1231F415FA3D3500CFFD87 /* webp_wrap1.c in Sources */,
+				3D1231F515FA3D3500CFFD87 /* webp_wrap2.c in Sources */,
+				3D1231F615FA3D3500CFFD87 /* webp_wrap3.c in Sources */,
+				3D1231F715FA3D3600CFFD87 /* webp_wrap4.c in Sources */,
+				3D1231F815FA3D3600CFFD87 /* jpeg_wrap1.c in Sources */,
+				3D1231F915FA3D3600CFFD87 /* jpeg_wrap2.c in Sources */,
+				3D1231FA15FA3D3600CFFD87 /* jpeg_wrap3.c in Sources */,
+				3D1231FB15FA3D3600CFFD87 /* jpeg_wrap4.c in Sources */,
+				3D1231FC15FA3D3600CFFD87 /* jpeg_wrap5.c in Sources */,
+				3D1231FD15FA3D3600CFFD87 /* jpeg_wrap6.c in Sources */,
+				3D1231FE15FA3D3600CFFD87 /* jpeg_wrap7.c in Sources */,
+				3D1231FF15FA3D3600CFFD87 /* jpeg_wrap8.c in Sources */,
+				3D12320015FA3D3600CFFD87 /* jpeg_wrap9.c in Sources */,
+				3D12320115FA3D3600CFFD87 /* jpeg_wrap10.c in Sources */,
+				3D12320215FA3D3600CFFD87 /* jpeg_wrap11.c in Sources */,
+				3D12320315FA3D3600CFFD87 /* jpeg_wrap12.c in Sources */,
+				3D12320415FA3D3600CFFD87 /* jpeg_wrap13.c in Sources */,
+				3D12320515FA3D3600CFFD87 /* jpeg_wrap14.c in Sources */,
+				3D12320615FA3D3600CFFD87 /* jpeg_wrap15.c in Sources */,
+				3D12320715FA3D3600CFFD87 /* jpeg_wrap16.c in Sources */,
+				3D12320815FA3D3600CFFD87 /* jpeg_wrap17.c in Sources */,
+				3D12320915FA3D3600CFFD87 /* jpeg_wrap18.c in Sources */,
+				3D12320A15FA3D3600CFFD87 /* jpeg_wrap19.c in Sources */,
+				3D12320B15FA3D3600CFFD87 /* jpeg_wrap20.c in Sources */,
+				3D12320C15FA3D3600CFFD87 /* jpeg_wrap21.c in Sources */,
+				3D12320D15FA3D3600CFFD87 /* jpeg_wrap22.c in Sources */,
+				3D12320E15FA3D3600CFFD87 /* jpeg_wrap23.c in Sources */,
+				3D12320F15FA3D3600CFFD87 /* jpeg_wrap24.c in Sources */,
+				3D12321015FA3D3600CFFD87 /* jpeg_wrap25.c in Sources */,
+				3D12321115FA3D3600CFFD87 /* jpeg_wrap26.c in Sources */,
+				3D12321215FA3D3600CFFD87 /* jpeg_wrap27.c in Sources */,
+				3D12321315FA3D3600CFFD87 /* jpeg_wrap28.c in Sources */,
+				3D12321415FA3D3600CFFD87 /* jpeg_wrap29.c in Sources */,
+				3D12321515FA3D3600CFFD87 /* jpeg_wrap30.c in Sources */,
+				3D12321615FA3D3600CFFD87 /* jpeg_wrap31.c in Sources */,
+				3D12321715FA3D3600CFFD87 /* jpeg_wrap32.c in Sources */,
+				3D12321815FA3D3600CFFD87 /* jpeg_wrap33.c in Sources */,
+				3D12321915FA3D3600CFFD87 /* jpeg_wrap34.c in Sources */,
+				3D12321A15FA3D3600CFFD87 /* jpeg_wrap35.c in Sources */,
+				3D12321B15FA3D3600CFFD87 /* jpeg_wrap36.c in Sources */,
+				3D12321C15FA3D3600CFFD87 /* jpeg_wrap37.c in Sources */,
+				3D12321D15FA3D3600CFFD87 /* jpeg_wrap38.c in Sources */,
+				3D12321E15FA3D3600CFFD87 /* jpeg_wrap39.c in Sources */,
+				3D12321F15FA3D3600CFFD87 /* jpeg_wrap40.c in Sources */,
+				3D12322015FA3D3600CFFD87 /* jpeg_wrap41.c in Sources */,
+				3D12322115FA3D3600CFFD87 /* jpeg_wrap42.c in Sources */,
+				3D12322215FA3D3600CFFD87 /* jpeg_wrap43.c in Sources */,
+				3D12322315FA3D3600CFFD87 /* jpeg_wrap44.c in Sources */,
+				3D12322415FA3D3600CFFD87 /* jpeg_wrap45.c in Sources */,
+				3D12322515FA3D3600CFFD87 /* jpeg_wrap46.c in Sources */,
+				3D12322615FA3D3600CFFD87 /* jpeg_wrap47.c in Sources */,
+				3D12322715FA3D3600CFFD87 /* jpeg_wrap48.c in Sources */,
+				3D12322815FA3D3600CFFD87 /* jpeg_wrap49.c in Sources */,
+				3D12322915FA3D3600CFFD87 /* jpeg_wrap50.c in Sources */,
+				3D12322A15FA3D3600CFFD87 /* jpeg_wrap51.c in Sources */,
+				3D12322B15FA3D3600CFFD87 /* jpeg_wrap52.c in Sources */,
+				3D12322C15FA3D3600CFFD87 /* jpeg_wrap53.c in Sources */,
+				3D12322D15FA3D3600CFFD87 /* jpeg_wrap54.c in Sources */,
+				3D12322E15FA3D3600CFFD87 /* jpeg_wrap55.c in Sources */,
+				3D12322F15FA3D3600CFFD87 /* jpeg_wrap56.c in Sources */,
+				3D12323015FA3D3600CFFD87 /* jpeg_wrap57.c in Sources */,
+				3D12323115FA3D3600CFFD87 /* jpeg_wrap58.c in Sources */,
+				3D12323215FA3D3600CFFD87 /* jpeg_wrap59.c in Sources */,
+				3D12323315FA3D3600CFFD87 /* jpeg_wrap60.c in Sources */,
+				3D12323415FA3D3600CFFD87 /* openjpeg_wrap1.c in Sources */,
+				3D12323515FA3D3600CFFD87 /* openjpeg_wrap2.c in Sources */,
+				3D12323615FA3D3600CFFD87 /* openjpeg_wrap3.c in Sources */,
+				3D12323715FA3D3600CFFD87 /* png_wrap1.c in Sources */,
+				3D12323815FA3D3600CFFD87 /* sqlite_wrap1.c in Sources */,
+				3D12323915FA3D3600CFFD87 /* zlib_wrap1.c in Sources */,
+				3D12323A15FA3D3600CFFD87 /* zlib_wrap2.c in Sources */,
+				3D12323B15FA3D3600CFFD87 /* zlib_wrap3.c in Sources */,
+				3D12323C15FA3D3600CFFD87 /* zlib_wrap4.c in Sources */,
+				3D12323D15FA3D3600CFFD87 /* zlib_wrap5.c in Sources */,
+				3D12323E15FA3D3600CFFD87 /* zlib_wrap6.c in Sources */,
+				3D12323F15FA3D3600CFFD87 /* zlib_wrap7.c in Sources */,
+				3D12324015FA3D3600CFFD87 /* zlib_wrap8.c in Sources */,
+				3D12324115FA3D3600CFFD87 /* zlib_wrap9.c in Sources */,
+				3D12324215FA3D3600CFFD87 /* zlib_wrap10.c in Sources */,
+				3D12324315FA3D3600CFFD87 /* zlib_wrap11.c in Sources */,
+				3D12324415FA3D3600CFFD87 /* zlib_wrap12.c in Sources */,
+				3D12324515FA3D3600CFFD87 /* zlib_wrap13.c in Sources */,
+				3D12324615FA3D3600CFFD87 /* zlib_wrap14.c in Sources */,
+				3D12324715FA3D3600CFFD87 /* zlib_wrap15.c in Sources */,
+				3D12324815FA3D3600CFFD87 /* ioapi.c in Sources */,
+				3D12324915FA3D3600CFFD87 /* unzip.c in Sources */,
+				3D1231B815FA3D2B00CFFD87 /* tinyxml_wrap1.cpp in Sources */,
+				3D1231B915FA3D2B00CFFD87 /* RE2DAlgorithm.cpp in Sources */,
+				3D1231BA15FA3D2B00CFFD87 /* RE2DVector.cpp in Sources */,
+				3D1231BB15FA3D2B00CFFD87 /* RE3DVector.cpp in Sources */,
+				3D1231BC15FA3D2B00CFFD87 /* REAffineTransform.cpp in Sources */,
+				3D1231BD15FA3D2B00CFFD87 /* REAngle.cpp in Sources */,
+				3D1231BE15FA3D2B00CFFD87 /* REApplication.cpp in Sources */,
+				3D1231BF15FA3D2B00CFFD87 /* REAutoReleasePool.cpp in Sources */,
+				3D1231C015FA3D2B00CFFD87 /* REBase64.cpp in Sources */,
+				3D1231C115FA3D2B00CFFD87 /* REBuffer.cpp in Sources */,
+				3D1231C215FA3D2B00CFFD87 /* REBufferObject.cpp in Sources */,
+				3D1231C315FA3D2B00CFFD87 /* REColor.cpp in Sources */,
+				3D1231C415FA3D2B00CFFD87 /* RECPUFeatures.cpp in Sources */,
+				3D1231C515FA3D2B00CFFD87 /* REData.cpp in Sources */,
+				3D1231C615FA3D2B00CFFD87 /* REDate.cpp in Sources */,
+				3D1231C715FA3D2B00CFFD87 /* REFile.cpp in Sources */,
+				3D1231C815FA3D2B00CFFD87 /* REFileManager.cpp in Sources */,
+				3D1231C915FA3D2B00CFFD87 /* REImage.cpp in Sources */,
+				3D1231CA15FA3D2B00CFFD87 /* REImageBase.cpp in Sources */,
+				3D1231CB15FA3D2B00CFFD87 /* REImageManager.cpp in Sources */,
+				3D1231CC15FA3D2B00CFFD87 /* RELocale.cpp in Sources */,
+				3D1231CD15FA3D2B00CFFD87 /* RELZMACompression.cpp in Sources */,
+				3D1231CE15FA3D2B00CFFD87 /* REMath.cpp in Sources */,
+				3D1231CF15FA3D2B00CFFD87 /* REMatrix4.cpp in Sources */,
+				3D1231D015FA3D2B00CFFD87 /* REMD5Generator.cpp in Sources */,
+				3D1231D115FA3D2B00CFFD87 /* REMutex.cpp in Sources */,
+				3D1231D215FA3D2B00CFFD87 /* RENotificationManager.cpp in Sources */,
+				3D1231D315FA3D2B00CFFD87 /* RENULLObject.cpp in Sources */,
+				3D1231D415FA3D2B00CFFD87 /* RENumber.cpp in Sources */,
+				3D1231D515FA3D2B00CFFD87 /* RENumberObject.cpp in Sources */,
+				3D1231D615FA3D2B00CFFD87 /* REObject.cpp in Sources */,
+				3D1231D715FA3D2B00CFFD87 /* REObjectsArray.cpp in Sources */,
+				3D1231D815FA3D2B00CFFD87 /* REObjectsDictionary.cpp in Sources */,
+				3D1231D915FA3D2B00CFFD87 /* RERandomizer.cpp in Sources */,
+				3D1231DA15FA3D2B00CFFD87 /* RERect.cpp in Sources */,
+				3D1231DB15FA3D2B00CFFD87 /* REResourcesStorage.cpp in Sources */,
+				3D1231DC15FA3D2B00CFFD87 /* RESQLiteDB.cpp in Sources */,
+				3D1231DD15FA3D2B00CFFD87 /* RESQLiteDBResultSet.cpp in Sources */,
+				3D1231DE15FA3D2B00CFFD87 /* REString.cpp in Sources */,
+				3D1231DF15FA3D2B00CFFD87 /* REStringObject.cpp in Sources */,
+				3D1231E015FA3D2B00CFFD87 /* RETetragon.cpp in Sources */,
+				3D1231E115FA3D2B00CFFD87 /* REThread.cpp in Sources */,
+				3D1231E215FA3D2B00CFFD87 /* RETime.cpp in Sources */,
+				3D1231E315FA3D2B00CFFD87 /* RETimer.cpp in Sources */,
+				3D1231E415FA3D2B00CFFD87 /* REUserCallBacks.cpp in Sources */,
+				3D1231E515FA3D2B00CFFD87 /* REXMLPropertyListReader.cpp in Sources */,
+				3D1231E615FA3D2B00CFFD87 /* REXMLPropertyListWriter.cpp in Sources */,
+				3D1231E715FA3D2B00CFFD87 /* REZipReader.cpp in Sources */,
+				3D1231E815FA3D2B00CFFD87 /* REZLIBCompression.cpp in Sources */,
+				3D1231E915FA3D2B00CFFD87 /* REYUV420toRGB565.cpp in Sources */,
+				3D1231EA15FA3D2B00CFFD87 /* REYUV420toRGB888.cpp in Sources */,
+				3D1231EB15FA3D2B00CFFD87 /* REYUV420toRGB8888.cpp in Sources */,
+				3D1231EC15FA3D2B00CFFD87 /* REYUV422toRGB565.cpp in Sources */,
+				3D1231ED15FA3D2B00CFFD87 /* REYUV422toRGB888.cpp in Sources */,
+				3D1231EE15FA3D2B00CFFD87 /* REYUV422toRGB8888.cpp in Sources */,
+				3D1231EF15FA3D2B00CFFD87 /* REYUV444toRGB565.cpp in Sources */,
+				3D1231F015FA3D2B00CFFD87 /* REYUV444toRGB888.cpp in Sources */,
+				3D1231F115FA3D2B00CFFD87 /* REYUV444toRGB8888.cpp in Sources */,
+				3D1231F215FA3D2B00CFFD87 /* REYUVtoRGB.cpp in Sources */,
+				3D12324E15FA3F3400CFFD87 /* REMainLoopUpdatable.cpp in Sources */,
+				3D12324F15FA3F3700CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
+				3D12325215FA3F5000CFFD87 /* RELog.cpp in Sources */,
+				3D12325515FA3F6400CFFD87 /* RELocale_macosx.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DECC5CE15592B1B00CEF963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECC6D015592C0000CEF963 /* RE2DAlgorithm.cpp in Sources */,
+				3DECC6D115592C0000CEF963 /* RE2DVector.cpp in Sources */,
+				3DECC6D215592C0000CEF963 /* RE3DVector.cpp in Sources */,
+				3DECC6D315592C0000CEF963 /* REAffineTransform.cpp in Sources */,
+				3DECC6D415592C0000CEF963 /* REAngle.cpp in Sources */,
+				3DECC6D515592C0000CEF963 /* REApplication.cpp in Sources */,
+				3DECC6D615592C0000CEF963 /* REAutoReleasePool.cpp in Sources */,
+				3DECC6D715592C0000CEF963 /* REBase64.cpp in Sources */,
+				3DECC6D915592C0000CEF963 /* REBuffer.cpp in Sources */,
+				3DECC6DA15592C0000CEF963 /* REBufferObject.cpp in Sources */,
+				3DECC6DB15592C0000CEF963 /* REColor.cpp in Sources */,
+				3DECC6DC15592C0000CEF963 /* RECPUFeatures.cpp in Sources */,
+				3DECC6DD15592C0000CEF963 /* REData.cpp in Sources */,
+				3DECC6DE15592C0000CEF963 /* REDate.cpp in Sources */,
+				3DECC6DF15592C0000CEF963 /* REFile.cpp in Sources */,
+				3DECC6E015592C0000CEF963 /* REFileManager.cpp in Sources */,
+				3DECC6E115592C0000CEF963 /* REImage.cpp in Sources */,
+				3DECC6E215592C0000CEF963 /* REImageBase.cpp in Sources */,
+				3DECC6E315592C0000CEF963 /* REImageManager.cpp in Sources */,
+				3DECC6E415592C0000CEF963 /* RELocale.cpp in Sources */,
+				3DECC6E515592C0000CEF963 /* RELocale_macosx.mm in Sources */,
+				3DECC6E615592C0000CEF963 /* RELZMACompression.cpp in Sources */,
+				3DECC6E815592C0000CEF963 /* REMath.cpp in Sources */,
+				3DECC6E915592C0000CEF963 /* REMatrix4.cpp in Sources */,
+				3DECC6EA15592C0000CEF963 /* REMD5Generator.cpp in Sources */,
+				3DECC6EB15592C0000CEF963 /* REMutex.cpp in Sources */,
+				3DECC6EC15592C0000CEF963 /* RENotificationManager.cpp in Sources */,
+				3DECC6ED15592C0000CEF963 /* RENULLObject.cpp in Sources */,
+				3DECC6EE15592C0000CEF963 /* RENumber.cpp in Sources */,
+				3DECC6EF15592C0000CEF963 /* RENumberObject.cpp in Sources */,
+				3DECC6F015592C0000CEF963 /* REObject.cpp in Sources */,
+				3DECC6F115592C0000CEF963 /* REObjectsArray.cpp in Sources */,
+				3DECC6F215592C0000CEF963 /* REObjectsDictionary.cpp in Sources */,
+				3DECC6F315592C0000CEF963 /* RERandomizer.cpp in Sources */,
+				3DECC6F415592C0000CEF963 /* RERect.cpp in Sources */,
+				3DECC6F515592C0000CEF963 /* REResourcesStorage.cpp in Sources */,
+				3DECC6F615592C0000CEF963 /* RESQLiteDB.cpp in Sources */,
+				3DECC6F715592C0000CEF963 /* RESQLiteDBResultSet.cpp in Sources */,
+				3DECC6F815592C0000CEF963 /* REString.cpp in Sources */,
+				3DECC6F915592C0000CEF963 /* REStringObject.cpp in Sources */,
+				3DECC6FB15592C0000CEF963 /* RETetragon.cpp in Sources */,
+				3DECC6FC15592C0000CEF963 /* REThread.cpp in Sources */,
+				3DECC6FD15592C0000CEF963 /* RETime.cpp in Sources */,
+				3DECC6FE15592C0000CEF963 /* RETimer.cpp in Sources */,
+				3DECC6FF15592C0000CEF963 /* REUserCallBacks.cpp in Sources */,
+				3DECC70015592C0000CEF963 /* REXMLPropertyListReader.cpp in Sources */,
+				3DECC70115592C0000CEF963 /* REXMLPropertyListWriter.cpp in Sources */,
+				3DECC70215592C0000CEF963 /* REZipReader.cpp in Sources */,
+				3DECC70315592C0000CEF963 /* REZLIBCompression.cpp in Sources */,
+				3DECC70A15592C0F00CEF963 /* ioapi.c in Sources */,
+				3DECC70C15592C0F00CEF963 /* unzip.c in Sources */,
+				3DECC71815592C1700CEF963 /* REYUV420toRGB565.cpp in Sources */,
+				3DECC71915592C1700CEF963 /* REYUV420toRGB888.cpp in Sources */,
+				3DECC71A15592C1700CEF963 /* REYUV420toRGB8888.cpp in Sources */,
+				3DECC71B15592C1700CEF963 /* REYUV422toRGB565.cpp in Sources */,
+				3DECC71C15592C1700CEF963 /* REYUV422toRGB888.cpp in Sources */,
+				3DECC71D15592C1700CEF963 /* REYUV422toRGB8888.cpp in Sources */,
+				3DECC71E15592C1700CEF963 /* REYUV444toRGB565.cpp in Sources */,
+				3DECC71F15592C1700CEF963 /* REYUV444toRGB888.cpp in Sources */,
+				3DECC72015592C1700CEF963 /* REYUV444toRGB8888.cpp in Sources */,
+				3DECC72115592C1700CEF963 /* REYUVtoRGB.cpp in Sources */,
+				3DECC78E15592C9300CEF963 /* lzma_wrap1.c in Sources */,
+				3DECC79115592C9300CEF963 /* webp_wrap1.c in Sources */,
+				3DECC79215592C9300CEF963 /* webp_wrap2.c in Sources */,
+				3DECC79315592C9300CEF963 /* webp_wrap3.c in Sources */,
+				3DECC79415592C9300CEF963 /* webp_wrap4.c in Sources */,
+				3DECC79715592C9300CEF963 /* tinyxml_wrap1.cpp in Sources */,
+				3DECC79915592C9300CEF963 /* jpeg_wrap1.c in Sources */,
+				3DECC79A15592C9300CEF963 /* jpeg_wrap2.c in Sources */,
+				3DECC79B15592C9300CEF963 /* jpeg_wrap3.c in Sources */,
+				3DECC79C15592C9300CEF963 /* jpeg_wrap4.c in Sources */,
+				3DECC79D15592C9300CEF963 /* jpeg_wrap5.c in Sources */,
+				3DECC79E15592C9300CEF963 /* jpeg_wrap6.c in Sources */,
+				3DECC79F15592C9300CEF963 /* jpeg_wrap7.c in Sources */,
+				3DECC7A015592C9300CEF963 /* jpeg_wrap8.c in Sources */,
+				3DECC7A115592C9300CEF963 /* jpeg_wrap9.c in Sources */,
+				3DECC7A215592C9300CEF963 /* jpeg_wrap10.c in Sources */,
+				3DECC7A315592C9300CEF963 /* jpeg_wrap11.c in Sources */,
+				3DECC7A415592C9300CEF963 /* jpeg_wrap12.c in Sources */,
+				3DECC7A515592C9300CEF963 /* jpeg_wrap13.c in Sources */,
+				3DECC7A615592C9300CEF963 /* jpeg_wrap14.c in Sources */,
+				3DECC7A715592C9300CEF963 /* jpeg_wrap15.c in Sources */,
+				3DECC7A815592C9300CEF963 /* jpeg_wrap16.c in Sources */,
+				3DECC7A915592C9300CEF963 /* jpeg_wrap17.c in Sources */,
+				3DECC7AA15592C9300CEF963 /* jpeg_wrap18.c in Sources */,
+				3DECC7AB15592C9300CEF963 /* jpeg_wrap19.c in Sources */,
+				3DECC7AC15592C9300CEF963 /* jpeg_wrap20.c in Sources */,
+				3DECC7AD15592C9300CEF963 /* jpeg_wrap21.c in Sources */,
+				3DECC7AE15592C9300CEF963 /* jpeg_wrap22.c in Sources */,
+				3DECC7AF15592C9300CEF963 /* jpeg_wrap23.c in Sources */,
+				3DECC7B015592C9300CEF963 /* jpeg_wrap24.c in Sources */,
+				3DECC7B115592C9300CEF963 /* jpeg_wrap25.c in Sources */,
+				3DECC7B215592C9300CEF963 /* jpeg_wrap26.c in Sources */,
+				3DECC7B315592C9300CEF963 /* jpeg_wrap27.c in Sources */,
+				3DECC7B415592C9300CEF963 /* jpeg_wrap28.c in Sources */,
+				3DECC7B515592C9300CEF963 /* jpeg_wrap29.c in Sources */,
+				3DECC7B615592C9300CEF963 /* jpeg_wrap30.c in Sources */,
+				3DECC7B715592C9300CEF963 /* jpeg_wrap31.c in Sources */,
+				3DECC7B815592C9300CEF963 /* jpeg_wrap32.c in Sources */,
+				3DECC7B915592C9300CEF963 /* jpeg_wrap33.c in Sources */,
+				3DECC7BA15592C9300CEF963 /* jpeg_wrap34.c in Sources */,
+				3DECC7BB15592C9300CEF963 /* jpeg_wrap35.c in Sources */,
+				3DECC7BC15592C9300CEF963 /* jpeg_wrap36.c in Sources */,
+				3DECC7BD15592C9300CEF963 /* jpeg_wrap37.c in Sources */,
+				3DECC7BE15592C9300CEF963 /* jpeg_wrap38.c in Sources */,
+				3DECC7BF15592C9300CEF963 /* jpeg_wrap39.c in Sources */,
+				3DECC7C015592C9300CEF963 /* jpeg_wrap40.c in Sources */,
+				3DECC7C115592C9300CEF963 /* jpeg_wrap41.c in Sources */,
+				3DECC7C215592C9300CEF963 /* jpeg_wrap42.c in Sources */,
+				3DECC7C315592C9300CEF963 /* jpeg_wrap43.c in Sources */,
+				3DECC7C415592C9300CEF963 /* jpeg_wrap44.c in Sources */,
+				3DECC7C515592C9300CEF963 /* jpeg_wrap45.c in Sources */,
+				3DECC7C615592C9300CEF963 /* jpeg_wrap46.c in Sources */,
+				3DECC7C715592C9300CEF963 /* jpeg_wrap47.c in Sources */,
+				3DECC7C815592C9300CEF963 /* jpeg_wrap48.c in Sources */,
+				3DECC7C915592C9300CEF963 /* jpeg_wrap49.c in Sources */,
+				3DECC7CA15592C9300CEF963 /* jpeg_wrap50.c in Sources */,
+				3DECC7CB15592C9300CEF963 /* jpeg_wrap51.c in Sources */,
+				3DECC7CC15592C9300CEF963 /* jpeg_wrap52.c in Sources */,
+				3DECC7CD15592C9300CEF963 /* jpeg_wrap53.c in Sources */,
+				3DECC7CE15592C9300CEF963 /* jpeg_wrap54.c in Sources */,
+				3DECC7CF15592C9300CEF963 /* jpeg_wrap55.c in Sources */,
+				3DECC7D015592C9300CEF963 /* jpeg_wrap56.c in Sources */,
+				3DECC7D115592C9300CEF963 /* jpeg_wrap57.c in Sources */,
+				3DECC7D215592C9300CEF963 /* jpeg_wrap58.c in Sources */,
+				3DECC7D315592C9300CEF963 /* jpeg_wrap59.c in Sources */,
+				3DECC7D415592C9300CEF963 /* jpeg_wrap60.c in Sources */,
+				3DECC7D715592C9300CEF963 /* openjpeg_wrap1.c in Sources */,
+				3DECC7D815592C9300CEF963 /* openjpeg_wrap2.c in Sources */,
+				3DECC7D915592C9300CEF963 /* openjpeg_wrap3.c in Sources */,
+				3DECC7DC15592C9300CEF963 /* png_wrap1.c in Sources */,
+				3DECC7DF15592C9300CEF963 /* sqlite_wrap1.c in Sources */,
+				3DECC7E215592C9300CEF963 /* zlib_wrap1.c in Sources */,
+				3DECC7E315592C9300CEF963 /* zlib_wrap2.c in Sources */,
+				3DECC7E415592C9300CEF963 /* zlib_wrap3.c in Sources */,
+				3DECC7E515592C9300CEF963 /* zlib_wrap4.c in Sources */,
+				3DECC7E615592C9300CEF963 /* zlib_wrap5.c in Sources */,
+				3DECC7E715592C9300CEF963 /* zlib_wrap6.c in Sources */,
+				3DECC7E815592C9300CEF963 /* zlib_wrap7.c in Sources */,
+				3DECC7E915592C9300CEF963 /* zlib_wrap8.c in Sources */,
+				3DECC7EA15592C9300CEF963 /* zlib_wrap9.c in Sources */,
+				3DECC7EB15592C9300CEF963 /* zlib_wrap10.c in Sources */,
+				3DECC7EC15592C9300CEF963 /* zlib_wrap11.c in Sources */,
+				3DECC7ED15592C9300CEF963 /* zlib_wrap12.c in Sources */,
+				3DECC7EE15592C9300CEF963 /* zlib_wrap13.c in Sources */,
+				3DECC7EF15592C9300CEF963 /* zlib_wrap14.c in Sources */,
+				3DECC7F015592C9300CEF963 /* zlib_wrap15.c in Sources */,
+				3D12324C15FA3F0300CFFD87 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */,
+				3D12324D15FA3F0300CFFD87 /* REMainLoopUpdatable.cpp in Sources */,
+				3D12325115FA3F4C00CFFD87 /* RELog.cpp in Sources */,
+				3D12325415FA3F6200CFFD87 /* RELocale_macosx.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3D1231B415FA3CB200CFFD87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/zlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSION_INFO_FILE = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		3D1231B515FA3CB200CFFD87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/zlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSION_INFO_FILE = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		3DECC5E115592B1B00CEF963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					__RE_OS_MACOSX__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3DECC5E215592B1B00CEF963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3DECC5E415592B1B00CEF963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/zlib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSION_INFO_FILE = "";
+			};
+			name = Debug;
+		};
+		3DECC5E515592B1B00CEF963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/zlib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSION_INFO_FILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D1231B615FA3CB200CFFD87 /* Build configuration list for PBXNativeTarget "RECore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1231B415FA3CB200CFFD87 /* Debug */,
+				3D1231B515FA3CB200CFFD87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3DECC5CC15592B1B00CEF963 /* Build configuration list for PBXProject "recore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DECC5E115592B1B00CEF963 /* Debug */,
+				3DECC5E215592B1B00CEF963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DECC5E315592B1B00CEF963 /* Build configuration list for PBXNativeTarget "recore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DECC5E415592B1B00CEF963 /* Debug */,
+				3DECC5E515592B1B00CEF963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DECC5C915592B1B00CEF963 /* Project object */;
+}

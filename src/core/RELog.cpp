@@ -21,12 +21,8 @@
 #include "recore_sdk_config.h"
 #endif
 
-#if defined(HAVE_RECORE_SDK_CONFIG_H) 
-#include "recore_sdk_config.h"
-#endif
-
-#if defined(HAVE_STDARG_H)
-#include <stdarg.h>
+#if defined(HAVE_ANDROID_LOG_H)
+#include <android/log.h>
 #endif
 
 void RELog::log(const char * logString, ...)

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewcontroller>
+	<string key="name">mainmenu</string>
+	<string key="sizepx">1333, 2000</string>
+	<string key="sizefl">2.66666, 4.0</string>
+	<property key="skyView">1</property>
+	<property key="startButton">2</property>
+	<property key="birdHead">3</property>
+	<property key="exitButton">4</property>
+	<property key="leftChaine">5</property>
+	<property key="rightChaine">6</property>
+	<property key="hightScoreButton">7</property>
+	<property key="profileButton">8</property>
+	<property key="optionsButton">9</property>
+	
+	<object class="REView" key="subview">
+		<string key="name">sky</string>
+		<string key="framerectfl">0, 0, 2.66666, 1.96</string>
+		<string key="scrframerectpx">0, 0, 2666, 980</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">150</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+		<integer key="editorid">1</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/sky.png</string>
+			<string key="frametetrfl">0.0, 0.0, 0.33333, 0.0, 0.0, 1.0, 0.33333, 1.0</string>
+		</object>
+	</object>
+	
+	<object class="REView" key="subview">
+		<string key="name">back</string>
+		<string key="framerectfl">0, 0.048, 2.66666, 3.952</string>
+		<string key="framerectpx">0, 24, 1333, 1976</string>
+		<string key="scrframerectfl">0, 0.048, 2.66667, 3.952</string>
+		<string key="scrframerectpx">0, 24, 1333, 1976</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">0</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/back.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+	<object class="REButton" key="subview">
+		<string key="name">start</string>
+		<string key="framerectfl">0.808202, 0.624, 1.02426, 0.36</string>
+		<string key="framerectpx">404, 312, 512, 180</string>
+		<string key="scrframerectfl">0.808202, 0.624, 1.02426, 0.36</string>
+		<string key="scrframerectpx">404, 312, 512, 180</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">1</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">1</integer>
+		<integer key="editorid">2</integer>
+
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/start.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<object class="RETextureObject" key="pressedtexture">
+			<string key="filter">nearest</string>
+			<string key="path">data/vc/mainmenu/img/starth.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<!--
+		<object class="RETextureObject" key="disabledtexture">
+			<string key="filter">linear</string>
+			<string key="path">Data/scenes/hud/textures/playpauseh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		-->
+	</object>
+	
+	<object class="REButton" key="subview">
+		<string key="name">hscor</string>
+		<string key="framerectfl">0.340085, 1.05, 1.95249, 0.36</string>
+		<string key="framerectpx">170, 525, 976, 180</string>
+		<string key="scrframerectfl">0.340085, 1.05, 1.95249, 0.36</string>
+		<string key="scrframerectpx">170, 525, 976, 180</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">2</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">1</integer>
+		<integer key="editorid">7</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/hscor.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<object class="RETextureObject" key="pressedtexture">
+			<string key="filter">nearest</string>
+			<string key="path">data/vc/mainmenu/img/hscorh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<!--
+		<object class="RETextureObject" key="disabledtexture">
+			<string key="filter">linear</string>
+			<string key="path">Data/scenes/hud/textures/playpauseh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		-->
+	</object>
+	
+	<object class="REButton" key="subview">
+		<string key="name">prof</string>
+		<string key="framerectfl">0.674169, 1.49, 1.30033, 0.36</string>
+		<string key="framerectpx">337, 745, 650, 180</string>
+		<string key="scrframerectfl">0.674169, 1.49, 1.30033, 0.36</string>
+		<string key="scrframerectpx">337, 745, 650, 180</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">3</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">1</integer>
+		<integer key="editorid">8</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/prof.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<object class="RETextureObject" key="pressedtexture">
+			<string key="filter">nearest</string>
+			<string key="path">data/vc/mainmenu/img/profh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<!--
+		<object class="RETextureObject" key="disabledtexture">
+			<string key="filter">linear</string>
+			<string key="path">Data/scenes/hud/textures/playpauseh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		-->
+	</object>
+	
+	<object class="REButton" key="subview">
+		<string key="name">opt</string>
+		<string key="framerectfl">0.664166, 1.92, 1.35834, 0.36</string>
+		<string key="framerectpx">332, 960, 679, 180</string>
+		<string key="scrframerectfl">0.664166, 1.92, 1.35834, 0.36</string>
+		<string key="scrframerectpx">332, 960, 679, 180</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">4</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">1</integer>
+		<integer key="editorid">9</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/opt.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<object class="RETextureObject" key="pressedtexture">
+			<string key="filter">nearest</string>
+			<string key="path">data/vc/mainmenu/img/opth.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<!--
+		<object class="RETextureObject" key="disabledtexture">
+			<string key="filter">linear</string>
+			<string key="path">Data/scenes/hud/textures/playpauseh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		-->
+	</object>
+	
+	<object class="REView" key="subview">
+		<string key="name">body</string>
+		<string key="framerectfl">1.9865, 2.358, 0.406102, 0.726</string>
+		<string key="framerectpx">993, 1179, 203, 363</string>
+		<string key="scrframerectfl">1.9865, 2.358, 0.406102, 0.726</string>
+		<string key="scrframerectpx">993, 1179, 203, 363</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">100</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/body.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+	<object class="RETransformedView" key="subview">
+		<string key="name">head</string>
+		<string key="framerectfl">1.85046, 2.236, 0.488122, 0.476</string>
+		<string key="framerectpx">925, 1118, 244, 238</string>
+		<string key="scrframerectfl">1.85046, 2.236, 0.488122, 0.476</string>
+		<string key="scrframerectpx">925, 1118, 244, 238</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">101</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+		<integer key="editorid">3</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/head.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+		
+	<object class="REButton" key="subview">
+		<string key="name">exit</string>
+		<string key="framerectfl">0.612153, 3.012, 1.46237, 0.75</string>
+		<string key="framerectpx">305, 1506, 731, 375</string>
+		<string key="scrframerectfl">0.612153, 3.012, 1.46237, 0.75</string>
+		<string key="scrframerectpx">305, 1506, 731, 375</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">5</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">1</integer>
+		<integer key="editorid">4</integer>
+
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/exit.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<object class="RETextureObject" key="pressedtexture">
+			<string key="filter">nearest</string>
+			<string key="path">data/vc/mainmenu/img/exith.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		<!--
+		<object class="RETextureObject" key="disabledtexture">
+			<string key="filter">linear</string>
+			<string key="path">Data/scenes/hud/textures/playpauseh.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+		-->
+	</object>
+	
+	
+	<object class="RETransformedView" key="subview">
+		<string key="name">lline</string>
+		<string key="framerectfl">0.744186, 2.824, 0.112028, 0.416</string>
+		<string key="framerectpx">372, 1412, 56, 208</string>
+		<string key="scrframerectfl">0.744186, 2.824, 0.112028, 0.416</string>
+		<string key="scrframerectpx">372, 1412, 56, 208</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">200</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+		<integer key="editorid">5</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/lline.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+	<object class="RETransformedView" key="subview">
+		<string key="name">rline</string>
+		<string key="framerectfl">1.67242, 2.824, 0.0820205, 0.34</string>
+		<string key="framerectpx">836, 1412, 41, 170</string>
+		<string key="scrframerectfl">1.67242, 2.824, 0.0820205, 0.34</string>
+		<string key="scrframerectpx">836, 1412, 41, 170</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">201</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+		<integer key="editorid">6</integer>
+		
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/mainmenu/img/rline.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+	<!-- 
+	<object class="RELabel" key="subview">
+		<string key="name">count</string>
+		<string key="text">Hello world</string>
+		<string key="framefl">0.338084, 0.244, 0.084021, 0.084</string>
+		<string key="framepx">169, 122, 42, 42</string>
+		<string key="scrframefl">1.56439, 3.52, 0.084021, 0.084</string>
+		<string key="scrframepx">782, 1760, 42, 42</string>
+		<integer key="tag">2002</integer>
+		<integer key="visible">1</integer>
+		<string key="colorrgbafl">1.0, 1.0, 1.0, 1.0</string>
+		<object class="REFontObject" key="font">
+			<string key="heightfl">0.5</string>
+			<string key="name">lhf outlaw rough</string>
+			<string key="path">Data/fonts/lhf outlaw rough.ttf</string>
+		</object>
+	</object>
+	-->
+</viewcontroller>

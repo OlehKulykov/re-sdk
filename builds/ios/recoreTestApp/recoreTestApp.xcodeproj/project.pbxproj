@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D02555217C76E8400C8BBCC /* MyGameRootViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EDD1656E061009B3BAD /* MyGameRootViewController.cpp */; };
+		3D1C7EB31656D45A009B3BAD /* librecore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1C7EAE1656D444009B3BAD /* librecore.a */; };
+		3D1C7EB41656D45A009B3BAD /* libregui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1C7EA11656D43D009B3BAD /* libregui.a */; };
+		3D1C7EB51656D45F009B3BAD /* librecore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1C7EAE1656D444009B3BAD /* librecore.a */; };
+		3D1C7EB61656D45F009B3BAD /* libregui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1C7EA11656D43D009B3BAD /* libregui.a */; };
+		3D1C7EBA1656D50C009B3BAD /* MyGameInterLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EB91656D50C009B3BAD /* MyGameInterLayer.cpp */; };
+		3D1C7EBD1656D65B009B3BAD /* MyGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EBC1656D65B009B3BAD /* MyGLView.m */; };
+		3D1C7EC01656D76D009B3BAD /* MyGameGLKDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EBF1656D76D009B3BAD /* MyGameGLKDelegate.mm */; };
+		3D1C7EDB1656E037009B3BAD /* MyGameApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EDA1656E037009B3BAD /* MyGameApplication.cpp */; };
+		3D1C7EDE1656E061009B3BAD /* MyGameRootViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C7EDD1656E061009B3BAD /* MyGameRootViewController.cpp */; };
+		3D4FAE001656CA1700A2C487 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FADFF1656CA1700A2C487 /* UIKit.framework */; };
+		3D4FAE021656CA1700A2C487 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE011656CA1700A2C487 /* Foundation.framework */; };
+		3D4FAE041656CA1700A2C487 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE031656CA1700A2C487 /* CoreGraphics.framework */; };
+		3D4FAE061656CA1700A2C487 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE051656CA1700A2C487 /* GLKit.framework */; };
+		3D4FAE081656CA1700A2C487 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE071656CA1700A2C487 /* OpenGLES.framework */; };
+		3D4FAE0E1656CA1700A2C487 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */; };
+		3D4FAE101656CA1700A2C487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE0F1656CA1700A2C487 /* main.m */; };
+		3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE131656CA1700A2C487 /* AppDelegate.m */; };
+		3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1A1656CA1700A2C487 /* ViewController.m */; };
+		3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4FAE1C1656CA1700A2C487 /* ViewController.xib */; };
+		3D4FAE261656CA1700A2C487 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE251656CA1700A2C487 /* SenTestingKit.framework */; };
+		3D4FAE271656CA1700A2C487 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FADFF1656CA1700A2C487 /* UIKit.framework */; };
+		3D4FAE281656CA1700A2C487 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FAE011656CA1700A2C487 /* Foundation.framework */; };
+		3DB4A65716603BD700E4803F /* IOSFileReaderCallBacks.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DB4A65616603BD700E4803F /* IOSFileReaderCallBacks.mm */; };
+		3DC318C6181486180040F8F4 /* data.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3DC318C5181486180040F8F4 /* data.dat */; };
+		3DC318C7181486180040F8F4 /* data.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3DC318C5181486180040F8F4 /* data.dat */; };
+		3DF3B533167736BE00154AF6 /* libremedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF3B5321677364F00154AF6 /* libremedia.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D1C7EA01656D43D009B3BAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D1C7E731656D3CF009B3BAD /* regui.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D0E32A013E7CC5800F3D0A6;
+			remoteInfo = regui;
+		};
+		3D1C7EAD1656D444009B3BAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D1C7E701656D3CF009B3BAD /* recore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D1788E713E2987E00520FC2;
+			remoteInfo = recore;
+		};
+		3D4FAE291656CA1700A2C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D4FADF21656CA1700A2C487 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D4FADFA1656CA1700A2C487;
+			remoteInfo = recoreTestApp;
+		};
+		3D802A44176DF27700033721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D1C7E701656D3CF009B3BAD /* recore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D889132176CFD810086873B;
+			remoteInfo = CreateREConfigHardcoded;
+		};
+		3DF3B5311677364F00154AF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DF3B52A1677364E00154AF6 /* remedia.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D2E5AEC150A498E00F17250;
+			remoteInfo = remedia;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3D1C7E701656D3CF009B3BAD /* recore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = recore.xcodeproj; path = ../recore.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3D1C7E731656D3CF009B3BAD /* regui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = regui.xcodeproj; path = ../regui.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3D1C7EB81656D507009B3BAD /* MyGameInterLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyGameInterLayer.h; path = recoreTestApp/MyGameInterLayer.h; sourceTree = SOURCE_ROOT; };
+		3D1C7EB91656D50C009B3BAD /* MyGameInterLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyGameInterLayer.cpp; path = recoreTestApp/MyGameInterLayer.cpp; sourceTree = SOURCE_ROOT; };
+		3D1C7EBB1656D65B009B3BAD /* MyGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGLView.h; sourceTree = "<group>"; };
+		3D1C7EBC1656D65B009B3BAD /* MyGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLView.m; sourceTree = "<group>"; };
+		3D1C7EBE1656D76D009B3BAD /* MyGameGLKDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGameGLKDelegate.h; sourceTree = "<group>"; };
+		3D1C7EBF1656D76D009B3BAD /* MyGameGLKDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyGameGLKDelegate.mm; sourceTree = "<group>"; };
+		3D1C7ED91656E02E009B3BAD /* MyGameApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGameApplication.h; sourceTree = "<group>"; };
+		3D1C7EDA1656E037009B3BAD /* MyGameApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyGameApplication.cpp; sourceTree = "<group>"; };
+		3D1C7EDC1656E056009B3BAD /* MyGameRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGameRootViewController.h; sourceTree = "<group>"; };
+		3D1C7EDD1656E061009B3BAD /* MyGameRootViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyGameRootViewController.cpp; sourceTree = "<group>"; };
+		3D4FADFB1656CA1700A2C487 /* recoreTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recoreTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D4FADFF1656CA1700A2C487 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3D4FAE011656CA1700A2C487 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D4FAE031656CA1700A2C487 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3D4FAE051656CA1700A2C487 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3D4FAE071656CA1700A2C487 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3D4FAE0B1656CA1700A2C487 /* recoreTestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "recoreTestApp-Info.plist"; sourceTree = "<group>"; };
+		3D4FAE0D1656CA1700A2C487 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D4FAE0F1656CA1700A2C487 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3D4FAE111656CA1700A2C487 /* recoreTestApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "recoreTestApp-Prefix.pch"; sourceTree = "<group>"; };
+		3D4FAE121656CA1700A2C487 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3D4FAE131656CA1700A2C487 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3D4FAE191656CA1700A2C487 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3D4FAE1A1656CA1700A2C487 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3D4FAE1D1656CA1700A2C487 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		3D4FAE241656CA1700A2C487 /* recoreTestAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recoreTestAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D4FAE251656CA1700A2C487 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3DB4A65516603BD700E4803F /* IOSFileReaderCallBacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSFileReaderCallBacks.h; sourceTree = "<group>"; };
+		3DB4A65616603BD700E4803F /* IOSFileReaderCallBacks.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSFileReaderCallBacks.mm; sourceTree = "<group>"; };
+		3DC318C5181486180040F8F4 /* data.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = data.dat; path = resources/data.dat; sourceTree = SOURCE_ROOT; };
+		3DF3B52A1677364E00154AF6 /* remedia.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = remedia.xcodeproj; path = ../remedia.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D4FADF81656CA1700A2C487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DF3B533167736BE00154AF6 /* libremedia.a in Frameworks */,
+				3D1C7EB31656D45A009B3BAD /* librecore.a in Frameworks */,
+				3D1C7EB41656D45A009B3BAD /* libregui.a in Frameworks */,
+				3D4FAE001656CA1700A2C487 /* UIKit.framework in Frameworks */,
+				3D4FAE021656CA1700A2C487 /* Foundation.framework in Frameworks */,
+				3D4FAE041656CA1700A2C487 /* CoreGraphics.framework in Frameworks */,
+				3D4FAE061656CA1700A2C487 /* GLKit.framework in Frameworks */,
+				3D4FAE081656CA1700A2C487 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D4FAE201656CA1700A2C487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1C7EB51656D45F009B3BAD /* librecore.a in Frameworks */,
+				3D1C7EB61656D45F009B3BAD /* libregui.a in Frameworks */,
+				3D4FAE261656CA1700A2C487 /* SenTestingKit.framework in Frameworks */,
+				3D4FAE271656CA1700A2C487 /* UIKit.framework in Frameworks */,
+				3D4FAE281656CA1700A2C487 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D1C7E9B1656D43D009B3BAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D1C7EA11656D43D009B3BAD /* libregui.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D1C7EA71656D444009B3BAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D1C7EAE1656D444009B3BAD /* librecore.a */,
+				3D802A45176DF27700033721 /* librecore copy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D1C7EB71656D4C5009B3BAD /* MyGame */ = {
+			isa = PBXGroup;
+			children = (
+				3D1C7EB81656D507009B3BAD /* MyGameInterLayer.h */,
+				3D1C7EB91656D50C009B3BAD /* MyGameInterLayer.cpp */,
+				3D1C7ED91656E02E009B3BAD /* MyGameApplication.h */,
+				3D1C7EDA1656E037009B3BAD /* MyGameApplication.cpp */,
+				3D1C7EDC1656E056009B3BAD /* MyGameRootViewController.h */,
+				3D1C7EDD1656E061009B3BAD /* MyGameRootViewController.cpp */,
+			);
+			name = MyGame;
+			sourceTree = "<group>";
+		};
+		3D4FADF01656CA1700A2C487 = {
+			isa = PBXGroup;
+			children = (
+				3D4FAE091656CA1700A2C487 /* recoreTestApp */,
+				3D1C7E701656D3CF009B3BAD /* recore.xcodeproj */,
+				3D1C7E731656D3CF009B3BAD /* regui.xcodeproj */,
+				3DF3B52A1677364E00154AF6 /* remedia.xcodeproj */,
+				3D4FADFE1656CA1700A2C487 /* Frameworks */,
+				3D4FADFC1656CA1700A2C487 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D4FADFC1656CA1700A2C487 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D4FADFB1656CA1700A2C487 /* recoreTestApp.app */,
+				3D4FAE241656CA1700A2C487 /* recoreTestAppTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D4FADFE1656CA1700A2C487 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D4FADFF1656CA1700A2C487 /* UIKit.framework */,
+				3D4FAE011656CA1700A2C487 /* Foundation.framework */,
+				3D4FAE031656CA1700A2C487 /* CoreGraphics.framework */,
+				3D4FAE051656CA1700A2C487 /* GLKit.framework */,
+				3D4FAE071656CA1700A2C487 /* OpenGLES.framework */,
+				3D4FAE251656CA1700A2C487 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D4FAE091656CA1700A2C487 /* recoreTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				3D1C7EB71656D4C5009B3BAD /* MyGame */,
+				3D4FAE121656CA1700A2C487 /* AppDelegate.h */,
+				3D4FAE131656CA1700A2C487 /* AppDelegate.m */,
+				3D4FAE191656CA1700A2C487 /* ViewController.h */,
+				3D4FAE1A1656CA1700A2C487 /* ViewController.m */,
+				3D4FAE1C1656CA1700A2C487 /* ViewController.xib */,
+				3D1C7EBB1656D65B009B3BAD /* MyGLView.h */,
+				3D1C7EBC1656D65B009B3BAD /* MyGLView.m */,
+				3D1C7EBE1656D76D009B3BAD /* MyGameGLKDelegate.h */,
+				3D1C7EBF1656D76D009B3BAD /* MyGameGLKDelegate.mm */,
+				3DB4A65516603BD700E4803F /* IOSFileReaderCallBacks.h */,
+				3DB4A65616603BD700E4803F /* IOSFileReaderCallBacks.mm */,
+				3D4FAE0A1656CA1700A2C487 /* Supporting Files */,
+			);
+			path = recoreTestApp;
+			sourceTree = "<group>";
+		};
+		3D4FAE0A1656CA1700A2C487 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3DC318C5181486180040F8F4 /* data.dat */,
+				3D4FAE0B1656CA1700A2C487 /* recoreTestApp-Info.plist */,
+				3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */,
+				3D4FAE0F1656CA1700A2C487 /* main.m */,
+				3D4FAE111656CA1700A2C487 /* recoreTestApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DF3B52B1677364E00154AF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DF3B5321677364F00154AF6 /* libremedia.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D4FADFA1656CA1700A2C487 /* recoreTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D4FAE361656CA1700A2C487 /* Build configuration list for PBXNativeTarget "recoreTestApp" */;
+			buildPhases = (
+				3D4FADF71656CA1700A2C487 /* Sources */,
+				3D4FADF81656CA1700A2C487 /* Frameworks */,
+				3D4FADF91656CA1700A2C487 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = recoreTestApp;
+			productName = recoreTestApp;
+			productReference = 3D4FADFB1656CA1700A2C487 /* recoreTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D4FAE231656CA1700A2C487 /* recoreTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D4FAE391656CA1700A2C487 /* Build configuration list for PBXNativeTarget "recoreTestAppTests" */;
+			buildPhases = (
+				3D4FAE1F1656CA1700A2C487 /* Sources */,
+				3D4FAE201656CA1700A2C487 /* Frameworks */,
+				3D4FAE211656CA1700A2C487 /* Resources */,
+				3D4FAE221656CA1700A2C487 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D4FAE2A1656CA1700A2C487 /* PBXTargetDependency */,
+			);
+			name = recoreTestAppTests;
+			productName = recoreTestAppTests;
+			productReference = 3D4FAE241656CA1700A2C487 /* recoreTestAppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D4FADF21656CA1700A2C487 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = n;
+			};
+			buildConfigurationList = 3D4FADF51656CA1700A2C487 /* Build configuration list for PBXProject "recoreTestApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3D4FADF01656CA1700A2C487;
+			productRefGroup = 3D4FADFC1656CA1700A2C487 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3D1C7EA71656D444009B3BAD /* Products */;
+					ProjectRef = 3D1C7E701656D3CF009B3BAD /* recore.xcodeproj */;
+				},
+				{
+					ProductGroup = 3D1C7E9B1656D43D009B3BAD /* Products */;
+					ProjectRef = 3D1C7E731656D3CF009B3BAD /* regui.xcodeproj */;
+				},
+				{
+					ProductGroup = 3DF3B52B1677364E00154AF6 /* Products */;
+					ProjectRef = 3DF3B52A1677364E00154AF6 /* remedia.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				3D4FADFA1656CA1700A2C487 /* recoreTestApp */,
+				3D4FAE231656CA1700A2C487 /* recoreTestAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3D1C7EA11656D43D009B3BAD /* libregui.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libregui.a;
+			remoteRef = 3D1C7EA01656D43D009B3BAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3D1C7EAE1656D444009B3BAD /* librecore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = librecore.a;
+			remoteRef = 3D1C7EAD1656D444009B3BAD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3D802A45176DF27700033721 /* librecore copy.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "librecore copy.a";
+			remoteRef = 3D802A44176DF27700033721 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3DF3B5321677364F00154AF6 /* libremedia.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libremedia.a;
+			remoteRef = 3DF3B5311677364F00154AF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D4FADF91656CA1700A2C487 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DC318C6181486180040F8F4 /* data.dat in Resources */,
+				3D4FAE0E1656CA1700A2C487 /* InfoPlist.strings in Resources */,
+				3D4FAE1E1656CA1700A2C487 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D4FAE211656CA1700A2C487 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DC318C7181486180040F8F4 /* data.dat in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D4FAE221656CA1700A2C487 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D4FADF71656CA1700A2C487 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D4FAE101656CA1700A2C487 /* main.m in Sources */,
+				3D4FAE141656CA1700A2C487 /* AppDelegate.m in Sources */,
+				3D4FAE1B1656CA1700A2C487 /* ViewController.m in Sources */,
+				3D1C7EBA1656D50C009B3BAD /* MyGameInterLayer.cpp in Sources */,
+				3D1C7EBD1656D65B009B3BAD /* MyGLView.m in Sources */,
+				3D1C7EC01656D76D009B3BAD /* MyGameGLKDelegate.mm in Sources */,
+				3D1C7EDB1656E037009B3BAD /* MyGameApplication.cpp in Sources */,
+				3D1C7EDE1656E061009B3BAD /* MyGameRootViewController.cpp in Sources */,
+				3DB4A65716603BD700E4803F /* IOSFileReaderCallBacks.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D4FAE1F1656CA1700A2C487 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D02555217C76E8400C8BBCC /* MyGameRootViewController.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D4FAE2A1656CA1700A2C487 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D4FADFA1656CA1700A2C487 /* recoreTestApp */;
+			targetProxy = 3D4FAE291656CA1700A2C487 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3D4FAE0C1656CA1700A2C487 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D4FAE0D1656CA1700A2C487 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D4FAE1C1656CA1700A2C487 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D4FAE1D1656CA1700A2C487 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D4FAE341656CA1700A2C487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					__RE_OS_IPHONE__,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../ios/;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D4FAE351656CA1700A2C487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../ios/;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D4FAE371656CA1700A2C487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "recoreTestApp/recoreTestApp-Prefix.pch";
+				INFOPLIST_FILE = "recoreTestApp/recoreTestApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3D4FAE381656CA1700A2C487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "recoreTestApp/recoreTestApp-Prefix.pch";
+				INFOPLIST_FILE = "recoreTestApp/recoreTestApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3D4FAE3A1656CA1700A2C487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/recoreTestApp.app/recoreTestApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "recoreTestApp/recoreTestApp-Prefix.pch";
+				INFOPLIST_FILE = "recoreTestAppTests/recoreTestAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3D4FAE3B1656CA1700A2C487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/recoreTestApp.app/recoreTestApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "recoreTestApp/recoreTestApp-Prefix.pch";
+				INFOPLIST_FILE = "recoreTestAppTests/recoreTestAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D4FADF51656CA1700A2C487 /* Build configuration list for PBXProject "recoreTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D4FAE341656CA1700A2C487 /* Debug */,
+				3D4FAE351656CA1700A2C487 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D4FAE361656CA1700A2C487 /* Build configuration list for PBXNativeTarget "recoreTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D4FAE371656CA1700A2C487 /* Debug */,
+				3D4FAE381656CA1700A2C487 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D4FAE391656CA1700A2C487 /* Build configuration list for PBXNativeTarget "recoreTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D4FAE3A1656CA1700A2C487 /* Debug */,
+				3D4FAE3B1656CA1700A2C487 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D4FADF21656CA1700A2C487 /* Project object */;
+}

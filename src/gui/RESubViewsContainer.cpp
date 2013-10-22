@@ -18,281 +18,105 @@
 #include "../../include/regui/RESubViewsContainer.h"
 #include "../../include/regui/REView.h"
 
-REView * RESubViewsContainer::getParentSubViewsContainer() const
+RESubviewsContainer * RESubviewsContainer::parentSubviewsContainer() const
 {
-	return (REView *)_parentSubViewsContainer;
+	return _parentSubviewsContainer;
 }
 
-REBOOL RESubViewsContainer::isHasSubViews() const
+REBOOL RESubviewsContainer::isHasSubviews() const
 {
-	if (_subViewsArray) 
-	{
-		return (_subViewsArray->count() > 0);
-	}
-	return false;
+	return ( !_subviews.isEmpty() );
 }
 
-REView * RESubViewsContainer::findSubViewWithTag(const REInt32 viewTag)
+REList<REView *>::Iterator RESubviewsContainer::subviewsIterator() const
 {
-	_updateMutex.lock();
-	
-	if (_subViewsArray) 
+	return _subviews.iterator();
+}
+
+REView * RESubviewsContainer::subviewWithTag(const REInt32 viewTag)
+{
+	REList<REView *>::Iterator iter(_subviews.iterator());
+	while (iter.next()) 
 	{
-		for (REUInt32 i = 0; i < _subViewsArray->count(); i++) 
+		if (iter.value()->tag() == viewTag) 
 		{
-			REView * v = (REView *)(*_subViewsArray)[i];
-			if (v->getTag() == viewTag) 
+			return iter.value();
+		}
+		else
+		{
+			REView * sv = iter.value()->subviewWithTag(viewTag);
+			if (sv) 
 			{
-				_updateMutex.unlock();
-				return v;
-			}
-			else
-			{
-				REView * sv = v->findSubViewWithTag(viewTag);
-				if (sv) 
-				{
-					_updateMutex.unlock();
-					return sv;
-				}
+				return sv; 
 			}
 		}
 	}
-
-	_updateMutex.unlock();
 	return NULL;
 }
 
-REView * RESubViewsContainer::findSubViewWithClassName(const char * className)
+REBOOL RESubviewsContainer::removeSubview(REView * v)
 {
-	_updateMutex.lock();
-	if (_subViewsArray && className) 
-	{
-		const REUInt32 classNameIdentifier = REObject::generateClassIdentifierFromClassName(className);
-		for (REUInt32 i = 0; i < _subViewsArray->count(); i++) 
-		{
-			REView * v = (REView *)(*_subViewsArray)[i];
-			if (v->objectIdentifier() == classNameIdentifier) 
-			{
-				_updateMutex.unlock();
-				return v;
-			}
-			else
-			{
-				REView * sv = v->findSubViewWithClassName(className);
-				if (sv) 
-				{
-					_updateMutex.unlock();
-					return sv;
-				}
-			}
-		}
-	}
-	_updateMutex.unlock();
-	return NULL;
-}
-
-REBOOL RESubViewsContainer::removeSubView(REView * v)
-{
-	REBOOL r = false;
-	_updateMutex.lock();
 	if (v) 
 	{
-		if (_subViewsArray) 
+		REList<REView *>::Iterator iter(_subviews.iterator());
+		while (iter.next()) 
 		{
-			v->retain();
-			if (_subViewsArray->remove(v)) 
+			if (iter.value()->isEqual(v)) 
 			{
-				v->_parentSubViewsContainer = NULL;
-				this->onViewDidRemoved(v);
-				r = true;
+				return _subviews.removeNode(iter.node());
 			}
-			v->release();
 		}
 	}
-	_updateMutex.unlock();
-	return r;
+	return false;
 }
 
-REBOOL RESubViewsContainer::replaceSubView(REView * v, REView * withView)
-{
-	REBOOL r = false;
-	_updateMutex.lock();
-	
-	if (v && withView) 
-	{
-		if (_subViewsArray) 
-		{
-			v->retain();
-			if (_subViewsArray->replace(v, withView)) 
-			{
-				v->_parentSubViewsContainer = NULL;
-				withView->_parentSubViewsContainer = this;
-				this->onViewDidRemoved(v);
-				this->onViewDidAdded(withView);
-				r = true;
-			}
-			v->release();
-		}
-	}
-	
-	_updateMutex.unlock();
-	return r;
-}
-
-REBOOL RESubViewsContainer::addSubView(REView * v)
-{
-	_updateMutex.lock();
-	
+REBOOL RESubviewsContainer::addSubview(REView * v)
+{	
 	if (v) 
 	{
-		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
-		if (a) 
+		if (_subviews.add(v)) 
 		{
-			if ( a->add(v) ) 
-			{
-				v->_parentSubViewsContainer = this;
-				this->onViewDidAdded(v);
-				_updateMutex.unlock();
-				return true;
-			}
+			v->_parentSubviewsContainer = this;
+			return true;
 		}
 	}
-	
-	_updateMutex.unlock();
 	return false;
 }
 
-/// Inserts view above 'targetView'.
-/// After adding view Retain will call.
-/// Returns false if one of params is NULL or 'targetView' not containes.
-REBOOL RESubViewsContainer::insertSubViewAbove(REView * v, REView * targetView)
+void RESubviewsContainer::removeAllSubviews()
 {
-	_updateMutex.lock();
-	
-	if (v && targetView) 
+	_subviews.clear();
+}
+
+REList<REView *>::NodePtr RESubviewsContainer::newNode(REView* const & newValue)
+{
+	REList<REView *>::NodePtr node = new REList<REView *>::Node(newValue);
+	if (node) 
 	{
-		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
-		if (a) 
-		{
-			REUInt32 insertIndex = a->search(targetView);
-			if (insertIndex != RENotFound) 
-			{
-				insertIndex++;
-				const REUInt32 lastIndex = a->count() - 1;
-				REBOOL isAdded = false;
-				if (insertIndex < lastIndex) 
-				{
-					isAdded = a->insert(insertIndex, v);
-				}
-				else 
-				{
-					isAdded = a->add(v);
-				}
-				
-				if (isAdded) 
-				{
-					v->_parentSubViewsContainer = this;
-					this->onViewDidAdded(v);
-					_updateMutex.unlock();
-					return true;
-				}
-			}
-		}
+		node->value->retain();
 	}
-	
-	_updateMutex.unlock();
-	return false;
+	return node;
 }
 
-/// Inserts view below 'targetView'.
-/// After adding view Retain will call.
-/// Returns false if one of params is NULL or 'targetView' not containes.
-REBOOL RESubViewsContainer::insertSubViewBelow(REView * v, REView * targetView)
+void RESubviewsContainer::deleteNode(REList<REView *>::NodePtr node)
 {
-	_updateMutex.lock();
-	
-	if (v && targetView) 
+	if (node) 
 	{
-		REArrayObject * a = this->getOrCreateAndGetSubViewsArray();
-		if (a) 
-		{
-			REUInt32 insertIndex = a->search(targetView);
-			if (insertIndex != RENotFound) 
-			{
-				if (a->insert(insertIndex, v)) 
-				{
-					v->_parentSubViewsContainer = this;
-					this->onViewDidAdded(v);
-					_updateMutex.unlock();
-					return true;
-				}
-			}
-		}
+		node->value->_parentSubviewsContainer = NULL;
+		node->value->release();
+		delete node;
 	}
-	
-	_updateMutex.unlock();
-	return false;
 }
 
-void RESubViewsContainer::lockUpdate()
+RESubviewsContainer::RESubviewsContainer() :
+	_subviews(RESubviewsContainer::newNode, RESubviewsContainer::deleteNode),
+	_parentSubviewsContainer(NULL)
 {
-	_updateMutex.lock();
+	
 }
 
-void RESubViewsContainer::unLockUpdate()
+RESubviewsContainer::~RESubviewsContainer()
 {
-	_updateMutex.unlock();
-}
-
-void RESubViewsContainer::removeAllSubViews()
-{
-	_updateMutex.lock();
-	
-	if (_subViewsArray) 
-	{
-		for (REUInt32 i = 0; i < _subViewsArray->count(); i++) 
-		{
-			REView * v = (REView *)(*_subViewsArray)[i];
-			v->_parentSubViewsContainer = NULL;
-			this->onViewDidRemoved(v);
-		}
-		_subViewsArray->clear();
-	}
-
-	_updateMutex.unlock();
-}
-
-REArrayObject * RESubViewsContainer::getOrCreateAndGetSubViewsArray()
-{
-	if (_subViewsArray) 
-	{
-		return _subViewsArray;
-	}
-	
-	_updateMutex.lock();
-	
-	_subViewsArray = REArrayObject::create();
-	
-	_updateMutex.unlock();
-		
-	return _subViewsArray;
-}
-
-RESubViewsContainer::RESubViewsContainer() :
-	_subViewsArray(NULL),
-	_parentSubViewsContainer(NULL)
-{
-	_updateMutex.init(REMutexTypeRecursive);
-}
-
-RESubViewsContainer::~RESubViewsContainer()
-{
-	this->removeAllSubViews();
-	
-	if (_subViewsArray) 
-	{
-		_subViewsArray->release();
-	}
 	
 }
 

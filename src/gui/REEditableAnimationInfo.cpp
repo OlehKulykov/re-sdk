@@ -308,15 +308,7 @@ REBOOL REEditableAnimationInfo::addFloatParam(REObject * view,
 			{
 				p->object = view;
 				p->objectAnimationsCounter = animationsCounter;
-                static const REUInt32 respondentClassID = REObject::generateClassIdentifierFromClassName("IREAnimationRespondent");
-				if (view->isImplementsClass(respondentClassID))
-				{
-					p->respondent = (IREAnimationRespondent *)view;
-				}
-				else
-				{
-					p->respondent = NULL;
-				}
+				p->respondent = dynamic_cast<IREAnimationRespondent *>(view);
 				p->incCounter();
 				view->retain();
 			}

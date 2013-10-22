@@ -17,33 +17,19 @@
 
 #include "../../include/recore/REBufferObject.h"
 
-const REUInt32 REBufferObject::getClassIdentifier() const
-{
-	return REBufferObject::classIdentifier();
-}
-
-const REUInt32 REBufferObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REBufferObject");
-	return clasIdentif;
-}
-
-REBOOL REBufferObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REBufferObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REBuffer") == classIdentifier));
-}
-
 REBOOL REBufferObject::isEqual(REObject * anotherObject)
-{
-	if (REObject::isEqual(anotherObject)) { return true; }
-	
+{	
 	if (anotherObject) 
 	{
-		if (anotherObject->getClassIdentifier() == REBufferObject::classIdentifier()) 
+		if (REObject::isEqual(anotherObject)) 
 		{
-			REBufferObject * buff = (REBufferObject*)anotherObject;
-			if ( buff->size() == this->size() ) 
+			return true; 
+		}
+		
+		REBuffer * buff = dynamic_cast<REBuffer *>(anotherObject);
+		if (buff) 
+		{
+			if (buff->size() == this->size()) 
 			{
 				return (memcmp(buff->buffer(), this->buffer(), this->size()) == 0);
 			}

@@ -17,8 +17,10 @@
 
 #include "../../include/recore/REDictionary.h"
 #include "../../include/recore/REMutableString.h"
+#include "../../include/recore/REStaticString.h"
 #include "../../include/recore/REBase64.h"
-#include "../../include/recore/REDictionaryObject.h"
+#include "../../include/recore/REDate.h"
+#include "../../include/recore/RENumber.h"
 
 #include "json/OKJSONParser.h"
 
@@ -71,28 +73,28 @@ void REDictionaryJSONGeneratorPrivate::addNull()
 
 void REDictionaryJSONGeneratorPrivate::addPtr(const RETypedPtr & ptr)
 {
-	switch (ptr.getType()) 
+	switch (ptr.type()) 
 	{
 		case REPtrTypeArray:
-			this->addArray(*ptr.getArray());
+			this->addArray(*ptr.array());
 			break;
 		case REPtrTypeDictionary:
-			this->addDict(*ptr.getDictionary());
+			this->addDict(*ptr.dictionary());
 			break;
 		case REPtrTypeNumber:
-			this->addNumber(*ptr.getNumber());
+			this->addNumber(*ptr.number());
 			break;
 		case REPtrTypeString:
-			this->addString(*ptr.getString());
+			this->addString(*ptr.string());
 			break;
 		case REPtrTypeNull:
 			this->addNull();
 			break;
 		case REPtrTypeDate:
-			this->addDate(*ptr.getDate());
+			this->addDate(*ptr.date());
 			break;
 		case REPtrTypeBuffer:
-			this->addBuffer(*ptr.getBuffer());
+			this->addBuffer(*ptr.buffer());
 			break;
 		default:
 			break;
@@ -136,7 +138,7 @@ void REDictionaryJSONGeneratorPrivate::addValueKey(const RETypedPtr & value, con
 	if (RETypedPtr::isNotEmpty(&key, REPtrTypeString) && 
 		RETypedPtr::isNotEmpty(&value))
 	{
-		this->addString(*key.getString());
+		this->addString(*key.string());
 		json.append(":", 1);
 		this->addPtr(value);
 	}
@@ -146,11 +148,13 @@ void REDictionaryJSONGeneratorPrivate::addDict(const REDictionary & dict)
 {
 	json.append("{", 1);
 	
-	const REArray<REDictionary::Pair> & pairs = dict.getPairs();
-	for (REUInt32 i = 0; i < pairs.count(); i++) 
+	REUInt32 i = 0;
+	REList<REDictionary::Pair>::Iterator iter = dict.pairs().iterator();
+	while (iter.next()) 
 	{
 		if (i) json.append(",", 1);
-		this->addValueKey(pairs[i].value, pairs[i].key);
+		this->addValueKey(iter.value().value, iter.value().key);
+		i++;
 	}
 	
 	json.append("}", 1);
@@ -212,12 +216,12 @@ REDictionary::Pair::~Pair()
 }
 
 
-REBOOL REDictionary::copyPairs(REArray<REDictionary::Pair> & pairs)
+REBOOL REDictionary::copyPairs(const REList<REDictionary::Pair> & pairs)
 {
-	for (REUInt32 i = 0; i < pairs.count(); i++) 
+	REList<REDictionary::Pair>::Iterator iter = pairs.iterator();
+	while (iter.next()) 
 	{
-		REDictionary::Pair newPair(pairs[i]);
-		if (!_pairs.add(newPair))
+		if (!_pairs.add(iter.value()))
 		{
 			return false;
 		}
@@ -240,7 +244,7 @@ REBOOL REDictionary::readJSONData(const REUByte * jsonData,
 	{
 		RETypedPtr parsedPointer = *((RETypedPtr*)parsedObject);
 		REBOOL r = false;
-		REDictionary * dict = parsedPointer.getDictionary();
+		REDictionary * dict = parsedPointer.dictionary();
 		if (dict)
 		{
 			r = this->copyPairs(dict->_pairs);
@@ -272,75 +276,73 @@ REMutableString REDictionary::JSONString() const
 	return g.json;
 }
 
-REDictionary::Pair * REDictionary::pairForKey(const RETypedPtr & key, REUInt32 * resultIndex) const
+REList<REDictionary::Pair>::Node * REDictionary::nodeForKey(const RETypedPtr & key) const
 {
-	for (REUInt32 i = 0; i < _pairs.count(); i++) 
+	REList<REDictionary::Pair>::Iterator iter = _pairs.iterator();
+	while (iter.next()) 
 	{
-		if (_pairs[i].key.isEqualToTypedPointer(key))
+		if (iter.value().key.isEqualToTypedPointer(key)) 
 		{
-			if (resultIndex)
-			{
-				*resultIndex = i;
-			}
-			return (&_pairs[i]);
+			return iter.node();
 		}
 	}
 	return NULL;
 }
 
-const REUInt32 REDictionary::pairsCount() const
+const REUInt32 REDictionary::count() const
 {
-	return _pairs.count();
+	REUInt32 c = 0;
+	REList<REDictionary::Pair>::Iterator iter = _pairs.iterator();
+	while (iter.next()) 
+	{
+		c++;
+	}
+	return c;
 }
 
-const REArray<REDictionary::Pair> & REDictionary::getPairs() const
+const REList<REDictionary::Pair> & REDictionary::pairs() const
 {
 	return _pairs;
 }
 
 REBOOL REDictionary::isEqualToDictionary(const REDictionary & anotherDictionary) const
 {
-	if (_pairs.count() == anotherDictionary._pairs.count())
+	REList<REDictionary::Pair>::Iterator iter = anotherDictionary._pairs.iterator();
+	while (iter.next()) 
 	{
-		for (REUInt32 i = 0; i < _pairs.count(); i++) 
+		REList<REDictionary::Pair>::Node * node = this->nodeForKey(iter.value().key);
+		if (node) 
 		{
-			REDictionary::Pair * pair = anotherDictionary.pairForKey(_pairs[i].key);
-			if (pair)
-			{
-				if (!_pairs[i].value.isEqualToTypedPointer(pair->value))
-				{
-					return false;
-				}
-			}
-			else
+			if (!node->value.value.isEqualToTypedPointer(iter.value().value)) 
 			{
 				return false;
 			}
 		}
-		return true;
+		else
+		{
+			return false;
+		}
 	}
-	return false;
+	return true;
 }
 
 REBOOL REDictionary::setValue(const RETypedPtr & newValue, const RETypedPtr & keyValue)
 {
 	if (keyValue.isNotEmpty())
 	{
-		REUInt32 index = RENotFound;
-		REDictionary::Pair * pair = this->pairForKey(keyValue, &index);
-		if (pair)
+		REList<REDictionary::Pair>::Node * node = this->nodeForKey(keyValue);
+		if (node)
 		{
 			if (newValue.isNotEmpty())
 			{
 				// set new value for existed key
-				pair->value = newValue;
+				node->value.value = newValue;
 				return true;
 			}
-			else if (index != RENotFound)
+			else
 			{
 				// new value is empty - remove pair
-				pair->release();
-				return _pairs.removeAt(index);
+				return _pairs.removeNode(node);
 			}
 		}
 		else if (newValue.isNotEmpty())
@@ -362,74 +364,67 @@ REBOOL REDictionary::setValue(const RETypedPtr & newValue, const char * key)
 	return false;
 }
 
-RETypedPtr REDictionary::valueForKey(const char * key) const 
+RETypedPtr REDictionary::valueForKey(const RETypedPtr & keyValue) const
 {
-	if (key)
-	{
-		RETypedPtr pkey(new REString(key), REPtrTypeString);
-		if (pkey.isNotEmpty())
-		{			
-			REDictionary::Pair * pair = this->pairForKey(pkey);
-			if (pair)
-			{
-				return pair->value;
-			}
+	if (keyValue.isNotEmpty())
+	{			
+		REList<REDictionary::Pair>::Node * node = this->nodeForKey(keyValue);
+		if (node)
+		{
+			return node->value.value;
 		}
 	}
 	return RETypedPtr();
+}
+
+RETypedPtr REDictionary::valueForKey(const char * key) const 
+{
+	return (key) ? this->valueForKey(RETypedPtr(new REStaticString(key), REPtrTypeString)) : RETypedPtr();
 }
 
 REBOOL REDictionary::removeValue(const char * key)
 {
 	if (key)
 	{
-		RETypedPtr pkey(new REString(key), REPtrTypeString);
+		RETypedPtr pkey(new REStaticString(key), REPtrTypeString);
 		if (pkey.isNotEmpty())
 		{		
-			REUInt32 index = RENotFound;
-			REDictionary::Pair * pair = this->pairForKey(pkey, &index);
-			if (pair && (index != RENotFound))
+			REList<REDictionary::Pair>::Node * node = this->nodeForKey(pkey);
+			if (node) 
 			{
-				pair->release();
-				return _pairs.removeAt(index);
+				return _pairs.removeNode(node);
 			}
 		}
 	}
 	return false;
 }
 
-RETypedArray REDictionary::allKeys() const
-{
-	RETypedArray arr(_pairs.count() + 1);
-	for (REUInt32 i = 0; i < _pairs.count(); i++)
-	{
-		arr.add(_pairs[i].key);
-	}
-	return arr;
-}
-
-RETypedArray REDictionary::allValues() const
-{
-	RETypedArray arr(_pairs.count() + 1);
-	for (REUInt32 i = 0; i < _pairs.count(); i++)
-	{
-		arr.add(_pairs[i].value);
-	}
-	return arr;
-}
-
 void REDictionary::clearPairs()
 {
-	for (REUInt32 i = 0; i < _pairs.count(); i++) 
-	{
-		_pairs[i].release();
-	}
 	_pairs.clear();
 }
 
 void REDictionary::clear()
 {
 	this->clearPairs();
+}
+
+REDictionary & REDictionary::operator=(const REDictionary & dictionary)
+{
+	this->clearPairs();
+	if (!this->copyPairs(dictionary._pairs))
+	{
+		this->clearPairs();
+	}
+	return (*this);
+}
+
+REDictionary::REDictionary(const REDictionary & dictionary)
+{
+	if (!this->copyPairs(dictionary._pairs))
+	{
+		this->clearPairs();
+	}
 }
 
 REDictionary::REDictionary()

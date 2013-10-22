@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D761E9415610E6A0039D5E5 /* libremedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D761E9315610E6A0039D5E5 /* libremedia.a */; };
+		3D761E9715610E710039D5E5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D761E9615610E710039D5E5 /* OpenAL.framework */; };
+		3D761E9915610E8E0039D5E5 /* media0.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3D761E9815610E8E0039D5E5 /* media0.dat */; };
+		3D8D3AFE15595A310000CFAE /* librecore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8D3AFC15595A310000CFAE /* librecore.a */; };
+		3D8D3AFF15595A310000CFAE /* libregui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8D3AFD15595A310000CFAE /* libregui.a */; };
+		3D8D3B0115595A420000CFAE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8D3B0015595A420000CFAE /* libz.dylib */; };
+		3D8D3B0315595A470000CFAE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8D3B0215595A470000CFAE /* libsqlite3.dylib */; };
+		3D8D3B1415595A8B0000CFAE /* Loading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D3B0A15595A8B0000CFAE /* Loading.cpp */; };
+		3D8D3B1515595A8B0000CFAE /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D3B0C15595A8B0000CFAE /* MainMenu.cpp */; };
+		3D8D3B1615595A8B0000CFAE /* MainMenuExitButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D3B0E15595A8B0000CFAE /* MainMenuExitButton.cpp */; };
+		3D8D3B1715595A8B0000CFAE /* MyGUIApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D3B1015595A8B0000CFAE /* MyGUIApplication.cpp */; };
+		3D8D3B1815595A8B0000CFAE /* MyRootViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D3B1215595A8B0000CFAE /* MyRootViewController.cpp */; };
+		3D8D3B1E15595DA80000CFAE /* data0.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3D8D3B1D15595DA80000CFAE /* data0.dat */; };
+		3DECC58D15591FCE00CEF963 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DECC58C15591FCE00CEF963 /* Cocoa.framework */; };
+		3DECC59715591FCE00CEF963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DECC59515591FCE00CEF963 /* InfoPlist.strings */; };
+		3DECC59915591FCE00CEF963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC59815591FCE00CEF963 /* main.m */; };
+		3DECC59D15591FCE00CEF963 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3DECC59B15591FCE00CEF963 /* Credits.rtf */; };
+		3DECC5A015591FCE00CEF963 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC59F15591FCE00CEF963 /* AppDelegate.mm */; };
+		3DECC5A315591FCE00CEF963 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DECC5A115591FCE00CEF963 /* MainMenu.xib */; };
+		3DECC5AF1559225500CEF963 /* MyWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC5AE1559225500CEF963 /* MyWindow.mm */; };
+		3DECC5B31559254600CEF963 /* MyOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DECC5B21559254600CEF963 /* MyOpenGLView.mm */; };
+		3DECC5C1155927B900CEF963 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DECC5C0155927B900CEF963 /* OpenGL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D761E9315610E6A0039D5E5 /* libremedia.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libremedia.a; path = ../../../macosx/libremedia.a; sourceTree = "<group>"; };
+		3D761E9615610E710039D5E5 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		3D761E9815610E8E0039D5E5 /* media0.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = media0.dat; path = ../../../media0.dat; sourceTree = "<group>"; };
+		3D8D3AFC15595A310000CFAE /* librecore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librecore.a; path = ../../../macosx/librecore.a; sourceTree = "<group>"; };
+		3D8D3AFD15595A310000CFAE /* libregui.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libregui.a; path = ../../../macosx/libregui.a; sourceTree = "<group>"; };
+		3D8D3B0015595A420000CFAE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3D8D3B0215595A470000CFAE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3D8D3B0A15595A8B0000CFAE /* Loading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Loading.cpp; path = ../../../CPP_code/Loading.cpp; sourceTree = "<group>"; };
+		3D8D3B0B15595A8B0000CFAE /* Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Loading.h; path = ../../../CPP_code/Loading.h; sourceTree = "<group>"; };
+		3D8D3B0C15595A8B0000CFAE /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenu.cpp; path = ../../../CPP_code/MainMenu.cpp; sourceTree = "<group>"; };
+		3D8D3B0D15595A8B0000CFAE /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenu.h; path = ../../../CPP_code/MainMenu.h; sourceTree = "<group>"; };
+		3D8D3B0E15595A8B0000CFAE /* MainMenuExitButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenuExitButton.cpp; path = ../../../CPP_code/MainMenuExitButton.cpp; sourceTree = "<group>"; };
+		3D8D3B0F15595A8B0000CFAE /* MainMenuExitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuExitButton.h; path = ../../../CPP_code/MainMenuExitButton.h; sourceTree = "<group>"; };
+		3D8D3B1015595A8B0000CFAE /* MyGUIApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyGUIApplication.cpp; path = ../../../CPP_code/MyGUIApplication.cpp; sourceTree = "<group>"; };
+		3D8D3B1115595A8B0000CFAE /* MyGUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyGUIApplication.h; path = ../../../CPP_code/MyGUIApplication.h; sourceTree = "<group>"; };
+		3D8D3B1215595A8B0000CFAE /* MyRootViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyRootViewController.cpp; path = ../../../CPP_code/MyRootViewController.cpp; sourceTree = "<group>"; };
+		3D8D3B1315595A8B0000CFAE /* MyRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRootViewController.h; path = ../../../CPP_code/MyRootViewController.h; sourceTree = "<group>"; };
+		3D8D3B1D15595DA80000CFAE /* data0.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = data0.dat; path = ../../../data0.dat; sourceTree = "<group>"; };
+		3DECC58815591FCE00CEF963 /* Example2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DECC58C15591FCE00CEF963 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3DECC58F15591FCE00CEF963 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3DECC59015591FCE00CEF963 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3DECC59115591FCE00CEF963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3DECC59415591FCE00CEF963 /* Example2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example2-Info.plist"; sourceTree = "<group>"; };
+		3DECC59615591FCE00CEF963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DECC59815591FCE00CEF963 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3DECC59A15591FCE00CEF963 /* Example2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example2-Prefix.pch"; sourceTree = "<group>"; };
+		3DECC59C15591FCE00CEF963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3DECC59E15591FCE00CEF963 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3DECC59F15591FCE00CEF963 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		3DECC5A215591FCE00CEF963 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3DECC5AD1559225500CEF963 /* MyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWindow.h; sourceTree = "<group>"; };
+		3DECC5AE1559225500CEF963 /* MyWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyWindow.mm; sourceTree = "<group>"; };
+		3DECC5B11559254600CEF963 /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView.h; sourceTree = "<group>"; };
+		3DECC5B21559254600CEF963 /* MyOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyOpenGLView.mm; sourceTree = "<group>"; };
+		3DECC5C0155927B900CEF963 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DECC58515591FCE00CEF963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D761E9715610E710039D5E5 /* OpenAL.framework in Frameworks */,
+				3D761E9415610E6A0039D5E5 /* libremedia.a in Frameworks */,
+				3D8D3B0315595A470000CFAE /* libsqlite3.dylib in Frameworks */,
+				3D8D3B0115595A420000CFAE /* libz.dylib in Frameworks */,
+				3D8D3AFE15595A310000CFAE /* librecore.a in Frameworks */,
+				3D8D3AFF15595A310000CFAE /* libregui.a in Frameworks */,
+				3DECC5C1155927B900CEF963 /* OpenGL.framework in Frameworks */,
+				3DECC58D15591FCE00CEF963 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D8D3B0915595A810000CFAE /* CPP_code */ = {
+			isa = PBXGroup;
+			children = (
+				3D8D3B0B15595A8B0000CFAE /* Loading.h */,
+				3D8D3B0A15595A8B0000CFAE /* Loading.cpp */,
+				3D8D3B0D15595A8B0000CFAE /* MainMenu.h */,
+				3D8D3B0C15595A8B0000CFAE /* MainMenu.cpp */,
+				3D8D3B0F15595A8B0000CFAE /* MainMenuExitButton.h */,
+				3D8D3B0E15595A8B0000CFAE /* MainMenuExitButton.cpp */,
+				3D8D3B1115595A8B0000CFAE /* MyGUIApplication.h */,
+				3D8D3B1015595A8B0000CFAE /* MyGUIApplication.cpp */,
+				3D8D3B1315595A8B0000CFAE /* MyRootViewController.h */,
+				3D8D3B1215595A8B0000CFAE /* MyRootViewController.cpp */,
+			);
+			name = CPP_code;
+			sourceTree = "<group>";
+		};
+		3DECC57D15591FCE00CEF963 = {
+			isa = PBXGroup;
+			children = (
+				3DECC59215591FCE00CEF963 /* Example2 */,
+				3DECC58B15591FCE00CEF963 /* Frameworks */,
+				3DECC58915591FCE00CEF963 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DECC58915591FCE00CEF963 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC58815591FCE00CEF963 /* Example2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DECC58B15591FCE00CEF963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D8D3AFC15595A310000CFAE /* librecore.a */,
+				3D8D3AFD15595A310000CFAE /* libregui.a */,
+				3D761E9315610E6A0039D5E5 /* libremedia.a */,
+				3D8D3B0215595A470000CFAE /* libsqlite3.dylib */,
+				3D8D3B0015595A420000CFAE /* libz.dylib */,
+				3D761E9615610E710039D5E5 /* OpenAL.framework */,
+				3DECC5C0155927B900CEF963 /* OpenGL.framework */,
+				3DECC58C15591FCE00CEF963 /* Cocoa.framework */,
+				3DECC58E15591FCE00CEF963 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DECC58E15591FCE00CEF963 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DECC58F15591FCE00CEF963 /* AppKit.framework */,
+				3DECC59015591FCE00CEF963 /* CoreData.framework */,
+				3DECC59115591FCE00CEF963 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3DECC59215591FCE00CEF963 /* Example2 */ = {
+			isa = PBXGroup;
+			children = (
+				3D8D3B0915595A810000CFAE /* CPP_code */,
+				3DECC5B11559254600CEF963 /* MyOpenGLView.h */,
+				3DECC5B21559254600CEF963 /* MyOpenGLView.mm */,
+				3DECC5AD1559225500CEF963 /* MyWindow.h */,
+				3DECC5AE1559225500CEF963 /* MyWindow.mm */,
+				3DECC59E15591FCE00CEF963 /* AppDelegate.h */,
+				3DECC59F15591FCE00CEF963 /* AppDelegate.mm */,
+				3DECC5A115591FCE00CEF963 /* MainMenu.xib */,
+				3DECC59315591FCE00CEF963 /* Supporting Files */,
+			);
+			path = Example2;
+			sourceTree = "<group>";
+		};
+		3DECC59315591FCE00CEF963 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E9815610E8E0039D5E5 /* media0.dat */,
+				3D8D3B1D15595DA80000CFAE /* data0.dat */,
+				3DECC59415591FCE00CEF963 /* Example2-Info.plist */,
+				3DECC59815591FCE00CEF963 /* main.m */,
+				3DECC59515591FCE00CEF963 /* InfoPlist.strings */,
+				3DECC59A15591FCE00CEF963 /* Example2-Prefix.pch */,
+				3DECC59B15591FCE00CEF963 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DECC58715591FCE00CEF963 /* Example2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DECC5A615591FCE00CEF963 /* Build configuration list for PBXNativeTarget "Example2" */;
+			buildPhases = (
+				3DECC58415591FCE00CEF963 /* Sources */,
+				3DECC58515591FCE00CEF963 /* Frameworks */,
+				3DECC58615591FCE00CEF963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example2;
+			productName = Example2;
+			productReference = 3DECC58815591FCE00CEF963 /* Example2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DECC57F15591FCE00CEF963 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 3DECC58215591FCE00CEF963 /* Build configuration list for PBXProject "Example2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3DECC57D15591FCE00CEF963;
+			productRefGroup = 3DECC58915591FCE00CEF963 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DECC58715591FCE00CEF963 /* Example2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DECC58615591FCE00CEF963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECC59715591FCE00CEF963 /* InfoPlist.strings in Resources */,
+				3DECC59D15591FCE00CEF963 /* Credits.rtf in Resources */,
+				3DECC5A315591FCE00CEF963 /* MainMenu.xib in Resources */,
+				3D8D3B1E15595DA80000CFAE /* data0.dat in Resources */,
+				3D761E9915610E8E0039D5E5 /* media0.dat in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DECC58415591FCE00CEF963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECC59915591FCE00CEF963 /* main.m in Sources */,
+				3DECC5A015591FCE00CEF963 /* AppDelegate.mm in Sources */,
+				3DECC5AF1559225500CEF963 /* MyWindow.mm in Sources */,
+				3DECC5B31559254600CEF963 /* MyOpenGLView.mm in Sources */,
+				3D8D3B1415595A8B0000CFAE /* Loading.cpp in Sources */,
+				3D8D3B1515595A8B0000CFAE /* MainMenu.cpp in Sources */,
+				3D8D3B1615595A8B0000CFAE /* MainMenuExitButton.cpp in Sources */,
+				3D8D3B1715595A8B0000CFAE /* MyGUIApplication.cpp in Sources */,
+				3D8D3B1815595A8B0000CFAE /* MyRootViewController.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3DECC59515591FCE00CEF963 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DECC59615591FCE00CEF963 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3DECC59B15591FCE00CEF963 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DECC59C15591FCE00CEF963 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		3DECC5A115591FCE00CEF963 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DECC5A215591FCE00CEF963 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3DECC5A415591FCE00CEF963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__RE_OS_MACOSX__,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3DECC5A515591FCE00CEF963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3DECC5A715591FCE00CEF963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example2/Example2-Prefix.pch";
+				INFOPLIST_FILE = "Example2/Example2-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../macosx\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3DECC5A815591FCE00CEF963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example2/Example2-Prefix.pch";
+				INFOPLIST_FILE = "Example2/Example2-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../macosx\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DECC58215591FCE00CEF963 /* Build configuration list for PBXProject "Example2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DECC5A415591FCE00CEF963 /* Debug */,
+				3DECC5A515591FCE00CEF963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DECC5A615591FCE00CEF963 /* Build configuration list for PBXNativeTarget "Example2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DECC5A715591FCE00CEF963 /* Debug */,
+				3DECC5A815591FCE00CEF963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DECC57F15591FCE00CEF963 /* Project object */;
+}

@@ -54,36 +54,36 @@ public:
 	virtual void onReleased();
 	
 	/// Returns pointer to DirectX 9 device.
-	virtual IDirect3DDevice9 * GetD3DDevice9() const { return _d3dDevice; }
+	virtual IDirect3DDevice9 * D3DDevice9() const { return _d3dDevice; }
 
 	/// Returns pointer to DirectX 9 texture.
-	virtual LPDIRECT3DTEXTURE9 GetDirect3DTexture9() const { return _direct3DTexture; }
+	virtual LPDIRECT3DTEXTURE9 direct3DTexture9() const { return _direct3DTexture; }
 
 	/// Checks for null.
-	virtual REBOOL IsNull() const { return ( (_direct3DTexture == 0) && (_d3dDevice == NULL) ); }
+	virtual REBOOL isNull() const { return ( (_direct3DTexture == 0) && (_d3dDevice == NULL) ); }
 
 	/// Checks is texture generated from mipmaps.
-	virtual REBOOL IsMipmaped() const;
+	virtual REBOOL isMipmaped() const;
 	
 	/// Updates texture with unpacked pixels from image.
 	/// On OpenGL/ES textures must set filter before update texture with image data.
-	virtual REBOOL Update(const REUByte * pixelsData, 
+	virtual REBOOL update(const REUByte * pixelsData, 
 						  const REImagePixelFormat pixelsFormat,
 						  const REUInt32 width,
 						  const REUInt32 height);
 
 	/// Checks is texture updated from image data that contained alpha channel.
-	virtual const REBOOL IsBlended() const { return _isBlended; }
+	virtual const REBOOL isBlended() const { return _isBlended; }
 
 	/// Settes and stores filter type to texture.
 	/// On OpenGL/ES textures must set filter before update texture with image data.
-	virtual void SetFilterType(const RETextureFilterType filter);
+	virtual void setFilterType(const RETextureFilterType filter);
 
 	/// Returns texture type of setted or stored texture filter type.
-	virtual const RETextureFilterType GetFilterType() const;
+	virtual const RETextureFilterType filterType() const;
 
 	/// Binds i.e. settes texture as current.
-	virtual void Bind() const { if (_direct3DTexture && _d3dDevice) { _d3dDevice->SetTexture(0, _direct3DTexture); } }
+	virtual void bind() const { if (_direct3DTexture && _d3dDevice) { _d3dDevice->SetTexture(0, _direct3DTexture); } }
 
 	
 	static RETextureDirectX9 * CreateWithD3DDevice(IDirect3DDevice9 * d3dDevice);

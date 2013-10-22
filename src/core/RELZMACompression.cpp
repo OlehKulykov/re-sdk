@@ -51,7 +51,7 @@ RETypedPtr RELZMACompression::compress(const REBuffer & inBuffer, const REFloat3
 
 #ifndef __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
 	RETypedPtr ptr(new REBuffer, REPtrTypeBuffer);
-	REBuffer * compressedBuffer = ptr.getBuffer();
+	REBuffer * compressedBuffer = ptr.buffer();
 	if (compressedBuffer == NULL) 
 	{
 		return RETypedPtr();
@@ -125,7 +125,7 @@ RETypedPtr RELZMACompression::decompress(const REBuffer & inBuffer)
 	
 #ifndef __RE_RECORE_NO_LZMA_COMPRESSION_SUPPORT__
 	RETypedPtr ptr(new REBuffer(), REPtrTypeBuffer);
-	REBuffer * unCompressedBuffer = ptr.getBuffer();
+	REBuffer * unCompressedBuffer = ptr.buffer();
 	if (unCompressedBuffer == NULL) 
 	{
 		return RETypedPtr();

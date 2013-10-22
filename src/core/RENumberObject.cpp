@@ -18,32 +18,18 @@
 #include "../../include/recore/RENumberObject.h"
 
 /* REObject */
-const REUInt32 RENumberObject::getClassIdentifier() const
-{
-	return RENumberObject::classIdentifier();
-}
-
-const REUInt32 RENumberObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RENumberObject");
-	return clasIdentif;
-}
-
-REBOOL RENumberObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RENumberObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("RENumber") == classIdentifier));
-}
-
 REBOOL RENumberObject::isEqual(REObject * anotherObject)
-{
-	if (REObject::isEqual(anotherObject)) { return true; }
-	
+{	
 	if (anotherObject) 
 	{
-		if (anotherObject->getClassIdentifier() == RENumberObject::classIdentifier()) 
+		if (REObject::isEqual(anotherObject)) 
 		{
-			return RENumber::isEqualToNumber(*(RENumberObject*)anotherObject);
+			return true; 
+		}
+		RENumber * num = dynamic_cast<RENumber *>(anotherObject);
+		if (num) 
+		{
+			return RENumber::isEqualToNumber(*num);
 		}
 	}
 	return false;

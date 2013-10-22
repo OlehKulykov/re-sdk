@@ -17,22 +17,6 @@
 
 #include "../../include/recore/REArrayObject.h"
 
-const REUInt32 REArrayObject::getClassIdentifier() const
-{
-	return REArrayObject::classIdentifier();
-}
-
-const REUInt32 REArrayObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REArrayObject");
-	return clasIdentif;
-}
-
-REBOOL REArrayObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REArrayObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
-}
-
 const REObjectsIterator REArrayObject::getIterator() const
 {
 	REArray<REObject*> * a = const_cast<REArray<REObject*>*>(&_arr);
@@ -43,15 +27,14 @@ REBOOL REArrayObject::isEqualWithObjectsArray(REObject * anotherObject, REArray<
 {
 	if (anotherObject)
 	{
-		if (anotherObject->getClassIdentifier() == REArrayObject::classIdentifier())
+		REArrayObject * anotherArray = dynamic_cast<REArrayObject *>(anotherObject);
+		if (anotherArray) 
 		{
-			REArrayObject * anotherArray = (REArrayObject *)anotherObject;
-			
-			if (anotherArray->_arr.count() == arr->count())
+			if (anotherArray->count() == arr->count())
 			{
 				for (REUInt32 i = 0; i < arr->count(); i++)
 				{
-					if ( !(*arr)[i]->isEqual((REObject*)anotherArray->_arr[i]) )
+					if ( !arr->at(i)->isEqual(anotherArray->at(i)) )
 					{
 						return false;
 					}

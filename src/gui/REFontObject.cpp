@@ -27,24 +27,6 @@
 #define RE_FONT_XML_HEIGHT_FORMAT_STRING "%f"
 #define RE_FONT_XML_PATH_KEY_STRING "path"
 
-/* REObject */
-const REUInt32 REFontObject::getClassIdentifier() const
-{
-    return REFontObject::classIdentifier();
-}
-
-const REUInt32 REFontObject::classIdentifier()
-{
-    static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REFontObject");
-    return clasIdentif;
-}
-
-REBOOL REFontObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REFontObject::classIdentifier() == classIdentifier) ||
-			REGUIObject::isImplementsClass(classIdentifier));
-}
-
 void REFontObject::recalculateScaleRatio(const REFloat32 needHeight, const REFloat32 loadedHeight)
 {
 	RERenderDevice * device = RERenderDevice::GetDefaultDevice();

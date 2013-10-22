@@ -22,7 +22,7 @@
 #include "REArray.h"
 #include "RETypedPtr.h"
 #include "RETypedArray.h"
-
+#include "REList.h"
 
 #if (defined(__BUILDING_RECORE_DYNAMIC_LIBRARY__) || defined(__USING_RECORE_DYNAMIC_LIBRARY__)) 
 /// Warning message 4251: Class 'REArray<T>' needs to have dll-interface to be used by clients of class.
@@ -34,6 +34,7 @@
 #endif
 
 class REMutableString;
+class RETypedPtr;
 
 /// Class for storing objects using by key value.
 class __RE_PUBLIC_CLASS_API__ REDictionary
@@ -52,17 +53,18 @@ public:
 	};
 	
 private:	
-	REBOOL copyPairs(REArray<REDictionary::Pair> & pairs);
+	REBOOL copyPairs(const REList<REDictionary::Pair> & pairs);
 	
 protected:
-	REArray<REDictionary::Pair> _pairs;
+	REList<REDictionary::Pair> _pairs;
+
 	/// If pair not found and pointer to index exists, value by index pointer will not be changed.
-	REDictionary::Pair * pairForKey(const RETypedPtr & key, REUInt32 * resultIndex = NULL) const;
+	REList<REDictionary::Pair>::Node * nodeForKey(const RETypedPtr & key) const;
 	void clearPairs();
 	REBOOL readJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize, const REPtrType type);
 
 public:
-	const REArray<REDictionary::Pair> & getPairs() const;
+	const REList<REDictionary::Pair> & pairs() const;
 	
 	virtual REBOOL isEqualToDictionary(const REDictionary & anotherDictionary) const;
 	
@@ -74,19 +76,22 @@ public:
 	
 	virtual RETypedPtr valueForKey(const char * key) const;
 	
+	virtual RETypedPtr valueForKey(const RETypedPtr & keyValue) const;
+	
 	virtual void clear();
 	
-	const REUInt32 pairsCount() const;
-	
-	RETypedArray allKeys() const;
-	
-	RETypedArray allValues() const;
+	const REUInt32 count() const;
 	
 	virtual REBOOL initializeFromJSONData(const REUByte * jsonData, const REUInt32 jsonDataSize);
 	
 	virtual REMutableString JSONString() const;
 	
+	REDictionary & operator=(const REDictionary & dictionary);
+	
 	REDictionary();
+	
+	REDictionary(const REDictionary & dictionary);
+	
 	virtual ~REDictionary();
 };
 

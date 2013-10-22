@@ -85,40 +85,40 @@ class __RE_PUBLIC_CLASS_API__ IRETexture
 public:
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
 	/// Returns OpenGL or OpenGLES texture identifier.
-	virtual const GLuint GetTexureIdentifier() const = 0;
+	virtual const GLuint texureIdentifier() const = 0;
 #endif	
 #ifdef __RE_USING_DIRECTX9__ 
 	/// Returns pointer to DirectX 9 device.
-	virtual IDirect3DDevice9 * GetD3DDevice9() const = 0;
+	virtual IDirect3DDevice9 * D3DDevice9() const = 0;
 	
 	/// Returns pointer to DirectX 9 texture.
-	virtual LPDIRECT3DTEXTURE9 GetDirect3DTexture9() const = 0;
+	virtual LPDIRECT3DTEXTURE9 direct3DTexture9() const = 0;
 #endif	
 	/// Checks for null.
-	virtual REBOOL IsNull() const = 0;
+	virtual REBOOL isNull() const = 0;
 	
 	/// Checks is texture generated from mipmaps.
-	virtual REBOOL IsMipmaped() const = 0;
+	virtual REBOOL isMipmaped() const = 0;
 	
 	/// Updates texture with unpacked pixels from image.
 	/// On OpenGL/ES textures must set filter before update texture with image data.
-	virtual REBOOL Update(const REUByte * pixelsData, 
+	virtual REBOOL update(const REUByte * pixelsData, 
 						  const REImagePixelFormat pixelsFormat,
 						  const REUInt32 width,
 						  const REUInt32 height) = 0;
 	
 	/// Checks is texture updated from image data that contained alpha channel.
-	virtual const REBOOL IsBlended() const = 0;
+	virtual const REBOOL isBlended() const = 0;
 	
 	/// Settes and stores filter type to texture.
 	/// On OpenGL/ES textures must set filter before update texture with image data.
-	virtual void SetFilterType(const RETextureFilterType filter) = 0;
+	virtual void setFilterType(const RETextureFilterType filter) = 0;
 	
 	/// Returns texture type of setted or stored texture filter type.
-	virtual const RETextureFilterType GetFilterType() const = 0;
+	virtual const RETextureFilterType filterType() const = 0;
 	
 	/// Binds i.e. settes texture as current.
-	virtual void Bind() const = 0;
+	virtual void bind() const = 0;
 	
 	/// Destructor.
 	virtual ~IRETexture() { }

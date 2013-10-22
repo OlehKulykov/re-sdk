@@ -155,6 +155,8 @@
 		3DC67831144CB206008891F1 /* regui.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC67830144CB206008891F1 /* regui.h */; };
 		3DC799FC14E11B420092512D /* RECamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC799FB14E11B420092512D /* RECamera.h */; };
 		3DC799FE14E11BAA0092512D /* RECamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC799FD14E11BAA0092512D /* RECamera.cpp */; };
+		3DCF6EE71815EF68000CC98C /* RETexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DCF6EE61815EF68000CC98C /* RETexture.h */; };
+		3DCF6EE91815EF82000CC98C /* RETexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DCF6EE81815EF82000CC98C /* RETexture.cpp */; };
 		3DEC6B5F155BB42D006DE4B8 /* RETextureDirectX9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */; };
 		3DED16C814866AE700AD21C0 /* REFramedTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */; };
 		3DED16CB14866AEE00AD21C0 /* REFramedTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */; };
@@ -320,6 +322,8 @@
 		3DC67830144CB206008891F1 /* regui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = regui.h; path = ../../include/regui.h; sourceTree = SOURCE_ROOT; };
 		3DC799FB14E11B420092512D /* RECamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECamera.h; path = ../../include/regui/RECamera.h; sourceTree = SOURCE_ROOT; };
 		3DC799FD14E11BAA0092512D /* RECamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECamera.cpp; path = ../../src/gui/RECamera.cpp; sourceTree = SOURCE_ROOT; };
+		3DCF6EE61815EF68000CC98C /* RETexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RETexture.h; path = ../../include/regui/RETexture.h; sourceTree = SOURCE_ROOT; };
+		3DCF6EE81815EF82000CC98C /* RETexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETexture.cpp; path = ../../src/gui/RETexture.cpp; sourceTree = SOURCE_ROOT; };
 		3DEC6B5E155BB42D006DE4B8 /* RETextureDirectX9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETextureDirectX9.cpp; path = ../../src/gui/RETextureDirectX9.cpp; sourceTree = SOURCE_ROOT; };
 		3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REFramedTextureObject.cpp; path = ../../src/gui/REFramedTextureObject.cpp; sourceTree = SOURCE_ROOT; };
 		3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REFramedTextureObject.h; path = ../../include/regui/REFramedTextureObject.h; sourceTree = SOURCE_ROOT; };
@@ -593,11 +597,13 @@
 		3DB07B7E144CB11000FF99AB /* Texture */ = {
 			isa = PBXGroup;
 			children = (
+				3DB07B9C144CB11000FF99AB /* IRETexture.h */,
+				3DCF6EE61815EF68000CC98C /* RETexture.h */,
+				3DCF6EE81815EF82000CC98C /* RETexture.cpp */,
 				3DED16CA14866AEE00AD21C0 /* REFramedTextureObject.h */,
 				3DED16C714866AE700AD21C0 /* REFramedTextureObject.cpp */,
 				3DB07B96144CB11000FF99AB /* RETextureObject.h */,
 				3DB07B97144CB11000FF99AB /* RETextureObject.cpp */,
-				3DB07B9C144CB11000FF99AB /* IRETexture.h */,
 				3DB07B9D144CB11000FF99AB /* RETextureOpenGL.h */,
 				3DB07B9E144CB11000FF99AB /* RETextureOpenGL.cpp */,
 				3DB07BA1144CB11000FF99AB /* RETextureDirectX9.h */,
@@ -699,6 +705,7 @@
 				3DB07BDF144CB11000FF99AB /* RETransformedView.h in Headers */,
 				3DB07BE1144CB11000FF99AB /* IREAnimation.h in Headers */,
 				3DB07BE2144CB11000FF99AB /* REAnimationFloatParams.h in Headers */,
+				3DCF6EE71815EF68000CC98C /* RETexture.h in Headers */,
 				3DB07BE3144CB11000FF99AB /* REAnimationBase.h in Headers */,
 				3DB07BE5144CB11000FF99AB /* REEditableAnimationInfo.h in Headers */,
 				3DB07BE6144CB11000FF99AB /* REAnimationInfo.h in Headers */,
@@ -872,6 +879,7 @@
 				3DC0A8BF145DC490001AAF61 /* REAnimation.cpp in Sources */,
 				3D41B278146C8BF600026EA3 /* RETypedAnimation.cpp in Sources */,
 				3D24B1C8147CE382009DA7DB /* REStackedViewController.cpp in Sources */,
+				3DCF6EE91815EF82000CC98C /* RETexture.cpp in Sources */,
 				3DED16C814866AE700AD21C0 /* REFramedTextureObject.cpp in Sources */,
 				3DC799FE14E11BAA0092512D /* RECamera.cpp in Sources */,
 				3D5390BB14E423A700DA1160 /* REEditableAnimationInfo.cpp in Sources */,

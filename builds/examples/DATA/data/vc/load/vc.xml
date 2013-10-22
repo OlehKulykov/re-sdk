@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewcontroller>
+	<string key="name">load</string>
+	<string key="sizepx">1333, 2000</string>
+	<string key="sizefl">2.666666, 4.0</string>
+	
+	<object class="REView" key="subview">
+		<string key="framerectfl">0, 0, 2.666666, 4</string>
+		<string key="scrframerectpx">0, 0, 1333, 2000</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">0</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/load/img/back.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+	<object class="REView" key="subview">
+		<string key="framerectfl">0.546137, 0.854, 1.64241, 0.844</string>
+		<string key="scrframerectpx">273, 427, 821, 422</string>
+		<string key="colorrgbafl">1, 1, 1, 1</string>
+		<integer key="tag">1</integer>
+		<integer key="visible">1</integer>
+		<integer key="respondsuseraction">0</integer>
+
+		<object class="RETextureObject" key="maintexture">
+			<string key="filter">linear</string>
+			<string key="path">data/vc/load/img/prog.png</string>
+			<string key="frametetrfl">0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0</string>
+		</object>
+	</object>
+	
+</viewcontroller>

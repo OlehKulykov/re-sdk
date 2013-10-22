@@ -150,9 +150,6 @@ public:
     virtual void setCharsSpaceRatio(const REFloat32 newRatio);
 	
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
 	
 	/* IRERenderable */

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "recore", "recore.vcxproj", "{2F69734F-001C-46B4-B92D-F6FFA1A63C72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release DLL|Win32 = Release DLL|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Debug|Win32.Build.0 = Debug|Win32
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Release DLL|Win32.Build.0 = Release DLL|Win32
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Release|Win32.ActiveCfg = Release|Win32
+		{2F69734F-001C-46B4-B92D-F6FFA1A63C72}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

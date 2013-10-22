@@ -68,7 +68,7 @@ public:
 
 	/// Loads view controller using it's name
 	/// Loading can process in current or aditional thread.
-    virtual REBOOL LoadByName(const REString & name, REBOOL isLoadInBackground);
+    virtual REBOOL loadByName(const REString & name, REBOOL isLoadInBackground);
 	
 	/// Returns loading process.
 	const REFloat32 GetBackgroundLoadingProgress() const;
@@ -76,18 +76,11 @@ public:
 	/// Check is view controller loading.
 	REBOOL IsLoading() const;
 	
-	/// Returns subview array.
-	const REArrayObject * GetViews() const;
-	
 	/* IRERenderable */
 	virtual void render();
 	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
-	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	
+
 	/// Creates and returns new view controller object.
 	static REViewController * create();
 	

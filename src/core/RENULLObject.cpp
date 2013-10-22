@@ -18,23 +18,15 @@
 #include "../../include/recore/RENULLObject.h"
 
 
-__RE_PUBLIC_CLASS_API__ RENULLObject * RENULLObject::_defaultNull = NULL;
-
 /* REObject */
-const REUInt32 RENULLObject::getClassIdentifier() const
+REBOOL RENULLObject::isEqual(REObject * anotherObject)
 {
-	return RENULLObject::classIdentifier();
-}
-
-const REUInt32 RENULLObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RENULLObject");
-	return clasIdentif;
-}
-
-REBOOL RENULLObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RENULLObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
+	if (anotherObject) 
+	{
+		RENULLObject * n = dynamic_cast<RENULLObject *>(anotherObject);
+		return (n) ? true : false;
+	}
+	return false;
 }
 
 RENULLObject::RENULLObject() : RENULL(), REObject()
@@ -44,27 +36,12 @@ RENULLObject::RENULLObject() : RENULL(), REObject()
 
 RENULLObject::~RENULLObject()
 {
-	if (this == _defaultNull) 
-	{
-		_defaultNull = NULL;
-	}
+	
 }
 
 RENULLObject * RENULLObject::NULLObject()
 {
-	if (_defaultNull) 
-	{
-		return _defaultNull;
-	}
-	else
-	{
-		_defaultNull = new RENULLObject();
-		if (_defaultNull) 
-		{
-			_defaultNull->retain();
-		}
-	}
-	return _defaultNull;
+	return new RENULLObject();
 }
 
 

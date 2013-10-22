@@ -17,79 +17,56 @@
 
 #include "../../include/regui/REStackedViewController.h"
 
-const REUInt32 REStackedViewController::getClassIdentifier() const
-{
-	return REStackedViewController::classIdentifier();
-}
-
-const REUInt32 REStackedViewController::classIdentifier()
-{
-	static const REUInt32 classIdentif = REObject::generateClassIdentifierFromClassName("REStackedViewController");
-	return classIdentif;
-}
-
-REBOOL REStackedViewController::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REStackedViewController::classIdentifier() == classIdentifier) ||
-			REViewController::isImplementsClass(classIdentifier));
-}
-
 REBOOL REStackedViewController::pushSubViews(const REBOOL isRemoveCurrentSubViews)
 {
-	this->lockUpdate();
-	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
-	if (subViews) 
-	{
-		if (_stackedSubViewsArray == NULL) 
-		{
-			_stackedSubViewsArray = new REArray<REArrayObject *>(); 
-		}
-		
-		if (_stackedSubViewsArray) 
-		{
-			REArrayObject * newSubViews = REArrayObject::createWithObjectsArray(subViews);
-			if (newSubViews) 
-			{
-				if (_stackedSubViewsArray->add(newSubViews)) 
-				{
-					if (isRemoveCurrentSubViews) 
-					{
-						subViews->clear();
-					}
-					this->unLockUpdate();
-					return true;
-				}
-				newSubViews->release();
-			}
-		}
-	}
-	this->unLockUpdate();
+//	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
+//	if (subViews) 
+//	{
+//		if (_stackedSubViewsArray == NULL) 
+//		{
+//			_stackedSubViewsArray = new REArray<REArrayObject *>(); 
+//		}
+//		
+//		if (_stackedSubViewsArray) 
+//		{
+//			REArrayObject * newSubViews = REArrayObject::createWithObjectsArray(subViews);
+//			if (newSubViews) 
+//			{
+//				if (_stackedSubViewsArray->add(newSubViews)) 
+//				{
+//					if (isRemoveCurrentSubViews) 
+//					{
+//						subViews->clear();
+//					}
+//					return true;
+//				}
+//				newSubViews->release();
+//			}
+//		}
+//	}
 	return false;
 }
 
 REBOOL REStackedViewController::popSubViews()
 {
-	this->lockUpdate();
-	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
-	if (_stackedSubViewsArray && subViews) 
-	{
-		if (_stackedSubViewsArray->count()) 
-		{
-			subViews->clear();
-			REArrayObject * subViewsArray = _stackedSubViewsArray->lastObject();
-			subViews->set(*subViewsArray);
-			_stackedSubViewsArray->removeLast();
-			if (_stackedSubViewsArray->isEmpty()) 
-			{
-				delete _stackedSubViewsArray;
-				_stackedSubViewsArray = NULL;
-			}
-			subViewsArray->release();
-			this->unLockUpdate();
-			return true;
-		}
-	}
-	this->unLockUpdate();
+//	REArrayObject * subViews = this->getOrCreateAndGetSubViewsArray(); 
+//	if (_stackedSubViewsArray && subViews) 
+//	{
+//		if (_stackedSubViewsArray->count()) 
+//		{
+//			subViews->clear();
+//			REArrayObject * subViewsArray = _stackedSubViewsArray->lastObject();
+//			subViews->set(*subViewsArray);
+//			_stackedSubViewsArray->removeLast();
+//			if (_stackedSubViewsArray->isEmpty()) 
+//			{
+//				delete _stackedSubViewsArray;
+//				_stackedSubViewsArray = NULL;
+//			}
+//			subViewsArray->release();
+//			return true;
+//		}
+//	}
 	return false;
 }
 

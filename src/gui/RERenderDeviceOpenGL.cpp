@@ -40,11 +40,11 @@ void RERenderDeviceOpenGL::RenderRect(const RETetragon & tetragon,
 {
 	if (texture) 
 	{
-		if (texture->IsBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
+		if (texture->isBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
 		else { this->DisableBlending(); }
 		this->EnableTexturing();
 		glColor4f(color.red, color.green, color.blue, color.alpha);
-		texture->Bind();
+		texture->bind();
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(2, GL_FLOAT, 0, textureFrame.arr);
 		glEnableClientState(GL_VERTEX_ARRAY); 
@@ -81,11 +81,11 @@ void RERenderDeviceOpenGL::RenderRect(const RERect & rect,
 	const GLfloat verticesArray[8] = { rect.x, rect.y, x_width, rect.y, rect.x, y_height, x_width, y_height };
 	if (texture) 
 	{
-		if (texture->IsBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
+		if (texture->isBlended() || (color.alpha < 1.0f)) { this->EnableBlending(); }
 		else { this->DisableBlending(); }
 		this->EnableTexturing();
 		glColor4f(color.red, color.green, color.blue, color.alpha);
-		texture->Bind();
+		texture->bind();
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(2, GL_FLOAT, 0, textureFrame.arr);
 		glEnableClientState(GL_VERTEX_ARRAY); 

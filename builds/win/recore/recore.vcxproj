@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release DLL|Win32">
+      <Configuration>Release DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2F69734F-001C-46B4-B92D-F6FFA1A63C72}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>recore</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>RECore</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>RECore</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'">
+    <TargetName>RECore</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;WIN32_LEAN_AND_MEAN;_DEBUG;_LIB;__RE_OS_WINDOWS__;__RECORE_STATIC_LIBRARY__;__BUILDING_RECORE_LIBRARY__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\..\src\addlibs\freetype\include;..\..\..\src\addlibs\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;WIN32_LEAN_AND_MEAN;NDEBUG;_LIB;__RE_OS_WINDOWS__;__RECORE_STATIC_LIBRARY__;__BUILDING_RECORE_LIBRARY__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;WIN32_LEAN_AND_MEAN;NDEBUG;__RE_OS_WINDOWS__;__BUILDING_RECORE_DYNAMIC_LIBRARY__;ZLIB_WINAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/D_STATIC_CPPLIB %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\reconfig\REConfigAndroid.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigBada.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigChecker.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigIPhone.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigLinux.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigMacosx.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigUndefined.h" />
+    <ClInclude Include="..\..\..\include\reconfig\REConfigWindows.h" />
+    <ClInclude Include="..\..\..\include\recore\IREFileReadable.h" />
+    <ClInclude Include="..\..\..\include\recore\IREMainLoopUpdatable.h" />
+    <ClInclude Include="..\..\..\include\recore\private\REDetachableThreadPrivate.h" />
+    <ClInclude Include="..\..\..\include\recore\private\REMainThreadClassMethodPrivate.h" />
+    <ClInclude Include="..\..\..\include\recore\private\REMainThreadClassMethodWaitedPrivate.h" />
+    <ClInclude Include="..\..\..\include\recore\RE2DAlgorithm.h" />
+    <ClInclude Include="..\..\..\include\recore\REAffineTransform.h" />
+    <ClInclude Include="..\..\..\include\recore\REAngle.h" />
+    <ClInclude Include="..\..\..\include\recore\REApplication.h" />
+    <ClInclude Include="..\..\..\include\recore\REArray.h" />
+    <ClInclude Include="..\..\..\include\recore\REAutoReleasePool.h" />
+    <ClInclude Include="..\..\..\include\recore\REBase64.h" />
+    <ClInclude Include="..\..\..\include\recore\REBuffer.h" />
+    <ClInclude Include="..\..\..\include\recore\REBufferObject.h" />
+    <ClInclude Include="..\..\..\include\recore\REClassMethod.h" />
+    <ClInclude Include="..\..\..\include\recore\REColor.h" />
+    <ClInclude Include="..\..\..\include\recore\RECommonHeader.h" />
+    <ClInclude Include="..\..\..\include\recore\RECoreIncludes.h" />
+    <ClInclude Include="..\..\..\include\recore\RECoreOSSelector.h" />
+    <ClInclude Include="..\..\..\include\recore\RECorePlatformSelector.h" />
+    <ClInclude Include="..\..\..\include\recore\RECoreSettings.h" />
+    <ClInclude Include="..\..\..\include\recore\RECPUFeatures.h" />
+    <ClInclude Include="..\..\..\include\recore\REData.h" />
+    <ClInclude Include="..\..\..\include\recore\REDate.h" />
+    <ClInclude Include="..\..\..\include\recore\REFile.h" />
+    <ClInclude Include="..\..\..\include\recore\REFileManager.h" />
+    <ClInclude Include="..\..\..\include\recore\REFloat16.h" />
+    <ClInclude Include="..\..\..\include\recore\REImage.h" />
+    <ClInclude Include="..\..\..\include\recore\REImageBase.h" />
+    <ClInclude Include="..\..\..\include\recore\REImageManager.h" />
+    <ClInclude Include="..\..\..\include\recore\REInterpolation.h" />
+    <ClInclude Include="..\..\..\include\recore\REList.h" />
+    <ClInclude Include="..\..\..\include\recore\RELocale.h" />
+    <ClInclude Include="..\..\..\include\recore\RELZMACompression.h" />
+    <ClInclude Include="..\..\..\include\recore\REMainLoopObjectsStorage.h" />
+    <ClInclude Include="..\..\..\include\recore\REMath.h" />
+    <ClInclude Include="..\..\..\include\recore\REMatrix4.h" />
+    <ClInclude Include="..\..\..\include\recore\REMD5Generator.h" />
+    <ClInclude Include="..\..\..\include\recore\REMem.h" />
+    <ClInclude Include="..\..\..\include\recore\REMutex.h" />
+    <ClInclude Include="..\..\..\include\recore\RENotificationManager.h" />
+    <ClInclude Include="..\..\..\include\recore\RENULLObject.h" />
+    <ClInclude Include="..\..\..\include\recore\RENumber.h" />
+    <ClInclude Include="..\..\..\include\recore\RENumberObject.h" />
+    <ClInclude Include="..\..\..\include\recore\REObject.h" />
+    <ClInclude Include="..\..\..\include\recore\REObjectsArray.h" />
+    <ClInclude Include="..\..\..\include\recore\REObjectsDictionary.h" />
+    <ClInclude Include="..\..\..\include\recore\REPoint2.h" />
+    <ClInclude Include="..\..\..\include\recore\REPoint3.h" />
+    <ClInclude Include="..\..\..\include\recore\REProperty.h" />
+    <ClInclude Include="..\..\..\include\recore\REQuaternion.h" />
+    <ClInclude Include="..\..\..\include\recore\RERandomizer.h" />
+    <ClInclude Include="..\..\..\include\recore\RERect.h" />
+    <ClInclude Include="..\..\..\include\recore\REResourcesStorage.h" />
+    <ClInclude Include="..\..\..\include\recore\RESize.h" />
+    <ClInclude Include="..\..\..\include\recore\REString.h" />
+    <ClInclude Include="..\..\..\include\recore\REStringObject.h" />
+    <ClInclude Include="..\..\..\include\recore\RESystemInfo.h" />
+    <ClInclude Include="..\..\..\include\recore\RETetragon.h" />
+    <ClInclude Include="..\..\..\include\recore\REThread.h" />
+    <ClInclude Include="..\..\..\include\recore\RETime.h" />
+    <ClInclude Include="..\..\..\include\recore\RETimer.h" />
+    <ClInclude Include="..\..\..\include\recore\RETypes.h" />
+    <ClInclude Include="..\..\..\include\recore\REUserCallBacks.h" />
+    <ClInclude Include="..\..\..\include\recore\REVector2.h" />
+    <ClInclude Include="..\..\..\include\recore\REVector3.h" />
+    <ClInclude Include="..\..\..\include\recore\REXMLPropertyListReader.h" />
+    <ClInclude Include="..\..\..\include\recore\REXMLPropertyListWriter.h" />
+    <ClInclude Include="..\..\..\include\recore\REYUVtoRGB.h" />
+    <ClInclude Include="..\..\..\include\recore\REZipReader.h" />
+    <ClInclude Include="..\..\..\include\recore\REZLIBCompression.h" />
+    <ClInclude Include="..\..\..\src\addlibs\jpeg.h" />
+    <ClInclude Include="..\..\..\src\addlibs\jpeg_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\lzma.h" />
+    <ClInclude Include="..\..\..\src\addlibs\lzma_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\openjpeg.h" />
+    <ClInclude Include="..\..\..\src\addlibs\openjpeg_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\png.h" />
+    <ClInclude Include="..\..\..\src\addlibs\png_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\sqlite.h" />
+    <ClInclude Include="..\..\..\src\addlibs\sqlite_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\tinyxml.h" />
+    <ClInclude Include="..\..\..\src\addlibs\tinyxml_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\webp.h" />
+    <ClInclude Include="..\..\..\src\addlibs\webp_config.h" />
+    <ClInclude Include="..\..\..\src\addlibs\zlib.h" />
+    <ClInclude Include="..\..\..\src\addlibs\zlib_config.h" />
+    <ClInclude Include="..\..\..\src\core\unzip\crypt.h" />
+    <ClInclude Include="..\..\..\src\core\unzip\ioapi.h" />
+    <ClInclude Include="..\..\..\src\core\unzip\unzip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap10.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap11.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap12.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap13.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap14.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap15.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap16.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap17.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap18.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap19.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap2.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap20.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap21.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap22.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap23.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap24.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap25.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap26.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap27.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap28.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap29.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap3.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap30.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap31.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap32.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap33.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap34.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap35.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap36.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap37.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap38.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap39.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap4.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap40.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap41.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap42.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap43.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap44.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap45.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap46.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap47.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap48.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap49.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap5.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap50.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap51.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap52.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap53.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap54.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap55.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap56.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap57.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap58.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap59.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap6.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap60.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap7.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap8.c" />
+    <ClCompile Include="..\..\..\src\addlibs\jpeg_wrap9.c" />
+    <ClCompile Include="..\..\..\src\addlibs\lzma_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\openjpeg_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\openjpeg_wrap2.c" />
+    <ClCompile Include="..\..\..\src\addlibs\openjpeg_wrap3.c" />
+    <ClCompile Include="..\..\..\src\addlibs\png_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\sqlite_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\tinyxml_wrap1.cpp" />
+    <ClCompile Include="..\..\..\src\addlibs\webp_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\webp_wrap2.c" />
+    <ClCompile Include="..\..\..\src\addlibs\webp_wrap3.c" />
+    <ClCompile Include="..\..\..\src\addlibs\webp_wrap4.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap1.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap10.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap11.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap12.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap13.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap14.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap15.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap2.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap3.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap4.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap5.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap6.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap7.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap8.c" />
+    <ClCompile Include="..\..\..\src\addlibs\zlib_wrap9.c" />
+    <ClCompile Include="..\..\..\src\core\RE2DAlgorithm.cpp" />
+    <ClCompile Include="..\..\..\src\core\REAffineTransform.cpp" />
+    <ClCompile Include="..\..\..\src\core\REAngle.cpp" />
+    <ClCompile Include="..\..\..\src\core\REApplication.cpp" />
+    <ClCompile Include="..\..\..\src\core\REArray.cpp" />
+    <ClCompile Include="..\..\..\src\core\REAutoReleasePool.cpp" />
+    <ClCompile Include="..\..\..\src\core\REBase64.cpp" />
+    <ClCompile Include="..\..\..\src\core\REBuffer.cpp" />
+    <ClCompile Include="..\..\..\src\core\REBufferObject.cpp" />
+    <ClCompile Include="..\..\..\src\core\REColor.cpp" />
+    <ClCompile Include="..\..\..\src\core\RECPUFeatures.cpp" />
+    <ClCompile Include="..\..\..\src\core\REData.cpp" />
+    <ClCompile Include="..\..\..\src\core\REDate.cpp" />
+    <ClCompile Include="..\..\..\src\core\REFile.cpp" />
+    <ClCompile Include="..\..\..\src\core\REFileManager.cpp" />
+    <ClCompile Include="..\..\..\src\core\REImage.cpp" />
+    <ClCompile Include="..\..\..\src\core\REImageBase.cpp" />
+    <ClCompile Include="..\..\..\src\core\REImageManager.cpp" />
+    <ClCompile Include="..\..\..\src\core\RELocale.cpp" />
+    <ClCompile Include="..\..\..\src\core\RELog.cpp" />
+    <ClCompile Include="..\..\..\src\core\RELZMACompression.cpp" />
+    <ClCompile Include="..\..\..\src\core\REMainLoopObjectsStorage.cpp" />
+    <ClCompile Include="..\..\..\src\core\REMD5Generator.cpp" />
+    <ClCompile Include="..\..\..\src\core\REMutex.cpp" />
+    <ClCompile Include="..\..\..\src\core\RENotificationManager.cpp" />
+    <ClCompile Include="..\..\..\src\core\RENULLObject.cpp" />
+    <ClCompile Include="..\..\..\src\core\RENumber.cpp" />
+    <ClCompile Include="..\..\..\src\core\RENumberObject.cpp" />
+    <ClCompile Include="..\..\..\src\core\REObject.cpp" />
+    <ClCompile Include="..\..\..\src\core\REObjectsArray.cpp" />
+    <ClCompile Include="..\..\..\src\core\REObjectsDictionary.cpp" />
+    <ClCompile Include="..\..\..\src\core\RERandomizer.cpp" />
+    <ClCompile Include="..\..\..\src\core\RERect.cpp" />
+    <ClCompile Include="..\..\..\src\core\REResourcesStorage.cpp" />
+    <ClCompile Include="..\..\..\src\core\REString.cpp" />
+    <ClCompile Include="..\..\..\src\core\REStringObject.cpp" />
+    <ClCompile Include="..\..\..\src\core\RESystemInfo.cpp" />
+    <ClCompile Include="..\..\..\src\core\RETetragon.cpp" />
+    <ClCompile Include="..\..\..\src\core\REThread.cpp" />
+    <ClCompile Include="..\..\..\src\core\RETime.cpp" />
+    <ClCompile Include="..\..\..\src\core\RETimer.cpp" />
+    <ClCompile Include="..\..\..\src\core\REUserCallBacks.cpp" />
+    <ClCompile Include="..\..\..\src\core\REXMLPropertyListReader.cpp" />
+    <ClCompile Include="..\..\..\src\core\REXMLPropertyListWriter.cpp" />
+    <ClCompile Include="..\..\..\src\core\REZipReader.cpp" />
+    <ClCompile Include="..\..\..\src\core\REZLIBCompression.cpp" />
+    <ClCompile Include="..\..\..\src\core\unzip\ioapi.c" />
+    <ClCompile Include="..\..\..\src\core\unzip\unzip.c" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV420toRGB565.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV420toRGB888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV420toRGB8888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV422toRGB565.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV422toRGB888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV422toRGB8888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV444toRGB565.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV444toRGB888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUV444toRGB8888.cpp" />
+    <ClCompile Include="..\..\..\src\core\yuv2rgb\REYUVtoRGB.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

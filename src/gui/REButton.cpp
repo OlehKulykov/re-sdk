@@ -167,7 +167,7 @@ void REButton::userActionClickDidStart(const REFloat32 coordX, const REFloat32 c
 {
 	if (_state != REButton::StateDisabled) 
 	{
-		if (this->getScreenFrame().isPointInRect(coordX, coordY)) 
+		if (this->screenFrame().isPointInRect(coordX, coordY)) 
 		{
 			_state = REButton::StatePressed;
 		}
@@ -179,7 +179,7 @@ void REButton::userActionClickDidEnd(const REFloat32 startCoordX, const REFloat3
 {
 	if (_state == REButton::StatePressed) 
 	{
-		if ( this->getScreenFrame().isPointInRect(currentCoordX, currentCoordY) ) 
+		if ( this->screenFrame().isPointInRect(currentCoordX, currentCoordY) ) 
 		{
 			if (_buttonDownTargetMethod) 
 			{
@@ -200,7 +200,7 @@ void REButton::userActionClickMoving(const REFloat32 startCoordX, const REFloat3
 	if (_state != REButton::StateDisabled) 
 	{
 		REBOOL isInside = false;
-		RERect screenFrame( this->getScreenFrame() );
+		RERect screenFrame( this->screenFrame() );
 		if ( screenFrame.isPointInRect(startCoordX, startCoordY) ) 
 		{
 			isInside = screenFrame.isPointInRect(currentCoordX, currentCoordY);
@@ -256,22 +256,6 @@ REBOOL REButton::acceptObjectParameter(const char * className, const char * key,
 	}
 	
 	return REView::acceptObjectParameter(className, key, value);
-}
-
-const REUInt32 REButton::getClassIdentifier() const
-{
-	return REButton::classIdentifier();
-}
-
-const REUInt32 REButton::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REButton");
-	return clasIdentif;
-}
-
-REBOOL REButton::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REButton::classIdentifier() == classIdentifier) || REView::isImplementsClass(classIdentifier));
 }
 
 REButton::REButton() : REView(),

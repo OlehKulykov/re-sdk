@@ -19,19 +19,10 @@
 #define __RETYPEDPTR_H__
 
 #include "RECommonHeader.h"
-#include "REPtr.h"
-#include "REString.h"
-#include "RENumber.h"
-#include "REArray.h"
-#include "RENULL.h"
-#include "REBuffer.h"
-#include "REDate.h"
-#include "REInt24.h"
 
 typedef enum _rePtrType
 {
 	REPtrTypeNone = 0,
-	
 	REPtrTypeString = 1,
 	REPtrTypeNumber = 2,
 	REPtrTypeArray = 3,
@@ -42,9 +33,13 @@ typedef enum _rePtrType
 	REPtrTypeDate = 8
 } REPtrType;
 
-class REDictionary;
+class REString;
+class RENumber;
 class RETypedArray;
-class REObject;
+class RENULL;
+class REBuffer;
+class REDictionary;
+class REDate;
 
 class __RE_PUBLIC_CLASS_API__ RETypedPtr
 {
@@ -69,15 +64,15 @@ public:
 	bool operator==(const RETypedPtr & anotherPtr) const;
 	bool operator!=(const RETypedPtr & anotherPtr) const;
 	
-	REString * getString() const;
-	RENumber * getNumber() const;
-	RETypedArray * getArray() const;
+	REString * string() const;
+	RENumber * number() const;
+	RETypedArray * array() const;
 	RENULL * getNULL() const;
-	REBuffer * getBuffer() const;
-	REDictionary * getDictionary() const;
-	void * getVoidPointer() const;
-	REDate * getDate() const;
-	const REPtrType getType() const;
+	REBuffer * buffer() const;
+	REDictionary * dictionary() const;
+	void * voidPointer() const;
+	REDate * date() const;
+	const REPtrType type() const;
 	
 	RETypedPtr(const RETypedPtr & anotherPtr);
 	RETypedPtr(void * object, const REPtrType type);

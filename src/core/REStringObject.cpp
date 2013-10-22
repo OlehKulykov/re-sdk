@@ -26,33 +26,18 @@
 #endif
 
 
-const REUInt32 REStringObject::getClassIdentifier() const
-{
-	return REStringObject::classIdentifier();
-}
-
-const REUInt32 REStringObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REStringObject");
-	return clasIdentif;
-}
-
-REBOOL REStringObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REStringObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REString") == classIdentifier));
-}
-
 REBOOL REStringObject::isEqual(REObject * anotherObject)
 {
-	if (REObject::isEqual(anotherObject)) { return true; }
-	
 	if (anotherObject) 
 	{
-		if (anotherObject->getClassIdentifier() == REStringObject::classIdentifier()) 
+		if (REObject::isEqual(anotherObject)) 
 		{
-			REStringObject * anotherString = REPtrCast<REStringObject, REObject>(anotherObject);
-			return REMutableString::isEqual(anotherString->UTF8String(), anotherString->length());
+			return true; 
+		}
+		REString * str = dynamic_cast<REString *>(anotherObject);
+		if (str) 
+		{
+			return REString::isEqual(*str);
 		}
 	}
 	return false;

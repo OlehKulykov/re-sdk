@@ -16,7 +16,6 @@
 
 
 #include "../../include/recore/REXMLPropertyListReader.h"
-#include "../../include/recore/REDictionaryObject.h"
 
 #include "../addlibs/tinyxml.h"
 

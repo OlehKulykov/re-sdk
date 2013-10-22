@@ -69,24 +69,6 @@ public:
 #define RE_LABEL_XML_FONT_OBJECT_KEY_STRING "font"
 
 
-/* REObject */
-const REUInt32 RELabel::getClassIdentifier() const
-{
-	return RELabel::classIdentifier();
-}
-
-const REUInt32 RELabel::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RELabel");
-	return clasIdentif;
-}
-
-REBOOL RELabel::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RELabel::classIdentifier() == classIdentifier) ||
-			REView::isImplementsClass(classIdentifier));
-}
-
 RERect RELabel::getTextFrame() const
 {
 	RERect r(0.0f, _textInsets.top, _charsSize.width, _charsSize.height);
@@ -226,7 +208,7 @@ void RELabel::render()
 				break;
 		}
 		
-		this->renderSubViews(_frame.x, _frame.y);
+		this->renderSubviews(_frame.x, _frame.y);
 	}
 }
 
@@ -269,7 +251,7 @@ void RELabel::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 				break;
 		}
 		
-		this->renderSubViews(renderX, renderY);
+		this->renderSubviews(renderX, renderY);
 	}
 }
 

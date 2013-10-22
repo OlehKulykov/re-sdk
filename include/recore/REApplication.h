@@ -28,6 +28,8 @@
 
 class REApplicationInternal;
 
+typedef void*(*REApplicationNewClassForNameCallback)();
+
 /// Class of recore basic application
 class __RE_PUBLIC_CLASS_API__ REApplication
 {
@@ -36,7 +38,18 @@ private:
 	
 	REBOOL reapplicationInit();
 	
-public:
+protected:	
+	virtual void * createObjectWithClassName(const char * className);
+	
+public:	
+	REBOOL registerNewClassForNameCallback(const REApplicationNewClassForNameCallback callback, const char * className);
+	
+	template <class T> T * createClassWithClassName(const char * className)
+	{
+		void * newClassObject = this->createObjectWithClassName(className);
+		return REPtrCast<T, void>(newClassObject);
+	}
+	
 	/// Returns name of application.
 	virtual REString name() const;
 	

@@ -25,17 +25,12 @@
 /// Class of NULL object. Just existen object that inform that no normal object detected.
 class __RE_PUBLIC_CLASS_API__ RENULLObject : public RENULL, public REObject
 {
-private:
-	static RENULLObject * _defaultNull;
-	
 protected:	
 	RENULLObject();
 	virtual ~RENULLObject();
 public:
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
+	virtual REBOOL isEqual(REObject * anotherObject);
 	
 	/// Getter of default NULL object.
 	static RENULLObject * NULLObject();

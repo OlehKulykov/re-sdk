@@ -22,7 +22,7 @@
 #ifdef __RE_USING_DIRECTX9__
 
 /// Checks is texture generated from mipmaps.
-REBOOL RETextureDirectX9::IsMipmaped() const
+REBOOL RETextureDirectX9::isMipmaped() const
 {
 	return ((_filterType == RETextureFilterMipmapedStandart) || (_filterType == RETextureFilterMipmapedTrilinear));
 }
@@ -79,7 +79,7 @@ void RETextureDirectX9::WritePixelsToDXBuffer(const REUByte * texImgData,
 }
 
 /// Updates texture with unpacked pixels from image.
-REBOOL RETextureDirectX9::Update(const REUByte * pixelsData, 
+REBOOL RETextureDirectX9::update(const REUByte * pixelsData, 
 								 const REImagePixelFormat pixelsFormat,
 								 const REUInt32 width,
 								 const REUInt32 height)
@@ -160,13 +160,13 @@ REBOOL RETextureDirectX9::Update(const REUByte * pixelsData,
 
 /// Settes and stores filter type to texture.
 /// On OpenGL/ES textures must set filter before update texture with image data.
-void RETextureDirectX9::SetFilterType(const RETextureFilterType filter)
+void RETextureDirectX9::setFilterType(const RETextureFilterType filter)
 {
 	_filterType = (REUByte)filter;
 }
 
 /// Returns texture type of setted or stored texture filter type.
-const RETextureFilterType RETextureDirectX9::GetFilterType() const
+const RETextureFilterType RETextureDirectX9::filterType() const
 {
 	return (RETextureFilterType)_filterType;
 }

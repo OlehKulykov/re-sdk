@@ -31,9 +31,6 @@ protected:
 	virtual ~REStackedViewController();
 public:
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
 	
 	/// Pushes all subviews and removes or not current subview.

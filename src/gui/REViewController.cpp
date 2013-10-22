@@ -251,7 +251,7 @@ void REViewController::LoadByNameThreadMethod(REObject * dataFilePathStringObjec
 	}
 }
 
-REBOOL REViewController::LoadByName(const REString & name, REBOOL isLoadInBackground)
+REBOOL REViewController::loadByName(const REString & name, REBOOL isLoadInBackground)
 {	
 	REString path = REString::createWithFormat("data/vc/%s/vc.xml", name.UTF8String());
 	REBOOL loadResult = false;
@@ -318,48 +318,20 @@ RERect REViewController::GetScreenFrame() const
 */
 void REViewController::render()
 {
-	REArrayObject * arr = this->getSubViewsArray();
-	if (arr) 
+	REList<REView *>::Iterator iter(this->subviewsIterator());
+	while (iter.next()) 
 	{
-		for (REUInt32 i = 0; i < arr->count(); i++) 
-		{
-			((REView*)(*arr)[i])->render();
-		}
+		iter.value()->render();
 	}
 }
 
 void REViewController::renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY)
 {
-	REArrayObject * arr = this->getSubViewsArray();
-	if (arr) 
+	REList<REView *>::Iterator iter(this->subviewsIterator());
+	while (iter.next()) 
 	{
-		for (REUInt32 i = 0; i < arr->count(); i++) 
-		{
-			((REView*)(*arr)[i])->renderWithOffset(offsetX, offsetY);
-		}
+		iter.value()->renderWithOffset(offsetX, offsetY);
 	}
-}
-
-const REUInt32 REViewController::getClassIdentifier() const
-{
-	return REViewController::classIdentifier();
-}
-
-const REUInt32 REViewController::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REViewController");
-	return clasIdentif;
-}
-
-REBOOL REViewController::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REViewController::classIdentifier() == classIdentifier) ||
-			REView::isImplementsClass(classIdentifier));
-}
-
-const REArrayObject * REViewController::GetViews() const
-{
-	return this->getSubViewsArray();
 }
 
 REViewController::REViewController() : REView(),

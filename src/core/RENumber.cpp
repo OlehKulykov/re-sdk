@@ -489,6 +489,12 @@ RENumber::RENumber(const RENumber & anotherNumber) :
 	_uint64Value = anotherNumber._uint64Value;
 }
 
+RENumber::RENumber(const REBOOL boolValue) :
+	_type(RENumberTypeNone)
+{
+	this->setBoolValue(boolValue);
+}
+
 RENumber::RENumber() : 
 	_type(RENumberTypeNone)
 {

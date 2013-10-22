@@ -1,0 +1,105 @@
+xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch i386 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/librecore.a ../../lib_bin/macosx/librecore-i386.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project recore.xcodeproj -target recore -arch x86_64 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/librecore.a ../../lib_bin/macosx/librecore-x86_64.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-x86_64.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+
+lipo -create ../../lib_bin/macosx/librecore-i386.a ../../lib_bin/macosx/librecore-x86_64.a -output ../../lib_bin/macosx/librecore.a
+rm -f ../../lib_bin/macosx/librecore-i386.a
+rm -f ../../lib_bin/macosx/librecore-x86_64.a
+
+
+xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch i386 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/libregui.a ../../lib_bin/macosx/libregui-i386.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project regui.xcodeproj -target regui -arch x86_64 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/libregui.a ../../lib_bin/macosx/libregui-x86_64.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-x86_64.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+
+lipo -create ../../lib_bin/macosx/libregui-i386.a ../../lib_bin/macosx/libregui-x86_64.a -output ../../lib_bin/macosx/libregui.a
+rm -f ../../lib_bin/macosx/libregui-i386.a
+rm -f ../../lib_bin/macosx/libregui-x86_64.a
+
+
+
+xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch i386 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/libremedia.a ../../lib_bin/macosx/libremedia-i386.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project remedia.xcodeproj -target remedia -arch x86_64 OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release/libremedia.a ../../lib_bin/macosx/libremedia-x86_64.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-x86_64.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+
+lipo -create ../../lib_bin/macosx/libremedia-i386.a ../../lib_bin/macosx/libremedia-x86_64.a -output ../../lib_bin/macosx/libremedia.a
+rm -f ../../lib_bin/macosx/libremedia-i386.a
+rm -f ../../lib_bin/macosx/libremedia-x86_64.a
+
+
+lipo -create all-i386.a all-x86_64.a -output ../../lib_bin/macosx/all.a
+rm -f all-i386.a
+rm -f all-x86_64.a
+
+
+cd ../../lib_bin/macosx/
+
+rm -rf RECoreSDK.framework
+mkdir -p RECoreSDK.framework/Versions/A/Headers
+
+mkdir -p RECoreSDK.framework/Versions/A/Headers/reconfig
+mkdir -p RECoreSDK.framework/Versions/A/Headers/recore
+mkdir -p RECoreSDK.framework/Versions/A/Headers/regui
+mkdir -p RECoreSDK.framework/Versions/A/Headers/remedia
+
+cp ../../include/reconfig/REConfigMacosx.h RECoreSDK.framework/Versions/A/Headers/reconfig/
+cp ../../include/reconfig/REConfigSelector.h RECoreSDK.framework/Versions/A/Headers/reconfig/
+echo "#define __RE_OS_MACOSX__ " > RECoreSDK.framework/Versions/A/Headers/reconfig/REConfigHardcoded.h
+cp ../../include/recore.h RECoreSDK.framework/Versions/A/Headers/recore.h
+cp ../../include/regui.h RECoreSDK.framework/Versions/A/Headers/regui.h
+cp ../../include/remedia.h RECoreSDK.framework/Versions/A/Headers/remedia.h
+
+
+cp ../../include/recore/*.h RECoreSDK.framework/Versions/A/Headers/recore/
+cp ../../include/regui/*.h RECoreSDK.framework/Versions/A/Headers/regui/
+cp ../../include/remedia/*.h RECoreSDK.framework/Versions/A/Headers/remedia/
+
+mkdir -p RECoreSDK.framework/Versions/A/Resources
+cp all.a RECoreSDK
+cp RECoreSDK RECoreSDK.framework/Versions/A
+
+ln -s A RECoreSDK.framework/Versions/Current
+ln -s Versions/Current/Headers RECoreSDK.framework/Headers
+ln -s Versions/Current/Resources RECoreSDK.framework/Resources
+ln -s Versions/Current/RECoreSDK RECoreSDK.framework/RECoreSDK
+
+rm -f RECoreSDK
+rm -f all.a

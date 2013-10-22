@@ -48,7 +48,7 @@ void RETextureOpenGL::SetFilterTypeMainThread(const RETextureFilterType filterTy
 	glBindTexture(GL_TEXTURE_2D, _textureIdentifierOpenGL);
 	RETextureFilterType actualFilter = filterType;
 	
-	if ((!this->IsMipmaped()) && 
+	if ((!this->isMipmaped()) && 
 		((filterType == RETextureFilterMipmapedStandart) || (filterType == RETextureFilterMipmapedTrilinear))) 
 	{
 		actualFilter = RETextureFilterLinear;
@@ -176,7 +176,7 @@ REBOOL RETextureOpenGL::UpdateMainThread(const REUByte * pixelsData,
 			glBindTexture(GL_TEXTURE_2D, _textureIdentifierOpenGL);
 		}
 		
-		const REBOOL isGenerateMipmaps = this->IsMipmaped();
+		const REBOOL isGenerateMipmaps = this->isMipmaped();
 		
 #ifdef __RE_USING_OPENGL__
 		if (isGenerateMipmaps) 
@@ -219,7 +219,7 @@ REBOOL RETextureOpenGL::UpdateMainThread(const REUByte * pixelsData,
 	return false;
 }
 
-REBOOL RETextureOpenGL::Update(const REUByte * pixelsData, 
+REBOOL RETextureOpenGL::update(const REUByte * pixelsData, 
 							   const REImagePixelFormat pixelsFormat,
 							   const REUInt32 width,
 							   const REUInt32 height)
@@ -246,7 +246,7 @@ REBOOL RETextureOpenGL::Update(const REUByte * pixelsData,
 	//return m->Update(this, pixelsData, pixelsFormat, width, height);
 }
 
-void RETextureOpenGL::SetFilterType(const RETextureFilterType filter)
+void RETextureOpenGL::setFilterType(const RETextureFilterType filter)
 {
 	_filterType = (REUByte)filter;
 	
@@ -266,12 +266,12 @@ void RETextureOpenGL::SetFilterType(const RETextureFilterType filter)
 	}
 }
 
-const RETextureFilterType RETextureOpenGL::GetFilterType() const
+const RETextureFilterType RETextureOpenGL::filterType() const
 {
 	return (RETextureFilterType)_filterType;
 }
 
-REBOOL RETextureOpenGL::IsMipmaped() const
+REBOOL RETextureOpenGL::isMipmaped() const
 {
 #ifndef __RE_OS_ANDROID__	
 	return ((_filterType == RETextureFilterMipmapedStandart) || (_filterType == RETextureFilterMipmapedTrilinear));

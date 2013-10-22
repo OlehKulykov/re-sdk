@@ -67,7 +67,7 @@ public:
 	{
 		if (texture && image) 
 		{
-			texture->Update(image->imageData(), 
+			texture->update(image->imageData(), 
 							image->format(), 
 							image->width(), 
 							image->height());

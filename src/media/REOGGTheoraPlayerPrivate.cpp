@@ -156,7 +156,7 @@ void REOGGTheoraPlayerPrivate::writeVideo()
 								 _colorConversionTable,
 								 0);
 
-		_texture->Update((REUByte *)_frameRGBBuffer.buffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
+		_texture->update((REUByte *)_frameRGBBuffer.buffer(), REImagePixelFormatR8G8B8, _theoraInfo.frame_width, _theoraInfo.frame_height);
 		
 	}
 }

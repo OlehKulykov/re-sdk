@@ -15,8 +15,8 @@
  */
 
 
-#ifndef __REString_H__ 
-#define __REString_H__ 
+#ifndef __RESTRING_H__ 
+#define __RESTRING_H__ 
 
 #include "RECommonHeader.h"
 #include "REPtr.h"
@@ -136,5 +136,5 @@ public:
 	
 };
 
-#endif /* __REString_H__  */
+#endif /* __RESTRING_H__  */
 

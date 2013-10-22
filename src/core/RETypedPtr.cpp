@@ -16,9 +16,14 @@
 
 
 #include "../../include/recore/RETypedPtr.h"
-#include "../../include/recore/REDictionary.h"
-#include "../../include/recore/REObject.h"
+#include "../../include/recore/REString.h"
+#include "../../include/recore/RENumber.h"
 #include "../../include/recore/RETypedArray.h"
+#include "../../include/recore/RENULL.h"
+#include "../../include/recore/REBuffer.h"
+#include "../../include/recore/REDictionary.h"
+#include "../../include/recore/REDate.h"
+
 
 class RETypedPtrPrivate 
 {
@@ -249,17 +254,17 @@ RETypedPtr & RETypedPtr::operator=(const RETypedPtr & anotherPtr)
 	return (*this);
 }
 
-REString * RETypedPtr::getString() const
+REString * RETypedPtr::string() const
 {
 	return (_type == REPtrTypeString) ? REPtrCast<REString, void>(_object) : NULL;
 }
 
-RENumber * RETypedPtr::getNumber() const
+RENumber * RETypedPtr::number() const
 {
 	return (_type == REPtrTypeNumber) ? REPtrCast<RENumber, void>(_object) : NULL;
 }
 
-RETypedArray * RETypedPtr::getArray() const
+RETypedArray * RETypedPtr::array() const
 {
 	return (_type == REPtrTypeArray) ? REPtrCast<RETypedArray, void>(_object) : NULL;
 }
@@ -269,27 +274,27 @@ RENULL * RETypedPtr::getNULL() const
 	return (_type == REPtrTypeNull) ? REPtrCast<RENULL, void>(_object) : NULL;
 }
 
-REBuffer * RETypedPtr::getBuffer() const
+REBuffer * RETypedPtr::buffer() const
 {
 	return (_type == REPtrTypeBuffer) ? REPtrCast<REBuffer, void>(_object) : NULL;
 }
 
-REDictionary * RETypedPtr::getDictionary() const
+REDictionary * RETypedPtr::dictionary() const
 {
 	return (_type == REPtrTypeDictionary) ? REPtrCast<REDictionary, void>(_object) : NULL;
 }
 
-void * RETypedPtr::getVoidPointer() const
+void * RETypedPtr::voidPointer() const
 {
 	return (_type == REPtrTypeVoidPointer) ? _object : NULL;
 }
 
-REDate * RETypedPtr::getDate() const
+REDate * RETypedPtr::date() const
 {
 	return (_type == REPtrTypeDate) ? REPtrCast<REDate, void>(_object) : NULL;
 }
 
-const REPtrType RETypedPtr::getType() const
+const REPtrType RETypedPtr::type() const
 {
 	return _type;
 }

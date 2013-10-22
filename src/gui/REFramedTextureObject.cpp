@@ -109,25 +109,6 @@ void REFramedTextureObject::StopAnimation(const REAnimationStopType stopType, co
 	}
 }
 
-/* REObject */
-const REUInt32 REFramedTextureObject::getClassIdentifier() const
-{
-	return REFramedTextureObject::classIdentifier();
-}
-
-const REUInt32 REFramedTextureObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REFramedTextureObject");
-	return clasIdentif;
-}
-
-REBOOL REFramedTextureObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REFramedTextureObject::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("IREAnimationRespondent") == classIdentifier) ||
-			RETextureObject::isImplementsClass(classIdentifier));
-}
-
 REBOOL REFramedTextureObject::InitFramesForTexture(const char * data, REFramedTextureObject * texture)
 {
 #ifndef __RE_NO_XML_PARSER_PRIVATE__
@@ -258,7 +239,7 @@ REBOOL REFramedTextureObject::InitFramedTextureFromPath(const REString & path)
 	
 	xmlData.clear();
 	
-	if (this->UpdateFromImageFilePath(path, this->GetFilterType())) 
+	if (this->UpdateFromImageFilePath(path, this->filterType())) 
 	{
 		if (_frames.count()) 
 		{
@@ -326,7 +307,7 @@ REFramedTextureObject * REFramedTextureObject::CreateWithFilePath(const REString
 	{
 		if (newTexture->InitBlankTexture(REImagePixelFormatR8G8B8, 4, 4, filterType)) 
 		{
-			newTexture->SetFilterType(filterType);
+			newTexture->setFilterType(filterType);
 			if (newTexture->InitFramedTextureFromPath(filePath))
 			{
 				return newTexture;

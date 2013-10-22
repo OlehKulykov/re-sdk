@@ -348,14 +348,65 @@ void Test1()
 	arr1.add(RETypedPtr(new RENumber((REUInt64)-2), REPtrTypeNumber));
 	
 	REDictionary dict;
-	dict.setValue(RETypedPtr(new RENumber((REInt64)2), REPtrTypeNumber), "count");
-	dict.setValue(RETypedPtr(new RENumber((REInt64)4), REPtrTypeNumber), "capacity");
-	dict.setValue(RETypedPtr(new REString("some title"), REPtrTypeNumber), "title");
+
+	RETypedPtr views(new RETypedArray(), REPtrTypeArray);
 	
-	RETypedArray keys1;
-	keys1 = dict.allKeys();
-	keys1 = dict.allValues();
-	keys1.isEmpty();
+	for (int i = 0; i < 2; i++) 
+	{
+		RETypedPtr viewDict(new REDictionary(), REPtrTypeDictionary);
+		viewDict.dictionary()->setValue(RETypedPtr(new REString("REView"), REPtrTypeString), "class");
+		viewDict.dictionary()->setValue(RETypedPtr(new REString("subview"), REPtrTypeString), "key");
+		viewDict.dictionary()->setValue(RETypedPtr(new REString("0;0;2.666666;1.96"), REPtrTypeString), "frame");
+		viewDict.dictionary()->setValue(RETypedPtr(new REString("1;1;1;1"), REPtrTypeString), "color");
+		viewDict.dictionary()->setValue(RETypedPtr(new RENumber((REInt64)0), REPtrTypeNumber), "tag");
+		viewDict.dictionary()->setValue(RETypedPtr(new RENumber((REBOOL)true), REPtrTypeNumber), "visible");
+		views.array()->add(viewDict);
+	}
+
+	dict.setValue(views, "subviews");
+	
+	
+	
+//	<object class="REView" key="subview">
+//	<string key="framef">0;0;2.666666;1.960000</string>
+//	<string key="colorrgbaf">1;1;1;1</string>
+//	<integer key="tag">0</integer>
+//	<integer key="visible">1</integer>
+//	<integer key="responduseraction">0</integer>
+//	<integer key="interceptuseraction">1</integer>
+//	<object class="RETextureObject" key="texture">
+//	<string key="filter">linear</string>
+//	<string key="path">data/vc/mainmenu/img/sky.webp</string>
+//	<string key="frametetrf">0;0;0.333333;0;0;1;0.333333;1</string>
+//	</object>
+//	</object>
+	
+	{
+		REStaticString statStr(L"hello");
+		int len = sizeof(REView);
+		len = statStr.length();
+		const char * statStr_c = statStr.UTF8String();
+	}
+	
+	REView * v = REView::create();
+	v->setFrame(RERect(1,2,3,4));
+	v->setColor(REColor(5,6,7,8));
+	v->setTexture(RETextureObject::Create());
+	v->setTag(-123);
+	REView * vs = REView::create();
+	v->addSubview(vs);
+	vs->release();
+	
+	RETypedPtr d = v->serializeToDictionary();
+	REString json = dict.JSONString();
+	json = d.dictionary()->JSONString();
+	const char * c_json = json.UTF8String();
+	RELog::log(c_json);
+	
+	REView * v1 = REView::create();
+	v1->deserializeWithDictionary(d);
+	
+	c_json = NULL;
 }
 
 void TestInt24()
@@ -447,12 +498,14 @@ void TestURLConnection()
 
 void Test()
 {
+	Test1();
+	return;
 	RELocale * loc = RELocale::defaultLocale();
 	//TestThreads();
 	//return;
 	
 //	TestURLConnection();
-	return;
+//	/return;
 	TestDate();
 	TestARGS();
 	TestSRC32vcMD5();
@@ -462,7 +515,7 @@ void Test()
 	TestREObject(vc1);
 	
 	const int isCorrectTypes = RECore::isCorrectTypes();
-	//Test1();
+	
 	//return;
 	
 	
@@ -472,16 +525,12 @@ void Test()
 	REDictionary ddd1;
 	ddd1.initializeFromJSONData(data.bytes(), data.size());
 	
-	REDictionaryObject * ddd2 = REDictionaryObject::create();
-	ddd2->initializeFromJSONData(data.bytes(), data.size());
-	ddd2->release();
-	
 	REMutableString json = ddd1.JSONString();
 	const char * jsonStr = json.UTF8String();
 	
 	RETypedPtr p1(new REString("dasdsd"), REPtrTypeString);
 	RETypedPtr p2 = p1;
-	REString * str1 = p2.getString();
+	REString * str1 = p2.string();
 	str1->isEmpty();
 	
 	REBuffer buff;
@@ -490,13 +539,13 @@ void Test()
 	RETypedPtr compressed = REZLIBCompression::compress(buff, 1.0f);
 	compressed = REZLIBCompression::compress(buff, 0.0f);
 	
-	compressed.getType();
-	compressed.getBuffer();
+	compressed.type();
+	compressed.buffer();
 	
 	REStringObject * strOjb1 = REStringObject::createWithChars("Hello");
 	RETypedPtr p3(strOjb1, REPtrTypeVoidPointer);
 	
-	REStringObject * strOjb2 = (REStringObject *)p3.getVoidPointer();
+	REStringObject * strOjb2 = (REStringObject *)p3.voidPointer();
 	
 	strOjb2 = 0;
 	
@@ -505,14 +554,19 @@ void Test()
 	dict.setValue(RETypedPtr(new RENumber((REInt64)2), REPtrTypeNumber), "count");
 	RETypedPtr val1 = dict.valueForKey("count");
 	
-	RENumber * n4 = val1.getNumber();
+	RENumber * n4 = val1.number();
 	dict.setValue(RETypedPtr(new RENumber((REInt64)-623463), REPtrTypeNumber), "count");
 	val1 = dict.valueForKey("count");
-	n4 = val1.getNumber();
+	n4 = val1.number();
 	
 	dict.setValue(RETypedPtr(), "count");
 	
 	n4 = NULL;
+}
+
+void MyGameRootViewController::__Test()
+{
+	Test();
 }
 
 void MyGameRootViewController::render()
@@ -527,7 +581,7 @@ void MyGameRootViewController::renderWithOffset(const REFloat32 offsetX, const R
 
 MyGameRootViewController::MyGameRootViewController() : REViewController()
 {
-	Test();
+	
 }
 
 MyGameRootViewController::~MyGameRootViewController()

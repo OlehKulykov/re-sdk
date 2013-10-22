@@ -92,22 +92,6 @@ void RETransformedView::setFrameAnimated(const RERect & newViewFrame)
 	}
 }
 
-const REUInt32 RETransformedView::getClassIdentifier() const
-{
-	return RETransformedView::classIdentifier();
-}
-
-const REUInt32 RETransformedView::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETransformedView");
-	return clasIdentif;
-}
-
-REBOOL RETransformedView::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RETransformedView::classIdentifier() == classIdentifier) || REView::isImplementsClass(classIdentifier));
-}
-
 /* IRERenderable */
 void RETransformedView::render()
 {
@@ -127,7 +111,7 @@ void RETransformedView::render()
 			}
 		}
 		
-		this->renderSubViews(_frame.x, _frame.y);
+		this->renderSubviews(_frame.x, _frame.y);
 	}
 }
 
@@ -151,7 +135,7 @@ void RETransformedView::renderWithOffset(const REFloat32 offsetX, const REFloat3
 			}
 		}
 		
-		this->renderSubViews(_transformedFrame.topLeftX + offsetX, _transformedFrame.topLeftY + offsetY);
+		this->renderSubviews(_transformedFrame.topLeftX + offsetX, _transformedFrame.topLeftY + offsetY);
 	}
 }
 

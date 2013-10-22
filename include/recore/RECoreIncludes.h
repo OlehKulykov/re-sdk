@@ -23,7 +23,7 @@
 #include "RECorePlatformSelector.h"
 
 
-/* C Library */
+/* Standart C Library headers */
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>

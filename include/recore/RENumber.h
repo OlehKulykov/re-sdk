@@ -229,6 +229,9 @@ public:
 	/// Constructs number from REFloat64 value.
 	RENumber(const REFloat64 float64Value);
 	
+	/// Constructs number from REFloat64 value.
+	RENumber(const REBOOL boolValue);
+	
 	/// Constructs empty number.
 	RENumber();
 	

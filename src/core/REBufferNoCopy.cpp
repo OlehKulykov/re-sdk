@@ -59,6 +59,9 @@ REBufferNoCopy::~REBufferNoCopy()
 	if (_isNeedToFreeOriginalBuff) 
 	{
 		_freeOriginalBuff(_buff);
+		_buff = NULL;
+		_size = 0;
+		_isNeedToFreeOriginalBuff = false;
 	}
 	else
 	{

@@ -21,13 +21,14 @@
 #include "../recore/RECommonHeader.h"
 #include "../recore/REImage.h"
 #include "../recore/RETetragon.h"
+#include "../recore/RESerializable.h"
 #include "REGUIObject.h"
 #include "IRETexture.h"
 #include "RERenderDeviceTextureObject.h"
 #include "IREAnimation.h"
 
 /// Class of texture.
-class __RE_PUBLIC_CLASS_API__ RETextureObject : public REGUIObject, public IRETexture
+class __RE_PUBLIC_CLASS_API__ RETextureObject : public REGUIObject, public RESerializable, public IRETexture
 {
 private:
 	static REBOOL AcceptStringParameterForTexture(const char * key, const char * value, RETextureObject * texture);
@@ -65,10 +66,11 @@ protected:
 	
 public:
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
+	
+	/* RESerializable */
+	virtual RETypedPtr serializeToDictionary() const;
+	virtual void deserializeWithDictionary(const RETypedPtr & dictionary);
 	
 	/* REGUIObject */
 	virtual void onPrepareGUIObjectForSetuping();
@@ -78,25 +80,25 @@ public:
 	/* IRETexture */
 #if (defined(__RE_USING_OPENGL_ES__) || defined(__RE_USING_OPENGL__))
 	/// Returns OpenGL or OpenGLES texture identifier
-	virtual const GLuint GetTexureIdentifier() const;
+	virtual const GLuint texureIdentifier() const;
 #endif	
 #ifdef __RE_USING_DIRECTX9__ 
 	/// Returns pointer to DirectX 9 device.
-	virtual IDirect3DDevice9 * GetD3DDevice9() const;
+	virtual IDirect3DDevice9 * D3DDevice9() const;
 	
 	/// Returns pointer to DirectX 9 texture.
-	virtual LPDIRECT3DTEXTURE9 GetDirect3DTexture9() const;
+	virtual LPDIRECT3DTEXTURE9 direct3DTexture9() const;
 #endif 
-	virtual REBOOL IsNull() const;
-	virtual REBOOL IsMipmaped() const;
-	virtual REBOOL Update(const REUByte * pixelsData, 
+	virtual REBOOL isNull() const;
+	virtual REBOOL isMipmaped() const;
+	virtual REBOOL update(const REUByte * pixelsData, 
 						  const REImagePixelFormat pixelsFormat,
 						  const REUInt32 width,
 						  const REUInt32 height);
-	virtual const REBOOL IsBlended() const { if (_texture) { return _texture->IsBlended(); } return false; }
-	virtual void SetFilterType(const RETextureFilterType filter);
-	virtual const RETextureFilterType GetFilterType() const;
-	virtual void Bind() const { if (_texture) _texture->Bind(); }
+	virtual const REBOOL isBlended() const { if (_texture) { return _texture->isBlended(); } return false; }
+	virtual void setFilterType(const RETextureFilterType filter);
+	virtual const RETextureFilterType filterType() const;
+	virtual void bind() const { if (_texture) _texture->bind(); }
 	
 	
 	/* RETexture */

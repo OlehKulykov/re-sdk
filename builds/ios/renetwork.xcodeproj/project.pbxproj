@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D28940717C4DF5A00EBB312 /* curl_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC5048153EB72A007F8DA6 /* curl_wrap2.c */; };
+		3DE67AA715357451003E5BF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67AA615357451003E5BF5 /* Foundation.framework */; };
+		3DE67ACD15357507003E5BF5 /* renetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE67ACC15357507003E5BF5 /* renetwork.h */; };
+		3DFC502A153EA4C3007F8DA6 /* curl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFC5029153EA4C3007F8DA6 /* curl.h */; };
+		3DFC502C153EA4D5007F8DA6 /* curl_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFC502B153EA4D5007F8DA6 /* curl_config.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D10DBAB153D686E0047105B /* REURLRequestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLRequestObject.h; path = ../../include/renetwork/REURLRequestObject.h; sourceTree = SOURCE_ROOT; };
+		3D10DBAE153D68750047105B /* REURLRequestObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLRequestObject.cpp; path = ../../src/network/REURLRequestObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D10DBAF153D68750047105B /* REURLRequestObject_iphone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = REURLRequestObject_iphone.mm; path = ../../src/network/REURLRequestObject_iphone.mm; sourceTree = SOURCE_ROOT; };
+		3D10DBCB153D6C1A0047105B /* REURLConnectionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLConnectionObject.h; path = ../../include/renetwork/REURLConnectionObject.h; sourceTree = SOURCE_ROOT; };
+		3D10DBCE153D6C2C0047105B /* REURLConnectionObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLConnectionObject.cpp; path = ../../src/network/REURLConnectionObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D10DBCF153D6C2C0047105B /* REURLConnectionObject_iphone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = REURLConnectionObject_iphone.mm; path = ../../src/network/REURLConnectionObject_iphone.mm; sourceTree = SOURCE_ROOT; };
+		3D10DBD2153D6FB60047105B /* IREURLConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREURLConnectionDelegate.h; path = ../../include/renetwork/IREURLConnectionDelegate.h; sourceTree = SOURCE_ROOT; };
+		3D10DC4C153D8C4F0047105B /* REURLResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLResponseObject.h; path = ../../include/renetwork/REURLResponseObject.h; sourceTree = SOURCE_ROOT; };
+		3D10DC4F153D8C550047105B /* REURLResponseObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLResponseObject.cpp; path = ../../src/network/REURLResponseObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D42F963153DA7A8005EA058 /* REURLResponseObjectPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLResponseObjectPrivate.h; path = ../../include/renetwork/private/REURLResponseObjectPrivate.h; sourceTree = SOURCE_ROOT; };
+		3D85D6FB1538415C0056F3C2 /* REURLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLObject.cpp; path = ../../src/network/REURLObject.cpp; sourceTree = SOURCE_ROOT; };
+		3D85D6FE153841610056F3C2 /* REURLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLObject.h; path = ../../include/renetwork/REURLObject.h; sourceTree = SOURCE_ROOT; };
+		3D8F991F154009F7001707A3 /* REURLCURLCallbacksPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURLCURLCallbacksPrivate.h; path = ../../include/renetwork/private/REURLCURLCallbacksPrivate.h; sourceTree = SOURCE_ROOT; };
+		3D8F9922154009FC001707A3 /* REURLCURLCallbacksPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REURLCURLCallbacksPrivate.cpp; path = ../../src/network/REURLCURLCallbacksPrivate.cpp; sourceTree = SOURCE_ROOT; };
+		3DE67AA315357451003E5BF5 /* librenetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librenetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DE67AA615357451003E5BF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3DE67ACC15357507003E5BF5 /* renetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renetwork.h; path = ../../include/renetwork.h; sourceTree = SOURCE_ROOT; };
+		3DE67ACF153575ED003E5BF5 /* _REURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _REURL.cpp; path = ../../src/network/_REURL.cpp; sourceTree = SOURCE_ROOT; };
+		3DE67AD1153575F4003E5BF5 /* REURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REURL.h; path = ../../include/renetwork/REURL.h; sourceTree = SOURCE_ROOT; };
+		3DFC5029153EA4C3007F8DA6 /* curl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = curl.h; path = ../../src/addlibs/curl.h; sourceTree = SOURCE_ROOT; };
+		3DFC502B153EA4D5007F8DA6 /* curl_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = curl_config.h; path = ../../src/addlibs/curl_config.h; sourceTree = SOURCE_ROOT; };
+		3DFC502D153EA4E4007F8DA6 /* curl_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap1.c; path = ../../src/addlibs/curl_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3DFC5048153EB72A007F8DA6 /* curl_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap2.c; path = ../../src/addlibs/curl_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3DFC5049153EB72A007F8DA6 /* curl_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap3.c; path = ../../src/addlibs/curl_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3DFC504A153EB72A007F8DA6 /* curl_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap4.c; path = ../../src/addlibs/curl_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3DFC504B153EB72A007F8DA6 /* curl_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap5.c; path = ../../src/addlibs/curl_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3DFC504C153EB72A007F8DA6 /* curl_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = curl_wrap6.c; path = ../../src/addlibs/curl_wrap6.c; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DE67AA015357451003E5BF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE67AA715357451003E5BF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DE67A9815357451003E5BF5 = {
+			isa = PBXGroup;
+			children = (
+				3DE67AA815357451003E5BF5 /* renetwork */,
+				3DE67AA515357451003E5BF5 /* Frameworks */,
+				3DE67AA415357451003E5BF5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DE67AA415357451003E5BF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DE67AA315357451003E5BF5 /* librenetwork.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DE67AA515357451003E5BF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DE67AA615357451003E5BF5 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DE67AA815357451003E5BF5 /* renetwork */ = {
+			isa = PBXGroup;
+			children = (
+				3DFC5027153EA498007F8DA6 /* addlibs */,
+				3DE67ACC15357507003E5BF5 /* renetwork.h */,
+				3DE67AD1153575F4003E5BF5 /* REURL.h */,
+				3DE67ACF153575ED003E5BF5 /* _REURL.cpp */,
+				3D85D6FE153841610056F3C2 /* REURLObject.h */,
+				3D85D6FB1538415C0056F3C2 /* REURLObject.cpp */,
+				3D10DBAB153D686E0047105B /* REURLRequestObject.h */,
+				3D10DBAE153D68750047105B /* REURLRequestObject.cpp */,
+				3D10DBAF153D68750047105B /* REURLRequestObject_iphone.mm */,
+				3D10DBD2153D6FB60047105B /* IREURLConnectionDelegate.h */,
+				3D10DBCB153D6C1A0047105B /* REURLConnectionObject.h */,
+				3D10DBCE153D6C2C0047105B /* REURLConnectionObject.cpp */,
+				3D10DBCF153D6C2C0047105B /* REURLConnectionObject_iphone.mm */,
+				3D10DC4C153D8C4F0047105B /* REURLResponseObject.h */,
+				3D10DC4F153D8C550047105B /* REURLResponseObject.cpp */,
+				3D42F963153DA7A8005EA058 /* REURLResponseObjectPrivate.h */,
+				3D8F991F154009F7001707A3 /* REURLCURLCallbacksPrivate.h */,
+				3D8F9922154009FC001707A3 /* REURLCURLCallbacksPrivate.cpp */,
+			);
+			path = renetwork;
+			sourceTree = "<group>";
+		};
+		3DFC5027153EA498007F8DA6 /* addlibs */ = {
+			isa = PBXGroup;
+			children = (
+				3DFC5029153EA4C3007F8DA6 /* curl.h */,
+				3DFC502B153EA4D5007F8DA6 /* curl_config.h */,
+				3DFC502D153EA4E4007F8DA6 /* curl_wrap1.c */,
+				3DFC5048153EB72A007F8DA6 /* curl_wrap2.c */,
+				3DFC5049153EB72A007F8DA6 /* curl_wrap3.c */,
+				3DFC504A153EB72A007F8DA6 /* curl_wrap4.c */,
+				3DFC504B153EB72A007F8DA6 /* curl_wrap5.c */,
+				3DFC504C153EB72A007F8DA6 /* curl_wrap6.c */,
+			);
+			name = addlibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3DE67AA115357451003E5BF5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE67ACD15357507003E5BF5 /* renetwork.h in Headers */,
+				3DFC502A153EA4C3007F8DA6 /* curl.h in Headers */,
+				3DFC502C153EA4D5007F8DA6 /* curl_config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3DE67AA215357451003E5BF5 /* renetwork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DE67AB015357451003E5BF5 /* Build configuration list for PBXNativeTarget "renetwork" */;
+			buildPhases = (
+				3DE67A9F15357451003E5BF5 /* Sources */,
+				3DE67AA015357451003E5BF5 /* Frameworks */,
+				3DE67AA115357451003E5BF5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = renetwork;
+			productName = renetwork;
+			productReference = 3DE67AA315357451003E5BF5 /* librenetwork.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DE67A9A15357451003E5BF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 3DE67A9D15357451003E5BF5 /* Build configuration list for PBXProject "renetwork" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3DE67A9815357451003E5BF5;
+			productRefGroup = 3DE67AA415357451003E5BF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DE67AA215357451003E5BF5 /* renetwork */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DE67A9F15357451003E5BF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D28940717C4DF5A00EBB312 /* curl_wrap2.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3DE67AAE15357451003E5BF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__RE_OS_IPHONE__,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/curl/include,
+					/Volumes/Data/Work/recore/src/addlibs/curl/include/,
+					/Volumes/Data/Work/recore/src/addlibs/curl/lib/,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3DE67AAF15357451003E5BF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = __RE_OS_IPHONE__;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/curl/include,
+					/Volumes/Data/Work/recore/src/addlibs/curl/include/,
+					/Volumes/Data/Work/recore/src/addlibs/curl/lib/,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3DE67AB115357451003E5BF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/renetwork.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3DE67AB215357451003E5BF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/renetwork.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DE67A9D15357451003E5BF5 /* Build configuration list for PBXProject "renetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DE67AAE15357451003E5BF5 /* Debug */,
+				3DE67AAF15357451003E5BF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DE67AB015357451003E5BF5 /* Build configuration list for PBXNativeTarget "renetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DE67AB115357451003E5BF5 /* Debug */,
+				3DE67AB215357451003E5BF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DE67A9A15357451003E5BF5 /* Project object */;
+}

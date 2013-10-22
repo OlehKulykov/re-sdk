@@ -100,6 +100,8 @@ void MyGameInterLayer::createGameAppWithViewController()
 			
 			rootViewController->setRespondsForUserAction(true);
 			rootViewController->setFrame(RERect(0.0f, 0.0f, MY_GAME_RENDER_WIDTH, MY_GAME_RENDER_HEIGHT));
+			
+			rootVC->__Test();
 		}
 	}
 	RE_SAFE_RELEASE(rootVC);

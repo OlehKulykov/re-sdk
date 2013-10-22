@@ -18,7 +18,10 @@
 #include "../../../include/recore/private/REDictionaryJSONCallbacks.h"
 #include "../../../include/recore/RETypedArray.h"
 #include "../../../include/recore/REDictionary.h"
-
+#include "../../../include/recore/RENULL.h"
+#include "../../../include/recore/REObject.h"
+#include "../../../include/recore/RENumber.h"
+#include "../../../include/recore/REString.h"
 
 REDictionaryJSONCallbacks::~REDictionaryJSONCallbacks()
 {
@@ -171,7 +174,7 @@ void REDictionaryJSONCallbacks::addToArray(void* array, void* object)
 {
 	RETypedPtr * a = REPtrCast<RETypedPtr, void>(array);
 	RETypedPtr * o = REPtrCast<RETypedPtr, void>(object);
-	a->getArray()->add(*o);
+	a->array()->add(*o);
 }
 
 void REDictionaryJSONCallbacks::addToDictionary(void* dict, void* key, void* value)
@@ -179,12 +182,7 @@ void REDictionaryJSONCallbacks::addToDictionary(void* dict, void* key, void* val
 	RETypedPtr * d = REPtrCast<RETypedPtr, void>(dict);
 	RETypedPtr * k = REPtrCast<RETypedPtr, void>(key);
 	RETypedPtr * v = REPtrCast<RETypedPtr, void>(value);
-	d->getDictionary()->setValue(*v, *k);
+	d->dictionary()->setValue(*v, *k);
 }
-
-
-
-
-
 
 

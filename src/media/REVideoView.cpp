@@ -19,17 +19,6 @@
 #include "../../include/remedia/private/REOGGTheoraPlayerPrivate.h"
 
 
-const REUInt32 REVideoView::getClassIdentifier() const
-{
-	return REView::classIdentifier();
-}
-
-const REUInt32 REVideoView::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REVideoView");
-	return clasIdentif;
-}
-
 REBOOL REVideoView::play()
 {
 	if (_fields) 

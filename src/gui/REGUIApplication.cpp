@@ -17,6 +17,39 @@
 
 #include "../../include/regui/REGUIApplication.h"
 #include "../../include/regui/RECamera.h"
+#include "../../include/regui/REView.h"
+#include "../../include/regui/REButton.h"
+#include "../../include/regui/RETransformedView.h"
+#include "../../include/regui/RETextureObject.h"
+#include "../../include/regui/RETextField.h"
+#include "../../include/regui/REParticleView.h"
+#include "../../include/regui/RELabel.h"
+#include "../../include/regui/REFramedTextureObject.h"
+
+class REGUIApplicationInternal 
+{	
+public:
+	static REGUIApplication * currentApplication;
+	static void* creteREView();
+	static void* creteREButton();
+	static void* creteRETransformedView();
+	static void* creteRETexture();
+	static void* creteRETextField();
+	static void* creteREParticleView();
+	static void* creteRELabel();
+	static void* creteREFramedTexture();
+};
+
+REGUIApplication * REGUIApplicationInternal::currentApplication = NULL;
+void* REGUIApplicationInternal::creteREView() { REView * v = REView::create(); return REPtrCast<void, REView>(v); }
+void* REGUIApplicationInternal::creteREButton() { REButton * b = REButton::create(); return REPtrCast<void, REButton>(b); }
+void* REGUIApplicationInternal::creteRETransformedView() { RETransformedView * v = RETransformedView::create(); return REPtrCast<void, RETransformedView>(v); }
+void* REGUIApplicationInternal::creteRETexture() { RETextureObject * t = RETextureObject::Create(); return REPtrCast<void, RETextureObject>(t); }
+void* REGUIApplicationInternal::creteRETextField() { RETextField * tf = RETextField::create(); return REPtrCast<void, RETextField>(tf); }
+void* REGUIApplicationInternal::creteREParticleView() { REParticleView * p = REParticleView::create(); return REPtrCast<void, REParticleView>(p); }
+void* REGUIApplicationInternal::creteRELabel() { RELabel * l = RELabel::create(); return REPtrCast<void, RELabel>(l); }
+void* REGUIApplicationInternal::creteREFramedTexture() { REFramedTextureObject * t = REFramedTextureObject::Create(); return REPtrCast<void, REFramedTextureObject>(t); }
+
 
 class REGUIApplicationPrivate
 {
@@ -40,19 +73,15 @@ REUInt32 REGUIApplicationPrivate::FindOnClickViewsPrivate(REArray<REView *> * st
 {
 	if (view->isVisible() && (view->isRespondsForUserAction() || (!view->isInterceptsUserAction()))) 
 	{
-		if (view->getScreenFrame().isPointInRect(screenX, screenY)) 
+		if (view->screenFrame().isPointInRect(screenX, screenY)) 
 		{
 			storeArray->add(view);
-			REArrayObject * subViews = (REArrayObject *)view->getSubViewsArray();
-			if (subViews) 
+			REList<REView *>::Iterator iter(view->subviewsIterator());
+			while (iter.next()) 
 			{
-				for (REUInt32 i = 0; i < subViews->count(); i++) 
+				if (REGUIApplicationPrivate::FindOnClickViewsPrivate(storeArray, iter.value(), screenX, screenY))
 				{
-					REView * subView = (REView *)(*subViews)[i];
-					if (REGUIApplicationPrivate::FindOnClickViewsPrivate(storeArray, subView, screenX, screenY))
-					{
-						return 1;
-					}
+					return 1;
 				}
 			}
 		}
@@ -82,23 +111,27 @@ void REGUIApplicationPrivate::FindOnClickViews(REArray<REView *> * onClickViews,
 	}
 }
 
-
-/* REObject */
-const REUInt32 REGUIApplication::getClassIdentifier() const
+void * REGUIApplication::createSerializableObjectWithDictionary(const RETypedPtr & dictionary)
 {
-	return REGUIApplication::classIdentifier();
-}
-
-const REUInt32 REGUIApplication::classIdentifier()
-{
-	const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIApplication");
-	return clasIdentif;
-}
-
-REBOOL REGUIApplication::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REGUIApplication::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("IRERenderable") == classIdentifier));
+	REDictionary * dict = dictionary.dictionary();
+	if (dict) 
+	{
+		REString * className = dict->valueForKey(RESerializable::classNameKey()).string();
+		if (className) 
+		{
+			void * object = this->createObjectWithClassName(className->UTF8String());
+			if (object) 
+			{
+				RESerializable * serializable = dynamic_cast<RESerializable *>((RESerializable *)object);
+				if (serializable)
+				{
+					serializable->deserializeWithDictionary(dictionary);
+					return object;
+				}
+			}
+		}
+	}
+	return NULL;
 }
 
 void REGUIApplication::render()
@@ -385,11 +418,27 @@ REBOOL REGUIApplication::resume()
 	return REApplication::resume();
 }
 
+void REGUIApplication::registerGUIApplicationClassNames()
+{
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteREView, "REView");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteREButton, "REButton");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteRETransformedView, "RETransformedView");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteRETexture, "RETextureObject");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteRETextField, "RETextField");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteREParticleView, "REParticleView");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteRELabel, "RELabel");
+	this->registerNewClassForNameCallback(REGUIApplicationInternal::creteREFramedTexture, "REFramedTextureObject");
+}
+
 REGUIApplication::REGUIApplication() : REApplication(),
 	_renderDevice(NULL),
 	_rootViewController(NULL)
 {
-	
+	if (!REGUIApplicationInternal::currentApplication) 
+	{
+		REGUIApplicationInternal::currentApplication = this;
+	}
+	this->registerGUIApplicationClassNames();
 }
 
 void REGUIApplication::onReleased()
@@ -399,13 +448,15 @@ void REGUIApplication::onReleased()
 
 REGUIApplication::~REGUIApplication()
 {
-	
+	if (REGUIApplicationInternal::currentApplication == this) 
+	{
+		REGUIApplicationInternal::currentApplication = NULL;
+	}
 }
 
-REGUIApplication * REGUIApplication::create()
+REGUIApplication * REGUIApplication::currentApplication()
 {
-	REGUIApplication * newGUIApp = new REGUIApplication();
-	return newGUIApp;
+	return REGUIApplicationInternal::currentApplication;
 }
 
 

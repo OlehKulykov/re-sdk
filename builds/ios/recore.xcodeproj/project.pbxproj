@@ -259,8 +259,6 @@
 		3D827EF514D7DBFE00B539FF /* REConfigIPhone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D827EEF14D7DBFE00B539FF /* REConfigIPhone.h */; };
 		3D9818B81427752B00793F3C /* REImageBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9818B71427752B00793F3C /* REImageBase.h */; };
 		3D9818BA1427753700793F3C /* REImageBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9818B91427753700793F3C /* REImageBase.cpp */; };
-		3D9A7740178FE31E00A7AC9F /* REDictionaryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */; };
-		3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */; };
 		3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A774C178FFE2300A7AC9F /* REInt24.h */; };
 		3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9A775A179035D900A7AC9F /* RECRC32Generator.h */; };
 		3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */; };
@@ -304,6 +302,10 @@
 		3DD0469E15EEA0F300642E45 /* REMainLoopUpdatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469D15EEA0F300642E45 /* REMainLoopUpdatable.cpp */; };
 		3DD046A015EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */; };
 		3DD046A215EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD046A115EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h */; };
+		3DD908A618154B2100620D3A /* RESerializable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD908A518154B2100620D3A /* RESerializable.h */; };
+		3DD908A818154D5400620D3A /* RESerializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD908A718154D5400620D3A /* RESerializable.cpp */; };
+		3DD908AD181557D100620D3A /* REStaticString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DD908AC181557D100620D3A /* REStaticString.cpp */; };
+		3DD908AF181557E100620D3A /* REStaticString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD908AE181557E100620D3A /* REStaticString.h */; };
 		3DE386FB14B45D5E00366267 /* REProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE386FA14B45D5E00366267 /* REProperty.h */; };
 		3DE67B3D1535BC17003E5BF5 /* RERange.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DE67B3C1535BC17003E5BF5 /* RERange.h */; };
 		3DF0493414D693D200306830 /* REYUV420toRGB565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */; };
@@ -567,8 +569,6 @@
 		3D889132176CFD810086873B /* librecore copy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "librecore copy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9818B71427752B00793F3C /* REImageBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REImageBase.h; path = ../../include/recore/REImageBase.h; sourceTree = SOURCE_ROOT; };
 		3D9818B91427753700793F3C /* REImageBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REImageBase.cpp; path = ../../src/core/REImageBase.cpp; sourceTree = SOURCE_ROOT; };
-		3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REDictionaryObject.h; path = ../../include/recore/REDictionaryObject.h; sourceTree = SOURCE_ROOT; };
-		3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REDictionaryObject.cpp; path = ../../src/core/REDictionaryObject.cpp; sourceTree = SOURCE_ROOT; };
 		3D9A774C178FFE2300A7AC9F /* REInt24.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REInt24.h; path = ../../include/recore/REInt24.h; sourceTree = SOURCE_ROOT; };
 		3D9A775A179035D900A7AC9F /* RECRC32Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECRC32Generator.h; path = ../../include/recore/RECRC32Generator.h; sourceTree = SOURCE_ROOT; };
 		3D9A775C179035E300A7AC9F /* RECRC32Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RECRC32Generator.cpp; path = ../../src/core/RECRC32Generator.cpp; sourceTree = SOURCE_ROOT; };
@@ -614,6 +614,10 @@
 		3DD0469D15EEA0F300642E45 /* REMainLoopUpdatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopUpdatable.cpp; path = ../../src/core/REMainLoopUpdatable.cpp; sourceTree = SOURCE_ROOT; };
 		3DD0469F15EEA21200642E45 /* REMainLoopsObjectsStoragePrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REMainLoopsObjectsStoragePrivate.cpp; path = ../../src/core/REMainLoopsObjectsStoragePrivate.cpp; sourceTree = SOURCE_ROOT; };
 		3DD046A115EEA23300642E45 /* REMainLoopsObjectsStoragePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REMainLoopsObjectsStoragePrivate.h; path = ../../include/recore/private/REMainLoopsObjectsStoragePrivate.h; sourceTree = SOURCE_ROOT; };
+		3DD908A518154B2100620D3A /* RESerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RESerializable.h; path = ../../include/recore/RESerializable.h; sourceTree = SOURCE_ROOT; };
+		3DD908A718154D5400620D3A /* RESerializable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RESerializable.cpp; path = ../../src/core/RESerializable.cpp; sourceTree = SOURCE_ROOT; };
+		3DD908AC181557D100620D3A /* REStaticString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REStaticString.cpp; path = ../../src/core/REStaticString.cpp; sourceTree = SOURCE_ROOT; };
+		3DD908AE181557E100620D3A /* REStaticString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REStaticString.h; path = ../../include/recore/REStaticString.h; sourceTree = SOURCE_ROOT; };
 		3DE386FA14B45D5E00366267 /* REProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REProperty.h; path = ../../include/recore/REProperty.h; sourceTree = SOURCE_ROOT; };
 		3DE67B3C1535BC17003E5BF5 /* RERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RERange.h; path = ../../include/recore/RERange.h; sourceTree = SOURCE_ROOT; };
 		3DF0492A14D693D200306830 /* REYUV420toRGB565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REYUV420toRGB565.cpp; path = ../../src/core/yuv2rgb/REYUV420toRGB565.cpp; sourceTree = SOURCE_ROOT; };
@@ -1021,10 +1025,10 @@
 		3D68D3FC179E62F7001DE868 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				3DD908A518154B2100620D3A /* RESerializable.h */,
+				3DD908A718154D5400620D3A /* RESerializable.cpp */,
 				3D1F433113E29A4F001E480D /* REObject.h */,
 				3D1F437F13E29AAB001E480D /* REObject.cpp */,
-				3D9A773F178FE31E00A7AC9F /* REDictionaryObject.h */,
-				3D9A7741178FE32400A7AC9F /* REDictionaryObject.cpp */,
 				3DB07B41144CB04C00FF99AB /* REBufferObject.h */,
 				3DB07B42144CB04C00FF99AB /* REBufferObject.cpp */,
 				3DB07B43144CB04C00FF99AB /* RENumberObject.h */,
@@ -1064,6 +1068,8 @@
 				3D7A017A1771B82800E7316E /* REWideString.cpp */,
 				3D7A01761771B7F100E7316E /* REString.h */,
 				3D7A017C1771B83800E7316E /* REString.cpp */,
+				3DD908AE181557E100620D3A /* REStaticString.h */,
+				3DD908AC181557D100620D3A /* REStaticString.cpp */,
 				3D7A01961771D87A00E7316E /* REStringUtilsPrivate.h */,
 				3D7A018F1771D2D400E7316E /* REStringUtilsPrivate.cpp */,
 			);
@@ -1198,6 +1204,7 @@
 				3D1F434313E29A4F001E480D /* REPoint2.h in Headers */,
 				3D1F434413E29A4F001E480D /* REVector2.h in Headers */,
 				3D1F434513E29A4F001E480D /* REPoint3.h in Headers */,
+				3DD908A618154B2100620D3A /* RESerializable.h in Headers */,
 				3D1F434713E29A4F001E480D /* REAngle.h in Headers */,
 				3D1F434813E29A4F001E480D /* REArray.h in Headers */,
 				3D1F434913E29A4F001E480D /* REAutoReleasePool.h in Headers */,
@@ -1284,6 +1291,7 @@
 				3DB8EAEF14DABD07008CBBD6 /* RESQLiteDBResultSet.h in Headers */,
 				3D0805E014E3F04900C88C37 /* REVector3.h in Headers */,
 				3D0DEED5152AE6BB00BF020F /* IREAffineTransformed.h in Headers */,
+				3DD908AF181557E100620D3A /* REStaticString.h in Headers */,
 				3DE67B3D1535BC17003E5BF5 /* RERange.h in Headers */,
 				3DA65FDE156D48AD0029B957 /* REEdgeInsets.h in Headers */,
 				3D785CD715C66ABF006A12F9 /* REObjectProperty.h in Headers */,
@@ -1304,7 +1312,6 @@
 				3DFD334D1783033C0057D47A /* OKJSONParser.h in Headers */,
 				3DFD335817831EAE0057D47A /* RENULL.h in Headers */,
 				3D4E08FE178460640023C08A /* REDictionaryJSONCallbacks.h in Headers */,
-				3D9A7740178FE31E00A7AC9F /* REDictionaryObject.h in Headers */,
 				3D9A774D178FFE2300A7AC9F /* REInt24.h in Headers */,
 				3D9A775B179035D900A7AC9F /* RECRC32Generator.h in Headers */,
 				3D40A0B417C26636009A74A6 /* REURL.h in Headers */,
@@ -1426,6 +1433,7 @@
 				3D1F43AA13E29AAB001E480D /* RETimer.cpp in Sources */,
 				3D64CA3C1814582600839513 /* REPoint2.cpp in Sources */,
 				3D1F43AB13E29AAB001E480D /* REUserCallBacks.cpp in Sources */,
+				3DD908A818154D5400620D3A /* RESerializable.cpp in Sources */,
 				3D1F43AC13E29AAB001E480D /* REZipReader.cpp in Sources */,
 				3D1F43AE13E29AAB001E480D /* ioapi.c in Sources */,
 				3D1F43B013E29AAB001E480D /* unzip.c in Sources */,
@@ -1557,6 +1565,7 @@
 				3DBEF9621770445800503066 /* REDictionary.cpp in Sources */,
 				3DBEF98617708E9B00503066 /* RETypedArray.cpp in Sources */,
 				3D7A017B1771B82800E7316E /* REWideString.cpp in Sources */,
+				3DD908AD181557D100620D3A /* REStaticString.cpp in Sources */,
 				3D7A017D1771B83800E7316E /* REString.cpp in Sources */,
 				3D1BBBD01810142D006DDBD5 /* RESize.cpp in Sources */,
 				3D7A017F1771B84F00E7316E /* REMutableString.cpp in Sources */,
@@ -1565,7 +1574,6 @@
 				3DFD334C1783033C0057D47A /* OKJSONParser.c in Sources */,
 				3DFD335A17831ECD0057D47A /* RENULL.cpp in Sources */,
 				3D4E08FC1784605C0023C08A /* REDictionaryJSONCallbacks.cpp in Sources */,
-				3D9A7742178FE32400A7AC9F /* REDictionaryObject.cpp in Sources */,
 				3D9A775D179035E300A7AC9F /* RECRC32Generator.cpp in Sources */,
 				3D40A0B217C26629009A74A6 /* REURL.cpp in Sources */,
 				3D28943E17C4F14900EBB312 /* curl_wrap2.c in Sources */,

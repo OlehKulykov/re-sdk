@@ -66,17 +66,17 @@ protected:
 	
 public:
 	/* IRETexture */
-	virtual const GLuint GetTexureIdentifier() const { return _textureIdentifierOpenGL; }
-	virtual REBOOL IsNull() const { return (_textureIdentifierOpenGL == 0); }
-	virtual REBOOL IsMipmaped() const;
-	virtual REBOOL Update(const REUByte * pixelsData, 
+	virtual const GLuint texureIdentifier() const { return _textureIdentifierOpenGL; }
+	virtual REBOOL isNull() const { return (_textureIdentifierOpenGL == 0); }
+	virtual REBOOL isMipmaped() const;
+	virtual REBOOL update(const REUByte * pixelsData, 
 						  const REImagePixelFormat pixelsFormat,
 						  const REUInt32 width,
 						  const REUInt32 height);
-	virtual const REBOOL IsBlended() const { return _isBlended; }
-	virtual void SetFilterType(const RETextureFilterType filter);
-	virtual const RETextureFilterType GetFilterType() const;
-	virtual void Bind() const { glBindTexture(GL_TEXTURE_2D, _textureIdentifierOpenGL); }
+	virtual const REBOOL isBlended() const { return _isBlended; }
+	virtual void setFilterType(const RETextureFilterType filter);
+	virtual const RETextureFilterType filterType() const;
+	virtual void bind() const { glBindTexture(GL_TEXTURE_2D, _textureIdentifierOpenGL); }
 	
 	/* REObject */
 	virtual void onReleased();

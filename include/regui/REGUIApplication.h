@@ -24,6 +24,7 @@
 #include "IRERenderable.h"
 #include "RERenderDevice.h"
 #include "REViewController.h"
+#include "RETextureObject.h"
 
 #if (defined(__BUILDING_RECORE_DYNAMIC_LIBRARY__) || defined(__USING_RECORE_DYNAMIC_LIBRARY__))
 /// Warning message 4251: Class 'REArray<T>' needs to have dll-interface to be used by clients of class.
@@ -47,6 +48,8 @@ private:
 	REBOOL initGUIApplication(REViewController * rootViewController, void * windowHandle);
 
 protected:
+	virtual void registerGUIApplicationClassNames();
+	
 	/// Constructs empty gui application.
 	REGUIApplication();
 	
@@ -88,9 +91,6 @@ public:
 	virtual REBOOL resume();
 	
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
 	
 	/* IRERenderable */
@@ -116,8 +116,16 @@ public:
 	/// 'screenX' and 'screenY' this is coordinates from top left of window using window coordinate system.
 	void onClickMoveOnScreen(const REFloat32 screenX, const REFloat32 screenY);
 	
-	/// Creates and returns new gui application object.
-	static REGUIApplication * create();
+	void * createSerializableObjectWithDictionary(const RETypedPtr & dictionary);
+	
+	template <class T> T * createSerializableClassWithDictionary(const RETypedPtr & dictionary)
+	{
+		void * object = this->createSerializableObjectWithDictionary(dictionary);
+		return REPtrCast<T, void>(object);
+	}
+	
+	/// Returns gui application object.
+	static REGUIApplication * currentApplication();
 };
 
 

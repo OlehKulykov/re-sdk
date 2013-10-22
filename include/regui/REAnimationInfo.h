@@ -46,9 +46,6 @@ protected:
 	virtual ~REAnimationInfo();
 public: 
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
 	
 	/// Returns count of animated objects.

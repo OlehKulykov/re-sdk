@@ -19,8 +19,8 @@
 #define __REOBJECT_H__
 
 #include "RECommonHeader.h"
-#include "REMD5Generator.h"
-#include "RECRC32Generator.h"
+#include "RESerializable.h"
+
 
 /// Base class for objects.
 class __RE_PUBLIC_CLASS_API__ REObject
@@ -34,7 +34,7 @@ protected:
 	/// Good place to release any used objects, stop any internal animations etc.
 	/// Default implementation do nothing, but if you override this method
 	/// don't forged call this method of base object.
-	virtual void onReleased() { }
+	virtual void onReleased();
 	
 	/// Constucts object with retain counter value 1 and assigning object identifier
 	REObject();
@@ -48,27 +48,7 @@ public:
 	/// Return type: REUIdentifier that is "unsigned int (32/64 bit, dependes of compiled platform)"
 	/// Return value is integer representation of "this" pointer when REObject creating.
 	const REUIdentifier objectIdentifier() const;
-	
-	/// Returns integer identifier of class. Each new class that inherits REObject must implement this method.
-	/// Return value is md5 value of name class. Usialy return ::classIdentifier() value.
-	virtual const REUInt32 getClassIdentifier() const;
-	
-	/// Check object is implements class by it's identifier or object is instance of the class by it's identifier.
-	/// Must be overided in all REObject subclasses.
-	/// Default implementation of REObject compares REObject::classIdentifier() with passed argument.
-	/// If your class implements some abstract class you need also compare passed argument with
-	/// class identifier generated from it's name using REObject::generateClassIdentifierFromClassName(...) method.
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
-	
-	/// Returns integer identifier of class. Each new class that REObject must have it's own method that is
-	/// crc32 value of name class. Using RECRC32Generator::generateFromString(const char * s);
-	static const REUInt32 classIdentifier();
-	
-	/// Generates integer identifier of class using it's name.
-	/// Return value is md5 value of name class.
-	/// Example: const REUInt32 classID = REObject::generateClassIdentifierFromClassName("REObject");
-	static const REUInt32 generateClassIdentifierFromClassName(const char * className);
-	
+		
 	/// Checking equals with onother object. Default implementation check equality of object identifiers.
 	/// If anotherObject is NULL than not equal
 	virtual REBOOL isEqual(REObject * anotherObject);

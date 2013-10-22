@@ -18,25 +18,6 @@
 #include "../../include/recore/RETimer.h"
 #include "../../include/recore/RETime.h"
 
-/* REObject */
-const REUInt32 RETimer::getClassIdentifier() const 
-{
-	return RETimer::classIdentifier();
-}
-
-const REUInt32 RETimer::classIdentifier() 
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("RETimer");
-	return clasIdentif;
-}
-
-REBOOL RETimer::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((RETimer::classIdentifier() == classIdentifier) ||
-			(REObject::generateClassIdentifierFromClassName("REMainLoopUpdatable") == classIdentifier) ||
-			REObject::isImplementsClass(classIdentifier));
-}
-
 void RETimer::update(const RETimeInterval currentTime)
 {
 	if (_isActive)

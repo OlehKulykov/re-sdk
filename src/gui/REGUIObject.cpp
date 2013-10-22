@@ -17,22 +17,6 @@
 
 #include "../../include/regui/REGUIObject.h"
 
-const REUInt32 REGUIObject::getClassIdentifier() const
-{
-	return REGUIObject::classIdentifier();
-}
-
-const REUInt32 REGUIObject::classIdentifier()
-{
-	static const REUInt32 clasIdentif = REObject::generateClassIdentifierFromClassName("REGUIObject");
-	return clasIdentif;
-}
-
-REBOOL REGUIObject::isImplementsClass(const REUInt32 classIdentifier) const
-{
-	return ((REGUIObject::classIdentifier() == classIdentifier) || REObject::isImplementsClass(classIdentifier));
-}
-
 void REGUIObject::onPrepareGUIObjectForSetuping()
 {
 	

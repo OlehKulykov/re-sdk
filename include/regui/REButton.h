@@ -91,9 +91,6 @@ public:
 	virtual void renderWithOffset(const REFloat32 offsetX, const REFloat32 offsetY);
 	
 	/* REObject */
-	virtual const REUInt32 getClassIdentifier() const;
-	static const REUInt32 classIdentifier();
-	virtual REBOOL isImplementsClass(const REUInt32 classIdentifier) const;
 	virtual void onReleased();
 	
 	/// Creates and returns new button object.
