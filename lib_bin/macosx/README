@@ -1,0 +1,8 @@
+Place MaxOSx binary files here.
+
+- librecore.a
+- libregui.a
+- libremedia.a
+
+Use XCode projects located: builds/macosx
+Or use script: builds/macosx/build_macosx_static

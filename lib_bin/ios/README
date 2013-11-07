@@ -1,0 +1,3 @@
+Place iOS framework RECoreSDK.framework here.
+
+Use script: builds/ios/build_ios_static
