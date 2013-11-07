@@ -18,6 +18,10 @@
 cd `dirname $0`
 PWD=$(pwd)
 
+# clean up prev build result
+rm -rf libs
+rm -rf obj
+
 # Update NDK_MODULE_PATH so we can find our imported modules
 export NDK_MODULE_PATH="$PWD"
 
@@ -25,4 +29,15 @@ export NDK_MODULE_PATH="$PWD"
 $NDK/ndk-build "$@"
 
 
+# clean up prev build result
+rm -rf ../../lib_bin/android
+mkdir ../../lib_bin/android
+
+cd obj
+find . -type f -iregex '.*\.a$' | xargs -I @ cp @ ../../../lib_bin/android
+cd ..
+
+cd libs
+find . -type f -iregex '.*\.so$' | xargs -I @ cp @ ../../../lib_bin/android
+cd ..
 
