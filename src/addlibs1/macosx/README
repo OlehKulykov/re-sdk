@@ -1,0 +1,5 @@
+Use "build.sh" for building Mac OS libraries from XCode projects.
+This will create "include" & "lib" folders for Mac OS platform.
+
+Example:
+./build.sh

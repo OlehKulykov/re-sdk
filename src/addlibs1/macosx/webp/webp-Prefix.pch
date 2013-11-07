@@ -1,0 +1,18 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
+
+
+#define HAVE_MALLOC_H 1
+#define HAVE_PTHREAD 1
+#define WEBP_USE_THREAD 1
+#define NDEBUG 1
+#define WEBP_USE_SSE2 1
+
+
