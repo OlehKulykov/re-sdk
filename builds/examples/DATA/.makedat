@@ -1,5 +1,0 @@
-rm data0.dat
-rm ../data0.dat
-zip data0.zip -0 -D -r data
-mv data0.zip data0.dat
-cp data0.dat ../data0.dat

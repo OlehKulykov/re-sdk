@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>tahoma.ttf</file>
-    </qresource>
-</RCC>

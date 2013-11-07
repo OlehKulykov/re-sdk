@@ -1,5 +1,0 @@
-rm media0.dat
-rm ../media0.dat
-zip media0.zip -0 -D -r media
-mv media0.zip media0.dat
-cp media0.dat ../media0.dat
