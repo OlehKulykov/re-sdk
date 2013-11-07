@@ -12,7 +12,7 @@ RECore features:
 - Basic geometry objects, such as 2D/3D points and vectors, matrix, quaternions, edge insets, ranges, colors, angles, randomizers, timers, file management, some 2D algorithms, Base64, MD5, UTF8 strings, wide char strings presentation, encoding/decoding special HTML characters*.
 - Compression/decompression memory buffers using ZIP* and LZMA* algorithm, reading from ZIP archives*.
 - Arrays, lists, iterators and dictionary with possibility save/load objects to/from XML property lists.
-- Reading PNG*, JPG/JPEG*, J2K/JPEG2000*, WebP* image formats and writing PNG* and WebP* image formats. Supports RGB(A), Luminance alpha and alpha pixel formats, scaling images, YUV to RGB(A) color conversion*.
+- Reading PNG*, JPG/JPEG*, WebP* image formats and writing PNG* and WebP* image formats. Supports RGB(A), Luminance alpha and alpha pixel formats, scaling images, YUV to RGB(A) color conversion*.
 - Threads and mutexes. Invoking/executing class methods in current or main thread with or without delays.
 - Reading/writing SQLite data base*.
 - Initializing base objects from URL*, resources or wrapper application callbacks*.
@@ -83,11 +83,6 @@ URL: http://www.xiph.org
 - lzma
 URL: http://www.7-zip.org/sdk.html
 License URL: http://www.7-zip.org/license.txt
-
-
-- OpenJPEG
-URL: http://www.openjpeg.org
-License URL: http://www.openjpeg.org/BSDlicense.txt
 
 
 - cURL
