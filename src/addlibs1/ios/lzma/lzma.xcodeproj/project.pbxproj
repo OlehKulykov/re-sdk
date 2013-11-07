@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3DA0F4571827C2B10057F599 /* liblzma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA0F43F1827C2B10057F599 /* liblzma.a */; };
+		3DA0F4751827D1330057F599 /* Alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0F4691827D1330057F599 /* Alloc.c */; };
+		3DA0F4761827D1330057F599 /* LzFind.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0F46B1827D1330057F599 /* LzFind.c */; };
+		3DA0F4771827D1330057F599 /* LzmaDec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0F46E1827D1330057F599 /* LzmaDec.c */; };
+		3DA0F4781827D1330057F599 /* LzmaEnc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0F4701827D1330057F599 /* LzmaEnc.c */; };
+		3DA0F4791827D1330057F599 /* LzmaLib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0F4721827D1330057F599 /* LzmaLib.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DA0F4551827C2B10057F599 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DA0F4371827C2B10057F599 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DA0F43E1827C2B10057F599;
+			remoteInfo = lzma;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DA0F43D1827C2B10057F599 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3DA0F43F1827C2B10057F599 /* liblzma.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblzma.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA0F44F1827C2B10057F599 /* lzmaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lzmaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA0F4681827D1190057F599 /* lzma-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "lzma-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		3DA0F4691827D1330057F599 /* Alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Alloc.c; path = C/Alloc.c; sourceTree = "<group>"; };
+		3DA0F46A1827D1330057F599 /* Alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alloc.h; path = C/Alloc.h; sourceTree = "<group>"; };
+		3DA0F46B1827D1330057F599 /* LzFind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LzFind.c; path = C/LzFind.c; sourceTree = "<group>"; };
+		3DA0F46C1827D1330057F599 /* LzFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LzFind.h; path = C/LzFind.h; sourceTree = "<group>"; };
+		3DA0F46D1827D1330057F599 /* LzHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LzHash.h; path = C/LzHash.h; sourceTree = "<group>"; };
+		3DA0F46E1827D1330057F599 /* LzmaDec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LzmaDec.c; path = C/LzmaDec.c; sourceTree = "<group>"; };
+		3DA0F46F1827D1330057F599 /* LzmaDec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LzmaDec.h; path = C/LzmaDec.h; sourceTree = "<group>"; };
+		3DA0F4701827D1330057F599 /* LzmaEnc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LzmaEnc.c; path = C/LzmaEnc.c; sourceTree = "<group>"; };
+		3DA0F4711827D1330057F599 /* LzmaEnc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LzmaEnc.h; path = C/LzmaEnc.h; sourceTree = "<group>"; };
+		3DA0F4721827D1330057F599 /* LzmaLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LzmaLib.c; path = C/LzmaLib.c; sourceTree = "<group>"; };
+		3DA0F4731827D1330057F599 /* LzmaLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LzmaLib.h; path = C/LzmaLib.h; sourceTree = "<group>"; };
+		3DA0F4741827D1330057F599 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = C/Types.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DA0F43C1827C2B10057F599 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA0F44C1827C2B10057F599 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA0F4571827C2B10057F599 /* liblzma.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DA0F4361827C2B10057F599 = {
+			isa = PBXGroup;
+			children = (
+				3DA0F4441827C2B10057F599 /* lzma */,
+				3DA0F4401827C2B10057F599 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DA0F4401827C2B10057F599 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DA0F43F1827C2B10057F599 /* liblzma.a */,
+				3DA0F44F1827C2B10057F599 /* lzmaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DA0F4441827C2B10057F599 /* lzma */ = {
+			isa = PBXGroup;
+			children = (
+				3DA0F4691827D1330057F599 /* Alloc.c */,
+				3DA0F46A1827D1330057F599 /* Alloc.h */,
+				3DA0F46B1827D1330057F599 /* LzFind.c */,
+				3DA0F46C1827D1330057F599 /* LzFind.h */,
+				3DA0F46D1827D1330057F599 /* LzHash.h */,
+				3DA0F46E1827D1330057F599 /* LzmaDec.c */,
+				3DA0F46F1827D1330057F599 /* LzmaDec.h */,
+				3DA0F4701827D1330057F599 /* LzmaEnc.c */,
+				3DA0F4711827D1330057F599 /* LzmaEnc.h */,
+				3DA0F4721827D1330057F599 /* LzmaLib.c */,
+				3DA0F4731827D1330057F599 /* LzmaLib.h */,
+				3DA0F4741827D1330057F599 /* Types.h */,
+				3DA0F4451827C2B10057F599 /* Supporting Files */,
+			);
+			path = lzma;
+			sourceTree = "<group>";
+		};
+		3DA0F4451827C2B10057F599 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3DA0F4681827D1190057F599 /* lzma-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DA0F43E1827C2B10057F599 /* lzma */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA0F4621827C2B10057F599 /* Build configuration list for PBXNativeTarget "lzma" */;
+			buildPhases = (
+				3DA0F43B1827C2B10057F599 /* Sources */,
+				3DA0F43C1827C2B10057F599 /* Frameworks */,
+				3DA0F43D1827C2B10057F599 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lzma;
+			productName = lzma;
+			productReference = 3DA0F43F1827C2B10057F599 /* liblzma.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3DA0F44E1827C2B10057F599 /* lzmaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA0F4651827C2B10057F599 /* Build configuration list for PBXNativeTarget "lzmaTests" */;
+			buildPhases = (
+				3DA0F44B1827C2B10057F599 /* Sources */,
+				3DA0F44C1827C2B10057F599 /* Frameworks */,
+				3DA0F44D1827C2B10057F599 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DA0F4561827C2B10057F599 /* PBXTargetDependency */,
+			);
+			name = lzmaTests;
+			productName = lzmaTests;
+			productReference = 3DA0F44F1827C2B10057F599 /* lzmaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DA0F4371827C2B10057F599 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Resident Evil";
+			};
+			buildConfigurationList = 3DA0F43A1827C2B10057F599 /* Build configuration list for PBXProject "lzma" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3DA0F4361827C2B10057F599;
+			productRefGroup = 3DA0F4401827C2B10057F599 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DA0F43E1827C2B10057F599 /* lzma */,
+				3DA0F44E1827C2B10057F599 /* lzmaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DA0F44D1827C2B10057F599 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DA0F43B1827C2B10057F599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA0F4781827D1330057F599 /* LzmaEnc.c in Sources */,
+				3DA0F4761827D1330057F599 /* LzFind.c in Sources */,
+				3DA0F4751827D1330057F599 /* Alloc.c in Sources */,
+				3DA0F4791827D1330057F599 /* LzmaLib.c in Sources */,
+				3DA0F4771827D1330057F599 /* LzmaDec.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA0F44B1827C2B10057F599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3DA0F4561827C2B10057F599 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DA0F43E1827C2B10057F599 /* lzma */;
+			targetProxy = 3DA0F4551827C2B10057F599 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3DA0F4601827C2B10057F599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3DA0F4611827C2B10057F599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3DA0F4631827C2B10057F599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/lzma.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lzma-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3DA0F4641827C2B10057F599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/lzma.dst;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lzma-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3DA0F4661827C2B10057F599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lzma/lzma-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "lzmaTests/lzmaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3DA0F4671827C2B10057F599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "lzma/lzma-Prefix.pch";
+				INFOPLIST_FILE = "lzmaTests/lzmaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DA0F43A1827C2B10057F599 /* Build configuration list for PBXProject "lzma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA0F4601827C2B10057F599 /* Debug */,
+				3DA0F4611827C2B10057F599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA0F4621827C2B10057F599 /* Build configuration list for PBXNativeTarget "lzma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA0F4631827C2B10057F599 /* Debug */,
+				3DA0F4641827C2B10057F599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA0F4651827C2B10057F599 /* Build configuration list for PBXNativeTarget "lzmaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA0F4661827C2B10057F599 /* Debug */,
+				3DA0F4671827C2B10057F599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DA0F4371827C2B10057F599 /* Project object */;
+}

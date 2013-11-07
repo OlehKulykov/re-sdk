@@ -1,0 +1,719 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D79BCA71806BF3700E60D19 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D79BC8F1806BF3700E60D19 /* libwebp.a */; };
+		3D79BD201806BFDE00E60D19 /* alpha.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCB91806BFDE00E60D19 /* alpha.c */; };
+		3D79BD211806BFDE00E60D19 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCBB1806BFDE00E60D19 /* buffer.c */; };
+		3D79BD221806BFDE00E60D19 /* frame.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCBD1806BFDE00E60D19 /* frame.c */; };
+		3D79BD231806BFDE00E60D19 /* idec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCBE1806BFDE00E60D19 /* idec.c */; };
+		3D79BD241806BFDE00E60D19 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCBF1806BFDE00E60D19 /* io.c */; };
+		3D79BD251806BFDE00E60D19 /* layer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC01806BFDE00E60D19 /* layer.c */; };
+		3D79BD261806BFDE00E60D19 /* quant.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC21806BFDE00E60D19 /* quant.c */; };
+		3D79BD271806BFDE00E60D19 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC31806BFDE00E60D19 /* tree.c */; };
+		3D79BD281806BFDE00E60D19 /* vp8.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC41806BFDE00E60D19 /* vp8.c */; };
+		3D79BD291806BFDE00E60D19 /* vp8l.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC61806BFDE00E60D19 /* vp8l.c */; };
+		3D79BD2A1806BFDE00E60D19 /* webp.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCC81806BFDE00E60D19 /* webp.c */; };
+		3D79BD2B1806BFDE00E60D19 /* demux.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCCB1806BFDE00E60D19 /* demux.c */; };
+		3D79BD2C1806BFDE00E60D19 /* cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCCF1806BFDE00E60D19 /* cpu.c */; };
+		3D79BD2D1806BFDE00E60D19 /* dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD01806BFDE00E60D19 /* dec.c */; };
+		3D79BD2E1806BFDE00E60D19 /* dec_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD11806BFDE00E60D19 /* dec_neon.c */; };
+		3D79BD2F1806BFDE00E60D19 /* dec_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD21806BFDE00E60D19 /* dec_sse2.c */; };
+		3D79BD301806BFDE00E60D19 /* enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD41806BFDE00E60D19 /* enc.c */; };
+		3D79BD311806BFDE00E60D19 /* enc_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD51806BFDE00E60D19 /* enc_neon.c */; };
+		3D79BD321806BFDE00E60D19 /* enc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD61806BFDE00E60D19 /* enc_sse2.c */; };
+		3D79BD331806BFDE00E60D19 /* lossless.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCD71806BFDE00E60D19 /* lossless.c */; };
+		3D79BD341806BFDE00E60D19 /* upsampling.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCDA1806BFDE00E60D19 /* upsampling.c */; };
+		3D79BD351806BFDE00E60D19 /* upsampling_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCDB1806BFDE00E60D19 /* upsampling_neon.c */; };
+		3D79BD361806BFDE00E60D19 /* upsampling_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCDC1806BFDE00E60D19 /* upsampling_sse2.c */; };
+		3D79BD371806BFDE00E60D19 /* yuv.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCDD1806BFDE00E60D19 /* yuv.c */; };
+		3D79BD381806BFDE00E60D19 /* alpha.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE01806BFDE00E60D19 /* alpha.c */; };
+		3D79BD391806BFDE00E60D19 /* analysis.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE11806BFDE00E60D19 /* analysis.c */; };
+		3D79BD3A1806BFDE00E60D19 /* backward_references.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE21806BFDE00E60D19 /* backward_references.c */; };
+		3D79BD3B1806BFDE00E60D19 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE41806BFDE00E60D19 /* config.c */; };
+		3D79BD3C1806BFDE00E60D19 /* cost.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE51806BFDE00E60D19 /* cost.c */; };
+		3D79BD3D1806BFDE00E60D19 /* filter.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE71806BFDE00E60D19 /* filter.c */; };
+		3D79BD3E1806BFDE00E60D19 /* frame.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE81806BFDE00E60D19 /* frame.c */; };
+		3D79BD3F1806BFDE00E60D19 /* histogram.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCE91806BFDE00E60D19 /* histogram.c */; };
+		3D79BD401806BFDE00E60D19 /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCEB1806BFDE00E60D19 /* iterator.c */; };
+		3D79BD411806BFDE00E60D19 /* layer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCEC1806BFDE00E60D19 /* layer.c */; };
+		3D79BD421806BFDE00E60D19 /* picture.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCEE1806BFDE00E60D19 /* picture.c */; };
+		3D79BD431806BFDE00E60D19 /* quant.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCEF1806BFDE00E60D19 /* quant.c */; };
+		3D79BD441806BFDE00E60D19 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCF01806BFDE00E60D19 /* syntax.c */; };
+		3D79BD451806BFDE00E60D19 /* token.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCF11806BFDE00E60D19 /* token.c */; };
+		3D79BD461806BFDE00E60D19 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCF21806BFDE00E60D19 /* tree.c */; };
+		3D79BD471806BFDE00E60D19 /* vp8l.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCF41806BFDE00E60D19 /* vp8l.c */; };
+		3D79BD481806BFDE00E60D19 /* webpenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCF61806BFDE00E60D19 /* webpenc.c */; };
+		3D79BD491806BFDE00E60D19 /* muxedit.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCFA1806BFDE00E60D19 /* muxedit.c */; };
+		3D79BD4A1806BFDE00E60D19 /* muxinternal.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCFC1806BFDE00E60D19 /* muxinternal.c */; };
+		3D79BD4B1806BFDE00E60D19 /* muxread.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCFD1806BFDE00E60D19 /* muxread.c */; };
+		3D79BD4C1806BFDE00E60D19 /* alpha_processing.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BCFF1806BFDE00E60D19 /* alpha_processing.c */; };
+		3D79BD4D1806BFDE00E60D19 /* bit_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD011806BFDE00E60D19 /* bit_reader.c */; };
+		3D79BD4E1806BFDE00E60D19 /* bit_writer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD031806BFDE00E60D19 /* bit_writer.c */; };
+		3D79BD4F1806BFDE00E60D19 /* color_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD051806BFDE00E60D19 /* color_cache.c */; };
+		3D79BD501806BFDE00E60D19 /* filters.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD071806BFDE00E60D19 /* filters.c */; };
+		3D79BD511806BFDE00E60D19 /* huffman.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD091806BFDE00E60D19 /* huffman.c */; };
+		3D79BD521806BFDE00E60D19 /* huffman_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD0B1806BFDE00E60D19 /* huffman_encode.c */; };
+		3D79BD531806BFDE00E60D19 /* quant_levels.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD0E1806BFDE00E60D19 /* quant_levels.c */; };
+		3D79BD541806BFDE00E60D19 /* quant_levels_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD101806BFDE00E60D19 /* quant_levels_dec.c */; };
+		3D79BD551806BFDE00E60D19 /* rescaler.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD121806BFDE00E60D19 /* rescaler.c */; };
+		3D79BD561806BFDE00E60D19 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD141806BFDE00E60D19 /* thread.c */; };
+		3D79BD571806BFDE00E60D19 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D79BD161806BFDE00E60D19 /* utils.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D79BCA51806BF3700E60D19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D79BC871806BF3700E60D19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D79BC8E1806BF3700E60D19;
+			remoteInfo = webp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3D79BC8D1806BF3700E60D19 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3D79BC8F1806BF3700E60D19 /* libwebp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwebp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D79BC9F1806BF3700E60D19 /* webpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = webpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D79BCB91806BFDE00E60D19 /* alpha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha.c; sourceTree = "<group>"; };
+		3D79BCBA1806BFDE00E60D19 /* alphai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alphai.h; sourceTree = "<group>"; };
+		3D79BCBB1806BFDE00E60D19 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		3D79BCBC1806BFDE00E60D19 /* decode_vp8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode_vp8.h; sourceTree = "<group>"; };
+		3D79BCBD1806BFDE00E60D19 /* frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame.c; sourceTree = "<group>"; };
+		3D79BCBE1806BFDE00E60D19 /* idec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = idec.c; sourceTree = "<group>"; };
+		3D79BCBF1806BFDE00E60D19 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		3D79BCC01806BFDE00E60D19 /* layer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = layer.c; sourceTree = "<group>"; };
+		3D79BCC21806BFDE00E60D19 /* quant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant.c; sourceTree = "<group>"; };
+		3D79BCC31806BFDE00E60D19 /* tree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree.c; sourceTree = "<group>"; };
+		3D79BCC41806BFDE00E60D19 /* vp8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8.c; sourceTree = "<group>"; };
+		3D79BCC51806BFDE00E60D19 /* vp8i.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8i.h; sourceTree = "<group>"; };
+		3D79BCC61806BFDE00E60D19 /* vp8l.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l.c; sourceTree = "<group>"; };
+		3D79BCC71806BFDE00E60D19 /* vp8li.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li.h; sourceTree = "<group>"; };
+		3D79BCC81806BFDE00E60D19 /* webp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp.c; sourceTree = "<group>"; };
+		3D79BCC91806BFDE00E60D19 /* webpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webpi.h; sourceTree = "<group>"; };
+		3D79BCCB1806BFDE00E60D19 /* demux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = demux.c; sourceTree = "<group>"; };
+		3D79BCCF1806BFDE00E60D19 /* cpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpu.c; sourceTree = "<group>"; };
+		3D79BCD01806BFDE00E60D19 /* dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec.c; sourceTree = "<group>"; };
+		3D79BCD11806BFDE00E60D19 /* dec_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_neon.c; sourceTree = "<group>"; };
+		3D79BCD21806BFDE00E60D19 /* dec_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_sse2.c; sourceTree = "<group>"; };
+		3D79BCD31806BFDE00E60D19 /* dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsp.h; sourceTree = "<group>"; };
+		3D79BCD41806BFDE00E60D19 /* enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc.c; sourceTree = "<group>"; };
+		3D79BCD51806BFDE00E60D19 /* enc_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_neon.c; sourceTree = "<group>"; };
+		3D79BCD61806BFDE00E60D19 /* enc_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_sse2.c; sourceTree = "<group>"; };
+		3D79BCD71806BFDE00E60D19 /* lossless.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless.c; sourceTree = "<group>"; };
+		3D79BCD81806BFDE00E60D19 /* lossless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lossless.h; sourceTree = "<group>"; };
+		3D79BCDA1806BFDE00E60D19 /* upsampling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling.c; sourceTree = "<group>"; };
+		3D79BCDB1806BFDE00E60D19 /* upsampling_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_neon.c; sourceTree = "<group>"; };
+		3D79BCDC1806BFDE00E60D19 /* upsampling_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_sse2.c; sourceTree = "<group>"; };
+		3D79BCDD1806BFDE00E60D19 /* yuv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv.c; sourceTree = "<group>"; };
+		3D79BCDE1806BFDE00E60D19 /* yuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuv.h; sourceTree = "<group>"; };
+		3D79BCE01806BFDE00E60D19 /* alpha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha.c; sourceTree = "<group>"; };
+		3D79BCE11806BFDE00E60D19 /* analysis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analysis.c; sourceTree = "<group>"; };
+		3D79BCE21806BFDE00E60D19 /* backward_references.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backward_references.c; sourceTree = "<group>"; };
+		3D79BCE31806BFDE00E60D19 /* backward_references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backward_references.h; sourceTree = "<group>"; };
+		3D79BCE41806BFDE00E60D19 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		3D79BCE51806BFDE00E60D19 /* cost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost.c; sourceTree = "<group>"; };
+		3D79BCE61806BFDE00E60D19 /* cost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cost.h; sourceTree = "<group>"; };
+		3D79BCE71806BFDE00E60D19 /* filter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filter.c; sourceTree = "<group>"; };
+		3D79BCE81806BFDE00E60D19 /* frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame.c; sourceTree = "<group>"; };
+		3D79BCE91806BFDE00E60D19 /* histogram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = histogram.c; sourceTree = "<group>"; };
+		3D79BCEA1806BFDE00E60D19 /* histogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = histogram.h; sourceTree = "<group>"; };
+		3D79BCEB1806BFDE00E60D19 /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator.c; sourceTree = "<group>"; };
+		3D79BCEC1806BFDE00E60D19 /* layer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = layer.c; sourceTree = "<group>"; };
+		3D79BCEE1806BFDE00E60D19 /* picture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture.c; sourceTree = "<group>"; };
+		3D79BCEF1806BFDE00E60D19 /* quant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant.c; sourceTree = "<group>"; };
+		3D79BCF01806BFDE00E60D19 /* syntax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = syntax.c; sourceTree = "<group>"; };
+		3D79BCF11806BFDE00E60D19 /* token.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = token.c; sourceTree = "<group>"; };
+		3D79BCF21806BFDE00E60D19 /* tree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree.c; sourceTree = "<group>"; };
+		3D79BCF31806BFDE00E60D19 /* vp8enci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8enci.h; sourceTree = "<group>"; };
+		3D79BCF41806BFDE00E60D19 /* vp8l.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l.c; sourceTree = "<group>"; };
+		3D79BCF51806BFDE00E60D19 /* vp8li.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li.h; sourceTree = "<group>"; };
+		3D79BCF61806BFDE00E60D19 /* webpenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webpenc.c; sourceTree = "<group>"; };
+		3D79BCFA1806BFDE00E60D19 /* muxedit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxedit.c; sourceTree = "<group>"; };
+		3D79BCFB1806BFDE00E60D19 /* muxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muxi.h; sourceTree = "<group>"; };
+		3D79BCFC1806BFDE00E60D19 /* muxinternal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxinternal.c; sourceTree = "<group>"; };
+		3D79BCFD1806BFDE00E60D19 /* muxread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxread.c; sourceTree = "<group>"; };
+		3D79BCFF1806BFDE00E60D19 /* alpha_processing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing.c; sourceTree = "<group>"; };
+		3D79BD001806BFDE00E60D19 /* alpha_processing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alpha_processing.h; sourceTree = "<group>"; };
+		3D79BD011806BFDE00E60D19 /* bit_reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_reader.c; sourceTree = "<group>"; };
+		3D79BD021806BFDE00E60D19 /* bit_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_reader.h; sourceTree = "<group>"; };
+		3D79BD031806BFDE00E60D19 /* bit_writer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_writer.c; sourceTree = "<group>"; };
+		3D79BD041806BFDE00E60D19 /* bit_writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_writer.h; sourceTree = "<group>"; };
+		3D79BD051806BFDE00E60D19 /* color_cache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = color_cache.c; sourceTree = "<group>"; };
+		3D79BD061806BFDE00E60D19 /* color_cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color_cache.h; sourceTree = "<group>"; };
+		3D79BD071806BFDE00E60D19 /* filters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters.c; sourceTree = "<group>"; };
+		3D79BD081806BFDE00E60D19 /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
+		3D79BD091806BFDE00E60D19 /* huffman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman.c; sourceTree = "<group>"; };
+		3D79BD0A1806BFDE00E60D19 /* huffman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman.h; sourceTree = "<group>"; };
+		3D79BD0B1806BFDE00E60D19 /* huffman_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman_encode.c; sourceTree = "<group>"; };
+		3D79BD0C1806BFDE00E60D19 /* huffman_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman_encode.h; sourceTree = "<group>"; };
+		3D79BD0E1806BFDE00E60D19 /* quant_levels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels.c; sourceTree = "<group>"; };
+		3D79BD0F1806BFDE00E60D19 /* quant_levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels.h; sourceTree = "<group>"; };
+		3D79BD101806BFDE00E60D19 /* quant_levels_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels_dec.c; sourceTree = "<group>"; };
+		3D79BD111806BFDE00E60D19 /* quant_levels_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels_dec.h; sourceTree = "<group>"; };
+		3D79BD121806BFDE00E60D19 /* rescaler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler.c; sourceTree = "<group>"; };
+		3D79BD131806BFDE00E60D19 /* rescaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rescaler.h; sourceTree = "<group>"; };
+		3D79BD141806BFDE00E60D19 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
+		3D79BD151806BFDE00E60D19 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		3D79BD161806BFDE00E60D19 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		3D79BD171806BFDE00E60D19 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		3D79BD191806BFDE00E60D19 /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
+		3D79BD1A1806BFDE00E60D19 /* demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demux.h; sourceTree = "<group>"; };
+		3D79BD1B1806BFDE00E60D19 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		3D79BD1C1806BFDE00E60D19 /* format_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format_constants.h; sourceTree = "<group>"; };
+		3D79BD1D1806BFDE00E60D19 /* mux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux.h; sourceTree = "<group>"; };
+		3D79BD1E1806BFDE00E60D19 /* mux_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux_types.h; sourceTree = "<group>"; };
+		3D79BD1F1806BFDE00E60D19 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		3D79BD581806C0EB00E60D19 /* webp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "webp-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D79BC8C1806BF3700E60D19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D79BC9C1806BF3700E60D19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D79BCA71806BF3700E60D19 /* libwebp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D79BC861806BF3700E60D19 = {
+			isa = PBXGroup;
+			children = (
+				3D79BD581806C0EB00E60D19 /* webp-Prefix.pch */,
+				3D79BC941806BF3700E60D19 /* webp */,
+				3D79BC901806BF3700E60D19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D79BC901806BF3700E60D19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BC8F1806BF3700E60D19 /* libwebp.a */,
+				3D79BC9F1806BF3700E60D19 /* webpTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D79BC941806BF3700E60D19 /* webp */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCB81806BFDE00E60D19 /* dec */,
+				3D79BCCA1806BFDE00E60D19 /* demux */,
+				3D79BCCE1806BFDE00E60D19 /* dsp */,
+				3D79BCDF1806BFDE00E60D19 /* enc */,
+				3D79BCF71806BFDE00E60D19 /* mux */,
+				3D79BCFE1806BFDE00E60D19 /* utils */,
+				3D79BD181806BFDE00E60D19 /* webp */,
+			);
+			path = webp;
+			sourceTree = "<group>";
+		};
+		3D79BCB81806BFDE00E60D19 /* dec */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCB91806BFDE00E60D19 /* alpha.c */,
+				3D79BCBA1806BFDE00E60D19 /* alphai.h */,
+				3D79BCBB1806BFDE00E60D19 /* buffer.c */,
+				3D79BCBC1806BFDE00E60D19 /* decode_vp8.h */,
+				3D79BCBD1806BFDE00E60D19 /* frame.c */,
+				3D79BCBE1806BFDE00E60D19 /* idec.c */,
+				3D79BCBF1806BFDE00E60D19 /* io.c */,
+				3D79BCC01806BFDE00E60D19 /* layer.c */,
+				3D79BCC21806BFDE00E60D19 /* quant.c */,
+				3D79BCC31806BFDE00E60D19 /* tree.c */,
+				3D79BCC41806BFDE00E60D19 /* vp8.c */,
+				3D79BCC51806BFDE00E60D19 /* vp8i.h */,
+				3D79BCC61806BFDE00E60D19 /* vp8l.c */,
+				3D79BCC71806BFDE00E60D19 /* vp8li.h */,
+				3D79BCC81806BFDE00E60D19 /* webp.c */,
+				3D79BCC91806BFDE00E60D19 /* webpi.h */,
+			);
+			name = dec;
+			path = libwebp/src/dec;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BCCA1806BFDE00E60D19 /* demux */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCCB1806BFDE00E60D19 /* demux.c */,
+			);
+			name = demux;
+			path = libwebp/src/demux;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BCCE1806BFDE00E60D19 /* dsp */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCCF1806BFDE00E60D19 /* cpu.c */,
+				3D79BCD01806BFDE00E60D19 /* dec.c */,
+				3D79BCD11806BFDE00E60D19 /* dec_neon.c */,
+				3D79BCD21806BFDE00E60D19 /* dec_sse2.c */,
+				3D79BCD31806BFDE00E60D19 /* dsp.h */,
+				3D79BCD41806BFDE00E60D19 /* enc.c */,
+				3D79BCD51806BFDE00E60D19 /* enc_neon.c */,
+				3D79BCD61806BFDE00E60D19 /* enc_sse2.c */,
+				3D79BCD71806BFDE00E60D19 /* lossless.c */,
+				3D79BCD81806BFDE00E60D19 /* lossless.h */,
+				3D79BCDA1806BFDE00E60D19 /* upsampling.c */,
+				3D79BCDB1806BFDE00E60D19 /* upsampling_neon.c */,
+				3D79BCDC1806BFDE00E60D19 /* upsampling_sse2.c */,
+				3D79BCDD1806BFDE00E60D19 /* yuv.c */,
+				3D79BCDE1806BFDE00E60D19 /* yuv.h */,
+			);
+			name = dsp;
+			path = libwebp/src/dsp;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BCDF1806BFDE00E60D19 /* enc */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCE01806BFDE00E60D19 /* alpha.c */,
+				3D79BCE11806BFDE00E60D19 /* analysis.c */,
+				3D79BCE21806BFDE00E60D19 /* backward_references.c */,
+				3D79BCE31806BFDE00E60D19 /* backward_references.h */,
+				3D79BCE41806BFDE00E60D19 /* config.c */,
+				3D79BCE51806BFDE00E60D19 /* cost.c */,
+				3D79BCE61806BFDE00E60D19 /* cost.h */,
+				3D79BCE71806BFDE00E60D19 /* filter.c */,
+				3D79BCE81806BFDE00E60D19 /* frame.c */,
+				3D79BCE91806BFDE00E60D19 /* histogram.c */,
+				3D79BCEA1806BFDE00E60D19 /* histogram.h */,
+				3D79BCEB1806BFDE00E60D19 /* iterator.c */,
+				3D79BCEC1806BFDE00E60D19 /* layer.c */,
+				3D79BCEE1806BFDE00E60D19 /* picture.c */,
+				3D79BCEF1806BFDE00E60D19 /* quant.c */,
+				3D79BCF01806BFDE00E60D19 /* syntax.c */,
+				3D79BCF11806BFDE00E60D19 /* token.c */,
+				3D79BCF21806BFDE00E60D19 /* tree.c */,
+				3D79BCF31806BFDE00E60D19 /* vp8enci.h */,
+				3D79BCF41806BFDE00E60D19 /* vp8l.c */,
+				3D79BCF51806BFDE00E60D19 /* vp8li.h */,
+				3D79BCF61806BFDE00E60D19 /* webpenc.c */,
+			);
+			name = enc;
+			path = libwebp/src/enc;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BCF71806BFDE00E60D19 /* mux */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCFA1806BFDE00E60D19 /* muxedit.c */,
+				3D79BCFB1806BFDE00E60D19 /* muxi.h */,
+				3D79BCFC1806BFDE00E60D19 /* muxinternal.c */,
+				3D79BCFD1806BFDE00E60D19 /* muxread.c */,
+			);
+			name = mux;
+			path = libwebp/src/mux;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BCFE1806BFDE00E60D19 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BCFF1806BFDE00E60D19 /* alpha_processing.c */,
+				3D79BD001806BFDE00E60D19 /* alpha_processing.h */,
+				3D79BD011806BFDE00E60D19 /* bit_reader.c */,
+				3D79BD021806BFDE00E60D19 /* bit_reader.h */,
+				3D79BD031806BFDE00E60D19 /* bit_writer.c */,
+				3D79BD041806BFDE00E60D19 /* bit_writer.h */,
+				3D79BD051806BFDE00E60D19 /* color_cache.c */,
+				3D79BD061806BFDE00E60D19 /* color_cache.h */,
+				3D79BD071806BFDE00E60D19 /* filters.c */,
+				3D79BD081806BFDE00E60D19 /* filters.h */,
+				3D79BD091806BFDE00E60D19 /* huffman.c */,
+				3D79BD0A1806BFDE00E60D19 /* huffman.h */,
+				3D79BD0B1806BFDE00E60D19 /* huffman_encode.c */,
+				3D79BD0C1806BFDE00E60D19 /* huffman_encode.h */,
+				3D79BD0E1806BFDE00E60D19 /* quant_levels.c */,
+				3D79BD0F1806BFDE00E60D19 /* quant_levels.h */,
+				3D79BD101806BFDE00E60D19 /* quant_levels_dec.c */,
+				3D79BD111806BFDE00E60D19 /* quant_levels_dec.h */,
+				3D79BD121806BFDE00E60D19 /* rescaler.c */,
+				3D79BD131806BFDE00E60D19 /* rescaler.h */,
+				3D79BD141806BFDE00E60D19 /* thread.c */,
+				3D79BD151806BFDE00E60D19 /* thread.h */,
+				3D79BD161806BFDE00E60D19 /* utils.c */,
+				3D79BD171806BFDE00E60D19 /* utils.h */,
+			);
+			name = utils;
+			path = libwebp/src/utils;
+			sourceTree = SOURCE_ROOT;
+		};
+		3D79BD181806BFDE00E60D19 /* webp */ = {
+			isa = PBXGroup;
+			children = (
+				3D79BD191806BFDE00E60D19 /* decode.h */,
+				3D79BD1A1806BFDE00E60D19 /* demux.h */,
+				3D79BD1B1806BFDE00E60D19 /* encode.h */,
+				3D79BD1C1806BFDE00E60D19 /* format_constants.h */,
+				3D79BD1D1806BFDE00E60D19 /* mux.h */,
+				3D79BD1E1806BFDE00E60D19 /* mux_types.h */,
+				3D79BD1F1806BFDE00E60D19 /* types.h */,
+			);
+			name = webp;
+			path = libwebp/src/webp;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D79BC8E1806BF3700E60D19 /* webp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D79BCB21806BF3700E60D19 /* Build configuration list for PBXNativeTarget "webp" */;
+			buildPhases = (
+				3D79BC8B1806BF3700E60D19 /* Sources */,
+				3D79BC8C1806BF3700E60D19 /* Frameworks */,
+				3D79BC8D1806BF3700E60D19 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = webp;
+			productName = webp;
+			productReference = 3D79BC8F1806BF3700E60D19 /* libwebp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3D79BC9E1806BF3700E60D19 /* webpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D79BCB51806BF3700E60D19 /* Build configuration list for PBXNativeTarget "webpTests" */;
+			buildPhases = (
+				3D79BC9B1806BF3700E60D19 /* Sources */,
+				3D79BC9C1806BF3700E60D19 /* Frameworks */,
+				3D79BC9D1806BF3700E60D19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D79BCA61806BF3700E60D19 /* PBXTargetDependency */,
+			);
+			name = webpTests;
+			productName = webpTests;
+			productReference = 3D79BC9F1806BF3700E60D19 /* webpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D79BC871806BF3700E60D19 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Resident Evil";
+			};
+			buildConfigurationList = 3D79BC8A1806BF3700E60D19 /* Build configuration list for PBXProject "webp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3D79BC861806BF3700E60D19;
+			productRefGroup = 3D79BC901806BF3700E60D19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D79BC8E1806BF3700E60D19 /* webp */,
+				3D79BC9E1806BF3700E60D19 /* webpTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D79BC9D1806BF3700E60D19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D79BC8B1806BF3700E60D19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D79BD461806BFDE00E60D19 /* tree.c in Sources */,
+				3D79BD571806BFDE00E60D19 /* utils.c in Sources */,
+				3D79BD241806BFDE00E60D19 /* io.c in Sources */,
+				3D79BD2C1806BFDE00E60D19 /* cpu.c in Sources */,
+				3D79BD231806BFDE00E60D19 /* idec.c in Sources */,
+				3D79BD321806BFDE00E60D19 /* enc_sse2.c in Sources */,
+				3D79BD2F1806BFDE00E60D19 /* dec_sse2.c in Sources */,
+				3D79BD351806BFDE00E60D19 /* upsampling_neon.c in Sources */,
+				3D79BD3A1806BFDE00E60D19 /* backward_references.c in Sources */,
+				3D79BD221806BFDE00E60D19 /* frame.c in Sources */,
+				3D79BD3C1806BFDE00E60D19 /* cost.c in Sources */,
+				3D79BD551806BFDE00E60D19 /* rescaler.c in Sources */,
+				3D79BD451806BFDE00E60D19 /* token.c in Sources */,
+				3D79BD481806BFDE00E60D19 /* webpenc.c in Sources */,
+				3D79BD391806BFDE00E60D19 /* analysis.c in Sources */,
+				3D79BD3F1806BFDE00E60D19 /* histogram.c in Sources */,
+				3D79BD2B1806BFDE00E60D19 /* demux.c in Sources */,
+				3D79BD331806BFDE00E60D19 /* lossless.c in Sources */,
+				3D79BD251806BFDE00E60D19 /* layer.c in Sources */,
+				3D79BD3D1806BFDE00E60D19 /* filter.c in Sources */,
+				3D79BD4E1806BFDE00E60D19 /* bit_writer.c in Sources */,
+				3D79BD2D1806BFDE00E60D19 /* dec.c in Sources */,
+				3D79BD201806BFDE00E60D19 /* alpha.c in Sources */,
+				3D79BD491806BFDE00E60D19 /* muxedit.c in Sources */,
+				3D79BD291806BFDE00E60D19 /* vp8l.c in Sources */,
+				3D79BD381806BFDE00E60D19 /* alpha.c in Sources */,
+				3D79BD341806BFDE00E60D19 /* upsampling.c in Sources */,
+				3D79BD2A1806BFDE00E60D19 /* webp.c in Sources */,
+				3D79BD4A1806BFDE00E60D19 /* muxinternal.c in Sources */,
+				3D79BD261806BFDE00E60D19 /* quant.c in Sources */,
+				3D79BD401806BFDE00E60D19 /* iterator.c in Sources */,
+				3D79BD471806BFDE00E60D19 /* vp8l.c in Sources */,
+				3D79BD281806BFDE00E60D19 /* vp8.c in Sources */,
+				3D79BD561806BFDE00E60D19 /* thread.c in Sources */,
+				3D79BD4D1806BFDE00E60D19 /* bit_reader.c in Sources */,
+				3D79BD4F1806BFDE00E60D19 /* color_cache.c in Sources */,
+				3D79BD541806BFDE00E60D19 /* quant_levels_dec.c in Sources */,
+				3D79BD441806BFDE00E60D19 /* syntax.c in Sources */,
+				3D79BD361806BFDE00E60D19 /* upsampling_sse2.c in Sources */,
+				3D79BD501806BFDE00E60D19 /* filters.c in Sources */,
+				3D79BD4B1806BFDE00E60D19 /* muxread.c in Sources */,
+				3D79BD371806BFDE00E60D19 /* yuv.c in Sources */,
+				3D79BD4C1806BFDE00E60D19 /* alpha_processing.c in Sources */,
+				3D79BD3E1806BFDE00E60D19 /* frame.c in Sources */,
+				3D79BD411806BFDE00E60D19 /* layer.c in Sources */,
+				3D79BD211806BFDE00E60D19 /* buffer.c in Sources */,
+				3D79BD3B1806BFDE00E60D19 /* config.c in Sources */,
+				3D79BD311806BFDE00E60D19 /* enc_neon.c in Sources */,
+				3D79BD301806BFDE00E60D19 /* enc.c in Sources */,
+				3D79BD511806BFDE00E60D19 /* huffman.c in Sources */,
+				3D79BD531806BFDE00E60D19 /* quant_levels.c in Sources */,
+				3D79BD2E1806BFDE00E60D19 /* dec_neon.c in Sources */,
+				3D79BD431806BFDE00E60D19 /* quant.c in Sources */,
+				3D79BD271806BFDE00E60D19 /* tree.c in Sources */,
+				3D79BD421806BFDE00E60D19 /* picture.c in Sources */,
+				3D79BD521806BFDE00E60D19 /* huffman_encode.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D79BC9B1806BF3700E60D19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D79BCA61806BF3700E60D19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D79BC8E1806BF3700E60D19 /* webp */;
+			targetProxy = 3D79BCA51806BF3700E60D19 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3D79BCB01806BF3700E60D19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = webp_xcodeproj_prefix_header.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-finline-functions",
+					"-ffast-math",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D79BCB11806BF3700E60D19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = webp_xcodeproj_prefix_header.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = (
+					"-finline-functions",
+					"-ffast-math",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D79BCB31806BF3700E60D19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/webp.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "webp-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3D79BCB41806BF3700E60D19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/webp.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "webp-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3D79BCB61806BF3700E60D19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "webp/webp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "webpTests/webpTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3D79BCB71806BF3700E60D19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "webp/webp-Prefix.pch";
+				INFOPLIST_FILE = "webpTests/webpTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D79BC8A1806BF3700E60D19 /* Build configuration list for PBXProject "webp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D79BCB01806BF3700E60D19 /* Debug */,
+				3D79BCB11806BF3700E60D19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D79BCB21806BF3700E60D19 /* Build configuration list for PBXNativeTarget "webp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D79BCB31806BF3700E60D19 /* Debug */,
+				3D79BCB41806BF3700E60D19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D79BCB51806BF3700E60D19 /* Build configuration list for PBXNativeTarget "webpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D79BCB61806BF3700E60D19 /* Debug */,
+				3D79BCB71806BF3700E60D19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D79BC871806BF3700E60D19 /* Project object */;
+}

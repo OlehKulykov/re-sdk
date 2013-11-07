@@ -1,0 +1,49 @@
+//
+//  webp_xcodeproj_prefix_header.pch
+//  webp
+//
+//  Created by Resident Evil on 10.10.13.
+//  Copyright (c) 2013 Resident Evil. All rights reserved.
+//
+
+#ifndef webp_webp_xcodeproj_prefix_header_pch
+#define webp_webp_xcodeproj_prefix_header_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+
+#if defined(__ARM_NEON__) || defined(HAVE_ARM_NEON_H) 
+#include <arm_neon.h>
+
+#if __LP64__ || NS_BUILD_32_LIKE_64
+#define __64BIT_MODE__
+#warning "__64BIT_MODE__"
+#endif
+
+#if defined(__64BIT_MODE__)
+#undef WEBP_USE_NEON
+#else
+#ifndef WEBP_USE_NEON
+#define WEBP_USE_NEON 1
+#endif
+#endif
+
+#endif
+
+
+#define HAVE_MALLOC_H 1
+#define HAVE_PTHREAD 1
+#define WEBP_USE_THREAD 1
+
+
+
+#endif

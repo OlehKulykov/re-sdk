@@ -1,0 +1,5 @@
+Use "build.sh" for building iOS libraries from XCode projects.
+This will create "include" & "lib" folders for iOS platform.
+
+Example:
+./build.sh
