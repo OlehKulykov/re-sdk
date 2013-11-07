@@ -1,0 +1,3 @@
+Android additional libraries.
+You should not build directly this libs.
+Use build script from folder "builds/android/build.sh"
