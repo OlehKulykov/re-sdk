@@ -1,0 +1,6 @@
+Use "build.sh" for building RECore SDK.
+Before build, export variable "NDK" to your path where "ndk-build" is.
+
+Example:
+export NDK=/Users/<user name>/Documents/android-ndk-<ndk version>
+./build.sh
