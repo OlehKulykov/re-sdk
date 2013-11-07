@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D761E3C15610CB70039D5E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D761E3B15610CB70039D5E5 /* Cocoa.framework */; };
+		3D761E5915610CF20039D5E5 /* IREMediaPlayable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5315610CF20039D5E5 /* IREMediaPlayable.h */; };
+		3D761E5A15610CF20039D5E5 /* REAudioOpenAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5415610CF20039D5E5 /* REAudioOpenAL.h */; };
+		3D761E5B15610CF20039D5E5 /* REAudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5515610CF20039D5E5 /* REAudioPlayer.h */; };
+		3D761E5C15610CF20039D5E5 /* REOGGVorbisSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5615610CF20039D5E5 /* REOGGVorbisSound.h */; };
+		3D761E5D15610CF20039D5E5 /* REVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5715610CF20039D5E5 /* REVideoView.h */; };
+		3D761E5E15610CF20039D5E5 /* REWAVSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E5815610CF20039D5E5 /* REWAVSound.h */; };
+		3D761E6215610D0A0039D5E5 /* REAudioPlayerPrivate_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E6015610D0A0039D5E5 /* REAudioPlayerPrivate_iphone.h */; };
+		3D761E6315610D0A0039D5E5 /* REOGGTheoraPlayerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E6115610D0A0039D5E5 /* REOGGTheoraPlayerPrivate.h */; };
+		3D761E6A15610D1C0039D5E5 /* REAudioOpenAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6415610D1C0039D5E5 /* REAudioOpenAL.cpp */; };
+		3D761E6B15610D1C0039D5E5 /* REAudioPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6515610D1C0039D5E5 /* REAudioPlayer.cpp */; };
+		3D761E6C15610D1C0039D5E5 /* REOGGTheoraPlayerPrivate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6615610D1C0039D5E5 /* REOGGTheoraPlayerPrivate.cpp */; };
+		3D761E6D15610D1C0039D5E5 /* REOGGVorbisSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6715610D1C0039D5E5 /* REOGGVorbisSound.cpp */; };
+		3D761E6E15610D1C0039D5E5 /* REVideoView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6815610D1C0039D5E5 /* REVideoView.cpp */; };
+		3D761E6F15610D1C0039D5E5 /* REWAVSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E6915610D1C0039D5E5 /* REWAVSound.cpp */; };
+		3D761E8015610DC50039D5E5 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7115610DC50039D5E5 /* ogg.h */; };
+		3D761E8115610DC50039D5E5 /* ogg_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7215610DC50039D5E5 /* ogg_config.h */; };
+		3D761E8215610DC50039D5E5 /* ogg_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7315610DC50039D5E5 /* ogg_wrap1.c */; };
+		3D761E8315610DC50039D5E5 /* theora.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7415610DC50039D5E5 /* theora.h */; };
+		3D761E8415610DC50039D5E5 /* theora_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7515610DC50039D5E5 /* theora_config.h */; };
+		3D761E8515610DC50039D5E5 /* theora_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7615610DC50039D5E5 /* theora_wrap1.c */; };
+		3D761E8615610DC50039D5E5 /* theora_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7715610DC50039D5E5 /* theora_wrap2.c */; };
+		3D761E8715610DC50039D5E5 /* vorbis.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7815610DC50039D5E5 /* vorbis.h */; };
+		3D761E8815610DC50039D5E5 /* vorbis_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D761E7915610DC50039D5E5 /* vorbis_config.h */; };
+		3D761E8915610DC50039D5E5 /* vorbis_wrap1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7A15610DC50039D5E5 /* vorbis_wrap1.c */; };
+		3D761E8A15610DC50039D5E5 /* vorbis_wrap2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7B15610DC50039D5E5 /* vorbis_wrap2.c */; };
+		3D761E8B15610DC50039D5E5 /* vorbis_wrap3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7C15610DC50039D5E5 /* vorbis_wrap3.c */; };
+		3D761E8C15610DC50039D5E5 /* vorbis_wrap4.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7D15610DC50039D5E5 /* vorbis_wrap4.c */; };
+		3D761E8D15610DC50039D5E5 /* vorbis_wrap5.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7E15610DC50039D5E5 /* vorbis_wrap5.c */; };
+		3D761E8E15610DC50039D5E5 /* vorbis_wrap6.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D761E7F15610DC50039D5E5 /* vorbis_wrap6.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D761E3815610CB70039D5E5 /* libremedia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libremedia.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D761E3B15610CB70039D5E5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3D761E3E15610CB70039D5E5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3D761E3F15610CB70039D5E5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3D761E4015610CB70039D5E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D761E5315610CF20039D5E5 /* IREMediaPlayable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IREMediaPlayable.h; path = ../../include/remedia/IREMediaPlayable.h; sourceTree = SOURCE_ROOT; };
+		3D761E5415610CF20039D5E5 /* REAudioOpenAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioOpenAL.h; path = ../../include/remedia/REAudioOpenAL.h; sourceTree = SOURCE_ROOT; };
+		3D761E5515610CF20039D5E5 /* REAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioPlayer.h; path = ../../include/remedia/REAudioPlayer.h; sourceTree = SOURCE_ROOT; };
+		3D761E5615610CF20039D5E5 /* REOGGVorbisSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REOGGVorbisSound.h; path = ../../include/remedia/REOGGVorbisSound.h; sourceTree = SOURCE_ROOT; };
+		3D761E5715610CF20039D5E5 /* REVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REVideoView.h; path = ../../include/remedia/REVideoView.h; sourceTree = SOURCE_ROOT; };
+		3D761E5815610CF20039D5E5 /* REWAVSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REWAVSound.h; path = ../../include/remedia/REWAVSound.h; sourceTree = SOURCE_ROOT; };
+		3D761E6015610D0A0039D5E5 /* REAudioPlayerPrivate_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REAudioPlayerPrivate_iphone.h; path = ../../include/remedia/private/REAudioPlayerPrivate_iphone.h; sourceTree = SOURCE_ROOT; };
+		3D761E6115610D0A0039D5E5 /* REOGGTheoraPlayerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REOGGTheoraPlayerPrivate.h; path = ../../include/remedia/private/REOGGTheoraPlayerPrivate.h; sourceTree = SOURCE_ROOT; };
+		3D761E6415610D1C0039D5E5 /* REAudioOpenAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAudioOpenAL.cpp; path = ../../src/media/REAudioOpenAL.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E6515610D1C0039D5E5 /* REAudioPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REAudioPlayer.cpp; path = ../../src/media/REAudioPlayer.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E6615610D1C0039D5E5 /* REOGGTheoraPlayerPrivate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REOGGTheoraPlayerPrivate.cpp; path = ../../src/media/REOGGTheoraPlayerPrivate.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E6715610D1C0039D5E5 /* REOGGVorbisSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REOGGVorbisSound.cpp; path = ../../src/media/REOGGVorbisSound.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E6815610D1C0039D5E5 /* REVideoView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REVideoView.cpp; path = ../../src/media/REVideoView.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E6915610D1C0039D5E5 /* REWAVSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = REWAVSound.cpp; path = ../../src/media/REWAVSound.cpp; sourceTree = SOURCE_ROOT; };
+		3D761E7115610DC50039D5E5 /* ogg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ogg.h; path = ../../src/addlibs/ogg.h; sourceTree = SOURCE_ROOT; };
+		3D761E7215610DC50039D5E5 /* ogg_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ogg_config.h; path = ../../src/addlibs/ogg_config.h; sourceTree = SOURCE_ROOT; };
+		3D761E7315610DC50039D5E5 /* ogg_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ogg_wrap1.c; path = ../../src/addlibs/ogg_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3D761E7415610DC50039D5E5 /* theora.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = theora.h; path = ../../src/addlibs/theora.h; sourceTree = SOURCE_ROOT; };
+		3D761E7515610DC50039D5E5 /* theora_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = theora_config.h; path = ../../src/addlibs/theora_config.h; sourceTree = SOURCE_ROOT; };
+		3D761E7615610DC50039D5E5 /* theora_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = theora_wrap1.c; path = ../../src/addlibs/theora_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3D761E7715610DC50039D5E5 /* theora_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = theora_wrap2.c; path = ../../src/addlibs/theora_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3D761E7815610DC50039D5E5 /* vorbis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vorbis.h; path = ../../src/addlibs/vorbis.h; sourceTree = SOURCE_ROOT; };
+		3D761E7915610DC50039D5E5 /* vorbis_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vorbis_config.h; path = ../../src/addlibs/vorbis_config.h; sourceTree = SOURCE_ROOT; };
+		3D761E7A15610DC50039D5E5 /* vorbis_wrap1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap1.c; path = ../../src/addlibs/vorbis_wrap1.c; sourceTree = SOURCE_ROOT; };
+		3D761E7B15610DC50039D5E5 /* vorbis_wrap2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap2.c; path = ../../src/addlibs/vorbis_wrap2.c; sourceTree = SOURCE_ROOT; };
+		3D761E7C15610DC50039D5E5 /* vorbis_wrap3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap3.c; path = ../../src/addlibs/vorbis_wrap3.c; sourceTree = SOURCE_ROOT; };
+		3D761E7D15610DC50039D5E5 /* vorbis_wrap4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap4.c; path = ../../src/addlibs/vorbis_wrap4.c; sourceTree = SOURCE_ROOT; };
+		3D761E7E15610DC50039D5E5 /* vorbis_wrap5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap5.c; path = ../../src/addlibs/vorbis_wrap5.c; sourceTree = SOURCE_ROOT; };
+		3D761E7F15610DC50039D5E5 /* vorbis_wrap6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vorbis_wrap6.c; path = ../../src/addlibs/vorbis_wrap6.c; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D761E3515610CB70039D5E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D761E3C15610CB70039D5E5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D761E2D15610CB70039D5E5 = {
+			isa = PBXGroup;
+			children = (
+				3D761E4115610CB70039D5E5 /* remedia */,
+				3D761E3A15610CB70039D5E5 /* Frameworks */,
+				3D761E3915610CB70039D5E5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D761E3915610CB70039D5E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E3815610CB70039D5E5 /* libremedia.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D761E3A15610CB70039D5E5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E3B15610CB70039D5E5 /* Cocoa.framework */,
+				3D761E3D15610CB70039D5E5 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D761E3D15610CB70039D5E5 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E3E15610CB70039D5E5 /* AppKit.framework */,
+				3D761E3F15610CB70039D5E5 /* CoreData.framework */,
+				3D761E4015610CB70039D5E5 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3D761E4115610CB70039D5E5 /* remedia */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E7015610DB80039D5E5 /* addlibs */,
+				3D761E5F15610D010039D5E5 /* private */,
+				3D761E5315610CF20039D5E5 /* IREMediaPlayable.h */,
+				3D761E5415610CF20039D5E5 /* REAudioOpenAL.h */,
+				3D761E5515610CF20039D5E5 /* REAudioPlayer.h */,
+				3D761E5615610CF20039D5E5 /* REOGGVorbisSound.h */,
+				3D761E5715610CF20039D5E5 /* REVideoView.h */,
+				3D761E5815610CF20039D5E5 /* REWAVSound.h */,
+				3D761E6415610D1C0039D5E5 /* REAudioOpenAL.cpp */,
+				3D761E6515610D1C0039D5E5 /* REAudioPlayer.cpp */,
+				3D761E6615610D1C0039D5E5 /* REOGGTheoraPlayerPrivate.cpp */,
+				3D761E6715610D1C0039D5E5 /* REOGGVorbisSound.cpp */,
+				3D761E6815610D1C0039D5E5 /* REVideoView.cpp */,
+				3D761E6915610D1C0039D5E5 /* REWAVSound.cpp */,
+				3D761E4215610CB70039D5E5 /* Supporting Files */,
+			);
+			path = remedia;
+			sourceTree = "<group>";
+		};
+		3D761E4215610CB70039D5E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3D761E5F15610D010039D5E5 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E6015610D0A0039D5E5 /* REAudioPlayerPrivate_iphone.h */,
+				3D761E6115610D0A0039D5E5 /* REOGGTheoraPlayerPrivate.h */,
+			);
+			name = private;
+			sourceTree = "<group>";
+		};
+		3D761E7015610DB80039D5E5 /* addlibs */ = {
+			isa = PBXGroup;
+			children = (
+				3D761E7115610DC50039D5E5 /* ogg.h */,
+				3D761E7215610DC50039D5E5 /* ogg_config.h */,
+				3D761E7315610DC50039D5E5 /* ogg_wrap1.c */,
+				3D761E7415610DC50039D5E5 /* theora.h */,
+				3D761E7515610DC50039D5E5 /* theora_config.h */,
+				3D761E7615610DC50039D5E5 /* theora_wrap1.c */,
+				3D761E7715610DC50039D5E5 /* theora_wrap2.c */,
+				3D761E7815610DC50039D5E5 /* vorbis.h */,
+				3D761E7915610DC50039D5E5 /* vorbis_config.h */,
+				3D761E7A15610DC50039D5E5 /* vorbis_wrap1.c */,
+				3D761E7B15610DC50039D5E5 /* vorbis_wrap2.c */,
+				3D761E7C15610DC50039D5E5 /* vorbis_wrap3.c */,
+				3D761E7D15610DC50039D5E5 /* vorbis_wrap4.c */,
+				3D761E7E15610DC50039D5E5 /* vorbis_wrap5.c */,
+				3D761E7F15610DC50039D5E5 /* vorbis_wrap6.c */,
+			);
+			name = addlibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3D761E3615610CB70039D5E5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D761E5915610CF20039D5E5 /* IREMediaPlayable.h in Headers */,
+				3D761E5A15610CF20039D5E5 /* REAudioOpenAL.h in Headers */,
+				3D761E5B15610CF20039D5E5 /* REAudioPlayer.h in Headers */,
+				3D761E5C15610CF20039D5E5 /* REOGGVorbisSound.h in Headers */,
+				3D761E5D15610CF20039D5E5 /* REVideoView.h in Headers */,
+				3D761E5E15610CF20039D5E5 /* REWAVSound.h in Headers */,
+				3D761E6215610D0A0039D5E5 /* REAudioPlayerPrivate_iphone.h in Headers */,
+				3D761E6315610D0A0039D5E5 /* REOGGTheoraPlayerPrivate.h in Headers */,
+				3D761E8015610DC50039D5E5 /* ogg.h in Headers */,
+				3D761E8115610DC50039D5E5 /* ogg_config.h in Headers */,
+				3D761E8315610DC50039D5E5 /* theora.h in Headers */,
+				3D761E8415610DC50039D5E5 /* theora_config.h in Headers */,
+				3D761E8715610DC50039D5E5 /* vorbis.h in Headers */,
+				3D761E8815610DC50039D5E5 /* vorbis_config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D761E3715610CB70039D5E5 /* remedia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D761E4915610CB70039D5E5 /* Build configuration list for PBXNativeTarget "remedia" */;
+			buildPhases = (
+				3D761E3415610CB70039D5E5 /* Sources */,
+				3D761E3515610CB70039D5E5 /* Frameworks */,
+				3D761E3615610CB70039D5E5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = remedia;
+			productName = remedia;
+			productReference = 3D761E3815610CB70039D5E5 /* libremedia.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D761E2F15610CB70039D5E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 3D761E3215610CB70039D5E5 /* Build configuration list for PBXProject "remedia" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3D761E2D15610CB70039D5E5;
+			productRefGroup = 3D761E3915610CB70039D5E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D761E3715610CB70039D5E5 /* remedia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D761E3415610CB70039D5E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D761E6A15610D1C0039D5E5 /* REAudioOpenAL.cpp in Sources */,
+				3D761E6B15610D1C0039D5E5 /* REAudioPlayer.cpp in Sources */,
+				3D761E6C15610D1C0039D5E5 /* REOGGTheoraPlayerPrivate.cpp in Sources */,
+				3D761E6D15610D1C0039D5E5 /* REOGGVorbisSound.cpp in Sources */,
+				3D761E6E15610D1C0039D5E5 /* REVideoView.cpp in Sources */,
+				3D761E6F15610D1C0039D5E5 /* REWAVSound.cpp in Sources */,
+				3D761E8215610DC50039D5E5 /* ogg_wrap1.c in Sources */,
+				3D761E8515610DC50039D5E5 /* theora_wrap1.c in Sources */,
+				3D761E8615610DC50039D5E5 /* theora_wrap2.c in Sources */,
+				3D761E8915610DC50039D5E5 /* vorbis_wrap1.c in Sources */,
+				3D761E8A15610DC50039D5E5 /* vorbis_wrap2.c in Sources */,
+				3D761E8B15610DC50039D5E5 /* vorbis_wrap3.c in Sources */,
+				3D761E8C15610DC50039D5E5 /* vorbis_wrap4.c in Sources */,
+				3D761E8D15610DC50039D5E5 /* vorbis_wrap5.c in Sources */,
+				3D761E8E15610DC50039D5E5 /* vorbis_wrap6.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3D761E4715610CB70039D5E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/freetype/include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3D761E4815610CB70039D5E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = __RE_OS_MACOSX__;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src/addlibs/freetype/include/;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3D761E4A15610CB70039D5E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libvorbis/include/,
+					../../src/addlibs/libogg/include/,
+					../../src/addlibs/libtheora/include/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3D761E4B15610CB70039D5E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src/addlibs/libvorbis/include/,
+					../../src/addlibs/libogg/include/,
+					../../src/addlibs/libtheora/include/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D761E3215610CB70039D5E5 /* Build configuration list for PBXProject "remedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D761E4715610CB70039D5E5 /* Debug */,
+				3D761E4815610CB70039D5E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D761E4915610CB70039D5E5 /* Build configuration list for PBXNativeTarget "remedia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D761E4A15610CB70039D5E5 /* Debug */,
+				3D761E4B15610CB70039D5E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D761E2F15610CB70039D5E5 /* Project object */;
+}
