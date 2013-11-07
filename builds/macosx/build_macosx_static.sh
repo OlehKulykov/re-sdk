@@ -17,9 +17,16 @@
 
 rm -rf *.a
 
-BUILD_DIR="/Volumes/Data/Work/recore/builds/macosx/"
-OBJ_DIR=$BUILD_DIR"obj"
-SYM_DIR=$BUILD_DIR"sym"
+PWD=$(pwd)
+
+BUILD_DIR=$PWD
+
+cd ../../src/addlibs1/macosx/
+./build.sh
+cd BUILD_DIR
+
+OBJ_DIR=$BUILD_DIR"/obj"
+SYM_DIR=$BUILD_DIR"/sym"
 
 ARCH=("i386" "x86_64")
 
@@ -46,7 +53,7 @@ TARGETS=(
 for arch_index in 0 1
 do
 CUR_ARCH=${ARCH[arch_index]}
-LIB_PATH=$BUILD_DIR"all-"$CUR_ARCH".a"
+LIB_PATH=$BUILD_DIR"/all-"$CUR_ARCH".a"
 ALL_LIBS[arch_index]=$LIB_PATH
 
 for proj_index in 0 1 2 3 4 5 6
@@ -64,7 +71,7 @@ rm -rf $SYM_DIR
 done
 done
 
-FRAMEWORK_DIR=$BUILD_DIR"../../lib_bin/macosx/"
+FRAMEWORK_DIR=$BUILD_DIR"/../../lib_bin/macosx/"
 LIPO_LIB=$FRAMEWORK_DIR"all.a"
 lipo -create ${ALL_LIBS[0]} ${ALL_LIBS[1]} -output $LIPO_LIB
 

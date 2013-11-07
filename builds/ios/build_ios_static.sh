@@ -17,9 +17,15 @@
 
 rm -rf *.a
 
-BUILD_DIR="/Volumes/Data/Work/recore/builds/ios/"
-OBJ_DIR=$BUILD_DIR"obj"
-SYM_DIR=$BUILD_DIR"sym"
+PWD=$(pwd)
+
+cd ../../src/addlibs1/ios/
+./build.sh
+cd BUILD_DIR
+
+BUILD_DIR=$PWD
+OBJ_DIR=$BUILD_DIR"/obj"
+SYM_DIR=$BUILD_DIR"/sym"
 
 ARCH=("i386" "armv7" "armv7s" "arm64")
 SDK=("iphonesimulator" "iphoneos" "iphoneos" "iphoneos")
@@ -50,7 +56,7 @@ do
 	CUR_ARCH=${ARCH[arch_index]}
 	CUR_SDK=${SDK[arch_index]}
 	CUR_DELP_TARGET=${DELP_TARGET[arch_index]}
-	LIB_PATH=$BUILD_DIR"all-"$CUR_ARCH".a"
+	LIB_PATH=$BUILD_DIR"/all-"$CUR_ARCH".a"
 	ALL_LIBS[arch_index]=$LIB_PATH
 	
 	for proj_index in 0 1 2 3 4 5 6
@@ -68,7 +74,7 @@ do
 	done
 done
 
-FRAMEWORK_DIR=$BUILD_DIR"../../lib_bin/ios/"
+FRAMEWORK_DIR=$BUILD_DIR"/../../lib_bin/ios/"
 LIPO_LIB=$FRAMEWORK_DIR"all.a"
 lipo -create ${ALL_LIBS[0]} ${ALL_LIBS[1]} ${ALL_LIBS[2]} ${ALL_LIBS[3]} -output $LIPO_LIB
 
