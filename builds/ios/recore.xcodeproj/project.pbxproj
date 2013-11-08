@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3D056D1D182CEC27005DFE95 /* RECoreVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D056D1C182CEC27005DFE95 /* RECoreVersion.h */; };
 		3D068762143DFA9C00AF92AF /* RETetragon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D068761143DFA9C00AF92AF /* RETetragon.cpp */; };
 		3D06AD0E14C851DA008D7787 /* REQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D06AD0D14C851DA008D7787 /* REQuaternion.h */; };
 		3D079FD515C8182E004FAA9E /* RELog.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D079FD415C8182E004FAA9E /* RELog.h */; };
@@ -223,6 +224,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D056D1C182CEC27005DFE95 /* RECoreVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RECoreVersion.h; path = ../../include/recore/RECoreVersion.h; sourceTree = SOURCE_ROOT; };
 		3D068761143DFA9C00AF92AF /* RETetragon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RETetragon.cpp; path = ../../src/core/RETetragon.cpp; sourceTree = SOURCE_ROOT; };
 		3D06AD0D14C851DA008D7787 /* REQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REQuaternion.h; path = ../../include/recore/REQuaternion.h; sourceTree = SOURCE_ROOT; };
 		3D079FD415C8182E004FAA9E /* RELog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RELog.h; path = ../../include/recore/RELog.h; sourceTree = SOURCE_ROOT; };
@@ -473,6 +475,7 @@
 			children = (
 				3D9818B51427748800793F3C /* image */,
 				3D1F430D13E29A2E001E480D /* recore.h */,
+				3D056D1C182CEC27005DFE95 /* RECoreVersion.h */,
 				3D1F430F13E29A4F001E480D /* recore */,
 				3D1F436D13E29AAB001E480D /* core */,
 			);
@@ -885,6 +888,7 @@
 				3D1F435913E29A4F001E480D /* RELocale.h in Headers */,
 				3D1F435B13E29A4F001E480D /* REMath.h in Headers */,
 				3D1F435C13E29A4F001E480D /* REMD5Generator.h in Headers */,
+				3D056D1D182CEC27005DFE95 /* RECoreVersion.h in Headers */,
 				3D1F435D13E29A4F001E480D /* RENotificationManager.h in Headers */,
 				3D1F435E13E29A4F001E480D /* RENumber.h in Headers */,
 				3D1F435F13E29A4F001E480D /* REObject.h in Headers */,
@@ -976,6 +980,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D1788F113E2987E00520FC2 /* Build configuration list for PBXNativeTarget "recore" */;
 			buildPhases = (
+				3D056D24182CF566005DFE95 /* ShellScript */,
 				3D1788E313E2987E00520FC2 /* Sources */,
 				3D1788E413E2987E00520FC2 /* Frameworks */,
 				3D1788E513E2987E00520FC2 /* Headers */,
@@ -1031,6 +1036,19 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D056D24182CF566005DFE95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nperl -pe 's/(RECORE_BUILD_NUMBER )(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nperl -pe 's/(RECORE_BUILD_NUMBER_S \")(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nfi";
+		};
 		3DD65D1415F691FD00E34829 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

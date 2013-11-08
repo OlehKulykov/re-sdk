@@ -18,12 +18,12 @@
 rm -rf *.a
 
 PWD=$(pwd)
+BUILD_DIR=$PWD
 
 cd ../../src/addlibs1/ios/
 ./build.sh
 cd BUILD_DIR
 
-BUILD_DIR=$PWD
 OBJ_DIR=$BUILD_DIR"/obj"
 SYM_DIR=$BUILD_DIR"/sym"
 

@@ -18,7 +18,6 @@
 rm -rf *.a
 
 PWD=$(pwd)
-
 BUILD_DIR=$PWD
 
 cd ../../src/addlibs1/macosx/

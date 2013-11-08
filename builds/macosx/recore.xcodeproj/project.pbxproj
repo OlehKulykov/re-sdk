@@ -1128,6 +1128,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D1231B615FA3CB200CFFD87 /* Build configuration list for PBXNativeTarget "RECore" */;
 			buildPhases = (
+				3D056D2A182CFC15005DFE95 /* ShellScript */,
 				3D1231A315FA3CB200CFFD87 /* Sources */,
 				3D1231A415FA3CB200CFFD87 /* Frameworks */,
 				3D1231A515FA3CB200CFFD87 /* Headers */,
@@ -1146,6 +1147,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DECC5E315592B1B00CEF963 /* Build configuration list for PBXNativeTarget "recore" */;
 			buildPhases = (
+				3D056D29182CFC03005DFE95 /* ShellScript */,
 				3DECC5CE15592B1B00CEF963 /* Sources */,
 				3DECC5CF15592B1B00CEF963 /* Frameworks */,
 				3DECC5D015592B1B00CEF963 /* Headers */,
@@ -1194,6 +1196,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D056D29182CFC03005DFE95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nperl -pe 's/(RECORE_BUILD_NUMBER )(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nfi";
+		};
+		3D056D2A182CFC15005DFE95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nperl -pe 's/(RECORE_BUILD_NUMBER )(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nperl -pe 's/(RECORE_BUILD_NUMBER_S \")(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D1231A315FA3CB200CFFD87 /* Sources */ = {
