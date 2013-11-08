@@ -121,6 +121,7 @@ LOCAL_C_INCLUDES += $(INCLUDE_ROOT)/lzma/lzma/C
 LOCAL_C_INCLUDES += $(INCLUDE_ROOT)/png/libpng
 LOCAL_C_INCLUDES += $(INCLUDE_ROOT)/tinyxml2/tinyxml2
 LOCAL_C_INCLUDES += $(INCLUDE_ROOT)/webp/src
+LOCAL_C_INCLUDES += $(INCLUDE_ROOT)/freetype/freetype/include
 
 
 LOCAL_CFLAGS := -DANDROID -DANDROID_NDK -D__RE_OS_ANDROID__=1 -DHAVE_RECORE_SDK_CONFIG_H=1
@@ -139,6 +140,7 @@ LOCAL_STATIC_LIBRARIES += libpng
 LOCAL_STATIC_LIBRARIES += libtinyxml2 
 LOCAL_STATIC_LIBRARIES += libwebp
 LOCAL_STATIC_LIBRARIES += libcpufeatures 
+LOCAL_STATIC_LIBRARIES += libfreetype 
 
 
 include $(BUILD_SHARED_LIBRARY)
@@ -151,6 +153,7 @@ $(call import-module,lzma)
 $(call import-module,png)
 $(call import-module,tinyxml2)
 $(call import-module,webp)
+$(call import-module,freetype)
 
 
 

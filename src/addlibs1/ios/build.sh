@@ -28,3 +28,8 @@ cd webp
 ./build.sh
 cd ..
 
+cd freetype
+./build.sh
+cd ..
+
+

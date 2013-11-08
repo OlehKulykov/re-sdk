@@ -189,11 +189,11 @@
 
 
 /* ft2build.h */
-/* #undef HAVE_FT2BUILD_H */
+#define HAVE_FT2BUILD_H 1
 
 
 /* freetype/freetype.h */
-/* #undef HAVE_FREETYPE_FREETYPE_H */
+#define HAVE_FREETYPE_FREETYPE_H 1
 
 
 /* freetype2/freetype/freetype.h */
