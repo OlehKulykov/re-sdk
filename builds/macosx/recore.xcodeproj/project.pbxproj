@@ -1222,7 +1222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nperl -pe 's/(RECORE_BUILD_NUMBER )(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nperl -pe 's/(RECORE_BUILD_NUMBER_S \")(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nperl -pe 's/(RECORE_BUILD_NUMBER )(\\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

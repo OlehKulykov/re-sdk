@@ -23,7 +23,6 @@ rm -rf libs
 rm -rf obj
 
 perl -pe 's/(RECORE_BUILD_NUMBER )(\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h
-perl -pe 's/(RECORE_BUILD_NUMBER_S ")(\d+)/$1.($2+1)/eg' -i ../../include/recore/RECoreVersion.h
 
 # Update NDK_MODULE_PATH so we can find our imported modules
 export NDK_MODULE_PATH="$PWD"

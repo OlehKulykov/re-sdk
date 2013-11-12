@@ -116,11 +116,37 @@ int RECore::isCorrectTypes()
 	return 1;
 }
 
+
+#define XSTR(s) STR(s)
+#define STR(s) #s
+
+#define RECORE_VERSION_STRING XSTR(RECORE_VERSION_MAJOR) "." XSTR(RECORE_VERSION_MINOR) "." XSTR(RECORE_VERSION_RELEASE) " #" XSTR(RECORE_BUILD_NUMBER)
+
+
 const char * RECore::buildInfo()
 { 
 	static const char * info = 
-	"\nRECore version: " RECORE_VERSION_STRING "\n"
-	"Build date: " __DATE__ " time: " __TIME__ "\n"
+	"\nRECore version: " 
+	
+	RECORE_VERSION_STRING 
+	
+	"\n"
+	"Build date: " 
+	
+#if defined(__DATE__)	
+	__DATE__
+#else
+	"unknown"
+#endif
+	
+	" time: " 
+	
+#if defined(__TIME__)	
+	__TIME__
+#else
+	"unknown"
+#endif	
+	"\n"
 	
 #if defined(__RE_ARCHITECTURE_ARM__)	
 	"Architecture: arm \n"
