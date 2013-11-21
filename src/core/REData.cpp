@@ -295,7 +295,7 @@ REBOOL REData::initializeFromResourcePath(const char * filePath, const REUInt32 
 	if (b.isNotEmpty()) 
 	{
 		REResourcesStorage r;
-		if (r.readToBuffer(REStaticString(filePath), newBuffer))
+		if (r.readToBuffer(REStaticString(filePath, filePathLength), newBuffer))
 		{
 			_buffer = b;
 			return true;
